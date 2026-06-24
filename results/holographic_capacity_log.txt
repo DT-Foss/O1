@@ -1,0 +1,30 @@
+================================================================================
+FRONT 1 — PHASE-COLLISION CAPACITY sweep (key-conditioned holographic write)
+device=cpu  steps=1500  seeds=[1, 7, 42]  train_len=64  d_model=128
+base d_head=32  base n_pairs=8  readout=tanh_m (working)  chance=1/64=0.0156
+================================================================================
+
+[gates @ base n_pairs] attn validity + holo_off floor
+    attn np8                 seed     1  recall 0.9927
+    attn np8                 seed     7  recall 0.9907
+    attn np8                 seed    42  recall 1.0000
+    attn np8                 MEAN        0.9945 ± 0.0040
+    holo_off np8             seed     1  recall 0.0132
+    holo_off np8             seed     7  recall 0.0205
+    holo_off np8             seed    42  recall 0.0151
+    holo_off np8             MEAN        0.0163 ± 0.0031
+
+[baseline] holo_on  d_head=32  phase=pi  n_pairs=8
+    holo_on BASE             seed     1  recall 0.0825
+    holo_on BASE             seed     7  recall 0.1138
+    holo_on BASE             seed    42  recall 0.0327
+    holo_on BASE             MEAN        0.0763 ± 0.0334
+
+[(a) d_head sweep]  phase=pi, n_pairs=8
+    d_head= 32  (== baseline, reused)  0.0763 ± 0.0334
+    holo_on d_head=64        seed     1  recall 0.0649
+    holo_on d_head=64        seed     7  recall 0.0771
+    holo_on d_head=64        seed    42  recall 0.0791
+    holo_on d_head=64        MEAN        0.0737 ± 0.0063
+    holo_on d_head=96        seed     1  recall 0.0513
+    holo_on d_head=96        seed     7  recall 0.0747

@@ -1,0 +1,65 @@
+{
+  "config": {
+    "steps": 60,
+    "n_pairs": 8,
+    "train_len": 64,
+    "d_model": 128,
+    "n_heads": 4,
+    "d_head": 32,
+    "lr": 0.003,
+    "seeds": [
+      1,
+      7
+    ],
+    "chance": 0.015625,
+    "device": "cpu",
+    "readout": "tanh_m"
+  },
+  "summary": {
+    "attn": {
+      "mean": 0.13525390625,
+      "std": 0.0009765625,
+      "per_seed": [
+        0.13623046875,
+        0.13427734375
+      ]
+    },
+    "holo_off": {
+      "mean": 0.014892578125,
+      "std": 0.001220703125,
+      "per_seed": [
+        0.01611328125,
+        0.013671875
+      ]
+    },
+    "holo_shared": {
+      "mean": 0.014404296875,
+      "std": 0.000732421875,
+      "per_seed": [
+        0.01513671875,
+        0.013671875
+      ]
+    },
+    "holo_sepqk": {
+      "mean": 0.016357421875,
+      "std": 0.002685546875,
+      "per_seed": [
+        0.013671875,
+        0.01904296875
+      ]
+    }
+  },
+  "verdict": {
+    "separate_qk_mean": 0.0164,
+    "shared_qk_mean": 0.0144,
+    "holo_off_floor": 0.0149,
+    "delta_pp": 0.2,
+    "noise_band_pp": 0.54,
+    "chance": 0.0156,
+    "validity_gate_attn": 0.1353,
+    "validity_passed": false,
+    "sepqk_beats_shared": false,
+    "interpretation": "VOID \u2014 attention validity gate failed"
+  },
+  "elapsed_s": 62.8
+}

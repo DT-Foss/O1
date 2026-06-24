@@ -1,0 +1,129 @@
+{
+  "device": "cpu",
+  "dtype": "torch.float64",
+  "torch_version": "2.9.1",
+  "config": {
+    "vocab_size": 40,
+    "seq_len": 24,
+    "n_seqs": 64,
+    "d_model": 32,
+    "n_layers": 2,
+    "n_heads": 2,
+    "d_head": 16,
+    "steps": 300,
+    "lr": 0.003,
+    "batch": 16,
+    "gamma_const": 0.9,
+    "alpha_const": 0.5
+  },
+  "training": {
+    "loss_first": 3.930465439178069,
+    "loss_last": 0.7086909746174103,
+    "loss_min": 0.6256666614605005,
+    "steps": 300,
+    "n_trainable": 25801,
+    "n_frozen": 4096,
+    "wall_s": 2.826773166656494,
+    "loss_curve_every10": [
+      3.930465439178069,
+      3.557411129091847,
+      3.4068192494760567,
+      3.107778844693741,
+      3.148046962411882,
+      2.9808429751989594,
+      2.9218840197650673,
+      2.9254870928813292,
+      2.899151577732643,
+      2.7399033536713344,
+      2.722225298963674,
+      2.644132680976924,
+      2.625157469124396,
+      2.4795616346484772,
+      2.4846366518309013,
+      2.25847809402596,
+      2.0967323494838834,
+      2.12775792228518,
+      1.8735736424644542,
+      1.8733915714481533,
+      1.7466974063417822,
+      1.5907778392599614,
+      1.5457328177599345,
+      1.3559892832605163,
+      1.3070934475434846,
+      1.2287488726243136,
+      1.0970703600237894,
+      0.9780432798692095,
+      0.9988622959848187,
+      0.7761696306476026,
+      0.7086909746174103
+    ]
+  },
+  "frozen_gate_check": {
+    "all_frozen": true,
+    "layers": [
+      {
+        "layer": 0,
+        "W_gamma_requires_grad_false": true,
+        "W_alpha_requires_grad_false": true,
+        "W_gamma_grad_is_none": true,
+        "W_alpha_grad_is_none": true,
+        "gamma_const_mean": 0.8999999761581421,
+        "alpha_const_mean": 0.5
+      },
+      {
+        "layer": 1,
+        "W_gamma_requires_grad_false": true,
+        "W_alpha_requires_grad_false": true,
+        "W_gamma_grad_is_none": true,
+        "W_alpha_grad_is_none": true,
+        "gamma_const_mean": 0.8999999761581421,
+        "alpha_const_mean": 0.5
+      }
+    ]
+  },
+  "kernel_match_constant_gate": [
+    {
+      "layer": 0,
+      "max_abs_err": 8.881784197001252e-16,
+      "mean_abs_err": 5.758326734129773e-17,
+      "rel_err_mean": 1.010996468653935e-16,
+      "z_scale_mean_abs": 0.569569421126311,
+      "gamma_const_min": 0.8999999761581421,
+      "gamma_const_max": 0.8999999761581421
+    },
+    {
+      "layer": 1,
+      "max_abs_err": 8.881784197001252e-16,
+      "mean_abs_err": 4.327649263873844e-17,
+      "rel_err_mean": 9.820353537552485e-17,
+      "z_scale_mean_abs": 0.4406816157193663,
+      "gamma_const_min": 0.8999999761581421,
+      "gamma_const_max": 0.8999999761581421
+    }
+  ],
+  "kernel_ridge_crosscheck": {
+    "layer": 0,
+    "exact_K_dot_a_vs_scan_max_abs_err": 8.881784197001252e-16,
+    "ridge_scaled_kernel_residual_rel": 1.0383884231764664e-08,
+    "per_channel_scale_mean": 0.9999999878108736,
+    "per_channel_scale_std": 8.925862688523732e-09,
+    "T": 24,
+    "H": 2,
+    "D": 16,
+    "note": "per-channel scale \u2248 1 and residual \u2248 0 \u21d2 the trained read map IS the geometric kernel z=K\u00b7a, no extra readout needed."
+  },
+  "selective_negative_control": {
+    "max_abs_err": 0.04311096234506828,
+    "mean_abs_err": 0.0021879705660744412,
+    "rel_err_mean": 0.02427102085470069,
+    "gamma_time_std_mean": 0.02571537938811632,
+    "note": "selective \u03b3_t varies in time (gamma_time_std_mean>0); the best single geometric kernel canNOT reproduce its read map \u2014 the gap below is the contrast that makes the constant-gate match real."
+  },
+  "verdict": {
+    "constant_gate_matches_kernel": true,
+    "kernel_match_max_abs_err": 8.881784197001252e-16,
+    "selective_control_max_abs_err": 0.04311096234506828,
+    "control_over_match_ratio": 48538628488208.25,
+    "interpretation": "Constant-gate (frozen W_gamma/W_alpha) GSSM-Selective trained with BPTT: its scan read map equals the closed-form geometric-Toeplitz kernel constant_gamma_closed_form(a, gamma) to machine precision at every layer. The selective model's time-varying read map does NOT match any single geometric kernel (control gap orders of magnitude larger), confirming the match is a genuine consequence of constant gating, not an artifact. This closes RKHS \u00a76.1's lead falsifier: the constant-gate map IS the kernel."
+  }
+}

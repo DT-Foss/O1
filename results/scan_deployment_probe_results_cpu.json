@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "generated_utc": "2026-06-24T10:22:12.795662+00:00",
+    "device": "cpu",
+    "torch": "2.9.1",
+    "B": 8,
+    "H": 4,
+    "D": 16,
+    "iters": 20,
+    "warmup": 5,
+    "Ts": [
+      128,
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "tol": 1e-05,
+    "all_correct": true
+  },
+  "rows": [
+    {
+      "T": 128,
+      "correct": true,
+      "err_doubling": 9.5367431640625e-07,
+      "err_blelloch": 4.76837158203125e-07,
+      "seq": {
+        "median_ms": 0.48372900346294045,
+        "mean_ms": 0.5142458423506469,
+        "min_ms": 0.46562496572732925,
+        "max_ms": 0.8528749458491802
+      },
+      "doubling": {
+        "median_ms": 0.6007920019328594,
+        "mean_ms": 0.6619602034334093,
+        "min_ms": 0.5625829799100757,
+        "max_ms": 1.352290972135961
+      },
+      "blelloch": {
+        "median_ms": 2.023166511207819,
+        "mean_ms": 2.0997145562432706,
+        "min_ms": 1.7140420386567712,
+        "max_ms": 2.968959044665098
+      },
+      "speedup_doubling_vs_seq": 0.8051522022708266,
+      "speedup_blelloch_vs_seq": 0.23909500319583532,
+      "blelloch_over_doubling": 3.3674990757182464,
+      "depth_seq": 128,
+      "depth_doubling": 7
+    },
+    {
+      "T": 512,
+      "correct": true,
+      "err_doubling": 9.5367431640625e-07,
+      "err_blelloch": 9.5367431640625e-07,
+      "seq": {
+        "median_ms": 1.7410205327905715,
+        "mean_ms": 1.8683415546547621,
+        "min_ms": 1.6430829418823123,
+        "max_ms": 2.8538339538499713
+      },
+      "doubling": {
+        "median_ms": 3.1519790063612163,
+        "mean_ms": 3.2679167634341866,
+        "min_ms": 1.861958997324109,
+        "max_ms": 5.468667019158602
+      },
+      "blelloch": {
+        "median_ms": 8.114145952276886,
+        "mean_ms": 8.083870803238824,
+        "min_ms": 6.7711250158026814,
+        "max_ms": 9.774207952432334
+      },
+      "speedup_doubling_vs_seq": 0.5523579088810247,
+      "speedup_blelloch_vs_seq": 0.21456608533175683,
+      "blelloch_over_doubling": 2.5743020292651675,
+      "depth_seq": 512,
+      "depth_doubling": 9
+    },
+    {
+      "T": 1024,
+      "correct": true,
+      "err_doubling": 9.5367431640625e-07,
+      "err_blelloch": 9.5367431640625e-07,
+      "seq": {
+        "median_ms": 4.163186997175217,
+        "mean_ms": 4.296270728809759,
+        "min_ms": 3.338958020322025,
+        "max_ms": 6.070832954719663
+      },
+      "doubling": {
+        "median_ms": 12.527520535513759,
+        "mean_ms": 12.503689713776112,
+        "min_ms": 10.414666961878538,
+        "max_ms": 16.476707998663187
+      },
+      "blelloch": {
+        "median_ms": 24.467791488859802,
+        "mean_ms": 26.908837293740362,
+        "min_ms": 14.60833300370723,
+        "max_ms": 78.39891605544835
+      },
+      "speedup_doubling_vs_seq": 0.3323233025540183,
+      "speedup_blelloch_vs_seq": 0.1701496842929497,
+      "blelloch_over_doubling": 1.9531232393111673,
+      "depth_seq": 1024,
+      "depth_doubling": 10
+    },
+    {
+      "T": 2048,
+      "correct": true,
+      "err_doubling": 9.5367431640625e-07,
+      "err_blelloch": 9.5367431640625e-07,
+      "seq": {
+        "median_ms": 9.263333515264094,
+        "mean_ms": 13.165681395912543,
+        "min_ms": 7.463374990038574,
+        "max_ms": 88.19770801346749
+      },
+      "doubling": {
+        "median_ms": 43.87766699073836,
+        "mean_ms": 44.64175213361159,
+        "min_ms": 27.61624997947365,
+        "max_ms": 65.44508296065032
+      },
+      "blelloch": {
+        "median_ms": 62.06929148174822,
+        "mean_ms": 63.62205625628121,
+        "min_ms": 43.72325004078448,
+        "max_ms": 94.54945800825953
+      },
+      "speedup_doubling_vs_seq": 0.21111727561128957,
+      "speedup_blelloch_vs_seq": 0.14924181175788065,
+      "blelloch_over_doubling": 1.4145987181781958,
+      "depth_seq": 2048,
+      "depth_doubling": 11
+    },
+    {
+      "T": 4096,
+      "correct": true,
+      "err_doubling": 9.5367431640625e-07,
+      "err_blelloch": 9.5367431640625e-07,
+      "seq": {
+        "median_ms": 18.44441652065143,
+        "mean_ms": 18.98941249237396,
+        "min_ms": 15.653999987989664,
+        "max_ms": 24.37879191711545
+      },
+      "doubling": {
+        "median_ms": 91.05975000420585,
+        "mean_ms": 93.27137286309153,
+        "min_ms": 72.77587498538196,
+        "max_ms": 118.08437504805624
+      },
+      "blelloch": {
+        "median_ms": 143.4174164896831,
+        "mean_ms": 144.23600194277242,
+        "min_ms": 115.54579099174589,
+        "max_ms": 182.42437508888543
+      },
+      "speedup_doubling_vs_seq": 0.20255290092274053,
+      "speedup_blelloch_vs_seq": 0.12860653170375755,
+      "blelloch_over_doubling": 1.5749814433167117,
+      "depth_seq": 4096,
+      "depth_doubling": 12
+    }
+  ],
+  "verdict": {
+    "device": "cpu",
+    "blelloch_beats_doubling_at_T": [],
+    "doubling_beats_blelloch_at_T": [
+      128,
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "parallel_beats_sequential_anywhere": false,
+    "best_doubling_speedup_vs_seq": {
+      "T": 128,
+      "speedup": 0.8051522022708266
+    },
+    "blelloch_verdict": "Blelloch NEVER beats the doubling scan in wall-time on this device. Its lower O(T) asymptotic work does NOT translate to wall-time: the A.index_copy(...) scatter in the up/down-sweep (parallel_scan.py:170-199) is the bottleneck, exactly as the docstring predicted. The doubling (Hillis-Steele) scan's pure slice/cat/mul/add form wins at every T tested.",
+    "ship_recommendation": "Ship the DOUBLING scan (parallel_linear_scan) as the GPU/MPS inference default; keep the sequential loop as the CPU fallback."
+  }
+}

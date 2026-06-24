@@ -1,0 +1,42 @@
+==============================================================================
+Holographic-GSSM FRONT 2 — separate write/read key, multi-seed, CPU-deterministic
+device=cpu steps=1200 train_len=64 n_pairs=8 d_model=128 d_head=32
+seeds=[1, 7, 42]  chance=1/64=0.0156
+==============================================================================
+
+--- seed 1 ---
+  attn          train-len recall 0.9917
+  holo_off      train-len recall 0.0137
+  holo_shared   train-len recall 0.0840
+  holo_sepqk    train-len recall 0.0278
+
+--- seed 7 ---
+  attn          train-len recall 1.0000
+  holo_off      train-len recall 0.0161
+  holo_shared   train-len recall 0.1060
+  holo_sepqk    train-len recall 0.0259
+
+--- seed 42 ---
+  attn          train-len recall 0.9985
+  holo_off      train-len recall 0.0186
+  holo_shared   train-len recall 0.0254
+  holo_sepqk    train-len recall 0.0522
+
+==============================================================================
+AGGREGATE (train-len recall, mean ± std over seeds)
+  attn          0.9967 ± 0.0036
+  holo_off      0.0161 ± 0.0020
+  holo_shared   0.0718 ± 0.0340
+  holo_sepqk    0.0353 ± 0.0120
+
+==============================================================================
+VERDICT (Front 2: separate write/read key)
+  validity gate (attn ≥ 0.90)   : 0.9967  PASS
+  holo_off floor (==Selective)  : 0.0161
+  holo_shared (7% baseline)     : 0.0718 ± 0.0340
+  holo_sepqk  (separate Q/K)    : 0.0353 ± 0.0120
+  Δ (sepqk − shared)            : -3.65 pp
+  noise band (2σ)               : 6.80 pp
+  >>> NEGATIVE — separate Q/K does not beat shared-key on tanh_m (Δ within band)
+
+Results written to ./results/holographic_qk.json  (2197.3s)

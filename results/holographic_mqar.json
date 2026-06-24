@@ -1,0 +1,86 @@
+{
+  "config": {
+    "steps": 2500,
+    "n_pairs": 8,
+    "train_len": 64,
+    "test_len": 256,
+    "d_model": 128,
+    "n_heads": 4,
+    "d_head": 32,
+    "seeds": [
+      1,
+      7,
+      42,
+      123,
+      2024
+    ],
+    "chance": 0.015625,
+    "device": "cpu"
+  },
+  "summary": {
+    "attn": {
+      "train_mean": 0.99404296875,
+      "train_std": 0.008957798668334864,
+      "test_mean": 0.99482421875,
+      "test_std": 0.006930154296566474,
+      "per_seed_train": [
+        0.9765625,
+        0.99951171875,
+        0.99951171875,
+        1.0,
+        0.99462890625
+      ]
+    },
+    "selective": {
+      "train_mean": 0.0169921875,
+      "train_std": 0.0021705186299700065,
+      "test_mean": 0.01650390625,
+      "test_std": 0.001461584916708571,
+      "per_seed_train": [
+        0.013671875,
+        0.015625,
+        0.01708984375,
+        0.01904296875,
+        0.01953125
+      ]
+    },
+    "holo_off": {
+      "train_mean": 0.01669921875,
+      "train_std": 0.0018885819927552457,
+      "test_mean": 0.01611328125,
+      "test_std": 0.001953125,
+      "per_seed_train": [
+        0.013671875,
+        0.015625,
+        0.01708984375,
+        0.01904296875,
+        0.01806640625
+      ]
+    },
+    "holo_on": {
+      "train_mean": 0.0888671875,
+      "train_std": 0.018593196059238058,
+      "test_mean": 0.0849609375,
+      "test_std": 0.019344813303772475,
+      "per_seed_train": [
+        0.0888671875,
+        0.10986328125,
+        0.06640625,
+        0.06982421875,
+        0.109375
+      ]
+    }
+  },
+  "verdict": {
+    "holo_contribution_pp": 7.22,
+    "noise_band_pp": 3.72,
+    "holo_on_mean": 0.0889,
+    "holo_off_mean": 0.0167,
+    "chance": 0.0156,
+    "validity_gate_attn": 0.994,
+    "validity_passed": true,
+    "breaks_recall_wall": true,
+    "interpretation": "KEY-CONDITIONED WRITE HELPS \u2014 clears the noise band and chance"
+  },
+  "elapsed_s": 4170.2
+}

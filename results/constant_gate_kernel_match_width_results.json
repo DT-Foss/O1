@@ -1,0 +1,261 @@
+{
+  "front": "FRONT 5 \u2014 constant-gate kernel match at full width",
+  "device": "cpu",
+  "dtype": "torch.float64",
+  "torch_version": "2.9.1",
+  "d_small_baseline_max_abs_err": 8.881784197001252e-16,
+  "widths_attempted": [
+    512,
+    256,
+    128
+  ],
+  "per_width": {
+    "512": {
+      "config": {
+        "vocab_size": 40,
+        "seq_len": 24,
+        "n_seqs": 64,
+        "n_layers": 2,
+        "lr": 0.003,
+        "batch": 16,
+        "gamma_const": 0.9,
+        "alpha_const": 0.5,
+        "d_model": 512,
+        "n_heads": 8,
+        "d_head": 64,
+        "steps": 120
+      },
+      "training": {
+        "loss_first": 3.8923682550807053,
+        "loss_last": 0.4297519201687836,
+        "loss_min": 0.3805933473391568,
+        "steps": 120,
+        "n_trainable": 5818921,
+        "n_frozen": 1048576,
+        "wall_s": 26.90803599357605
+      },
+      "frozen_gate_check_all_frozen": true,
+      "kernel_match_constant_gate": [
+        {
+          "layer": 0,
+          "max_abs_err": 3.552713678800501e-15,
+          "mean_abs_err": 1.5599834592421334e-17,
+          "rel_err_mean": 1.0187852306603555e-16,
+          "z_scale_mean_abs": 0.1531219154228214,
+          "gamma_const_min": 0.8999999761581421,
+          "gamma_const_max": 0.8999999761581421
+        },
+        {
+          "layer": 1,
+          "max_abs_err": 1.7763568394002505e-15,
+          "mean_abs_err": 1.3824792282922526e-17,
+          "rel_err_mean": 1.225325433119477e-16,
+          "z_scale_mean_abs": 0.11282547402614786,
+          "gamma_const_min": 0.8999999761581421,
+          "gamma_const_max": 0.8999999761581421
+        }
+      ],
+      "kernel_ridge_crosscheck": {
+        "layer": 0,
+        "exact_K_dot_a_vs_scan_max_abs_err": 3.552713678800501e-15,
+        "ridge_scaled_kernel_residual_rel": 2.0329644138699944e-05,
+        "per_channel_scale_mean": 0.40969195698887234,
+        "per_channel_scale_std": 0.4548946470519292,
+        "T": 24,
+        "H": 8,
+        "D": 64,
+        "note": "per-channel scale \u2248 1 and residual \u2248 0 \u21d2 the trained read map IS the geometric kernel z=K\u00b7a, no extra readout needed."
+      },
+      "selective_negative_control": {
+        "max_abs_err": 0.048729859295058464,
+        "mean_abs_err": 0.0021009971519303215,
+        "rel_err_mean": 0.024930166812155825,
+        "gamma_time_std_mean": 0.025908184500915518,
+        "note": "selective \u03b3_t varies in time (gamma_time_std_mean>0); the best single geometric kernel canNOT reproduce its read map \u2014 the gap below is the contrast that makes the constant-gate match real."
+      },
+      "summary": {
+        "d_model": 512,
+        "constant_gate_matches_kernel": true,
+        "kernel_match_max_abs_err": 3.552713678800501e-15,
+        "kernel_match_mean_abs_err": 1.5599834592421334e-17,
+        "z_scale_mean_abs": 0.1531219154228214,
+        "selective_control_max_abs_err": 0.048729859295058464,
+        "control_over_match_ratio": 13716236010190.125,
+        "train_loss_first": 3.8923682550807053,
+        "train_loss_last": 0.4297519201687836,
+        "wall_s_train": 26.90803599357605
+      },
+      "wall_s_total": 27.171528100967407
+    },
+    "256": {
+      "config": {
+        "vocab_size": 40,
+        "seq_len": 24,
+        "n_seqs": 64,
+        "n_layers": 2,
+        "lr": 0.003,
+        "batch": 16,
+        "gamma_const": 0.9,
+        "alpha_const": 0.5,
+        "d_model": 256,
+        "n_heads": 4,
+        "d_head": 64,
+        "steps": 150
+      },
+      "training": {
+        "loss_first": 3.8651558220731097,
+        "loss_last": 0.11689059517188408,
+        "loss_min": 0.07978180351480826,
+        "steps": 150,
+        "n_trainable": 1467689,
+        "n_frozen": 262144,
+        "wall_s": 11.679528951644897
+      },
+      "frozen_gate_check_all_frozen": true,
+      "kernel_match_constant_gate": [
+        {
+          "layer": 0,
+          "max_abs_err": 1.7763568394002505e-15,
+          "mean_abs_err": 4.5141501205846506e-17,
+          "rel_err_mean": 1.0883697824518871e-16,
+          "z_scale_mean_abs": 0.41476253690214165,
+          "gamma_const_min": 0.8999999761581421,
+          "gamma_const_max": 0.8999999761581421
+        },
+        {
+          "layer": 1,
+          "max_abs_err": 1.3322676295501878e-15,
+          "mean_abs_err": 2.7070321012218263e-17,
+          "rel_err_mean": 1.04424797703954e-16,
+          "z_scale_mean_abs": 0.259232688090607,
+          "gamma_const_min": 0.8999999761581421,
+          "gamma_const_max": 0.8999999761581421
+        }
+      ],
+      "kernel_ridge_crosscheck": {
+        "layer": 0,
+        "exact_K_dot_a_vs_scan_max_abs_err": 1.7763568394002505e-15,
+        "ridge_scaled_kernel_residual_rel": 6.273160194408921e-07,
+        "per_channel_scale_mean": 0.9999388241116771,
+        "per_channel_scale_std": 0.0009616793099214578,
+        "T": 24,
+        "H": 4,
+        "D": 64,
+        "note": "per-channel scale \u2248 1 and residual \u2248 0 \u21d2 the trained read map IS the geometric kernel z=K\u00b7a, no extra readout needed."
+      },
+      "selective_negative_control": {
+        "max_abs_err": 0.04885256331117427,
+        "mean_abs_err": 0.0020338382301606783,
+        "rel_err_mean": 0.024740928303030353,
+        "gamma_time_std_mean": 0.02591559507103084,
+        "note": "selective \u03b3_t varies in time (gamma_time_std_mean>0); the best single geometric kernel canNOT reproduce its read map \u2014 the gap below is the contrast that makes the constant-gate match real."
+      },
+      "summary": {
+        "d_model": 256,
+        "constant_gate_matches_kernel": true,
+        "kernel_match_max_abs_err": 1.7763568394002505e-15,
+        "kernel_match_mean_abs_err": 4.5141501205846506e-17,
+        "z_scale_mean_abs": 0.41476253690214165,
+        "selective_control_max_abs_err": 0.04885256331117427,
+        "control_over_match_ratio": 27501548240537.25,
+        "train_loss_first": 3.8651558220731097,
+        "train_loss_last": 0.11689059517188408,
+        "wall_s_train": 11.679528951644897
+      },
+      "wall_s_total": 11.78153395652771
+    },
+    "128": {
+      "config": {
+        "vocab_size": 40,
+        "seq_len": 24,
+        "n_seqs": 64,
+        "n_layers": 2,
+        "lr": 0.003,
+        "batch": 16,
+        "gamma_const": 0.9,
+        "alpha_const": 0.5,
+        "d_model": 128,
+        "n_heads": 4,
+        "d_head": 32,
+        "steps": 200
+      },
+      "training": {
+        "loss_first": 3.8831908356058547,
+        "loss_last": 0.07537016776679342,
+        "loss_min": 0.07020471847032478,
+        "steps": 200,
+        "n_trainable": 373417,
+        "n_frozen": 65536,
+        "wall_s": 6.147557973861694
+      },
+      "frozen_gate_check_all_frozen": true,
+      "kernel_match_constant_gate": [
+        {
+          "layer": 0,
+          "max_abs_err": 1.3322676295501878e-15,
+          "mean_abs_err": 5.511671868215375e-17,
+          "rel_err_mean": 1.0287708116387768e-16,
+          "z_scale_mean_abs": 0.5357531343084364,
+          "gamma_const_min": 0.8999999761581421,
+          "gamma_const_max": 0.8999999761581421
+        },
+        {
+          "layer": 1,
+          "max_abs_err": 1.7763568394002505e-15,
+          "mean_abs_err": 4.3911815877108434e-17,
+          "rel_err_mean": 1.0342022606859343e-16,
+          "z_scale_mean_abs": 0.4245960151728978,
+          "gamma_const_min": 0.8999999761581421,
+          "gamma_const_max": 0.8999999761581421
+        }
+      ],
+      "kernel_ridge_crosscheck": {
+        "layer": 0,
+        "exact_K_dot_a_vs_scan_max_abs_err": 1.3322676295501878e-15,
+        "ridge_scaled_kernel_residual_rel": 8.029175415613482e-09,
+        "per_channel_scale_mean": 0.999999989669538,
+        "per_channel_scale_std": 8.570051955993474e-09,
+        "T": 24,
+        "H": 4,
+        "D": 32,
+        "note": "per-channel scale \u2248 1 and residual \u2248 0 \u21d2 the trained read map IS the geometric kernel z=K\u00b7a, no extra readout needed."
+      },
+      "selective_negative_control": {
+        "max_abs_err": 0.04320924132896009,
+        "mean_abs_err": 0.002204457348300069,
+        "rel_err_mean": 0.02484633306013035,
+        "gamma_time_std_mean": 0.02571239188414043,
+        "note": "selective \u03b3_t varies in time (gamma_time_std_mean>0); the best single geometric kernel canNOT reproduce its read map \u2014 the gap below is the contrast that makes the constant-gate match real."
+      },
+      "summary": {
+        "d_model": 128,
+        "constant_gate_matches_kernel": true,
+        "kernel_match_max_abs_err": 1.7763568394002505e-15,
+        "kernel_match_mean_abs_err": 5.511671868215375e-17,
+        "z_scale_mean_abs": 0.5357531343084364,
+        "selective_control_max_abs_err": 0.04320924132896009,
+        "control_over_match_ratio": 24324640393508.312,
+        "train_loss_first": 3.8831908356058547,
+        "train_loss_last": 0.07537016776679342,
+        "wall_s_train": 6.147557973861694
+      },
+      "wall_s_total": 6.185780048370361
+    }
+  },
+  "widths_succeeded": [
+    512,
+    256,
+    128
+  ],
+  "widths_failed": {},
+  "wall_s_all": 45.13890099525452,
+  "headline": {
+    "largest_width_run": 512,
+    "kernel_match_max_abs_err_at_largest_width": 3.552713678800501e-15,
+    "match_at_largest_width": true,
+    "selective_control_max_abs_err_at_largest_width": 0.048729859295058464,
+    "control_over_match_ratio_at_largest_width": 13716236010190.125,
+    "d_small_baseline_max_abs_err": 8.881784197001252e-16,
+    "drift_vs_d_small": 4.0
+  }
+}

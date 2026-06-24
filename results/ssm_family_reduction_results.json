@@ -1,0 +1,75 @@
+{
+  "torch_version": "2.9.1",
+  "device": "cpu",
+  "operator": "(A2,B2) x (A1,B1) = (A2*A1, A2*B1 + B2), identity (1,0)",
+  "three_switches": [
+    "Switch 1 (state algebra of A): real scalar | real diagonal | complex diagonal",
+    "Switch 2 (A_t input-dependence): selective (GSSM, Mamba) | LTI (S5, LRU)",
+    "Switch 3 (B-map / drive): GSSM nonlinear \u03c6 | Mamba \u0394\u00b7B\u00b7u | S5 \u0394\u00b7B\u00b7u | LRU B\u00b7u"
+  ],
+  "B": 4,
+  "T": 37,
+  "cases": [
+    {
+      "name": "GSSM-Selective",
+      "state_algebra": "real scalar \u2208(0,1)",
+      "A_t_input_dependent": true,
+      "B_map": "\u03b1_t\u00b7log(1\u2212v\u0304_t\u00b2) [nonlinear \u03c6]",
+      "dtype": "float64",
+      "B": 4,
+      "T": 37,
+      "N": 1,
+      "T_is_power_of_two": false,
+      "max_abs_err_seq_vs_parallel": 4.440892098500626e-16,
+      "tol": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Mamba-S6",
+      "state_algebra": "real diagonal \u2208(0,1)^N",
+      "A_t_input_dependent": true,
+      "B_map": "\u0394_t\u00b7B\u0304\u00b7u_t [linear, input-scaled]",
+      "dtype": "float64",
+      "B": 4,
+      "T": 37,
+      "N": 8,
+      "T_is_power_of_two": false,
+      "max_abs_err_seq_vs_parallel": 8.881784197001252e-16,
+      "tol": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "S5",
+      "state_algebra": "COMPLEX diagonal exp(\u0394\u039b)",
+      "A_t_input_dependent": false,
+      "B_map": "\u0394\u00b7B\u00b7u_t [linear, time-const B]",
+      "dtype": "complex128",
+      "B": 4,
+      "T": 37,
+      "N": 8,
+      "T_is_power_of_two": false,
+      "max_abs_err_seq_vs_parallel": 1.2560739669470201e-15,
+      "tol": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "LRU",
+      "state_algebra": "COMPLEX diagonal e^{\u2212\u03bd+i\u03b8}",
+      "A_t_input_dependent": false,
+      "B_map": "B\u00b7u_t [linear, time-const B]",
+      "dtype": "complex128",
+      "B": 4,
+      "T": 37,
+      "N": 8,
+      "T_is_power_of_two": false,
+      "max_abs_err_seq_vs_parallel": 8.881784197001252e-16,
+      "tol": 1e-12,
+      "pass": true
+    }
+  ],
+  "headline": {
+    "real_max_abs_err": 8.881784197001252e-16,
+    "complex_max_abs_err": 1.2560739669470201e-15,
+    "all_pass": true
+  }
+}

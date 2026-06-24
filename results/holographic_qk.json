@@ -1,0 +1,70 @@
+{
+  "config": {
+    "steps": 1200,
+    "n_pairs": 8,
+    "train_len": 64,
+    "d_model": 128,
+    "n_heads": 4,
+    "d_head": 32,
+    "lr": 0.003,
+    "seeds": [
+      1,
+      7,
+      42
+    ],
+    "chance": 0.015625,
+    "device": "cpu",
+    "readout": "tanh_m"
+  },
+  "summary": {
+    "attn": {
+      "mean": 0.9967447916666666,
+      "std": 0.003617531049950011,
+      "per_seed": [
+        0.99169921875,
+        1.0,
+        0.99853515625
+      ]
+    },
+    "holo_off": {
+      "mean": 0.01611328125,
+      "std": 0.0019933998557805812,
+      "per_seed": [
+        0.013671875,
+        0.01611328125,
+        0.0185546875
+      ]
+    },
+    "holo_shared": {
+      "mean": 0.07177734375,
+      "std": 0.034004854192344044,
+      "per_seed": [
+        0.083984375,
+        0.10595703125,
+        0.025390625
+      ]
+    },
+    "holo_sepqk": {
+      "mean": 0.035319010416666664,
+      "std": 0.011995785008260599,
+      "per_seed": [
+        0.02783203125,
+        0.02587890625,
+        0.05224609375
+      ]
+    }
+  },
+  "verdict": {
+    "separate_qk_mean": 0.0353,
+    "shared_qk_mean": 0.0718,
+    "holo_off_floor": 0.0161,
+    "delta_pp": -3.65,
+    "noise_band_pp": 6.8,
+    "chance": 0.0156,
+    "validity_gate_attn": 0.9967,
+    "validity_passed": true,
+    "sepqk_beats_shared": false,
+    "interpretation": "NEGATIVE \u2014 separate Q/K does not beat shared-key on tanh_m (\u0394 within band)"
+  },
+  "elapsed_s": 2197.3
+}
