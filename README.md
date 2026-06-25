@@ -190,20 +190,35 @@ compute. The improving PPL is the model *integrating* causal context across the 
 filter, not merely "not crashing." (All safety-guarded; the machine stayed >80% free throughout.)
 → `src/scale_to_the_wall.py`, `src/scale_to_a_million.py`, `results/scale_to_a_million.json`
 
-**Doubly `O(1)`: the corpus is just an iterator.** The million-token run holds the corpus in a
-list. The next step removes that too — stream the corpus *lazily* (HuggingFace `streaming=True`,
-documents tokenized on the fly into a rolling buffer) and run the same chunked, now *batched*, eval.
-Neither the corpus nor the activations are ever materialized in full, so **effective sequence length
-is limited only by wall-clock time — never by RAM.** The same `O(1)`-state forward streams a
-**billion tokens** of C4 at constant memory, checkpointing perplexity and peak RSS every 50M tokens;
-the memory line is flat from the first checkpoint to the last. The batched eval is exact —
-`ppl_batched / ppl_single = 1.00000` on identical scored tokens. Because the corpus enters only as
-an iterator, C4 is interchangeable with any token stream: a web scraper, a live feed, the whole
-internet. That is the real claim, of which every length number here is evidence: **constant-memory
-consumption of an unbounded stream** — a model that does not load a context but *consumes a stream*.
-The thesis and its consequence are written up in
-[analysis/STREAMING_THESIS.md](analysis/STREAMING_THESIS.md).
-→ `src/scale_to_a_billion.py`, `src/plot_billion.py`, `results/scale_to_a_billion.json` *(billion-token run in progress; numbers land on completion)*
+**Doubly `O(1)`: the corpus is just an iterator — flat PPL to 1 BILLION tokens at constant memory.**
+The million-token run holds the corpus in a list. The next step removes that too — stream the corpus
+*lazily* (HuggingFace `streaming=True`, documents tokenized on the fly into a rolling buffer) and run
+the same chunked, now *batched*, eval. Neither the corpus nor the activations are ever materialized in
+full, so **effective sequence length is limited only by wall-clock time — never by RAM.**
+
+![No length wall: flat PPL to 1 billion tokens at constant memory](plots/scale_to_a_billion.png)
+
+The same `O(1)`-state model trained at T=32 streamed **1,000,013,824 tokens of C4** — 31,250,432× the
+training length — at **constant 4.36 GB**, checkpointing every 50M tokens. Across all 20 checkpoints
+the running PPL moved **1.3 points** (247.08–248.38, a 0.52% band) and the peak RSS moved **0.08 GB**
+(4.28–4.36). Two flat lines across a billion tokens; 153 minutes on one Mac mini that never approached
+its 16 GB. The batched eval is exact — `ppl_batched / ppl_single = 1.00000` on identical scored tokens.
+
+| effective length | extrap. | corpus | PPL | peak RSS |
+|---|---|---|---|---|
+| 100,000,000 | 3,125,000× | C4 streamed | 247.6 | 4.3 GB |
+| 500,000,000 | 15,625,000× | C4 streamed | 247.5 | 4.4 GB |
+| **1,000,013,824** | **31,250,432×** | **C4 streamed** | **247.5** | **4.36 GB** |
+
+Because the corpus enters only as an iterator, C4 is interchangeable with any token stream: a web
+scraper, a live feed, the whole internet. That is the real claim, of which every length number here is
+evidence: **constant-memory consumption of an unbounded stream** — a model that does not load a context
+but *consumes a stream*. The thesis and its consequence are in
+[analysis/STREAMING_THESIS.md](analysis/STREAMING_THESIS.md). Confirm the run without re-running it:
+`python src/verify_billion.py` checks every claim against the committed JSON (exit 0 = all pass); the
+raw run log is committed verbatim.
+→ `src/scale_to_a_billion.py`, `src/plot_billion.py`, `src/verify_billion.py`,
+`results/scale_to_a_billion.json`, `results/scale_to_a_billion.run.log`
 
 **Seed-robustness (n=5).** The whole ablation is deterministic across seeds. Over 5 seeds
 {1,7,42,123,2024} at 256× (T=8192): Selective-NoPE = **×0.93 ± 0.00** (std rounds to zero — every

@@ -1,0 +1,40 @@
+Device: cpu
+[safety] watchdog 11.0GB; DOUBLY O(1): C4 streamed + chunked eval (chunk=8192, overlap=128)
+
+── training NoPE-Selective at T=32 ──
+  Selective-NoPE ep1/8 train 5.6536 | T32 val ppl 210.01 acc 0.2223 | lr 3.00e-03
+  Selective-NoPE ep2/8 train 5.3272 | T32 val ppl 181.82 acc 0.2390 | lr 3.00e-03
+  Selective-NoPE ep3/8 train 5.1440 | T32 val ppl 167.82 acc 0.2452 | lr 3.00e-03
+  Selective-NoPE ep4/8 train 4.9787 | T32 val ppl 165.69 acc 0.2491 | lr 3.00e-03
+  Selective-NoPE ep5/8 train 4.8388 | T32 val ppl 161.96 acc 0.2517 | lr 3.00e-03
+  Selective-NoPE ep6/8 train 4.7218 | T32 val ppl 161.30 acc 0.2539 | lr 3.00e-03
+  Selective-NoPE ep7/8 train 4.6320 | T32 val ppl 164.56 acc 0.2528 | lr 3.00e-03
+  Selective-NoPE ep8/8 train 4.5580 | T32 val ppl 170.28 acc 0.2525 | lr 3.00e-03
+    early-stop
+  trained: T32 ppl 161.3, 484s
+
+  STREAMING C4 toward 1,000,000,000 tokens of effective sequence length (checkpoint every 50,000,000 streamed)...
+    streamed    50,003,968 tok | scored    7,496,934 | ppl   248.4 | rss 4.3GB
+    streamed   100,007,936 tok | scored   14,994,751 | ppl   247.6 | rss 4.3GB
+    streamed   150,011,904 tok | scored   22,494,508 | ppl   247.4 | rss 4.3GB
+    streamed   200,015,872 tok | scored   29,989,844 | ppl   247.1 | rss 4.3GB
+    streamed   250,019,840 tok | scored   37,488,080 | ppl   247.2 | rss 4.3GB
+    streamed   300,023,808 tok | scored   44,986,159 | ppl   247.3 | rss 4.3GB
+    streamed   350,027,776 tok | scored   52,486,971 | ppl   247.4 | rss 4.3GB
+    streamed   400,031,744 tok | scored   59,989,342 | ppl   247.3 | rss 4.3GB
+    streamed   450,035,712 tok | scored   67,490,232 | ppl   247.4 | rss 4.3GB
+    streamed   500,039,680 tok | scored   75,003,467 | ppl   247.5 | rss 4.4GB
+    streamed   550,043,648 tok | scored   82,502,949 | ppl   247.6 | rss 4.4GB
+    streamed   600,047,616 tok | scored   90,003,883 | ppl   247.6 | rss 4.4GB
+    streamed   650,051,584 tok | scored   97,502,505 | ppl   247.6 | rss 4.4GB
+    streamed   700,055,552 tok | scored  105,000,662 | ppl   247.5 | rss 4.4GB
+    streamed   750,059,520 tok | scored  112,498,586 | ppl   247.5 | rss 4.4GB
+    streamed   800,063,488 tok | scored  120,000,982 | ppl   247.6 | rss 4.4GB
+    streamed   850,001,920 tok | scored  127,486,463 | ppl   247.5 | rss 4.4GB
+    streamed   900,005,888 tok | scored  134,984,880 | ppl   247.5 | rss 4.4GB
+    streamed   950,009,856 tok | scored  142,493,930 | ppl   247.5 | rss 4.4GB
+    streamed 1,000,013,824 tok | scored  149,996,708 | ppl   247.5 | rss 4.4GB
+
+→ results/scale_to_a_billion.json
+
+HEADLINE: NoPE-GSSM streamed 1,000,013,824 tokens (31,250,432× training length) at CONSTANT 4.4GB memory, final PPL 247.5. RAM never the limit — pure O(1) state. (153 min)

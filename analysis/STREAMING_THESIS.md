@@ -62,15 +62,26 @@ Same NoPE-Selective model, trained at **T=32**, run at constant memory:
 | effective length | extrap. | source | peak RSS | PPL behaviour |
 |---|---|---|---|---|
 | 16,777,216 | 524,288× | WT-103, chunked | 2.5 GB | flat / improving (×0.80) |
-| 1,000,000,000 | ~31,000,000× | **C4 streamed**, chunked + batched | ~4 GB (constant) | flat |
+| **1,000,013,824** | **31,250,432×** | **C4 streamed**, chunked + batched | **4.36 GB (constant)** | **flat (×1.00)** |
+
+![No length wall: flat PPL to 1 billion tokens at constant memory](../plots/scale_to_a_billion.png)
 
 The billion-token row is the C4 streaming run: corpus streamed lazily, eval chunked and batched,
-checkpoints every 50M tokens. The memory line is flat from the first checkpoint to the last —
-this is the point of the run, more than any single perplexity value. (PPL here is on unique C4
-text, so its absolute value differs from the WT-2/WT-103 numbers; the claim is the **flatness and
-the constant memory across a billion tokens**, which is what an `O(1)`-state model uniquely gives.)
+checkpoints every 50M tokens, **20 checkpoints across the full billion**. Over the entire span the
+**running PPL moved 1.3 points** (247.08 → 248.38, a 0.52% band) and the **peak RSS moved 0.08 GB**
+(4.28 → 4.36 GB). The memory line is flat from the first checkpoint to the last — this is the point
+of the run, more than any single perplexity value. (PPL here is on unique C4 text, so its absolute
+value differs from the WT-2/WT-103 numbers; the claim is the **flatness and the constant memory
+across a billion tokens**, which is what an `O(1)`-state model uniquely gives.) The whole run took
+153 minutes on a single Apple Mac mini; the machine never approached its 16 GB.
 
-→ `src/scale_to_a_billion.py` · `results/scale_to_a_billion.json` · `src/plot_billion.py`
+Anyone can confirm this against the committed result without re-running the 1B stream:
+`python src/verify_billion.py` reads the JSON and checks every claim (≥1B tokens, flat memory, flat
+PPL, huge sample) — exit 0 only if all pass. The raw run log (training curve + every checkpoint) is
+committed verbatim as `results/scale_to_a_billion.run.log`.
+
+→ `src/scale_to_a_billion.py` · `results/scale_to_a_billion.json` ·
+`results/scale_to_a_billion.run.log` · `src/verify_billion.py` · `src/plot_billion.py`
 
 ---
 
