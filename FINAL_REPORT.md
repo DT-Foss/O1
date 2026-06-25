@@ -1,4 +1,4 @@
-# GSSM Research — Final Report (by Opus 4.8)
+# GSSM Research — Final Report 
 
 All numbers below are [measured], full-corpus WikiText-2 MLM unless noted, Mac Mini M4.
 
