@@ -151,6 +151,27 @@ So the result is not merely "GSSM beats a Transformer at length" — it is that 
 `no positional encoding` is the unique combination that stays length-invariant**, and the two
 ingredients are both necessary (Pure breaks without the gate; Selective+PE breaks with the PE).
 
+**How far does it go? We pushed it to the wall.** Using the `O(1)` recurrent forward (the
+deployment path), the same NoPE model trained at T=32 was evaluated up the length ladder until the
+machine stopped it:
+
+![Scaling to the wall: flat PPL to 4096× the training length](plots/scale_to_the_wall.png)
+
+| eval length | extrap. | PPL | ratio |
+|---|---|---|---|
+| T=8,192 | 256× | 149.9 | ×0.92 |
+| T=32,768 | 1024× | 158.3 | ×0.97 |
+| T=65,536 | 2048× | 156.8 | ×0.96 |
+| **T=131,072** | **4096×** | 160.8 | **×0.98** |
+
+**PPL stays flat (×0.98) at 4096× the training length.** The ladder stops at T=131,072 not because
+the architecture breaks but because the **validation corpus runs out** (177k tokens) — peak process
+memory was 6.2 GB of 16, so the *machine* had headroom too. There was no architecture wall to hit:
+the recurrent state is `O(1)`, position never enters the math, so the operator is in-distribution at
+every length. (Safety-guarded run: per-step RSS budget + a watchdog that SIGKILLs before the OS can
+swap — the point is the *architecture* limit, found by exhausting data, not by crashing the box.)
+→ `src/scale_to_the_wall.py`, `results/scale_to_the_wall.json`
+
 Why it works — and this is **provable, not just measured**: unroll the recurrence and the state
 is `z_t = Σ_k α_k·Γ_{k→t}·φ(v̄_k)` with `Γ_{k→t}=∏_{j=k+1..t} γ_j`. Every factor depends on token
 *content*; the only index-dependent factor `Γ_{k→t}` depends on `t` and `k` **only through the lag
