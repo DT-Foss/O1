@@ -123,22 +123,31 @@ length **T=32**, evaluate out to **256× that length (T=8192)** by re-tiling the
 **perfectly horizontal** perplexity curve across the whole span. The *identical* architecture
 *with* a sinusoidal positional encoding breaks. The only difference is the PE.
 
-| eval length | extrap. | **Selective-NoPE** | Selective + PE |
-|---|---|---|---|
-| T=32 (train) | 1× | 165 (×1.00) | 169 (×1.00) |
-| T=1024 | 32× | 155 (×0.94) | 196 (×1.16) |
-| T=2048 | 64× | 160 (×0.97) | 305 (×1.81) |
-| T=4096 | 128× | 159 (×0.96) | 473 (×2.80) |
-| **T=8192** | **256×** | **160 (×0.97)** | **714 (×4.23)** |
+All four arms, same harness, same data, trained at T=32 (×N = PPL relative to T=32):
 
-**NoPE-Selective: ×0.97 at 256× the training length — a flat line (153–165 PPL the whole way,
-slightly *better* at long T).** The same model with a positional encoding degrades monotonically
-to ×4.23. Identical config (d128, L2, 4 heads), identical data, identical training, identical
-weights up to the PE — so this isolates the cause: **the positional encoding is what breaks at
-unseen lengths, and removing it removes the break entirely.** (A standard attention baseline in
-the same harness degrades ×2.0 to T=1024; and a fixed sinusoidal PE cannot even *run* past its
-pre-allocated length without a larger buffer — position-coding ties a model to a maximum length
-by construction.)
+| eval length | extrap. | **Selective-NoPE** | Selective + PE | Pure (no gate) | Transformer |
+|---|---|---|---|---|---|
+| T=32 (train) | 1× | 165 (×1.00) | 169 (×1.00) | 231 (×1.00) | 226 (×1.00) |
+| T=1024 | 32× | 155 (×0.94) | 196 (×1.16) | 2855 (×12.3) | 307 (×1.36) |
+| T=2048 | 64× | 160 (×0.97) | 305 (×1.81) | 2810 (×12.2) | 341 (×1.51) |
+| T=4096 | 128× | 159 (×0.96) | 473 (×2.80) | 2774 (×12.0) | **crashes** |
+| **T=8192** | **256×** | **160 (×0.97)** | 714 (×4.23) | 2603 (×11.3) | **crashes** |
+
+**NoPE-Selective is the only flat line in the field: ×0.97 at 256× the training length** (153–165
+PPL the whole way, slightly *better* at long T). Every other arm breaks:
+- **Selective + PE** — identical to NoPE except for the positional encoding — degrades monotonically
+  to ×4.23. Same weights up to the PE, so this isolates the cause: **the PE is what breaks at unseen
+  lengths; removing it removes the break entirely.**
+- **Pure** (bounded, but without the selective gate) explodes to ×12 — the *selective* gate is what
+  makes the bounded state hold; a bounded state alone is not enough.
+- **Transformer** degrades ×1.5 and then **cannot execute at all past T=2048**: its fixed sinusoidal
+  PE buffer (`max_len`) throws a tensor-size error at T=4096. Position-coding ties a model to a
+  maximum length *by construction* — the same failure that crashes Selective+PE without a larger
+  buffer. NoPE has no such ceiling; it ran clean to T=8192.
+
+So the result is not merely "GSSM beats a Transformer at length" — it is that **`selective gate` +
+`no positional encoding` is the unique combination that stays length-invariant**, and the two
+ingredients are both necessary (Pure breaks without the gate; Selective+PE breaks with the PE).
 
 Why it works: a bounded-state recurrence needs **no positional encoding** — position *emerges*
 from the order of the state updates, so nothing is tied to training lengths. The state stays
