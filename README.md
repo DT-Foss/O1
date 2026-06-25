@@ -26,6 +26,10 @@ write** gives the bounded scalar state a measurable amount of the associative KV
 was thought structurally unable to do at all — a single complex leaky accumulator stores
 several (key, value) pairs separably and reads them back by query de-rotation.
 
+GSSM is the engineering instantiation of a body of mathematical work (Möbius coupling,
+doubly-stochastic spectra, non-reversible lifted Markov chains) archived with permanent DOIs —
+see [PAPERS.md](PAPERS.md).
+
 ---
 
 ## The three verified contributions
