@@ -151,12 +151,21 @@ So the result is not merely "GSSM beats a Transformer at length" — it is that 
 `no positional encoding` is the unique combination that stays length-invariant**, and the two
 ingredients are both necessary (Pure breaks without the gate; Selective+PE breaks with the PE).
 
-Why it works: a bounded-state recurrence needs **no positional encoding** — position *emerges*
-from the order of the state updates, so nothing is tied to training lengths. The state stays
-`O(1)` in memory at every length; attention pays `O(T)` cache and `O(T²)` compute and must learn
-a positional code that fails out of distribution. **This is the axis where a bounded state wins
-by construction** — not by more parameters or more data, which is the only lever the large labs
-have here.
+Why it works — and this is **provable, not just measured**: unroll the recurrence and the state
+is `z_t = Σ_k α_k·Γ_{k→t}·φ(v̄_k)` with `Γ_{k→t}=∏_{j=k+1..t} γ_j`. Every factor depends on token
+*content*; the only index-dependent factor `Γ_{k→t}` depends on `t` and `k` **only through the lag
+`t−k`, never through the absolute coordinate `t`**. There is no `g(t)` term — the operator is
+shift-equivariant in time *by construction* (the temporal kernel is Toeplitz, Pillar P2). The
+contraction `τ<1` keeps the receptive field at ≈5–8 tokens, far inside the T=32 window, so nothing
+new appears at T=8192. The smoking gun: NoPE's learned gates are **frozen across 256×**
+(γ_mean 0.2252→0.2251, four sig-figs) — the operator is literally in-distribution at every length.
+A positional encoding is the *sole* injection of absolute `t`; removing it removes the only length-
+dependent term (with PE, the gates visibly drift 0.231→0.356 to compensate, and break). The state
+stays `O(1)` in memory at every length; attention pays `O(T)` cache and `O(T²)` compute and must
+learn a positional code that fails out of distribution. **This is the axis where a bounded state
+wins by construction** — not by more parameters or data, the only lever the large labs have here.
+Full derivation, falsifier, and code audit in
+[analysis/LENGTH_INVARIANCE_THEORY.md](analysis/LENGTH_INVARIANCE_THEORY.md).
 → `src/length_extrap_v2.py`, `results/length_extrap_v2_extreme.json`
 
 ---
