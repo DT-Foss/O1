@@ -1,0 +1,62 @@
+{
+  "task": "flipflop",
+  "train_len": 64,
+  "eval_lens": [
+    64,
+    256,
+    1024,
+    2048,
+    4096,
+    8192
+  ],
+  "seed": 42,
+  "arms": {
+    "nope_gssm": {
+      "64": {
+        "acc": 1.0
+      },
+      "256": {
+        "acc": 1.0
+      },
+      "1024": {
+        "acc": 1.0
+      },
+      "2048": {
+        "acc": 1.0
+      },
+      "4096": {
+        "acc": 1.0
+      },
+      "8192": {
+        "acc": 1.0
+      }
+    },
+    "transformer": {
+      "64": {
+        "acc": 0.9956
+      },
+      "256": {
+        "acc": 0.4624
+      },
+      "1024": {
+        "acc": 0.2299
+      },
+      "2048": {
+        "acc": null,
+        "crash": "RuntimeError: The size of tensor a (2048) must match the size of tensor b (1024) at non-single"
+      },
+      "4096": {
+        "acc": null,
+        "crash": "RuntimeError: The size of tensor a (4096) must match the size of tensor b (1024) at non-single"
+      },
+      "8192": {
+        "acc": null,
+        "crash": "RuntimeError: The size of tensor a (8192) must match the size of tensor b (1024) at non-single"
+      }
+    }
+  },
+  "validity_gate": {
+    "transformer_train_len_acc": 0.9956,
+    "passed": true
+  }
+}

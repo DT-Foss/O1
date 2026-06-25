@@ -32,7 +32,7 @@ see [PAPERS.md](PAPERS.md).
 
 ---
 
-## The four verified contributions
+## The five verified contributions
 
 Each line is the headline measured number and the script that reproduces it. All runs:
 PyTorch 2.9.1, offline, Apple Mac (M-series) CPU/MPS.
@@ -167,6 +167,35 @@ wins by construction** — not by more parameters or data, the only lever the la
 Full derivation, falsifier, and code audit in
 [analysis/LENGTH_INVARIANCE_THEORY.md](analysis/LENGTH_INVARIANCE_THEORY.md).
 → `src/length_extrap_v2.py`, `results/length_extrap_v2_extreme.json`
+
+### 5 — Capability boundary: a task GSSM solves at lengths where attention cannot run
+
+Length-invariance is not only a perplexity property — it is a **capability**. On a long-range
+state-tracking task (a single register: sparse writes overwrite it, sparse queries read the
+most-recent value; the answer can sit arbitrarily far back), train at T=64 and evaluate out to
+T=8192 = 128×:
+
+![Capability boundary: NoPE-GSSM holds 100% to 128× while the Transformer degrades then crashes](plots/capability_flipflop.png)
+
+| eval length | extrap. | **NoPE-GSSM** | Transformer (same size) |
+|---|---|---|---|
+| T=64 (train) | 1× | **100%** | 100% (validity gate ✓) |
+| T=256 | 4× | **100%** | 46% |
+| T=1024 | 16× | **100%** | 23% |
+| T=2048 | 32× | **100%** | **forward pass crashes** |
+| T=4096 | 64× | **100%** | **crashes** |
+| **T=8192** | **128×** | **100%** | **crashes** |
+
+**NoPE-GSSM holds a perfect 100% across 128× extrapolation.** The same-size Transformer solves the
+task at the training length (validity gate: 99.6% — the harness is fair, not rigged), then degrades
+to near-chance as positions go out of distribution, and from T=2048 its forward pass **cannot
+execute at all** (fixed PE buffer). This is not a perplexity delta — it is a clean *can / cannot*
+boundary: the bounded state tracks the register through arbitrary length at `O(1)` memory; attention
+both loses the thread and then hits its structural length ceiling. The task is chosen to play to a
+bounded state's strength (single-thread state, not multi-key recall — which has its own ~9% ceiling,
+Contribution 3); the point is that this is exactly the regime where long context is needed and
+attention fails.
+→ `src/longcontext_tasks.py`, `src/longcontext_run.py`, `results/longcontext_flipflop.json`
 
 ---
 
