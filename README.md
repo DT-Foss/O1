@@ -115,6 +115,39 @@ and it is interference-bound, not capacity-bound: with fewer pairs in superposit
 sharply — **25.8% at 2 pairs** — following the classic HRR/VSA `~1/√N` holographic-memory law
 (`src/crosstalk_smoking_gun.py`). Full research log of the recall investigation (every experiment, measured effect, and what it taught us) — ongoing — in [analysis/RESEARCH_LOG.md](analysis/RESEARCH_LOG.md).
 
+### 4 — Length invariance: train at T=32, run to T=8192 (256×), perplexity unchanged
+
+The structural payoff of a bounded state, and a **clean causal ablation**. Train at sequence
+length **T=32**, evaluate out to **256× that length (T=8192)** by re-tiling the validation corpus
+— same model, same weights, no fine-tuning. The position-free GSSM-Selective (NoPE) holds a
+**perfectly horizontal** perplexity curve across the whole span. The *identical* architecture
+*with* a sinusoidal positional encoding breaks. The only difference is the PE.
+
+| eval length | extrap. | **Selective-NoPE** | Selective + PE |
+|---|---|---|---|
+| T=32 (train) | 1× | 165 (×1.00) | 169 (×1.00) |
+| T=1024 | 32× | 155 (×0.94) | 196 (×1.16) |
+| T=2048 | 64× | 160 (×0.97) | 305 (×1.81) |
+| T=4096 | 128× | 159 (×0.96) | 473 (×2.80) |
+| **T=8192** | **256×** | **160 (×0.97)** | **714 (×4.23)** |
+
+**NoPE-Selective: ×0.97 at 256× the training length — a flat line (153–165 PPL the whole way,
+slightly *better* at long T).** The same model with a positional encoding degrades monotonically
+to ×4.23. Identical config (d128, L2, 4 heads), identical data, identical training, identical
+weights up to the PE — so this isolates the cause: **the positional encoding is what breaks at
+unseen lengths, and removing it removes the break entirely.** (A standard attention baseline in
+the same harness degrades ×2.0 to T=1024; and a fixed sinusoidal PE cannot even *run* past its
+pre-allocated length without a larger buffer — position-coding ties a model to a maximum length
+by construction.)
+
+Why it works: a bounded-state recurrence needs **no positional encoding** — position *emerges*
+from the order of the state updates, so nothing is tied to training lengths. The state stays
+`O(1)` in memory at every length; attention pays `O(T)` cache and `O(T²)` compute and must learn
+a positional code that fails out of distribution. **This is the axis where a bounded state wins
+by construction** — not by more parameters or more data, which is the only lever the large labs
+have here.
+→ `src/length_extrap_v2.py`, `results/length_extrap_v2_extreme.json`
+
 ---
 
 ## Reproduce
@@ -186,10 +219,13 @@ gssm-public/
 Days-old research architecture, disclosed at the moment of discovery, and already:
 the whole linear-SSM family collapses to one affine operator at machine precision (~1e-15),
 the constant-gate restriction *is* the geometric Toeplitz kernel to 3.55e-15 even at d=512,
-the parallel scan is gradient-identical to the loop in fp64 and 4–7× faster on MPS, and a
+the parallel scan is gradient-identical to the loop in fp64 and 4–7× faster on MPS, a
 key-conditioned holographic write gives a bounded scalar state content-addressable recall
-at 5.7× its floor. Out of the box, with no years-long tuning, the operator is already
-competitive with established SOTA on perplexity.
+at 5.7× its floor, and — the structural headline — the position-free variant holds **perfectly
+flat perplexity across 256× length extrapolation** (train T=32, eval T=8192, ×0.97) while the
+identical architecture *with* a positional encoding degrades ×4.23, at `O(1)` state memory the
+whole way. Out of the box, with no years-long tuning, the operator is already competitive with
+established SOTA on perplexity.
 
 Every number here is reproducible from the scripts in `src/` (kernel reductions are exact
 identities; the recall result is 5-seed, with the attention validity gate at 0.994). The

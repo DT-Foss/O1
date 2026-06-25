@@ -1,0 +1,281 @@
+{
+  "_meta": {
+    "d_model": 128,
+    "n_heads": 4,
+    "d_head": 32,
+    "train_T": 32,
+    "eval_Ts": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "epochs": 8,
+    "smoke": false,
+    "learn_gate_acc": 0.2,
+    "by": "Opus 4.8 \u2014 Length-Extrap v2 (M2)"
+  },
+  "selective": {
+    "label": "Selective",
+    "train_best_ppl": 162.532,
+    "train_acc_T32": 0.2479,
+    "train_lr": 0.003,
+    "needs_warmup": false,
+    "learned": true,
+    "train_time_s": 919.8,
+    "curve": {
+      "32": {
+        "ppl": 168.816,
+        "acc": 0.2485,
+        "sat": {
+          "first": 0.05,
+          "q1": 0.0631,
+          "mid": 0.0648,
+          "last": 0.0646,
+          "gamma_mean": 0.2309,
+          "gamma_p95": 0.5271,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "64": {
+        "ppl": 165.013,
+        "acc": 0.253,
+        "sat": {
+          "first": 0.0491,
+          "q1": 0.0648,
+          "mid": 0.066,
+          "last": 0.0629,
+          "gamma_mean": 0.239,
+          "gamma_p95": 0.5253,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "128": {
+        "ppl": 159.837,
+        "acc": 0.2554,
+        "sat": {
+          "first": 0.0506,
+          "q1": 0.0658,
+          "mid": 0.0634,
+          "last": 0.0664,
+          "gamma_mean": 0.2471,
+          "gamma_p95": 0.5231,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "256": {
+        "ppl": 167.926,
+        "acc": 0.2456,
+        "sat": {
+          "first": 0.0506,
+          "q1": 0.0649,
+          "mid": 0.0675,
+          "last": 0.0615,
+          "gamma_mean": 0.2557,
+          "gamma_p95": 0.512,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "512": {
+        "ppl": 180.934,
+        "acc": 0.2392,
+        "sat": {
+          "first": 0.05,
+          "q1": 0.0672,
+          "mid": 0.0594,
+          "last": 0.0561,
+          "gamma_mean": 0.27,
+          "gamma_p95": 0.5108,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "1024": {
+        "ppl": 195.923,
+        "acc": 0.2327,
+        "sat": {
+          "first": 0.0482,
+          "q1": 0.0602,
+          "mid": 0.0571,
+          "last": 0.0624,
+          "gamma_mean": 0.2808,
+          "gamma_p95": 0.5099,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "2048": {
+        "ppl": 304.762,
+        "acc": 0.1937,
+        "sat": {
+          "first": 0.0506,
+          "q1": 0.0566,
+          "mid": 0.0603,
+          "last": 0.0663,
+          "gamma_mean": 0.3043,
+          "gamma_p95": 0.5291,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "4096": {
+        "ppl": 473.139,
+        "acc": 0.1665,
+        "sat": {
+          "first": 0.0456,
+          "q1": 0.0542,
+          "mid": 0.0635,
+          "last": 0.1747,
+          "gamma_mean": 0.3294,
+          "gamma_p95": 0.5779,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "8192": {
+        "ppl": 713.525,
+        "acc": 0.1239,
+        "sat": {
+          "first": 0.03,
+          "q1": 0.0566,
+          "mid": 0.1658,
+          "last": 0.1501,
+          "gamma_mean": 0.3557,
+          "gamma_p95": 0.6444,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "_delta_128_1024_pct": 22.58
+    }
+  },
+  "selective_nope": {
+    "label": "Selective-NoPE",
+    "train_best_ppl": 160.707,
+    "train_acc_T32": 0.2496,
+    "train_lr": 0.003,
+    "needs_warmup": false,
+    "learned": true,
+    "train_time_s": 893.3,
+    "curve": {
+      "32": {
+        "ppl": 164.882,
+        "acc": 0.2466,
+        "sat": {
+          "first": 0.054,
+          "q1": 0.0672,
+          "mid": 0.0672,
+          "last": 0.0678,
+          "gamma_mean": 0.2252,
+          "gamma_p95": 0.4352,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "64": {
+        "ppl": 160.768,
+        "acc": 0.2525,
+        "sat": {
+          "first": 0.0531,
+          "q1": 0.0674,
+          "mid": 0.0683,
+          "last": 0.0681,
+          "gamma_mean": 0.2251,
+          "gamma_p95": 0.4351,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "128": {
+        "ppl": 153.565,
+        "acc": 0.2566,
+        "sat": {
+          "first": 0.0554,
+          "q1": 0.0685,
+          "mid": 0.0672,
+          "last": 0.0676,
+          "gamma_mean": 0.2252,
+          "gamma_p95": 0.4351,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "256": {
+        "ppl": 159.891,
+        "acc": 0.2507,
+        "sat": {
+          "first": 0.0555,
+          "q1": 0.0692,
+          "mid": 0.0704,
+          "last": 0.0675,
+          "gamma_mean": 0.2251,
+          "gamma_p95": 0.4356,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "512": {
+        "ppl": 163.056,
+        "acc": 0.2501,
+        "sat": {
+          "first": 0.0537,
+          "q1": 0.0698,
+          "mid": 0.0696,
+          "last": 0.0672,
+          "gamma_mean": 0.225,
+          "gamma_p95": 0.4351,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "1024": {
+        "ppl": 154.735,
+        "acc": 0.2558,
+        "sat": {
+          "first": 0.0522,
+          "q1": 0.0694,
+          "mid": 0.066,
+          "last": 0.0691,
+          "gamma_mean": 0.2251,
+          "gamma_p95": 0.4351,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "2048": {
+        "ppl": 160.394,
+        "acc": 0.2498,
+        "sat": {
+          "first": 0.0556,
+          "q1": 0.0635,
+          "mid": 0.0681,
+          "last": 0.0695,
+          "gamma_mean": 0.2252,
+          "gamma_p95": 0.4357,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "4096": {
+        "ppl": 158.879,
+        "acc": 0.2512,
+        "sat": {
+          "first": 0.0551,
+          "q1": 0.0611,
+          "mid": 0.0653,
+          "last": 0.0736,
+          "gamma_mean": 0.2251,
+          "gamma_p95": 0.4363,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "8192": {
+        "ppl": 160.496,
+        "acc": 0.244,
+        "sat": {
+          "first": 0.0474,
+          "q1": 0.0642,
+          "mid": 0.064,
+          "last": 0.0593,
+          "gamma_mean": 0.2251,
+          "gamma_p95": 0.436,
+          "gamma_frac_gt97": 0.0
+        }
+      },
+      "_delta_128_1024_pct": 0.76
+    }
+  }
+}
