@@ -117,6 +117,8 @@ sharply — **25.8% at 2 pairs** — following the classic HRR/VSA `~1/√N` hol
 
 ### 4 — Length invariance: train at T=32, run to T=8192 (256×), perplexity unchanged
 
+![Length invariance: NoPE-Selective is the only architecture that stays flat to 256×](plots/length_invariance.png)
+
 The structural payoff of a bounded state, and a **clean causal ablation**. Train at sequence
 length **T=32**, evaluate out to **256× that length (T=8192)** by re-tiling the validation corpus
 — same model, same weights, no fine-tuning. The position-free GSSM-Selective (NoPE) holds a
