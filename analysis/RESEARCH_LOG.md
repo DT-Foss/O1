@@ -48,9 +48,9 @@ where they don't) for this architecture is the contribution.
 | Separate write/read key (Q≠K) | −3.65 pp | A shared key *guarantees* cos(φ_k−φ_q)=1 for the matched pair by construction. Self-consistency of the shared key is load-bearing. |
 | phase_scale widening (2π, 3π) | −2 pp, −3.9 pp | Spreading keys on the circle attacks collisions — a non-dominant term. The dominant limit is the read-side random walk, so spreading backfires. Names the real bottleneck. |
 | **Multi-phase read** (Z3, n de-rotations) | n=3: 2.6% < n=1: 4.1% | The across-j read is rank-2 (re, im) ≡ the n=1 read. The interference energy is *detectable* (P_tot − P_coh carries it) but not *reconstructable* — you can see the crosstalk, you can't recover the drowned value. Read-side separation is the wrong axis; this is a clean rank argument, not a tuning miss. |
-| **Multi-freq write** (k·φ harmonics, K bands) | K=1: 5.21%, **K=2: 6.28% (peak, +1 pp, std ↓3.6×)**, K=4: 3.73%, K=8: 1.82% | A real, small lever at K=2, then monotone decay. Ruled out four alternative explanations (seed-noise, Chebyshev redundancy, learning dynamics, combine weights): the bands are independent but *structurally unequal in matched-coherence from birth* (c_k falls with k), so equal-weight summing drowns the strong band. **K=2 banked.** Harmonics-of-one-key are capped — a quantified ceiling on this axis. |
+| **Multi-freq write** (k·φ harmonics, K bands) | 3-seed: K=1 5.21%, K=2 6.28% (apparent +1 pp); **5-seed paired (the real test): Δ(K2−K1) = −0.25 pp ± 1.94, std-shrink 1.06× not 3.6× — NULL** | The 3-seed "+1 pp / 3.6× std-shrink" did **not** replicate at 5 seeds (`src/k2_confirm_run.py`, RECALL_DEADENDS entry 13): it was sampling noise on a chance-flat MQAR loss. Harmonics-of-one-key carry no signal — the bands are independent but structurally unequal in matched-coherence (c_k falls with k), so equal-weight summing gains nothing because there is nothing to gain. K=2 is **NULL**, not banked. |
 | **Multi-slot partition** (M accumulators, learned router) | s1: 8.25% > all multi-slot; **corr(slot-entropy, recall) = −0.46** | The better the slots partition, the lower the recall — partition is *anti-correlated* with recall (self-measured). Splitting the bounded state destroys the shared coherent superposition + m-gate that makes the holographic write work. A sharp, counterintuitive law: don't partition the channel. |
-| **Ginibre / β=3 repulsive vector keys** (D-dim keys, matched-filter read, cubic repulsion) | vec_key: 3.03% ± 0.88%; vec_key_rep (β=3): 4.26% ± 1.62% ≈ 1D baseline (4.69%) | Two mechanistic findings: (1) without repulsion the D-dim key phases collapse to ~0 — the task gradient alone does not drive phase spreading, so dimensionality buys nothing on its own; (2) at λ=0.03 the key-cloud ⟨s²⟩ stayed at 1.00–1.04, never reaching the β=3 target of 1.087 — the spread-key regime was never actually entered. So we've shown "this λ doesn't spread keys," **not yet** "spread keys don't help recall." One thread stays open here (below). |
+| **Ginibre / β=3 repulsive vector keys** (D-dim keys, matched-filter read, cubic repulsion) | vec_key: 3.03% ± 0.88%; vec_key_rep (β=3): 4.26% ± 1.62% ≈ 1D baseline (4.69%); **λ-sweep {0.03,0.1,0.3,1.0}: below baseline at every λ — CLOSED NEGATIVE** | Two mechanistic findings: (1) without repulsion the D-dim key phases collapse to ~0 — the task gradient alone does not drive phase spreading, so dimensionality buys nothing on its own; (2) the λ-sweep (`src/ginibre_lambda_sweep.py`, RECALL_DEADENDS entry 14) settles it: ⟨s²⟩ does not undershoot the 1.087 target, it **overshoots monotonically (1.6→1.75 as λ 0.03→1.0)** into lattice territory, recall below baseline the whole way. Reaching 1.087 *from above* needs attraction, not stronger repulsion — the repulsion lever cannot reach the spread-key regime by construction. Thread closed on mechanism. |
 | **Resonator** (bounded iterative phase cleanup, K Newton steps) | K=0: 7.23% ± 1.78%; K≥1 → floor (K1: 1.40%, K2: 1.38%, K3: 1.71%); confirmed on fresh adversary seeds | A precise structural lesson: Im(S·e^{−iφ}) with N=8 superposed is *itself* full of crosstalk, so the cleanup step pushes the query away from the matched phase. The resonator needs low crosstalk to function but was built to reduce it — self-defeating by construction for this regime. (Two supporting diagnoses: untrainable step-size; shared W_key means perturbing the read angle breaks the trained write-read alignment.) |
 
 ### What the map says
@@ -70,10 +70,12 @@ off the in-channel axis.
 Resolved axes:
 - **Capacity (channels/heads/layers):** not the constraint — interference is.
 - **Read-side separation:** rank-2 trapped; separation must not happen at read time.
-- **Write-side frequency multiplexing:** quantified, capped at K=2 (+1 pp).
+- **Write-side frequency multiplexing:** quantified — K=2 is NULL at 5 seeds (the 3-seed +1 pp was noise).
 - **Multi-slot partition:** anti-correlated with recall.
 - **Resonator cleanup:** crosstalk-poisoned in this regime.
-- **Ginibre key geometry:** inert without repulsion as built; the spread-key regime was not reached — one open thread.
+- **Ginibre key geometry:** closed negative — the repulsion overshoots the spread-key target (⟨s²⟩ 1.6→1.75) into lattice territory; it cannot reach the regime by construction.
+
+With all six in-channel levers resolved, there is no live in-channel thread left: the 8.89% is a confirmed single-bounded-channel holographic capacity limit at n_pairs=8.
 
 ## Methodology notes
 
@@ -95,22 +97,15 @@ The rigor that keeps every number above trustworthy:
 
 ## Current direction
 
-The investigation is active and the breakthrough is one day old. Two threads are
-live right now:
+The breakthrough is one day old, and the in-channel axis is now fully charted:
+six qualitatively different separation levers, six non-wins, all triangulating
+the same limit. Both of the once-open threads are closed — the Ginibre λ-sweep
+showed the repulsion overshoots the spread-key target rather than missing it, and
+the 5-seed paired run showed the K=2 multi-freq peak was sampling noise. The
+8.89% is a confirmed single-bounded-channel holographic capacity limit at
+n_pairs=8, with the n_pairs crosstalk curve and six triangulating negatives
+behind it.
 
-1. **Close the Ginibre λ thread decisively.** We killed "λ=0.03 spreads keys,"
-   not "spread keys lift recall" — the key-cloud never reached ⟨s²⟩=1.087. Push
-   λ→0.1/0.3 over 3000+ steps to actually enter the spread-key regime and read
-   off the answer either way. This is the one in-channel question still genuinely
-   open.
-
-2. **Combine the positive signals.** We have two real in-channel levers banked —
-   the K=2 multi-freq peak (+1 pp, 3.6× tighter std) and the verified
-   key-conditioned write itself. The next step is composing the signals that
-   moved the number rather than searching for a single silver bullet.
-
-Beyond the in-channel axis, the map points cleanly at the architectural route:
-a GSSM state plus one small attention head (tiny KV dim) — O(T), the way
-to recover the n=2 headroom (25.8%) at n=8. The crosstalk curve gives us both
-the target and the budget. The search is converging, and the repo tracks it as
-it does.
+The map points cleanly at the architectural route: a GSSM state plus one small
+attention head (tiny KV dim) — O(T), the way to recover the n=2 headroom (25.8%)
+at n=8. The crosstalk curve gives both the target and the budget.

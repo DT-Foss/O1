@@ -550,7 +550,7 @@ O1/
 │   ├── percolation_hard.py, reinforcement_loop.py               capacity threshold (O1-7)
 │   └── gssm_potentiation.py, operator_readout.py               threshold in the readout (O1-8)
 ├── vendor/fabel/            the .causal deterministic knowledge engine (the index)
-├── analysis/                theory + briefs + research logs
+├── analysis/                theory + measured research logs
 ├── results/                 measured JSON + logs — the evidence
 └── plots/                   figures
 ```

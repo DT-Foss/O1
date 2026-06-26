@@ -37,9 +37,9 @@ pedestal   = mean_j read_j²      = ½·|S e^{-iφ_q}|²
 ⟹ coh_energy ≡ 2·pedestal   EXACTLY,  P_tot − P_coh ≡ 0
 ```
 
-The old sigmoid gate was `sigmoid(½·coh_energy)` — a monotonic **self-magnitude** gate, never < 0.5, never selective. It damped signal in proportion to its own size. That is exactly the over-damping we measured (n=3 < n=1, std halved). **The across-j polyphase read carries ZERO extra information per channel.** Confirmed numerically in `/tmp/derive_check.py`–`derive_check2.py` (`<P_coh> = <P_tot>` to 3 digits, all N, n).
+The old sigmoid gate was `sigmoid(½·coh_energy)` — a monotonic **self-magnitude** gate, never < 0.5, never selective. It damped signal in proportion to its own size. That is exactly the over-damping we measured (n=3 < n=1, std halved). **The across-j polyphase read carries ZERO extra information per channel.** Confirmed numerically (`<P_coh> = <P_tot>` to 3 digits, all N, n).
 
-This diagnosis is the win of the experiment. We now *know* the across-j axis is information-free — not as a hunch, but as an identity. We will never spend another GPU-hour on it.
+This diagnosis is the result of the experiment: the across-j axis is information-free — not as a hunch, but as an identity. That axis is closed.
 
 ## 3. Why the cross-channel detector did not rescue the port
 
@@ -63,12 +63,12 @@ This is the structurally different axis the across-j identity points us toward: 
 
 ## 5. Framing
 
-The corpus crosstalk solution is **real**. This particular port — multi-phase READ with read-side combines — is the wrong axis, and we now know *exactly* why. CORRECTION (re-measured by lead): "across-j read is info-free" is too strong. `coh_energy ≡ 2·pedestal` holds exactly, BUT `P_tot − P_coh ≠ 0` (measured 3.1–12.4 over n∈{3,4,6}) — that residual DOES carry the crosstalk ENERGY. The real reason is subtler and is **detection ≠ reconstruction**: the across-j reads let you *measure how much* crosstalk is present, but the matched-key VALUE lives only in the rank-2 coherent (re,im) projection = exactly the n=1 read. You can see the interference but cannot recover the drowned signal from it; and the genuine cross-channel detector dies when rectified inside a signed write. Mechanism banked. The identity is a permanent asset; the diagnosis tells us which lever to pull next without guessing.
+The corpus crosstalk solution is **real**. This particular port — multi-phase READ with read-side combines — is the wrong axis, and we now know *exactly* why. A precise statement of the limit: `coh_energy ≡ 2·pedestal` holds exactly, BUT `P_tot − P_coh ≠ 0` (measured 3.1–12.4 over n∈{3,4,6}) — that residual DOES carry the crosstalk ENERGY. So the real reason is subtler than "info-free" and is **detection ≠ reconstruction**: the across-j reads let you *measure how much* crosstalk is present, but the matched-key VALUE lives only in the rank-2 coherent (re,im) projection = exactly the n=1 read. You can see the interference but cannot recover the drowned signal from it; and the genuine cross-channel detector dies when rectified inside a signed write. The identity is a permanent asset; the diagnosis names which lever to pull next without guessing.
 
-The negative is the experiment doing its job. The next attack — harmonic-write `k·φ`, k=1..K — is designed, corpus-backed (β=3 repulsion), and sits on an axis with the rank the across-j read never had.
+The negative is the experiment doing its job. The next axis — harmonic-write `k·φ`, k=1..K — is corpus-backed (β=3 repulsion) and sits on an axis with the rank the across-j read never had.
 
 ---
 
-### One-line summary for David
+### One-line summary
 
-**It did NOT climb — verified z3_n3 = 0.0261 vs z3_n1 = 0.0405 (polyphase read is below single read; linear's +44% is rank-2 seed-noise, dc_gate/floorsub never reached disk). The across-j read is provably info-free (coh_energy ≡ 2·pedestal) and rectified detectors break the signed write. Single next move: the multi-FREQUENCY WRITE — write each key at k·φ, k=1..K, so mismatched keys decohere across harmonics (corpus β=3 / harmonic-write lever).**
+**It did NOT climb — verified z3_n3 = 0.0261 vs z3_n1 = 0.0405 (polyphase read is below single read; linear's +44% is rank-2 seed-noise). The across-j read is provably reconstruction-free (coh_energy ≡ 2·pedestal — the residual carries crosstalk energy but not the drowned value) and rectified detectors break the signed write. Next axis: the multi-FREQUENCY WRITE — write each key at k·φ, k=1..K, so mismatched keys decohere across harmonics (corpus β=3 / harmonic-write lever).**

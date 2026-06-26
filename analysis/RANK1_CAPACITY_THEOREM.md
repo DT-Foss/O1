@@ -170,7 +170,7 @@ What is a **clean theorem** (part 1, 2): the rank-`D` upper bound and attention'
 
 ---
 
-## 7. What is proven, argued, conjectured — the honest ledger
+## 7. What is proven, argued, conjectured — the ledger
 
 **[PROVEN]**
 - Each channel's state is a rank-1 functional; the sqrt readout is a fixed bijection adding no dimension (§1).

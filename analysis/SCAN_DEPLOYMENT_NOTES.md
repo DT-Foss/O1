@@ -1,4 +1,4 @@
-# Scan Deployment Notes (FRONT 4) — by Opus 4.8
+# Scan Deployment Notes
 
 **Goal:** make the parallel scan the *inference default* in
 `reference/moebius_scan_transformer_selective.py`, and settle the

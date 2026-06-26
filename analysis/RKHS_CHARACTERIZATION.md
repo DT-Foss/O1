@@ -302,7 +302,7 @@ Readings:
 
 ---
 
-## 6. The lead claim, and where the RKHS view is weaker than the hype
+## 6. The lead claim, and the precise boundary of the RKHS view
 
 ### 6.1 The one falsifiable claim to lead with
 
@@ -324,10 +324,10 @@ wrong. *(Predicted: it matches — `constant_gamma_closed_form` already reproduc
 sequential scan to 5e-17 in float64 (4.77e-7 in float32, FP-summation noise); the open
 claim is that the **learned** constant-gate optimum is the kernel solution.)*
 
-### 6.2 Where the precise claim differs from the fixed-Mercer overclaim
+### 6.2 Where the precise claim differs from a fixed-Mercer reading
 
-1. **Not a fixed Mercer kernel.** The headline weakness, and the prior chat's exact
-   error: because `γ, α, gate` all depend on `x`, there is **no single kernel `k(v,v')`
+1. **Not a fixed Mercer kernel.** The load-bearing boundary: because `γ, α, gate` all
+   depend on `x`, there is **no single kernel `k(v,v')`
    in raw velocity space across inputs.** "Replace BPTT with ridge regression on a fixed
    Mercer kernel" is **false** for the selective model. Ridge/closed-form solves apply
    only in the **constant-gate (LTI) special case** — which is exactly the case the

@@ -14,7 +14,7 @@
 > (A_2A_1, A_2B_1+B_2)`. Each pillar is a different property of the **same** kernel: its
 > *DC gain* (attractor), its *stationarity / lag-only support* (length-invariance), its
 > *rank* (recall dissociation), and its *fixed per-channel capacity* (data floor). This
-> document states each link and **labels its rigor honestly**: `[PROVEN]`, `[ARGUED]`, or
+> document states each link and **labels its rigor explicitly**: `[PROVEN]`, `[ARGUED]`, or
 > `[ANALOGY]`.
 
 ---
@@ -100,7 +100,7 @@ per-channel constant `γ` (`verify_constant_gamma`) — **re-run here: 4.77e-7 i
 machine-precision agreement is the algorithmic truth). The map *attractor ↔ DC gain* is an
 identity, not an analogy.
 
-**Honest edge.** This is exact only in the **constant-gate limit**. For selective
+**Edge of validity.** This is exact only in the **constant-gate limit**. For selective
 (input-dependent) gates there is no single scalar DC gain — the gain becomes a path
 functional `Σ_k α_k Γ_{k→t}`. But boundedness survives: as long as `γ_j ≤ γ_max < 1` along
 the path, the effective gain is bounded by `α_max/(1−γ_max) < ∞`, so the interior
@@ -233,7 +233,7 @@ operator saturates its useful expressivity at the data's entropy floor, and the 
 across the width×depth grid is the signature of that saturation. Sub-135 needs more data
 (more distinct kernel responses to fit), not more poles.
 
-**Why `[ANALOGY]` — the weakest link, and we say so plainly.** This is an *interpretation*,
+**Why `[ANALOGY]` — the weakest link.** This is an *interpretation*,
 not a derivation. We have not derived a capacity bound `C(d, L)` for the stacked
 fixed-pole kernels and shown the WikiText-2 entropy sits at/below it; we observe a flat PPL
 plateau and *read* it through the fixed-per-channel-kernel lens, which is *consistent* with
@@ -241,7 +241,7 @@ data-boundedness. A flat plateau is also consistent with optimization or
 tokenizer/data-pipeline ceilings. The kernel framing makes the data-bound story
 *natural and coherent* (fixed-rank operators have fixed per-channel expressivity, so a
 plateau invariant to width/depth is exactly what you'd expect) but does **not** prove the
-floor is the data's information content rather than something else. The honest claim:
+floor is the data's information content rather than something else. The precise claim:
 **the fixed-rank-per-channel kernel structure predicts that scaling parameters alone should
 not move a data-limited floor, and the measured plateau is consistent with that** — an
 analogy that earns its place by coherence with P1–P3, not by proof. The 54.5-at-50M figure
@@ -276,11 +276,11 @@ operator, four readings, rigor labeled at each step.
 **Intent.** A single diagram: the kernel operator at the center (or top), four pillars
 hanging off it, each annotated with (i) the kernel property invoked, (ii) the measured
 number, and (iii) a rigor badge `[PROVEN] / [ARGUED] / [ANALOGY]`. The reader should see
-*one source, four consequences, honest rigor gradient* in one glance.
+*one source, four consequences, graded rigor gradient* in one glance.
 
 **Layout.** Central hub + four radial/columnar branches. Recommended: hub at top-center,
 four columns descending (left→right in decreasing rigor, so the `[PROVEN]→[ANALOGY]`
-gradient reads left-to-right and the eye learns the honesty axis). Color-code the badges:
+gradient reads left-to-right and the eye learns the rigor axis). Color-code the badges:
 green=`[PROVEN]`, amber=`[ARGUED]`, grey=`[ANALOGY]`.
 
 **ASCII mock (target composition):**
@@ -339,13 +339,13 @@ green=`[PROVEN]`, amber=`[ARGUED]`, grey=`[ANALOGY]`.
 - **Each pillar = a 4-row card:** (row 1) kernel property, (row 2) the derived
   consequence/closed form, (row 3) the **measured** number in a contrasting fill (this is
   the load-bearing data — make it pop), (row 4) the **rigor badge**.
-- **Rigor badges (the honesty axis):** green solid `[PROVEN]`, amber half-fill `[ARGUED]`,
+- **Rigor badges (the rigor axis):** green solid `[PROVEN]`, amber half-fill `[ARGUED]`,
   grey hatched `[ANALOGY]`. P2 and P3 get **two** badges (a green structural + an amber
-  empirical) — render them stacked to show the split rigor explicitly; do not paper over it
-  with a single badge.
+  empirical) — render them stacked to show the split rigor explicitly; do not collapse it
+  to a single badge.
 - **Bottom rigor-gradient bar:** a left→right arrow under all four cards, green at P1 fading
   to grey at P4, labeled "rigor: PROVEN → ANALOGY". This is the figure's quiet thesis: the
-  unification is real *and* we are honest about where it is a theorem vs a reading.
+  unification is real *and* the rigor is graded — a theorem at one end, a reading at the other.
 - **Optional inset (if space):** a tiny `s*` vs `α/(1−γ)` curve in P1 (interior, asymptoting
   to 1) and the `γ^{|s−t|}` decay in P2 — two ~1cm sparklines that visually anchor "finite
   gain ⇒ interior" and "lag-only ⇒ stationary".
@@ -358,7 +358,7 @@ green=`[PROVEN]`, amber=`[ARGUED]`, grey=`[ANALOGY]`.
 > per channel** plus Pure's infinite-gain saturation drive the double dissociation (P3,
 > saturation proven, 100%-vs-16% measured); its **fixed per-channel capacity** makes the
 > PPL floor data- not parameter-bound (P4, analogy, consistent with the flat plateau).
-> Badge color = rigor; the gradient left→right is honest by design.
+> Badge color = rigor; the gradient left→right is graded by design.
 
 ---
 

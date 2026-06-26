@@ -1,6 +1,6 @@
 # Living-Stream: constant-memory training + a state that lives through silence
 
-**Working draft (internal).** The training-side dual of the O(1) eval flag, plus a measured
+**Disclosed:** 2026-06-26 · Apache-2.0. The training-side dual of the O(1) eval flag, plus a measured
 idle-persistence mechanism. Three pillars, each with its decisive control, on the *same* NoPE
 GSSM that streamed a billion tokens.
 
