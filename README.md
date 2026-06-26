@@ -16,6 +16,20 @@
 
 ---
 
+## Headline results
+
+| What | Result | vs. attention |
+|---|---|---|
+| **Length extrapolation** | trained at sequence length **32**, evaluated to **131,072** — perplexity stays **flat (162.5 → 158.9, ratio 0.98)** across **4096×** the training length | a Transformer's PPL diverges past ~2× |
+| **Unbounded stream, constant memory** | **1,000,013,824 tokens** consumed at a **flat 4.36 GB** peak (153 min, C4) | attention memory grows with context |
+| **Constant-memory training** | truncated-BPTT streaming training reproduces full BPTT to **gradient cosine 1.0000**; held-out loss 8.69 → 5.22 at flat RSS (no-detach control: 0.77 → 1.81 GB) | full BPTT memory grows with sequence |
+| **Persistent state through silence** | a stored bit is recalled with **accuracy 1.0 through a 256-token input gap** (zeroing the state at the gap → chance) | — |
+| **Language modeling (out of the box)** | **135 PPL on WikiText-2** at 18.8M params, flat across the d256–d1024 × L2–L4 grid (the floor is the 1.7M-token data budget, not the architecture) | — |
+
+![Length invariance: O1 is the only flat line across 256× extrapolation](plots/length_invariance.png)
+
+![Living-stream: constant-memory training and a state that survives a 256-token silence](plots/living_stream.png)
+
 ## Summary
 
 O1 is a recurrent sequence model whose per-token cost and memory are **independent of sequence
@@ -105,10 +119,30 @@ dissociation is a single-configuration result on the actual recurrence. Where a 
 state it without qualification: 1B tokens at flat memory, the gated cliff at 2.4× the linear slope,
 and length extrapolation flat to 32× are measured, not extrapolated.
 
+## Quickstart
+
+```bash
+git clone https://github.com/DT-Foss/O1 && cd O1
+pip install -r requirements.txt
+
+# Four headline results reproduce on CPU in minutes, no data download, no checkpoint:
+python src/gssm_potentiation.py   # capacity threshold in the gated readout (§5)
+python src/percolation_hard.py    # structural percolation transition (§3)
+python src/reinforcement_loop.py  # super-linear potentiation, edges frozen (§4)
+python src/operator_readout.py    # one state, many readings (§6)
+
+# Verify constant-memory streaming-training is exact (grad cosine = 1.0000):
+python src/streaming_train.py --check
+```
+
+Each script writes its JSON to `results/`; figures regenerate from those JSONs via `src/plot_*.py`.
+The length-extrapolation and 1B-token streaming results (§ headline table) use cached/streamed
+corpora — see the script headers for the exact flags.
+
 ## Reproducing
 
-Each contribution writes a JSON under `results/`; figures regenerate from those JSONs via
-`src/plot_*.py`. CPU-only, constant memory.
+All runs are CPU-only and constant-memory. The threshold and readout results (§3–§6) run offline
+from the locally-cached corpus; the streaming-training exactness check (§1) runs with no data.
 
 ## Contact
 
