@@ -23,12 +23,22 @@
 | **Length extrapolation** | trained at sequence length **32**, evaluated to **131,072** — perplexity stays **flat (162.5 → 158.9, ratio 0.98)** across **4096×** the training length | a Transformer's PPL diverges past ~2× |
 | **Unbounded stream, constant memory** | **1,000,013,824 tokens** consumed at a **flat 4.36 GB** peak (153 min, C4) | attention memory grows with context |
 | **Constant-memory training** | truncated-BPTT streaming training reproduces full BPTT to **gradient cosine 1.0000**; held-out loss 8.69 → 5.22 at flat RSS (no-detach control: 0.77 → 1.81 GB) | full BPTT memory grows with sequence |
+| **Long-range state tracking** | flip-flop task, trained at length 64: O1 holds **accuracy 1.00 out to length 8192 (128×)** | the Transformer falls to 0.46 at 256 and 0.23 at 1024, then fails |
 | **Persistent state through silence** | a stored bit is recalled with **accuracy 1.0 through a 256-token input gap** (zeroing the state at the gap → chance) | — |
 | **Language modeling (out of the box)** | **135 PPL on WikiText-2** at 18.8M params, flat across the d256–d1024 × L2–L4 grid (the floor is the 1.7M-token data budget, not the architecture) | — |
 
 ![Length invariance: O1 is the only flat line across 256× extrapolation](plots/length_invariance.png)
 
+![State tracking: O1 holds 100% accuracy to 128× training length where attention collapses](plots/capability_flipflop.png)
+
 ![Living-stream: constant-memory training and a state that survives a 256-token silence](plots/living_stream.png)
+
+**Associative recall in a bounded state.** A bounded scalar O(1) state was thought structurally
+unable to do key–value recall at all. A key-conditioned holographic write gives it that capability
+— **+7.2 points above the noise band, breaking the recall floor** on MQAR. The state learns to
+store several (key, value) pairs separably in one complex leaky accumulator and read them back by
+query de-rotation. → `src/holographic_mqar_run.py`, `results/holographic_mqar.json`,
+`plots/fig_hybrid_recall.png`
 
 ## Summary
 
