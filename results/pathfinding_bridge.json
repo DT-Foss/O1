@@ -1,0 +1,279 @@
+{
+  "causal": "demo/causal_assets/wikitext.causal",
+  "n_triplets": 300,
+  "gaps": [
+    {
+      "term": "trujillo",
+      "surprise": 16.329,
+      "n_paths": 3,
+      "top_path": "In addition , it is the \u2192 causes \u2192 of Trujillo 's repeated anger over the \" anemic little bitch \"",
+      "multi_hop": [
+        {
+          "hops": 4,
+          "chain": "In addition , it is the \u2192 resultant economic downturn , in conjunction with other factors \u2192 him and only the good to Trujillo \" \u2192 Amadito 's disgust with himself and disillusionment with the regime \u2192 her academic study of the history of the Trujillo regime",
+          "conf": 1.0
+        },
+        {
+          "hops": 3,
+          "chain": "In addition , it is the \u2192 resultant economic downturn , in conjunction with other factors \u2192 him and only the good to Trujillo \" \u2192 Amadito 's disgust with himself and disillusionment with the regime",
+          "conf": 1.0
+        }
+      ]
+    },
+    {
+      "term": "townsend",
+      "surprise": 16.248,
+      "n_paths": 1,
+      "top_path": "Townsend mainly uses Pro Tools to \u2192 produces \u2192 his music alongside other software suites such",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "slayer",
+      "surprise": 16.096,
+      "n_paths": 1,
+      "top_path": "he believed they \" had \u2192 slows \u2192 down \" , something Slayer had never done on albums before , or since",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "markgraf",
+      "surprise": 15.839,
+      "n_paths": 1,
+      "top_path": "long range \u2192 is caused by \u2192 Malaya fired a torpedo at Markgraf at 19 : 05 , but the torpedo missed",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "neolithic",
+      "surprise": 15.433,
+      "n_paths": 3,
+      "top_path": "Archaeologists have differentiated these Early Neolithic tombs into a variety of different architectural styles each typically \u2192 is associated with \u2192 different region within the British Isles",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "= = \u2192 Archaeologists have differentiated these Early Neolithic tombs into a variety of different architectural styles each typically \u2192 Early Neolithic builders would have selected",
+          "conf": 1.0
+        },
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "furtado",
+      "surprise": 15.348,
+      "n_paths": 1,
+      "top_path": "sexual image Furtado adopted \u2192 is caused by \u2192 album received criticism",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "tombs",
+      "surprise": 15.303,
+      "n_paths": 2,
+      "top_path": "Archaeologists have differentiated these Early Neolithic tombs into a variety of different architectural styles each typically \u2192 is associated with \u2192 different region within the British Isles",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "helms",
+      "surprise": 15.264,
+      "n_paths": 1,
+      "top_path": "his missing work for acting gigs \u2192 is caused by \u2192 = = Plot = = \n\n\n\n\n CEO David Wallace ( Andy Buckley ) plans on firing Andy Bernard ( Ed Helms",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "antimony",
+      "surprise": 15.181,
+      "n_paths": 3,
+      "top_path": "industrial methods to \u2192 produces \u2192 antimony are roasting",
+      "multi_hop": [
+        {
+          "hops": 5,
+          "chain": "Prolonged skin contact with antimony dust may \u2192 industrial methods to \u2192 Alloying lead and tin with antimony \u2192 their rapid wear , their minting was discontinued \u2192 J\u00f6ns Jakob Berzelius , who used this abbreviation of the name stibium \u2192 Reported production of antimony in China fell in 2010 and is unlikely to",
+          "conf": 1.0
+        },
+        {
+          "hops": 5,
+          "chain": "industrial methods to \u2192 Alloying lead and tin with antimony \u2192 their rapid wear , their minting was discontinued \u2192 J\u00f6ns Jakob Berzelius , who used this abbreviation of the name stibium \u2192 Reported production of antimony in China fell in 2010 and is unlikely to \u2192 formation of halogenated antimony compounds is the",
+          "conf": 1.0
+        }
+      ]
+    },
+    {
+      "term": "raaf",
+      "surprise": 15.081,
+      "n_paths": 1,
+      "top_path": "intelligence from British Pacific Fleet concerning its ships ' movements eastwards out of Western Area was hours out of date by the time it was received at Southern Area Command \u2192 leads to \u2192 RAAF aircraft missing their rendezvous",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "saprang",
+      "surprise": 14.878,
+      "n_paths": 1,
+      "top_path": "Saprang has evoked his aristocratic background in order to \u2192 increases \u2192 his credibility in public confrontations",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "genera",
+      "surprise": 14.871,
+      "n_paths": 1,
+      "top_path": "competition several genera \u2192 is caused by \u2192 its taxonomy became increasingly confused",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "valkyria",
+      "surprise": 14.843,
+      "n_paths": 1,
+      "top_path": "poor sales of Valkyria Chronicles II \u2192 is caused by \u2192 According to Sega ,",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "battleships",
+      "surprise": 14.61,
+      "n_paths": 1,
+      "top_path": "even sustained fire from the battleships ' main guns failed \u2192 drives \u2192 them off",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    },
+    {
+      "term": "torpedo",
+      "surprise": 14.378,
+      "n_paths": 1,
+      "top_path": "long range \u2192 is caused by \u2192 Malaya fired a torpedo at Markgraf at 19 : 05 , but the torpedo missed",
+      "multi_hop": [
+        {
+          "hops": 2,
+          "chain": "a successful incursion into Imperial territory other orders \u2192 ? \u2192 certain members of the 422nd great distress",
+          "conf": 0.722
+        },
+        {
+          "hops": 2,
+          "chain": "events partly due \u2192 ? \u2192 Partly",
+          "conf": 0.722
+        }
+      ]
+    }
+  ],
+  "avg_gap_surprise": 15.313,
+  "avg_common_surprise": 0.59,
+  "commons_indexed_by_attic": "7/8"
+}

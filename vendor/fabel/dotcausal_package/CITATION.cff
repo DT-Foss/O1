@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "dotcausal: Binary Knowledge Graph Format with Embedded Inference"
+version: 0.2.1
+date-released: 2026-01-24
+authors:
+  - family-names: "Foss"
+    given-names: "David Tom"
+    orcid: "https://orcid.org/0009-0004-0289-7154"
+    email: "dtfoss-dev@proton.me"
+repository-code: "https://github.com/dotcausal/dotcausal"
+url: "https://dotcausal.com"
+license: MIT
+keywords:
+  - knowledge-graph
+  - causal-inference
+  - ai
+  - binary-format
+  - zero-hallucination
+references:
+  - type: article
+    authors:
+      - family-names: "Foss"
+        given-names: "David Tom"
+    title: "The .causal Format: Deterministic Inference for AI-Assisted Hypothesis Amplification"
+    year: 2026
+    doi: "10.5281/zenodo.18326222"

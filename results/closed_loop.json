@@ -1,0 +1,328 @@
+{
+  "causal": "demo/causal_assets/wikitext.causal",
+  "n_gaps": 40,
+  "mean_surprise_drop": 0.0256,
+  "gaps_helped": "27/40",
+  "results": [
+    {
+      "gap": "imperial",
+      "gap_surprise": 12.988,
+      "path": "a successful incursion into Imperial territory other orders \u2192 causes \u2192 certain m",
+      "cont_surprise_without": 7.2739,
+      "cont_surprise_with": 7.2567,
+      "drop": 0.0172
+    },
+    {
+      "gap": "territory",
+      "gap_surprise": 9.296,
+      "path": "a successful incursion into Imperial territory other orders \u2192 causes \u2192 certain m",
+      "cont_surprise_without": 6.9872,
+      "cont_surprise_with": 6.9968,
+      "drop": -0.0096
+    },
+    {
+      "gap": "causes",
+      "gap_surprise": 9.927,
+      "path": "a successful incursion into Imperial territory other orders \u2192 causes \u2192 certain m",
+      "cont_surprise_without": 6.8636,
+      "cont_surprise_with": 6.7726,
+      "drop": 0.091
+    },
+    {
+      "gap": "certain",
+      "gap_surprise": 9.108,
+      "path": "a successful incursion into Imperial territory other orders \u2192 causes \u2192 certain m",
+      "cont_surprise_without": 6.7645,
+      "cont_surprise_with": 6.5984,
+      "drop": 0.1661
+    },
+    {
+      "gap": "great",
+      "gap_surprise": 9.235,
+      "path": "a successful incursion into Imperial territory other orders \u2192 causes \u2192 certain m",
+      "cont_surprise_without": 6.3009,
+      "cont_surprise_with": 6.2755,
+      "drop": 0.0254
+    },
+    {
+      "gap": "events",
+      "gap_surprise": 9.548,
+      "path": "events partly due \u2192 is caused by \u2192 Partly",
+      "cont_surprise_without": 5.8004,
+      "cont_surprise_with": 5.7107,
+      "drop": 0.0897
+    },
+    {
+      "gap": "partly",
+      "gap_surprise": 11.425,
+      "path": "events partly due \u2192 is caused by \u2192 Partly",
+      "cont_surprise_without": 5.7567,
+      "cont_surprise_with": 5.7305,
+      "drop": 0.0261
+    },
+    {
+      "gap": "partly",
+      "gap_surprise": 11.191,
+      "path": "events partly due \u2192 is caused by \u2192 Partly",
+      "cont_surprise_without": 5.1058,
+      "cont_surprise_with": 5.1123,
+      "drop": -0.0065
+    },
+    {
+      "gap": "created",
+      "gap_surprise": 9.022,
+      "path": "team wanting refine the mechanics created \u2192 is caused by \u2192 PlayStation Portable ",
+      "cont_surprise_without": 6.7267,
+      "cont_surprise_with": 6.7544,
+      "drop": -0.0278
+    },
+    {
+      "gap": "playstation",
+      "gap_surprise": 10.453,
+      "path": "team wanting refine the mechanics created \u2192 is caused by \u2192 PlayStation Portable ",
+      "cont_surprise_without": 7.3088,
+      "cont_surprise_with": 7.2947,
+      "drop": 0.0141
+    },
+    {
+      "gap": "move",
+      "gap_surprise": 9.909,
+      "path": "platform move the third game gave them a chance \u2192 is caused by \u2192 error during de",
+      "cont_surprise_without": 6.2973,
+      "cont_surprise_with": 6.2678,
+      "drop": 0.0295
+    },
+    {
+      "gap": "gave",
+      "gap_surprise": 9.608,
+      "path": "platform move the third game gave them a chance \u2192 is caused by \u2192 error during de",
+      "cont_surprise_without": 5.7079,
+      "cont_surprise_with": 5.726,
+      "drop": -0.0181
+    },
+    {
+      "gap": "chance",
+      "gap_surprise": 11.024,
+      "path": "platform move the third game gave them a chance \u2192 is caused by \u2192 error during de",
+      "cont_surprise_without": 5.2816,
+      "cont_surprise_with": 5.2847,
+      "drop": -0.0032
+    },
+    {
+      "gap": "need",
+      "gap_surprise": 9.003,
+      "path": "need to reassess the game \u2192 is caused by \u2192 He redid the main theme about seven t",
+      "cont_surprise_without": 4.4546,
+      "cont_surprise_with": 4.392,
+      "drop": 0.0626
+    },
+    {
+      "gap": "detail",
+      "gap_surprise": 10.446,
+      "path": "To \u2192 promotes \u2192 game detail the story leading into the game 's events",
+      "cont_surprise_without": 7.7187,
+      "cont_surprise_with": 7.7437,
+      "drop": -0.025
+    },
+    {
+      "gap": "leading",
+      "gap_surprise": 9.69,
+      "path": "To \u2192 promotes \u2192 game detail the story leading into the game 's events",
+      "cont_surprise_without": 8.1283,
+      "cont_surprise_with": 8.0408,
+      "drop": 0.0876
+    },
+    {
+      "gap": "events",
+      "gap_surprise": 9.596,
+      "path": "events partly due \u2192 is caused by \u2192 Partly",
+      "cont_surprise_without": 7.5651,
+      "cont_surprise_with": 7.5233,
+      "drop": 0.0417
+    },
+    {
+      "gap": "poor",
+      "gap_surprise": 10.344,
+      "path": "poor sales of Valkyria Chronicles II \u2192 is caused by \u2192 According to Sega ,",
+      "cont_surprise_without": 6.9032,
+      "cont_surprise_with": 6.8263,
+      "drop": 0.0769
+    },
+    {
+      "gap": "valkyria",
+      "gap_surprise": 14.843,
+      "path": "poor sales of Valkyria Chronicles II \u2192 is caused by \u2192 According to Sega ,",
+      "cont_surprise_without": 5.6754,
+      "cont_surprise_with": 5.6635,
+      "drop": 0.0119
+    },
+    {
+      "gap": "chronicles",
+      "gap_surprise": 13.58,
+      "path": "poor sales of Valkyria Chronicles II \u2192 is caused by \u2192 According to Sega ,",
+      "cont_surprise_without": 5.0124,
+      "cont_surprise_with": 4.9712,
+      "drop": 0.0411
+    },
+    {
+      "gap": "according",
+      "gap_surprise": 9.19,
+      "path": "poor sales of Valkyria Chronicles II \u2192 is caused by \u2192 According to Sega ,",
+      "cont_surprise_without": 4.0018,
+      "cont_surprise_with": 4.0108,
+      "drop": -0.009
+    },
+    {
+      "gap": "initially",
+      "gap_surprise": 10.387,
+      "path": "stoppage to PSN during the early summer of that year \u2192 is caused by \u2192 initially ",
+      "cont_surprise_without": 5.9842,
+      "cont_surprise_with": 5.99,
+      "drop": -0.0059
+    },
+    {
+      "gap": "period",
+      "gap_surprise": 9.186,
+      "path": "stoppage to PSN during the early summer of that year \u2192 is caused by \u2192 initially ",
+      "cont_surprise_without": 5.4724,
+      "cont_surprise_with": 5.4616,
+      "drop": 0.0108
+    },
+    {
+      "gap": "needed",
+      "gap_surprise": 9.453,
+      "path": "stoppage to PSN during the early summer of that year \u2192 is caused by \u2192 initially ",
+      "cont_surprise_without": 4.8433,
+      "cont_surprise_with": 4.8606,
+      "drop": -0.0174
+    },
+    {
+      "gap": "increased",
+      "gap_surprise": 10.085,
+      "path": "increased membership and a need for larger , more permanent quarters \u2192 is caused",
+      "cont_surprise_without": 5.5278,
+      "cont_surprise_with": 5.4123,
+      "drop": 0.1155
+    },
+    {
+      "gap": "permanent",
+      "gap_surprise": 9.911,
+      "path": "increased membership and a need for larger , more permanent quarters \u2192 is caused",
+      "cont_surprise_without": 5.8187,
+      "cont_surprise_with": 5.7476,
+      "drop": 0.0711
+    },
+    {
+      "gap": "prompted",
+      "gap_surprise": 10.12,
+      "path": "increased membership and a need for larger , more permanent quarters \u2192 is caused",
+      "cont_surprise_without": 6.9025,
+      "cont_surprise_with": 6.9005,
+      "drop": 0.002
+    },
+    {
+      "gap": "efforts",
+      "gap_surprise": 9.87,
+      "path": "efforts of the \u00c6sthetic Club , Little Rock philanthropist Frederick W \u2192 is cause",
+      "cont_surprise_without": 6.0918,
+      "cont_surprise_with": 6.0118,
+      "drop": 0.0801
+    },
+    {
+      "gap": "little",
+      "gap_surprise": 9.483,
+      "path": "efforts of the \u00c6sthetic Club , Little Rock philanthropist Frederick W \u2192 is cause",
+      "cont_surprise_without": 6.4977,
+      "cont_surprise_with": 6.5325,
+      "drop": -0.0348
+    },
+    {
+      "gap": "rock",
+      "gap_surprise": 9.248,
+      "path": "efforts of the \u00c6sthetic Club , Little Rock philanthropist Frederick W \u2192 is cause",
+      "cont_surprise_without": 5.8681,
+      "cont_surprise_with": 5.9503,
+      "drop": -0.0822
+    },
+    {
+      "gap": "frederick",
+      "gap_surprise": 11.342,
+      "path": "efforts of the \u00c6sthetic Club , Little Rock philanthropist Frederick W \u2192 is cause",
+      "cont_surprise_without": 5.602,
+      "cont_surprise_with": 5.613,
+      "drop": -0.011
+    },
+    {
+      "gap": "tower",
+      "gap_surprise": 9.53,
+      "path": "efforts of the \u00c6sthetic Club , Little Rock philanthropist Frederick W \u2192 is cause",
+      "cont_surprise_without": 5.5459,
+      "cont_surprise_with": 5.489,
+      "drop": 0.0568
+    },
+    {
+      "gap": "build",
+      "gap_surprise": 9.779,
+      "path": "its gracile build \u2192 is caused by \u2192 withstand than other maskrays",
+      "cont_surprise_without": 5.5888,
+      "cont_surprise_with": 5.54,
+      "drop": 0.0487
+    },
+    {
+      "gap": "broad",
+      "gap_surprise": 10.791,
+      "path": "has a broad flattened base \u2192 leads to \u2192 usually two stinging spines",
+      "cont_surprise_without": 6.063,
+      "cont_surprise_with": 6.0431,
+      "drop": 0.0199
+    },
+    {
+      "gap": "base",
+      "gap_surprise": 9.369,
+      "path": "has a broad flattened base \u2192 leads to \u2192 usually two stinging spines",
+      "cont_surprise_without": 5.6981,
+      "cont_surprise_with": 5.6717,
+      "drop": 0.0264
+    },
+    {
+      "gap": "leads",
+      "gap_surprise": 9.91,
+      "path": "has a broad flattened base \u2192 leads to \u2192 usually two stinging spines",
+      "cont_surprise_without": 5.4977,
+      "cont_surprise_with": 5.4783,
+      "drop": 0.0194
+    },
+    {
+      "gap": "usually",
+      "gap_surprise": 10.035,
+      "path": "has a broad flattened base \u2192 leads to \u2192 usually two stinging spines",
+      "cont_surprise_without": 5.5755,
+      "cont_surprise_with": 5.55,
+      "drop": 0.0255
+    },
+    {
+      "gap": "northern",
+      "gap_surprise": 10.127,
+      "path": "Australia 's Northern Prawn Fishery , which operates throughout its range \u2192 is c",
+      "cont_surprise_without": 5.2485,
+      "cont_surprise_with": 5.2297,
+      "drop": 0.0188
+    },
+    {
+      "gap": "clubs",
+      "gap_surprise": 10.428,
+      "path": "the clubs \u2192 slows \u2192 start continued",
+      "cont_surprise_without": 6.9687,
+      "cont_surprise_with": 6.9551,
+      "drop": 0.0136
+    },
+    {
+      "gap": "continued",
+      "gap_surprise": 9.614,
+      "path": "the clubs \u2192 slows \u2192 start continued",
+      "cont_surprise_without": 6.3348,
+      "cont_surprise_with": 6.351,
+      "drop": -0.0162
+    }
+  ]
+}

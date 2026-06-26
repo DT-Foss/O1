@@ -1,0 +1,211 @@
+{
+  "seed_triplets": 952,
+  "final_triplets": 1127,
+  "growth": 175,
+  "queries": 25,
+  "answered_before": 0,
+  "answered_after": 2,
+  "attic_path": "demo/causal_assets/gap_loop_attic.causal",
+  "trace": [
+    {
+      "query": "ration",
+      "knew_before": false,
+      "added_triplets": 2,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "through",
+      "knew_before": false,
+      "added_triplets": 14,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "america",
+      "knew_before": false,
+      "added_triplets": 10,
+      "knows_after": true,
+      "neighbourhood_chains": 3,
+      "example_chain": "first African @-@ Americans to \u2192 the surface \u2192 the Caribbean Sea"
+    },
+    {
+      "query": "follow",
+      "knew_before": false,
+      "added_triplets": 12,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "genera",
+      "knew_before": false,
+      "added_triplets": 9,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "release",
+      "knew_before": false,
+      "added_triplets": 1,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "appear",
+      "knew_before": false,
+      "added_triplets": 4,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "cation",
+      "knew_before": false,
+      "added_triplets": 6,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "episode",
+      "knew_before": false,
+      "added_triplets": 0,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "origin",
+      "knew_before": false,
+      "added_triplets": 4,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "include",
+      "knew_before": false,
+      "added_triplets": 1,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "resent",
+      "knew_before": false,
+      "added_triplets": 6,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "including",
+      "knew_before": false,
+      "added_triplets": 9,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "company",
+      "knew_before": false,
+      "added_triplets": 4,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "century",
+      "knew_before": false,
+      "added_triplets": 9,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "because",
+      "knew_before": false,
+      "added_triplets": 8,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "reside",
+      "knew_before": false,
+      "added_triplets": 14,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "leased",
+      "knew_before": false,
+      "added_triplets": 1,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "describe",
+      "knew_before": false,
+      "added_triplets": 4,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "church",
+      "knew_before": false,
+      "added_triplets": 8,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "million",
+      "knew_before": false,
+      "added_triplets": 11,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "govern",
+      "knew_before": false,
+      "added_triplets": 6,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "tropic",
+      "knew_before": false,
+      "added_triplets": 8,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    },
+    {
+      "query": "tropical",
+      "knew_before": false,
+      "added_triplets": 8,
+      "knows_after": true,
+      "neighbourhood_chains": 3,
+      "example_chain": "Early in its duration , Ingrid \u2192 the tropical storm \u2192 possible interaction with Tropical S"
+    },
+    {
+      "query": "receive",
+      "knew_before": false,
+      "added_triplets": 16,
+      "knows_after": false,
+      "neighbourhood_chains": 0,
+      "example_chain": null
+    }
+  ]
+}
