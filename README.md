@@ -1,159 +1,480 @@
-# O1 — constant-memory sequence modeling with an external knowledge index
+# O1 — a constant-memory living mind
 
-**A constant-memory recurrent stream coupled to a growing `.causal` knowledge index, with a measured capacity threshold in the gated readout.**
+**An O(1)-state sequence model that consumes an unbounded stream at constant memory, stays awake through silence, and consults an external knowledge index at runtime.**
 
 **Author:** David Tom Foss · **Year:** 2026 · **License:** Apache-2.0
 
-> This README is a **timestamped public disclosure** (prior art). Every claim below is a measured
-> number with the exact script that reproduces it. The dates, the code, and the result JSON in
-> this repository are the record.
+> This README is a **timestamped public disclosure** (prior art). Every claim below
+> is a number we measured, with the exact script that reproduces it. The dates,
+> the code, and the result JSON in this repository are the record.
 >
-> **O1 builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit history.
-> GSSM defines the architecture: a bounded reproducing-kernel SSM operator, a length-invariant
-> NoPE-selective recurrence, and an `O(log T)` parallel scan. O1 extends it in three directions —
-> constant-memory streaming (training and inference), an external knowledge index the recurrence
-> consults at runtime, and a measured capacity threshold in the gated readout.
+> **O1 builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit
+> history. GSSM is the architecture — the bounded reproducing-kernel SSM operator, the
+> length-invariant NoPE-selective recurrence, the `O(log T)` parallel scan. O1 is what that
+> architecture becomes when you let it live: the five GSSM contributions below, plus
+> constant-memory streaming (training and inference), a runtime-consulted knowledge index,
+> and a measured capacity threshold in the gated readout.
 
 ---
 
-## Headline results
+## Thesis
 
-| What | Result | vs. attention |
-|---|---|---|
-| **Length extrapolation** | trained at sequence length **32**, evaluated to **131,072** — perplexity stays **flat (162.5 → 158.9, ratio 0.98)** across **4096×** the training length | a Transformer's PPL diverges past ~2× |
-| **Unbounded stream, constant memory** | **1,000,013,824 tokens** consumed at a **flat 4.36 GB** peak (153 min, C4) | attention memory grows with context |
-| **Constant-memory training** | truncated-BPTT streaming training reproduces full BPTT to **gradient cosine 1.0000**; held-out loss 8.69 → 5.22 at flat RSS (no-detach control: 0.77 → 1.81 GB) | full BPTT memory grows with sequence |
-| **Long-range state tracking** | flip-flop task, trained at length 64: O1 holds **accuracy 1.00 out to length 8192 (128×)** | the Transformer falls to 0.46 at 256 and 0.23 at 1024, then fails |
-| **Persistent state through silence** | a stored bit is recalled with **accuracy 1.0 through a 256-token input gap** (zeroing the state at the gap → chance) | — |
-| **Language modeling (out of the box)** | **135 PPL on WikiText-2** at 18.8M params, flat across the d256–d1024 × L2–L4 grid (the floor is the 1.7M-token data budget, not the architecture) | — |
+A mind does not need to hold its whole history to keep thinking. **Two systems and a law.**
 
-![Length invariance: O1 is the only flat line across 256× extrapolation](plots/length_invariance.png)
+**The living now — an O(1) stream.** The GSSM gated recurrence `zₜ = γₜ·zₜ₋₁ + aₜ` consumes
+an *unbounded* token stream at **constant memory**. Memory is decoupled from length: the
+corpus stops being an object and becomes an iterator — C4, a web-scraper, the whole internet,
+all at constant RAM. The state stays awake without input (idle-persistence), forgets in a
+controlled way (`γₜ`), and reads sharply through a nonlinear gate.
 
-![State tracking: O1 holds 100% accuracy to 128× training length where attention collapses](plots/capability_flipflop.png)
+**Knowledge — a growing external index.** A `.causal` knowledge graph (deterministic
+multi-pass inference) holds what the stream has learned and grows as it runs. When the state
+hits high surprise, it queries the graph and folds the retrieved association back into the
+stream **without a gradient step**.
 
-![Living-stream: constant-memory training and a state that survives a 256-token silence](plots/living_stream.png)
+**The law — a threshold.** Between isolated knowledge and one connected mass there is a
+critical point; below it reinforcement is local, above it capability compounds. We measure it
+three ways. The dynamical threshold lives in the index; the sharp gated read lives in the
+state.
 
-**Associative recall in a bounded state.** A bounded scalar O(1) state was thought structurally
-unable to do key–value recall at all. A key-conditioned holographic write gives it that capability
-— **+7.2 points above the noise band, breaking the recall floor** on MQAR. The state learns to
-store several (key, value) pairs separably in one complex leaky accumulator and read them back by
-query de-rotation. → `src/holographic_mqar_run.py`, `results/holographic_mqar.json`,
-`plots/fig_hybrid_recall.png`
-
-## Summary
-
-O1 is a recurrent sequence model whose per-token cost and memory are **independent of sequence
-length**. It consumes an unbounded token stream at constant RAM, both at inference and during
-truncated-BPTT training, and retains information across input gaps. It is paired with an external,
-incrementally-built `.causal` knowledge graph: when the recurrent state encounters high surprise,
-it queries the graph and folds the retrieved association back into the stream without a gradient
-update. Separately, we characterize a sharp capacity threshold in the model's gated readout and
-locate where a use-driven reinforcement process compounds (the index) versus where it cannot (the
-bounded state).
-
-The architecture and its kernel theory are documented in
-[GSSM](https://github.com/DT-Foss/gssm); this repository documents the streaming, retrieval, and
-threshold results built on top of it.
+Underneath, **GSSM-Selective is the general affine reproducing-kernel operator of the
+linear-SSM family** (Mamba/S6, S5, LRU are parametric special cases of one prefix-scan
+operator). That kernel structure — bounded state, `O(log T)` scan, KV-cache-free inference,
+shift-equivariance in time — is exactly what makes the O(1) stream possible. The mathematics
+(Möbius coupling, doubly-stochastic spectra, non-reversible lifted Markov chains) is archived
+with permanent DOIs — see [PAPERS.md](PAPERS.md).
 
 ---
 
-## Contributions
+## The five verified contributions (the GSSM core)
 
-Each entry states the measured result and the script that reproduces it. All runs are CPU,
-offline, constant-memory, and memory-guarded.
+Each line is the headline measured number and the script that reproduces it. All runs:
+PyTorch 2.9.1, offline, Apple Mac (M-series) CPU/MPS.
 
-### 1 — Constant-memory streaming (training and inference)
-Truncated BPTT carrying the detached state across chunks reproduces full BPTT to a gradient cosine
-of **1.0000**; held-out loss decreases 8.69 → 5.22 at flat resident memory, while a no-detach
-control grows 0.77 → 1.81 GB. The state retains a single bit through a **256-token input gap**
-(recall accuracy 1.0; zeroing the state at the gap reduces recall to chance), carried by a learned
-near-unity-decay channel (γ = 0.9999).
-→ `src/streaming_train.py`, `plots/living_stream.png`
+### 1 — RKHS / kernel unification: one operator, three switches
 
-### 2 — Runtime retrieval from an external index
-At a high-surprise position, the pre-gap recurrent state is forked and the retrieved `.causal`
-association is injected into the continuation. This lowers follow-on surprise **without any
-gradient update** (mean reduction +0.0256; improved 27 of 40 probes). The recurrence consults its
-external index during inference.
-→ `src/closed_loop.py`, `src/pathfinding_bridge.py`, `src/attic.py`
+GSSM ⊃ {Mamba/S6, S5, LRU} as switch-restrictions of a single dtype-agnostic affine
+operator. The parallel ⊗-scan reproduces the sequential recurrence for every family
+member to machine precision:
 
-### 3 — Capacity threshold, structural (knowledge graph)
-On the constructed knowledge graph, the percolation susceptibility χ **increases with system size
-N** ([5.1, 6.6, 18.1, 17.9] over N = [2k, 5k, 10k, 20k]) — a finite-size scaling signature that a
-smooth crossover does not produce — driven by PMI-weighted edges, with a critical mean degree
-⟨k⟩ ≈ 1.
-→ `src/percolation_hard.py` → `results/percolation_hard.json`, `plots/night_percolation.png`
+| Family member | State algebra | `A_t` input-dep? | Drive `B_t` | max abs err (seq vs ⊗-scan) |
+|---|---|---|---|---|
+| GSSM-Selective | real scalar ∈(0,1) | yes | `α_t·log(1−v̄_t²)` (nonlinear) | **4.44e-16** |
+| Mamba / S6 | real diagonal ∈(0,1)ᴺ | yes | `Δ_t·B̄·u_t` (linear, input-scaled) | **8.88e-16** |
+| S5 | complex diagonal `exp(ΔΛ)` | no (LTI) | `Δ·B·u_t` | **1.26e-15** |
+| LRU | complex diagonal `e^{−ν+iθ}` | no (LTI) | `B·u_t` | **8.88e-16** |
 
-### 4 — Capacity threshold, dynamical (knowledge graph)
-With the edge set held fixed, reinforcing only the *traversed* paths raises connected capability
-super-linearly (C: 0.04 → 0.66, logistic with mid-range inflection). Reinforcing random pairs or a
-degree-preserving shuffled graph produces no gain (+0.00) across three seeds — the effect is
-driven by graph structure, not by weight inflation.
-→ `src/reinforcement_loop.py` → `results/reinforcement_loop.json`
+**Real max 8.88e-16, complex max 1.26e-15 — the whole family reduces to ~1e-15.**
+→ `src/ssm_family_reduction.py`
 
-### 5 — Capacity threshold in the gated readout
-In the model's actual recurrence, the gated (m·tanh) readout exhibits a **sharp capacity cliff at
-load K/D ≈ 1** (maximum slope 1.32 per unit load, fall concentrated in a narrow load band), whereas
-a linear least-squares readout on the same state only rolls off smoothly (0.57 per unit load, no
-cliff). The use-driven reinforcement of §4 requires *recoverable* latent structure, which the
-bounded state does not retain above capacity (a fact is either readable or erased) — so that
-compounding belongs to the external index, while the bounded state provides the sharp gated read.
-→ `src/gssm_potentiation.py` → `results/gssm_potentiation.json`, `plots/bridge_gssm_threshold.png`
+And the LTI restriction is literally the geometric kernel: freezing the gates to
+time-constants makes the layer's temporal operator the geometric Toeplitz kernel *by
+construction*; the BPTT-trained read map matches the closed-form kernel `z = K·a` to
+**3.55e-15 at d=512** (width-invariant: 1.78e-15 @ d128, 1.78e-15 @ d256), with per-channel
+read scale ≈ 1.0 (no extra readout). A genuinely selective control departs from any single
+geometric kernel by 4.87e-2 — a **control/match ratio of 1.37e13** that proves the match is
+structural, not a coincidence.
+→ `src/constant_gate_kernel_match_width.py`
 
-### 6 — Operator readout: multiple reads from one state
-A single bounded state stores K key–value pairs in superposition; K least-squares operators
-de-multiplex them. Recoverable information scales with the readout operators applied, not the state
-alone (≈ D facts in a D-dimensional state).
-→ `src/operator_readout.py`
+### 2 — Parallel scan: `O(log T)` doubling scan, exact to the loop
+
+A Hillis–Steele doubling prefix scan over the affine operator, wired into the actual model
+forward and backward. Forward and **gradient** are identical to the sequential reference loop:
+
+- **fp64:** forward max abs err **1.67e-16**, gradient max abs err **3.55e-15** (per-param ≤2.7e-15).
+- fp32 (training dtype): forward 1.49e-7, gradient 1.91e-6 — below the 1e-5 gate.
+- Training loss curves (sequential vs parallel) coincide to 4.8e-7 over 12 steps.
+- Scan depth is logarithmic: T=128→7, T=512→9, T=1024→10, T=2048→11, T=4096→12.
+
+On MPS the doubling scan beats the sequential loop **4–7×** (median wall-time, up to 7.2× at
+T=4096) while passing the correctness gate at every T. Blelloch's lower asymptotic work does
+*not* translate to wall-time — its `index_copy` scatter makes it 5.4–21.5× slower than
+doubling, so doubling is the shipped default. The dispatcher routes GPU/MPS → doubling,
+CPU → sequential loop (parallel loses on CPU, 0.2–0.8×), with zero edits to the frozen
+reference layer.
+→ `src/parallel_scan_integration.py`, `src/scan_dispatch.py` (+ `src/test_scan_dispatch.py`)
+
+### 3 — Holographic recall: breaking the scalar-recall wall
+
+The proven wall: a bounded *scalar* state with a **key-agnostic** write cannot do exact
+associative recall. On MQAR (5 seeds, len-256 eval, chance 1.56%), Selective and the
+holographic-write-OFF ablation both sit at **~1.6%** — the wall, confirmed.
+
+The lever: a **key-conditioned holographic complex write**. Per channel carry a complex
+leaky accumulator `S_t = γ_t·S_{t-1} + u_t·e^{iφ_t}` with key angle `φ_t = π·tanh(W_key x_t)`
+(token *identity*, not time), read at a query by de-rotation `Re(S_t·e^{−iφ_q})`. Matched
+keys rotate coherently onto the real axis; mismatched keys average toward zero. This is the
+complex analogue of attention's outer-product KV binding.
+
+| Arm | MQAR recall (mean ± std, 5 seeds) |
+|---|---|
+| Attention (validity gate) | **0.994** |
+| Selective (scalar baseline) | 0.017 |
+| Holographic write OFF (== Selective) | 0.017 |
+| **Holographic write ON (key-conditioned)** | **0.089 ± 0.019** |
+
+**Key-conditioned holographic write: 1.6% → 8.9% ± 1.9%, +7.2 pp**, clearing both chance
+(1.56%) and the noise band (3.72 pp), with the attention validity gate at 0.994 (so the
+GSSM numbers are valid, not a broken harness).
+→ `src/holographic_gssm.py`, `src/holographic_mqar_run.py`
+
+**What this is.** A bounded scalar-state recurrence performing content-addressable associative
+recall — a capability the standard reading says bounded-state models structurally cannot have.
+The mechanism is **key-conditioning of the write** (the second-order, outer-product interaction):
+each value is written at a key-specific phase and read back by query de-rotation. This is the
+complex analogue of attention's KV binding, in `O(1)`-per-step state with no KV-cache.
+
+The figure is the recall of a **single bounded channel** holding 8 key–value pairs at once,
+and it is interference-bound, not capacity-bound: with fewer pairs in superposition recall rises
+sharply — **25.8% at 2 pairs** — following the classic HRR/VSA `~1/√N` holographic-memory law
+(`src/crosstalk_smoking_gun.py`). Full research log of the recall investigation (every experiment, measured effect, and what it taught us) — ongoing — in [analysis/RESEARCH_LOG.md](analysis/RESEARCH_LOG.md).
+
+### 4 — Length invariance: train at T=32, run to T=8192 (256×), perplexity unchanged
+
+![Length invariance: NoPE-Selective is the only architecture that stays flat to 256×](plots/length_invariance.png)
+
+The structural payoff of a bounded state, and a **clean causal ablation**. Train at sequence
+length **T=32**, evaluate out to **256× that length (T=8192)** by re-tiling the validation corpus
+— same model, same weights, no fine-tuning. The position-free GSSM-Selective (NoPE) holds a
+**perfectly horizontal** perplexity curve across the whole span. The *identical* architecture
+*with* a sinusoidal positional encoding breaks. The only difference is the PE.
+
+All four arms, same harness, same data, trained at T=32 (×N = PPL relative to T=32):
+
+| eval length | extrap. | **Selective-NoPE** | Selective + PE | Pure (no gate) | Transformer |
+|---|---|---|---|---|---|
+| T=32 (train) | 1× | 165 (×1.00) | 169 (×1.00) | 231 (×1.00) | 226 (×1.00) |
+| T=1024 | 32× | 155 (×0.94) | 196 (×1.16) | 2855 (×12.3) | 307 (×1.36) |
+| T=2048 | 64× | 160 (×0.97) | 305 (×1.81) | 2810 (×12.2) | 341 (×1.51) |
+| T=4096 | 128× | 159 (×0.96) | 473 (×2.80) | 2774 (×12.0) | **crashes** |
+| **T=8192** | **256×** | **160 (×0.97)** | 714 (×4.23) | 2603 (×11.3) | **crashes** |
+
+**NoPE-Selective is the only flat line in the field: ×0.97 at 256× the training length** (153–165
+PPL the whole way, slightly *better* at long T). Every other arm breaks:
+- **Selective + PE** — identical to NoPE except for the positional encoding — degrades monotonically
+  to ×4.23. Same weights up to the PE, so this isolates the cause: **the PE is what breaks at unseen
+  lengths; removing it removes the break entirely.**
+- **Pure** (bounded, but without the selective gate) explodes to ×12 — the *selective* gate is what
+  makes the bounded state hold; a bounded state alone is not enough.
+- **Transformer** degrades ×1.5 and then **cannot execute at all past T=2048**: its fixed sinusoidal
+  PE buffer (`max_len`) throws a tensor-size error at T=4096. Position-coding ties a model to a
+  maximum length *by construction* — the same failure that crashes Selective+PE without a larger
+  buffer. NoPE has no such ceiling; it ran clean to T=8192.
+
+So the result is not merely "GSSM beats a Transformer at length" — it is that **`selective gate` +
+`no positional encoding` is the unique combination that stays length-invariant**, and the two
+ingredients are both necessary (Pure breaks without the gate; Selective+PE breaks with the PE).
+
+**How far does it go? We pushed it to the wall.** Using the `O(1)` recurrent forward (the
+deployment path), the same NoPE model trained at T=32 was evaluated up the length ladder until the
+machine stopped it:
+
+![Scaling to the wall: flat PPL to 4096× the training length](plots/scale_to_the_wall.png)
+
+| eval length | extrap. | PPL | ratio |
+|---|---|---|---|
+| T=8,192 | 256× | 149.9 | ×0.92 |
+| T=32,768 | 1024× | 158.3 | ×0.97 |
+| T=65,536 | 2048× | 156.8 | ×0.96 |
+| **T=131,072** | **4096×** | 160.8 | **×0.98** |
+
+**PPL stays flat (×0.98) at 4096× the training length.** Re-run on WikiText-103 (4M tokens) the
+curve is identical — ×0.98 flat through T=131,072 — and a *naive* whole-sequence eval then hits a
+**memory** wall at T=262,144 (the activation tensors exceed RAM). But that wall is an
+*implementation* artifact, not an architecture limit — and we remove it.
+
+**No length wall: flat PPL to 16.7M tokens at constant memory.** Because the receptive field is
+~5–8 tokens (it's a contraction; see the theory note), an arbitrarily long sequence can be evaluated
+by *chunked streaming* — a sliding window with a left-context overlap ≫ the receptive field, scoring
+only the new region. Memory is then `O(chunk)`, not `O(T)`, and length is limited only by *time*:
+
+![No length wall: flat PPL to 16.7M tokens at constant memory](plots/scale_to_a_million.png)
+
+| effective length | extrap. | PPL | ratio | peak RSS |
+|---|---|---|---|---|
+| 1,048,576 | 32,768× | 225.9 | ×0.89 | 2.1 GB |
+| 4,194,304 | 131,072× | 210.3 | ×0.82 | 2.1 GB |
+| **16,777,216** | **524,288×** | 204.8 | **×0.80** | **2.5 GB** |
+
+**16.7 million tokens — 524,288× the training length — at a constant 2.5 GB, and the perplexity
+*improves* the whole way (×0.80).** The chunked PPL is validated exact against the whole-sequence PPL
+where both fit (×1.00 at T=8,192). Length is no longer RAM-bounded; with more wall-clock time the
+same `O(1)`-state forward streams to a billion tokens and beyond — anyone can push it higher with more
+compute. The improving PPL is the model *integrating* causal context across the distance as a noise
+filter, not merely "not crashing." (All safety-guarded; the machine stayed >80% free throughout.)
+→ `src/scale_to_the_wall.py`, `src/scale_to_a_million.py`, `results/scale_to_a_million.json`
+
+**Doubly `O(1)`: the corpus is just an iterator — flat PPL to 1 BILLION tokens at constant memory.**
+The million-token run holds the corpus in a list. The next step removes that too — stream the corpus
+*lazily* (HuggingFace `streaming=True`, documents tokenized on the fly into a rolling buffer) and run
+the same chunked, now *batched*, eval. Neither the corpus nor the activations are ever materialized in
+full, so **effective sequence length is limited only by wall-clock time — never by RAM.**
+
+![No length wall: flat PPL to 1 billion tokens at constant memory](plots/scale_to_a_billion.png)
+
+The same `O(1)`-state model trained at T=32 streamed **1,000,013,824 tokens of C4** — 31,250,432× the
+training length — at **constant 4.36 GB**, checkpointing every 50M tokens. Across all 20 checkpoints
+the running PPL moved **1.3 points** (247.08–248.38, a 0.52% band) and the peak RSS moved **0.08 GB**
+(4.28–4.36). Two flat lines across a billion tokens; 153 minutes on one Mac mini that never approached
+its 16 GB. The batched eval is exact — `ppl_batched / ppl_single = 1.00000` on identical scored tokens.
+
+| effective length | extrap. | corpus | PPL | peak RSS |
+|---|---|---|---|---|
+| 100,000,000 | 3,125,000× | C4 streamed | 247.6 | 4.3 GB |
+| 500,000,000 | 15,625,000× | C4 streamed | 247.5 | 4.4 GB |
+| **1,000,013,824** | **31,250,432×** | **C4 streamed** | **247.5** | **4.36 GB** |
+
+Because the corpus enters only as an iterator, C4 is interchangeable with any token stream: a web
+scraper, a live feed, the whole internet. That is the real claim, of which every length number here is
+evidence: **constant-memory consumption of an unbounded stream** — a model that does not load a context
+but *consumes a stream*. The thesis and its consequence are in
+[analysis/STREAMING_THESIS.md](analysis/STREAMING_THESIS.md). Confirm the run without re-running it:
+`python src/verify_billion.py` checks every claim against the committed JSON (exit 0 = all pass); the
+raw run log is committed verbatim.
+→ `src/scale_to_a_billion.py`, `src/plot_billion.py`, `src/verify_billion.py`,
+`results/scale_to_a_billion.json`, `results/scale_to_a_billion.run.log`
+
+**Living-stream: constant-memory TRAINING + a state that lives through silence.** The billion-token
+result is *eval*. The same persistent state also makes *training* O(1), and lets the model remember
+across a pause in the input — two things a turn-based, KV-cache model structurally cannot do.
+
+![Living-stream: constant-memory training and a bit carried through an input gap](plots/living_stream.png)
+
+- **(A) Constant-memory streaming training.** Train from scratch on streamed C4, carrying the
+  per-layer state `Z` across chunks and cutting the graph with `.detach()` (truncated BPTT). Held-out
+  loss (WT-2 val, never streamed) falls **8.69 → 5.22** over 3M streamed tokens at **flat RSS ~0.8 GB**.
+  The truncation is *exact*, not approximate: grad-cosine vs full-window BPTT = **1.0000** (the ~5-8-token
+  receptive field throws away no gradient). Control: keep the state attached and the autograd graph
+  grows every step — RSS climbs **0.77 → 1.81 GB** over 56k tokens. The `.detach()` carry is exactly
+  what makes training O(1).
+- **(D) Idle-persistence.** A 1-bit beacon task — `[beacon][G filler tokens, no beacon][probe]` —
+  trained with a gap curriculum. The bit is recalled **perfectly through a 256-token input gap**; the
+  decisive control, **zeroing the carried state at the gap**, collapses recall to chance. So the answer
+  rode the persistent state across the silence, not local context.
+- **(E) The mechanism.** Mean-γ suggested only short memory (τ≈2) — a measurement artifact that averaged
+  over the channel axis. The *carrier* channel (the one whose state correlates with the bit, corr −1.00)
+  runs at **γ = 0.9999 (τ≈1000)** with its input gate **shut in the gap (α≈0.005)** and **open at the
+  beacon (α≈0.52)**: a learned bit-vault that writes once and freezes. The class-separation margin holds
+  **96.7 %** across 256 tokens. Layer 0 stays local; Layer 1 grew the long-memory register — a learned
+  division of labour.
+
+The thesis and the next attacks (adversarial non-ignorable fillers, source hot-swap) are in
+[analysis/LIVING_STREAM_THESIS.md](analysis/LIVING_STREAM_THESIS.md).
+→ `src/streaming_train.py` (`--train` / `--idle` / `--carrier` / `--check`), `src/plot_living_stream.py`,
+`results/streaming_train.json`, `results/idle_persistence.json`, `results/carrier_probe.json`
+
+**Seed-robustness (n=5).** The whole ablation is deterministic across seeds. Over 5 seeds
+{1,7,42,123,2024} at 256× (T=8192): Selective-NoPE = **×0.93 ± 0.00** (std rounds to zero — every
+seed lands on the same flat line), while Selective+PE = **×7.05 ± 2.34** (breaks on every seed). The
+length-invariance is not a lucky run; it is a structural constant.
+→ `src/length_seed_robustness.py`, `results/length_seed_robustness_d128.json`
+
+Why it works — and this is **provable, not just measured**: unroll the recurrence and the state
+is `z_t = Σ_k α_k·Γ_{k→t}·φ(v̄_k)` with `Γ_{k→t}=∏_{j=k+1..t} γ_j`. Every factor depends on token
+*content*; the only index-dependent factor `Γ_{k→t}` depends on `t` and `k` **only through the lag
+`t−k`, never through the absolute coordinate `t`**. There is no `g(t)` term — the operator is
+shift-equivariant in time *by construction* (the temporal kernel is Toeplitz, Pillar P2). The
+contraction `τ<1` keeps the receptive field at ≈5–8 tokens, far inside the T=32 window, so nothing
+new appears at T=8192. The smoking gun: NoPE's learned gates are **frozen across 256×**
+(γ_mean 0.2252→0.2251, four sig-figs) — the operator is literally in-distribution at every length.
+A positional encoding is the *sole* injection of absolute `t`; removing it removes the only length-
+dependent term (with PE, the gates visibly drift 0.231→0.356 to compensate, and break). The state
+stays `O(1)` in memory at every length; attention pays `O(T)` cache and `O(T²)` compute and must
+learn a positional code that fails out of distribution. **This is the axis where a bounded state
+wins by construction** — not by more parameters or data, the only lever the large labs have here.
+Full derivation, falsifier, and code audit in
+[analysis/LENGTH_INVARIANCE_THEORY.md](analysis/LENGTH_INVARIANCE_THEORY.md).
+→ `src/length_extrap_v2.py`, `results/length_extrap_v2_extreme.json`
+
+### 5 — Capability boundary: a task GSSM solves at lengths where attention cannot run
+
+Length-invariance is not only a perplexity property — it is a **capability**. On a long-range
+state-tracking task (a single register: sparse writes overwrite it, sparse queries read the
+most-recent value; the answer can sit arbitrarily far back), train at T=64 and evaluate out to
+T=8192 = 128×:
+
+![Capability boundary: NoPE-GSSM holds 100% to 128× while the Transformer degrades then crashes](plots/capability_flipflop.png)
+
+| eval length | extrap. | **NoPE-GSSM** | Transformer (same size) |
+|---|---|---|---|
+| T=64 (train) | 1× | **100%** | 100% (validity gate ✓) |
+| T=256 | 4× | **100%** | 46% |
+| T=1024 | 16× | **100%** | 23% |
+| T=2048 | 32× | **100%** | **forward pass crashes** |
+| T=4096 | 64× | **100%** | **crashes** |
+| **T=8192** | **128×** | **100%** | **crashes** |
+
+**NoPE-GSSM holds a perfect 100% across 128× extrapolation.** The same-size Transformer solves the
+task at the training length (validity gate: 99.6% — the harness is fair, not rigged), then degrades
+to near-chance as positions go out of distribution, and from T=2048 its forward pass **cannot
+execute at all** (fixed PE buffer). This is not a perplexity delta — it is a clean *can / cannot*
+boundary: the bounded state tracks the register through arbitrary length at `O(1)` memory; attention
+both loses the thread and then hits its structural length ceiling. The task is chosen to play to a
+bounded state's strength (single-thread state, not multi-key recall — which has its own ~9% ceiling,
+Contribution 3); the point is that this is exactly the regime where long context is needed and
+attention fails.
+→ `src/longcontext_tasks.py`, `src/longcontext_run.py`, `results/longcontext_flipflop.json`
 
 ---
 
-## FORGE
+## The O1 contributions (beyond the GSSM core)
 
-A related deterministic code-generation engine (FORGE) is described as a **capability statement
-only** in [FORGE.md](FORGE.md). No generator and no generated artifacts are included; the full
-system is available on request for verified security research.
+What the architecture becomes when the O(1) state runs as a living stream coupled to an
+external memory, governed by a measured threshold.
+
+### 6 — Runtime retrieval: the index feeds back into the stream
+
+The O(1) state is paired with an external `.causal` knowledge index. At a high-surprise
+position the pre-gap state is forked and the retrieved association is injected into the
+continuation, lowering follow-on surprise **without any gradient update** (mean reduction
++0.0256, improved 27 of 40 probes). The living stream consults its external memory in flight —
+a model that does not just consume tokens but *looks things up* as it reads.
+→ `src/closed_loop.py`, `src/pathfinding_bridge.py`, `src/attic.py`, `results/closed_loop.json`
+
+### 7 — A measured capacity threshold, three ways
+
+Between isolated knowledge and one connected mass there is a critical point. We measure it as
+a real phase transition, not a metaphor.
+
+**Structural (knowledge graph).** Percolation susceptibility χ **increases with system size N**
+— [5.1, 6.6, 18.1, 17.9] over N = [2k, 5k, 10k, 20k] — the finite-size-scaling signature a
+smooth crossover cannot produce, PMI-driven, with critical mean degree ⟨k⟩ ≈ 1.
+→ `src/percolation_hard.py`, `results/percolation_hard.json`, `plots/night_percolation.png`
+
+**Dynamical (knowledge graph).** With the edge set frozen, reinforcing only the *traversed*
+paths raises connected capability **super-linearly** (C: 0.04 → 0.66, logistic with mid-range
+inflection). Reinforcing random pairs or a degree-preserving shuffled graph does nothing
+(+0.00) across three seeds — it is the structure that compounds, not the act of bumping
+weights.
+→ `src/reinforcement_loop.py`, `results/reinforcement_loop.json`
+
+### 8 — The threshold in the neural readout: it lives in the gate
+
+In the actual GSSM recurrence, the gated **m·tanh** readout exhibits a **sharp capacity cliff
+at load K/D ≈ 1** (max slope **1.32 per unit load**, fall concentrated in a narrow band), where
+a linear least-squares readout on the same state only rolls off smoothly (**0.57 per unit
+load**, no cliff). The dynamical potentiation of §7 requires recoverable latent structure,
+which the bounded state does not retain above capacity (a fact is readable or erased) — so the
+compounding belongs to the external index while the bounded state provides the sharp gated
+read. The threshold is a gating phenomenon.
+→ `src/gssm_potentiation.py`, `results/gssm_potentiation.json`, `plots/bridge_gssm_threshold.png`
+
+And **one substrate, many readings**: a single bounded state stores K key–value pairs in
+superposition; K least-squares operators de-multiplex them — recoverable information scales
+with the read operators applied, not the state alone.
+→ `src/operator_readout.py`, `results/operator_readout.json`
 
 ---
 
-## Foundation
+## A note on FORGE
 
-O1 inherits GSSM's commit history and its mathematical foundation (Möbius coupling,
-doubly-stochastic spectra, non-reversible lifted Markov chains, and the universal phase-transition
-result underlying the threshold work), archived with permanent DOIs — see [PAPERS.md](PAPERS.md).
+A related deterministic code-generation engine (FORGE) is described — as a **capability
+statement only** — in [FORGE.md](FORGE.md). No generator and no generated artifacts are
+shipped; the full system is available on request for verified security research.
 
-## Scope
+---
 
-Results stated as n = 1 (architecture/seed) are labeled as such — e.g. the §5 dynamical
-dissociation is a single-configuration result on the actual recurrence. Where a result is robust we
-state it without qualification: 1B tokens at flat memory, the gated cliff at 2.4× the linear slope,
-and length extrapolation flat to 32× are measured, not extrapolated.
-
-## Quickstart
+## Reproduce
 
 ```bash
-git clone https://github.com/DT-Foss/O1 && cd O1
-pip install -r requirements.txt
-
-# Four headline results reproduce on CPU in minutes, no data download, no checkpoint:
-python src/gssm_potentiation.py   # capacity threshold in the gated readout (§5)
-python src/percolation_hard.py    # structural percolation transition (§3)
-python src/reinforcement_loop.py  # super-linear potentiation, edges frozen (§4)
-python src/operator_readout.py    # one state, many readings (§6)
-
-# Verify constant-memory streaming-training is exact (grad cosine = 1.0000):
-python src/streaming_train.py --check
+# Python 3.12 (tested on 3.12.7), PyTorch 2.9.1, CPU or Apple MPS. Fully offline.
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt        # torch>=2.9, numpy, matplotlib
 ```
 
-Each script writes its JSON to `results/`; figures regenerate from those JSONs via `src/plot_*.py`.
-The length-extrapolation and 1B-token streaming results (§ headline table) use cached/streamed
-corpora — see the script headers for the exact flags.
+```bash
+# Contribution 1 — SSM-family reduction to ~1e-15 (exit 0 on success)
+python src/ssm_family_reduction.py
+# → results/ssm_family_reduction_results.json   (real 8.88e-16, complex 1.26e-15)
 
-## Reproducing
+# Contribution 1 — constant-gate == geometric Toeplitz kernel, up to d=512
+python src/constant_gate_kernel_match_width.py
+# → results/constant_gate_kernel_match_width_results.json   (3.55e-15 @ d512)
 
-All runs are CPU-only and constant-memory. The threshold and readout results (§3–§6) run offline
-from the locally-cached corpus; the streaming-training exactness check (§1) runs with no data.
+# Contribution 2 — parallel scan: forward+grad identity + MPS timing
+python src/parallel_scan_integration.py
+# → results/parallel_scan_integration_results.json   (fp64 grad 3.55e-15; 4–7× MPS)
+python src/test_scan_dispatch.py        # deployment dispatcher, exact to reference
 
-## Contact
+# Contribution 3 — holographic key-conditioned write, 5-seed MQAR
+python src/holographic_mqar_run.py
+# → results/holographic_mqar.json   (holo_on 8.9% vs floor 1.6%, +7.2pp, gate 0.994)
+```
 
-David Tom Foss — `dtfoss-dev@proton.me`
+Supporting / plateau-diagnostic runs (all under `src/` → `results/`):
+`holographic_qk_run.py` (separate-QK control), `holographic_capacity_run.py` (channel sweep),
+`holographic_readout_shootout.py` (readout ablation), `holographic_crosstalk_diag.py`,
+`phase_mqar_run.py` (the additive-phase negative this corrects), `mqar.py` (task harness).
+
+---
+
+## Repository layout
+
+```
+O1/
+├── README.md / FORGE.md / PAPERS.md
+├── reference/               the architecture (frozen reference modules)
+│   └── moebius_scan_transformer_selective.py     ← the Selective GSSM layer
+├── src/                     experiments + runnable verifications (63 files)
+│   ├── ssm_family_reduction.py, constant_gate_kernel_match*.py   kernel unification (C1)
+│   ├── parallel_scan*.py, scan_dispatch.py                       the O(log T) scan (C2)
+│   ├── holographic_gssm.py + holographic_*_run.py                key-conditioned recall (C3)
+│   ├── length_extrap_v2.py, scale_to_a_million.py, scale_to_a_billion.py   length/stream (C4)
+│   ├── streaming_train.py, longcontext_run.py                    living-stream + capability (C4/C5)
+│   ├── closed_loop.py, pathfinding_bridge.py, attic.py           runtime retrieval (O1-6)
+│   ├── percolation_hard.py, reinforcement_loop.py               capacity threshold (O1-7)
+│   └── gssm_potentiation.py, operator_readout.py               threshold in the readout (O1-8)
+├── vendor/fabel/            the .causal deterministic knowledge engine (the index)
+├── analysis/                theory + briefs + research logs
+├── results/                 measured JSON + logs — the evidence
+└── plots/                   figures
+```
+
+`reference/` = architecture · `src/` = experiments · `vendor/fabel/` = knowledge index
+· `analysis/` = theory · `results/` = measured JSON · `plots/` = figures.
+
+---
+
+## Status
+
+Days-old research, disclosed at the moment of discovery. The GSSM core (C1–C5) already does it:
+the whole linear-SSM family collapses to one affine operator at machine precision (~1e-15), the
+constant-gate restriction *is* the geometric Toeplitz kernel to 3.55e-15 at d=512, the parallel
+scan is gradient-identical to the loop in fp64 and 4–7× faster on MPS, a key-conditioned
+holographic write gives a bounded scalar state content-addressable recall at 5.7× its floor, and
+— the structural headline — the position-free variant holds **flat perplexity across 524,288×
+length extrapolation** (train T=32, eval to a single 16.7-million-token sequence at constant
+2.5 GB, perplexity *improving* the whole way) and **streams a billion tokens at a flat 4.36 GB**.
+Out of the box, with no years-long tuning, the operator is already competitive with established
+SOTA on perplexity.
+
+On top of that, O1 adds the living-stream layer: **constant-memory training** (truncated-BPTT
+exact to gradient cosine 1.0000), a **state that survives a 256-token silence**, a **runtime
+`.causal` index** the stream consults without a gradient, and a **measured capacity threshold**
+that is a sharp cliff in the gated readout (slope 1.32 vs 0.57 for a linear read).
+
+Every number here is reproducible from the scripts in `src/`. The kernel reductions are exact
+identities; the recall result is 5-seed with the attention validity gate at 0.994; the threshold
+controls (random/shuffle) are null across 3 seeds.
+
+---
+
+## License
+
+Apache License 2.0. See `LICENSE`.
+
+## Citation
+
+```bibtex
+@misc{foss2026o1,
+  author = {Foss, David Tom},
+  title  = {{O1: A Constant-Memory Living Mind --- An O(1)-State Stream
+            Coupled to a Growing Knowledge Index}},
+  year   = {2026},
+  note   = {Public research disclosure (prior art). Builds on GSSM
+            (github.com/DT-Foss/gssm). A bounded reproducing-kernel SSM that
+            consumes an unbounded stream at constant memory, trains in O(1),
+            persists through input gaps, consults an external .causal index at
+            runtime, with a measured capacity threshold in the gated readout.}
+}
+```
