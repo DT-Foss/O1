@@ -2,11 +2,11 @@
 
 **An O(1)-state sequence model that consumes an unbounded stream at constant memory, stays awake through silence, and consults an external knowledge index at runtime.**
 
-**Author:** David Tom Foss · **Year:** 2026 · **License:** Apache-2.0
+**Author:** David Tom Foss · **Disclosed:** 2026-06-26 · **License:** Apache-2.0
 
-> This README is a **timestamped public disclosure** (prior art). Every claim below
-> is a number we measured, with the exact script that reproduces it. The dates,
-> the code, and the result JSON in this repository are the record.
+> This README is a **timestamped public disclosure** (prior art), first published 2026-06-26.
+> Every claim below is a number we measured, with the exact script that reproduces it. The
+> dates, the code, and the result JSON in this repository are the record.
 >
 > **O1 builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit
 > history. GSSM is the architecture — the bounded reproducing-kernel SSM operator, the
@@ -128,7 +128,32 @@ complex analogue of attention's KV binding, in `O(1)`-per-step state with no KV-
 The figure is the recall of a **single bounded channel** holding 8 key–value pairs at once,
 and it is interference-bound, not capacity-bound: with fewer pairs in superposition recall rises
 sharply — **25.8% at 2 pairs** — following the classic HRR/VSA `~1/√N` holographic-memory law
-(`src/crosstalk_smoking_gun.py`). Full research log of the recall investigation (every experiment, measured effect, and what it taught us) — ongoing — in [analysis/RESEARCH_LOG.md](analysis/RESEARCH_LOG.md).
+(`src/crosstalk_smoking_gun.py`). Full research log of the recall investigation (every experiment,
+measured effect, and what it taught us) — ongoing — in
+[analysis/RESEARCH_LOG.md](analysis/RESEARCH_LOG.md).
+
+**Mechanism — polyphase quadrature-bank read cancels mismatched-key crosstalk.** Reading the
+bounded complex state with `n ≥ 3` equally-spaced phase rotations turns the `O(√N)` interference
+floor into an `O(1)` subtractable DC pedestal, via the constant-power identity
+`Σ_k cos²(x + 2πk/n) = n/2` for `n ≥ 3` (identity verified in `src/holographic_z3.py` to ~1e-15).
+The single de-rotation read is exactly the `n = 2` case the identity proves *cannot* cancel; an
+`n ≥ 3` polyphase read decoheres non-matching keys while preserving the matched key. The
+read-combine verdict for this bank is in
+[analysis/Z3_COMBINE_VERDICT.md](analysis/Z3_COMBINE_VERDICT.md).
+→ `src/holographic_z3.py`, [analysis/Z3_COMBINE_VERDICT.md](analysis/Z3_COMBINE_VERDICT.md)
+
+**Theory — per-channel state rank is the associative-recall capacity coordinate.** The scalar
+selective state is rank-1; the bounded-state arm is a fixed `(n_heads, d_k, d_v) = (4, 32, 32)`
+memory, `O(1)` in `T` and vocab, with attention (rank-`K`) reaching test recall **1.0** as the
+validity gate (`results/deltanet_mqar.json`). The ladder that lifts the scalar floor runs by
+read rank: scalar rank-1 → complex/phase rank-2 (`src/phase_gssm.py`) → bounded fast-weight
+rank-`D` (`src/deltanet_gssm.py`) → attention rank-`K`. Lifting per-channel state rank lifts the
+associative-recall ceiling. The rank-1 floor is measured (pure-Selective recall 0.1406 at train
+length 64, 0.1445 at test 256) and matches the theorem's prediction, inverting to an effective
+binding rank `D_eff ≈ 1` — the limit is a theorem about the operator class, not a training artifact
+([analysis/RANK1_CAPACITY_THEOREM.md](analysis/RANK1_CAPACITY_THEOREM.md)).
+→ `src/deltanet_gssm.py`, `src/phase_gssm.py`, `results/deltanet_mqar.json`,
+[analysis/RANK1_CAPACITY_THEOREM.md](analysis/RANK1_CAPACITY_THEOREM.md)
 
 ### 4 — Length invariance: train at T=32, run to T=8192 (256×), perplexity unchanged
 
@@ -184,10 +209,14 @@ curve is identical — ×0.98 flat through T=131,072 — and a *naive* whole-seq
 **memory** wall at T=262,144 (the activation tensors exceed RAM). But that wall is an
 *implementation* artifact, not an architecture limit — and we remove it.
 
-**No length wall: flat PPL to 16.7M tokens at constant memory.** Because the receptive field is
-~5–8 tokens (it's a contraction; see the theory note), an arbitrarily long sequence can be evaluated
-by *chunked streaming* — a sliding window with a left-context overlap ≫ the receptive field, scoring
-only the new region. Memory is then `O(chunk)`, not `O(T)`, and length is limited only by *time*:
+**No length wall: flat PPL to 16.7M tokens at constant memory.** The bounded contraction receptive
+field `r` (~5–8 tokens; [analysis/STREAMING_THESIS.md](analysis/STREAMING_THESIS.md)) is the
+primitive that turns an unbounded sequence into `O(chunk)` memory. Because the operator only "sees"
+the last `r` tokens, any chunking with a left-context overlap **>** `r` reproduces the whole-sequence
+computation exactly, while scoring only the new region. So an arbitrarily long sequence is evaluated
+by *chunked streaming* — a sliding window with overlap ≫ `r`. Memory is then `O(chunk)`, not `O(T)`,
+and length is limited only by *time*. Falsifier: shrink the overlap below `r` and the chunked result
+diverges from the whole-sequence result.
 
 ![No length wall: flat PPL to 16.7M tokens at constant memory](plots/scale_to_a_million.png)
 
@@ -198,9 +227,14 @@ only the new region. Memory is then `O(chunk)`, not `O(T)`, and length is limite
 | **16,777,216** | **524,288×** | 204.8 | **×0.80** | **2.5 GB** |
 
 **16.7 million tokens — 524,288× the training length — at a constant 2.5 GB, and the perplexity
-*improves* the whole way (×0.80).** The chunked PPL is validated exact against the whole-sequence PPL
-where both fit (×1.00 at T=8,192). Length is no longer RAM-bounded; with more wall-clock time the
-same `O(1)`-state forward streams to a billion tokens and beyond — anyone can push it higher with more
+*improves* the whole way (×0.80).** Only one chunk-sized state is ever materialized; the overlap ≫ `r`
+makes the chunked stream score the same tokens the whole-sequence pass would, and `scale_to_a_million.py`
+validates this directly — the chunked PPL equals the whole-sequence PPL (×1.00) where both fit (T=8192),
+and the batched eval is exact, `ppl_batched / ppl_single = 1.00000` on identical scored tokens. The
+exactness is independently confirmed on the *training* side: truncated-BPTT with a carried, overlapped
+state reproduces full-window BPTT to max-abs-delta **0.0**, grad-cosine **1.0** (`results/streaming_check.json`).
+Length is no longer RAM-bounded; with more wall-clock time the same
+`O(1)`-state forward streams to a billion tokens and beyond — anyone can push it higher with more
 compute. The improving PPL is the model *integrating* causal context across the distance as a noise
 filter, not merely "not crashing." (All safety-guarded; the machine stayed >80% free throughout.)
 → `src/scale_to_the_wall.py`, `src/scale_to_a_million.py`, `results/scale_to_a_million.json`
@@ -214,10 +248,13 @@ full, so **effective sequence length is limited only by wall-clock time — neve
 ![No length wall: flat PPL to 1 billion tokens at constant memory](plots/scale_to_a_billion.png)
 
 The same `O(1)`-state model trained at T=32 streamed **1,000,013,824 tokens of C4** — 31,250,432× the
-training length — at **constant 4.36 GB**, checkpointing every 50M tokens. Across all 20 checkpoints
-the running PPL moved **1.3 points** (247.08–248.38, a 0.52% band) and the peak RSS moved **0.08 GB**
-(4.28–4.36). Two flat lines across a billion tokens; 153 minutes on one Mac mini that never approached
-its 16 GB. The batched eval is exact — `ppl_batched / ppl_single = 1.00000` on identical scored tokens.
+training length — at **constant 4.36 GB** (final PPL 247.5), checkpointing every 50M tokens. Across
+all 20 checkpoints the running PPL moved **1.3 points** (247.08–248.38, a 0.52% band) and the peak RSS
+moved **0.08 GB** (4.28–4.36). Two flat lines across a billion tokens; 153 minutes on one Mac mini that
+never approached its 16 GB. The run holds chunked windows (chunk 8192, overlap 128 ≫ the receptive
+field) as the only state ever materialized — streaming is constant-memory, not an unbounded
+approximation. The committed exactness guarantee is the training-side equivalence (truncated-BPTT carry
+vs full-window BPTT, max-abs-delta 0.0, grad-cosine 1.0; `results/streaming_check.json`).
 
 | effective length | extrap. | corpus | PPL | peak RSS |
 |---|---|---|---|---|
@@ -243,21 +280,26 @@ across a pause in the input — two things a turn-based, KV-cache model structur
 
 - **(A) Constant-memory streaming training.** Train from scratch on streamed C4, carrying the
   per-layer state `Z` across chunks and cutting the graph with `.detach()` (truncated BPTT). Held-out
-  loss (WT-2 val, never streamed) falls **8.69 → 5.22** over 3M streamed tokens at **flat RSS ~0.8 GB**.
-  The truncation is *exact*, not approximate: grad-cosine vs full-window BPTT = **1.0000** (the ~5-8-token
-  receptive field throws away no gradient). Control: keep the state attached and the autograd graph
-  grows every step — RSS climbs **0.77 → 1.81 GB** over 56k tokens. The `.detach()` carry is exactly
-  what makes training O(1).
+  loss (WT-2 val, never streamed) falls **8.69 → 5.22** over 3M streamed tokens at a committed **peak
+  RSS 0.822 GB**. The truncation is *exact*, not approximate: grad-cosine vs full-window BPTT =
+  **1.0000**, max-abs-delta **0.0** (`results/streaming_check.json`) — the ~5-8-token receptive field
+  throws away no gradient. The `.detach()` carry is the primitive, and the falsifier is measured:
+  remove the boundary detach and the no-detach control grows RSS **0.774 → 1.815 GB** over 60k tokens
+  as the autograd graph accumulates (`results/streaming_nodetach.json`). The `.detach()` carry is
+  exactly what makes training O(1).
 - **(D) Idle-persistence.** A 1-bit beacon task — `[beacon][G filler tokens, no beacon][probe]` —
   trained with a gap curriculum. The bit is recalled **perfectly through a 256-token input gap**; the
   decisive control, **zeroing the carried state at the gap**, collapses recall to chance. So the answer
   rode the persistent state across the silence, not local context.
-- **(E) The mechanism.** Mean-γ suggested only short memory (τ≈2) — a measurement artifact that averaged
-  over the channel axis. The *carrier* channel (the one whose state correlates with the bit, corr −1.00)
-  runs at **γ = 0.9999 (τ≈1000)** with its input gate **shut in the gap (α≈0.005)** and **open at the
-  beacon (α≈0.52)**: a learned bit-vault that writes once and freezes. The class-separation margin holds
-  **96.7 %** across 256 tokens. Layer 0 stays local; Layer 1 grew the long-memory register — a learned
-  division of labour.
+- **(E) The mechanism — a learned write-once-freeze memory register (the carrier / bit-vault).**
+  The head-mean γ suggested only short memory (τ≈2) — but that average *hides* the carrier; only the
+  per-channel decomposition reveals it. The *carrier* channel (the one whose state correlates with the
+  bit, corr −1.00) runs at **γ = 0.9999 (τ≈1000)** with its input gate **shut in the gap (α≈0.005)**
+  and **open at the beacon (α≈0.52)**: write-once, freeze, read-on-cue. The class-separation margin
+  holds **96.7 %** across 256 tokens. Layer 0 is fast/local (γ≈0.60); Layer 1 holds the carrier — a
+  learned division of labour. The falsifier is measured: zeroing the carrier channel collapses idle
+  recall (carried **1.0 → 0.505** at gap 256, i.e. to chance) (`results/carrier_probe.json`,
+  `results/idle_persistence.json`).
 
 The thesis and the next attacks (adversarial non-ignorable fillers, source hot-swap) are in
 [analysis/LIVING_STREAM_THESIS.md](analysis/LIVING_STREAM_THESIS.md).
@@ -333,12 +375,19 @@ external memory, governed by a measured threshold.
 
 ### 6 — Runtime retrieval: the index feeds back into the stream
 
-The O(1) state is paired with an external `.causal` knowledge index. At a high-surprise
-position the pre-gap state is forked and the retrieved association is injected into the
-continuation, lowering follow-on surprise **without any gradient update** (mean reduction
-+0.0256, improved 27 of 40 probes). The living stream consults its external memory in flight —
-a model that does not just consume tokens but *looks things up* as it reads.
-→ `src/closed_loop.py`, `src/pathfinding_bridge.py`, `src/attic.py`, `results/closed_loop.json`
+The O(1) state is paired with an external `.causal` knowledge index, and **surprise is the
+retrieval trigger**. (i) Per-token surprise spikes are a gap detector: index-resolvable terms
+spike sharply (avg surprise **15.313**) while common words stay low (avg **0.59**), so the
+state's own surprise separates what to look up from what it already carries
+(`results/pathfinding_bridge.json`). (ii) On a detected gap the pre-gap state is forked, the
+retrieved path is injected back **as tokens through the same O(1) state**, and follow-on surprise
+drops **without any gradient update** — measured against a with/without control from the *same*
+pre-gap state (mean reduction **+0.0256**, helped **27 of 40** probes,
+`results/closed_loop.json`). Falsifier: injecting a random non-retrieved path does not lower
+follow-on surprise. The living stream consults its external memory in flight — a model that does
+not just consume tokens but *looks things up* as it reads.
+→ `src/closed_loop.py`, `src/pathfinding_bridge.py`, `src/attic.py`, `results/closed_loop.json`,
+`results/pathfinding_bridge.json`
 
 ### 7 — A measured capacity threshold, three ways
 
@@ -362,16 +411,23 @@ weights.
 In the actual GSSM recurrence, the gated **m·tanh** readout exhibits a **sharp capacity cliff
 at load K/D ≈ 1** (max slope **1.32 per unit load**, fall concentrated in a narrow band), where
 a linear least-squares readout on the same state only rolls off smoothly (**0.57 per unit
-load**, no cliff). The dynamical potentiation of §7 requires recoverable latent structure,
-which the bounded state does not retain above capacity (a fact is readable or erased) — so the
-compounding belongs to the external index while the bounded state provides the sharp gated
-read. The threshold is a gating phenomenon.
+load**, no cliff). At load 1.0 (K=64) the gated read drops to fidelity **0.652** while the
+linear read on the same state still holds **0.990** — the cliff is in the gate, not the state.
+This is a design law that forces the two-system split: dynamical potentiation requires
+recoverable latent structure, which the bounded state does not retain above capacity (present ⇒
+clean, over-capacity ⇒ deleted, with no recoverable latent regime). So the compounding belongs
+to the external index while the bounded state provides the sharp gated read — the state/index
+split is derived from a measured gate property, not assumed. The threshold is a gating phenomenon.
 → `src/gssm_potentiation.py`, `results/gssm_potentiation.json`, `plots/bridge_gssm_threshold.png`
 
-And **one substrate, many readings**: a single bounded state stores K key–value pairs in
-superposition; K least-squares operators de-multiplex them — recoverable information scales
-with the read operators applied, not the state alone.
-→ `src/operator_readout.py`, `results/operator_readout.json`
+And **one substrate, many readings.** A single bounded **D = 64** state holding **K = 32**
+superposed key–value facts is read out at **mean recovery 1.00 with mean crosstalk 0.035**,
+against a random-operator null of 0.14 and an operator-distinctness check of 0.035 (the operators
+are distinct, not degenerate). Recoverable information scales with the **number of read operators
+applied, not with the state dimension**: store one substrate plus N cheap linear-system operators
+instead of N states. The mechanism is that information lives in the data×operator interaction, not
+in the data alone.
+→ `src/operator_readout.py`, `results/operator_readout.json` (K=32, D=64, 2000 trials)
 
 ---
 
@@ -408,8 +464,22 @@ source.
 
 For O1, the coupling is **neural**: surprise in the O(1) state *is* a gap signal, and the
 retrieved path is folded back into the stream (Contribution 6). The night build also ships a
-purpose-built neural index (`src/gssm_causal.py`) — a co-occurrence graph with an FOV reader —
-fitted to the streaming setting rather than the symbolic extractor.
+purpose-built neural index (`src/gssm_causal.py`) — **a single-substrate, multi-channel
+co-occurrence graph read by a field-of-view reader.** It is *one* graph carrying superposed
+fwd / bwd / near / far channels (the one-substrate-many-states compression applied at *build*
+time, not N separate graphs), and its reader acquires the whole neighbourhood *cone* around a
+query — an FOV / implicit-learning operator rather than a single-point lookup. A single-graph
+multi-channel superposed store read by view-operators is a distinct compression mechanism for
+retrieval indices.
+→ `src/gssm_causal.py`
+
+**Active sourcing — a self-curated stream (mechanism disclosed, speedup not yet measured).**
+Because memory is `O(1)` and the corpus is just an iterator, the model can choose its *next*
+source by its own per-source surprise — passive-fixed, passive-random, and active modes, the
+active mode pulling from the highest-surprise source. This is the neural gap-driven discovery
+loop applied to *data selection* at constant memory. The mechanism and harness are disclosed
+here; no committed measured speedup ships, so the disclosure is to the mechanism.
+→ `src/active_sourcing.py`
 
 **This engine is not a side project.** It is the core of **nine peer-reviewed papers** accepted at
 four 2026 IEEE conferences — including the **IEEE-NANO flagship in Nanjing** — across causal

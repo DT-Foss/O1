@@ -1,0 +1,9 @@
+{
+  "check": "truncated-BPTT carry+overlap vs full-window BPTT",
+  "equivalence_max_abs_delta": 0.0,
+  "grad_cosine": 1.0,
+  "grad_rel_err": 0.0,
+  "chunk": 64,
+  "overlap": 16,
+  "note": "reproduced via: python src/streaming_train.py --check"
+}
