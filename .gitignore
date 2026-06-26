@@ -6,3 +6,4 @@ __pycache__/
 *.causal
 .venv/
 results/*.tmp
+results/bench_*_smoke.json

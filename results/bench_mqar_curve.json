@@ -1,0 +1,92 @@
+{
+  "config": {
+    "n_pairs_list": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "seeds": [
+      1,
+      7
+    ],
+    "steps": 700,
+    "train_len": 64,
+    "d_model": 128,
+    "n_heads": 4,
+    "d_head": 32,
+    "readout": "tanh_m",
+    "lr": 0.003,
+    "batch_size": 32,
+    "chance": 0.015625,
+    "device": "cpu"
+  },
+  "rows": [
+    {
+      "n_pairs": 1,
+      "attn": 0.978515625,
+      "attn_std": 0.021484375,
+      "holo_off": 0.044921875,
+      "holo_off_std": 0.005859375,
+      "holo_on": 0.08203125,
+      "holo_on_std": 0.03125,
+      "above_floor": 0.037109375,
+      "above_x_sqrtN": 0.037109375
+    },
+    {
+      "n_pairs": 2,
+      "attn": 0.9892578125,
+      "attn_std": 0.0009765625,
+      "holo_off": 0.013671875,
+      "holo_off_std": 0.005859375,
+      "holo_on": 0.0576171875,
+      "holo_on_std": 0.0029296875,
+      "above_floor": 0.0439453125,
+      "above_x_sqrtN": 0.062148056940223906
+    },
+    {
+      "n_pairs": 4,
+      "attn": 0.9970703125,
+      "attn_std": 0.001953125,
+      "holo_off": 0.01416015625,
+      "holo_off_std": 0.00341796875,
+      "holo_on": 0.0380859375,
+      "holo_on_std": 0.005859375,
+      "above_floor": 0.02392578125,
+      "above_x_sqrtN": 0.0478515625
+    },
+    {
+      "n_pairs": 8,
+      "attn": 0.99609375,
+      "attn_std": 0.001953125,
+      "holo_off": 0.013671875,
+      "holo_off_std": 0.00146484375,
+      "holo_on": 0.0712890625,
+      "holo_on_std": 0.00390625,
+      "above_floor": 0.0576171875,
+      "above_x_sqrtN": 0.16296601597658714
+    },
+    {
+      "n_pairs": 16,
+      "attn": 0.9998779296875,
+      "attn_std": 0.0001220703125,
+      "holo_off": 0.015869140625,
+      "holo_off_std": 0.0,
+      "holo_on": 0.029296875,
+      "holo_on_std": 0.01025390625,
+      "above_floor": 0.013427734375,
+      "above_x_sqrtN": 0.0537109375
+    }
+  ],
+  "sqrtN_const_mean": 0.07275718958336222,
+  "sqrtN_const_std": 0.045834490764250786,
+  "sqrtN_const_cv": 0.6299651075957998,
+  "law_verdict": "DECAYS with N but not cleanly 1/sqrt(N)",
+  "validity_gate": {
+    "attn_min": 0.978515625,
+    "passed": true
+  },
+  "elapsed_s": 1078.0,
+  "peak_rss_gb": 0.49
+}

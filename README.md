@@ -316,6 +316,14 @@ recall is a different instrument with its own characterized ~9% ceiling, Contrib
 thermometer is not a barometer.)
 → `src/longcontext_tasks.py`, `src/longcontext_run.py`, `results/longcontext_flipflop.json`
 
+The same boundary holds on **needle-in-a-haystack key–value retrieval** — a key:value pair buried
+at a random position in a growing filler sequence, recalled at the end. Train at T=64, evaluate to
+T=8192 (128×): NoPE-GSSM holds **100% recall at every length**, including the longest gaps; the
+same-size Transformer matches to T=1024 and then **cannot run past T=2048** (the same fixed-PE
+ceiling). Two independent long-range tasks, one verdict — the bounded O(1) state retrieves across
+distance where attention structurally cannot.
+→ `src/bench_needle.py`, `results/bench_needle.json`
+
 ---
 
 ## The O1 contributions (beyond the GSSM core)

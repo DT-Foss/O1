@@ -1,0 +1,155 @@
+{
+  "task": "needle",
+  "train_len": 64,
+  "eval_lens": [
+    64,
+    256,
+    1024,
+    2048,
+    4096,
+    8192
+  ],
+  "seed": 42,
+  "n_keys": 4,
+  "n_vals": 16,
+  "vocab_size": 23,
+  "chance": 0.0625,
+  "d_model": 128,
+  "n_layers": 2,
+  "n_heads": 4,
+  "tf_max_len": 1024,
+  "arms": {
+    "nope_gssm": {
+      "64": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": 1.0,
+          "9-32": 1.0,
+          "33-128": 1.0,
+          "129-512": null,
+          "513-2048": null,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "256": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": 1.0,
+          "9-32": 1.0,
+          "33-128": 1.0,
+          "129-512": 1.0,
+          "513-2048": null,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "1024": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": null,
+          "9-32": null,
+          "33-128": 1.0,
+          "129-512": 1.0,
+          "513-2048": 1.0,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "2048": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": null,
+          "9-32": 1.0,
+          "33-128": 1.0,
+          "129-512": 1.0,
+          "513-2048": 1.0,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "4096": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": null,
+          "9-32": null,
+          "33-128": 1.0,
+          "129-512": 1.0,
+          "513-2048": 1.0,
+          "2049-8192": 1.0,
+          "8193-32768": null
+        }
+      },
+      "8192": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": null,
+          "9-32": null,
+          "33-128": null,
+          "129-512": 1.0,
+          "513-2048": 1.0,
+          "2049-8192": 1.0,
+          "8193-32768": null
+        }
+      }
+    },
+    "transformer": {
+      "64": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": 1.0,
+          "9-32": 1.0,
+          "33-128": 1.0,
+          "129-512": null,
+          "513-2048": null,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "256": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": 1.0,
+          "9-32": 1.0,
+          "33-128": 1.0,
+          "129-512": 1.0,
+          "513-2048": null,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "1024": {
+        "acc": 1.0,
+        "by_gap": {
+          "1-8": null,
+          "9-32": null,
+          "33-128": 1.0,
+          "129-512": 1.0,
+          "513-2048": 1.0,
+          "2049-8192": null,
+          "8193-32768": null
+        }
+      },
+      "2048": {
+        "acc": null,
+        "crash": "RuntimeError: The size of tensor a (2048) must match the size of tensor b (1024) at non-singleton dimens"
+      },
+      "4096": {
+        "acc": null,
+        "crash": "RuntimeError: The size of tensor a (4096) must match the size of tensor b (1024) at non-singleton dimens"
+      },
+      "8192": {
+        "acc": null,
+        "crash": "RuntimeError: The size of tensor a (8192) must match the size of tensor b (1024) at non-singleton dimens"
+      }
+    }
+  },
+  "params": {
+    "nope_gssm": 434584,
+    "transformer": 533784
+  },
+  "validity_gate": {
+    "transformer_train_len_recall": 1.0,
+    "passed": true
+  }
+}
