@@ -53,8 +53,8 @@ property to measured pillar is the spine:
 | **P3** | Double dissociation `100% vs 14%` | **bounded rank + DC-gain sign** | scalar (rank-1/ch) functional; Pure ⇒ DC gain `→∞` | **[PROVEN]** (Pure half) · **[ARGUED]** (recall half) |
 | **P4** | Data floor `54.5 PPL @ 50M` | **fixed per-channel capacity** | one pole per channel; expressivity is data-, not capacity-, bound | **[ANALOGY]** |
 
-The rigor decays as you go down the table, and we say so out loud: P1 is a theorem with
-error 0.0, P4 is an interpretive reading. That gradient is the honest shape of the result.
+P1 is a theorem (error 0.0); P4 is an interpretive reading. The rigor gradient is the shape
+of the result.
 
 ---
 
@@ -375,8 +375,6 @@ green=`[PROVEN]`, amber=`[ARGUED]`, grey=`[ANALOGY]`.
 | P3b | rank-1 scalar functional ⇒ bounded pair-lookup ⇒ 14% MQAR | **[ARGUED]** | capacity argument; ceiling measured, not derived (open theorem) |
 | P4 | fixed per-channel kernel ⇒ data-bound floor | **[ANALOGY]** | plateau consistent with fixed-rank capacity; not a derived bound |
 
-**The one sentence that keeps us honest:** P1 is a theorem, P2 is a theorem about the
-structure plus a measurement of the magnitude, P3 is a theorem about Pure's saturation plus
-an argument about scalar-rank capacity, and P4 is an analogy that earns its place by
-cohering with P1–P3 — not by proof. The unification is genuine; the rigor is not uniform,
-and the figure shows exactly where it isn't.
+P1 is a theorem; P2 a theorem about structure plus a measured magnitude; P3 a theorem about
+Pure's saturation plus a scalar-rank capacity argument; P4 an analogy that earns its place by
+cohering with P1–P3. The unification is genuine; the rigor is graded, and the figure shows where.

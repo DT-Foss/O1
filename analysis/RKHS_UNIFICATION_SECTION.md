@@ -1,7 +1,7 @@
 # Unification: GSSM-Selective as an Input-Controlled Reproducing Kernel over the Linear-SSM Family
 
 **Project:** GSSM — *From Markov Chains to Minkowski Space* (Foss 2026)
-**Status:** paper-ready. Theory derivation and code integration both survived adversarial review (theory verdict: `holds=true`, severity *minor*, cosmetic only; code verdict: `holds=true`, severity *none*, claim found conservative).
+**Status:** paper-ready. Both the theory derivation and the code integration survived adversarial review; the reviewer found the code claim **conservative** — the parallel scan is *more* exact than the doc asserted (theory verdict: `holds=true`, severity *minor*, cosmetic only; code verdict: `holds=true`, severity *none*).
 **Companion derivation:** `analysis/RKHS_CHARACTERIZATION.md`
 **Scan integration + benchmarks:** `src/parallel_scan_integration.py` (results `src/parallel_scan_integration_results.json`)
 
@@ -78,7 +78,7 @@ The float32 deltas are pure FP-reassociation noise from the doubling scan's summ
 
 **Training identity — swapping the scan changes nothing the model learns:** same seed, fixed offline synthetic tensor, 12 steps: both curves start at **3.930505** and end at **3.119214** (bit-identical to print precision), max \|Δloss\| over the whole curve = **4.77e-7** (≪ the 1e-4 bar). Extended to **120 steps** (10× the claim) in adversarial re-check: drift stays within **1.9e-5**, peaks mid-run, then **shrinks** — no compounding split.
 
-**The honest timing story.** The `O(log T)` depth advantage converts to wall-time **only on parallel hardware**:
+**The timing story.** The `O(log T)` depth advantage converts to wall-time on parallel hardware — 4.2×–5.0× on MPS — and is a wash on CPU, where the tight loop wins. Ship parallel on GPU/MPS, sequential on CPU:
 
 | T | MPS seq → par | MPS speedup | CPU seq → par | CPU result |
 |---|---|---|---|---|
@@ -89,7 +89,7 @@ The float32 deltas are pure FP-reassociation noise from the doubling scan's summ
 
 On MPS the parallel scan wins **4.2×–5.0×** across `T`; on CPU it **loses at every size**, worsening with `T`, because the doubling scan does `O(T log T)` total work plus per-step concat allocations that a tight sequential loop avoids. **Takeaway: ship the parallel scan on GPU/MPS, keep the sequential loop as the CPU fallback.** The kernel statement of §1–2 is independent of which scan computes it. Two honest notes from the code review: the parallel path is a couple of bits *noisier* than sequential in fp32 (tree reassociation builds larger intermediate products — biased toward the parallel side, magnitude ≤5e-4 at the adversarial `γ=0.999`/`T=4096` corner, zero algorithmic difference confirmed in fp64); and the forward-only timing above is the **conservative** case — including the backward pass, the parallel scan wins even on CPU.
 
-This closes FINAL_REPORT's standing caveat: the "O(log T) parallel scan" is no longer aspirational. It is integrated, function- and gradient-identical, training-identical, and benchmarked. The remaining honesty is on *deployment* (the trained model still runs the sequential loop) and on the work-efficient Blelloch variant (built, but its `index_copy` scatter is less MPS-friendly than the doubling scan's slice/concat form that wins here).
+This closes FINAL_REPORT's standing caveat: the O(log T) parallel scan is integrated, function- and gradient-identical to the loop in fp64 (3.55e-15), training-identical (max |Δloss| 4.77e-7 over 12 steps), and 4.2×–5.0× faster on MPS — measured, not promised. The remaining note is on *deployment* (the trained model still runs the sequential loop) and on the work-efficient Blelloch variant (built, but its `index_copy` scatter is less MPS-friendly than the doubling scan's slice/concat form that wins here).
 
 ---
 
@@ -123,7 +123,7 @@ which `parallel_scan.py` verifies in the real case to **8.88e-16 in float64** (*
 | **§2: GSSM-Selective is a reproducing-kernel readout** `z_t=⟨w_t,φ(\bar v_{0:t})⟩`, `s_t=√(1−exp z_t)` | **REAL — corrected & kept here** | Exact identity, verified to 8e-9 against executed code (5.5e-17 against the idealized recurrence, float64; 4.77e-7 in float32, FP-summation noise); rapidity feature `φ(tanh ξ)=−2 log cosh ξ` verified to 1e-14. |
 | **§2: per-path Gram is PSD** | **REAL** | Structural `K=WWᵀ`; min eig `≥ −1e-12` over 40 000 adversarial paths. |
 | **§3: "GSSM is a *fixed* Mercer 'unikernel'; BPTT = ridge regression"** | **REJECTED — overclaim** | Gates depend on `x`, so no fixed `k(v,v′)`; two inputs with identical `φ_k` give different `z_T` (−1.38 vs −0.44). Legal only in the constant-gate LTI limit, which the architecture is built to leave. |
-| **§4: capability narrative ("kernel ⇒ solves recall / unlocks X")** | **REJECTED — unmeasurable packaging** | The RKHS view *explains* the 14% MQAR limit (bounded scalar functional ⇒ bounded pair-lookup capacity) but does not rescue it; the capacity limit is real, not a presentation artifact. |
+| **§4: capability narrative ("kernel ⇒ solves recall / unlocks X")** | **REJECTED — unmeasurable packaging** | The RKHS view *explains* the 14% MQAR limit (bounded scalar functional ⇒ bounded pair-lookup capacity) but does not rescue it; the capacity limit is structural. |
 | **§5: "Fable-5" / unified-story packaging** | **REJECTED — unmeasurable packaging** | No measurement attaches to it. Dropped in favor of the falsifiable structural taxonomy of §4. |
 | **Implicit: "fast parallel-scan training"** | **NOW MEASURED** | Integrated, function/grad/training-identical, 4.2×–5.0× on MPS, loses on CPU. Aspirational → benchmarked. |
 
@@ -131,10 +131,10 @@ The split is clean: **§2 RKHS = real and corrected here; §3–5 unikernel/capa
 
 ---
 
-## 6. Honest open items (referee-flagged, not yet closed)
+## 6. Open items (referee-flagged, not yet closed)
 
 1. **The lead falsifiable claim is not yet experimentally closed.** *Predicted:* freeze `W_γ, W_α` so the gates are constant, and a BPTT-trained Selective model's read map must coincide to numerical tolerance with the geometric Toeplitz convolution `γ^{|s−t|}` / kernel-ridge closed-form. `constant_gamma_closed_form` already reproduces the *sequential scan* to 5e-17 in float64 (4.77e-7 in float32, FP-summation noise) — but the open claim is that the **learned constant-gate optimum equals the kernel solution.** This is the single most important experiment to run; if the learned read map does not match, the characterization is wrong.
-2. **No exact associative recall from the scalar channel — a genuine capacity limit.** Pure-Selective tops out at **14% MQAR** (and the double dissociation SSAS=100% vs PPAP=16% holds); the RKHS view explains *why* (a rank-controlled scalar functional has bounded capacity for pair lookups) but does **not** rescue recall. One attention layer fixes it in the hybrid; the standalone scalar limit is real, not a presentation artifact.
+2. **No exact associative recall from the scalar channel — a capacity limit.** Pure-Selective tops out at **14% MQAR** (and the double dissociation SSAS=100% vs PPAP=16% holds); the RKHS view explains *why* (a rank-controlled scalar functional has bounded capacity for pair lookups) but does **not** rescue recall. One attention layer fixes it in the hybrid; the standalone scalar limit is structural.
 3. **Deployment gap on the parallel scan.** The scan is integrated and verified, but the *trained* model still runs the `O(T)` sequential loop; "constant inference state, no KV-cache" is claimed, fast parallel-scan *training* is now demonstrated but not yet the deployed default. The work-efficient Blelloch variant exists but its `index_copy` scatter underperforms the doubling scan on MPS.
 4. **Stationarity holds only in the constant-gate limit.** Bochner's spectral PD guarantee certifies positive-definiteness only when gates are input-independent; for selective gates the kernel is non-stationary. PSD survives (Gram of real vectors), but the spectral/Fourier PD characterization does not apply.
 5. **Cosmetic code/doc fixes** (non-load-bearing): align the source comment/docstring to the executed gated `log(1−(g·v)²)`; note the implementation's `s ∈ [0, 1+5e-7]` vs the mathematical `[0,1)`; change the §3.2 `≥0` to `>0`.

@@ -110,7 +110,7 @@ live right now:
    moved the number rather than searching for a single silver bullet.
 
 Beyond the in-channel axis, the map points cleanly at the architectural route:
-a GSSM state plus one small attention head (tiny KV dim) — O(T), the honest way
+a GSSM state plus one small attention head (tiny KV dim) — O(T), the way
 to recover the n=2 headroom (25.8%) at n=8. The crosstalk curve gives us both
 the target and the budget. The search is converging, and the repo tracks it as
 it does.

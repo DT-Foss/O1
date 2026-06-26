@@ -110,7 +110,7 @@ $$
 
 ## 4. The actual gap: per-channel **binding rank is 1**, so `D_eff ≪ D`  [ARGUED]
 
-Here is the honest subtlety, and the reason the theorem is about a *mechanism*, not a channel count. Naively plugging `D = 128` into (D-Bound) predicts full recall — and that is *wrong*, because (D-Bound) bounds rank from above; it does not say the scalar mechanism *attains* rank `D` for the **binding** operation. It does not, and cannot, for a structural reason:
+The subtlety, and why the theorem is about a *mechanism* not a channel count: naively plugging `D = 128` into (D-Bound) predicts full recall — and that is *wrong*, because (D-Bound) bounds rank from above; it does not say the scalar mechanism *attains* rank `D` for the **binding** operation. It does not, and cannot, for a structural reason:
 
 > **Claim (the mechanism gap).** A leaky scalar channel `z_t = γ_t z_{t-1} + a_t` performs *key-agnostic accumulation*. Its increment `a_t = α_t φ(v̄_t)` is a function of the **current token only** (through `α_t, v̄_t`); there is no operation in which the value written depends on a *match between a stored key and an incoming query*. KV-binding requires exactly that key-conditioned write/read — an **outer product** `e_k e_v^⊤`, i.e. a *second-order* (bilinear in two different tokens) interaction. The scan is **first-order in the token stream** (linear recurrence; bilinear only in its *own* gates, per `RKHS_CHARACTERIZATION.md` §3.3), so a single channel contributes a **rank-1, key-unconditioned** term to `Â`. Stacking `D` such terms cannot manufacture the key-conditioning that none of them has. [ARGUED — structural; the one assumption is that the fixed FFN/`W_out` cannot synthesize a content-addressed outer product from key-agnostic scalars, which is precisely what attention adds and what the double dissociation confirms]
 
@@ -150,7 +150,7 @@ $$
 D_{\text{eff}} \;=\; \frac{0.1406 - 1/64}{1 - 1/64}\cdot 8 \;\approx\; \mathbf{1.02}.
 $$
 
-So the framework's bound says: **the trained pure-Selective scalar stack behaves as a binding memory of effective rank ≈ 1.** That is the quantitative content of "bounded scalar state can't bind." The 14% is not a number to apologize for — it is the number the rank theorem *predicts* once `D_eff ≈ 1`. [PROVEN — numbers from the run above; the `D_eff ≈ 1` *interpretation* of why the trained net sits at rank 1 is §4's ARGUED claim]
+So the framework's bound says: **the trained pure-Selective scalar stack behaves as a binding memory of effective rank ≈ 1.** That is the quantitative content of "bounded scalar state can't bind." The 14% is the number the rank theorem *predicts* at `D_eff ≈ 1`: the measured 0.1406 lands on the closed-form 0.139, and inverting the bound gives `D_eff = 1.02`. The framework computes its own floor. [PROVEN — numbers from the run above; the `D_eff ≈ 1` *interpretation* of why the trained net sits at rank 1 is §4's ARGUED claim]
 
 **Second, independent cross-check (information-theoretic), `analysis/rank1_capacity_check.py --info`:** value entropy is `log₂64 = 6` bits/pair; a bank with `b` effective bits per bounded scalar resolves `K_max = D·b/log₂V` pairs. At `D_eff·b ≈ 6` bits total (one value's worth) → `K_max ≈ 1` → recall `≈ 1/K`. Two routes (rank counting and bit counting) give the same `O(1)`-binding ceiling. [PROVEN as a counting bound; `b` itself is CONJECTURE — see §7]
 

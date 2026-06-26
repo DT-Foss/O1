@@ -73,14 +73,13 @@ own gates:
 
 So it is *both* of the candidate mechanisms at once: γ≈1 (never forgets) and input gated out in
 the gap (frozen, not decaying), opening to write at the beacon. A bit-vault the model grew on its
-own — and the honest scope: this is on an ignorable-filler distribution; the next adversarial probe
-is beacon-like fillers.
+own. Scope: tested on ignorable fillers; the next adversarial probe is beacon-like fillers.
 
 → `src/streaming_train.py --carrier` · `results/carrier_probe.json`
 
 ---
 
-## Honest method note
+## Method note: how the carrier was found
 
 The first γ-spectrum measurement (head-mean) suggested only short-memory heads (τ≈2) and *seemed*
 to contradict the perfect 256-token recall. That was a measurement artifact: averaging over the
@@ -88,7 +87,7 @@ channel axis hid the one γ≈1 carrier. Naming the contradiction and building t
 probe turned a confusing negative into the real, stronger finding — the model builds a dedicated
 long-memory channel. The mean was wrong; the mechanism is clean.
 
-## What this is and isn't
+## Scope and next attacks
 
 - **Is:** constant-memory *training* on a stream (exact, not approximate); a persistent state that
   carries a bit through an input gap with a decisive zeroing control; a mechanistic account (a γ≈1

@@ -53,7 +53,7 @@ The qualitative verdict is identical in both runs.)
 - **Doubling wins on MPS, loses on CPU.** On MPS the pure slice/cat/mul/add
   doubling scan beats the sequential Python loop at every T (~4x–7x in the stable
   band; the T=1024 single-run 12.6x is a slow-seq-sample outlier — treat ~4–7x as
-  the honest number). On CPU there is no parallel hardware to amortize the extra
+  the number). On CPU there is no parallel hardware to amortize the extra
   O(log T) passes, so the tight sequential loop wins (par is 0.2x–0.8x).
 
 **Ship decision:** doubling (`parallel_linear_scan`) on GPU/MPS; sequential loop

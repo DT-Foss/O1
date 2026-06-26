@@ -89,7 +89,7 @@ state and per-token gates — no positional argument, no `t`-valued tensor enter
 lives exclusively in the parent LM's positional-encoding module, which NoPE replaces with identity.
 The audit passes: there is no missed length-dependent term.
 
-## Honesty labels
+## What is proven vs measured
 
 Steps 1–2 are **proven** (read off the closed form, code-audited). Step 3 is structurally proven
 (contraction ⇒ bounded receptive field); the specific 5–8-token horizon is measured from the

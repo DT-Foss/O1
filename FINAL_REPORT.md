@@ -26,9 +26,9 @@ Selective + full stack, T=128, across d256–d1024 × L2–L4: **best d512/L4 = 
 - **Task A (length, train T=32 → eval T=256, % rise):** sel4(SSSS) +38.8, hyb_mid(SSAS) +35.0, hyb_top(SSSA) +35.3, pure_proxy(PPAP) **+313.4**, attn4(AAAA) +1.2 (but dead, acc 0.16).
 - **Task B (MQAR recall, len 256):** attn4 1.000, **hyb_mid(SSAS) 1.000**, hyb_top(SSSA) 0.999, sel4(SSSS) 0.144, **pure_proxy(PPAP) 0.161**.
 
-The finding: **SSAS = 100% recall + length-robust; PPAP = 16% recall + length-degrades.** Selective's interior attractor *preserves* the information attention needs to bind; Pure's boundary attractor *saturates and corrupts* the residual stream. Pure-Selective alone can't bind (14% — the honest bounded-scalar-state limit), but **one attention layer restores full recall in the Selective hybrid.** Attractor topology causally gates whether attention works.
+The finding: **SSAS = 100% recall + length-robust; PPAP = 16% recall + length-degrades.** Selective's interior attractor *preserves* the information attention needs to bind; Pure's boundary attractor *saturates and corrupts* the residual stream. Pure-Selective alone can't bind (14% — the bounded-scalar-state limit), but **one attention layer restores full recall in the Selective hybrid.** Attractor topology causally gates whether attention works.
 
-## The honest limits
+## Limits (computed, not excused)
 
 - **Bounded scalar state cannot do exact associative recall alone** — confirmed at **14% MQAR** for pure-Selective. No KV-binding mechanism exists in a single scalar channel. (One attention layer fixes this in the hybrid; the standalone limit is real.)
 - **No S5-style state-tracking (TC0).** Bounded scalar state can't represent the requisite group structure. Derived, not yet empirically stressed.

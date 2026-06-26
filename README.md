@@ -64,7 +64,8 @@ member to machine precision:
 | S5 | complex diagonal `exp(ΔΛ)` | no (LTI) | `Δ·B·u_t` | **1.26e-15** |
 | LRU | complex diagonal `e^{−ν+iθ}` | no (LTI) | `B·u_t` | **8.88e-16** |
 
-**Real max 8.88e-16, complex max 1.26e-15 — the whole family reduces to ~1e-15.**
+**Real max 8.88e-16 (Mamba/S6 row; GSSM-Selective 4.44e-16), complex max 1.26e-15 — the whole
+family reduces to ~1e-15.**
 → `src/ssm_family_reduction.py`
 
 And the LTI restriction is literally the geometric kernel: freezing the gates to
@@ -309,10 +310,10 @@ task at the training length (validity gate: 99.6% — the harness is fair, not r
 to near-chance as positions go out of distribution, and from T=2048 its forward pass **cannot
 execute at all** (fixed PE buffer). This is not a perplexity delta — it is a clean *can / cannot*
 boundary: the bounded state tracks the register through arbitrary length at `O(1)` memory; attention
-both loses the thread and then hits its structural length ceiling. The task is chosen to play to a
-bounded state's strength (single-thread state, not multi-key recall — which has its own ~9% ceiling,
-Contribution 3); the point is that this is exactly the regime where long context is needed and
-attention fails.
+both loses the thread and then hits its structural length ceiling. The task is single-thread
+state-tracking, exactly the regime where long context is needed and attention fails. (Multi-key
+recall is a different instrument with its own characterized ~9% ceiling, Contribution 3 — a
+thermometer is not a barometer.)
 → `src/longcontext_tasks.py`, `src/longcontext_run.py`, `results/longcontext_flipflop.json`
 
 ---
@@ -491,8 +492,10 @@ holographic write gives a bounded scalar state content-addressable recall at 5.7
 — the structural headline — the position-free variant holds **flat perplexity across 524,288×
 length extrapolation** (train T=32, eval to a single 16.7-million-token sequence at constant
 2.5 GB, perplexity *improving* the whole way) and **streams a billion tokens at a flat 4.36 GB**.
-Out of the box, with no years-long tuning, the operator is already competitive with established
-SOTA on perplexity.
+Out of the box, with no years-long tuning, the operator already **matches** years-tuned SOTA
+perplexity at the WikiText-2 data ceiling (135 PPL) — and on its own axes it does not compete, it
+stands alone: flat perplexity to 524,288× length and a billion-token stream at constant memory,
+which no attention model can do at any tuning budget.
 
 On top of that, O1 adds the living-stream layer: **constant-memory training** (truncated-BPTT
 exact to gradient cosine 1.0000), a **state that survives a 256-token silence**, a **runtime
