@@ -366,6 +366,52 @@ with the read operators applied, not the state alone.
 
 ---
 
+## The knowledge index — `.causal` / fabel
+
+The external memory O1 consults (Contribution 6) is a real, peer-reviewed engine, vendored in
+`vendor/fabel`. It turns text into a queryable causal knowledge graph **deterministically — no
+LLM in the inference loop, zero hallucination by construction, fully air-gappable.** Causal
+structure is *measured* in text (causal connectives are finite, patterned, and findable), so a
+rule set extracts it and a binary format serves it. This is what makes the index trustworthy
+enough to feed back into the stream without a gradient: every retrieved edge is traceable to a
+source.
+
+**The pipeline, layer by layer:**
+
+1. **Extraction.** A multi-pass extractor turns a corpus into candidate `(trigger → mechanism →
+   outcome)` triplets — semantic chunking, domain detection, quantification.
+2. **Validation — the 14-step FOSS Gate.** Fourteen deterministic predicates accept or reject
+   each triplet. It is **100% byte-level deterministic across 150 repeated extractions** and
+   **model-agnostic** (Qwen-8B / Gemma-2B / Llama-3B all reach perfect consistency despite 9×
+   extraction-rate variation — determinism is a property of the validation architecture, not the
+   model), at 88% precision on DocRED. *(ICECET 2026.)*
+3. **The `.causal` format (dotcausal).** Validated triplets are written to a binary knowledge-graph
+   format with **embedded inference**: transitive chains, direction propagation, and fuzzy
+   key-matching are **materialized at build time**, so the reader serves inferred edges instantly —
+   the graph stays inferenced, no per-load recompute. A richer closure engine (`hsslm`) extends
+   this to 5-hop transitive paths, ~18× more reachable edges than the base reader.
+4. **Autonomous growth — the gap-driven loop.** The engine detects what it *cannot* yet answer
+   (gaps), queries for it, validates and ingests the result, and repeats:
+   `Gₖ₊₁ = Gₖ ∪ {τ ∈ Extract(Retrieve(Q(g))) : V(τ), g ∈ TopGaps(Gₖ)}`. The graph spans its own
+   domains. This is the symbolic ancestor of O1's neural runtime retrieval.
+5. **Conversation / readout.** `fabel.py` / `brain.py` mount one or many graphs and answer from
+   them, every answer traceable to a source — the speak path of the index.
+
+For O1, the coupling is **neural**: surprise in the O(1) state *is* a gap signal, and the
+retrieved path is folded back into the stream (Contribution 6). The night build also ships a
+purpose-built neural index (`src/gssm_causal.py`) — a co-occurrence graph with an FOV reader —
+fitted to the streaming setting rather than the symbolic extractor.
+
+**This engine is not a side project.** It is the core of **nine peer-reviewed papers** accepted at
+four 2026 IEEE conferences — including the **IEEE-NANO flagship in Nanjing** — across causal
+knowledge extraction, post-quantum cryptanalysis, nuclear knowledge graphs, and a full
+**bit-for-bit-validated security assessment of IBM z/OS mainframe infrastructure** (50 findings,
+responsible disclosure to IBM PSIRT). The complete list, with venues and DOIs, is in
+[PAPERS.md](PAPERS.md). Software: [dotcausal.com](https://dotcausal.com) ·
+[github.com/dotcausal/dotcausal](https://github.com/dotcausal/dotcausal).
+
+---
+
 ## A note on FORGE
 
 A related deterministic code-generation engine (FORGE) is described — as a **capability

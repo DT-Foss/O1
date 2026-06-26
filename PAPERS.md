@@ -41,3 +41,81 @@ Additional preprints on SSRN:
   the basis of the `O(log T)` parallel scan (`src/parallel_scan.py`).
 - **Collapse Is Contraction / Unitarity Is the Boundary** — the contraction τ<1 / bounded-state
   core that underwrites GSSM's stability guarantee.
+
+---
+
+## The causal knowledge engine — peer-reviewed foundations
+
+O1's knowledge index (`vendor/fabel`, the `.causal` format) is not improvised. It is the
+engineering core of a body of peer-reviewed work — nine papers accepted at four 2026 IEEE
+conferences, plus the preprints behind them — all built on the same `.causal` deterministic,
+zero-hallucination causal-inference substrate. The index O1 consults at runtime is the same
+engine that has been validated across cryptanalysis, post-quantum security, nuclear knowledge
+graphs, and autonomous discovery.
+
+### Accepted at IEEE conferences (2026)
+
+**IEEE-NANO 2026 — Nanjing, July 5–8 (the flagship conference of the IEEE Nanotechnology Council)**
+- **Compression-Based Trust Verification of Lightweight Ciphers Deployed in Nano-IoT Communication
+  Standards** — CASI distributional analysis applied to nano-scale IoT cipher trust.
+
+**ICECET 2026 — Rome, July 6–9 (6th Intl. Conf. on Electrical, Computer and Energy Technologies)**
+- **Deterministic Validation for Reliable LLM-Based Causal Knowledge Extraction** — the 14-step
+  FOSS Gate: 88% precision on DocRED, 100% semantic F1 on causal samples, **100% byte-level
+  determinism across 150 repeated extractions**, model-agnostic (Qwen-8B / Gemma-2B / Llama-3B all
+  perfectly consistent despite 9× extraction-rate variation). This is the validation layer of the
+  `.causal` pipeline. → preprint [10.5281/zenodo.18385710](https://doi.org/10.5281/zenodo.18385710)
+- **Causal Graph Topology for Automated Security Margin Analysis and Blind Cipher Identification**
+  → preprint [10.5281/zenodo.18591406](https://doi.org/10.5281/zenodo.18591406)
+- **Compression Isolation of Distributional Signatures in NIST Post-Quantum Ciphertext** (ML-KEM /
+  FIPS 203) → preprint [10.5281/zenodo.18601433](https://doi.org/10.5281/zenodo.18601433)
+- **Persistent Cross-Round Carry Leakage in ARX Ciphers: Detection, Prediction, and Topological
+  Classification** → preprint [10.5281/zenodo.18754499](https://doi.org/10.5281/zenodo.18754499)
+
+**IEEE IRI 2026 — Seattle, July 31 – Aug 2 (27th Intl. Conf. on Information Reuse and Integration
+for Data Science)**
+- **The .causal Format: Deterministic Inference for AI-Assisted Hypothesis Amplification** — the
+  binary knowledge-graph format with embedded inference that O1's index is built on.
+  → preprint [10.5281/zenodo.18326222](https://doi.org/10.5281/zenodo.18326222)
+- **Input-Agnostic Causal Knowledge Discovery**
+
+**NURER 2026 — Almaty, Sept 10 (8th Intl. Conf. on Nuclear and Renewable Energy Resources, with IAEA)**
+- **Backward Causal Inference on Nuclear Knowledge Graphs**
+- **Spectral Signatures, PRNG, and Monte Carlo**
+
+### Real-world assessment
+
+- **Cryptographic Security Assessment of IBM z/OS Mainframe Infrastructure Using CASI Distributional
+  Analysis** — a full security assessment of production IBM z/OS mainframe infrastructure (which
+  processes ~87% of global credit-card transactions), run with a standard student account and no
+  exploits. **50 findings.** RACF Legacy DES password hashing measured at **42.17 bits of effective
+  entropy** (vs. the nominal 56) — crackable in **7.6 minutes on a consumer GPU for $0.08** — and
+  the model was validated **bit-for-bit against a real IBM z15 running z/OS V2.5 (4/4 perfect
+  match)**. Responsible disclosure to IBM PSIRT.
+  → [10.5281/zenodo.18755826](https://doi.org/10.5281/zenodo.18755826) ·
+  [SSRN 6298178](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6298178)
+
+### The discovery engine
+
+- **From Signal Amplification to Autonomous Discovery: The Sovereign Gap-Driven Knowledge Engine**
+  — the gap-detection → query → retrieve → ingest loop that grows the graph autonomously; the
+  symbolic ancestor of O1's runtime retrieval (Contribution 6).
+  → [10.5281/zenodo.18336249](https://doi.org/10.5281/zenodo.18336249)
+- **Sovereign Causal Graph: A Neuro-Symbolic Architecture for Air-Gapped Causal Knowledge Discovery**
+  → [10.5281/zenodo.18287728](https://doi.org/10.5281/zenodo.18287728)
+
+### Domain reach (`.causal` applied beyond ML)
+
+The same deterministic engine has produced hypothesis-amplification work in biomedicine —
+SIRT1-PGC-1α convergence, SSRIs as dual-mechanism therapy, Drp1 mitochondrial stability,
+cross-species innate immunity, applied to Long COVID — evidence that `.causal` is a general
+inference substrate, not a one-domain tool. (Zenodo: 18318310, 18311125, 18317350, 18326132,
+and the format paper 18326222.)
+
+### Software
+
+- **dotcausal** — the canonical `.causal` binary knowledge-graph format with embedded inference,
+  zero-hallucination by construction. [dotcausal.com](https://dotcausal.com) ·
+  [github.com/dotcausal/dotcausal](https://github.com/dotcausal/dotcausal)
+- **live-casi** — the CASI distributional-analysis tool used in the cryptanalysis work (the
+  reproducibility backend for the cipher/PQC/mainframe results).
