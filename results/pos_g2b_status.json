@@ -1,0 +1,86 @@
+{
+  "pid": 54319,
+  "phase": "done",
+  "config": {
+    "hours": 40.0,
+    "target_tokens": 30720,
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "lr": 0.003,
+    "seed": 42,
+    "q": 0.8,
+    "window": 100,
+    "min_window": 30,
+    "ignition_chunks": 20,
+    "eval_tokens": 20000,
+    "eval_every_s": 900.0,
+    "eval_every_tokens": 20480,
+    "ckpt_every_s": 600.0,
+    "status_every_s": 60.0,
+    "twin_fork_hours": 0.0,
+    "twin_fork_tokens": 0,
+    "index_warmup_tokens": 5000000,
+    "recur_min_hours": 2.0,
+    "spike_min_nll": 7.0,
+    "span_half": 32,
+    "lookahead": 32,
+    "max_index_entries": 20000,
+    "max_probes_per_hour": 30,
+    "pause_rss_gb": 12.0,
+    "pause_disk_gb": 5.0,
+    "no_index": true,
+    "resume": false,
+    "tag": "g2b"
+  },
+  "started_utc": "2026-07-22T18:41:19Z",
+  "wall_s": 184.8,
+  "n_streamed": 30720,
+  "tok_per_s": 166.2,
+  "rss_gb": 0.365,
+  "disk_free_gb": 5.4,
+  "stream_docs": 1385,
+  "stream_reconnects": 0,
+  "arms": {
+    "A1": {
+      "grad_tokens": 0,
+      "n_chunks": 60,
+      "n_bwd": 0
+    },
+    "A2": {
+      "grad_tokens": 30720,
+      "n_chunks": 60,
+      "n_bwd": 60
+    },
+    "A3": {
+      "grad_tokens": 16896,
+      "n_chunks": 60,
+      "n_bwd": 33
+    }
+  },
+  "index": null,
+  "twin_forked": false,
+  "digest": "691273c448f9561ef67b5af833cc5eed3d98f27cfe6ae7fb35c4be38e105f16a",
+  "final": {
+    "type": "eval",
+    "wall_s": 180.7,
+    "n_streamed": 30720,
+    "rss_gb": 0.247,
+    "arms": {
+      "A1": {
+        "heldout": 8.665602,
+        "grad_tokens": 0
+      },
+      "A2": {
+        "heldout": 6.28833,
+        "grad_tokens": 30720
+      },
+      "A3": {
+        "heldout": 6.215466,
+        "grad_tokens": 16896,
+        "gate_frac_recent": 0.55,
+        "gate_frac_cum": 0.55
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+⚠ Permission mode forced to default — CLAUDE_CODE_SUBPROCESS_ENV_SCRUB is set (allowed_non_write_users hardening). Declare allowedTools explicitly, or set CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=0 to opt out.
+Ich habe jetzt alles, was ich für ein solides Design brauche. Der HF-Cache liegt außerhalb des erlaubten Verzeichnisses (`~/.cache`), daher kann ich ihn im Sandbox-Modus nicht prüfen — aber der Langlauf läuft detached außerhalb der Sandbox, wo Netzwerk und Cache verfügbar sind. Die `scale_to_a_billion.json` und `streaming_train`-Logs im Repo beweisen, dass C4-Streaming auf dieser Maschine schon lief.
+
+Ich habe genug für das Design. Zwei echte Konflikte muss ich mit dem User klären, bevor ich baue — die kann ich nicht selbst entscheiden.
+
+---
+
+## Kontext gelesen — hier ist, was ich weiß, und zwei Entscheidungen für dich
+
+**Der exakte Pfad steht.** Ich habe `streaming_train.py`, `scale_to_a_billion.py`, `closed_loop.py`, `verify_billion.py` und die Modell-/Daten-Helper gelesen. Der ganze `pos_run.py`-Bau setzt sauber auf vorhandene Bausteine auf:
+
+- **Modell:** `StreamingNoPELM(V, mask, d_model, n_layers=2, n_heads=4, d_head=d_model//4, seq_len=32, dropout=0.0, causal=True)` — stateful, threaded `list[Z]` in/out, `.detach()`-Carry an Chunk-Grenzen (grad-cos ≥0.95 in `check_grad_exactness`). Das ist exakt der Pfad, den die Mission verlangt.
+- **Daten:** `c4_block_stream(stoi, unk)` aus `streaming_train.py` — genau der Klon-fähige Blockstrom. Vocab aus WT-2, Held-out = WT-2-val (nie gestreamt). Das ist die 200k-Frozen-Eval-Scheibe.
+- **Surprise:** per-Token-NLL wie in `closed_loop._read` — Chunk-Mean davon ist mein Gating-Signal.
+- **Index-Loop / Injection:** `_read`/`_advance` + `_clone_state` aus `closed_loop.py`, gepaarter Fork vom Pre-Gap-State — 1:1 wiederverwendbar, nur über Wallclock gestreckt statt über 600 Triplets.
+
+**Zwei Dinge muss ich mit dir klären, bevor ich baue:**
+
+**1) Subagenten — direkter Konflikt.** Dein globales `workflow.md` sagt **„NO SUBAGENTS unless explicitly asked"**, sequenziell mit Opus. Das `BRIEFING_POS.md` sagt hingegen **„ARBEITSPAKETE (Task-Tool, Subagents)"** — WP2/WP3 parallel. Das Briefing *ist* die explizite Aufforderung, würde ich sagen — aber ich will das nicht auf eigene Faust auflösen.
+
+→ **Meine Empfehlung: sequenziell, solo, kein Subagent.** Der Bau ist eng gekoppelt (alle drei Arme + Index + Analyse teilen `StreamingNoPELM`, State-Carry, dieselben JSON-Schemas). Ein Subagent, der `pos_analyze.py` gegen ein Schema baut, das ich parallel noch ändere, produziert Reibung statt Tempo. Ich baue WP1→WP2→WP3 hintereinander, reviewe jeden Teil selbst. Passt das, oder willst du die Subagenten-Fanout aus dem Briefing?
+
+**2) Modell — trainiert vs. frisch.** Das Briefing sagt „gleiche Init (Seed 42)" für alle drei Arme, d.h. **from scratch**. `closed_loop.py` lädt dagegen einen *trainierten* Checkpoint (`streaming_train_c.pt`) — nur so hat die Injection überhaupt sinnvolle Surprise-Spitzen. Für den POS-Kernplot (A1/A2/A3, Loss vs. Gradient-Tokens) ist from-scratch richtig. Für den Index-Loop auf A3 (WP2) ist die Frage: nehme ich A3s mitwachsenden State (ehrlicher, aber frühe Surprise ist Rauschen) oder einen vortrainierten Referenz-State?
+
+→ **Meine Empfehlung: alle drei Arme from scratch, Seed 42.** Der Index-Loop läuft auf dem *lebenden* A3-State — das ist genau die These („der Strom findet seine eigenen Lücken"). Frühes Rauschen fange ich ab, indem der Index erst nach einer Warmup-Schwelle (z.B. 5M Tokens) zu schreiben beginnt.
+
+Sag mir zu **(1)** und **(2)** kurz ja/nein bzw. deine Variante — dann lege ich das vollständige Design (Architektur, JSON-Schemas, Gates, Runner-Skelett) vor und wir gehen in den Bau. Ich starte nichts Detached, bevor du das Design abgesegnet hast.

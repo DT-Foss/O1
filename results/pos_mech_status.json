@@ -1,0 +1,75 @@
+{
+  "pid": 78755,
+  "phase": "done",
+  "config": {
+    "hours": 40.0,
+    "target_tokens": 61440,
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "lr": 0.003,
+    "seed": 42,
+    "q": 0.8,
+    "window": 100,
+    "min_window": 30,
+    "ignition_chunks": 20,
+    "eval_tokens": 20000,
+    "eval_every_s": 900.0,
+    "eval_every_tokens": 30720,
+    "ckpt_every_s": 30.0,
+    "status_every_s": 60.0,
+    "twin_fork_hours": 24.0,
+    "twin_fork_tokens": 30720,
+    "index_warmup_tokens": 20000,
+    "recur_min_hours": 0.0,
+    "spike_min_nll": 2.0,
+    "span_half": 32,
+    "lookahead": 32,
+    "max_index_entries": 20000,
+    "max_probes_per_hour": 30,
+    "pause_rss_gb": 12.0,
+    "pause_disk_gb": 5.0,
+    "no_index": false,
+    "resume": false,
+    "tag": "mech"
+  },
+  "started_utc": "2026-07-22T18:45:40Z",
+  "wall_s": 404.6,
+  "n_streamed": 61440,
+  "tok_per_s": 151.8,
+  "rss_gb": 0.364,
+  "disk_free_gb": 5.7,
+  "stream_docs": 1385,
+  "stream_reconnects": 0,
+  "arms": {
+    "A1": {
+      "grad_tokens": 0,
+      "n_chunks": 120,
+      "n_bwd": 0
+    },
+    "A2": {
+      "grad_tokens": 61440,
+      "n_chunks": 120,
+      "n_bwd": 120
+    },
+    "A3": {
+      "grad_tokens": 20992,
+      "n_chunks": 120,
+      "n_bwd": 41
+    },
+    "A3R": {
+      "grad_tokens": 7168,
+      "n_chunks": 60,
+      "n_bwd": 14
+    }
+  },
+  "index": {
+    "entries": 162,
+    "stored_total": 162,
+    "probes": 1,
+    "recurrences_seen": 3
+  },
+  "twin_forked": true,
+  "digest": "4e36284d7a73442effd4646091f27575c068a120529ca1ecb911c71c151ed765",
+  "final": null
+}

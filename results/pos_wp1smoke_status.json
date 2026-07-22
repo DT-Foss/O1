@@ -1,0 +1,65 @@
+{
+  "pid": 44903,
+  "phase": "done",
+  "config": {
+    "hours": 40.0,
+    "target_tokens": 61440,
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "lr": 0.003,
+    "seed": 42,
+    "q": 0.8,
+    "window": 100,
+    "min_window": 30,
+    "ignition_chunks": 20,
+    "eval_tokens": 20000,
+    "eval_every_s": 900.0,
+    "eval_every_tokens": 20480,
+    "ckpt_every_s": 15.0,
+    "status_every_s": 60.0,
+    "twin_fork_hours": 0.0,
+    "twin_fork_tokens": 0,
+    "index_warmup_tokens": 5000000,
+    "recur_min_hours": 2.0,
+    "spike_min_nll": 7.0,
+    "span_half": 32,
+    "lookahead": 32,
+    "max_index_entries": 20000,
+    "max_probes_per_hour": 30,
+    "pause_rss_gb": 12.0,
+    "pause_disk_gb": 5.0,
+    "no_index": true,
+    "resume": true,
+    "tag": "wp1smoke"
+  },
+  "started_utc": "2026-07-22T18:35:45Z",
+  "wall_s": 344.4,
+  "n_streamed": 61440,
+  "tok_per_s": 178.4,
+  "rss_gb": 0.123,
+  "disk_free_gb": 5.5,
+  "stream_docs": 1385,
+  "stream_reconnects": 0,
+  "arms": {
+    "A1": {
+      "grad_tokens": 0,
+      "n_chunks": 120,
+      "n_bwd": 0
+    },
+    "A2": {
+      "grad_tokens": 61440,
+      "n_chunks": 120,
+      "n_bwd": 120
+    },
+    "A3": {
+      "grad_tokens": 20992,
+      "n_chunks": 120,
+      "n_bwd": 41
+    }
+  },
+  "index": null,
+  "twin_forked": false,
+  "digest": "7d432c41eac9b1f2ebcf224e667546d35a8c396705e3694ce62812e176865322",
+  "final": null
+}
