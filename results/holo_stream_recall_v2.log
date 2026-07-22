@@ -1,0 +1,143 @@
+==============================================================================
+HOLO-STREAM-RECALL — key-conditioned MQAR across a carried-state gap
+P_max=16 V_max=16 F=16 vocab=48  chance=1/16=0.0625
+pairs(P)=[1, 2, 4]  gaps(G)=[0, 8, 32, 128]  seeds=[0, 1]  chunk=16
+==============================================================================
+
+── equivalence: full-sequence forward == chunked+carried forward ──
+   use_phase=True   max|Δ| = 0.000e+00
+   use_phase=False  max|Δ| = 0.000e+00
+   use_phase=True,n_slots=4 max|Δ| = 0.000e+00
+   PASS — chunked carry is the SAME operator
+
+==============================================================================
+seed=0  n_pairs=1
+==============================================================================
+  [holo_carried        ] curriculum done: final_train_gap=26 final_train_acc=0.062
+    G=   0: acc=0.0650  (chance 0.0625, 3x-chance no)  phi_margin=-0.28008
+    G=   8: acc=0.0650  (chance 0.0625, 3x-chance no)  phi_margin=-0.58794
+    G=  32: acc=0.0750  (chance 0.0625, 3x-chance no)  phi_margin=-0.60347
+    G= 128: acc=0.0900  (chance 0.0625, 3x-chance no)  phi_margin=-0.5951
+  [holo_zeroed_at_gap  ] curriculum done: final_train_gap=26 final_train_acc=0.062
+    G=   0: acc=0.0850  (chance 0.0625, 3x-chance no)  phi_margin=-0.28008
+    G=   8: acc=0.0600  (chance 0.0625, 3x-chance no)  phi_margin=-0.58794
+    G=  32: acc=0.0750  (chance 0.0625, 3x-chance no)  phi_margin=-0.60347
+    G= 128: acc=0.0900  (chance 0.0625, 3x-chance no)  phi_margin=-0.5951
+  [holo_off            ] curriculum done: final_train_gap=128 final_train_acc=0.125
+    G=   0: acc=0.0350  (chance 0.0625, 3x-chance no)  phi_margin=None
+    G=   8: acc=0.0600  (chance 0.0625, 3x-chance no)  phi_margin=None
+    G=  32: acc=0.0700  (chance 0.0625, 3x-chance no)  phi_margin=None
+    G= 128: acc=0.0700  (chance 0.0625, 3x-chance no)  phi_margin=None
+
+==============================================================================
+seed=0  n_pairs=2
+==============================================================================
+  [holo_carried        ] curriculum done: final_train_gap=2 final_train_acc=0.344
+    G=   0: acc=0.5450  (chance 0.0625, 3x-chance YES)  phi_margin=-0.06918
+    G=   8: acc=0.5350  (chance 0.0625, 3x-chance YES)  phi_margin=-0.06677
+    G=  32: acc=0.5650  (chance 0.0625, 3x-chance YES)  phi_margin=-0.06781
+    G= 128: acc=0.4550  (chance 0.0625, 3x-chance YES)  phi_margin=-0.06762
+  [holo_zeroed_at_gap  ] curriculum done: final_train_gap=2 final_train_acc=0.344
+    G=   0: acc=0.0850  (chance 0.0625, 3x-chance no)  phi_margin=-0.06918
+    G=   8: acc=0.1000  (chance 0.0625, 3x-chance no)  phi_margin=-0.06677
+    G=  32: acc=0.0600  (chance 0.0625, 3x-chance no)  phi_margin=-0.06781
+    G= 128: acc=0.0650  (chance 0.0625, 3x-chance no)  phi_margin=-0.06762
+  [holo_off            ] curriculum done: final_train_gap=2 final_train_acc=0.344
+    G=   0: acc=0.5550  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=   8: acc=0.5100  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=  32: acc=0.5850  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G= 128: acc=0.5400  (chance 0.0625, 3x-chance YES)  phi_margin=None
+
+==============================================================================
+seed=0  n_pairs=4
+==============================================================================
+  [holo_carried        ] curriculum done: final_train_gap=2 final_train_acc=0.375
+    G=   0: acc=0.2800  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10132
+    G=   8: acc=0.2850  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10216
+    G=  32: acc=0.2650  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10414
+    G= 128: acc=0.3200  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10429
+  [holo_zeroed_at_gap  ] curriculum done: final_train_gap=2 final_train_acc=0.375
+    G=   0: acc=0.0750  (chance 0.0625, 3x-chance no)  phi_margin=-0.10132
+    G=   8: acc=0.0450  (chance 0.0625, 3x-chance no)  phi_margin=-0.10216
+    G=  32: acc=0.0700  (chance 0.0625, 3x-chance no)  phi_margin=-0.10414
+    G= 128: acc=0.0750  (chance 0.0625, 3x-chance no)  phi_margin=-0.10429
+  [holo_off            ] curriculum done: final_train_gap=2 final_train_acc=0.281
+    G=   0: acc=0.2500  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=   8: acc=0.3000  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=  32: acc=0.2800  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G= 128: acc=0.2600  (chance 0.0625, 3x-chance YES)  phi_margin=None
+
+==============================================================================
+seed=1  n_pairs=1
+==============================================================================
+  [holo_carried        ] curriculum done: final_train_gap=40 final_train_acc=0.094
+    G=   0: acc=0.0800  (chance 0.0625, 3x-chance no)  phi_margin=-0.31422
+    G=   8: acc=0.0750  (chance 0.0625, 3x-chance no)  phi_margin=-0.57913
+    G=  32: acc=0.0850  (chance 0.0625, 3x-chance no)  phi_margin=-0.59212
+    G= 128: acc=0.0450  (chance 0.0625, 3x-chance no)  phi_margin=-0.59092
+  [holo_zeroed_at_gap  ] curriculum done: final_train_gap=40 final_train_acc=0.094
+    G=   0: acc=0.0900  (chance 0.0625, 3x-chance no)  phi_margin=-0.31422
+    G=   8: acc=0.0750  (chance 0.0625, 3x-chance no)  phi_margin=-0.57913
+    G=  32: acc=0.0850  (chance 0.0625, 3x-chance no)  phi_margin=-0.59212
+    G= 128: acc=0.0450  (chance 0.0625, 3x-chance no)  phi_margin=-0.59092
+  [holo_off            ] curriculum done: final_train_gap=128 final_train_acc=0.062
+    G=   0: acc=0.1000  (chance 0.0625, 3x-chance no)  phi_margin=None
+    G=   8: acc=0.0850  (chance 0.0625, 3x-chance no)  phi_margin=None
+    G=  32: acc=0.0550  (chance 0.0625, 3x-chance no)  phi_margin=None
+    G= 128: acc=0.0650  (chance 0.0625, 3x-chance no)  phi_margin=None
+
+==============================================================================
+seed=1  n_pairs=2
+==============================================================================
+  [holo_carried        ] curriculum done: final_train_gap=2 final_train_acc=0.844
+    G=   0: acc=0.8300  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10216
+    G=   8: acc=0.7900  (chance 0.0625, 3x-chance YES)  phi_margin=-0.09564
+    G=  32: acc=0.8000  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10695
+    G= 128: acc=0.1750  (chance 0.0625, 3x-chance no)  phi_margin=-0.09418
+  [holo_zeroed_at_gap  ] curriculum done: final_train_gap=2 final_train_acc=0.844
+    G=   0: acc=0.0500  (chance 0.0625, 3x-chance no)  phi_margin=-0.10216
+    G=   8: acc=0.0350  (chance 0.0625, 3x-chance no)  phi_margin=-0.09564
+    G=  32: acc=0.0400  (chance 0.0625, 3x-chance no)  phi_margin=-0.10695
+    G= 128: acc=0.0450  (chance 0.0625, 3x-chance no)  phi_margin=-0.09418
+  [holo_off            ] curriculum done: final_train_gap=2 final_train_acc=0.531
+    G=   0: acc=0.5400  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=   8: acc=0.5300  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=  32: acc=0.5000  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G= 128: acc=0.5450  (chance 0.0625, 3x-chance YES)  phi_margin=None
+
+==============================================================================
+seed=1  n_pairs=4
+==============================================================================
+  [holo_carried        ] curriculum done: final_train_gap=2 final_train_acc=0.406
+    G=   0: acc=0.4150  (chance 0.0625, 3x-chance YES)  phi_margin=-0.11122
+    G=   8: acc=0.2650  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10484
+    G=  32: acc=0.3500  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10897
+    G= 128: acc=0.2750  (chance 0.0625, 3x-chance YES)  phi_margin=-0.10987
+  [holo_zeroed_at_gap  ] curriculum done: final_train_gap=2 final_train_acc=0.406
+    G=   0: acc=0.0450  (chance 0.0625, 3x-chance no)  phi_margin=-0.11122
+    G=   8: acc=0.0650  (chance 0.0625, 3x-chance no)  phi_margin=-0.10484
+    G=  32: acc=0.0650  (chance 0.0625, 3x-chance no)  phi_margin=-0.10897
+    G= 128: acc=0.0550  (chance 0.0625, 3x-chance no)  phi_margin=-0.10987
+  [holo_off            ] curriculum done: final_train_gap=2 final_train_acc=0.344
+    G=   0: acc=0.3450  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=   8: acc=0.2900  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G=  32: acc=0.3150  (chance 0.0625, 3x-chance YES)  phi_margin=None
+    G= 128: acc=0.3350  (chance 0.0625, 3x-chance YES)  phi_margin=None
+
+==============================================================================
+VERDICT
+  P=1 G=0: carried=0.080 zeroed=0.090 off=0.100 chance=0.062 -> no
+  P=1 G=8: carried=0.075 zeroed=0.075 off=0.085 chance=0.062 -> no
+  P=1 G=32: carried=0.085 zeroed=0.085 off=0.055 chance=0.062 -> no
+  P=1 G=128: carried=0.045 zeroed=0.045 off=0.065 chance=0.062 -> no
+  P=2 G=0: carried=0.830 zeroed=0.050 off=0.540 chance=0.062 -> IGNITED
+  P=2 G=8: carried=0.790 zeroed=0.035 off=0.530 chance=0.062 -> IGNITED
+  P=2 G=32: carried=0.800 zeroed=0.040 off=0.500 chance=0.062 -> IGNITED
+  P=2 G=128: carried=0.175 zeroed=0.045 off=0.545 chance=0.062 -> no
+  P=4 G=0: carried=0.415 zeroed=0.045 off=0.345 chance=0.062 -> IGNITED
+  P=4 G=8: carried=0.265 zeroed=0.065 off=0.290 chance=0.062 -> IGNITED
+  P=4 G=32: carried=0.350 zeroed=0.065 off=0.315 chance=0.062 -> IGNITED
+  P=4 G=128: carried=0.275 zeroed=0.055 off=0.335 chance=0.062 -> IGNITED
+>>> CARRIED HOLOGRAPHIC RECALL SURVIVES THE STREAMING GAP for at least one (P,G) cell — carried beats zeroed-at-gap null and clears 3x chance
+
+→ results/holo_stream_recall_v2.json  (1133.0s)

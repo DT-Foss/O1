@@ -58,6 +58,34 @@ P=1 carried returns to ≥0.9 at every G including 128; P=2/P=4 match or exceed
 v1; the zeroed null stays at chance; holo_on vs holo_off stays tied (the
 P11 falsification is a regime property, not a bug — it should replicate).
 
+## v2 (patience curriculum) — the registered prediction is FALSIFIED
+
+*Added ~00:10 after results/holo_stream_recall_v2.json landed.*
+
+v2 predicted P=1 carried ≥ 0.9 at every G with the patience curriculum.
+Measured: P=1 collapses again (carried 0.045–0.085 ≈ chance; final_train_acc
+0.06–0.09) — **even though** the curriculum this time consolidated before
+growing (Gcur reached 26/40 via sustained >0.9 phases, so mastery at
+single-chunk gaps demonstrably happened first). The sharpened diagnosis: the
+failure is not growth *speed* but **structural gradient blindness** — past
+the chunk boundary the query loss cannot reach the write phase at all
+(truncated BPTT), and continuing to train there is ~1900 iterations of
+full-momentum Adam on a signal that cannot teach writing: it catastrophically
+forgets the consolidated behavior. Patience only delays the collapse.
+(P=4 cells are bit-identical v1↔v2 — patience never triggered there — an
+incidental determinism check that both runs share one trajectory until the
+first curriculum decision diverges.)
+
+**v3, launched tonight: train-short-eval-long.** Cap the *training* gap at
+the single-chunk maximum (chunk − 2P − 2); large gaps become pure eval
+extrapolation. This is the repo's core recipe applied to the gap axis (train
+T=32 → eval 131k). v1's ignited cells already demonstrate it implicitly:
+P=2/P=4 trained at G=2 and held flat to G=128. **v3 prediction, registered
+before the run:** P=1 carried ≥ 0.9 at every eval G including 128; P=2/P=4 at
+or above their v1 levels; zeroed null at chance throughout; holo_on vs
+holo_off still tied (the P11 falsification is a regime property and should
+replicate). Output: results/holo_stream_recall_v3.json.
+
 ## Next attacks (Phase B+)
 
 1. **Compositional-binding test** — where the phase must pay rent: P_max=256

@@ -510,11 +510,21 @@ def run(args):
                 model = _build_lm(vocab_size, mask_idx, use_phase=arm_cfg["use_phase"],
                                   d_model=args.d_model, n_layers=args.n_layers,
                                   n_heads=args.n_heads, d_head=args.d_head)
-                Gmax = max(Gs) if Gs else 0
+                Gmax_eval = max(Gs) if Gs else 0
+                # TRAIN-SHORT-EVAL-LONG (v3): cap the TRAINING gap at the single-chunk
+                # maximum. Beyond one chunk the query loss is structurally blind to the
+                # write phase (truncated BPTT detaches the KV block), so training there
+                # teaches nothing and catastrophically forgets what consolidated (v1's
+                # instant-growth collapse AND v2's patience collapse — see
+                # analysis/HOLO_STREAM_VERDICT.md). Large gaps are pure EVAL
+                # extrapolation — the repo's core recipe (train T=32, eval 131k).
+                cap = args.train_gap_cap if args.train_gap_cap > 0 else args.chunk - 2 * P - 2
+                Gmax_train = min(Gmax_eval, max(2, cap))
                 curr = train_gap_curriculum(
-                    model, P, Gmax, args.iters, args.lr, seed, args.batch, args.chunk,
+                    model, P, Gmax_train, args.iters, args.lr, seed, args.batch, args.chunk,
                     P_max, V_max, F, log_every=args.log_every, g_start=args.g_start,
                     patience=args.patience)
+                curr["train_gap_cap"] = Gmax_train
                 key = f"seed{seed}_P{P}_{arm_name}"
                 results["curriculum"][key] = curr
                 print(f"  [{arm_name:20s}] curriculum done: final_train_gap={curr['final_train_gap']} "
@@ -591,6 +601,8 @@ def main():
     ap.add_argument("--g-start", type=int, default=2, help="curriculum starting gap")
     ap.add_argument("--patience", type=int, default=25,
                     help="consecutive acc>0.9 iters required before the curriculum grows the gap")
+    ap.add_argument("--train-gap-cap", type=int, default=0,
+                    help="max TRAINING gap (0 = auto: single-chunk, chunk-2P-2); larger gaps are eval-only extrapolation")
     ap.add_argument("--log-every", type=int, default=0)
     ap.add_argument("--pairs", default="1", help="comma list of n_pairs P to sweep")
     ap.add_argument("--gaps", default="0,2,4,8", help="comma list of gap lengths G to sweep")
