@@ -1,0 +1,1237 @@
+{
+  "selective_d128_T32": {
+    "final_ppl": 166.81120484578076,
+    "best_ppl": 161.4160633538663,
+    "best_epoch": 4,
+    "epoch_ppls": [
+      205.323,
+      178.909,
+      168.06,
+      161.416,
+      162.637,
+      166.811
+    ],
+    "epoch_accs": [
+      0.2241,
+      0.2348,
+      0.2428,
+      0.2465,
+      0.2498,
+      0.2479
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.0916,
+        "state_sat_low": 0.826,
+        "state_sat_high": 0.0495,
+        "sat_profile": {
+          "first": 0.0435,
+          "q1": 0.0505,
+          "mid": 0.0497,
+          "last": 0.0496
+        }
+      },
+      {
+        "state_mean": 0.0768,
+        "state_sat_low": 0.8713,
+        "state_sat_high": 0.0498,
+        "sat_profile": {
+          "first": 0.0437,
+          "q1": 0.05,
+          "mid": 0.0509,
+          "last": 0.0505
+        }
+      },
+      {
+        "state_mean": 0.0822,
+        "state_sat_low": 0.8677,
+        "state_sat_high": 0.0557,
+        "sat_profile": {
+          "first": 0.0469,
+          "q1": 0.0554,
+          "mid": 0.057,
+          "last": 0.0574
+        }
+      },
+      {
+        "state_mean": 0.0788,
+        "state_sat_low": 0.8798,
+        "state_sat_high": 0.0548,
+        "sat_profile": {
+          "first": 0.0443,
+          "q1": 0.0543,
+          "mid": 0.0564,
+          "last": 0.057
+        }
+      },
+      {
+        "state_mean": 0.0837,
+        "state_sat_low": 0.8769,
+        "state_sat_high": 0.0613,
+        "sat_profile": {
+          "first": 0.0489,
+          "q1": 0.0608,
+          "mid": 0.062,
+          "last": 0.0636
+        }
+      },
+      {
+        "state_mean": 0.0846,
+        "state_sat_low": 0.874,
+        "state_sat_high": 0.0611,
+        "sat_profile": {
+          "first": 0.0479,
+          "q1": 0.061,
+          "mid": 0.0627,
+          "last": 0.0631
+        }
+      }
+    ],
+    "time_s": 290.0,
+    "params_M": 1.714
+  },
+  "pure_d128_T32": {
+    "final_ppl": 229.31680818278622,
+    "best_ppl": 225.35634638204192,
+    "best_epoch": 4,
+    "epoch_ppls": [
+      279.788,
+      248.579,
+      228.751,
+      225.356,
+      226.637,
+      229.317
+    ],
+    "epoch_accs": [
+      0.2018,
+      0.2099,
+      0.2169,
+      0.2175,
+      0.2188,
+      0.2193
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.1766,
+        "state_sat_low": 0.758,
+        "state_sat_high": 0.1396,
+        "sat_profile": {
+          "first": 0.0641,
+          "q1": 0.1226,
+          "mid": 0.1469,
+          "last": 0.1736
+        }
+      },
+      {
+        "state_mean": 0.1539,
+        "state_sat_low": 0.8229,
+        "state_sat_high": 0.1306,
+        "sat_profile": {
+          "first": 0.0527,
+          "q1": 0.099,
+          "mid": 0.1332,
+          "last": 0.2026
+        }
+      },
+      {
+        "state_mean": 0.1456,
+        "state_sat_low": 0.8338,
+        "state_sat_high": 0.1243,
+        "sat_profile": {
+          "first": 0.0466,
+          "q1": 0.0876,
+          "mid": 0.1244,
+          "last": 0.2129
+        }
+      },
+      {
+        "state_mean": 0.14,
+        "state_sat_low": 0.8405,
+        "state_sat_high": 0.1192,
+        "sat_profile": {
+          "first": 0.0399,
+          "q1": 0.0721,
+          "mid": 0.1165,
+          "last": 0.2234
+        }
+      },
+      {
+        "state_mean": 0.1374,
+        "state_sat_low": 0.8456,
+        "state_sat_high": 0.1192,
+        "sat_profile": {
+          "first": 0.0388,
+          "q1": 0.0777,
+          "mid": 0.1185,
+          "last": 0.2113
+        }
+      },
+      {
+        "state_mean": 0.1404,
+        "state_sat_low": 0.8452,
+        "state_sat_high": 0.1221,
+        "sat_profile": {
+          "first": 0.035,
+          "q1": 0.0779,
+          "mid": 0.1176,
+          "last": 0.2321
+        }
+      }
+    ],
+    "time_s": 277.5,
+    "params_M": 1.648
+  },
+  "selective_d128_T128": {
+    "final_ppl": 167.60833437265546,
+    "best_ppl": 161.92318616438115,
+    "best_epoch": 3,
+    "epoch_ppls": [
+      201.431,
+      168.015,
+      161.923,
+      163.924,
+      167.608
+    ],
+    "epoch_accs": [
+      0.227,
+      0.2466,
+      0.2467,
+      0.2506,
+      0.2535
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.1473,
+        "state_sat_low": 0.5271,
+        "state_sat_high": 0.0318,
+        "sat_profile": {
+          "first": 0.0292,
+          "q1": 0.0326,
+          "mid": 0.0329,
+          "last": 0.0324
+        }
+      },
+      {
+        "state_mean": 0.1093,
+        "state_sat_low": 0.6938,
+        "state_sat_high": 0.0323,
+        "sat_profile": {
+          "first": 0.0324,
+          "q1": 0.0329,
+          "mid": 0.0319,
+          "last": 0.0309
+        }
+      },
+      {
+        "state_mean": 0.1007,
+        "state_sat_low": 0.7503,
+        "state_sat_high": 0.0364,
+        "sat_profile": {
+          "first": 0.0335,
+          "q1": 0.0365,
+          "mid": 0.0347,
+          "last": 0.0361
+        }
+      },
+      {
+        "state_mean": 0.096,
+        "state_sat_low": 0.7755,
+        "state_sat_high": 0.0385,
+        "sat_profile": {
+          "first": 0.0325,
+          "q1": 0.0401,
+          "mid": 0.0374,
+          "last": 0.0375
+        }
+      },
+      {
+        "state_mean": 0.0959,
+        "state_sat_low": 0.785,
+        "state_sat_high": 0.0426,
+        "sat_profile": {
+          "first": 0.0359,
+          "q1": 0.0434,
+          "mid": 0.0424,
+          "last": 0.0425
+        }
+      }
+    ],
+    "time_s": 183.3,
+    "params_M": 1.714
+  },
+  "pure_d128_T128": {
+    "final_ppl": 252.22486761173573,
+    "best_ppl": 241.39376251376905,
+    "best_epoch": 3,
+    "epoch_ppls": [
+      265.918,
+      244.37,
+      241.394,
+      245.184,
+      252.225
+    ],
+    "epoch_accs": [
+      0.2105,
+      0.2206,
+      0.2232,
+      0.221,
+      0.2205
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.6336,
+        "state_sat_low": 0.1963,
+        "state_sat_high": 0.5025,
+        "sat_profile": {
+          "first": 0.047,
+          "q1": 0.4491,
+          "mid": 0.5253,
+          "last": 0.6295
+        }
+      },
+      {
+        "state_mean": 0.341,
+        "state_sat_low": 0.5099,
+        "state_sat_high": 0.2908,
+        "sat_profile": {
+          "first": 0.0764,
+          "q1": 0.2902,
+          "mid": 0.3025,
+          "last": 0.3125
+        }
+      },
+      {
+        "state_mean": 0.259,
+        "state_sat_low": 0.6033,
+        "state_sat_high": 0.2109,
+        "sat_profile": {
+          "first": 0.0507,
+          "q1": 0.2067,
+          "mid": 0.2184,
+          "last": 0.2354
+        }
+      },
+      {
+        "state_mean": 0.2143,
+        "state_sat_low": 0.7246,
+        "state_sat_high": 0.1801,
+        "sat_profile": {
+          "first": 0.0603,
+          "q1": 0.1718,
+          "mid": 0.1857,
+          "last": 0.2057
+        }
+      },
+      {
+        "state_mean": 0.2171,
+        "state_sat_low": 0.7116,
+        "state_sat_high": 0.1806,
+        "sat_profile": {
+          "first": 0.0577,
+          "q1": 0.1694,
+          "mid": 0.1858,
+          "last": 0.2118
+        }
+      }
+    ],
+    "time_s": 178.3,
+    "params_M": 1.648
+  },
+  "selective_d256_T32": {
+    "final_ppl": 158.8819654295314,
+    "best_ppl": 158.8819654295314,
+    "best_epoch": 7,
+    "epoch_ppls": [
+      218.616,
+      187.918,
+      177.654,
+      169.69,
+      162.817,
+      160.904,
+      159.356,
+      158.882
+    ],
+    "epoch_accs": [
+      0.2175,
+      0.2308,
+      0.2324,
+      0.2384,
+      0.2397,
+      0.2476,
+      0.2486,
+      0.2504
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.0886,
+        "state_sat_low": 0.8816,
+        "state_sat_high": 0.0691,
+        "sat_profile": {
+          "first": 0.0591,
+          "q1": 0.0696,
+          "mid": 0.0697,
+          "last": 0.0704
+        }
+      },
+      {
+        "state_mean": 0.0798,
+        "state_sat_low": 0.8981,
+        "state_sat_high": 0.0647,
+        "sat_profile": {
+          "first": 0.055,
+          "q1": 0.064,
+          "mid": 0.0649,
+          "last": 0.0661
+        }
+      },
+      {
+        "state_mean": 0.0851,
+        "state_sat_low": 0.8897,
+        "state_sat_high": 0.0688,
+        "sat_profile": {
+          "first": 0.0558,
+          "q1": 0.0682,
+          "mid": 0.0695,
+          "last": 0.0708
+        }
+      },
+      {
+        "state_mean": 0.0849,
+        "state_sat_low": 0.8917,
+        "state_sat_high": 0.0695,
+        "sat_profile": {
+          "first": 0.0582,
+          "q1": 0.069,
+          "mid": 0.0701,
+          "last": 0.0711
+        }
+      },
+      {
+        "state_mean": 0.084,
+        "state_sat_low": 0.8921,
+        "state_sat_high": 0.0684,
+        "sat_profile": {
+          "first": 0.055,
+          "q1": 0.0681,
+          "mid": 0.0696,
+          "last": 0.0699
+        }
+      },
+      {
+        "state_mean": 0.0845,
+        "state_sat_low": 0.8916,
+        "state_sat_high": 0.0689,
+        "sat_profile": {
+          "first": 0.0566,
+          "q1": 0.0693,
+          "mid": 0.0698,
+          "last": 0.0696
+        }
+      },
+      {
+        "state_mean": 0.081,
+        "state_sat_low": 0.8983,
+        "state_sat_high": 0.0664,
+        "sat_profile": {
+          "first": 0.0541,
+          "q1": 0.0671,
+          "mid": 0.0671,
+          "last": 0.0662
+        }
+      },
+      {
+        "state_mean": 0.0829,
+        "state_sat_low": 0.8935,
+        "state_sat_high": 0.0678,
+        "sat_profile": {
+          "first": 0.0561,
+          "q1": 0.0683,
+          "mid": 0.0677,
+          "last": 0.0678
+        }
+      }
+    ],
+    "time_s": 446.1,
+    "params_M": 4.274
+  },
+  "pure_d256_T32": {
+    "final_ppl": 223.71870317018175,
+    "best_ppl": 223.71870317018175,
+    "best_epoch": 7,
+    "epoch_ppls": [
+      286.972,
+      270.222,
+      257.959,
+      247.584,
+      235.866,
+      228.18,
+      224.216,
+      223.719
+    ],
+    "epoch_accs": [
+      0.1968,
+      0.2033,
+      0.2087,
+      0.2109,
+      0.214,
+      0.215,
+      0.217,
+      0.2186
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.1991,
+        "state_sat_low": 0.7903,
+        "state_sat_high": 0.1854,
+        "sat_profile": {
+          "first": 0.111,
+          "q1": 0.181,
+          "mid": 0.193,
+          "last": 0.2046
+        }
+      },
+      {
+        "state_mean": 0.1886,
+        "state_sat_low": 0.802,
+        "state_sat_high": 0.1771,
+        "sat_profile": {
+          "first": 0.1044,
+          "q1": 0.1685,
+          "mid": 0.1853,
+          "last": 0.2022
+        }
+      },
+      {
+        "state_mean": 0.1563,
+        "state_sat_low": 0.844,
+        "state_sat_high": 0.1505,
+        "sat_profile": {
+          "first": 0.1067,
+          "q1": 0.1431,
+          "mid": 0.1556,
+          "last": 0.1676
+        }
+      },
+      {
+        "state_mean": 0.2516,
+        "state_sat_low": 0.7411,
+        "state_sat_high": 0.2398,
+        "sat_profile": {
+          "first": 0.129,
+          "q1": 0.1887,
+          "mid": 0.2426,
+          "last": 0.3554
+        }
+      },
+      {
+        "state_mean": 0.2613,
+        "state_sat_low": 0.7336,
+        "state_sat_high": 0.2512,
+        "sat_profile": {
+          "first": 0.1245,
+          "q1": 0.1944,
+          "mid": 0.2544,
+          "last": 0.3949
+        }
+      },
+      {
+        "state_mean": 0.2652,
+        "state_sat_low": 0.7307,
+        "state_sat_high": 0.2561,
+        "sat_profile": {
+          "first": 0.1348,
+          "q1": 0.1845,
+          "mid": 0.2416,
+          "last": 0.4333
+        }
+      },
+      {
+        "state_mean": 0.3004,
+        "state_sat_low": 0.6953,
+        "state_sat_high": 0.2911,
+        "sat_profile": {
+          "first": 0.1419,
+          "q1": 0.1925,
+          "mid": 0.2664,
+          "last": 0.509
+        }
+      },
+      {
+        "state_mean": 0.3199,
+        "state_sat_low": 0.6765,
+        "state_sat_high": 0.3116,
+        "sat_profile": {
+          "first": 0.1465,
+          "q1": 0.211,
+          "mid": 0.306,
+          "last": 0.5212
+        }
+      }
+    ],
+    "time_s": 421.3,
+    "params_M": 4.012
+  },
+  "selective_d256_T128": {
+    "final_ppl": 166.87363462544835,
+    "best_ppl": 158.16208070108192,
+    "best_epoch": 3,
+    "epoch_ppls": [
+      190.932,
+      161.446,
+      158.162,
+      162.113,
+      166.874
+    ],
+    "epoch_accs": [
+      0.2351,
+      0.2495,
+      0.2501,
+      0.2479,
+      0.2494
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.097,
+        "state_sat_low": 0.7772,
+        "state_sat_high": 0.044,
+        "sat_profile": {
+          "first": 0.0362,
+          "q1": 0.0441,
+          "mid": 0.0441,
+          "last": 0.0447
+        }
+      },
+      {
+        "state_mean": 0.0883,
+        "state_sat_low": 0.8349,
+        "state_sat_high": 0.0514,
+        "sat_profile": {
+          "first": 0.0441,
+          "q1": 0.0505,
+          "mid": 0.0509,
+          "last": 0.0538
+        }
+      },
+      {
+        "state_mean": 0.0866,
+        "state_sat_low": 0.8502,
+        "state_sat_high": 0.0545,
+        "sat_profile": {
+          "first": 0.0452,
+          "q1": 0.0553,
+          "mid": 0.0534,
+          "last": 0.0554
+        }
+      },
+      {
+        "state_mean": 0.0868,
+        "state_sat_low": 0.8583,
+        "state_sat_high": 0.0579,
+        "sat_profile": {
+          "first": 0.0442,
+          "q1": 0.0584,
+          "mid": 0.0575,
+          "last": 0.0585
+        }
+      },
+      {
+        "state_mean": 0.0846,
+        "state_sat_low": 0.8653,
+        "state_sat_high": 0.0579,
+        "sat_profile": {
+          "first": 0.0439,
+          "q1": 0.059,
+          "mid": 0.0575,
+          "last": 0.0593
+        }
+      }
+    ],
+    "time_s": 356.7,
+    "params_M": 4.274
+  },
+  "pure_d256_T128": {
+    "final_ppl": 241.2921109529247,
+    "best_ppl": 237.1984077849368,
+    "best_epoch": 6,
+    "epoch_ppls": [
+      298.537,
+      280.725,
+      258.581,
+      247.421,
+      240.194,
+      237.198,
+      238.155,
+      241.292
+    ],
+    "epoch_accs": [
+      0.1944,
+      0.2055,
+      0.2126,
+      0.2147,
+      0.2185,
+      0.2194,
+      0.2198,
+      0.2201
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.4133,
+        "state_sat_low": 0.495,
+        "state_sat_high": 0.3773,
+        "sat_profile": {
+          "first": 0.1136,
+          "q1": 0.3767,
+          "mid": 0.3887,
+          "last": 0.394
+        }
+      },
+      {
+        "state_mean": 0.346,
+        "state_sat_low": 0.6102,
+        "state_sat_high": 0.3179,
+        "sat_profile": {
+          "first": 0.1388,
+          "q1": 0.3123,
+          "mid": 0.328,
+          "last": 0.3404
+        }
+      },
+      {
+        "state_mean": 0.2658,
+        "state_sat_low": 0.7126,
+        "state_sat_high": 0.2412,
+        "sat_profile": {
+          "first": 0.1201,
+          "q1": 0.229,
+          "mid": 0.2474,
+          "last": 0.272
+        }
+      },
+      {
+        "state_mean": 0.2123,
+        "state_sat_low": 0.7774,
+        "state_sat_high": 0.1945,
+        "sat_profile": {
+          "first": 0.1144,
+          "q1": 0.181,
+          "mid": 0.1991,
+          "last": 0.2226
+        }
+      },
+      {
+        "state_mean": 0.1941,
+        "state_sat_low": 0.799,
+        "state_sat_high": 0.1793,
+        "sat_profile": {
+          "first": 0.1152,
+          "q1": 0.1669,
+          "mid": 0.1826,
+          "last": 0.2061
+        }
+      },
+      {
+        "state_mean": 0.1929,
+        "state_sat_low": 0.8003,
+        "state_sat_high": 0.1777,
+        "sat_profile": {
+          "first": 0.1024,
+          "q1": 0.1642,
+          "mid": 0.1823,
+          "last": 0.2076
+        }
+      },
+      {
+        "state_mean": 0.193,
+        "state_sat_low": 0.8007,
+        "state_sat_high": 0.1774,
+        "sat_profile": {
+          "first": 0.0877,
+          "q1": 0.1631,
+          "mid": 0.183,
+          "last": 0.2107
+        }
+      },
+      {
+        "state_mean": 0.1748,
+        "state_sat_low": 0.821,
+        "state_sat_high": 0.1607,
+        "sat_profile": {
+          "first": 0.082,
+          "q1": 0.1461,
+          "mid": 0.1652,
+          "last": 0.1929
+        }
+      }
+    ],
+    "time_s": 440.3,
+    "params_M": 4.012
+  },
+  "selective_d512_T32": {
+    "final_ppl": 343.27313431004285,
+    "best_ppl": 342.07783022288567,
+    "best_epoch": 6,
+    "epoch_ppls": [
+      351.076,
+      349.458,
+      349.054,
+      343.394,
+      344.047,
+      342.078,
+      343.313,
+      343.273
+    ],
+    "epoch_accs": [
+      0.1643,
+      0.1643,
+      0.1643,
+      0.1643,
+      0.1643,
+      0.1643,
+      0.1643,
+      0.1643
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.5127,
+        "state_sat_low": 0.4268,
+        "state_sat_high": 0.4658,
+        "sat_profile": {
+          "first": 0.34,
+          "q1": 0.4613,
+          "mid": 0.4766,
+          "last": 0.478
+        }
+      },
+      {
+        "state_mean": 0.5129,
+        "state_sat_low": 0.4268,
+        "state_sat_high": 0.4676,
+        "sat_profile": {
+          "first": 0.341,
+          "q1": 0.4638,
+          "mid": 0.478,
+          "last": 0.4797
+        }
+      },
+      {
+        "state_mean": 0.5125,
+        "state_sat_low": 0.431,
+        "state_sat_high": 0.4677,
+        "sat_profile": {
+          "first": 0.3408,
+          "q1": 0.4635,
+          "mid": 0.4778,
+          "last": 0.4795
+        }
+      },
+      {
+        "state_mean": 0.5113,
+        "state_sat_low": 0.4336,
+        "state_sat_high": 0.4663,
+        "sat_profile": {
+          "first": 0.3397,
+          "q1": 0.4624,
+          "mid": 0.4766,
+          "last": 0.4785
+        }
+      },
+      {
+        "state_mean": 0.5103,
+        "state_sat_low": 0.4338,
+        "state_sat_high": 0.4646,
+        "sat_profile": {
+          "first": 0.3386,
+          "q1": 0.4584,
+          "mid": 0.4745,
+          "last": 0.4784
+        }
+      },
+      {
+        "state_mean": 0.5106,
+        "state_sat_low": 0.4321,
+        "state_sat_high": 0.4647,
+        "sat_profile": {
+          "first": 0.3383,
+          "q1": 0.4593,
+          "mid": 0.4754,
+          "last": 0.4774
+        }
+      },
+      {
+        "state_mean": 0.5128,
+        "state_sat_low": 0.4321,
+        "state_sat_high": 0.4669,
+        "sat_profile": {
+          "first": 0.3363,
+          "q1": 0.4614,
+          "mid": 0.4785,
+          "last": 0.4804
+        }
+      },
+      {
+        "state_mean": 0.5154,
+        "state_sat_low": 0.4286,
+        "state_sat_high": 0.4697,
+        "sat_profile": {
+          "first": 0.3365,
+          "q1": 0.4664,
+          "mid": 0.4807,
+          "last": 0.4823
+        }
+      }
+    ],
+    "time_s": 931.0,
+    "params_M": 11.951
+  },
+  "pure_d512_T32": {
+    "final_ppl": 280.31126286346114,
+    "best_ppl": 280.31126286346114,
+    "best_epoch": 8,
+    "epoch_ppls": [
+      353.69,
+      367.02,
+      347.609,
+      297.001,
+      287.888,
+      285.06,
+      287.15,
+      280.311
+    ],
+    "epoch_accs": [
+      0.1643,
+      0.1643,
+      0.1643,
+      0.1941,
+      0.1965,
+      0.1968,
+      0.1982,
+      0.197
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.5593,
+        "state_sat_low": 0.3324,
+        "state_sat_high": 0.5091,
+        "sat_profile": {
+          "first": 0.2922,
+          "q1": 0.5114,
+          "mid": 0.525,
+          "last": 0.5369
+        }
+      },
+      {
+        "state_mean": 0.325,
+        "state_sat_low": 0.6239,
+        "state_sat_high": 0.2751,
+        "sat_profile": {
+          "first": 0.1103,
+          "q1": 0.2231,
+          "mid": 0.2827,
+          "last": 0.3772
+        }
+      },
+      {
+        "state_mean": 0.2879,
+        "state_sat_low": 0.712,
+        "state_sat_high": 0.2829,
+        "sat_profile": {
+          "first": 0.2464,
+          "q1": 0.2792,
+          "mid": 0.2867,
+          "last": 0.293
+        }
+      },
+      {
+        "state_mean": 0.3242,
+        "state_sat_low": 0.6758,
+        "state_sat_high": 0.3192,
+        "sat_profile": {
+          "first": 0.2289,
+          "q1": 0.3144,
+          "mid": 0.3291,
+          "last": 0.3407
+        }
+      },
+      {
+        "state_mean": 0.3245,
+        "state_sat_low": 0.675,
+        "state_sat_high": 0.3191,
+        "sat_profile": {
+          "first": 0.2308,
+          "q1": 0.3103,
+          "mid": 0.329,
+          "last": 0.3458
+        }
+      },
+      {
+        "state_mean": 0.3415,
+        "state_sat_low": 0.6582,
+        "state_sat_high": 0.3364,
+        "sat_profile": {
+          "first": 0.2408,
+          "q1": 0.3282,
+          "mid": 0.3454,
+          "last": 0.3656
+        }
+      },
+      {
+        "state_mean": 0.3543,
+        "state_sat_low": 0.6449,
+        "state_sat_high": 0.3488,
+        "sat_profile": {
+          "first": 0.2421,
+          "q1": 0.334,
+          "mid": 0.3598,
+          "last": 0.3896
+        }
+      },
+      {
+        "state_mean": 0.3407,
+        "state_sat_low": 0.659,
+        "state_sat_high": 0.3355,
+        "sat_profile": {
+          "first": 0.233,
+          "q1": 0.3189,
+          "mid": 0.3461,
+          "last": 0.3781
+        }
+      }
+    ],
+    "time_s": 723.0,
+    "params_M": 10.903
+  },
+  "selective_d512_T128": {
+    "final_ppl": 181.76838609040448,
+    "best_ppl": 181.76838609040448,
+    "best_epoch": 8,
+    "epoch_ppls": [
+      308.934,
+      243.643,
+      217.288,
+      205.932,
+      194.0,
+      190.56,
+      186.944,
+      181.768
+    ],
+    "epoch_accs": [
+      0.1761,
+      0.2029,
+      0.2134,
+      0.2177,
+      0.2227,
+      0.2239,
+      0.2281,
+      0.2298
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.3767,
+        "state_sat_low": 0.542,
+        "state_sat_high": 0.3186,
+        "sat_profile": {
+          "first": 0.2284,
+          "q1": 0.3173,
+          "mid": 0.3226,
+          "last": 0.3171
+        }
+      },
+      {
+        "state_mean": 0.3413,
+        "state_sat_low": 0.6127,
+        "state_sat_high": 0.3043,
+        "sat_profile": {
+          "first": 0.2199,
+          "q1": 0.3071,
+          "mid": 0.3067,
+          "last": 0.308
+        }
+      },
+      {
+        "state_mean": 0.3273,
+        "state_sat_low": 0.6389,
+        "state_sat_high": 0.3009,
+        "sat_profile": {
+          "first": 0.2206,
+          "q1": 0.3009,
+          "mid": 0.3041,
+          "last": 0.3065
+        }
+      },
+      {
+        "state_mean": 0.3193,
+        "state_sat_low": 0.6485,
+        "state_sat_high": 0.2945,
+        "sat_profile": {
+          "first": 0.2289,
+          "q1": 0.2945,
+          "mid": 0.2951,
+          "last": 0.2977
+        }
+      },
+      {
+        "state_mean": 0.311,
+        "state_sat_low": 0.6583,
+        "state_sat_high": 0.2868,
+        "sat_profile": {
+          "first": 0.2162,
+          "q1": 0.2871,
+          "mid": 0.2878,
+          "last": 0.2908
+        }
+      },
+      {
+        "state_mean": 0.3052,
+        "state_sat_low": 0.6639,
+        "state_sat_high": 0.2807,
+        "sat_profile": {
+          "first": 0.2124,
+          "q1": 0.2813,
+          "mid": 0.2826,
+          "last": 0.2846
+        }
+      },
+      {
+        "state_mean": 0.2992,
+        "state_sat_low": 0.6704,
+        "state_sat_high": 0.2756,
+        "sat_profile": {
+          "first": 0.206,
+          "q1": 0.2752,
+          "mid": 0.2768,
+          "last": 0.2801
+        }
+      },
+      {
+        "state_mean": 0.2935,
+        "state_sat_low": 0.6783,
+        "state_sat_high": 0.2711,
+        "sat_profile": {
+          "first": 0.2017,
+          "q1": 0.2718,
+          "mid": 0.2728,
+          "last": 0.2755
+        }
+      }
+    ],
+    "time_s": 1239.7,
+    "params_M": 11.951
+  },
+  "pure_d512_T128": {
+    "final_ppl": 347.79777179416914,
+    "best_ppl": 343.9709320109316,
+    "best_epoch": 7,
+    "epoch_ppls": [
+      354.782,
+      349.569,
+      347.645,
+      347.634,
+      346.591,
+      344.959,
+      343.971,
+      347.798
+    ],
+    "epoch_accs": [
+      0.1611,
+      0.1611,
+      0.1611,
+      0.1611,
+      0.1611,
+      0.1611,
+      0.1611,
+      0.1611
+    ],
+    "gate_trace": [
+      {
+        "state_mean": 0.7782,
+        "state_sat_low": 0.078,
+        "state_sat_high": 0.6864,
+        "sat_profile": {
+          "first": 0.3378,
+          "q1": 0.6728,
+          "mid": 0.6991,
+          "last": 0.7387
+        }
+      },
+      {
+        "state_mean": 0.7589,
+        "state_sat_low": 0.1131,
+        "state_sat_high": 0.7101,
+        "sat_profile": {
+          "first": 0.1948,
+          "q1": 0.728,
+          "mid": 0.7426,
+          "last": 0.748
+        }
+      },
+      {
+        "state_mean": 0.565,
+        "state_sat_low": 0.4356,
+        "state_sat_high": 0.5601,
+        "sat_profile": {
+          "first": 0.4757,
+          "q1": 0.5612,
+          "mid": 0.5615,
+          "last": 0.5615
+        }
+      },
+      {
+        "state_mean": 0.5601,
+        "state_sat_low": 0.4416,
+        "state_sat_high": 0.5556,
+        "sat_profile": {
+          "first": 0.4868,
+          "q1": 0.5566,
+          "mid": 0.5566,
+          "last": 0.5566
+        }
+      },
+      {
+        "state_mean": 0.5553,
+        "state_sat_low": 0.4466,
+        "state_sat_high": 0.5507,
+        "sat_profile": {
+          "first": 0.4824,
+          "q1": 0.5517,
+          "mid": 0.5518,
+          "last": 0.5518
+        }
+      },
+      {
+        "state_mean": 0.555,
+        "state_sat_low": 0.448,
+        "state_sat_high": 0.5501,
+        "sat_profile": {
+          "first": 0.4804,
+          "q1": 0.5517,
+          "mid": 0.5518,
+          "last": 0.5518
+        }
+      },
+      {
+        "state_mean": 0.5528,
+        "state_sat_low": 0.4498,
+        "state_sat_high": 0.5478,
+        "sat_profile": {
+          "first": 0.4819,
+          "q1": 0.5481,
+          "mid": 0.5487,
+          "last": 0.5498
+        }
+      },
+      {
+        "state_mean": 0.5504,
+        "state_sat_low": 0.4516,
+        "state_sat_high": 0.5458,
+        "sat_profile": {
+          "first": 0.4788,
+          "q1": 0.5469,
+          "mid": 0.5469,
+          "last": 0.5469
+        }
+      }
+    ],
+    "time_s": 850.8,
+    "params_M": 10.903
+  }
+}

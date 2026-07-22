@@ -1,0 +1,20 @@
+==========================================================================
+ONSET Lever 1: Hopfield learned-β  steps=2500 seeds=[1, 7, 42] p=3.0 chance=0.0156
+==========================================================================
+
+--- seed 1 ---
+/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+      step 500/2500 | loss 0.0103
+      step 1000/2500 | loss 0.0001
+      step 1500/2500 | loss 0.0033
+      step 2000/2500 | loss 0.0001
+      step 2500/2500 | loss 0.0006
+  attn                     0.9985  (99.85%)
+      step 500/2500 | loss 4.1772
+      step 1000/2500 | loss 4.1637
+      step 1500/2500 | loss 4.1532
+      step 2000/2500 | loss 4.1630
+      step 2500/2500 | loss 4.1676
+  holo_off                 0.0137  (1.37%)
+      step 500/2500 | loss 4.1249

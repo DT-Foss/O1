@@ -105,6 +105,20 @@ CONNECTIVES: List[Tuple[str, str, str, str]] = [
     (r"\bcorrelates?\s+with\b", _FWD, "low", "correlates with"),
     (r"\bmay\s+lead\s+to\b", _FWD, "low", "may lead to"),
     (r"\bcan\s+cause\b", _FWD, "medium", "can cause"),
+    # --- relational / declarative connectives -------------------------------
+    # Not causal but the same trigger→mechanism→outcome shape: "A maps to B",
+    # "the best thing in X is Y", "A refers to B". These let the index carry
+    # plain facts (and explicit id↔id link chains) the same way it carries
+    # causal edges — so reason()/lookup answer declarative questions too, not
+    # only causal ones. The graph stays one substrate; this just widens what a
+    # measured connective is.
+    (r"\bmaps?\s+to\b", _FWD, "high", "maps to"),
+    (r"\bpoints?\s+to\b", _FWD, "high", "points to"),
+    (r"\brefers?\s+to\b", _FWD, "high", "refers to"),
+    (r"\bcorresponds?\s+to\b", _FWD, "high", "corresponds to"),
+    (r"\btranslates?\s+to\b", _FWD, "high", "translates to"),
+    (r"\bequals?\b", _FWD, "high", "equals"),
+    (r"\bis\s+associated\s+with\s+the\s+value\b", _FWD, "high", "is"),
 ]
 
 _COMPILED = [(re.compile(rx, re.I), d, c, m) for rx, d, c, m in CONNECTIVES]

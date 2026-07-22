@@ -1,0 +1,117 @@
+\begin{thebibliography}{10}
+
+\bibitem{arora2024zoology}
+Simran Arora, Sabri Eyuboglu, Aman Timalsina, Isys Johnson, Michael Poli, James Zou, Atri Rudra, and Christopher R{\'e}.
+\newblock Zoology: Measuring and improving recall in efficient language models.
+\newblock In {\em International Conference on Learning Representations (ICLR)}, 2024.
+\newblock arXiv:2312.04927; introduces the MQAR benchmark.
+
+\bibitem{beck2024xlstm}
+Maximilian Beck, Korbinian P{\"o}ppel, Markus Spanring, Andreas Auer, Oleksandra Prudnikova, Michael Kopp, G{\"u}nter Klambauer, Johannes Brandstetter, and Sepp Hochreiter.
+\newblock xlstm: Extended long short-term memory.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2024.
+\newblock arXiv:2405.04517.
+
+\bibitem{behrouz2025titans}
+Ali Behrouz, Peilin Zhong, and Vahab Mirrokni.
+\newblock Titans: Learning to memorize at test time.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2025.
+\newblock arXiv:2501.00663.
+
+\bibitem{dao2024ssd}
+Tri Dao and Albert Gu.
+\newblock Transformers are {SSM}s: Generalized models and efficient algorithms through structured state space duality.
+\newblock In {\em International Conference on Machine Learning (ICML)}, 2024.
+\newblock arXiv:2405.21060.
+
+\bibitem{de2024griffin}
+Soham De, Samuel~L. Smith, Anushan Fernando, Aleksandar Botev, et~al.
+\newblock Griffin: Mixing gated linear recurrences with local attention for efficient language models, 2024.
+\newblock arXiv:2402.19427.
+
+\bibitem{foss2026markov}
+David~Tom Foss.
+\newblock From markov chains to minkowski space: Lorentz invariance, quantum measurement, and gravitational analogs, 2026.
+\newblock Zenodo.
+
+\bibitem{foss2026gssm}
+David~Tom Foss.
+\newblock Geometric state space models: Bounded hyperbolic recurrence for language modeling, 2026.
+\newblock ResearchGate publication 407219530; the GSSM architecture paper.
+
+\bibitem{foss2026o1}
+David~Tom Foss.
+\newblock O1: A constant-memory living mind --- an o(1)-state stream coupled to a growing knowledge index, 2026.
+\newblock Public research disclosure (prior art). Builds on GSSM (github.com/DT-Foss/gssm).
+
+\bibitem{foss2026ginibre}
+David~Tom Foss.
+\newblock One constant rules all 2d spectra: Universal convergence to the ginibre kernel, 2026.
+\newblock Zenodo.
+
+\bibitem{gu2023mamba}
+Albert Gu and Tri Dao.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock {\em arXiv preprint arXiv:2312.00752}, 2023.
+\newblock Also in Conference on Language Modeling (COLM), 2024.
+
+\bibitem{gu2020hippo}
+Albert Gu, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
+\newblock {HiPPO}: Recurrent memory with optimal polynomial projections.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2020.
+\newblock arXiv:2008.07669.
+
+\bibitem{gu2022s4}
+Albert Gu, Karan Goel, and Christopher R{\'e}.
+\newblock Efficiently modeling long sequences with structured state spaces.
+\newblock In {\em International Conference on Learning Representations (ICLR)}, 2022.
+\newblock arXiv:2111.00396, 2021.
+
+\bibitem{katharopoulos2020linear}
+Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran{\c c}ois Fleuret.
+\newblock Transformers are {RNN}s: Fast autoregressive transformers with linear attention.
+\newblock In {\em International Conference on Machine Learning (ICML)}, 2020.
+\newblock arXiv:2006.16236.
+
+\bibitem{orvieto2023lru}
+Antonio Orvieto, Samuel~L. Smith, Albert Gu, Anushan Fernando, Caglar Gulcehre, and Razvan Pascanu.
+\newblock Resurrecting recurrent neural networks for long sequences.
+\newblock In {\em International Conference on Machine Learning (ICML)}, 2023.
+\newblock arXiv:2303.06349.
+
+\bibitem{peng2023rwkv}
+Bo~Peng, Eric Alcaide, Quentin Anthony, Alon Albalak, Samuel Arcadinho, Stella Biderman, et~al.
+\newblock Rwkv: Reinventing rnns for the transformer era.
+\newblock In {\em Findings of the Association for Computational Linguistics: EMNLP}, 2023.
+\newblock arXiv:2305.13048.
+
+\bibitem{plate1995holographic}
+Tony~A. Plate.
+\newblock Holographic reduced representations.
+\newblock {\em IEEE Transactions on Neural Networks}, 6(3):623--641, 1995.
+
+\bibitem{schlag2021fastweight}
+Imanol Schlag, Kazuki Irie, and J{\"u}rgen Schmidhuber.
+\newblock Linear transformers are secretly fast weight programmers.
+\newblock In {\em International Conference on Machine Learning (ICML)}, 2021.
+\newblock arXiv:2102.11174.
+
+\bibitem{smith2023s5}
+Jimmy~T.H. Smith, Andrew Warrington, and Scott~W. Linderman.
+\newblock Simplified state space layers for sequence modeling.
+\newblock In {\em International Conference on Learning Representations (ICLR)}, 2023.
+\newblock arXiv:2208.04933, 2022.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N. Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2017.
+\newblock arXiv:1706.03762.
+
+\bibitem{yang2024deltanet}
+Songlin Yang, Bailin Wang, Yu~Zhang, Yikang Shen, and Yoon Kim.
+\newblock Parallelizing linear transformers with the delta rule over sequence length.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2024.
+\newblock arXiv:2406.06484.
+
+\end{thebibliography}

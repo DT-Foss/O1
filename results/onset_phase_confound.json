@@ -1,0 +1,63 @@
+{
+  "config": {
+    "lever": "4_phase_confound_rerun",
+    "steps": 2500,
+    "seeds": "1,7,42",
+    "n_pairs": 8,
+    "train_len": 64,
+    "readout": "tanh_m",
+    "device": "mps",
+    "note": "re-tests phase_mqar_capacity.json which used native raw readout at 1500/3000 steps",
+    "out": "results/onset_phase_confound.json"
+  },
+  "chance": 0.015625,
+  "summary": {
+    "attn": {
+      "mean": 0.9991861979166666,
+      "std": 0.00023017798866749594,
+      "per_seed": [
+        0.9990234375,
+        0.9990234375,
+        0.99951171875
+      ]
+    },
+    "selective": {
+      "mean": 0.015462239583333334,
+      "std": 0.0014001180447660525,
+      "per_seed": [
+        0.013671875,
+        0.015625,
+        0.01708984375
+      ]
+    },
+    "phase_false": {
+      "mean": 0.015462239583333334,
+      "std": 0.0014001180447660525,
+      "per_seed": [
+        0.013671875,
+        0.015625,
+        0.01708984375
+      ]
+    },
+    "phase_true": {
+      "mean": 0.015462239583333334,
+      "std": 0.0014001180447660525,
+      "per_seed": [
+        0.013671875,
+        0.015625,
+        0.01708984375
+      ]
+    }
+  },
+  "phase_true_minus_false": {
+    "mean_pp": 0.0,
+    "std_pp": 0.0,
+    "per_seed_pp": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "verdict": "NULL (phase_true\u2212phase_false \u0394=+0.00pp within noise; additive-phase confirmed null, not a readout artefact)",
+  "elapsed_s": 2909.9
+}

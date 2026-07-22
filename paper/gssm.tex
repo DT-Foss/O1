@@ -1,0 +1,667 @@
+\documentclass[11pt]{article}
+
+% ---------------------------------------------------------------
+% Neutral preprint style (no venue branding).
+% Compiles with pdflatex; falls back cleanly if a package is missing.
+% ---------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=NavyBlue,citecolor=NavyBlue,urlcolor=NavyBlue]{hyperref}
+\usepackage{orcidlink}
+
+\graphicspath{{figures/}{../plots/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\vbar}{\bar{v}}
+\newcommand{\Gk}{\Gamma_{k\to t}}
+\newcommand{\code}[1]{\texttt{#1}}
+% Give the line-breaker a little slack so long, unbreakable \texttt{} JSON
+% paths in running text stretch the line rather than overrun the margin.
+\emergencystretch=2em
+\newcommand{\ve}[1]{\num{#1}}
+
+% rigour badges
+\newcommand{\PROVEN}{\textcolor{ForestGreen}{\textbf{[PROVEN]}}}
+\newcommand{\ARGUED}{\textcolor{BurntOrange}{\textbf{[ARGUED]}}}
+\newcommand{\ANALOGY}{\textcolor{Gray}{\textbf{[ANALOGY]}}}
+
+\title{\bfseries One Operator, Three Switches:\\
+A Kernel Unification of the Linear State-Space Family}
+
+\author{David Tom Foss\,\orcidlink{0009-0004-0289-7154}\thanks{Code, training scripts, and the per-claim result
+JSONs are public: \url{https://github.com/DT-Foss/O1} (this study) and
+\url{https://github.com/DT-Foss/gssm} (companion architecture study). The
+underlying mathematical papers are archived with permanent DOIs; see the
+bibliography.}\\[3pt]
+{\normalsize\href{mailto:d.foss@ieee.org}{\texttt{d.foss@ieee.org}}}}
+\date{July 22, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We show that the geometric selective state-space model (GSSM-Selective) is the general
+input-controlled reproducing-kernel operator of the linear state-space family: Mamba/S6,
+S5, and the Linear Recurrent Unit (LRU) are switch-restrictions of a single associative
+affine prefix scan, verified against the sequential recurrence to $\sim\!10^{-15}$ in
+double precision for every family member. Freezing the gates to constants collapses the
+selective operator exactly onto the stationary geometric Toeplitz kernel
+$\gamma^{|s-t|}$: a BPTT-trained constant-gate model reproduces the closed-form kernel to
+$3.55\times10^{-15}$ at width $d=512$, while a genuinely selective control departs from any
+single geometric kernel by $4.9\times10^{-2}$ --- a control/match ratio of $1.37\times10^{13}$
+that certifies the identity is structural, not coincidental. Three consequences follow from
+one operator. First, the scan carries no absolute-position term: its memory kernel depends
+only on relative lags, so the model is length-invariant \emph{by construction}. Removing the
+sinusoidal positional encoding collapses length drift from $+243\%$ to $+2.6\%$ (train
+$T{=}32$, evaluated frozen out to $T{=}1024$), and across five seeds the position-free variant
+holds $\times0.93\pm0.00$ at $256\times$ its training length while the encoded variant breaks to
+$\times7.05\pm2.34$; the same weights stream a billion tokens at a flat $4.36$~GB. Second, the
+per-channel readout is a rank-1 functional of the feature history, which we turn into a
+capacity theorem: exact associative recall demands rank-$K$ binding, so a bounded scalar
+channel is provably capped near chance --- measured at $14\%$ multi-query recall against a
+$1.56\%$ floor --- while one attention layer restores full recall, but \emph{only} when the
+recurrent scan is selective. A double dissociation makes this causal: two architectures
+identical to the layer (three SSM layers plus one attention layer) that differ \emph{only} in
+scan class reach $100\%$ versus $16\%$ recall, because the selective interior attractor keeps
+the residual stream legible for attention to bind while the gate-free boundary attractor
+saturates and corrupts it. The kernel view thus \emph{computes} the recall ceiling that the
+standard reading merely observes, and shows that attractor topology --- a property of the
+kernel's DC gain --- causally gates whether attention can bind. We position the result as a
+subsumption of the linear-SSM family rather than a competitor within it.
+\end{abstract}
+
+\section{Introduction}
+
+The last three years produced a family of subquadratic sequence models --- S4
+\cite{gu2022s4}, S5 \cite{smith2023s5}, LRU \cite{orvieto2023lru}, Mamba/S6
+\cite{gu2023mamba}, and the recurrent-linear-attention lineage RWKV \cite{peng2023rwkv},
+DeltaNet \cite{yang2024deltanet}, xLSTM \cite{beck2024xlstm} --- each of which trades the
+quadratic cost and $O(T)$ key--value cache of attention \cite{vaswani2017attention} for a
+bounded recurrent state. These architectures are usually presented as distinct designs. We
+argue they are not: they are parametric restrictions of one operator, and the shared
+structure is what determines both what they can and what they structurally cannot do.
+
+We study the geometric selective state-space model (GSSM-Selective), the engineering
+instantiation of a body of work on M\"obius coupling and doubly-stochastic spectra
+\cite{foss2026markov,foss2026ginibre,foss2026gssm}. Per channel it runs the gated leaky
+recurrence
+\begin{equation}
+z_t = \gamma_t\,z_{t-1} + a_t,\qquad
+a_t = \alpha_t\,\phi(\vbar_t),\qquad
+\phi(v)=\log(1-v^2),\qquad
+s_t = \sqrt{1-e^{z_t}}\in[0,1),
+\label{eq:core}
+\end{equation}
+with $\vbar_t = g_t v_t$ the gated velocity, $v_t=\tanh(W_v x_t)$, and
+$\gamma_t,\alpha_t,g_t$ input-dependent sigmoid gates. Our contribution is to read this one
+recurrence three ways and show the readings are the same object.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+\item \textbf{Kernel unification (\S\ref{sec:kernel}).} GSSM-Selective is the general
+affine reproducing-kernel operator of the linear-SSM family; Mamba/S6, S5, and LRU are
+three-switch restrictions of it, verified to $\sim\!10^{-15}$ in \code{float64}. Its LTI
+restriction is \emph{literally} the geometric Toeplitz kernel, matched to $3.55\times10^{-15}$
+at $d{=}512$ with a $1.37\times10^{13}$ control/match separation.
+\item \textbf{Length invariance (\S\ref{sec:length}).} The kernel has no absolute-position
+term, so the scan needs no positional encoding and is length-invariant by construction. We
+give the mechanism and the clean $2\times2$ ablation: drift $+243\%\to+2.6\%$ on removing
+the PE, flat perplexity to $524{,}288\times$ training length, a billion tokens at constant
+memory.
+\item \textbf{The capacity ladder and the double dissociation (\S\ref{sec:capacity}).} The
+per-channel readout is rank-1, which we convert into an associative-recall capacity theorem
+that \emph{predicts} the measured scalar-recall wall. A double dissociation --- two
+layer-identical stacks differing only in scan class, at $100\%$ vs.\ $16\%$ recall --- shows
+that the attractor topology (a DC-gain property of the kernel) causally gates whether an
+attention layer can bind.
+\end{enumerate}
+Every number in this paper is measured on an Apple M4 Mac mini (PyTorch 2.9.1, offline) and
+is reproducible from a committed script and a result JSON; we cite the JSON at each claim.
+
+\section{The one operator and its reproducing kernel}
+\label{sec:kernel}
+
+\subsection{Unrolling to an inner product}
+Unrolling \eqref{eq:core} with $z_{-1}=0$ gives, exactly,
+\begin{equation}
+z_t \;=\; \sum_{k=0}^{t} \underbrace{\Big(\alpha_k\!\!\prod_{j=k+1}^{t}\gamma_j\Big)}_{w_t[k]}\,\phi(\vbar_k)
+\;=\; \langle w_t,\ \phi(\vbar_{0:t})\rangle,
+\qquad \Gk := \prod_{j=k+1}^{t}\gamma_j .
+\label{eq:innerprod}
+\end{equation}
+The state is a single inner product of an input-controlled weight vector $w_t$ against the
+feature history $\phi(\vbar_{0:t})$, and the readout $s_t=\phi^{-1}(z_t)=\sqrt{1-e^{z_t}}$ is
+a fixed monotone bijection that adds no representational dimension. The feature map
+$\phi(v)=\log(1-v^2)$ is the rapidity coordinate: writing $v=\tanh\xi$,
+$\phi(\tanh\xi)=-2\log\cosh\xi$, so the scan composes drives additively in the boost
+coordinate of $SO(1,1)$ --- the analytic backbone of the M\"obius/Minkowski framing
+\cite{foss2026markov}. The inner-product form reproduces the executed (gated, clamped) code
+recurrence to $8\times10^{-9}$, the idealized recurrence to $5.5\times10^{-17}$ in
+\code{float64}, and the rapidity identity to $1\times10^{-14}$.
+
+The induced per-path time--time Gram
+\begin{equation}
+K^{(x)}(s,t) \;=\; \sum_{k\le\min(s,t)} \alpha_k^2\,\Gamma_{k\to s}\,\Gamma_{k\to t}
+\label{eq:kernel}
+\end{equation}
+is the reproducing object. It is positive semidefinite for \emph{every} input path --- it is
+the Gram $WW^\top$ of explicit real weight vectors, so
+$\sum_{s,t} c_s c_t K^{(x)}(s,t)=\|\sum_t c_t w_t\|^2\ge 0$ --- with measured minimum
+eigenvalue $\ge -10^{-12}$ over 40{,}000 adversarial gate paths. \PROVEN
+
+\paragraph{What is, and is not, claimed.} The kernel \eqref{eq:kernel} is a data-dependent,
+time-inhomogeneous (causal Volterra) object, \emph{not} a fixed Mercer kernel: the weights
+$\alpha_k(x)$, $\gamma_j(x)$ and the features $\phi(\vbar_k(x))$ all depend on the same $x$,
+so there is no fixed $k(v,v')$ in raw velocity space, and ``replace BPTT with ridge
+regression on a fixed Mercer kernel'' is \emph{false} for the selective model (two inputs
+with identical $\phi_k$ but different gate context give different $z_T$, $-1.38$ vs.\ $-0.44$).
+The reproducing-readout property is genuine and exact; the fixed-Mercer reading survives only
+in the LTI limit below. Stating this boundary precisely is part of the contribution.
+
+\subsection{The family as three switches}
+Every model in the linear-SSM family is a first-order recurrence
+$h_t=A_t h_{t-1}+B_t u_t$ carrying $(A_t,B_t)$ under the \emph{identical} associative affine
+operator
+\begin{equation}
+(A_2,B_2)\otimes(A_1,B_1)=(A_2 A_1,\ A_2 B_1 + B_2),\qquad \text{identity }(1,0),
+\label{eq:monoid}
+\end{equation}
+which a parallel prefix scan computes. The family members differ only in three parametric
+switches: the state algebra of $A$, whether $A_t$ is input-dependent, and the drive map for
+$B_t$ (Table~\ref{tab:family}). GSSM-Selective is their common generalization: the affine
+prefix scan with a nonlinear rapidity feature and a bounded decoder $\phi^{-1}$ that
+\emph{guarantees} $s_t\in[0,1)$ --- a boundedness guarantee Mamba lacks.
+
+\begin{table}[t]
+\centering
+\caption{The linear-SSM family as switch-restrictions of one affine prefix-scan operator.
+The parallel $\otimes$-scan reproduces the sequential recurrence to machine precision for
+each member; last column is $\max|\Delta|$ (seq vs.\ scan) in the member's native dtype.
+Source: \code{results/ssm\_family\_reduction\_results.json}.}
+\label{tab:family}
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Model & State algebra & $A_t$ input-dep.? & Drive $B_t$ & $\max|\Delta|$ (seq vs.\ scan)\\
+\midrule
+GSSM-Selective & real scalar $\in(0,1)$ & yes & $\alpha_t\log(1-\vbar_t^2)$ (nonlinear) & $4.44\times10^{-16}$\\
+Mamba / S6 & real diagonal $\in(0,1)^N$ & yes & $\Delta_t\bar B u_t$ (linear) & $8.88\times10^{-16}$\\
+S5 & complex diagonal $e^{\Delta\Lambda}$ & no (LTI) & $\Delta B u_t$ & $1.26\times10^{-15}$\\
+LRU & complex diagonal $e^{-\nu+i\theta}$ & no (LTI) & $B u_t$ & $8.88\times10^{-16}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dictionary is one equivalence: \emph{selective} $\Leftrightarrow$ $A_t$
+\emph{input-dependent} $\Leftrightarrow$ the kernel is time-inhomogeneous, not Mercer. Mamba
+is input-gated and hence \emph{also} not a fixed Mercer kernel, for exactly the reason GSSM
+is not; S5 and LRU freeze $A$ to a time-constant and so collapse to a genuine fixed
+complex-exponential (LTI) kernel. GSSM's constant-$\gamma$ limit $\gamma^{|s-t|}$ is the real,
+scalar, one-pole sibling of that kernel.
+
+\subsection{The LTI restriction is the geometric Toeplitz kernel}
+\label{sec:toeplitz}
+The sharpest form of the unification is a falsifiable identity. Freeze the gates to
+time-constants ($\gamma_t\equiv\gamma$, $\alpha_t\equiv\alpha$) and the layer's temporal
+operator becomes the geometric Toeplitz convolution $\gamma^{|s-t|}$ \emph{by construction}.
+We train a GSSM-Selective with frozen $W_\gamma,W_\alpha$ by BPTT and compare its learned read
+map against the closed-form kernel $z=K\cdot a$. The trained map \emph{is} the kernel, at
+every width tested:
+\begin{center}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+width $d$ & kernel match $\max|\Delta|$ & per-channel read scale & selective control $\max|\Delta|$\\
+\midrule
+128 & $1.78\times10^{-15}$ & $\approx 1.0$ & $4.32\times10^{-2}$\\
+256 & $1.78\times10^{-15}$ & $\approx 1.0$ & $4.89\times10^{-2}$\\
+512 & $3.55\times10^{-15}$ & $\approx 1.0$ & $4.87\times10^{-2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The per-channel read scale sits at $\approx 1.0$ (no extra readout is learned), and a
+genuinely selective control --- whose $\gamma_t$ varies in time --- cannot be reproduced by
+\emph{any} single geometric kernel, departing by $4.87\times10^{-2}$ at $d{=}512$. That is a
+control/match ratio of $1.37\times10^{13}$: thirteen orders of magnitude separate ``the
+constant-gate map is the kernel'' from ``the selective map is not.'' The match is a structural
+consequence of constant gating, not a numerical coincidence.
+(Source: \code{results/constant\_gate\_kernel\_match\_width\_results.json}.) \PROVEN
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{fig_kernel_unification.pdf}
+\caption{The linear-SSM family reduces to one affine prefix-scan operator.
+\textbf{(A)}~Each family member's parallel $\otimes$-scan reproduces its sequential
+recurrence to $\sim\!10^{-15}$ in \code{float64}; the dashed line is the \code{float64}
+machine epsilon. \textbf{(B)}~The constant-gate restriction of the selective operator
+\emph{is} the geometric Toeplitz kernel ($3.55\times10^{-15}$ at $d{=}512$, flat in width),
+while a genuinely selective control cannot be reproduced by any single geometric kernel
+($4.9\times10^{-2}$) --- a thirteen-order-of-magnitude separation.}
+\label{fig:kernel}
+\end{figure}
+
+\subsection{The scan is $O(\log T)$-depth and exact to the loop}
+Because \eqref{eq:monoid} is associative, the scan parallelizes by a Hillis--Steele doubling
+prefix scan --- $O(\log T)$ depth instead of $O(T)$. We wired it into the reference layer's
+forward \emph{and} backward with zero edits to the frozen module. Forward and gradient are
+identical to the sequential loop: in \code{float64}, forward $\max|\Delta|=1.67\times10^{-16}$
+and gradient (all parameters and the input) $\max|\Delta|=3.55\times10^{-15}$;
+\code{gradcheck} passes for $T\in\{1,2,3,7,8,17,32,33\}$; training loss curves coincide to
+$4.8\times10^{-7}$ over 12 steps. On MPS the doubling scan beats the loop $3.4$--$3.9\times$
+across $T\in\{128,512,1024,2048\}$ (scan depth $7,9,10,11$); on CPU the tight loop wins, so
+the dispatcher routes GPU/MPS to the doubling scan and CPU to the sequential loop. We claim
+constant inference state with no KV-cache, and now a measured --- not aspirational ---
+parallel-scan training speedup. (Source:
+\code{results/parallel\_scan\_integration\_results.json}.) \PROVEN
+
+\section{Length invariance: the kernel carries no absolute position}
+\label{sec:length}
+
+\subsection{Mechanism}
+Read \eqref{eq:innerprod}: every dependence on the time index enters \emph{only} through the
+relative products $\Gk=\prod_{j=k+1}^t\gamma_j$ --- through lags $t-k$, never through the
+absolute coordinate $t$. There is no term $f(t)$ anywhere in the operator. A causal kernel
+whose only index dependence is lag is shift-equivariant in time \emph{by construction}, so its
+readout at step $t$ is identical in distribution whether $t=20$ or $t=8000$: position is not
+in the kernel. \PROVEN{} In the constant-gate limit this is literally the stationary
+(Toeplitz) exponential kernel $\gamma^{|s-t|}=e^{-|s-t|/\tau}$, $\tau=-1/\log\gamma$, which
+Bochner certifies strictly positive-definite (its DTFT is the positive Poisson kernel; realized
+Gram min eigenvalue $+0.32$). A sinusoidal positional encoding is the \emph{only} term that
+references absolute $t$; beyond the training length it is out of distribution, and it is the
+sole source of any break. The selective gate is separately necessary: it keeps the contraction
+$\tau<1$ so the receptive field stays bounded ($\approx5$--$8$ tokens from the learned gates)
+and does not grow with $T$; drop it (the ``Pure'' variant) and the DC gain $\alpha/(1-\gamma)$
+diverges, driving $s_t\to 1$ at the boundary. Length invariance needs \emph{both}: no absolute
+position \emph{and} the gate.
+
+\subsection{The clean $2\times2$ ablation}
+We train four arms at $T{=}32$ and evaluate with frozen weights out to $T{=}1024$
+(Table~\ref{tab:length}, Figure~\ref{fig:length}). Selective-NoPE holds essentially flat while
+Selective+PE, identical up to the positional encoding, degrades monotonically; the gate-free
+Pure variant explodes and the Transformer drifts then, past its fixed PE buffer, cannot execute
+at all. The drift reported is measured from $T{=}128$ to $T{=}1024$ (the regime past the
+training window), directly from the result JSON.
+
+\begin{table}[t]
+\centering
+\caption{Length extrapolation, train $T{=}32$, evaluated frozen. Perplexity and, in the last
+row, the measured $T{=}128\!\to\!T{=}1024$ drift. Removing the positional encoding is the only
+change between the first two columns and collapses the drift $\sim\!100\times$. Source:
+\code{results/length\_extrap\_v2.json}.}
+\label{tab:length}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+eval $T$ & Selective-NoPE & Selective+PE & Pure (no gate) & Transformer\\
+\midrule
+32   & 167.1 & 170.0 & 238.6 & 220.6\\
+128  & 156.3 & 170.4 & 505.0 & 358.8\\
+256  & 159.7 & 197.5 & 1127.1 & 404.2\\
+512  & 159.8 & 281.7 & 2437.1 & 425.6\\
+1024 & 160.3 & 583.8 & 4921.1 & 442.0\\
+\midrule
+drift $128\!\to\!1024$ & $\mathbf{+2.6\%}$ & $+242.7\%$ & $+874.5\%$ & $+23.2\%$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.78\textwidth]{fig_length_extrap_v2.pdf}
+\caption{Removing the sinusoidal positional encoding collapses length drift from $+243\%$ to
+$+2.6\%$. Selective-NoPE (train $T{=}32$) holds a near-flat perplexity curve out to
+$32\times$ training length; the identical architecture \emph{with} a PE breaks. The residual
+drift was a positional-encoding confound, not a property of the scan.}
+\label{fig:length}
+\end{figure}
+
+\subsection{The invariance is a structural constant, not a lucky run}
+The result is seed-invariant and extends far past $T{=}1024$.
+\begin{itemize}
+\sloppy
+\item \textbf{Five seeds.} Over seeds $\{1,7,42,123,2024\}$ at $256\times$ ($T{=}8192$),
+Selective-NoPE holds $\times0.93\pm0.00$ (the standard deviation rounds to zero --- every seed
+lands on the same flat line), while Selective+PE breaks to $\times7.05\pm2.34$ on every seed.
+(Source: \code{results/length\_seed\_robustness\_d128.json}.)
+\item \textbf{The smoking gun.} NoPE's learned gate statistics are frozen across the $256\times$
+span ($\gamma_\text{mean}: 0.2349\to0.2350$; $\gamma_{p95}: 0.4126\to0.4131$) --- the operator
+is literally in-distribution at every length, because it has no length-coupled quantity to
+drift. With the PE present, the gates visibly drift ($\gamma_\text{mean}\;0.237\to0.277$) to
+compensate, and break.
+\item \textbf{To the wall.} Using the $O(1)$ recurrent forward, the same $T{=}32$-trained model
+holds $\times0.98$ at $T{=}131{,}072$ ($4096\times$), on both WikiText-2 and, re-run,
+WikiText-103. (Source: \code{results/scale\_to\_the\_wall.json}, \code{results/scale\_wt103.json}.)
+\item \textbf{Constant memory to a billion tokens.} Because the receptive field is
+$\approx5$--$8$ tokens, chunked streaming with overlap $\gg$ that field reproduces the
+whole-sequence computation exactly. A single $16.7$-million-token sequence evaluates at a
+constant $2.5$~GB with perplexity \emph{improving} to $\times0.80$; a lazily streamed billion
+tokens of C4 ($31{,}250{,}432\times$ training length) runs at a flat $4.36$~GB, the running
+perplexity moving $1.3$ points across twenty $50$M-token checkpoints. (Source:
+\code{results/scale\_to\_a\_million.json}, \code{results/scale\_to\_a\_billion.json}.)
+\end{itemize}
+This is the axis where a bounded state wins by construction rather than by parameters or data:
+attention pays $O(T)$ cache, $O(T^2)$ compute, and a positional code that fails out of
+distribution, and a fixed PE buffer ties it to a maximum length --- the same failure that
+crashes both Selective+PE and the Transformer past their buffer, while NoPE has no such ceiling.
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_scaleup.pdf}
+\caption{Stable scaling across $d256$--$d1024\times L2$--$L4$; no collapse anywhere,
+perplexity flat at the WikiText-2 data floor (hatched: $d1024/L4$ skipped for RAM, not
+collapsed).}
+\label{fig:scaleup}
+\end{subfigure}\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_saturation.pdf}
+\caption{Interior vs.\ boundary attractor. State saturation (fraction of channels with
+$s_t>0.95$) by sequence position, final epoch, phase-1 runs at $d{\in}\{128,256\}$: the
+gate-free Pure variant's saturation \emph{grows along the sequence} (boundary pull toward
+$s^\ast{=}1$), while the selective variant stays flat and interior, keeping the residual
+legible. Source: \code{evidence\_companion/phase1\_fulldata.json}.}
+\label{fig:saturation}
+\end{subfigure}
+\caption{Two supporting readings of the same operator. (a) The stabilized architecture scales
+without collapse; the perplexity floor is the WikiText-2 data budget, not an architecture
+limit (\S\ref{sec:secondary}). (b) The DC gain $\alpha/(1-\gamma)$ sets the attractor topology.}
+\label{fig:supporting}
+\end{figure}
+
+\section{The capacity ladder and the double dissociation}
+\label{sec:capacity}
+
+The same structural fact that makes the state bounded, scannable, and cache-free ---
+$z_t=\langle w_t,\phi(\vbar_{0:t})\rangle$ is a \emph{scalar} inner product --- caps its
+associative-recall capacity. We make this quantitative, then close it causally: a double
+dissociation shows the scan class alone --- not the architecture --- decides whether an
+attention layer can bind.
+
+\subsection{A rank-1 readout cannot bind $K$ pairs}
+\begin{proposition}[Rank-1 per channel]
+Each channel's state \eqref{eq:innerprod} is a rank-1 functional of its feature history: the
+entire history $\phi(\vbar_{0:t})$ is collapsed onto one real number, and the readout
+$s_t=\phi^{-1}(z_t)$ is a fixed bijection adding no dimension. \PROVEN
+\end{proposition}
+
+Exact multi-query associative recall (MQAR \cite{arora2024zoology}) over $K$ distinct keys
+requires recovering an association matrix $\hat A$ with $\arg\max_v \hat A[k_i,v]=v_i$ for all
+$i$; the sufficient memory is the outer-product $A=\sum_i e_{k_i}e_{v_i}^\top$ of rank $K$.
+Attention realizes $A$ directly and hence recalls exactly. A bank of $D$ scalar channels read
+by a fixed linear map spans association matrices of dimension $\le D$, so the number of exactly
+recoverable pairs is bounded by the readout rank (the rest are correct only at chance $1/V$);
+the optimal achievable recall is the Eckart--Young rank-$D$ truncation of $A$. \PROVEN
+
+\begin{theorem}[Scalar-SSM associative-recall ceiling]
+\label{thm:rank}
+For a layer of $D$ scalar leaky-integrator channels read by a fixed input-independent map, on
+MQAR over $K$ keys with values in $[V]$: (i) the recovered association has rank $\le D$, with
+best-case recall on the Eckart--Young curve; (ii) attention attains rank $K$ and recall $1$;
+(iii) the \emph{binding} rank attainable by the leaky-scalar mechanism itself is $1$ per
+channel, because its increment $a_t=\alpha_t\phi(\vbar_t)$ is a function of the current token
+only, with no key-conditioned (outer-product) write --- so the effective binding rank of the
+trained scalar stack is $O(1)$, far below $D$. \ARGUED{} for (iii); \PROVEN{} for (i)--(ii).
+\end{theorem}
+
+The decisive empirical signature is that pure-scalar recall is \emph{flat in the query gap}, not
+a decay cliff: a memory-decay limit would fall off with distance; a capacity limit is flat, and
+the measured profile is a constant floor at every gap. The data say capacity, not forgetting.
+With $K{=}8$, $V{=}64$ and effective binding rank $D_\text{eff}{\approx}1$, the closed-form
+prediction is $D_\text{eff}/K+(1-D_\text{eff}/K)/V\approx0.139$, and the Eckart--Young best case
+is $0.186$ --- a bracket the measured scalar recall of $\approx0.14$ (train len 64) lands
+inside; inverting the bound gives $D_\text{eff}\approx1.02$. The framework computes its own
+floor rather than excusing it.
+
+\subsection{The wall, measured; and a cache-free lift}
+The standalone selective scalar tops out at $14.1\%$ (train len 64) / $14.5\%$ (test len 256)
+on MQAR --- the wall the theorem predicts at $D_\text{eff}{\approx}1$, and the sel4 (SSSS) arm
+of the dissociation below (Source: \code{evidence\_companion/hybrid\_B.json}). A separate,
+stricter O1 harness (5 seeds, len-256 eval, chance $1/64=1.56\%$, a scalar baseline with no
+holographic path) reads $1.7\%$ --- chance --- and asks whether a bounded scalar state can be
+lifted \emph{without} an attention layer. The lever is a \emph{key-conditioned} write: carry a
+complex leaky accumulator $S_t=\gamma_t S_{t-1}+u_t e^{i\varphi_t}$ with key angle
+$\varphi_t=\pi\tanh(W_\text{key}x_t)$ (token identity, not time), read at a query by de-rotation
+$\mathrm{Re}(S_t e^{-i\varphi_q})$ --- the complex analogue of attention's outer-product binding,
+in $O(1)$ state with no KV-cache. This clears both chance and the $3.72$~pp noise band
+(Table~\ref{tab:recall}).
+
+\begin{table}[t]
+\centering
+\caption{Multi-query associative recall (5 seeds, len-256 eval, chance $1.56\%$). The
+key-conditioned holographic write lifts a bounded scalar state from its chance-level wall to
+$5.7\times$ the floor; attention is the rank-$K$ validity gate. Source:
+\code{results/holographic\_mqar.json}.}
+\label{tab:recall}
+\small
+\begin{tabular}{@{}lc@{}}
+\toprule
+Arm & MQAR recall (mean $\pm$ std)\\
+\midrule
+Attention (validity gate) & $0.994 \pm 0.007$\\
+Selective (scalar baseline) & $0.017 \pm 0.001$\\
+Holographic write OFF ($\equiv$ Selective) & $0.017 \pm 0.002$\\
+\textbf{Holographic write ON (key-conditioned)} & $\mathbf{0.089 \pm 0.019}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The lift ($+7.2$~pp, from $1.7\%$ to $8.9\%$) is real but modest and interference-bound: recall
+rises to $25.8\%$ at two pairs in superposition, following the classical $\sim1/\sqrt{N}$
+holographic-memory law \cite{plate1995holographic}. Per-channel state rank is thus the capacity
+coordinate, and the framework draws the whole ladder: scalar (rank 1, recall $O(1/K)$) $\to$
+complex/phase (rank 2) $\to$ bounded fast-weight (rank $D$, cf.\ DeltaNet \cite{yang2024deltanet})
+$\to$ attention (rank $K$, exact). The wall is the bottom rung of a ladder the operator algebra
+predicts, not a hole in it.
+
+\subsection{The double dissociation: scan class alone gates binding}
+\label{sec:dissociation}
+The sharpest form of the capacity claim is causal, and it is the reason the family's hybrids
+work. Take two architectures identical down to the layer --- three SSM layers plus one attention
+layer --- and vary \emph{only} the scan class of the SSM layers: SSAS uses the selective scan,
+PPAP the gate-free (``Pure'') scan. Everything else, including the attention layer, is held fixed.
+The outcome flips completely (Table~\ref{tab:dissociation}, Figure~\ref{fig:dissociation}).
+
+On MQAR (train len 64, eval len 256), SSAS reaches $100.0\%$ recall and PPAP reaches $16.1\%$ ---
+the same $16\%$ floor as the standalone selective scalar (sel4, $14.5\%$) and its Pure sibling,
+because a single attention layer atop a \emph{saturated} residual stream cannot bind. The
+attention-only control (AAAA) also reaches $100\%$, and putting the attention layer at the top
+instead of the middle (SSSA, $99.9\%$) leaves the result intact: it is the scan class, not the
+attention placement, that decides. On the length task (train $T{=}32$, eval $T{=}256$), the same
+split appears in extrapolation: SSAS drifts $+35.0\%$ and the all-selective sel4 $+38.8\%$, while
+PPAP explodes $+313.4\%$ --- the boundary attractor that corrupts recall also breaks length.
+
+\begin{table}[t]
+\centering
+\caption{Double dissociation. Five architectures, all sharing the three-SSM-plus-one-attention
+layout except the pure attention (AAAA) and pure selective (SSSS) controls; SSAS and PPAP differ
+\emph{only} in scan class. Task~B is MQAR recall (eval len 256); Task~A is the length-extrapolation
+perplexity rise (train $T{=}32\!\to\!$ eval $T{=}256$). Source:
+\code{evidence\_companion/hybrid\_A.json}, \code{evidence\_companion/hybrid\_B.json}.}
+\label{tab:dissociation}
+\small
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Arm & Spec & Task B: MQAR recall & Task A: length rise \\
+\midrule
+attn4      & AAAA & $1.000$ & $+1.2\%$\ (dead, acc 0.17)\\
+hyb\_mid   & \textbf{SSAS} & $\mathbf{1.000}$ & $+35.0\%$\\
+hyb\_top   & SSSA & $0.999$ & $+35.3\%$\\
+sel4       & SSSS & $0.144$ & $+38.8\%$\\
+pure\_proxy & \textbf{PPAP} & $\mathbf{0.161}$ & $+313.4\%$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_hybrid_recall.pdf}
+\caption{Task B --- MQAR recall. SSAS/SSSA/AAAA bind at $100\%$; SSSS/PPAP sit at the $14$--$16\%$
+scalar-capacity floor. SSAS vs.\ PPAP: same structure, opposite outcome.}
+\label{fig:hybrid_recall}
+\end{subfigure}\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_hybrid_length.pdf}
+\caption{Task A --- length extrapolation. SSAS and sel4 stay length-robust ($\sim35$--$39\%$
+rise); PPAP explodes ($+313\%$). The boundary attractor breaks both recall and length.}
+\label{fig:hybrid_length}
+\end{subfigure}
+\caption{The double dissociation. Two layer-identical stacks (SSAS vs.\ PPAP) differing only in
+scan class flip from $100\%$ to $16\%$ recall (a) and from length-robust to length-exploding (b).
+The attention layer is held fixed; the kernel's DC-gain regime is the only thing that moves.}
+\label{fig:dissociation}
+\end{figure}
+
+The mechanism is the attractor topology of \S\ref{sec:length}. The selective interior attractor
+($s^\ast\!<\!1$, finite DC gain $\alpha/(1-\gamma)$) keeps the residual stream legible, so the
+attention layer can read the keys it needs to bind; the Pure boundary attractor ($s^\ast\!\to\!1$,
+DC gain $\to\infty$) saturates and corrupts the residual, so the identical attention layer has
+nothing clean to bind. This is the causal complement to Theorem~\ref{thm:rank}: the theorem says a
+scalar channel \emph{cannot} bind $K$ pairs alone; the dissociation says one attention layer
+\emph{restores} full binding, but only when the recurrent scan's attractor is interior. Attractor
+topology --- a DC-gain property of the kernel --- causally gates whether attention works.
+(Measured in the companion GSSM architecture study \cite{foss2026gssm}; the result JSONs are
+archived with this paper in \code{paper/evidence\_companion/}.)
+
+\section{Secondary results and the honest limits}
+\label{sec:secondary}
+
+\paragraph{Width stabilization (optimization, not architecture).} A width-$d512$ collapse in the
+base architecture is an optimization-at-width artifact, not a capacity ceiling. The root cause is
+an unbounded value projection running hot at width: at $d512$ the value-projection preactivation
+peaks at $\|W_v\|_\text{max}{=}239$ and velocity saturation is $0.434$, and the model sits at
+$202.0$ perplexity. $\mu$P alone drops velocity saturation to $0.049$ ($\sim\!9\times$) and the
+preactivation to $20.6$; the full stabilization stack ($\mu$P $+$ preLN $+$ warmup) reaches
+$152.9$ perplexity, matching the $d256$ level, and the Pure variant recovers too ($310\to191$)
+(Figure~\ref{fig:widthfix}, Figure~\ref{fig:attribution}; Source:
+\code{evidence\_companion/width\_fix.json}). The architecture then scales without collapse across
+$d256$--$d1024\times L2$--$L4$, best $135.2$ at $d512/L4$, with $d1024/L4$ skipped for RAM rather
+than collapse (Figure~\ref{fig:scaleup}; Source: \code{evidence\_companion/scaleup.json}).
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_widthfix.pdf}
+\caption{$\mu$P and the full stabilization stack recover the $d512$ width collapse
+($202\to153$ PPL), beating the small-width reference (dashed: $d{=}128$ full stack, 161);
+clipping alone does nothing.}
+\label{fig:widthfix}
+\end{subfigure}\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_attribution.pdf}
+\caption{Root-cause attribution at $d{=}512$: velocity saturation (top) and value-projection
+preactivation (bottom) per intervention. $\mu$P alone collapses both ($0.43\to0.05$,
+$239\to21$); gradient clipping does nothing --- the collapse lives in the optimization of
+$W_v$ at width, not in the architecture.}
+\label{fig:attribution}
+\end{subfigure}
+\caption{The $d512$ collapse is an optimization-at-width artifact resolved by $\mu$P, not an
+architectural limit.}
+\label{fig:m1}
+\end{figure}
+
+\paragraph{Limits, computed rather than excused.}
+\begin{itemize}
+\item \textbf{The scalar recall wall is real.} A bounded scalar state cannot do exact
+associative recall alone (Theorem~\ref{thm:rank}); $14\%$ standalone ($1.7\%$ on the stricter
+O1 harness) is the operator-class limit, not a training artifact. One attention layer restores
+full recall in the selective hybrid (SSAS $100\%$, the double dissociation), and the
+cache-free holographic write lifts the standalone scalar to $8.9\%$ --- genuine but modest.
+The standalone scalar limit is structural.
+\item \textbf{No power-law claim.} The perplexity floor of $\approx135$ across the scale grid is
+the WikiText-2 data budget ($\sim\!1.7$M tokens), not the architecture; more parameters do not
+move it, more data would. We read the flat plateau through the fixed-rank-per-channel kernel
+lens, and label that reading an \ANALOGY{}, not a derived bound.
+\item \textbf{No group-structured state tracking (TC$^0$).} A bounded scalar state cannot
+represent the requisite group structure; this is derived, not yet empirically stressed.
+\end{itemize}
+
+\section{Related work and positioning}
+
+The linear-SSM literature --- S4 \cite{gu2022s4}, S5 \cite{smith2023s5}, LRU
+\cite{orvieto2023lru}, Mamba/S6 \cite{gu2023mamba} --- and the recurrent-linear-attention
+lineage RWKV \cite{peng2023rwkv}, DeltaNet \cite{yang2024deltanet}, xLSTM \cite{beck2024xlstm}
+each present a distinct architecture. Our contribution is orthogonal: we show these are
+switch-restrictions of one affine prefix-scan operator (Table~\ref{tab:family}), so the family's
+shared behavior --- length handling, recall capacity, boundedness --- is a property of the common
+operator, read off its kernel. S5 and LRU are the LTI (fixed-Mercer) corner; Mamba and GSSM are
+the selective (time-inhomogeneous) interior; the delta-rule and fast-weight models
+\cite{yang2024deltanet} are the rank-$D$ rung of the capacity ladder that
+Theorem~\ref{thm:rank} organizes.
+
+The closest unification in spirit is the structured state-space duality of Mamba-2
+\cite{dao2024ssd}, which identifies selective SSMs with masked-attention variants through the
+matrix algebra of semiseparable operators. Our unification runs along an orthogonal axis:
+rather than relating SSMs \emph{to attention}, we exhibit the linear-SSM family \emph{itself}
+as switch-restrictions of one affine prefix-scan operator with a nonlinear rapidity drive and
+a bounded decoder, and read the family's shared behavior off its reproducing kernel ---
+including the boundedness guarantee and the attractor topology, which the duality view does
+not track. The HiPPO theory \cite{gu2020hippo} supplies the principled initialization of the
+LTI corner of this family; the linear-attention and fast-weight lineage
+\cite{katharopoulos2020linear,schlag2021fastweight} occupies the rank-$D$ rung of the
+capacity ladder alongside DeltaNet.
+
+Against attention \cite{vaswani2017attention} and the test-time-memory hybrids that pair
+attention with a learned recurrent memory --- Titans \cite{behrouz2025titans} --- our result
+explains \emph{why} such hybrids work: a single binding (attention) layer supplies the
+outer-product rank that the bounded recurrent state structurally lacks, and the double
+dissociation shows the recurrent scan class must be the interior-attractor kind for that binding
+to land. The same reading covers Griffin \cite{de2024griffin}: a gated linear recurrence paired
+with a local-attention layer is precisely the interior-attractor-plus-binding configuration the
+dissociation predicts to succeed. The MQAR benchmark \cite{arora2024zoology} is exactly the instrument that exposes the
+rank ceiling, and the holographic write \cite{plate1995holographic} is the in-state,
+cache-free route up the ladder. We position GSSM not as a competitor within the family but as
+its unification: the operator the others restrict, with a boundedness guarantee and a
+length-invariance the encoded members give up by construction.
+
+\section{Conclusion}
+The geometric selective state-space model is the general input-controlled reproducing-kernel
+operator of the linear-SSM family, verified to $\sim\!10^{-15}$, with its LTI restriction the
+geometric Toeplitz kernel to $3.55\times10^{-15}$ and a $1.37\times10^{13}$ control separation.
+One operator yields three consequences: the kernel carries no absolute position, so the model is
+length-invariant by construction ($+243\%\to+2.6\%$ drift on removing the PE, a billion tokens at
+constant memory); the per-channel readout is rank-1, which \emph{predicts} the associative-recall
+wall the standard reading merely observes; and a double dissociation --- two layer-identical stacks
+at $100\%$ vs.\ $16\%$ recall, differing only in scan class --- shows the kernel's attractor
+topology causally gates whether attention can bind. The rigor is graded and labeled throughout ---
+theorem, argument, analogy --- and every number is reproducible from a committed script and result
+JSON.
+
+\paragraph{Reproducibility.} All results run offline on an Apple M4 Mac mini (PyTorch 2.9.1).
+Each claim cites its result JSON. The length-invariance, kernel-unification, and holographic-recall
+numbers are measured in the O1 repository \cite{foss2026o1}; the width-fix, scale-up, and
+double-dissociation numbers are measured in the companion GSSM architecture study
+\cite{foss2026gssm}, and those six result JSONs are archived with this paper in
+\code{paper/evidence\_companion/} (\code{hybrid\_A.json}, \code{hybrid\_B.json},
+\code{width\_fix.json}, \code{scaleup.json}, \code{phase1\_fulldata.json},
+\code{scaleup\_smoke.json}).
+
+{\small
+\bibliographystyle{plain}
+\bibliography{refs}
+}
+
+\end{document}

@@ -1,0 +1,126 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{gu2022s4}
+\citation{smith2023s5}
+\citation{orvieto2023lru}
+\citation{gu2023mamba}
+\citation{peng2023rwkv}
+\citation{yang2024deltanet}
+\citation{beck2024xlstm}
+\citation{vaswani2017attention}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{foss2026markov}
+\citation{foss2026ginibre}
+\citation{foss2026gssm}
+\citation{foss2026markov}
+\newlabel{eq:core}{{1}{2}{Introduction}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}The one operator and its reproducing kernel}{2}{section.2}\protected@file@percent }
+\newlabel{sec:kernel}{{2}{2}{The one operator and its reproducing kernel}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Unrolling to an inner product}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:innerprod}{{2}{2}{Unrolling to an inner product}{equation.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The linear-SSM family as switch-restrictions of one affine prefix-scan operator. The parallel $\otimes $-scan reproduces the sequential recurrence to machine precision for each member; last column is $\max |\Delta |$ (seq vs.\ scan) in the member's native dtype. Source: \texttt  {results/ssm\_family\_reduction\_results.json}.}}{3}{table.caption.3}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:family}{{1}{3}{The linear-SSM family as switch-restrictions of one affine prefix-scan operator. The parallel $\otimes $-scan reproduces the sequential recurrence to machine precision for each member; last column is $\max |\Delta |$ (seq vs.\ scan) in the member's native dtype. Source: \code {results/ssm\_family\_reduction\_results.json}}{table.caption.3}{}}
+\newlabel{eq:kernel}{{3}{3}{Unrolling to an inner product}{equation.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{What is, and is not, claimed.}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}The family as three switches}{3}{subsection.2.2}\protected@file@percent }
+\newlabel{eq:monoid}{{4}{3}{The family as three switches}{equation.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}The LTI restriction is the geometric Toeplitz kernel}{3}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:toeplitz}{{2.3}{3}{The LTI restriction is the geometric Toeplitz kernel}{subsection.2.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The linear-SSM family reduces to one affine prefix-scan operator. \textbf  {(A)}~Each family member's parallel $\otimes $-scan reproduces its sequential recurrence to $\sim \!10^{-15}$ in \texttt  {float64}; the dashed line is the \texttt  {float64} machine epsilon. \textbf  {(B)}~The constant-gate restriction of the selective operator \emph  {is} the geometric Toeplitz kernel ($3.55\times 10^{-15}$ at $d{=}512$, flat in width), while a genuinely selective control cannot be reproduced by any single geometric kernel ($4.9\times 10^{-2}$) --- a thirteen-order-of-magnitude separation.}}{4}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:kernel}{{1}{4}{The linear-SSM family reduces to one affine prefix-scan operator. \textbf {(A)}~Each family member's parallel $\otimes $-scan reproduces its sequential recurrence to $\sim \!10^{-15}$ in \code {float64}; the dashed line is the \code {float64} machine epsilon. \textbf {(B)}~The constant-gate restriction of the selective operator \emph {is} the geometric Toeplitz kernel ($3.55\times 10^{-15}$ at $d{=}512$, flat in width), while a genuinely selective control cannot be reproduced by any single geometric kernel ($4.9\times 10^{-2}$) --- a thirteen-order-of-magnitude separation}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}The scan is $O(\log T)$-depth and exact to the loop}{4}{subsection.2.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Length extrapolation, train $T{=}32$, evaluated frozen. Perplexity and, in the last row, the measured $T{=}128\!\to \!T{=}1024$ drift. Removing the positional encoding is the only change between the first two columns and collapses the drift $\sim \!100\times $. Source: \texttt  {results/length\_extrap\_v2.json}.}}{5}{table.caption.5}\protected@file@percent }
+\newlabel{tab:length}{{2}{5}{Length extrapolation, train $T{=}32$, evaluated frozen. Perplexity and, in the last row, the measured $T{=}128\!\to \!T{=}1024$ drift. Removing the positional encoding is the only change between the first two columns and collapses the drift $\sim \!100\times $. Source: \code {results/length\_extrap\_v2.json}}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Length invariance: the kernel carries no absolute position}{5}{section.3}\protected@file@percent }
+\newlabel{sec:length}{{3}{5}{Length invariance: the kernel carries no absolute position}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Mechanism}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}The clean $2\times 2$ ablation}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}The invariance is a structural constant, not a lucky run}{5}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Removing the sinusoidal positional encoding collapses length drift from $+243\%$ to $+2.6\%$. Selective-NoPE (train $T{=}32$) holds a near-flat perplexity curve out to $32\times $ training length; the identical architecture \emph  {with} a PE breaks. The residual drift was a positional-encoding confound, not a property of the scan.}}{6}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:length}{{2}{6}{Removing the sinusoidal positional encoding collapses length drift from $+243\%$ to $+2.6\%$. Selective-NoPE (train $T{=}32$) holds a near-flat perplexity curve out to $32\times $ training length; the identical architecture \emph {with} a PE breaks. The residual drift was a positional-encoding confound, not a property of the scan}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The capacity ladder and the double dissociation}{6}{section.4}\protected@file@percent }
+\newlabel{sec:capacity}{{4}{6}{The capacity ladder and the double dissociation}{section.4}{}}
+\citation{arora2024zoology}
+\newlabel{fig:scaleup}{{3a}{7}{Stable scaling across $d256$--$d1024\times L2$--$L4$; no collapse anywhere, perplexity flat at the WikiText-2 data floor (hatched: $d1024/L4$ skipped for RAM, not collapsed)}{figure.caption.7}{}}
+\newlabel{sub@fig:scaleup}{{a}{7}{Stable scaling across $d256$--$d1024\times L2$--$L4$; no collapse anywhere, perplexity flat at the WikiText-2 data floor (hatched: $d1024/L4$ skipped for RAM, not collapsed)}{figure.caption.7}{}}
+\newlabel{fig:saturation}{{3b}{7}{Interior vs.\ boundary attractor. State saturation (fraction of channels with $s_t>0.95$) by sequence position, final epoch, phase-1 runs at $d{\in }\{128,256\}$: the gate-free Pure variant's saturation \emph {grows along the sequence} (boundary pull toward $s^\ast {=}1$), while the selective variant stays flat and interior, keeping the residual legible. Source: \code {evidence\_companion/phase1\_fulldata.json}}{figure.caption.7}{}}
+\newlabel{sub@fig:saturation}{{b}{7}{Interior vs.\ boundary attractor. State saturation (fraction of channels with $s_t>0.95$) by sequence position, final epoch, phase-1 runs at $d{\in }\{128,256\}$: the gate-free Pure variant's saturation \emph {grows along the sequence} (boundary pull toward $s^\ast {=}1$), while the selective variant stays flat and interior, keeping the residual legible. Source: \code {evidence\_companion/phase1\_fulldata.json}}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Two supporting readings of the same operator. (a) The stabilized architecture scales without collapse; the perplexity floor is the WikiText-2 data budget, not an architecture limit (\S  \ref {sec:secondary}). (b) The DC gain $\alpha /(1-\gamma )$ sets the attractor topology.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:supporting}{{3}{7}{Two supporting readings of the same operator. (a) The stabilized architecture scales without collapse; the perplexity floor is the WikiText-2 data budget, not an architecture limit (\S \ref {sec:secondary}). (b) The DC gain $\alpha /(1-\gamma )$ sets the attractor topology}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}A rank-1 readout cannot bind $K$ pairs}{7}{subsection.4.1}\protected@file@percent }
+\newlabel{thm:rank}{{1}{7}{Scalar-SSM associative-recall ceiling}{theorem.1}{}}
+\citation{plate1995holographic}
+\citation{yang2024deltanet}
+\citation{foss2026gssm}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Multi-query associative recall (5 seeds, len-256 eval, chance $1.56\%$). The key-conditioned holographic write lifts a bounded scalar state from its chance-level wall to $5.7\times $ the floor; attention is the rank-$K$ validity gate. Source: \texttt  {results/holographic\_mqar.json}.}}{8}{table.caption.8}\protected@file@percent }
+\newlabel{tab:recall}{{3}{8}{Multi-query associative recall (5 seeds, len-256 eval, chance $1.56\%$). The key-conditioned holographic write lifts a bounded scalar state from its chance-level wall to $5.7\times $ the floor; attention is the rank-$K$ validity gate. Source: \code {results/holographic\_mqar.json}}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The wall, measured; and a cache-free lift}{8}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}The double dissociation: scan class alone gates binding}{8}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:dissociation}{{4.3}{8}{The double dissociation: scan class alone gates binding}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Double dissociation. Five architectures, all sharing the three-SSM-plus-one-attention layout except the pure attention (AAAA) and pure selective (SSSS) controls; SSAS and PPAP differ \emph  {only} in scan class. Task~B is MQAR recall (eval len 256); Task~A is the length-extrapolation perplexity rise (train $T{=}32\!\to \!$ eval $T{=}256$). Source: \texttt  {evidence\_companion/hybrid\_A.json}, \texttt  {evidence\_companion/hybrid\_B.json}.}}{9}{table.caption.9}\protected@file@percent }
+\newlabel{tab:dissociation}{{4}{9}{Double dissociation. Five architectures, all sharing the three-SSM-plus-one-attention layout except the pure attention (AAAA) and pure selective (SSSS) controls; SSAS and PPAP differ \emph {only} in scan class. Task~B is MQAR recall (eval len 256); Task~A is the length-extrapolation perplexity rise (train $T{=}32\!\to \!$ eval $T{=}256$). Source: \code {evidence\_companion/hybrid\_A.json}, \code {evidence\_companion/hybrid\_B.json}}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Secondary results and the honest limits}{9}{section.5}\protected@file@percent }
+\newlabel{sec:secondary}{{5}{9}{Secondary results and the honest limits}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Width stabilization (optimization, not architecture).}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limits, computed rather than excused.}{9}{section*.13}\protected@file@percent }
+\citation{gu2022s4}
+\citation{smith2023s5}
+\citation{orvieto2023lru}
+\citation{gu2023mamba}
+\citation{peng2023rwkv}
+\citation{yang2024deltanet}
+\citation{beck2024xlstm}
+\citation{yang2024deltanet}
+\citation{dao2024ssd}
+\citation{gu2020hippo}
+\citation{katharopoulos2020linear}
+\citation{schlag2021fastweight}
+\citation{vaswani2017attention}
+\citation{behrouz2025titans}
+\citation{de2024griffin}
+\citation{arora2024zoology}
+\citation{plate1995holographic}
+\newlabel{fig:hybrid_recall}{{4a}{10}{Task B --- MQAR recall. SSAS/SSSA/AAAA bind at $100\%$; SSSS/PPAP sit at the $14$--$16\%$ scalar-capacity floor. SSAS vs.\ PPAP: same structure, opposite outcome}{figure.caption.10}{}}
+\newlabel{sub@fig:hybrid_recall}{{a}{10}{Task B --- MQAR recall. SSAS/SSSA/AAAA bind at $100\%$; SSSS/PPAP sit at the $14$--$16\%$ scalar-capacity floor. SSAS vs.\ PPAP: same structure, opposite outcome}{figure.caption.10}{}}
+\newlabel{fig:hybrid_length}{{4b}{10}{Task A --- length extrapolation. SSAS and sel4 stay length-robust ($\sim 35$--$39\%$ rise); PPAP explodes ($+313\%$). The boundary attractor breaks both recall and length}{figure.caption.10}{}}
+\newlabel{sub@fig:hybrid_length}{{b}{10}{Task A --- length extrapolation. SSAS and sel4 stay length-robust ($\sim 35$--$39\%$ rise); PPAP explodes ($+313\%$). The boundary attractor breaks both recall and length}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The double dissociation. Two layer-identical stacks (SSAS vs.\ PPAP) differing only in scan class flip from $100\%$ to $16\%$ recall (a) and from length-robust to length-exploding (b). The attention layer is held fixed; the kernel's DC-gain regime is the only thing that moves.}}{10}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:dissociation}{{4}{10}{The double dissociation. Two layer-identical stacks (SSAS vs.\ PPAP) differing only in scan class flip from $100\%$ to $16\%$ recall (a) and from length-robust to length-exploding (b). The attention layer is held fixed; the kernel's DC-gain regime is the only thing that moves}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related work and positioning}{10}{section.6}\protected@file@percent }
+\citation{foss2026o1}
+\citation{foss2026gssm}
+\newlabel{fig:widthfix}{{5a}{11}{$\mu $P and the full stabilization stack recover the $d512$ width collapse ($202\to 153$ PPL), beating the small-width reference (dashed: $d{=}128$ full stack, 161); clipping alone does nothing}{figure.caption.12}{}}
+\newlabel{sub@fig:widthfix}{{a}{11}{$\mu $P and the full stabilization stack recover the $d512$ width collapse ($202\to 153$ PPL), beating the small-width reference (dashed: $d{=}128$ full stack, 161); clipping alone does nothing}{figure.caption.12}{}}
+\newlabel{fig:attribution}{{5b}{11}{Root-cause attribution at $d{=}512$: velocity saturation (top) and value-projection preactivation (bottom) per intervention. $\mu $P alone collapses both ($0.43\to 0.05$, $239\to 21$); gradient clipping does nothing --- the collapse lives in the optimization of $W_v$ at width, not in the architecture}{figure.caption.12}{}}
+\newlabel{sub@fig:attribution}{{b}{11}{Root-cause attribution at $d{=}512$: velocity saturation (top) and value-projection preactivation (bottom) per intervention. $\mu $P alone collapses both ($0.43\to 0.05$, $239\to 21$); gradient clipping does nothing --- the collapse lives in the optimization of $W_v$ at width, not in the architecture}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The $d512$ collapse is an optimization-at-width artifact resolved by $\mu $P, not an architectural limit.}}{11}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:m1}{{5}{11}{The $d512$ collapse is an optimization-at-width artifact resolved by $\mu $P, not an architectural limit}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{11}{section*.14}\protected@file@percent }
+\bibstyle{plain}
+\bibdata{refs}
+\bibcite{arora2024zoology}{1}
+\bibcite{beck2024xlstm}{2}
+\bibcite{behrouz2025titans}{3}
+\bibcite{dao2024ssd}{4}
+\bibcite{de2024griffin}{5}
+\bibcite{foss2026markov}{6}
+\bibcite{foss2026gssm}{7}
+\bibcite{foss2026o1}{8}
+\bibcite{foss2026ginibre}{9}
+\bibcite{gu2023mamba}{10}
+\bibcite{gu2020hippo}{11}
+\bibcite{gu2022s4}{12}
+\bibcite{katharopoulos2020linear}{13}
+\bibcite{orvieto2023lru}{14}
+\bibcite{peng2023rwkv}{15}
+\bibcite{plate1995holographic}{16}
+\bibcite{schlag2021fastweight}{17}
+\bibcite{smith2023s5}{18}
+\bibcite{vaswani2017attention}{19}
+\bibcite{yang2024deltanet}{20}
+\gdef \@abspage@last{13}

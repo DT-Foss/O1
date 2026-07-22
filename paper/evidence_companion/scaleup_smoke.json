@@ -1,0 +1,46 @@
+{
+  "tag": "smoke",
+  "model": "selective",
+  "d_model": 256,
+  "n_layers": 2,
+  "seq_len": 128,
+  "batch": 32,
+  "flags": {
+    "preln": true,
+    "mup": true,
+    "warmup": true,
+    "warmup_steps": 20,
+    "clip": 1.0,
+    "gate_bias": false
+  },
+  "lr": 0.003,
+  "params_M": 4.275,
+  "est_params_M": 4.27,
+  "est_peak_gb": 5.28,
+  "opt": {
+    "scale": 0.5,
+    "proj_lr": 0.0015,
+    "base_lr": 0.003,
+    "n_proj": 11,
+    "n_base": 20
+  },
+  "best_ppl": 977.657,
+  "final_ppl": 977.657,
+  "final_acc": 0.168,
+  "epoch_ppls": [
+    977.657
+  ],
+  "epoch_accs": [
+    0.168
+  ],
+  "velocity_metrics": {
+    "velocity_sat_gt95": 0.0,
+    "velocity_abs_mean": 0.2158,
+    "gamma_mean": 0.5174,
+    "alpha_mean": 0.5166,
+    "gamma_frozen_gt95": 0.0,
+    "alpha_dead_lt05": 0.0,
+    "wv_preact_absmax": 3.18
+  },
+  "time_s": 3.8
+}

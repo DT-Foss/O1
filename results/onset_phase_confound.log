@@ -1,0 +1,98 @@
+==========================================================================
+ONSET Lever 4: Phase-confound re-run  device=mps steps=2500 seeds=[1, 7, 42] readout=tanh_m chance=0.0156
+==========================================================================
+
+--- seed 1 ---
+/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+      step 500/2500 | loss 0.0011
+      step 1000/2500 | loss 0.0034
+      step 1500/2500 | loss 0.0002
+      step 2000/2500 | loss 0.0017
+      step 2500/2500 | loss 0.0003
+  attn           0.9990  (99.90%)
+      step 500/2500 | loss 4.1741
+      step 1000/2500 | loss 4.1626
+      step 1500/2500 | loss 4.1531
+      step 2000/2500 | loss 4.1633
+      step 2500/2500 | loss 4.1695
+  selective      0.0137  (1.37%)
+      step 500/2500 | loss 4.1775
+      step 1000/2500 | loss 4.1639
+      step 1500/2500 | loss 4.1527
+      step 2000/2500 | loss 4.1635
+      step 2500/2500 | loss 4.1676
+  phase_false    0.0137  (1.37%)
+      step 500/2500 | loss 4.1779
+      step 1000/2500 | loss 4.1633
+      step 1500/2500 | loss 4.1529
+      step 2000/2500 | loss 4.1626
+      step 2500/2500 | loss 4.1680
+  phase_true     0.0137  (1.37%)
+
+--- seed 7 ---
+/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+      step 500/2500 | loss 0.0535
+      step 1000/2500 | loss 0.0001
+      step 1500/2500 | loss 0.0049
+      step 2000/2500 | loss 0.0003
+      step 2500/2500 | loss 0.0003
+  attn           0.9990  (99.90%)
+      step 500/2500 | loss 4.1878
+      step 1000/2500 | loss 4.1610
+      step 1500/2500 | loss 4.1611
+      step 2000/2500 | loss 4.1650
+      step 2500/2500 | loss 4.1735
+  selective      0.0156  (1.56%)
+      step 500/2500 | loss 4.1891
+      step 1000/2500 | loss 4.1595
+      step 1500/2500 | loss 4.1619
+      step 2000/2500 | loss 4.1650
+      step 2500/2500 | loss 4.1732
+  phase_false    0.0156  (1.56%)
+      step 500/2500 | loss 4.1889
+      step 1000/2500 | loss 4.1599
+      step 1500/2500 | loss 4.1636
+      step 2000/2500 | loss 4.1656
+      step 2500/2500 | loss 4.1731
+  phase_true     0.0156  (1.56%)
+
+--- seed 42 ---
+      step 500/2500 | loss 0.0015
+      step 1000/2500 | loss 0.0096
+      step 1500/2500 | loss 0.0009
+      step 2000/2500 | loss 0.0028
+      step 2500/2500 | loss 0.0012
+  attn           0.9995  (99.95%)
+      step 500/2500 | loss 4.1590
+      step 1000/2500 | loss 4.1700
+      step 1500/2500 | loss 4.1620
+      step 2000/2500 | loss 4.1505
+      step 2500/2500 | loss 4.1593
+  selective      0.0171  (1.71%)
+      step 500/2500 | loss 4.1571
+      step 1000/2500 | loss 4.1666
+      step 1500/2500 | loss 4.1617
+      step 2000/2500 | loss 4.1520
+      step 2500/2500 | loss 4.1596
+  phase_false    0.0171  (1.71%)
+      step 500/2500 | loss 4.1565
+      step 1000/2500 | loss 4.1682
+      step 1500/2500 | loss 4.1622
+      step 2000/2500 | loss 4.1517
+      step 2500/2500 | loss 4.1593
+  phase_true     0.0171  (1.71%)
+
+==========================================================================
+AGGREGATE (mean ± std)
+  attn           0.9992 ± 0.0002
+  selective      0.0155 ± 0.0014
+  phase_false    0.0155 ± 0.0014
+  phase_true     0.0155 ± 0.0014
+
+  phase_true − phase_false = +0.00pp ± 0.00pp  (per seed: [0.0, 0.0, 0.0])
+  VERDICT: NULL (phase_true−phase_false Δ=+0.00pp within noise; additive-phase confirmed null, not a readout artefact)
+  validity (attn): 0.9992 PASS
+
+Written results/onset_phase_confound.json  (2909.9s)

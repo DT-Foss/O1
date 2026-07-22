@@ -550,25 +550,36 @@ def complete_inference_pipeline(
     """
     results: List[Tuple[Tuple[int, ...], float, str]] = []
 
-    # Phase 1: 3-pass inference
+    # If a knowledge base of (trigger_id, mechanism, outcome_id) edges is given, turn it into a
+    # real adjacency (trigger -> {outcome: 1.0}) so the DFS chain-joining in pass1_exact_chains
+    # actually walks A->B->C->D->E across the KB graph — instead of treating each KB edge as a
+    # standalone 2-hop path. This is what makes transitive closure (max_path_length hops) real.
+    if knowledge_base is not None and adjacency is None:
+        adjacency = {}
+        for triplet in knowledge_base:
+            if len(triplet) >= 3:
+                trig, _mech, outc = triplet[0], triplet[1], triplet[2]
+                adjacency.setdefault(trig, {})[outc] = 1.0
+
+    # Phase 1: 3-pass inference (now KB-aware via the adjacency just built)
     direct = transitive_closure(
         query_tokens,
         token_id_to_str=token_id_to_str,
         adjacency=adjacency,
     )
     for path, conf in direct.items():
-        results.append((path, conf, "direct"))
+        # genuine multi-hop chains (len>2) carry the chain confidence with decay
+        conf = chain_confidence([1.0] * (len(path) - 1)) if len(path) > 2 else conf
+        results.append((path, conf, "transitive" if len(path) > 2 else "direct"))
 
-    # Phase 2: Transitive closure via path confidence
+    # Also keep each raw KB edge as a 1-hop fact (so single-edge lookups still surface)
     if knowledge_base is not None:
         for triplet in knowledge_base:
-            if len(triplet) >= 2:
-                # Build path from triplet
-                path = tuple(triplet)
-                # Compute chain confidence
-                conf = chain_confidence([1.0] * len(path))
+            if len(triplet) >= 3:
+                path = (triplet[0], triplet[2])
+                conf = chain_confidence([1.0])
                 if conf >= THETA_Q:
-                    results.append((path, conf, "transitive"))
+                    results.append((path, conf, "edge"))
 
     # Phase 3: Sort by confidence descending
     results.sort(key=lambda x: x[1], reverse=True)

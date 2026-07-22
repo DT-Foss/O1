@@ -1,0 +1,389 @@
+{
+  "selective_d256_L2_T128": {
+    "tag": "d256_L2",
+    "model": "selective",
+    "d_model": 256,
+    "n_layers": 2,
+    "seq_len": 128,
+    "batch": 32,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 4.275,
+    "est_params_M": 4.27,
+    "est_peak_gb": 5.28,
+    "opt": {
+      "scale": 0.5,
+      "proj_lr": 0.0015,
+      "base_lr": 0.003,
+      "n_proj": 11,
+      "n_base": 20
+    },
+    "best_ppl": 145.052,
+    "final_ppl": 175.261,
+    "final_acc": 0.2529,
+    "epoch_ppls": [
+      237.86,
+      171.215,
+      149.073,
+      145.052,
+      152.026,
+      175.261
+    ],
+    "epoch_accs": [
+      0.2142,
+      0.2446,
+      0.2543,
+      0.2586,
+      0.2545,
+      0.2529
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0336,
+      "velocity_abs_mean": 0.2243,
+      "gamma_mean": 0.3893,
+      "alpha_mean": 0.2088,
+      "gamma_frozen_gt95": 0.192,
+      "alpha_dead_lt05": 0.5993,
+      "wv_preact_absmax": 9.7
+    },
+    "time_s": 383.0
+  },
+  "selective_d256_L4_T128": {
+    "tag": "d256_L4",
+    "model": "selective",
+    "d_model": 256,
+    "n_layers": 4,
+    "seq_len": 128,
+    "batch": 16,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 5.983,
+    "est_params_M": 5.978,
+    "est_peak_gb": 5.43,
+    "opt": {
+      "scale": 0.5,
+      "proj_lr": 0.0015,
+      "base_lr": 0.003,
+      "n_proj": 21,
+      "n_base": 36
+    },
+    "best_ppl": 139.818,
+    "final_ppl": 157.901,
+    "final_acc": 0.2565,
+    "epoch_ppls": [
+      193.039,
+      148.966,
+      139.818,
+      141.216,
+      157.901
+    ],
+    "epoch_accs": [
+      0.2284,
+      0.2525,
+      0.2581,
+      0.2612,
+      0.2565
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0308,
+      "velocity_abs_mean": 0.1379,
+      "gamma_mean": 0.4078,
+      "alpha_mean": 0.1337,
+      "gamma_frozen_gt95": 0.2321,
+      "alpha_dead_lt05": 0.7531,
+      "wv_preact_absmax": 12.76
+    },
+    "time_s": 502.0
+  },
+  "selective_d512_L2_T128": {
+    "tag": "d512_L2",
+    "model": "selective",
+    "d_model": 512,
+    "n_layers": 2,
+    "seq_len": 128,
+    "batch": 32,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 11.953,
+    "est_params_M": 11.948,
+    "est_peak_gb": 10.86,
+    "opt": {
+      "scale": 0.25,
+      "proj_lr": 0.00075,
+      "base_lr": 0.003,
+      "n_proj": 11,
+      "n_base": 20
+    },
+    "best_ppl": 144.222,
+    "final_ppl": 166.132,
+    "final_acc": 0.2561,
+    "epoch_ppls": [
+      225.517,
+      161.373,
+      144.222,
+      146.382,
+      166.132
+    ],
+    "epoch_accs": [
+      0.2217,
+      0.2495,
+      0.2533,
+      0.2535,
+      0.2561
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0321,
+      "velocity_abs_mean": 0.2493,
+      "gamma_mean": 0.4527,
+      "alpha_mean": 0.2348,
+      "gamma_frozen_gt95": 0.3213,
+      "alpha_dead_lt05": 0.6426,
+      "wv_preact_absmax": 7.64
+    },
+    "time_s": 661.2
+  },
+  "selective_d512_L4_T128": {
+    "tag": "d512_L4",
+    "model": "selective",
+    "d_model": 512,
+    "n_layers": 4,
+    "seq_len": 128,
+    "batch": 16,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 18.777,
+    "est_params_M": 18.772,
+    "est_peak_gb": 11.6,
+    "opt": {
+      "scale": 0.25,
+      "proj_lr": 0.00075,
+      "base_lr": 0.003,
+      "n_proj": 21,
+      "n_base": 36
+    },
+    "best_ppl": 135.165,
+    "final_ppl": 185.914,
+    "final_acc": 0.2514,
+    "epoch_ppls": [
+      184.956,
+      142.801,
+      135.165,
+      149.282,
+      185.914
+    ],
+    "epoch_accs": [
+      0.2394,
+      0.2557,
+      0.2569,
+      0.2552,
+      0.2514
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0284,
+      "velocity_abs_mean": 0.1674,
+      "gamma_mean": 0.4553,
+      "alpha_mean": 0.14,
+      "gamma_frozen_gt95": 0.3484,
+      "alpha_dead_lt05": 0.7914,
+      "wv_preact_absmax": 11.7
+    },
+    "time_s": 1261.2
+  },
+  "selective_d768_L2_T128": {
+    "tag": "d768_L2",
+    "model": "selective",
+    "d_model": 768,
+    "n_layers": 2,
+    "seq_len": 128,
+    "batch": 16,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 23.038,
+    "est_params_M": 23.033,
+    "est_peak_gb": 9.76,
+    "opt": {
+      "scale": 0.16666666666666666,
+      "proj_lr": 0.0005,
+      "base_lr": 0.003,
+      "n_proj": 11,
+      "n_base": 20
+    },
+    "best_ppl": 142.536,
+    "final_ppl": 235.148,
+    "final_acc": 0.2431,
+    "epoch_ppls": [
+      194.204,
+      148.432,
+      142.536,
+      163.842,
+      235.148
+    ],
+    "epoch_accs": [
+      0.2287,
+      0.253,
+      0.2561,
+      0.2508,
+      0.2431
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0441,
+      "velocity_abs_mean": 0.2425,
+      "gamma_mean": 0.4667,
+      "alpha_mean": 0.2008,
+      "gamma_frozen_gt95": 0.3906,
+      "alpha_dead_lt05": 0.7372,
+      "wv_preact_absmax": 9.98
+    },
+    "time_s": 1135.2
+  },
+  "selective_d768_L4_T128": {
+    "tag": "d768_L4",
+    "model": "selective",
+    "d_model": 768,
+    "n_layers": 4,
+    "seq_len": 128,
+    "batch": 8,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 38.387,
+    "est_params_M": 38.382,
+    "est_peak_gb": 11.51,
+    "opt": {
+      "scale": 0.16666666666666666,
+      "proj_lr": 0.0005,
+      "base_lr": 0.003,
+      "n_proj": 21,
+      "n_base": 36
+    },
+    "best_ppl": 139.707,
+    "final_ppl": 204.297,
+    "final_acc": 0.2469,
+    "epoch_ppls": [
+      174.173,
+      140.812,
+      139.707,
+      154.164,
+      204.297
+    ],
+    "epoch_accs": [
+      0.2406,
+      0.256,
+      0.2593,
+      0.2545,
+      0.2469
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0355,
+      "velocity_abs_mean": 0.1555,
+      "gamma_mean": 0.4546,
+      "alpha_mean": 0.1567,
+      "gamma_frozen_gt95": 0.3977,
+      "alpha_dead_lt05": 0.8043,
+      "wv_preact_absmax": 13.0
+    },
+    "time_s": 2153.7
+  },
+  "selective_d1024_L2_T128": {
+    "tag": "d1024_L2",
+    "model": "selective",
+    "d_model": 1024,
+    "n_layers": 2,
+    "seq_len": 128,
+    "batch": 8,
+    "flags": {
+      "preln": true,
+      "mup": true,
+      "warmup": true,
+      "warmup_steps": 1000,
+      "clip": 1.0,
+      "gate_bias": false
+    },
+    "lr": 0.003,
+    "params_M": 37.532,
+    "est_params_M": 37.527,
+    "est_peak_gb": 9.07,
+    "opt": {
+      "scale": 0.125,
+      "proj_lr": 0.000375,
+      "base_lr": 0.003,
+      "n_proj": 11,
+      "n_base": 20
+    },
+    "best_ppl": 142.442,
+    "final_ppl": 174.852,
+    "final_acc": 0.2495,
+    "epoch_ppls": [
+      171.222,
+      142.442,
+      150.46,
+      174.852
+    ],
+    "epoch_accs": [
+      0.2412,
+      0.2553,
+      0.254,
+      0.2495
+    ],
+    "velocity_metrics": {
+      "velocity_sat_gt95": 0.0431,
+      "velocity_abs_mean": 0.2031,
+      "gamma_mean": 0.4644,
+      "alpha_mean": 0.1975,
+      "gamma_frozen_gt95": 0.4166,
+      "alpha_dead_lt05": 0.7639,
+      "wv_preact_absmax": 12.32
+    },
+    "time_s": 1415.7
+  },
+  "selective_d1024_L4_T128": {
+    "skipped": "RAM",
+    "est_params_M": 64.808,
+    "est_peak_gb": 16.93,
+    "batch": 8,
+    "d_model": 1024,
+    "n_layers": 4,
+    "seq_len": 128
+  }
+}
