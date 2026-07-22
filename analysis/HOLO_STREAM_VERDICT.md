@@ -86,6 +86,35 @@ or above their v1 levels; zeroed null at chance throughout; holo_on vs
 holo_off still tied (the P11 falsification is a regime property and should
 replicate). Output: results/holo_stream_recall_v3.json.
 
+## v3 (train-short-eval-long) — the fix works, and the phase starts paying rent
+
+*Added ~01:05, scored against the v3 prediction registered above.*
+
+- **P=1 repaired at G≤32:** curriculum consolidates at the single-chunk cap
+  (final_train_acc 1.0), carried recall 1.000/1.000/0.995 at G=0/8/32.
+  Prediction "≥0.9 at every G" is **PARTIAL**: G=128 breaks (0.065).
+- **P=2 jumps to 0.79–0.83 at G≤32** (v1: 0.53) — best of all versions — and
+  **holo_on now beats holo_off by +25–30 pp** (0.80 vs 0.50). The original
+  P11 falsification was an artifact of collapsed training: with clean
+  consolidation the key-conditioned phase write *does* pay rent at P=2, in
+  streaming, across chunk boundaries. P11 status revised: falsified in the
+  v1 regime, **confirmed in the v3 regime for G≤32**.
+- **Zeroed null at chance in all 12 cells** — the carried-state claim stands
+  in every version.
+- **The new measurement: a γ-knee between G=32 and G=128.** v3's phase arms
+  hold 0.995 at G=32 and die at G=128, while v1's G=2-trained P=4 arm stays
+  flat to 128 and v3's holo_off P=1 extrapolates perfectly to 128. This is
+  the theory's §1 knee (G* ≈ ln-margin/(1−γ)) made visible: the *training gap
+  regime shapes how tightly γ closes on fillers* — training at larger
+  single-chunk gaps (≤12) appears to license faster forgetting than training
+  at G=2. The knee's location (32 < G* < 128) and its dependence on the
+  training gap are now concrete, measurable quantities.
+
+**Where this leaves the mission:** keyed holographic recall on the carried
+streaming state is real (0.8 at P=2 through 32-token gaps, +27 pp over the
+magnitude baseline, null at chance), and the open frontier is a measured
+decay knee, not a mystery. Phase B+ items below, updated accordingly.
+
 ## Next attacks (Phase B+)
 
 1. **Compositional-binding test** — where the phase must pay rent: P_max=256
