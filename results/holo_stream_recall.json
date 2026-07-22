@@ -1,0 +1,483 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 2000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "log_every": 0,
+    "pairs": "1,2,4",
+    "gaps": "0,8,32,128",
+    "seeds": "0,1",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_stream_recall.json"
+  },
+  "equivalence": {
+    "use_phase_true": 0.0,
+    "use_phase_false": 0.0,
+    "use_phase_true_n_slots4": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "holo_carried|P1|G0": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 1,
+      "G": 0,
+      "accuracy": 0.04,
+      "phi_margin": -0.1076,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_carried|P1|G8": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 1,
+      "G": 8,
+      "accuracy": 0.09,
+      "phi_margin": -0.09093,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_carried|P1|G32": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 1,
+      "G": 32,
+      "accuracy": 0.1,
+      "phi_margin": -0.08869,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_carried|P1|G128": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 1,
+      "G": 128,
+      "accuracy": 0.055,
+      "phi_margin": -0.09038,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P1|G0": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 1,
+      "G": 0,
+      "accuracy": 0.035,
+      "phi_margin": -0.1076,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P1|G8": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 1,
+      "G": 8,
+      "accuracy": 0.09,
+      "phi_margin": -0.09093,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P1|G32": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 1,
+      "G": 32,
+      "accuracy": 0.1,
+      "phi_margin": -0.08869,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P1|G128": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 1,
+      "G": 128,
+      "accuracy": 0.055,
+      "phi_margin": -0.09038,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_off|P1|G0": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 1,
+      "G": 0,
+      "accuracy": 0.07,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_off|P1|G8": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 1,
+      "G": 8,
+      "accuracy": 0.085,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_off|P1|G32": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 1,
+      "G": 32,
+      "accuracy": 0.055,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_off|P1|G128": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 1,
+      "G": 128,
+      "accuracy": 0.06,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_carried|P2|G0": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.56,
+      "phi_margin": -0.11567,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P2|G8": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.53,
+      "phi_margin": -0.10418,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P2|G32": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.58,
+      "phi_margin": -0.11853,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P2|G128": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.48,
+      "phi_margin": -0.1105,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_zeroed_at_gap|P2|G0": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.055,
+      "phi_margin": -0.11567,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P2|G8": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.08,
+      "phi_margin": -0.10418,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P2|G32": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.065,
+      "phi_margin": -0.11853,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P2|G128": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.08,
+      "phi_margin": -0.1105,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_off|P2|G0": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.54,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|P2|G8": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.53,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|P2|G32": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.5,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|P2|G128": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.545,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P4|G0": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 4,
+      "G": 0,
+      "accuracy": 0.415,
+      "phi_margin": -0.11122,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P4|G8": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 4,
+      "G": 8,
+      "accuracy": 0.265,
+      "phi_margin": -0.10484,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P4|G32": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 4,
+      "G": 32,
+      "accuracy": 0.35,
+      "phi_margin": -0.10897,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|P4|G128": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "P": 4,
+      "G": 128,
+      "accuracy": 0.275,
+      "phi_margin": -0.10987,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_zeroed_at_gap|P4|G0": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 4,
+      "G": 0,
+      "accuracy": 0.045,
+      "phi_margin": -0.11122,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P4|G8": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 4,
+      "G": 8,
+      "accuracy": 0.065,
+      "phi_margin": -0.10484,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P4|G32": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 4,
+      "G": 32,
+      "accuracy": 0.065,
+      "phi_margin": -0.10897,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|P4|G128": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "P": 4,
+      "G": 128,
+      "accuracy": 0.055,
+      "phi_margin": -0.10987,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_off|P4|G0": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 4,
+      "G": 0,
+      "accuracy": 0.345,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|P4|G8": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 4,
+      "G": 8,
+      "accuracy": 0.29,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|P4|G32": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 4,
+      "G": 32,
+      "accuracy": 0.315,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|P4|G128": {
+      "seed": 1,
+      "arm": "holo_off",
+      "P": 4,
+      "G": 128,
+      "accuracy": 0.335,
+      "phi_margin": null,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    }
+  },
+  "curriculum": {
+    "seed0_P1_holo_carried": {
+      "final_train_gap": 92,
+      "final_train_acc": 0.0938
+    },
+    "seed0_P1_holo_zeroed_at_gap": {
+      "final_train_gap": 92,
+      "final_train_acc": 0.0938
+    },
+    "seed0_P1_holo_off": {
+      "final_train_gap": 128,
+      "final_train_acc": 0.75
+    },
+    "seed0_P2_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.3438
+    },
+    "seed0_P2_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.3438
+    },
+    "seed0_P2_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.3438
+    },
+    "seed0_P4_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.375
+    },
+    "seed0_P4_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.375
+    },
+    "seed0_P4_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.2812
+    },
+    "seed1_P1_holo_carried": {
+      "final_train_gap": 128,
+      "final_train_acc": 0.0938
+    },
+    "seed1_P1_holo_zeroed_at_gap": {
+      "final_train_gap": 128,
+      "final_train_acc": 0.0938
+    },
+    "seed1_P1_holo_off": {
+      "final_train_gap": 128,
+      "final_train_acc": 0.0
+    },
+    "seed1_P2_holo_carried": {
+      "final_train_gap": 61,
+      "final_train_acc": 0.5312
+    },
+    "seed1_P2_holo_zeroed_at_gap": {
+      "final_train_gap": 61,
+      "final_train_acc": 0.5312
+    },
+    "seed1_P2_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5312
+    },
+    "seed1_P4_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4062
+    },
+    "seed1_P4_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4062
+    },
+    "seed1_P4_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.3438
+    }
+  },
+  "verdict": "CARRIED HOLOGRAPHIC RECALL SURVIVES THE STREAMING GAP for at least one (P,G) cell \u2014 carried beats zeroed-at-gap null and clears 3x chance",
+  "ignition_detail": [
+    "P=1 G=0: carried=0.040 zeroed=0.035 off=0.070 chance=0.062 -> no",
+    "P=1 G=8: carried=0.090 zeroed=0.090 off=0.085 chance=0.062 -> no",
+    "P=1 G=32: carried=0.100 zeroed=0.100 off=0.055 chance=0.062 -> no",
+    "P=1 G=128: carried=0.055 zeroed=0.055 off=0.060 chance=0.062 -> no",
+    "P=2 G=0: carried=0.560 zeroed=0.055 off=0.540 chance=0.062 -> IGNITED",
+    "P=2 G=8: carried=0.530 zeroed=0.080 off=0.530 chance=0.062 -> IGNITED",
+    "P=2 G=32: carried=0.580 zeroed=0.065 off=0.500 chance=0.062 -> IGNITED",
+    "P=2 G=128: carried=0.480 zeroed=0.080 off=0.545 chance=0.062 -> IGNITED",
+    "P=4 G=0: carried=0.415 zeroed=0.045 off=0.345 chance=0.062 -> IGNITED",
+    "P=4 G=8: carried=0.265 zeroed=0.065 off=0.290 chance=0.062 -> IGNITED",
+    "P=4 G=32: carried=0.350 zeroed=0.065 off=0.315 chance=0.062 -> IGNITED",
+    "P=4 G=128: carried=0.275 zeroed=0.055 off=0.335 chance=0.062 -> IGNITED"
+  ],
+  "elapsed_s": 2215.6
+}

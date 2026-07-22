@@ -354,7 +354,12 @@ def chunked_forward(model, x, chunk):
 
 
 def train_gap_curriculum(model, P, Gmax, iters, lr, seed, batch, chunk,
-                         P_max, V_max, F, log_every=0, g_start=2):
+                         P_max, V_max, F, log_every=0, g_start=2, patience=25):
+    """patience: grow the gap only after acc>0.9 is SUSTAINED for `patience`
+    consecutive iterations. Without it an easy task rockets G into the
+    multi-chunk regime within ~10 iterations — where truncated BPTT gives the
+    write phase zero gradient from the query loss — before the write has
+    consolidated (the diagnosed v1 P=1 collapse, analysis/HOLO_STREAM_VERDICT.md)."""
     key_lo, val_lo, fill_lo, _ = _gap_vocab(P_max, V_max, F)
     gen = torch.Generator().manual_seed(seed)
     opt = torch.optim.Adam(model.parameters(), lr=lr)
@@ -362,6 +367,7 @@ def train_gap_curriculum(model, P, Gmax, iters, lr, seed, batch, chunk,
     model.train()
     Gcur = min(g_start, Gmax) if Gmax > 0 else 0
     acc = 0.0
+    good = 0
     for it in range(iters):
         x, y = make_gap_mqar_batch(batch, P, Gcur, gen, P_max, V_max, F, key_lo, val_lo, fill_lo)
         logits, _ = chunked_forward(model, x, chunk)
@@ -372,8 +378,10 @@ def train_gap_curriculum(model, P, Gmax, iters, lr, seed, batch, chunk,
         torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
         opt.step()
         acc = float((pred.argmax(-1) == y).float().mean())
-        if acc > 0.9 and Gcur < Gmax:
+        good = good + 1 if acc > 0.9 else 0
+        if good >= patience and Gcur < Gmax:
             Gcur = min(Gmax, int(Gcur * 1.5) + 1)
+            good = 0
         if log_every and (it + 1) % log_every == 0:
             print(f"    it {it+1:>4}/{iters}: loss {float(loss):.3f} acc {acc:.3f} (train-gap {Gcur})")
     return {"final_train_gap": Gcur, "final_train_acc": round(acc, 4)}
@@ -505,7 +513,8 @@ def run(args):
                 Gmax = max(Gs) if Gs else 0
                 curr = train_gap_curriculum(
                     model, P, Gmax, args.iters, args.lr, seed, args.batch, args.chunk,
-                    P_max, V_max, F, log_every=args.log_every, g_start=args.g_start)
+                    P_max, V_max, F, log_every=args.log_every, g_start=args.g_start,
+                    patience=args.patience)
                 key = f"seed{seed}_P{P}_{arm_name}"
                 results["curriculum"][key] = curr
                 print(f"  [{arm_name:20s}] curriculum done: final_train_gap={curr['final_train_gap']} "
@@ -580,6 +589,8 @@ def main():
     ap.add_argument("--batch", type=int, default=32)
     ap.add_argument("--eval-batch", type=int, default=200)
     ap.add_argument("--g-start", type=int, default=2, help="curriculum starting gap")
+    ap.add_argument("--patience", type=int, default=25,
+                    help="consecutive acc>0.9 iters required before the curriculum grows the gap")
     ap.add_argument("--log-every", type=int, default=0)
     ap.add_argument("--pairs", default="1", help="comma list of n_pairs P to sweep")
     ap.add_argument("--gaps", default="0,2,4,8", help="comma list of gap lengths G to sweep")
