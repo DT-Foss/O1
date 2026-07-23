@@ -1,0 +1,40 @@
+{
+  "ckpt_n_streamed": 10017280,
+  "n_spans": 20000,
+  "grad_tokens_per_arm": 102400,
+  "base_heldout": 5.279352,
+  "arms": {
+    "sleep": {
+      "final_heldout": 5.247862,
+      "delta": 0.03149
+    },
+    "fresh": {
+      "final_heldout": 5.395823,
+      "delta": -0.116471
+    },
+    "shuffled": {
+      "final_heldout": 5.91293,
+      "delta": -0.633578
+    }
+  },
+  "c4val": {
+    "base": 4.725694,
+    "sleep": {
+      "final": 4.729942,
+      "delta": -0.004247
+    },
+    "fresh": {
+      "final": 4.805272,
+      "delta": -0.079578
+    },
+    "shuffled": {
+      "final": 5.422335,
+      "delta": -0.69664
+    }
+  },
+  "replay_epochs": {
+    "sleep": 1,
+    "shuffled": 1
+  },
+  "verdict": "sleep delta=+0.031490 fresh delta=-0.116471 shuffled delta=-0.633578 | sleep-vs-fresh=+0.147961 (sleep ahead) | sleep-vs-shuffled=+0.665068 (structure matters)"
+}

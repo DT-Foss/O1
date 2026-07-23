@@ -128,10 +128,13 @@ class C4ValStream:
     run's training stream (which reads split='train'). Same tokenize/block
     machinery as streaming_train.c4_block_stream, just split='validation'."""
 
-    def __init__(self, stoi, unk, block=65536):
+    def __init__(self, stoi, unk, block=65536, split="validation", skip_docs=0):
         from datasets import load_dataset
         self.stoi, self.unk = stoi, unk
-        ds = load_dataset("allenai/c4", "en", split="validation", streaming=True)
+        self.split, self.skip_docs = split, skip_docs
+        ds = load_dataset("allenai/c4", "en", split=split, streaming=True)
+        if skip_docs:
+            ds = ds.skip(skip_docs)
         self._it = iter(ds)
         self.pending = []
         self.block = block
@@ -144,7 +147,7 @@ class C4ValStream:
                 # validation split is small enough that in principle it could be
                 # exhausted; loop it (mirrors streaming_train's corpus-loop policy)
                 from datasets import load_dataset
-                ds = load_dataset("allenai/c4", "en", split="validation", streaming=True)
+                ds = load_dataset("allenai/c4", "en", split=self.split, streaming=True)
                 self._it = iter(ds)
                 continue
             t = row.get("text", "") if isinstance(row, dict) else ""
@@ -333,6 +336,8 @@ def build_argparser():
     ap.add_argument("--smoke", action="store_true",
                     help="chunks=40, min-spans=20, out=results/pos_sleep_smoke.json")
     ap.add_argument("--out", default="results/pos_sleep.json")
+    ap.add_argument("--fresh-split", choices=["validation", "train-far"], default="validation",
+                    help="S2 fresh-arm source: C4 validation, or C4 train skipped 5M docs ahead (same-domain control)")
     ap.add_argument("--cold-opt", action="store_true",
                     help="fresh Adam instead of restoring A3's moments (the smoke-measured restart artifact)")
     ap.add_argument("--replay-lr", type=float, default=0.0,
@@ -357,6 +362,11 @@ def main():
             args.out = "results/pos_sleep_smoke.json"
 
     def c4val_source_factory(stoi, unk, seed):
+        if args.fresh_split == "train-far":
+            # fresh tokens from the SAME split the spans came from (kills the
+            # validation-domain confound), but 5M docs ahead of anything the
+            # live run can reach in 40h — genuinely unseen, same distribution
+            return C4ValStream(stoi, unk, split="train", skip_docs=5_000_000)
         src = C4ValStream(stoi, unk)
         # discard the first 40k tokens: the fixed c4val EVAL slice is the first 20k
         # tokens of the same split — without this skip, the fresh arm would train on
