@@ -23,59 +23,116 @@ pos_sleep.py does it), same total budget of N_total chunks (default 600):
   C  wake/sleep cycles    3 cycles of [wake: N_wake chunks on the SAME
                           fresh C4 stream positions W sees + collect this
                           arm's OWN surprise spans in-memory while waking]
-                          then [sleep: N_sleep chunks replaying the spans
-                          collected SO FAR (SpanStream mechanics, spans
-                          accumulate across cycles — cycle 2's sleep replays
-                          cycle-1 + cycle-2 spans, etc.)].
-                          3 * (N_wake + N_sleep) = N_total (same budget as W).
+                          then [sleep: replay the spans collected SO FAR
+                          (SpanStream mechanics, spans accumulate across
+                          cycles), budget CAPPED so replay does not exceed
+                          --max-replay-epochs over the pool -- see "sleep
+                          budget coupling" below] -- any sleep budget left
+                          unused because the pool is still small is spent
+                          on MORE wake instead, so every cycle still spends
+                          exactly (N_wake_nominal + N_sleep_max) chunks and
+                          3 * that = N_total, unchanged (same budget as W).
 
 Honesty note (per the P15 brief): the spans C sleeps on come from data W ALSO
 saw (both arms read the identical wake-stream positions — see "shared wake
 stream" below). The only difference between the two arms is a REALLOCATION
-of 150-of-600 budget chunks per cycle from "train once on new data" to
-"replay your own past picks again". That reallocation, not access to extra
-data, is exactly what this experiment isolates. If C wins, the win is from
-WHAT the organism chose to revisit, not from seeing more.
+of up-to-(N_sleep_max)-per-cycle budget chunks from "train once on new data"
+to "replay your own past picks again". That reallocation, not access to
+extra data, is exactly what this experiment isolates. If C wins, the win is
+from WHAT the organism chose to revisit, not from seeing more.
+
+Sleep budget coupling (v2 fix -- see "why v1 failed" below): a fixed
+N_sleep=50 chunks of replay over a pool of ~8-24 spans (v1's smoke pool
+size) is ~20 replay epochs over a few thousand tokens -- pure overfitting,
+not consolidation. pos_sleep.py's one-shot result replayed 20,000 spans in
+under one epoch and WON; the mechanism this file is testing needs the same
+regime. So the sleep budget is now COUPLED to how much material is actually
+in the pool:
+
+    span_tokens          = sum(len(s) for s in collected_spans)
+    n_sleep_chunks_used   = min(n_sleep_max,
+                                ceil(max_replay_epochs * span_tokens / (B*K)))
+
+--max-replay-epochs (default 2.0) caps how many times the pool may be
+replayed in one sleep segment. A small pool sleeps briefly (few chunks,
+<=2 epochs over what little there is); a large pool can use the full
+n_sleep_max budget. The chunks NOT spent sleeping do not vanish -- they are
+added to THIS cycle's wake segment (extra fresh-data training, spike
+collection stays on), so every cycle still consumes exactly
+(n_wake + n_sleep_max) chunks in total and the W/C total-budget equality
+(3 * (n_wake+n_sleep_max) = chunks_total, identical for both arms) holds
+exactly as before. Concretely: wake first for n_wake chunks (this cycle's
+spike harvest happens here), THEN compute the capped sleep budget from the
+resulting pool, THEN wake for the leftover (n_sleep_max - n_sleep_used)
+chunks (spike collection stays on -- it's still wake time, on fresh data),
+THEN sleep for n_sleep_used chunks. The wake segment is therefore reported
+as a single merged segment per cycle (n_wake_nominal + leftover chunks);
+the curve records ONE heldout point after all of that cycle's wake chunks
+(nominal + leftover) and ONE after that cycle's (possibly shorter) sleep.
+
+Why v1 failed (kept for the record): the first smoke (spike-quantile=0.90,
+fixed n_sleep=10) collected only 8/10/6 spans/cycle (24 total, ~40 tokens
+avg span). Every 10-chunk sleep phase replayed that tiny pool ~20 times --
+all three dividends were negative and DEEPENING (-0.054, -0.092, -0.120),
+i.e. textbook overfitting on a handful of memorized spans, not the
+consolidation regime pos_sleep.py measured. v2 lowers the spike quantile to
+0.75 (--spike-quantile, more material collected per wake segment) and adds
+the epoch cap above so short sleep segments are only ever assigned to pools
+too small to productively use more.
 
 Shared wake stream: implemented as two independently instantiated
 C4ValStream(train-far) objects created with identical (stoi, unk, skip_docs)
 at the same call site — since C4 streaming with a fixed skip_docs replays
 the exact same document sequence deterministically, instantiating the same
 source twice yields byte-identical token order. W then consumes N_total
-tokens straight through; C consumes N_wake tokens per cycle at the SAME
-cumulative stream position (interleaved with sleep chunks that draw from the
-in-memory span pool instead, never advancing the shared C4 cursor). Because
-neither arm's C4 cursor is perturbed by the other arm or by C's sleep
-phases, at any matching "chunks-of-wake-consumed" checkpoint both arms have
-trained on the identical token windows.
+tokens straight through; C consumes (n_wake + leftover) tokens per cycle at
+the SAME cumulative stream position (interleaved with sleep chunks that draw
+from the in-memory span pool instead, never advancing the shared C4
+cursor). Because neither arm's C4 cursor is perturbed by the other arm or by
+C's sleep phases, at any matching "total chunks consumed" checkpoint both
+arms have trained on the identical fresh-data token windows (C additionally
+spends some of its wake-time chunks on sleep-derived replay, which W never
+sees -- that reallocation is the entire experimental question).
 
 Spike collection (arm C, in-flight during wake, no extra forward pass): the
 per-token NLL already computed by the wake TRAINING forward (cross_entropy
 with reduction="none", same tensor shape as pos_run.py's step_gated) is
 reused directly -- no separate no_grad pre-pass. A chunk-mean surprise value
 is pushed onto a rolling deque (maxlen=200); once >=2 values are in the
-window, chunks whose mean surprise clears the CURRENT rolling q90 threshold
-(computed from window contents BEFORE this chunk, matching pos_run.py's
-"threshold uses previous chunks only" convention) contribute spans: every
-token position in that chunk with per-token NLL >= spike_min_nll becomes a
-span center, extended +/-32 tokens (span_half, matching pos_run/pos_sleep),
-capped at 2 spans/chunk (highest-NLL positions first), appended to an
-in-memory list that persists across all 3 cycles.
+window, chunks whose mean surprise clears the CURRENT rolling quantile
+threshold (--spike-quantile, default 0.75; computed from window contents
+BEFORE this chunk, matching pos_run.py's "threshold uses previous chunks
+only" convention) contribute spans: every token position in that chunk with
+per-token NLL >= spike_min_nll becomes a span center, extended +/-32 tokens
+(span_half, matching pos_run/pos_sleep), capped at 2 spans/chunk
+(highest-NLL positions first), appended to an in-memory list that persists
+across all 3 cycles. The rolling window itself is NOT reset between the
+nominal-wake and leftover-wake sub-segments of a cycle (both are the same
+continuous wake activity), but IS reset fresh at the start of each new
+cycle's wake (each cycle re-learns its own recent-surprise baseline rather
+than carrying a stale one from a very different point in the sleep-replay
+schedule).
 
 Measurement: WT-2 heldout (build_eval_set/heldout, pos_run.py machinery,
 eval_tokens from the checkpoint's own config) is taken before any training,
-after each of C's 6 segments (3 wake + 3 sleep) and at W's matching
+after each of C's wake/sleep segment pairs and at W's matching cumulative
 chunk-counts, and at the end for both arms. Each sleep phase's isolated
 heldout delta (measured immediately before -> immediately after that sleep
-segment) is recorded as that cycle's "consolidation dividend".
+segment) is recorded as that cycle's "consolidation dividend" -- note this
+delta is computed relative to the post-wake (post-leftover) heldout, i.e.
+sleep's OWN marginal contribution, not conflated with that cycle's wake
+gains.
 
 Output: results/pos_sleep_cycles.json (or --smoke -> pos_sleep_cycles_smoke.json)
-  {ckpt_n_streamed, budget: {chunks_total, n_wake, n_sleep, n_cycles},
+  {ckpt_n_streamed, budget: {chunks_total, n_wake, n_sleep_max, n_cycles,
+   max_replay_epochs, spike_quantile},
    base_heldout,
    arms: {
      W: {curve: [[chunks_consumed, heldout], ...], final},
      C: {curve: [[chunks_consumed, segment_tag, heldout], ...], final,
-         sleep_dividends: [d1, d2, d3], n_spans_collected_per_cycle: [...]}
+         sleep_dividends: [d1, d2, d3], n_spans_collected_per_cycle: [...],
+         sleep_detail: [{n_spans, span_tokens, replay_epochs_effective,
+                         n_sleep_chunks_used}, ...]}
    },
    verdict}
 
@@ -94,9 +151,11 @@ Usage:
 import os
 import sys
 import json
+import math
 import copy
 import argparse
 import tempfile
+from collections import deque
 
 sys.path.insert(0, "reference")
 sys.path.insert(0, "src")
@@ -142,9 +201,8 @@ def wake_step(model, opt, feeder, states, clip=5.0):
 
 def harvest_spans(x, nll, spike_min_nll, span_half, max_per_chunk=2):
     """Extract up to max_per_chunk spans (+/- span_half tokens) centered on the
-    highest-NLL token positions in this chunk, from the FLATTENED (B*K,) token
-    stream the chunk was built from (x is (B, K); spans are cut from the row
-    the spike occurred in, clamped to that row's bounds -- rows are
+    highest-NLL token positions in this chunk (x is (B, K); spans are cut from
+    the row the spike occurred in, clamped to that row's bounds -- rows are
     independent stream lanes in ChunkFeeder, so spans never cross a lane).
     Returns a list of token-id lists."""
     spans = []
@@ -169,15 +227,16 @@ def harvest_spans(x, nll, spike_min_nll, span_half, max_per_chunk=2):
     return spans
 
 
-def run_wake_segment(model, opt, feeder, n_chunks, states, collect_spans, args):
+def run_wake_segment(model, opt, feeder, n_chunks, states, collect_spans, args, window=None):
     """Runs n_chunks of wake training. If collect_spans, maintains a rolling
-    q90-of-last-200 threshold (window seeded EMPTY per call -- each wake
-    segment's gating restarts fresh, matching the brief's "rolling q90 of the
-    last 200 chunk values" with no cross-segment carry) and harvests spans
-    from chunks whose mean surprise clears it (threshold computed from window
+    quantile-of-last-200 threshold (window contents seeded by the caller --
+    pass the SAME deque across the nominal+leftover sub-segments of one
+    cycle to keep gating continuous within a cycle; pass a fresh deque at
+    the start of each new cycle) and harvests spans from chunks whose mean
+    surprise clears args.spike_quantile (threshold computed from window
     contents BEFORE this chunk, pos_run.py convention)."""
-    from collections import deque
-    window = deque(maxlen=200)
+    if window is None:
+        window = deque(maxlen=200)
     new_spans = []
     grad_tokens = 0
     for _ in range(n_chunks):
@@ -186,11 +245,26 @@ def run_wake_segment(model, opt, feeder, n_chunks, states, collect_spans, args):
         if collect_spans:
             chunk_mean = float(nll.mean())
             if len(window) >= 2:
-                thresh = float(np.quantile(np.fromiter(window, dtype=np.float64), 0.90))
+                thresh = float(np.quantile(np.fromiter(window, dtype=np.float64), args.spike_quantile))
                 if chunk_mean > thresh:
                     new_spans.extend(harvest_spans(x, nll, args.spike_min_nll, args.span_half))
             window.append(chunk_mean)
-    return states, grad_tokens, new_spans
+    return states, grad_tokens, new_spans, window
+
+
+def sleep_budget(collected_spans, n_sleep_max, max_replay_epochs, B, K):
+    """Couples the sleep segment's chunk count to how much material is
+    actually in the pool: n_sleep_chunks_used = min(n_sleep_max,
+    ceil(max_replay_epochs * span_tokens / (B*K))). Returns
+    (n_sleep_chunks_used, span_tokens, replay_epochs_effective)."""
+    span_tokens = sum(len(s) for s in collected_spans)
+    if span_tokens == 0:
+        return 0, 0, 0.0
+    tokens_per_chunk = B * K
+    n_capped_by_epochs = math.ceil(max_replay_epochs * span_tokens / tokens_per_chunk)
+    n_used = max(1, min(n_sleep_max, n_capped_by_epochs))
+    replay_epochs_effective = (n_used * tokens_per_chunk) / span_tokens
+    return n_used, span_tokens, replay_epochs_effective
 
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -207,12 +281,15 @@ def run_cycles(args, eval_fn, vocab_fn=_real_vocab):
 
     base_heldout = eval_fn(base_model)
     print(f"[cycles] ckpt n_streamed={ck['n_streamed']:,} | budget={args.chunks_total} "
-          f"(3x({args.n_wake}+{args.n_sleep})) | base_heldout={base_heldout:.6f}", flush=True)
+          f"(3x({args.n_wake}+{args.n_sleep})) | spike_quantile={args.spike_quantile} "
+          f"max_replay_epochs={args.max_replay_epochs} | base_heldout={base_heldout:.6f}", flush=True)
 
     out = {
         "ckpt_n_streamed": ck["n_streamed"],
         "budget": {"chunks_total": args.chunks_total, "n_wake": args.n_wake,
-                   "n_sleep": args.n_sleep, "n_cycles": n_cycles},
+                   "n_sleep_max": args.n_sleep, "n_cycles": n_cycles,
+                   "max_replay_epochs": args.max_replay_epochs,
+                   "spike_quantile": args.spike_quantile},
         "base_heldout": round(base_heldout, 6),
         "arms": {},
     }
@@ -234,6 +311,9 @@ def run_cycles(args, eval_fn, vocab_fn=_real_vocab):
     def make_wake_source():
         return C4ValStream(stoi, unk, split="train", skip_docs=5_000_000)
 
+    n_wake_nominal, n_sleep_max = args.n_wake, args.n_sleep
+    cycle_budget = n_wake_nominal + n_sleep_max               # fixed total per cycle, both arms
+
     # ── Arm W: wake-only control, N_total chunks straight through ──────────
     w_model, w_opt = fresh_model_opt()
     w_source = make_wake_source()
@@ -242,13 +322,11 @@ def run_cycles(args, eval_fn, vocab_fn=_real_vocab):
     w_curve = [[0, round(base_heldout, 6)]]
     w_grad_tokens = 0
     w_chunks_done = 0
-    # W spends every chunk on wake; its eval checkpoints are simply cumulative
-    # multiples of (n_wake+n_sleep) -- the SAME total-budget points C reports at.
-    w_checkpoints = [(args.n_wake + args.n_sleep) * (i + 1) for i in range(n_cycles)]
+    w_checkpoints = [cycle_budget * (i + 1) for i in range(n_cycles)]
     for cp in w_checkpoints:
         n_this = cp - w_chunks_done
-        w_states, gt, _ = run_wake_segment(w_model, w_opt, w_feeder, n_this, w_states,
-                                            collect_spans=False, args=args)
+        w_states, gt, _, _ = run_wake_segment(w_model, w_opt, w_feeder, n_this, w_states,
+                                              collect_spans=False, args=args)
         w_grad_tokens += gt
         w_chunks_done = cp
         hl = eval_fn(w_model)
@@ -259,7 +337,8 @@ def run_cycles(args, eval_fn, vocab_fn=_real_vocab):
                         "delta": round(base_heldout - w_final, 6),
                         "grad_tokens": w_grad_tokens}
 
-    # ── Arm C: wake/sleep cycles, same total budget ────────────────────────
+    # ── Arm C: wake/sleep cycles, same total budget PER CYCLE (sleep budget
+    #    coupled to pool size; unused sleep budget is spent on extra wake) ──
     c_model, c_opt = fresh_model_opt()
     c_wake_source = make_wake_source()                          # SAME skip_docs -> identical stream to W's
     c_wake_feeder = ChunkFeeder(c_wake_source, B, K)
@@ -270,41 +349,68 @@ def run_cycles(args, eval_fn, vocab_fn=_real_vocab):
     collected_spans = []
     n_spans_per_cycle = []
     sleep_dividends = []
+    sleep_detail = []
 
     for cyc in range(n_cycles):
-        # wake segment
-        c_states, gt, new_spans = run_wake_segment(
-            c_model, c_opt, c_wake_feeder, args.n_wake, c_states,
+        # nominal wake: n_wake_nominal chunks, spike collection on, fresh window this cycle
+        c_states, gt, new_spans, window = run_wake_segment(
+            c_model, c_opt, c_wake_feeder, n_wake_nominal, c_states,
             collect_spans=True, args=args)
         c_grad_tokens += gt
-        c_chunks_done += args.n_wake
+        c_chunks_done += n_wake_nominal
         collected_spans.extend(new_spans)
+
+        # sleep budget coupled to the pool NOW (after this cycle's nominal wake)
+        n_sleep_used, span_tokens, replay_epochs_eff = sleep_budget(
+            collected_spans, n_sleep_max, args.max_replay_epochs, B, K)
+        n_leftover_wake = n_sleep_max - n_sleep_used            # unused sleep budget -> more wake, same cycle
+
+        # leftover wake: same cycle, spike collection stays on, window carries over
+        # (still the same continuous wake activity as the nominal segment above)
+        if n_leftover_wake > 0:
+            c_states, gt_lo, more_spans, window = run_wake_segment(
+                c_model, c_opt, c_wake_feeder, n_leftover_wake, c_states,
+                collect_spans=True, args=args, window=window)
+            c_grad_tokens += gt_lo
+            c_chunks_done += n_leftover_wake
+            collected_spans.extend(more_spans)
+            new_spans = new_spans + more_spans
+
         n_spans_per_cycle.append(len(new_spans))
         hl_wake = eval_fn(c_model)
         c_curve.append([c_chunks_done, f"wake{cyc+1}", round(hl_wake, 6)])
-        print(f"[cycles][C] cycle={cyc+1} wake done chunks={c_chunks_done} "
-              f"heldout={hl_wake:.6f} new_spans={len(new_spans)} "
+        print(f"[cycles][C] cycle={cyc+1} wake done (nominal={n_wake_nominal}+leftover={n_leftover_wake}) "
+              f"chunks={c_chunks_done} heldout={hl_wake:.6f} new_spans={len(new_spans)} "
               f"pool={len(collected_spans)}", flush=True)
 
-        # sleep segment: replay ALL spans collected so far (accumulates across cycles)
-        if len(collected_spans) == 0:
-            print(f"[cycles][C] cycle={cyc+1}: no spans collected yet, "
-                  f"sleep segment is a no-op passthrough of the wake heldout", flush=True)
+        # sleep segment: replay ALL spans collected so far, budget = n_sleep_used
+        if n_sleep_used == 0:
+            print(f"[cycles][C] cycle={cyc+1}: empty pool, sleep segment skipped "
+                  f"(0 chunks; all {n_sleep_max} sleep-budget chunks went to wake)", flush=True)
             hl_sleep = hl_wake
         else:
             sleep_src = SpanStream(collected_spans, seed=args.seed + cyc, permute_chunks=False)
             sleep_feeder = ChunkFeeder(sleep_src, B, K)
-            c_states, gt2, _ = run_wake_segment(
-                c_model, c_opt, sleep_feeder, args.n_sleep, c_states,
+            c_states, gt2, _, _ = run_wake_segment(
+                c_model, c_opt, sleep_feeder, n_sleep_used, c_states,
                 collect_spans=False, args=args)
             c_grad_tokens += gt2
             hl_sleep = eval_fn(c_model)
-        c_chunks_done += args.n_sleep
+        c_chunks_done += n_sleep_used
         c_curve.append([c_chunks_done, f"sleep{cyc+1}", round(hl_sleep, 6)])
         dividend = round(hl_wake - hl_sleep, 6)                 # loss DROP during sleep = this cycle's dividend
         sleep_dividends.append(dividend)
-        print(f"[cycles][C] cycle={cyc+1} sleep done chunks={c_chunks_done} "
-              f"heldout={hl_sleep:.6f} dividend={dividend:+.6f}", flush=True)
+        sleep_detail.append({"n_spans": len(collected_spans), "span_tokens": span_tokens,
+                             "replay_epochs_effective": round(replay_epochs_eff, 3),
+                             "n_sleep_chunks_used": n_sleep_used,
+                             "n_leftover_wake_chunks": n_leftover_wake})
+        print(f"[cycles][C] cycle={cyc+1} sleep done chunks={c_chunks_done} heldout={hl_sleep:.6f} "
+              f"dividend={dividend:+.6f} | pool_spans={len(collected_spans)} "
+              f"pool_tokens={span_tokens} replay_epochs={replay_epochs_eff:.3f} "
+              f"sleep_chunks_used={n_sleep_used}/{n_sleep_max}", flush=True)
+
+        # cycle budget invariant: nominal wake + leftover wake + sleep == cycle_budget, always
+        assert n_wake_nominal + n_leftover_wake + n_sleep_used == cycle_budget
 
     c_final = c_curve[-1][2]
     out["arms"]["C"] = {"curve": c_curve, "final": c_final,
@@ -312,7 +418,8 @@ def run_cycles(args, eval_fn, vocab_fn=_real_vocab):
                         "grad_tokens": c_grad_tokens,
                         "sleep_dividends": sleep_dividends,
                         "n_spans_collected_per_cycle": n_spans_per_cycle,
-                        "n_spans_total": len(collected_spans)}
+                        "n_spans_total": len(collected_spans),
+                        "sleep_detail": sleep_detail}
 
     assert w_grad_tokens == c_grad_tokens, (
         f"budget mismatch: W spent {w_grad_tokens} grad tokens, C spent {c_grad_tokens}")
@@ -356,6 +463,12 @@ def build_argparser():
                     help="per-token NLL floor for a span center (matches the live run's pos_run.py default)")
     ap.add_argument("--span-half", type=int, default=32,
                     help="span extends +/- this many tokens around a spike (matches pos_run.py/pos_sleep.py)")
+    ap.add_argument("--spike-quantile", type=float, default=0.75,
+                    help="rolling-window quantile a chunk's mean surprise must clear to harvest spans "
+                         "(v1 used a fixed 0.90 and starved the pool; 0.75 matches the live run's own q)")
+    ap.add_argument("--max-replay-epochs", type=float, default=2.0,
+                    help="caps sleep-segment length so replay never exceeds this many epochs over the "
+                         "pool collected so far; unused sleep budget is spent on extra wake instead")
     ap.add_argument("--smoke", action="store_true",
                     help="chunks-total=120 (3x(30+10)), out=results/pos_sleep_cycles_smoke.json")
     ap.add_argument("--out", default="results/pos_sleep_cycles.json")

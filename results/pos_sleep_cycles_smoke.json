@@ -1,34 +1,36 @@
 {
-  "ckpt_n_streamed": 146415104,
+  "ckpt_n_streamed": 168826368,
   "budget": {
     "chunks_total": 120,
     "n_wake": 30,
-    "n_sleep": 10,
-    "n_cycles": 3
+    "n_sleep_max": 10,
+    "n_cycles": 3,
+    "max_replay_epochs": 2.0,
+    "spike_quantile": 0.75
   },
-  "base_heldout": 4.859227,
+  "base_heldout": 4.844832,
   "arms": {
     "W": {
       "curve": [
         [
           0,
-          4.859227
+          4.844832
         ],
         [
           40,
-          4.874133
+          4.86461
         ],
         [
           80,
-          4.934975
+          4.922964
         ],
         [
           120,
-          4.916855
+          4.907529
         ]
       ],
-      "final": 4.916855,
-      "delta": -0.057628,
+      "final": 4.907529,
+      "delta": -0.062697,
       "grad_tokens": 61440
     },
     "C": {
@@ -36,54 +38,77 @@
         [
           0,
           "base",
-          4.859227
+          4.844832
         ],
         [
-          30,
+          37,
           "wake1",
-          4.852257
+          4.855007
         ],
         [
           40,
           "sleep1",
-          4.906433
+          4.866719
         ],
         [
-          70,
+          71,
           "wake2",
-          4.89244
+          4.896608
         ],
         [
           80,
           "sleep2",
-          4.984778
+          4.892451
         ],
         [
           110,
           "wake3",
-          4.939751
+          4.89754
         ],
         [
           120,
           "sleep3",
-          5.059813
+          4.874924
         ]
       ],
-      "final": 5.059813,
-      "delta": -0.200586,
+      "final": 4.874924,
+      "delta": -0.030092,
       "grad_tokens": 61440,
       "sleep_dividends": [
-        -0.054176,
-        -0.092338,
-        -0.120063
+        -0.011712,
+        0.004157,
+        0.022616
       ],
       "n_spans_collected_per_cycle": [
-        8,
-        10,
-        6
+        24,
+        24,
+        14
       ],
-      "n_spans_total": 24
+      "n_spans_total": 62,
+      "sleep_detail": [
+        {
+          "n_spans": 24,
+          "span_tokens": 686,
+          "replay_epochs_effective": 2.239,
+          "n_sleep_chunks_used": 3,
+          "n_leftover_wake_chunks": 7
+        },
+        {
+          "n_spans": 48,
+          "span_tokens": 2194,
+          "replay_epochs_effective": 2.1,
+          "n_sleep_chunks_used": 9,
+          "n_leftover_wake_chunks": 1
+        },
+        {
+          "n_spans": 62,
+          "span_tokens": 2992,
+          "replay_epochs_effective": 1.711,
+          "n_sleep_chunks_used": 10,
+          "n_leftover_wake_chunks": 0
+        }
+      ]
     }
   },
-  "verdict": "W_final=4.916855 C_final=5.059813 | C-vs-W gap=-0.142958 (W ahead (continuous wake wins)) | sleep dividends=[-0.054176, -0.092338, -0.120063] (sustained across cycles) | P15: FAIL (gap>0.02: False, dividends sustained: True)"
+  "verdict": "W_final=4.907529 C_final=4.874924 | C-vs-W gap=+0.032605 (C ahead (closed loop wins)) | sleep dividends=[-0.011712, 0.004157, 0.022616] (sustained across cycles) | P15: PASS (gap>0.02: True, dividends sustained: True)"
 }
