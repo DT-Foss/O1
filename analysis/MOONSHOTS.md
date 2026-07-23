@@ -30,6 +30,21 @@ curiosity, grows without restarting, and shares memory with others.
 | MS9 | **Auto-falsifier** (PREDICTIONS.md → machine-checkable scores) | the science machine audits itself: every new result JSON auto-scored against every registered prediction | — | 🔨 |
 | MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ⏳ |
 
+## Foundations track (F1–F6) — claim the primitives, not the effects
+
+*Opened day 2 ~19:15 after the o1-state push. Every foundation gets: one
+umbrella formulation in FOUNDATIONS.md (maximally general variant language,
+pushed = defensively published breadth) + where cheap, one locking experiment.*
+
+| # | Foundation | locking move | status |
+|---|---|---|---|
+| F1 | **The surprise calculus** — own NLL as the universal control signal (when to learn / what to store / when to consult / when to sleep / how curious) | CHIMERA (MS6) is the proof | ⏳ |
+| F2 | **The exactness license** — bounded contraction ⇒ detach-carry exact ⇒ train-anyhow/deploy-chunked equivalence | formalize + equivalence sweep table (numbers exist for 3 operators) | ⏳ |
+| F3 | **Phase–magnitude separation** — phase=content (written, never evolved), magnitude=persistence (learnable γ) | direct φ-drift measurement across gaps (theory falsifier 1, never run) | 🔨 |
+| F4 | **The two-system law** — sharp capacity cliff in gated readouts ⇒ compounding belongs to the index | unification doc (cliff + rank-1 theorem + M5 hybrid) | ⏳ |
+| F5 | **Operating modes are family-generic** — POS gating + sleep run on the Mamba/S6 configuration of the same codebase | POS-on-Mamba head-to-head (doubles as the DD baseline) | 🔨 |
+| F6 | **Train-short, deploy-unbounded** — shift-equivariance (length) and gap extrapolation are one principle on two axes | unification doc | ⏳ |
+
 ## Dynamics rules (how the portfolio reprioritizes itself)
 
 1. **Every harvest triggers a portfolio review** — written as a dated line
@@ -75,3 +90,7 @@ curiosity, grows without restarting, and shares memory with others.
   strong early (+0.033 @10M), positive mid (@146M smoke), spent late.
   **Coupling → MS6: the sleep organ gets a dividend monitor (measure each
   sleep's heldout delta, throttle sleep when ≤0) instead of a fixed cadence.**
+- day2 ~19:15 — o1-state pushed (full history, worldwide burn, grace clock
+  running). Foundations track opened; F3+F5 builders launched; FOUNDATIONS.md
+  (the $0 breadth publication) + README rebrand queued for tonight. New
+  standing rule: every harvest is pushed immediately (David's mandate).
