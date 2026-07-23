@@ -139,8 +139,14 @@ class C4ValStream:
         self.pending = []
         self.block = block
 
-    def _refill(self):
-        while len(self.pending) < self.block:
+    def _refill(self, target=None):
+        # target > self.block is required when a caller asks next_block(n) with
+        # n > block -- otherwise _refill returns at `block` tokens and
+        # next_block busy-loops forever (found live: a 100k skip against the
+        # 65536 default spun at 99% cpu indefinitely).
+        if target is None:
+            target = self.block
+        while len(self.pending) < target:
             try:
                 row = next(self._it)
             except StopIteration:
@@ -156,7 +162,7 @@ class C4ValStream:
 
     def next_block(self, n):
         while len(self.pending) < n:
-            self._refill()
+            self._refill(target=n)
         out, self.pending = self.pending[:n], self.pending[n:]
         return out
 
