@@ -214,7 +214,13 @@ class GateHomeostat:
         self.q_min, self.q_max = q_min, q_max
         self.r_hat = r_star                                   # neutral start: no bias before data arrives
 
-    def update(self, gated):
+    def update(self, gated, forced=False):
+        # Anti-windup (P28 smoke finding): while gating is FORCED (window not
+        # yet at min_window), the gated-indicator carries no information about
+        # the policy -- integrating it drives q to the clip and it never
+        # recovers. Freeze both r_hat and q until gating is free.
+        if forced:
+            return self.q, self.r_hat
         self.r_hat = (1 - self.alpha) * self.r_hat + self.alpha * (1.0 if gated else 0.0)
         self.q = float(np.clip(self.q + self.k * (self.r_hat - self.r_star), self.q_min, self.q_max))
         return self.q, self.r_hat
@@ -346,7 +352,8 @@ def run_auto_q(args, eval_wt2_fn, vocab_fn=_real_vocab):
                         model, opt, feeder, states, gate_window, q_used, args.min_window)
                     grad_tokens_total += gt
                     if tag == "auto":
-                        q_after, r_hat_after = homeostat.update(gated)
+                        q_after, r_hat_after = homeostat.update(
+                            gated, forced=len(gate_window) < args.min_window)
                     else:
                         r_hat_after = None
                     global_idx += 1

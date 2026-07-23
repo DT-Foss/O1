@@ -72,6 +72,10 @@ import torch.nn.functional as F
 
 torch.backends.mps.is_available = lambda: False  # force CPU, matches streaming_train/pos_run
 torch.set_num_threads(1)                          # bit-deterministic, matches pos_run.py
+try:
+    torch.set_num_interop_threads(1)              # linux: inter-op pool defaults to ncores/2
+except RuntimeError:
+    pass  # already started parallel work (e.g. on re-import); intra-op=1 is the critical one
 
 try:
     os.nice(19)
