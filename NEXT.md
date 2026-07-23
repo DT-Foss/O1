@@ -73,6 +73,18 @@ harvest what's there.
 - Machine load dropped overnight → tok/s roughly doubled (~300→~660); all
   token-axis scheduling (evals per 15 min wall-clock) is unaffected.
 
+## Also harvest in Phase B (day-1 moonshot leftovers)
+
+- **M4 final score (P15)**: results/pos_sleep_cycles.json (600-chunk full run,
+  launched detached ~14:55 day 1, log results/pos_sleep_cycles_full.log).
+  Score against P15 (analysis/PREDICTIONS.md): C-vs-W gap > 0.02 and
+  sustained/growing dividends. v2 smoke already PASSED (+0.033, dividends
+  −0.012→+0.004→+0.023); the full run hardens or revises. Update the P15
+  entry in analysis/HOLO_STREAM_VERDICT.md and commit the JSON+log.
+- The full day-1 moonshot record (P8–P17, three control-killed mirages,
+  the knee arc 32→512) lives in analysis/HOLO_STREAM_VERDICT.md and
+  analysis/PREDICTIONS.md — POS_THESIS.md should reference, not repeat it.
+
 ## Known environment facts (do not re-derive)
 
 - torch threads MUST stay 1 (measured: 8 threads is ~30× slower under the
