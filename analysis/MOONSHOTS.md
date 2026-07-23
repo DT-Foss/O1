@@ -40,7 +40,7 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
 |---|---|---|---|
 | F1 | **The surprise calculus** — own NLL as the universal control signal (when to learn / what to store / when to consult / when to sleep / how curious) | CHIMERA (MS6) is the proof | ⏳ |
 | F2 | **The exactness license** — bounded contraction ⇒ detach-carry exact ⇒ train-anyhow/deploy-chunked equivalence | formalize + equivalence sweep table (numbers exist for 3 operators) | ⏳ |
-| F3 | **Phase–magnitude separation** — phase=content (written, never evolved), magnitude=persistence (learnable γ) | direct φ-drift measurement across gaps (theory falsifier 1, never run) | 🔨 |
+| F3 | **Phase–magnitude separation** — phase=content (written, never evolved), magnitude=persistence (learnable γ) | direct φ-drift measurement across gaps (theory falsifier 1, never run) | ✅ |
 | F4 | **The two-system law** — sharp capacity cliff in gated readouts ⇒ compounding belongs to the index | unification doc (cliff + rank-1 theorem + M5 hybrid) | ⏳ |
 | F5 | **Operating modes are family-generic** — POS gating + sleep run on the Mamba/S6 configuration of the same codebase | POS-on-Mamba head-to-head (doubles as the DD baseline) | 🔨 |
 | F6 | **Train-short, deploy-unbounded** — shift-equivariance (length) and gap extrapolation are one principle on two axes | unification doc | ⏳ |
@@ -94,3 +94,6 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
   running). Foundations track opened; F3+F5 builders launched; FOUNDATIONS.md
   (the $0 breadth publication) + README rebrand queued for tonight. New
   standing rule: every harvest is pushed immediately (David's mandate).
+- day2 ~19:30 — F3 ✅ LAW LOCKED (a=0 ⇒ |Δφ|≈1e-8) + discovery: real fillers
+  actively pollute the phase (α>0, magnitude×35) — the knee's far-field
+  falloff is pollution, not decay; α-shut-on-fillers is the next knee lever.

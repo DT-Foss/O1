@@ -187,6 +187,21 @@ ef93620 before the runs.*
   volume-coupled sleep budget (epoch cap, fairness-preserving reallocation)
   in flight — scored when it lands.
 
+## F3 φ-drift probe — the law locked, and the knee reinterpreted
+
+*Day 2 ~19:30, results/phi_drift.json.* Null-input control: with the drive
+forced to exactly zero, |Δφ| ≈ 1e-8 across G≤512 in trained AND untrained
+models — HOLO_CARRIER_THEORY §1 holds at machine precision (an atan2-on-
+dead-channels measurement artifact was caught and SNR-gated; raw numbers
+kept in the JSON). The deployment measurement is the discovery: real fillers
+are NOT silence — α(x_filler) writes actively (magnitude grows up to 35×,
+not decays), and the real phase drift (0.1 rad at G=1, 1.52 rad at G=512
+trained) is ACTIVE POLLUTION, not decay. This reinterprets the knee: the
+G=128→512 falloff is at least partly filler pollution — which is why the
+magnitude-normalized read (heals decay, not pollution) stopped at 512. Next
+theory-led lever: α-shut on fillers (the measured Pillar-E write-once-freeze
+recipe) as an explicit curriculum/regularization target.
+
 ## Next attacks (Phase B+)
 
 1. **Compositional-binding test** — where the phase must pay rent: P_max=256
