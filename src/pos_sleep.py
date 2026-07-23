@@ -201,7 +201,8 @@ def load_snapshot(ckpt_path, vocab_fn=_real_vocab):
     model = StreamingNoPELM(V, mask, d_model=cfg["d_model"], n_layers=2, n_heads=4,
                             d_head=cfg["d_model"] // 4, seq_len=32, dropout=0.0, causal=True)
     model.load_state_dict(ck["arms"]["A3"]["model"])
-    return ck, cfg, model, stoi, unk, mask, V
+    opt_sd = ck["arms"]["A3"].get("opt")
+    return ck, cfg, model, opt_sd, stoi, unk, mask, V
 
 
 def load_spans(index_path):
@@ -229,7 +230,7 @@ def run_sleep(args, fresh_source_factory, eval_fn, c4val_fn=None, vocab_fn=_real
     c4val_fn(model) -> float loss on a fixed C4-val slice, or None to skip.
     vocab_fn() -> (vocab, stoi, unk, mask), forwarded to load_snapshot.
     Kept as injectable hooks so --self-test never touches HF/network."""
-    ck, cfg, base_model, stoi, unk, mask, V = load_snapshot(args.ckpt, vocab_fn)
+    ck, cfg, base_model, opt_sd, stoi, unk, mask, V = load_snapshot(args.ckpt, vocab_fn)
 
     spans = load_spans(args.index)
     n_spans = len(spans)
@@ -240,7 +241,7 @@ def run_sleep(args, fresh_source_factory, eval_fn, c4val_fn=None, vocab_fn=_real
 
     B, K = cfg["batch"], cfg["chunk"]
     grad_tokens_per_arm = args.chunks * B * K
-    lr = cfg["lr"]
+    lr = args.replay_lr if args.replay_lr > 0 else cfg["lr"]
 
     base_heldout = eval_fn(base_model)
     base_c4val = c4val_fn(base_model) if c4val_fn else None
@@ -263,6 +264,14 @@ def run_sleep(args, fresh_source_factory, eval_fn, c4val_fn=None, vocab_fn=_real
     def run_one(tag, source):
         model = copy.deepcopy(base_model)
         opt = torch.optim.Adam(model.parameters(), lr=lr)
+        if not args.cold_opt and opt_sd is not None:
+            # WARM optimizer: restore A3's live Adam moments from the checkpoint.
+            # The smoke showed a cold Adam restart perturbs the converged model
+            # (every arm regressed at small budgets) — warm-starting removes the
+            # restart artifact so the arms differ ONLY in their data source.
+            opt.load_state_dict(opt_sd)
+            for g in opt.param_groups:
+                g["lr"] = lr
         feeder = ChunkFeeder(source, B, K)
         train_arm(model, opt, feeder, args.chunks)
         hl = eval_fn(model)
@@ -324,6 +333,10 @@ def build_argparser():
     ap.add_argument("--smoke", action="store_true",
                     help="chunks=40, min-spans=20, out=results/pos_sleep_smoke.json")
     ap.add_argument("--out", default="results/pos_sleep.json")
+    ap.add_argument("--cold-opt", action="store_true",
+                    help="fresh Adam instead of restoring A3's moments (the smoke-measured restart artifact)")
+    ap.add_argument("--replay-lr", type=float, default=0.0,
+                    help="override lr for all arms (0 = the run's config lr)")
     ap.add_argument("--self-test", action="store_true",
                     help="fully offline synthetic self-test (no ckpt/index/HF/network access)")
     return ap
@@ -436,7 +449,8 @@ def run_self_test():
             return synth_vocab
 
         args = argparse.Namespace(ckpt=ckpt_path, index=index_path, chunks=8, min_spans=20,
-                                  seed=42, out=os.path.join(tmpdir, "pos_sleep_selftest.json"))
+                                  seed=42, cold_opt=False, replay_lr=0.0,
+                                  out=os.path.join(tmpdir, "pos_sleep_selftest.json"))
 
         out = run_sleep(args, fresh_source_factory, eval_fn, c4val_fn=None, vocab_fn=vocab_fn)
 

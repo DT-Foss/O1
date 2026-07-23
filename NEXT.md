@@ -62,6 +62,17 @@ per David, do NOT treat the historic ~9% MQAR ceiling as a law; the streaming-ga
 regime is new territory). If the full sweep is still mid-flight, note it and
 harvest what's there.
 
+## Run-time observations Phase B must know
+
+- **The index hit its 20,000-entry cap by n≈11M** (~30 min after the 5M
+  warmup): spike_min_nll=7.0 is permissive once loss ≈ 5.3, so ~2
+  spikes/chunk filled it immediately. The stored spans are therefore an
+  early-run snapshot (≈5–11M-token era); recurrence probes test *those* keys
+  for the rest of the run. Interpret injection results with that provenance
+  in mind; a v2 of the index would use a rolling/adaptive spike threshold.
+- Machine load dropped overnight → tok/s roughly doubled (~300→~660); all
+  token-axis scheduling (evals per 15 min wall-clock) is unaffected.
+
 ## Known environment facts (do not re-derive)
 
 - torch threads MUST stay 1 (measured: 8 threads is ~30× slower under the
