@@ -290,6 +290,46 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   memory across O(1) individuals: one organism's surprises become another's
   immunity.
 
+- **P20 SCORED (results/pos_domain_shock.json, full):** PARTIAL — the core
+  confirmed, one clause falsified, one surprise. Core CONFIRMED: R3
+  (gating+dosed replay) forgets +0.246 = **37% of R1's +0.667** (bar was
+  ≤50%) — sleep is the anti-forgetting organ. Clause FALSIFIED: R2's
+  "comparable code plasticity" does not hold (0.520 vs 0.854 at 58% of the
+  gradient tokens — the forgetting/plasticity ratio is dose-coupled, as the
+  smoke already showed). Surprise, inverted from the smoke: in the full run
+  R1 recovers almost fully (+0.010) while R3 stays +0.234 above baseline
+  after phase 3 — at full scale the replay that protected WT-2 during the
+  shock keeps pulling the model toward stored spans during recovery
+  (an overdose signature on the recovery phase; the volume-coupled budget
+  needs a phase-3 dividend monitor). Method note: the code-eval carries
+  unk_rate 0.44 (WT-2 vocab on Python), so absolute code-NLL levels are
+  diluted; the WT-2 forgetting signal — the core measurement — is clean,
+  and all regimes share the same eval.
+- **P27 SCORED (results/hot_swap_growth_mig.json, 1.2M+1.2M on beast):**
+  (a) CONFIRMED (commutation 29/29; full-run gate 5.7e-6); (c) CONFIRMED —
+  growth beats restart by +0.166 (third independent replication: +0.127
+  fresh-Adam Mac, +0.152 smoke, +0.166 here). (b) FALSIFIED at the 1.2M
+  horizon: deficit −0.033 vs −0.037 unmigrated — the smoke's 87% deficit
+  reduction was a TRANSIENT effect that decays over Adam's β₂ memory
+  horizon (~0.5M tokens). The real, robust gain of moment migration is the
+  transient itself: post-surgery gap 0.046 → **0.0035** (13× smaller) —
+  migration makes growth seamless, not faster-converging.
+- **Seed-hardening correction (results/holo_magread_seeds23.json, beast):**
+  the M3 "knee 512, seed-stable" claim was n=2. At n=4 the M3-recipe knee
+  is 512/512/128–256/128–256 (seeds 0–3) and the V1/V2/V3 variants do not
+  order consistently within seeds. What replicates: the v1→v3 repair, the
+  interventions' direction, and the clamp+refresh interaction jump; the
+  absolute knee position is seed-dependent (also seen in P30: 4096 vs 256).
+  Documents updated accordingly — the honest unit is the intervention
+  effect, not the knee coordinate.
+- **P28 smoke note (results/pos_auto_q_smoke.json — not scored, method
+  finding):** the q-controller saturates at the 0.95 clip in ALL phases —
+  it integrates during the ignition window (forced gating, r̂=1.0) and
+  never recovers: an anti-windup bug, not a homeostasis result. Fix: freeze
+  the controller during ignition. Efficiency signal already visible: auto
+  matches fixed's forgetting (+0.274 vs +0.281) at 18% fewer gradient
+  tokens. Full run follows after the fix.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

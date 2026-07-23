@@ -481,8 +481,10 @@ the F2 license), trained at tiny gaps, evaluated far beyond them:
   G=32 (+25–30 pp over the magnitude-only ablation), P=1 at 1.00 through G=32, and the
   zeroed-at-gap null at chance in every cell of every version.
 - **The knee is movable, theory-led** (G* ≈ ln-margin/(1−γ)): train-short-eval-long moved it
-  to 32, full-sequence training to 256, the magnitude-normalized read to **512**
-  (seed-stable), and the eval-time clamp+refresh pair to **2176 mean / 4096 end-of-range** —
+  to 32, full-sequence training to 256, the magnitude-normalized read to **512** (seeds 0/1;
+  a 4-seed replication puts the M3-recipe knee at 128–512 — the knee's absolute position is
+  seed-dependent, the intervention effects are what replicate), and the eval-time
+  clamp+refresh pair to **2176 mean / 4096 end-of-range** (same caveat: seed0 4096, seed1 256) —
   a 68×+ shift in two days, each step predicted before it was run. The closing mechanism:
   the filler write is a *double agent* (phase pollutant AND magnitude feeder), and the two
   cures **interact** — cleaning the phase alone starves the magnitude, feeding the

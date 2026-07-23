@@ -1,0 +1,106 @@
+Device: cpu
+[shock] ckpt n_streamed=507,608,576 | phase_chunks=150 eval_every=25 | B=8 K=64 lr=0.003
+[shock] code-val slice: 19,968 tokens, unk_rate=0.4438
+[shock] base_heldout_wt2=4.744795
+
+[shock] ===== regime R1 =====
+[shock][R1] phase=base    chunk=   0 wt2=4.744795 code=4.463240
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00005-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00009-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_domain_shock.py:207: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return new_states, x.numel(), float(loss), x.detach(), nll.detach()
+[shock][R1] phase=phase1  chunk=  25 wt2=4.765851 code=4.413611
+[shock][R1] phase=phase1  chunk=  50 wt2=4.802879 code=4.490174
+[shock][R1] phase=phase1  chunk=  75 wt2=4.800950 code=4.449331
+[shock][R1] phase=phase1  chunk= 100 wt2=4.788739 code=4.488351
+[shock][R1] phase=phase1  chunk= 125 wt2=4.794361 code=4.500607
+[shock][R1] phase=phase1  chunk= 150 wt2=4.780291 code=4.505052
+[shock][R1] phase=phase2  chunk= 175 wt2=5.067980 code=3.872346
+[shock][R1] phase=phase2  chunk= 200 wt2=5.447376 code=3.653786
+[shock][R1] phase=phase2  chunk= 225 wt2=5.218517 code=3.673498
+[shock][R1] phase=phase2  chunk= 250 wt2=5.313078 code=3.925716
+[shock][R1] phase=phase2  chunk= 275 wt2=5.142009 code=3.650683
+[shock][R1] phase=phase2  chunk= 300 wt2=5.086876 code=3.653164
+[shock][R1] phase=phase3  chunk= 325 wt2=4.862478 code=3.956506
+[shock][R1] phase=phase3  chunk= 350 wt2=4.811190 code=3.944308
+[shock][R1] phase=phase3  chunk= 375 wt2=4.807707 code=3.925198
+[shock][R1] phase=phase3  chunk= 400 wt2=4.807781 code=3.947643
+[shock][R1] phase=phase3  chunk= 425 wt2=4.818374 code=4.001147
+[shock][R1] phase=phase3  chunk= 450 wt2=4.789913 code=3.995901
+[shock][R1] forgetting=+0.667085 plasticity=+0.854369 recovery=+0.009622 gate_frac=1.0000 grad_tokens=230,400
+
+[shock] ===== regime R2 =====
+[shock][R2] phase=base    chunk=   0 wt2=4.744795 code=4.463240
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00007-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+[shock][R2] phase=phase1  chunk=  25 wt2=4.763924 code=4.406428
+[shock][R2] phase=phase1  chunk=  50 wt2=4.790324 code=4.466951
+[shock][R2] phase=phase1  chunk=  75 wt2=4.760469 code=4.489198
+[shock][R2] phase=phase1  chunk= 100 wt2=4.739623 code=4.454889
+[shock][R2] phase=phase1  chunk= 125 wt2=4.737983 code=4.451970
+[shock][R2] phase=phase1  chunk= 150 wt2=4.737428 code=4.443385
+[shock][R2] phase=phase2  chunk= 175 wt2=4.798639 code=4.186504
+[shock][R2] phase=phase2  chunk= 200 wt2=4.853607 code=4.094126
+[shock][R2] phase=phase2  chunk= 225 wt2=5.009233 code=3.989507
+[shock][R2] phase=phase2  chunk= 250 wt2=5.108045 code=4.012761
+[shock][R2] phase=phase2  chunk= 275 wt2=5.140916 code=4.024191
+[shock][R2] phase=phase2  chunk= 300 wt2=5.086091 code=3.923061
+[shock][R2] phase=phase3  chunk= 325 wt2=4.807969 code=4.277660
+[shock][R2] phase=phase3  chunk= 350 wt2=4.796715 code=4.159863
+[shock][R2] phase=phase3  chunk= 375 wt2=4.800852 code=4.177556
+[shock][R2] phase=phase3  chunk= 400 wt2=4.794854 code=4.148943
+[shock][R2] phase=phase3  chunk= 425 wt2=4.781848 code=4.115785
+[shock][R2] phase=phase3  chunk= 450 wt2=4.777106 code=4.122543
+[shock][R2] forgetting=+0.403488 plasticity=+0.520324 recovery=+0.039678 gate_frac=0.3378 grad_tokens=77,824
+
+[shock] ===== regime R3 =====
+[shock][R3] phase=base    chunk=   0 wt2=4.744795 code=4.463240
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00001-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00013-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+[shock][R3] phase=phase1  chunk=  25 wt2=4.757457 code=4.383627
+[shock][R3] phase=phase1  chunk=  50 wt2=4.790749 code=4.475794
+[shock][R3] phase=phase1  chunk=  75 wt2=4.756801 code=4.488527
+[shock][R3] phase=phase1  chunk= 100 wt2=4.740348 code=4.460407
+[shock][R3] phase=phase1  chunk= 125 wt2=4.737732 code=4.456778
+[shock][R3] phase=phase1  chunk= 150 wt2=4.733972 code=4.447156
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/codeparrot/github-code-clean/resolve/main/data/train-00000-of-00880.parquet
+Retrying in 1s [Retry 1/5].
+[shock][R3] phase=phase2  chunk= 170 wt2=4.782185 code=4.195935
+[shock][R3] phase=phase2_sleep chunk= 180 wt2=4.779244 code=4.148330
+[shock][R3] phase2 sleep: 10 chunks (pool=52 spans, 2424 tok, 2.11 epochs) -> wt2=4.779244 code=4.148330
+[shock][R3] phase=phase2  chunk= 200 wt2=4.774906 code=4.126490
+[shock][R3] phase=phase2_sleep chunk= 210 wt2=4.790026 code=4.030462
+[shock][R3] phase2 sleep: 10 chunks (pool=56 spans, 2579 tok, 1.99 epochs) -> wt2=4.790026 code=4.030462
+[shock][R3] phase=phase2  chunk= 230 wt2=4.797955 code=4.006883
+[shock][R3] phase=phase2_sleep chunk= 240 wt2=4.843730 code=3.998937
+[shock][R3] phase2 sleep: 10 chunks (pool=60 spans, 2792 tok, 1.83 epochs) -> wt2=4.843730 code=3.998937
+[shock][R3] phase=phase2  chunk= 260 wt2=4.872183 code=3.957783
+[shock][R3] phase=phase2_sleep chunk= 270 wt2=4.918530 code=3.918057
+[shock][R3] phase2 sleep: 10 chunks (pool=66 spans, 3050 tok, 1.68 epochs) -> wt2=4.918530 code=3.918057
+[shock][R3] phase=phase2  chunk= 290 wt2=4.940694 code=3.930661
+[shock][R3] phase=phase2_sleep chunk= 300 wt2=4.979511 code=3.946520
+[shock][R3] phase2 sleep: 10 chunks (pool=68 spans, 3160 tok, 1.62 epochs) -> wt2=4.979511 code=3.946520
+[shock][R3] phase=phase3  chunk= 320 wt2=4.893832 code=3.980008
+[shock][R3] phase=phase3_sleep chunk= 330 wt2=4.891779 code=3.878658
+[shock][R3] phase3 sleep: 10 chunks (pool=84 spans, 3989 tok, 1.28 epochs) -> wt2=4.891779 code=3.878658
+[shock][R3] phase=phase3  chunk= 350 wt2=4.905095 code=3.938190
+[shock][R3] phase=phase3_sleep chunk= 360 wt2=4.903321 code=3.879038
+[shock][R3] phase3 sleep: 10 chunks (pool=88 spans, 4180 tok, 1.22 epochs) -> wt2=4.903321 code=3.879038
+[shock][R3] phase=phase3  chunk= 380 wt2=4.907495 code=3.912149
+[shock][R3] phase=phase3_sleep chunk= 390 wt2=4.938529 code=3.875342
+[shock][R3] phase3 sleep: 10 chunks (pool=92 spans, 4398 tok, 1.16 epochs) -> wt2=4.938529 code=3.875342
+[shock][R3] phase=phase3  chunk= 410 wt2=4.928505 code=3.872603
+[shock][R3] phase=phase3_sleep chunk= 420 wt2=4.960538 code=3.886064
+[shock][R3] phase3 sleep: 10 chunks (pool=96 spans, 4605 tok, 1.11 epochs) -> wt2=4.960538 code=3.886064
+[shock][R3] phase=phase3  chunk= 440 wt2=4.921759 code=3.900262
+[shock][R3] phase=phase3_sleep chunk= 450 wt2=4.967716 code=3.878920
+[shock][R3] phase3 sleep: 10 chunks (pool=102 spans, 4856 tok, 1.05 epochs) -> wt2=4.967716 code=3.878920
+[shock][R3] forgetting=+0.245539 plasticity=+0.529099 recovery=+0.233744 gate_frac=0.4029 grad_tokens=123,392
+
+[shock] forgetting R1=+0.667085 R2=+0.403488 R3=+0.245539 | plasticity R1=+0.854369 R2=+0.520324 (comparable: False) | recovery R1=+0.009622 R2=+0.039678 R3=+0.233744 | P20: PARTIAL/FAIL (R1>=0.15: True, R2<R1@comparable: False, R3<=50%R1: True)
+[shock] -> results/pos_domain_shock.json
