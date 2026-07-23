@@ -1,0 +1,921 @@
+{
+  "generated_by": "src/score_predictions.py",
+  "n_predictions": 13,
+  "summary": {
+    "PENDING": 5,
+    "CONFIRMED": 3,
+    "FALSIFIED": 1,
+    "PARTIAL": 4
+  },
+  "predictions": [
+    {
+      "id": "P1-P7",
+      "claim": "POS long run (A3 ratio, gate drift, RSS flatness, A1 frozen, twin fork, injection, probe volume)",
+      "source_files": [
+        "pos_summary.json"
+      ],
+      "status": "PENDING",
+      "reason": "results/pos_summary.json not found \u2014 P1-P7 belong to verify_pos.py / Phase B, not scored here",
+      "measured": {
+        "_missing": [
+          "pos_summary.json"
+        ]
+      }
+    },
+    {
+      "id": "P8",
+      "claim": "persistence axis (G): ignited cells plateau within 10pp from G=8 to G=128, not exponential decay",
+      "source_files": [
+        "holo_stream_recall_v3.json"
+      ],
+      "status": "CONFIRMED",
+      "reason": "all ignited cells plateau within 10pp: P=4: G8=0.265->G128=0.275 (|\u0394|=0.010)",
+      "measured": {
+        "chance": 0.0625,
+        "cells": {
+          "(1, 0)": {
+            "carried": 1.0,
+            "zeroed": 0.065,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 8)": {
+            "carried": 1.0,
+            "zeroed": 0.055,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 32)": {
+            "carried": 0.995,
+            "zeroed": 0.05,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 128)": {
+            "carried": 0.065,
+            "zeroed": 0.065,
+            "off": 1.0,
+            "ignited": false
+          },
+          "(2, 0)": {
+            "carried": 0.83,
+            "zeroed": 0.05,
+            "off": 0.54,
+            "ignited": true
+          },
+          "(2, 8)": {
+            "carried": 0.79,
+            "zeroed": 0.035,
+            "off": 0.53,
+            "ignited": true
+          },
+          "(2, 32)": {
+            "carried": 0.8,
+            "zeroed": 0.04,
+            "off": 0.5,
+            "ignited": true
+          },
+          "(2, 128)": {
+            "carried": 0.175,
+            "zeroed": 0.045,
+            "off": 0.545,
+            "ignited": false
+          },
+          "(4, 0)": {
+            "carried": 0.415,
+            "zeroed": 0.045,
+            "off": 0.345,
+            "ignited": true
+          },
+          "(4, 8)": {
+            "carried": 0.265,
+            "zeroed": 0.065,
+            "off": 0.29,
+            "ignited": true
+          },
+          "(4, 32)": {
+            "carried": 0.35,
+            "zeroed": 0.065,
+            "off": 0.315,
+            "ignited": true
+          },
+          "(4, 128)": {
+            "carried": 0.275,
+            "zeroed": 0.055,
+            "off": 0.335,
+            "ignited": true
+          }
+        },
+        "plateau_gaps": [
+          [
+            4,
+            0.265,
+            0.275,
+            0.010000000000000009
+          ]
+        ],
+        "p2_g8": {
+          "carried": 0.79,
+          "zeroed": 0.035,
+          "off": 0.53,
+          "ignited": true
+        },
+        "p4_g8": {
+          "carried": 0.265,
+          "zeroed": 0.065,
+          "off": 0.29,
+          "ignited": true
+        },
+        "rent_p2g8": 0.26,
+        "zeroed_at_chance": true
+      }
+    },
+    {
+      "id": "P9",
+      "claim": "capacity axis (P): carried recall at G=8 orders ~1/sqrt(P), P2>=0.5 P4>=0.25, conditional on ignition",
+      "source_files": [
+        "holo_stream_recall_v3.json"
+      ],
+      "status": "CONFIRMED",
+      "reason": "P2@G8=0.790 (ignited=True, need>=0.5); P4@G8=0.265 (ignited=True, need>=0.25)",
+      "measured": {
+        "chance": 0.0625,
+        "cells": {
+          "(1, 0)": {
+            "carried": 1.0,
+            "zeroed": 0.065,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 8)": {
+            "carried": 1.0,
+            "zeroed": 0.055,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 32)": {
+            "carried": 0.995,
+            "zeroed": 0.05,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 128)": {
+            "carried": 0.065,
+            "zeroed": 0.065,
+            "off": 1.0,
+            "ignited": false
+          },
+          "(2, 0)": {
+            "carried": 0.83,
+            "zeroed": 0.05,
+            "off": 0.54,
+            "ignited": true
+          },
+          "(2, 8)": {
+            "carried": 0.79,
+            "zeroed": 0.035,
+            "off": 0.53,
+            "ignited": true
+          },
+          "(2, 32)": {
+            "carried": 0.8,
+            "zeroed": 0.04,
+            "off": 0.5,
+            "ignited": true
+          },
+          "(2, 128)": {
+            "carried": 0.175,
+            "zeroed": 0.045,
+            "off": 0.545,
+            "ignited": false
+          },
+          "(4, 0)": {
+            "carried": 0.415,
+            "zeroed": 0.045,
+            "off": 0.345,
+            "ignited": true
+          },
+          "(4, 8)": {
+            "carried": 0.265,
+            "zeroed": 0.065,
+            "off": 0.29,
+            "ignited": true
+          },
+          "(4, 32)": {
+            "carried": 0.35,
+            "zeroed": 0.065,
+            "off": 0.315,
+            "ignited": true
+          },
+          "(4, 128)": {
+            "carried": 0.275,
+            "zeroed": 0.055,
+            "off": 0.335,
+            "ignited": true
+          }
+        },
+        "plateau_gaps": [
+          [
+            4,
+            0.265,
+            0.275,
+            0.010000000000000009
+          ]
+        ],
+        "p2_g8": {
+          "carried": 0.79,
+          "zeroed": 0.035,
+          "off": 0.53,
+          "ignited": true
+        },
+        "p4_g8": {
+          "carried": 0.265,
+          "zeroed": 0.065,
+          "off": 0.29,
+          "ignited": true
+        },
+        "rent_p2g8": 0.26,
+        "zeroed_at_chance": true
+      }
+    },
+    {
+      "id": "P11-revision",
+      "claim": "phase pays rent at P>=2 (v3 regime): holo_on - holo_off >= +10pp at P=2,G=8 (v1 P11 was FALSIFIED; v3 revises)",
+      "source_files": [
+        "holo_stream_recall_v3.json"
+      ],
+      "status": "CONFIRMED",
+      "reason": "holo_on(carried) - holo_off @ P2,G8 = +0.260 (v3-regime revision of P11; original v1 P11 was FALSIFIED, see HOLO_STREAM_VERDICT.md)",
+      "measured": {
+        "chance": 0.0625,
+        "cells": {
+          "(1, 0)": {
+            "carried": 1.0,
+            "zeroed": 0.065,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 8)": {
+            "carried": 1.0,
+            "zeroed": 0.055,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 32)": {
+            "carried": 0.995,
+            "zeroed": 0.05,
+            "off": 1.0,
+            "ignited": true
+          },
+          "(1, 128)": {
+            "carried": 0.065,
+            "zeroed": 0.065,
+            "off": 1.0,
+            "ignited": false
+          },
+          "(2, 0)": {
+            "carried": 0.83,
+            "zeroed": 0.05,
+            "off": 0.54,
+            "ignited": true
+          },
+          "(2, 8)": {
+            "carried": 0.79,
+            "zeroed": 0.035,
+            "off": 0.53,
+            "ignited": true
+          },
+          "(2, 32)": {
+            "carried": 0.8,
+            "zeroed": 0.04,
+            "off": 0.5,
+            "ignited": true
+          },
+          "(2, 128)": {
+            "carried": 0.175,
+            "zeroed": 0.045,
+            "off": 0.545,
+            "ignited": false
+          },
+          "(4, 0)": {
+            "carried": 0.415,
+            "zeroed": 0.045,
+            "off": 0.345,
+            "ignited": true
+          },
+          "(4, 8)": {
+            "carried": 0.265,
+            "zeroed": 0.065,
+            "off": 0.29,
+            "ignited": true
+          },
+          "(4, 32)": {
+            "carried": 0.35,
+            "zeroed": 0.065,
+            "off": 0.315,
+            "ignited": true
+          },
+          "(4, 128)": {
+            "carried": 0.275,
+            "zeroed": 0.055,
+            "off": 0.335,
+            "ignited": true
+          }
+        },
+        "plateau_gaps": [
+          [
+            4,
+            0.265,
+            0.275,
+            0.010000000000000009
+          ]
+        ],
+        "p2_g8": {
+          "carried": 0.79,
+          "zeroed": 0.035,
+          "off": 0.53,
+          "ignited": true
+        },
+        "p4_g8": {
+          "carried": 0.265,
+          "zeroed": 0.065,
+          "off": 0.29,
+          "ignited": true
+        },
+        "rent_p2g8": 0.26,
+        "zeroed_at_chance": true
+      }
+    },
+    {
+      "id": "P12",
+      "claim": "held-out-key binding: original dichotomy (phase generalizes, magnitude doesn't) vs revised finding both arms generalize",
+      "source_files": [
+        "holo_heldout_keys.json",
+        "holo_heldout_keys_8k.json"
+      ],
+      "status": "FALSIFIED",
+      "reason": "original P12 dichotomy falsified; revised finding 'both arms generalize' CONFIRMED \u2014 2k: carried_gap=0.037 off_gap=0.043 margin_over_chance=0.323 (gap<0.10 & margin>0.30 -> both generalize); 8k: carried_gap=0.062 off_gap=0.083 margin_over_chance=0.323 (gap<0.10 & margin>0.30 -> both generalize) | P12 registered form (phase=function vs baseline=lookup, dichotomy) was FALSIFIED \u2014 both arms generalize, revised finding confirmed",
+      "measured": {
+        "2k": {
+          "carried_gap": 0.0375,
+          "off_gap": 0.0425,
+          "margin_over_chance": 0.3234722222222222
+        },
+        "8k": {
+          "carried_gap": 0.0625,
+          "off_gap": 0.0825,
+          "margin_over_chance": 0.32333333333333336
+        }
+      }
+    },
+    {
+      "id": "P13",
+      "claim": "gamma-knee mobility: full-sequence training moves the knee to >=256 (T2) / >=1024 (T3 kickstart); knee order tracks filler-gamma order",
+      "source_files": [
+        "holo_knee.json",
+        "holo_knee_bar08.json"
+      ],
+      "status": "PARTIAL",
+      "reason": "point targets NOT MET but knee-vs-filler-gamma ordering law CONFIRMED in both curriculum-bar runs \u2014 bar0.9: P1 (T2 knee>=256): NOT MET (measured 80.0) | P2 (T3 knee>=1024): NOT MET (measured 192.0) | P3 (knee order tracks filler-gamma order): CONFIRMED (knee order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart'], gamma order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart']) | bar0.8: P1 (T2 knee>=256): NOT MET (measured 192.0) | P2 (T3 knee>=1024): NOT MET (measured 192.0) | P3 (knee order tracks filler-gamma order): CONFIRMED (knee order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart'], gamma order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart']) | T2 mean_knee(bar0.9)=80.0 (target>=256) T3 mean_knee(bar0.9)=192.0 (target>=1024)",
+      "measured": {
+        "bar09": {
+          "theory_check": [
+            "T1_baseline_v3: mean_knee_G=80.0  max_filler_gamma=0.8687  tau=1/(1-gamma)=7.6",
+            "T2_fullseq_curriculum: mean_knee_G=80.0  max_filler_gamma=0.8687  tau=1/(1-gamma)=7.6",
+            "T3_fullseq_kickstart: mean_knee_G=192.0  max_filler_gamma=0.9878  tau=1/(1-gamma)=81.9"
+          ],
+          "verdict": "P1 (T2 knee>=256): NOT MET (measured 80.0) | P2 (T3 knee>=1024): NOT MET (measured 192.0) | P3 (knee order tracks filler-gamma order): CONFIRMED (knee order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart'], gamma order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart'])",
+          "mean_knee_by_variant": {
+            "T1_baseline_v3": 80.0,
+            "T2_fullseq_curriculum": 80.0,
+            "T3_fullseq_kickstart": 192.0
+          }
+        },
+        "bar08": {
+          "theory_check": [
+            "T1_baseline_v3: mean_knee_G=192.0  max_filler_gamma=0.8761  tau=1/(1-gamma)=8.1",
+            "T2_fullseq_curriculum: mean_knee_G=192.0  max_filler_gamma=0.8768  tau=1/(1-gamma)=8.1",
+            "T3_fullseq_kickstart: mean_knee_G=192.0  max_filler_gamma=0.9878  tau=1/(1-gamma)=81.9"
+          ],
+          "verdict": "P1 (T2 knee>=256): NOT MET (measured 192.0) | P2 (T3 knee>=1024): NOT MET (measured 192.0) | P3 (knee order tracks filler-gamma order): CONFIRMED (knee order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart'], gamma order ['T1_baseline_v3', 'T2_fullseq_curriculum', 'T3_fullseq_kickstart'])",
+          "mean_knee_by_variant": {
+            "T1_baseline_v3": 192.0,
+            "T2_fullseq_curriculum": 192.0,
+            "T3_fullseq_kickstart": 192.0
+          }
+        }
+      }
+    },
+    {
+      "id": "P14",
+      "claim": "magnitude-normalized read (M3): renormalizing |S| before de-rotation moves the knee from 256 to >=1024",
+      "source_files": [
+        "holo_magread.json"
+      ],
+      "status": "PARTIAL",
+      "reason": "point target (>=1024) NOT MET but knee extended well past the 128/256 reference (arc 32->128->256->512), read-fix synergy with gamma confirmed \u2014 P14a (V2 knee>=1024): NOT MET (measured 512.0, V1 reference knee 192.0) | P14b (V3 knee>=512, no kickstart needed): NOT MET (measured 192.0) | P14c (V3 @G=32 within 10pp of V1 @G=32, i.e. mag-norm doesn't cost near-field recall): CONFIRMED (V1=0.575, V3=0.535) | V2(kickstart+magnorm) mean_knee=512.0 (target>=1024)",
+      "measured": {
+        "verdict": "P14a (V2 knee>=1024): NOT MET (measured 512.0, V1 reference knee 192.0) | P14b (V3 knee>=512, no kickstart needed): NOT MET (measured 192.0) | P14c (V3 @G=32 within 10pp of V1 @G=32, i.e. mag-norm doesn't cost near-field recall): CONFIRMED (V1=0.575, V3=0.535)",
+        "theory_check": [
+          "V1_kickstart_rmsread: mean_knee_G=192.0  mean_tau_max_channel=499.4  knee/tau_ratio=0.384",
+          "V2_kickstart_magnorm: mean_knee_G=512.0  mean_tau_max_channel=814.0  knee/tau_ratio=0.629",
+          "V3_magnorm_only: mean_knee_G=192.0  mean_tau_max_channel=227.15  knee/tau_ratio=0.845"
+        ],
+        "mean_knee_by_variant": {
+          "V1_kickstart_rmsread": 192.0,
+          "V2_kickstart_magnorm": 512.0,
+          "V3_magnorm_only": 192.0
+        }
+      }
+    },
+    {
+      "id": "P15",
+      "claim": "closed wake/sleep cycles (M4) beat plain continued training at equal total gradient budget; per-cycle sleep dividend does not collapse to zero",
+      "source_files": [
+        "pos_sleep_cycles.json (full)",
+        "pos_sleep_cycles_smoke.json (interim)"
+      ],
+      "status": "PENDING",
+      "reason": "[INTERIM \u2014 smoke only, full run pending] source=pos_sleep_cycles_smoke (interim) gap(W_final-C_final)=+0.0326 (need>0.02) sleep_dividends=[-0.011712, 0.004157, 0.022616] verdict_string='W_final=4.907529 C_final=4.874924 | C-vs-W gap=+0.032605 (C ahead (closed loop wins)) | sleep dividends=[-0.011712, 0.004157, 0.022616] (sustained across cycles) | P15: PASS (gap>0.02: True, dividends sustained: True)'",
+      "measured": {
+        "has_full": false,
+        "source": "pos_sleep_cycles_smoke (interim)",
+        "gap": 0.03260500000000022,
+        "sleep_dividends": [
+          -0.011712,
+          0.004157,
+          0.022616
+        ],
+        "verdict_string": "W_final=4.907529 C_final=4.874924 | C-vs-W gap=+0.032605 (C ahead (closed loop wins)) | sleep dividends=[-0.011712, 0.004157, 0.022616] (sustained across cycles) | P15: PASS (gap>0.02: True, dividends sustained: True)"
+      }
+    },
+    {
+      "id": "P16",
+      "claim": "state+index hybrid (M5) on MQAR: recall at P=16 reaches >=0.9 with dose-monotone gate and random-injection guard; P2 not hurt",
+      "source_files": [
+        "holo_hybrid.json"
+      ],
+      "status": "PARTIAL",
+      "reason": "ceiling target (>=0.9 @P16) NOT MET but mechanism fully validated: dose-monotone, random-injection guard holds, P2 not hurt \u2014 checks={'hybrid@P16_gate1.0>=0.9': False, 'base@P16<=0.15': False, 'random@P16~=base': True, 'hybrid@P2>=base@P2': True} | hybrid@P16(gate1.0)=0.48125 base@P16=0.15375 random@P16(gate1.0)=0.10625 | dose_monotone(gate0.5<gate1.0)=True | hybrid@P2=0.711875 base@P2=0.5425",
+      "measured": {
+        "chance": 0.0625,
+        "checks": {
+          "hybrid@P16_gate1.0>=0.9": false,
+          "base@P16<=0.15": false,
+          "random@P16~=base": true,
+          "hybrid@P2>=base@P2": true
+        },
+        "verdict": "hybrid does not clear all acceptance checks in this sweep \u2014 see 'checks' and 'verdict_detail' for the per-cell numbers",
+        "hybrid_p16_gate1_mean": 0.48125,
+        "base_p16_mean": 0.15375,
+        "random_p16_gate1_mean": 0.10625,
+        "hybrid_p2_mean": 0.711875,
+        "base_p2_mean": 0.5425,
+        "dose_pairs": [
+          [
+            2,
+            8,
+            0,
+            0.64,
+            0.75
+          ],
+          [
+            2,
+            32,
+            0,
+            0.705,
+            0.86
+          ],
+          [
+            8,
+            8,
+            0,
+            0.38,
+            0.635
+          ],
+          [
+            8,
+            32,
+            0,
+            0.44,
+            0.725
+          ],
+          [
+            16,
+            8,
+            0,
+            0.305,
+            0.485
+          ],
+          [
+            16,
+            32,
+            0,
+            0.44,
+            0.615
+          ],
+          [
+            2,
+            8,
+            1,
+            0.585,
+            0.68
+          ],
+          [
+            2,
+            32,
+            1,
+            0.65,
+            0.825
+          ],
+          [
+            8,
+            8,
+            1,
+            0.415,
+            0.55
+          ],
+          [
+            8,
+            32,
+            1,
+            0.445,
+            0.595
+          ],
+          [
+            16,
+            8,
+            1,
+            0.315,
+            0.415
+          ],
+          [
+            16,
+            32,
+            1,
+            0.24,
+            0.41
+          ]
+        ],
+        "dose_monotone": true
+      }
+    },
+    {
+      "id": "P17",
+      "claim": "phase advantage returns with capacity (M6): at d_model=256, holo-off advantage (vs best-of-off lr control) >= +15pp at G<=8",
+      "source_files": [
+        "holo_capreturn.json",
+        "holo_capreturn_offlr_control.json"
+      ],
+      "status": "PARTIAL",
+      "reason": "phase advantage returns on train_keys at d=256 but NOT on held-out test_keys (compositional generalization) \u2014 advantage(carried - best_of_off)={'train_keys_G0': 0.15249999999999997, 'train_keys_G8': 0.125, 'train_keys_G32': -0.025000000000000022, 'test_keys_G0': 0.02499999999999991, 'test_keys_G8': 0.020000000000000018, 'test_keys_G32': -0.0625} | train_keys G<=8: [0.15249999999999997, 0.125] (target>=15pp) | test_keys all G: [0.02499999999999991, 0.020000000000000018, -0.0625]",
+      "measured": {
+        "advantage": {
+          "train_keys_G0": 0.15249999999999997,
+          "train_keys_G8": 0.125,
+          "train_keys_G32": -0.025000000000000022,
+          "test_keys_G0": 0.02499999999999991,
+          "test_keys_G8": 0.020000000000000018,
+          "test_keys_G32": -0.0625
+        },
+        "train_low_g_advantage": [
+          0.15249999999999997,
+          0.125
+        ],
+        "test_advantage": [
+          0.02499999999999991,
+          0.020000000000000018,
+          -0.0625
+        ],
+        "capreturn_verdict": "P17 PARTIAL: the phase advantage returns on train_keys at d_model=256 (>=15pp) but NOT on test_keys -- capacity restores raw binding fidelity but not (yet, at this budget) compositional generalization to held-out key ids. Reported as-is, not hedged."
+      }
+    },
+    {
+      "id": "P18",
+      "claim": "learned to be reminded (MS1): training with stochastic consultation lifts hybrid@P16 from 0.51 to >=0.85",
+      "source_files": [
+        "holo_reminded.json"
+      ],
+      "status": "PENDING",
+      "reason": "training with stochastic consultation vs M5 baseline \u2014 source file present but scoring rule not yet exercised against real data; treat this branch as a stub until the run lands",
+      "measured": {
+        "raw": {
+          "config": {
+            "smoke": false,
+            "full": true,
+            "p_max": 32,
+            "v_max": 16,
+            "f_fillers": 16,
+            "d_model": 64,
+            "n_layers": 2,
+            "n_heads": 4,
+            "d_head": 16,
+            "chunk": 64,
+            "iters": 2000,
+            "lr": 0.003,
+            "batch": 32,
+            "eval_batch": 200,
+            "g_start": 2,
+            "patience": 25,
+            "train_gap_cap": 0,
+            "p_correct": 0.5,
+            "p_wrong": 0.1,
+            "log_every": 0,
+            "pairs": "2,8,16",
+            "gaps": "8,32",
+            "seeds": "1,2",
+            "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_reminded.json"
+          },
+          "chance": 0.0625,
+          "sweep": {
+            "seed1|P2|G8": {
+              "seed": 1,
+              "P": 2,
+              "G": 8,
+              "base": 0.525,
+              "hybrid": 0.995,
+              "random": 0.285,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed1|P2|G32": {
+              "seed": 1,
+              "P": 2,
+              "G": 32,
+              "base": 0.515,
+              "hybrid": 0.99,
+              "random": 0.27,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed1|P8|G8": {
+              "seed": 1,
+              "P": 8,
+              "G": 8,
+              "base": 0.275,
+              "hybrid": 0.72,
+              "random": 0.165,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed1|P8|G32": {
+              "seed": 1,
+              "P": 8,
+              "G": 32,
+              "base": 0.28,
+              "hybrid": 0.765,
+              "random": 0.175,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed1|P16|G8": {
+              "seed": 1,
+              "P": 16,
+              "G": 8,
+              "base": 0.19,
+              "hybrid": 0.48,
+              "random": 0.16,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed1|P16|G32": {
+              "seed": 1,
+              "P": 16,
+              "G": 32,
+              "base": 0.205,
+              "hybrid": 0.48,
+              "random": 0.155,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed2|P2|G8": {
+              "seed": 2,
+              "P": 2,
+              "G": 8,
+              "base": 0.535,
+              "hybrid": 1.0,
+              "random": 0.29,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed2|P2|G32": {
+              "seed": 2,
+              "P": 2,
+              "G": 32,
+              "base": 0.615,
+              "hybrid": 1.0,
+              "random": 0.2,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed2|P8|G8": {
+              "seed": 2,
+              "P": 8,
+              "G": 8,
+              "base": 0.27,
+              "hybrid": 0.715,
+              "random": 0.19,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed2|P8|G32": {
+              "seed": 2,
+              "P": 8,
+              "G": 32,
+              "base": 0.39,
+              "hybrid": 0.77,
+              "random": 0.19,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed2|P16|G8": {
+              "seed": 2,
+              "P": 16,
+              "G": 8,
+              "base": 0.19,
+              "hybrid": 0.495,
+              "random": 0.16,
+              "chance": 0.0625,
+              "n": 200
+            },
+            "seed2|P16|G32": {
+              "seed": 2,
+              "P": 16,
+              "G": 32,
+              "base": 0.17,
+              "hybrid": 0.53,
+              "random": 0.14,
+              "chance": 0.0625,
+              "n": 200
+            }
+          },
+          "curriculum": {
+            "seed1": {
+              "final_train_gap": 2,
+              "final_train_acc": 0.6562,
+              "train_regime_frac": {
+                "correct": 0.501,
+                "wrong": 0.1005,
+                "none": 0.3985
+              },
+              "train_gap_cap": 32,
+              "train_P": 2
+            },
+            "seed2": {
+              "final_train_gap": 2,
+              "final_train_acc": 0.8125,
+              "train_regime_frac": {
+                "correct": 0.5002,
+                "wrong": 0.0998,
+                "none": 0.4
+              },
+              "train_gap_cap": 32,
+              "train_P": 2
+            }
+          },
+          "m5_reference": {
+            "gate_used": 1.0,
+            "cells": {
+              "P2|G8": {
+                "base": 0.5475,
+                "hybrid": 0.715,
+                "random": 0.3,
+                "gate_rate": 1.0,
+                "n_seeds": 2
+              },
+              "P2|G32": {
+                "base": 0.5375,
+                "hybrid": 0.8425,
+                "random": 0.215,
+                "gate_rate": 1.0,
+                "n_seeds": 2
+              },
+              "P8|G8": {
+                "base": 0.2,
+                "hybrid": 0.5925,
+                "random": 0.1675,
+                "gate_rate": 1.0,
+                "n_seeds": 2
+              },
+              "P8|G32": {
+                "base": 0.2025,
+                "hybrid": 0.66,
+                "random": 0.105,
+                "gate_rate": 1.0,
+                "n_seeds": 2
+              },
+              "P16|G8": {
+                "base": 0.1575,
+                "hybrid": 0.45,
+                "random": 0.1,
+                "gate_rate": 1.0,
+                "n_seeds": 2
+              },
+              "P16|G32": {
+                "base": 0.15,
+                "hybrid": 0.5125,
+                "random": 0.1125,
+                "gate_rate": 1.0,
+                "n_seeds": 2
+              }
+            },
+            "source": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_hybrid.json"
+          },
+          "comparison_vs_m5": {
+            "P2|G8": {
+              "p18_base": 0.53,
+              "p18_hybrid": 0.9975,
+              "p18_random": 0.2875,
+              "m5_base": 0.5475,
+              "m5_hybrid": 0.715,
+              "m5_random": 0.3
+            },
+            "P2|G32": {
+              "p18_base": 0.565,
+              "p18_hybrid": 0.995,
+              "p18_random": 0.235,
+              "m5_base": 0.5375,
+              "m5_hybrid": 0.8425,
+              "m5_random": 0.215
+            },
+            "P8|G8": {
+              "p18_base": 0.2725,
+              "p18_hybrid": 0.7175,
+              "p18_random": 0.1775,
+              "m5_base": 0.2,
+              "m5_hybrid": 0.5925,
+              "m5_random": 0.1675
+            },
+            "P8|G32": {
+              "p18_base": 0.335,
+              "p18_hybrid": 0.7675,
+              "p18_random": 0.1825,
+              "m5_base": 0.2025,
+              "m5_hybrid": 0.66,
+              "m5_random": 0.105
+            },
+            "P16|G8": {
+              "p18_base": 0.19,
+              "p18_hybrid": 0.4875,
+              "p18_random": 0.16,
+              "m5_base": 0.1575,
+              "m5_hybrid": 0.45,
+              "m5_random": 0.1
+            },
+            "P16|G32": {
+              "p18_base": 0.1875,
+              "p18_hybrid": 0.505,
+              "p18_random": 0.1475,
+              "m5_base": 0.15,
+              "m5_hybrid": 0.5125,
+              "m5_random": 0.1125
+            }
+          },
+          "verdict": "training with stochastic consultation does not clear all P18 acceptance checks in this sweep \u2014 see 'checks' and 'comparison_vs_m5' for the per-cell numbers against M5's own reference",
+          "checks": {
+            "hybrid@P16>=0.85": false,
+            "base@P16_within_5pp_of_m5_base": true,
+            "wrong_reminder@P2>m5_random@P2(0.30)": false
+          },
+          "verdict_detail": [
+            "P=2 G=8: base=0.530 hybrid=0.998 random=0.287 chance=0.062 | M5: base=0.547 hybrid=0.715 random=0.300",
+            "P=2 G=32: base=0.565 hybrid=0.995 random=0.235 chance=0.062 | M5: base=0.537 hybrid=0.843 random=0.215",
+            "P=8 G=8: base=0.273 hybrid=0.718 random=0.177 chance=0.062 | M5: base=0.200 hybrid=0.593 random=0.168",
+            "P=8 G=32: base=0.335 hybrid=0.768 random=0.182 chance=0.062 | M5: base=0.203 hybrid=0.660 random=0.105",
+            "P=16 G=8: base=0.190 hybrid=0.487 random=0.160 chance=0.062 | M5: base=0.158 hybrid=0.450 random=0.100",
+            "P=16 G=32: base=0.188 hybrid=0.505 random=0.148 chance=0.062 | M5: base=0.150 hybrid=0.512 random=0.113"
+          ],
+          "elapsed_s": 31.9
+        }
+      }
+    },
+    {
+      "id": "P19",
+      "claim": "dream generator (MS2): training on self-sampled continuations beats fresh data but loses to stored-span replay",
+      "source_files": [
+        "pos_dream.json"
+      ],
+      "status": "PENDING",
+      "reason": "missing source(s): ['pos_dream']",
+      "measured": {
+        "_missing": [
+          "pos_dream"
+        ]
+      }
+    },
+    {
+      "id": "P20",
+      "claim": "domain shock (MS3): gating+dosed replay forgets least on C4->code->C4 (<=50% of full-gradient's forgetting)",
+      "source_files": [
+        "pos_domain_shock.json"
+      ],
+      "status": "PENDING",
+      "reason": "missing source(s): ['pos_domain_shock']",
+      "measured": {
+        "_missing": [
+          "pos_domain_shock"
+        ]
+      }
+    }
+  ]
+}
