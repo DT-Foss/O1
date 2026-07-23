@@ -158,6 +158,35 @@ ef93620 before the runs.*
   magnitude-normalized read (the de-rotation phase is intact; re-normalizing
   |S| before the read should be nearly free) — Phase B+ item.
 
+## Day-1 second wave (P14–P17) — scored
+
+*Added ~09:00. All predictions registered in 38a154c before the runs.*
+
+- **P14 (mag-normalized read, M3): point target missed, arc extended.** Knee
+  at **512 in both seeds** (V2 kickstart+magnorm) vs 128/256 reference; the
+  read fix is synergistic with large γ (V3 magnorm-alone stays at reference —
+  exactly what theory demands) and costs nothing near-field (P14c ✓). The
+  one-day knee arc: 32–128 (v3) → 256 (M2) → **512** (M3), every doubling
+  theory-led; best channel τ≈1001.
+- **P16 (state+index hybrid, M5): PARTIAL, mechanism fully validated.**
+  Hybrid lifts P=16 recall 0.15→0.51 and P=8 0.20→0.66, dose-dependent
+  (gate 0.5 intermediate), random-injection guard holds (wrong value
+  actively hurts). Ceiling diagnosed: an untrained-consultation read tops
+  out ~0.84 even with perfect injection — **the model never learned to be
+  reminded**. Next lever: consultation-in-training.
+- **P17 (capacity return, M6): WEAK PARTIAL after the lr-control.** The
+  d=256 holo_off collapse was an lr artifact (best-of-off at lr=1e-3:
+  0.50–0.57). Against best-of-off, the phase buys **+13–15pp on trained
+  keys at G≤8 only**; on held-out keys +2/−6pp, at G=32 negative. Combined
+  with M1: the phase advantage is now mapped as a narrow-regime phenomenon
+  (16 keys: +27pp; 64 keys d=64: 0; 64 keys d=256: train-only +13pp).
+  The control discipline shrank a +41pp smoke mirage to its honest size.
+- **P15 (wake/sleep cycles, M4): v1 FAIL diagnosed** (replay overfitting:
+  8–10 spans/cycle × 10-chunk sleeps ≈ 20 epochs over ~24 spans — the
+  opposite regime of pos_sleep's 20k-span <1-epoch win); v2 with
+  volume-coupled sleep budget (epoch cap, fairness-preserving reallocation)
+  in flight — scored when it lands.
+
 ## Next attacks (Phase B+)
 
 1. **Compositional-binding test** — where the phase must pay rent: P_max=256
