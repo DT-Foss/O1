@@ -80,6 +80,26 @@ with explicit references back to each P-number.
   ≥1024; knee position correlates with the measured filler-γ across
   variants (the theory's G* ≈ ln-margin/(1−γ) tested directly).
 
+## Day-1 second wave (registered ~08:30, before any of the four runs)
+
+- **P14 — magnitude-normalized read** (M3): the M2 blocker is readout margin,
+  not γ (τ≈700 channels exist). Renormalizing |S| before the de-rotation read
+  (phase is intact by theory §1) moves the knee from 256 to **≥1024**; zeroed
+  null stays at chance.
+- **P15 — closed wake/sleep cycles** (M4): iterated collect→consolidate
+  cycles beat plain continued training at equal TOTAL gradient budget
+  (final heldout lower by ≥0.02), and the per-cycle sleep dividend does not
+  collapse to zero after cycle 1 (it is a mechanism, not a one-off).
+- **P16 — state+index hybrid on MQAR** (M5): with a surprise-gated external
+  index and paired injection at query time, recall at P=16 (far above the
+  state's capacity) reaches **≥0.9** (state alone ≤0.15, chance 0.0625);
+  random-injection control ≈ state alone; at P=2 the hybrid is not worse
+  than state alone (the index must not hurt within-capacity recall).
+- **P17 — does the phase advantage return with capacity?** (M6): at P_max=64
+  (where M1 found holo==off at d=64), scaling d_model to 256 restores
+  holo−off ≥ **+15 pp** at G≤32. If it does NOT return, the v3 phase
+  advantage is a small-key-space phenomenon — scored honestly either way.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
