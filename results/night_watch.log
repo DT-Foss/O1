@@ -13,3 +13,11 @@
   probes n=60 mean_d_inj=-0.054088 mean_d_rand=-0.162186 inj>rand: 43/60 | 2nd-half: d_inj=-0.050930 d_rand=-0.163170
 06:14 POS phase=running pid_alive=True n=113,873,920 tok/s=3517.3 rss=0.412GB probes=90 inj>rand=66/90 | disk=8.9GB
 06:40 MORGEN: POS phase=running alive=True n=126,026,240 tok/s=3712.5 rss=0.364GB wall=9.4h probes=120 inj>rand=91/120 d_inj=-0.0701 d_rand=-0.2098 | disk=8.9GB
+08:16 POS phase=running n=169,215,488 tok/s=4264.6 rss=0.268GB probes=150 | disk=8.7GB
+09:03 POS phase=running n=191,107,584 tok/s=4495.2 rss=0.437GB probes=180 | disk=8.8GB
+09:54 POS phase=running n=216,342,016 tok/s=4745.5 rss=0.667GB probes=210 | disk=8.6GB
+10:45 POS phase=running n=240,231,936 tok/s=4942.1 rss=0.374GB probes=240 | disk=8.6GB
+14:50 POS phase=running n=361,787,392 tok/s=5712.7 rss=0.286GB probes=360 twin=False | disk=9.4GB
+16:34 MILESTONE: interim_ratio=1.002 @ 410M tokens, grad_frac=0.251 (A3 caught A2; single eval point, Phase B scores sustained)
+17:16 POS phase=running n=431,330,816 tok/s=5983.4 rss=0.287GB probes=420 twin=False | disk=8.1GB
+18:08 POS phase=running n=453,963,776 tok/s=6034.7 probes=450 twin=False | disk=7.9GB

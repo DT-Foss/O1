@@ -18,3 +18,120 @@ ONSET Lever 1: Hopfield learned-β  steps=2500 seeds=[1, 7, 42] p=3.0 chance=0.0
       step 2500/2500 | loss 4.1676
   holo_off                 0.0137  (1.37%)
       step 500/2500 | loss 4.1249
+      step 1000/2500 | loss 4.0913
+      step 1500/2500 | loss 4.0761
+      step 2000/2500 | loss 4.0702
+      step 2500/2500 | loss 4.0389
+  holo_rms                 0.0728  (7.28%)
+      step 500/2500 | loss 4.0726
+      step 1000/2500 | loss 3.9970
+      step 1500/2500 | loss 3.9895
+      step 2000/2500 | loss 3.9621
+      step 2500/2500 | loss 3.9467
+  holo_tanh_m              0.0889  (8.89%)
+      step 500/2500 | loss 4.1740
+      step 1000/2500 | loss 4.1637
+      step 1500/2500 | loss 4.1541
+      step 2000/2500 | loss 4.1629
+      step 2500/2500 | loss 4.1699
+  holo_hopfield_beta       0.0137  (1.37%)
+      step 500/2500 | loss 4.1770
+      step 1000/2500 | loss 4.1637
+      step 1500/2500 | loss 4.1546
+      step 2000/2500 | loss 4.1626
+      step 2500/2500 | loss 4.1705
+  holo_poly_before_norm    0.0112  (1.12%)
+
+--- seed 7 ---
+/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+      step 500/2500 | loss 0.0023
+      step 1000/2500 | loss 0.0082
+      step 1500/2500 | loss 0.0008
+      step 2000/2500 | loss 0.0001
+      step 2500/2500 | loss 0.0000
+  attn                     1.0000  (100.00%)
+      step 500/2500 | loss 4.1894
+      step 1000/2500 | loss 4.1591
+      step 1500/2500 | loss 4.1623
+      step 2000/2500 | loss 4.1648
+      step 2500/2500 | loss 4.1729
+  holo_off                 0.0156  (1.56%)
+      step 500/2500 | loss 4.1913
+      step 1000/2500 | loss 4.1594
+      step 1500/2500 | loss 4.1629
+      step 2000/2500 | loss 4.1648
+      step 2500/2500 | loss 4.1737
+  holo_rms                 0.0156  (1.56%)
+      step 500/2500 | loss 4.0906
+      step 1000/2500 | loss 3.9351
+      step 1500/2500 | loss 3.8447
+      step 2000/2500 | loss 3.8776
+      step 2500/2500 | loss 3.8409
+  holo_tanh_m              0.1099  (10.99%)
+      step 500/2500 | loss 4.1897
+      step 1000/2500 | loss 4.1591
+      step 1500/2500 | loss 4.1615
+      step 2000/2500 | loss 4.1645
+      step 2500/2500 | loss 4.1737
+  holo_hopfield_beta       0.0156  (1.56%)
+      step 500/2500 | loss 4.1907
+      step 1000/2500 | loss 4.1599
+      step 1500/2500 | loss 4.1615
+      step 2000/2500 | loss 4.1656
+      step 2500/2500 | loss 4.1723
+  holo_poly_before_norm    0.0156  (1.56%)
+
+--- seed 42 ---
+      step 500/2500 | loss 0.0047
+      step 1000/2500 | loss 0.0254
+      step 1500/2500 | loss 0.0004
+      step 2000/2500 | loss 0.0038
+      step 2500/2500 | loss 0.0000
+  attn                     1.0000  (100.00%)
+      step 500/2500 | loss 4.1573
+      step 1000/2500 | loss 4.1666
+      step 1500/2500 | loss 4.1620
+      step 2000/2500 | loss 4.1518
+      step 2500/2500 | loss 4.1589
+  holo_off                 0.0171  (1.71%)
+      step 500/2500 | loss 4.1573
+      step 1000/2500 | loss 4.1678
+      step 1500/2500 | loss 4.1623
+      step 2000/2500 | loss 4.1511
+      step 2500/2500 | loss 4.1592
+  holo_rms                 0.0171  (1.71%)
+      step 500/2500 | loss 4.1604
+      step 1000/2500 | loss 4.1277
+      step 1500/2500 | loss 4.0646
+      step 2000/2500 | loss 3.9974
+      step 2500/2500 | loss 3.9884
+  holo_tanh_m              0.0664  (6.64%)
+      step 500/2500 | loss 4.1561
+      step 1000/2500 | loss 4.1651
+      step 1500/2500 | loss 4.1617
+      step 2000/2500 | loss 4.1523
+      step 2500/2500 | loss 4.1588
+  holo_hopfield_beta       0.0171  (1.71%)
+      step 500/2500 | loss 4.1580
+      step 1000/2500 | loss 4.1675
+      step 1500/2500 | loss 4.1610
+      step 2000/2500 | loss 4.1524
+      step 2500/2500 | loss 4.1592
+  holo_poly_before_norm    0.0171  (1.71%)
+
+==========================================================================
+AGGREGATE (mean ± std)
+  attn                     0.9995 ± 0.0007
+  holo_off                 0.0155 ± 0.0014
+  holo_rms                 0.0352 ± 0.0266
+  holo_tanh_m              0.0884 ± 0.0177
+  holo_hopfield_beta       0.0155 ± 0.0014
+  holo_poly_before_norm    0.0146 ± 0.0025
+
+  best same-run baseline: tanh_m = 0.0884
+  holo_hopfield_beta       → KILL (no lift over tanh_m, Δ=-7.29pp)
+  holo_poly_before_norm    → KILL (no lift over tanh_m, Δ=-7.37pp)
+  validity (attn): 0.9995 PASS
+
+Written results/onset_hopfield.json  (23582.4s)

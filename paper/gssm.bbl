@@ -18,6 +18,11 @@ Ali Behrouz, Peilin Zhong, and Vahab Mirrokni.
 \newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2025.
 \newblock arXiv:2501.00663.
 
+\bibitem{blelloch1990prefix}
+Guy~E. Blelloch.
+\newblock Prefix sums and their applications.
+\newblock Technical Report CMU-CS-90-190, Carnegie Mellon University, 1990.
+
 \bibitem{dao2024ssd}
 Tri Dao and Albert Gu.
 \newblock Transformers are {SSM}s: Generalized models and efficient algorithms through structured state space duality.
@@ -72,6 +77,12 @@ Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran{\c c}ois Fleuret.
 \newblock Transformers are {RNN}s: Fast autoregressive transformers with linear attention.
 \newblock In {\em International Conference on Machine Learning (ICML)}, 2020.
 \newblock arXiv:2006.16236.
+
+\bibitem{martin2018parallelizing}
+Eric Martin and Chris Cundy.
+\newblock Parallelizing linear recurrent neural nets over sequence length.
+\newblock In {\em International Conference on Learning Representations (ICLR)}, 2018.
+\newblock arXiv:1709.04057.
 
 \bibitem{orvieto2023lru}
 Antonio Orvieto, Samuel~L. Smith, Albert Gu, Anushan Fernando, Caglar Gulcehre, and Razvan Pascanu.

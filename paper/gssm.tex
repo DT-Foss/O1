@@ -612,8 +612,14 @@ the selective (time-inhomogeneous) interior; the delta-rule and fast-weight mode
 \cite{yang2024deltanet} are the rank-$D$ rung of the capacity ladder that
 Theorem~\ref{thm:rank} organizes.
 
-The closest unification in spirit is the structured state-space duality of Mamba-2
-\cite{dao2024ssd}, which identifies selective SSMs with masked-attention variants through the
+The affine prefix-scan formulation of linear recurrences is itself classical
+\cite{blelloch1990prefix} and was applied to linear RNNs by Martin and Cundy
+\cite{martin2018parallelizing}; S5 \cite{smith2023s5} runs on an associative scan
+explicitly. What is new here is not the scan but the reading: the three-switch taxonomy
+verified member-by-member at machine precision, the reproducing-kernel structure with its
+precise Mercer/non-Mercer boundary, and the consequences (length invariance, capacity,
+attractor topology) derived from that one object. The closest unification in spirit is the
+structured state-space duality of Mamba-2 \cite{dao2024ssd}, which identifies selective SSMs with masked-attention variants through the
 matrix algebra of semiseparable operators. Our unification runs along an orthogonal axis:
 rather than relating SSMs \emph{to attention}, we exhibit the linear-SSM family \emph{itself}
 as switch-restrictions of one affine prefix-scan operator with a nonlinear rapidity drive and

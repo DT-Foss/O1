@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.25)  22 JUL 2026 21:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.25)  22 JUL 2026 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -832,18 +832,18 @@ Package rerunfilecheck Info: File `gssm.out' has not changed.
 (rerunfilecheck)             Checksum: 189DB59C173D8C6F6C07691AF328078A;4168.
  ) 
 Here is how much of TeX's memory you used:
- 29422 strings out of 468871
- 594452 string characters out of 5446956
- 982892 words of memory out of 5000000
- 57071 multiletter control sequences out of 15000+600000
- 665919 words of font info for 295 fonts, out of 8000000 for 9000
+ 29426 strings out of 468871
+ 594550 string characters out of 5446956
+ 982979 words of memory out of 5000000
+ 57073 multiletter control sequences out of 15000+600000
+ 665977 words of font info for 295 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 99i,12n,101p,1001b,1217s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,101p,1001b,1215s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfbi1095.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></Users/bhkmie/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on gssm.pdf (13 pages, 801723 bytes).
+Output written on gssm.pdf (13 pages, 802771 bytes).
 PDF statistics:
- 637 PDF objects out of 1000 (max. 8388607)
- 452 compressed objects within 5 object streams
- 75 named destinations out of 1000 (max. 500000)
+ 642 PDF objects out of 1000 (max. 8388607)
+ 457 compressed objects within 5 object streams
+ 77 named destinations out of 1000 (max. 500000)
  71357 words of extra memory for PDF output out of 74296 (max. 10000000)
 
