@@ -27,7 +27,7 @@ Formal statements, each over the *class* of systems it applies to, in
 | # | Primitive | Measured anchor |
 |---|---|---|
 | F1 | **The surprise calculus** — the learner's own prediction error is the universal control signal: when to learn, what to store, when to consult, when and how much to sleep, how curious to be | POS: ~25% gradient tokens ≈ 100% of full-gradient learning (§9); span store, sleep dosing, runtime consultation (§11–12) |
-| F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10) |
+| F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10); any state×weight mismatch heals in 256 tokens (§14) |
 | F3 | **Phase–magnitude separation** — in complex bound states, content (phase) is written and never evolves; persistence (magnitude) decays; the two never mix | zero-drive phase invariance \|Δφ\| ≈ 1e-8; recall knee moved 32→512 in one day (§10) |
 | F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall 0.15→0.51 at P=16; reminded reads ~1.0 (§12) |
 | F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.98× of POS-on-GSSM, GSSM ahead 0.156 nats head-to-head (§13) |
@@ -539,6 +539,40 @@ S6 configuration by 0.156 nats** (5.18 vs 5.33 held-out) at identical pipeline, 
 seed. Equivalence gates: full-seq ≡ chunked+carried at max-abs-delta 0.0 for both
 architectures. Registered as P22, confirmed on both parts.
 → `src/pos_family_transfer.py`, `src/ssm_family_reduction.py`, `results/pos_family*.json`
+
+### 14 — The deployment primitives: growth, update, and the two-timescale law
+
+What it takes to *operate* a living stream — measured, each half of the law with its own
+falsifier:
+
+- **Growth without restart (the brain surgery).** Function- and state-preserving widening
+  (channel duplication d64→d128, carried Z migrated) on a live C4 stream: surgery
+  equivalence **6.7e-6 on the trained model** (stateless and chunked), no post-surgery
+  transient (0.046 nats, conservatively measured *including* an optimizer reset), and
+  **growth beats restarting a fresh d128 by 0.127 nats** at the same post-surgery token
+  count. Migrating the Adam moments through the same duplication map (gradient transforms
+  derived numerically; commutation `grow∘step == step∘grow` holds on all 29 parameter
+  tensors) removes 87% of the remaining capacity deficit in early measurement.
+- **Weight updates are a non-event on the fast path.** Cross-matrix on the living POS
+  organism's snapshot archive (weights from 359M tokens × states from 128M/240M/359M/
+  zero/shuffled, forward-only): every arm converges to the native trajectory **within 4
+  chunks (256 tokens)**; the cold start is not worse than the carried state — the
+  fast-path state rebuilds inside one chunk (the ~5–8-token receptive field, F2 measured
+  from the other side). **No lock-in, no compatibility risk, nothing to migrate.**
+- **The content survives in the slow channel.** The stored beacon bit (the write-once-
+  freeze carrier, Contribution 4E) survives the widening surgery at **recall 1.000** and
+  survives a weight swap — written under W(T1), read under W(T2), 2× training distance —
+  at **recall 1.000 through a 512-token gap**, while zeroing the state collapses to
+  chance. The encoding is *redundant* (position + magnitude): the carrier's channel
+  address can even relocate across training and the read still lands.
+
+Together: **the two-timescale law of operation** — the fast path forgets by design (so
+model updates and model growth are safe, live operations), and everything worth keeping
+lives in the slow carrier and the external index, which is exactly the layer the
+organism's own machinery (F1, F4) manages. Registered as P23/P24/P26/P27; the
+falsifications (P23a, P24c-at-1.2M) are kept in the ledger at full strength.
+→ `src/hot_swap_growth.py`, `src/state_weight_swap.py`, `src/beacon_swap.py`,
+`results/hot_swap_growth*.json`, `results/state_weight_swap.json`, `results/beacon_swap.json`
 
 ### The method: pre-registered, auto-scored, falsifications kept
 
