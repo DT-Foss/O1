@@ -206,7 +206,7 @@ def _build_lm_kickstart(vocab_size, mask_idx, d_model=64, n_layers=2, n_heads=4,
 #    model(x, None) -- ONE graph over the whole sequence, no detach anywhere.
 # ═══════════════════════════════════════════════════════════════════════════
 def train_fullseq_curriculum(model, P, Gmax, iters, lr, seed, batch,
-                             P_max, V_max, F, log_every=0, g_start=2, patience=25):
+                             P_max, V_max, F, log_every=0, g_start=2, patience=25, bar=0.9):
     """Unchunked analogue of holo_stream_recall.train_gap_curriculum. The only
     difference that matters: logits, _ = model(x, None) instead of
     chunked_forward(model, x, chunk) -- so the query-loss gradient reaches the
@@ -230,7 +230,7 @@ def train_fullseq_curriculum(model, P, Gmax, iters, lr, seed, batch,
         torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
         opt.step()
         acc = float((pred.argmax(-1) == y).float().mean())
-        good = good + 1 if acc > 0.9 else 0
+        good = good + 1 if acc > bar else 0
         if good >= patience and Gcur < Gmax:
             Gcur = min(Gmax, int(Gcur * 1.5) + 1)
             good = 0
@@ -240,7 +240,7 @@ def train_fullseq_curriculum(model, P, Gmax, iters, lr, seed, batch,
 
 
 def train_chunked_v3(model, P, Gmax_train, iters, lr, seed, batch, chunk,
-                     P_max, V_max, F, log_every=0, g_start=2, patience=25):
+                     P_max, V_max, F, log_every=0, g_start=2, patience=25, bar=0.9):
     """T1 baseline: identical to holo_stream_recall.train_gap_curriculum
     (chunked training, gap capped at one chunk). Reproduced locally (rather
     than imported) only because the import would also need chunked_forward,
@@ -264,7 +264,7 @@ def train_chunked_v3(model, P, Gmax_train, iters, lr, seed, batch, chunk,
         torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
         opt.step()
         acc = float((pred.argmax(-1) == y).float().mean())
-        good = good + 1 if acc > 0.9 else 0
+        good = good + 1 if acc > bar else 0
         if good >= patience and Gcur < Gmax_train:
             Gcur = min(Gmax_train, int(Gcur * 1.5) + 1)
             good = 0
@@ -411,14 +411,15 @@ def run(args):
                 cap = max(2, args.chunk - 2 * P - 2)
                 curr = train_chunked_v3(model, P, cap, args.iters, args.lr, seed, args.batch,
                                         args.chunk, P_max, V_max, F, log_every=args.log_every,
-                                        g_start=args.g_start, patience=args.patience)
+                                        g_start=args.g_start, patience=args.patience,
+                                        bar=args.curriculum_bar)
                 curr["train_mode"] = "chunked"
                 curr["train_gap_cap"] = cap
             else:
                 curr = train_fullseq_curriculum(model, P, args.g_train_max, args.iters, args.lr,
                                                 seed, args.batch, P_max, V_max, F,
                                                 log_every=args.log_every, g_start=args.g_start,
-                                                patience=args.patience)
+                                                patience=args.patience, bar=args.curriculum_bar)
                 curr["train_mode"] = "fullseq"
                 curr["train_gap_cap"] = args.g_train_max
 
@@ -533,6 +534,8 @@ def main():
     ap.add_argument("--eval-batch", type=int, default=100)
     ap.add_argument("--g-start", type=int, default=2)
     ap.add_argument("--patience", type=int, default=25)
+    ap.add_argument("--curriculum-bar", type=float, default=0.9,
+                    help="acc bar the curriculum must sustain before growing the gap (0.9 never fires for P=2, which consolidates ~0.85 — the v-full T1==T2 diagnosis)")
     ap.add_argument("--g-train-max", type=int, default=128,
                     help="max TRAINING gap for T2/T3 full-sequence curriculum")
     ap.add_argument("--log-every", type=int, default=0)

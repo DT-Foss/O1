@@ -135,6 +135,29 @@ ef93620 before the runs.*
   advantage a small-key-space phenomenon, or does it return with capacity
   (d_model, n_slots) scaled to the key space?
 
+## Day-1 moonshot M2: the γ-knee — P13 point targets missed, theory law confirmed, blocker relocated
+
+*Added ~08:15. Data: results/holo_knee.json (bar 0.9) and holo_knee_bar08.json
+(bar 0.8); P13 registered in ef93620.*
+
+- **P13 point targets NOT MET** (T2 knee 192 vs ≥256 predicted; T3 192 vs
+  ≥1024) — but the knee moved from v3's 32<G*<128 to a solid **256 in the
+  best cells (0.37 acc at G=256, null at chance)**, and the **theory's
+  ordering law held in both runs**: knee order tracks filler-γ order exactly
+  (γ 0.87→knee 80; γ 0.988→knee 192).
+- **Three blockers found and peeled in sequence:** (1) the 0.9 curriculum bar
+  never fires for P=2 (consolidates ~0.85) → T1≡T2 bit-identical, the
+  full-seq mechanism untested; bar=0.8 activated it (seed 1 grew G_train to
+  26 under full-sequence gradient — first time in this series). (2) Ignition
+  is seed-variant (seed 0 never clears 0.8). (3) With the per-CHANNEL γ
+  metric (the Pillar-E "the average hides the carrier" lesson, now logged):
+  **carrier channels at τ≈160–700 already exist in every variant** — γ is no
+  longer the bottleneck. Knee 256 despite a τ=700 channel implies the rms
+  READOUT tolerates only ~30% magnitude loss (G* = τ·ln(S₀/S_min) with a thin
+  margin). **The next lever is readout margin, not γ** — e.g. a
+  magnitude-normalized read (the de-rotation phase is intact; re-normalizing
+  |S| before the read should be nearly free) — Phase B+ item.
+
 ## Next attacks (Phase B+)
 
 1. **Compositional-binding test** — where the phase must pay rent: P_max=256
