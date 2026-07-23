@@ -200,6 +200,26 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   next lever registered: migrate Adam moments through the duplication map
   instead of resetting, and/or longer horizon.
 
+## Wave 6 — the pull-system queue (registered day 3 ~20:45, before any build)
+
+- **P27 — Adam-moment migration closes the growth deficit (MS14,
+  src/hot_swap_growth.py --migrate-moments):** migrating optimizer moments
+  through the duplication map (exp_avg via the gradient transform, exp_avg_sq
+  via its square) instead of resetting Adam: (a) the commutation gate holds —
+  grow(adam_step(m64)) == adam_step(grow_with_moments(m64)) to < 1e-3 on all
+  parameters after one identical-batch step; (b) at 1.2M post-surgery tokens
+  the grown arm's deficit vs stay64 shrinks from −0.036 to ≥ −0.01 or turns
+  positive; (c) growth still beats restart.
+- **P28 — curiosity homeostasis beats fixed q under shock (MS4,
+  src/pos_auto_q.py on the MS3 harness):** a homeostat that regulates q to
+  hold a target gate rate (~25%): (a) holds gate_frac in [0.18, 0.32] through
+  the C4→code→C4 shock while fixed q=0.75 overshoots during phase 2 (R2
+  measured 0.58); (b) at MATCHED total gradient tokens, auto-q's WT-2
+  forgetting ≤ fixed-q's and its code plasticity ≥ 0.9× fixed-q's — the
+  homeostat spends the same budget on better-chosen chunks; (c) the q
+  trajectory itself is the measurement: it must RISE during the shock (the
+  organism becomes pickier when everything is surprising) and relax after.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

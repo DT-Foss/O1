@@ -48,6 +48,20 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
 | F5 | **Operating modes are family-generic** — POS gating + sleep run on the Mamba/S6 configuration of the same codebase | POS-on-Mamba head-to-head (doubles as the DD baseline) | ✅ |
 | F6 | **Train-short, deploy-unbounded** — shift-equivariance (length) and gap extrapolation are one principle on two axes | unification doc | ⏳ |
 
+## Launch queue (the pull system — standing order)
+
+*Rule: every watch checks (a) harvests, (b) free run slots, (c) this queue.
+If fewer than 2 reviewed harnesses are waiting, build the next entry NOW
+(prediction registered first). Builders cost no CPU — an empty builder queue
+next to free builders is the only true time-waste in this lab.*
+
+1. MS14 — Adam-moment migration (P27) — 🔨 building
+2. MS4 — auto-q curiosity homeostasis on the shock harness (P28) — 🔨 building
+3. MS7 — two organisms, one index (P-tbd before build)
+4. F2/F4/F6 unification docs (zero-CPU, any idle moment)
+5. CHIMERA spec (MS6) — written by the lead, not delegated
+6. MS10 — rent map of the phase (P-tbd before build)
+
 ## Dynamics rules (how the portfolio reprioritizes itself)
 
 1. **Every harvest triggers a portfolio review** — written as a dated line
@@ -60,9 +74,12 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
    MS4 beats fixed q ⇒ the Phase-C long run adopts auto-q.
 3. A moonshot is 💀 the moment evidence kills its premise — killed is a
    result, logged with the number that killed it.
-4. Wave discipline: ≤4 in flight; builders are Sonnet subagents against
+4. Wave discipline: ≤4 RUNS in flight; builders are Sonnet subagents against
    exact specs; every build self-smokes; I review every line before a full
    run; controls before celebration (the lr-control lesson).
+5. Pull system (day-3 addition): builder capacity is never idle — the launch
+   queue above stays ≥2 deep in reviewed harnesses, refilled at every watch
+   without being asked.
 
 ## Reprioritization log
 
