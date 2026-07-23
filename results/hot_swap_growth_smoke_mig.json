@@ -1,0 +1,331 @@
+{
+  "prediction_id": "P24",
+  "prediction_text": "hot-swap growth (channel-duplication d64->d128 mid-stream, Z migrated): (a) surgery equiv <1e-4; (b) transient <0.05 nats; (c) grown beats stay64 by >=0.03 nats at +phaseB tokens; (d) grown beats fresh128-from-scratch at matched post-surgery tokens",
+  "config": {
+    "smoke": true,
+    "full": false,
+    "batch": 8,
+    "chunk": 64,
+    "lr": 0.003,
+    "seed": 42,
+    "noise_std": 0.0001,
+    "phaseA_tokens": 300000,
+    "phaseB_tokens": 300000,
+    "eval_tokens": 20000,
+    "eval_every_tokens": 150000,
+    "transient_chunks": 20,
+    "tag": "smoke_mig",
+    "migrate_moments": true,
+    "check_moments": false
+  },
+  "surgery_equivalence_gate": {
+    "stateless_max_abs_err": 5.245208740234375e-06,
+    "chunked_3_max_abs_err": 5.245208740234375e-06,
+    "tol": 0.0001,
+    "pass": true
+  },
+  "phaseA_final": {
+    "n_streamed": 300032,
+    "wall_s": 32.0,
+    "grown": {
+      "heldout": 5.733058,
+      "grad_tokens": 300032,
+      "n_chunks": 586,
+      "n_bwd": 586
+    },
+    "stay64": {
+      "heldout": 5.733058,
+      "grad_tokens": 300032,
+      "n_chunks": 586,
+      "n_bwd": 586
+    }
+  },
+  "phaseB_baseline": {
+    "n_streamed": 0,
+    "wall_s": 0.0,
+    "grown": {
+      "heldout": 5.733048,
+      "grad_tokens": 300032,
+      "n_chunks": 0,
+      "n_bwd": 0
+    },
+    "stay64": {
+      "heldout": 5.733058,
+      "grad_tokens": 300032,
+      "n_chunks": 586,
+      "n_bwd": 586
+    },
+    "fresh128": {
+      "heldout": 8.689377,
+      "grad_tokens": 0,
+      "n_chunks": 0,
+      "n_bwd": 0
+    }
+  },
+  "phaseB_final": {
+    "n_streamed": 300032,
+    "wall_s": 57.8,
+    "grown": {
+      "heldout": 5.585968,
+      "grad_tokens": 600064,
+      "n_chunks": 586,
+      "n_bwd": 586
+    },
+    "stay64": {
+      "heldout": 5.576517,
+      "grad_tokens": 600064,
+      "n_chunks": 1172,
+      "n_bwd": 1172
+    },
+    "fresh128": {
+      "heldout": 5.738006,
+      "grad_tokens": 300032,
+      "n_chunks": 586,
+      "n_bwd": 586
+    }
+  },
+  "curves": {
+    "grown": [
+      {
+        "heldout": 8.719958,
+        "grad_tokens": 0,
+        "n_chunks": 0,
+        "n_bwd": 0,
+        "n_streamed": 0,
+        "phase": "A"
+      },
+      {
+        "heldout": 5.906141,
+        "grad_tokens": 150016,
+        "n_chunks": 293,
+        "n_bwd": 293,
+        "n_streamed": 150016,
+        "phase": "A"
+      },
+      {
+        "heldout": 5.733058,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 300032,
+        "phase": "A"
+      },
+      {
+        "heldout": 5.733058,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 300032,
+        "phase": "A_final"
+      },
+      {
+        "heldout": 5.733048,
+        "grad_tokens": 300032,
+        "n_chunks": 0,
+        "n_bwd": 0,
+        "n_streamed": 300032,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.665742,
+        "grad_tokens": 450048,
+        "n_chunks": 293,
+        "n_bwd": 293,
+        "n_streamed": 450048,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.585968,
+        "grad_tokens": 600064,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 600064,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.585968,
+        "grad_tokens": 600064,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 600064,
+        "phase": "B_final"
+      }
+    ],
+    "stay64": [
+      {
+        "heldout": 8.719958,
+        "grad_tokens": 0,
+        "n_chunks": 0,
+        "n_bwd": 0,
+        "n_streamed": 0,
+        "phase": "A"
+      },
+      {
+        "heldout": 5.906141,
+        "grad_tokens": 150016,
+        "n_chunks": 293,
+        "n_bwd": 293,
+        "n_streamed": 150016,
+        "phase": "A"
+      },
+      {
+        "heldout": 5.733058,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 300032,
+        "phase": "A"
+      },
+      {
+        "heldout": 5.733058,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 300032,
+        "phase": "A_final"
+      },
+      {
+        "heldout": 5.733058,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 300032,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.621567,
+        "grad_tokens": 450048,
+        "n_chunks": 879,
+        "n_bwd": 879,
+        "n_streamed": 450048,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.576517,
+        "grad_tokens": 600064,
+        "n_chunks": 1172,
+        "n_bwd": 1172,
+        "n_streamed": 600064,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.576517,
+        "grad_tokens": 600064,
+        "n_chunks": 1172,
+        "n_bwd": 1172,
+        "n_streamed": 600064,
+        "phase": "B_final"
+      }
+    ],
+    "fresh128": [
+      {
+        "heldout": 8.689377,
+        "grad_tokens": 0,
+        "n_chunks": 0,
+        "n_bwd": 0,
+        "n_streamed": 300032,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.866361,
+        "grad_tokens": 150016,
+        "n_chunks": 293,
+        "n_bwd": 293,
+        "n_streamed": 450048,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.738006,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 600064,
+        "phase": "B"
+      },
+      {
+        "heldout": 5.738006,
+        "grad_tokens": 300032,
+        "n_chunks": 586,
+        "n_bwd": 586,
+        "n_streamed": 600064,
+        "phase": "B_final"
+      }
+    ]
+  },
+  "transient_first_n_chunks": {
+    "n_chunks": 20,
+    "grown_mean_nll": 5.192221736907959,
+    "stay64_mean_nll": 5.213935446739197,
+    "abs_gap": 0.021713709831238326,
+    "grown_series": [
+      5.563204765319824,
+      5.488378524780273,
+      5.327773571014404,
+      4.989390850067139,
+      4.945864200592041,
+      5.17639684677124,
+      5.370752811431885,
+      5.360049247741699,
+      5.050312519073486,
+      5.299181938171387,
+      5.224934101104736,
+      5.192455768585205,
+      5.252747535705566,
+      5.350142955780029,
+      5.051636695861816,
+      5.313597202301025,
+      4.979104995727539,
+      4.960488319396973,
+      4.900053977966309,
+      5.047967910766602
+    ],
+    "stay64_series": [
+      5.563195705413818,
+      5.501205921173096,
+      5.3538970947265625,
+      5.007571697235107,
+      4.935819625854492,
+      5.174948692321777,
+      5.357910633087158,
+      5.382811069488525,
+      5.071309566497803,
+      5.3436102867126465,
+      5.245397090911865,
+      5.246631145477295,
+      5.310751438140869,
+      5.393174648284912,
+      5.09952449798584,
+      5.321269989013672,
+      5.009091854095459,
+      4.948775291442871,
+      4.948481559753418,
+      5.063331127166748
+    ]
+  },
+  "checks": {
+    "a_surgery_equivalence": {
+      "pass": true,
+      "stateless_err": 5.245208740234375e-06,
+      "chunked_err": 5.245208740234375e-06
+    },
+    "b_no_transient": {
+      "pass": true,
+      "gap_nats": 0.021713709831238326,
+      "threshold": 0.05
+    },
+    "c_growth_pays_off": {
+      "pass": false,
+      "grown_heldout": 5.585968,
+      "stay64_heldout": 5.576517,
+      "gain_nats": -0.00945100000000032,
+      "threshold": 0.03
+    },
+    "d_growth_beats_restart": {
+      "pass": true,
+      "grown_heldout": 5.585968,
+      "fresh128_heldout": 5.738006,
+      "gain_nats": 0.15203800000000012
+    }
+  },
+  "all_checks_pass": false
+}

@@ -340,6 +340,182 @@ def check_surgery_equivalence(model64, model128_exact_sd, vocab_size, mask_idx,
     return err_stateless, max_err_chunked
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# §3b  Adam-moment migration (P27, MS14): migrate opt64's exp_avg/exp_avg_sq/
+#     step through the SAME duplication map grow_model() applies to weights,
+#     instead of handing the grown model a cold Adam.
+#
+# GRADIENT-TRANSFORM DERIVATION (verified numerically, scratchpad/
+# grad_transform_probe{2,3,4,5}.py -- not assumed):
+#   Built the REAL grow_model() pair (toy d_model=8/12/16/24, n_heads=4,
+#   noise_std=0 for an exact-equivalence grow), ran identical (x, y) token
+#   batches through model64 and model128, took cross_entropy(...).backward()
+#   on both, and compared g128's duplicate-half block to g64 parameter-by-
+#   parameter. Every duplicated axis (whether the forward rule was
+#   input-dup-halve or output-dup-copy) carries an EXACTLY IDENTICAL gradient
+#   on both halves (max|diff| ~ 1e-6, float32 noise floor) -- so migration is
+#   always a COPY across the new/old half, never itself halved or doubled.
+#   The only remaining question is the OVERALL scale factor c relating
+#   g128's copied block to g64:
+#     - head.weight / head.bias (input-dup-halve ONLY; output=vocab is NOT
+#       duplicated, so exactly one, non-duplicated downstream consumer: the
+#       cross-entropy loss on the same logits/targets in both models) ->
+#       c = 1.0 (exact COPY, confirmed to 2e-6 across d64 in {8,12,16,24}).
+#     - every OTHER parameter (embed, W_v/W_gate/W_gamma/W_alpha, W_out,
+#       ln1/ln2, ffn.0/ffn.2 weight+bias) sits upstream of an axis that gets
+#       read by a DOWNSTREAM matrix whose matching input axis was
+#       input-dup-halve'd (that halving is what keeps the FORWARD pass
+#       exact: y128 = W128_halved @ [h;h] = W64 @ h). The backward pass
+#       reuses that same halved downstream weight to propagate dL/dh, so the
+#       local gradient arriving at these parameters is scaled by 0.5 (in
+#       addition to being copied on the duplicate half) relative to g64 ->
+#       c = 0.5, confirmed to 6e-6 across the same width sweep, exactly flat
+#       (no width dependence -- ruled out a mean-reduction/width artifact).
+#   exp_avg transforms like the gradient itself: migrated_exp_avg = c * COPY(exp_avg64).
+#   exp_avg_sq transforms like the SQUARE of the gradient: migrated_exp_avg_sq
+#     = c^2 * COPY(exp_avg_sq64) (Adam's v_t tracks E[g_t^2]; scaling g by c
+#     scales g^2 by c^2).
+#   step (bias-correction counter) is a scalar per parameter tensor in this
+#   torch version -- carried over UNCHANGED (both arms are at the same
+#   training step count at the surgery point).
+# ═══════════════════════════════════════════════════════════════════════════
+def _migrate_moment_tensor(v64, rule, n_heads, d_head64, scale):
+    """Apply the SAME duplication primitive grow_model() used for the weight
+    itself to an Adam moment tensor (exp_avg or exp_avg_sq), then apply the
+    scalar `scale` (c for exp_avg, c^2 for exp_avg_sq). `rule` is one of:
+      "vec_copy"        -- 1-D LayerNorm-style copy
+      "out_copy1"        -- 2-D, dim=0 output-dup-copy only (embed.weight is
+                            (vocab, d_model): duplicate dim=1 by copy)
+      "in_halve"         -- 2-D, dim=1 input-dup-halve only (head.weight)
+      "in_halve+out_copy"-- 2-D, dim=1 halve THEN dim=0 copy (ffn.0/ffn.2)
+      "headwise_v"        -- W_v/W_gate/W_gamma/W_alpha: input-halve(d_model)
+                            then headwise-copy(d_head axis, dim=0)
+      "headwise_out"      -- W_out: headwise-halve(proj axis, dim=1) then
+                            output-copy(d_model axis, dim=0)
+      "bias_copy"         -- 1-D bias whose OUTPUT axis was duplicated by
+                            copy (ffn.0.bias, ln* handled via vec_copy)
+      "untouched"         -- head.bias: not widened at all, pass through
+    NOTE: this function only performs the STRUCTURAL duplication (same
+    primitives as grow_model's forward-weight rules); the caller multiplies
+    by `scale` afterward (kept separate so the same helper serves both
+    exp_avg (scale=c) and exp_avg_sq (scale=c^2))."""
+    if rule == "untouched":
+        return v64.clone() * scale
+    if rule == "vec_copy" or rule == "bias_copy":
+        return _dup_vec_copy(v64) * scale
+    if rule == "out_copy1":
+        return torch.cat([v64, v64], dim=1) * scale
+    if rule == "in_halve":
+        return _dup_input_halve(v64, dim=1) * scale
+    if rule == "in_halve+out_copy":
+        w = _dup_input_halve(v64, dim=1)
+        w = _dup_output_copy(w, dim=0)
+        return w * scale
+    if rule == "headwise_v":
+        w = _dup_input_halve(v64, dim=1)
+        w = _dup_headwise_last_axis(w, n_heads, d_head64, dim=0)
+        return w * scale
+    if rule == "headwise_out":
+        w = _dup_headwise_last_axis(v64, n_heads, d_head64, dim=1)
+        w = _dup_output_copy(w, dim=0)
+        return w * scale
+    raise ValueError(rule)
+
+
+# per-named-parameter (relative to a layer block / top-level) rule + scale-power table.
+# scale_power: 1 -> c=1.0 (head), 0.5 -> c=0.5 (everything else). exp_avg uses c^1,
+# exp_avg_sq uses c^2, i.e. (0.5)->0.25 or (1.0)->1.0.
+_MOMENT_RULES = {
+    "embed.weight": ("out_copy1", 0.5),
+    "head.weight": ("in_halve", 1.0),
+    "head.bias": ("untouched", 1.0),
+}
+_LAYER_RULES = {
+    "scan.W_v.weight": ("headwise_v", 0.5),
+    "scan.W_gate.weight": ("headwise_v", 0.5),
+    "scan.W_gamma.weight": ("headwise_v", 0.5),
+    "scan.W_alpha.weight": ("headwise_v", 0.5),
+    "scan.W_out.weight": ("headwise_out", 0.5),
+    "ln1.weight": ("vec_copy", 0.5),
+    "ln1.bias": ("vec_copy", 0.5),
+    "ln2.weight": ("vec_copy", 0.5),
+    "ln2.bias": ("vec_copy", 0.5),
+    "ffn.0.weight": ("in_halve+out_copy", 0.5),
+    "ffn.0.bias": ("bias_copy", 0.5),
+    "ffn.2.weight": ("in_halve+out_copy", 0.5),
+    "ffn.2.bias": ("bias_copy", 0.5),
+}
+
+
+def migrate_adam_moments(opt64, model64, model128, lr, n_layers=2, n_heads=4):
+    """Build a fresh torch.optim.Adam over model128.parameters() whose per-
+    parameter state (exp_avg, exp_avg_sq, step) is migrated from opt64's
+    state for the matching model64 parameter, through the grow_model()
+    duplication map (see derivation above). Falls back to a cold (zero) Adam
+    state for any parameter this function doesn't recognize (there are
+    none in the current FamilyStreamingLM/StreamingScanLayer shape, but this
+    keeps the function safe if the architecture grows new param names)."""
+    named64 = dict(model64.named_parameters())
+    named128 = dict(model128.named_parameters())
+    state64 = opt64.state
+
+    opt128 = torch.optim.Adam(model128.parameters(), lr=lr)
+    # touch every param's state once with a zero-step so torch.optim.Adam's
+    # internal state dict is populated in the exact shape/dtype it expects,
+    # then overwrite with the migrated values.
+    with torch.no_grad():
+        for p in model128.parameters():
+            opt128.state[p] = {
+                "step": torch.tensor(0.0),
+                "exp_avg": torch.zeros_like(p),
+                "exp_avg_sq": torch.zeros_like(p),
+            }
+
+    d64 = model64.embed.embedding_dim
+    d_head64 = d64 // n_heads
+    migrated, missing = [], []
+
+    for name128, p128 in named128.items():
+        # resolve the matching name64 + rule
+        if name128 in _MOMENT_RULES:
+            name64 = name128
+            rule, scale = _MOMENT_RULES[name128]
+        else:
+            # strip "layers.{i}." prefix to match _LAYER_RULES
+            parts = name128.split(".", 2)
+            if len(parts) == 3 and parts[0] == "layers":
+                suffix = parts[2]
+                if suffix in _LAYER_RULES:
+                    name64 = name128  # same dotted name exists in model64 too
+                    rule, scale = _LAYER_RULES[suffix]
+                else:
+                    missing.append(name128)
+                    continue
+            else:
+                missing.append(name128)
+                continue
+
+        p64 = named64.get(name64)
+        if p64 is None or p64 not in state64:
+            missing.append(name128)
+            continue
+        st64 = state64[p64]
+        with torch.no_grad():
+            exp_avg_m = _migrate_moment_tensor(st64["exp_avg"], rule, n_heads, d_head64, scale)
+            exp_avg_sq_m = _migrate_moment_tensor(st64["exp_avg_sq"], rule, n_heads, d_head64, scale ** 2)
+            assert exp_avg_m.shape == p128.shape, f"{name128}: exp_avg shape {exp_avg_m.shape} != param {p128.shape}"
+            assert exp_avg_sq_m.shape == p128.shape, f"{name128}: exp_avg_sq shape {exp_avg_sq_m.shape} != param {p128.shape}"
+            opt128.state[p128]["exp_avg"].copy_(exp_avg_m)
+            opt128.state[p128]["exp_avg_sq"].copy_(exp_avg_sq_m)
+            opt128.state[p128]["step"].copy_(st64["step"])
+        migrated.append(name128)
+
+    if missing:
+        print(f"[migrate_adam_moments] WARNING: {len(missing)} params fell back to cold Adam state "
+              f"(unexpected -- check _MOMENT_RULES/_LAYER_RULES coverage): {missing}", flush=True)
+    return opt128, migrated, missing
+
+
 def migrate_z_state(states64, n_heads=4):
     """Channel-duplicate each layer's carried Z (B,n_heads,d_head) -> (B,n_heads,2*d_head)
     within each head, matching the d_head widening of the scan weights."""
@@ -351,6 +527,154 @@ def migrate_z_state(states64, n_heads=4):
         z2 = torch.cat([z, z], dim=2)
         out.append(z2.detach())
     return out
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# §3c  P27a commutation gate: does grow(adam_step(m64)) == adam_step(grow_with_
+#     migrated_moments(m64)) on the SAME batch? Adam is nonlinear in exp_avg_sq
+#     (the sqrt denominator), so exact commutation is NOT guaranteed everywhere
+#     -- this measures the gap honestly, per parameter group, and checks it
+#     against both the 1e-3 absolute tolerance AND the update magnitude.
+# ═══════════════════════════════════════════════════════════════════════════
+def run_commutation_check(args):
+    """--check-moments: fast, no streaming. Builds a d64 model with a WARM
+    (non-trivial) Adam state (a handful of real gradient steps on real WT-2
+    tokens so exp_avg/exp_avg_sq are non-degenerate), then:
+      Path A: one MORE adam_step on d64 with a fixed probe batch, THEN grow
+              (exact, noise_std=0) the POST-step model.
+      Path B: grow (exact, noise_std=0) the PRE-step model + migrate_adam_
+              moments, THEN one adam_step on model128 with the SAME probe
+              batch (channel-duplication needs no input transform -- token
+              ids are identical, grow_model's equivalence already covers that).
+    Reports max|Path A - Path B| per named parameter (grouped by rule), and
+    that gap relative to the update's own magnitude (||update||)."""
+    train_text, val_text = load_wikitext2()
+    vocab, stoi, unk, mask = build_vocab(train_text)
+    V = len(vocab)
+    print(f"[check-moments] vocab={V}", flush=True)
+
+    B, K = args.batch, args.chunk
+    n_heads = 4
+
+    torch.manual_seed(args.seed)
+    m64 = build_gssm_lm(V, mask, d_model=64, n_layers=2, n_heads=n_heads, d_head=16)
+    opt64 = torch.optim.Adam(m64.parameters(), lr=args.lr)
+    arm64 = {"tag": "m64", "model": m64, "opt": opt64, "states": None,
+             "grad_tokens": 0, "n_chunks": 0, "n_bwd": 0}
+
+    # ── warm up Adam with a handful of real steps so exp_avg/exp_avg_sq are non-trivial ──
+    stream = C4Stream(stoi, unk)
+    bufs = [[] for _ in range(B)]
+    for b in range(B):
+        bufs[b].extend(stream.next_block())
+
+    def next_batch():
+        for b in range(B):
+            while len(bufs[b]) < K + 1:
+                bufs[b].extend(stream.next_block())
+        x = torch.tensor([bufs[b][:K] for b in range(B)], dtype=torch.long)
+        y = torch.tensor([bufs[b][1:K + 1] for b in range(B)], dtype=torch.long)
+        for b in range(B):
+            del bufs[b][:K]
+        return x, y
+
+    n_warm = 20
+    for _ in range(n_warm):
+        x, y = next_batch()
+        step_full(arm64, x, y)
+    print(f"[check-moments] Adam warmed with {n_warm} real WT-2/C4 steps "
+          f"({arm64['grad_tokens']:,} grad tokens)", flush=True)
+
+    # snapshot the PRE-probe-step model + opt state (Path B starts here)
+    m64_pre_sd = {k: v.clone() for k, v in m64.state_dict().items()}
+    opt64_pre_state = {p: {kk: vv.clone() for kk, vv in st.items()} for p, st in opt64.state.items()}
+    states_pre = arm64["states"]
+
+    # the ONE fixed probe batch both paths will apply as "the identical-batch step"
+    x_probe, y_probe = next_batch()
+
+    # ── Path A: adam_step on d64 (probe batch), THEN grow (exact) ──
+    logits, st = m64(x_probe, states_pre)
+    loss = F.cross_entropy(logits.reshape(-1, logits.size(-1)), y_probe.reshape(-1))
+    opt64.zero_grad(set_to_none=True)
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(m64.parameters(), 5.0)
+    opt64.step()
+    m64_post = m64  # now stepped
+    model128_A, _ = grow_model(m64_post, V, mask, n_layers=2, n_heads=n_heads,
+                                noise_std=0.0, noise_seed=args.seed)
+    sdA = {k: v.clone() for k, v in model128_A.state_dict().items()}
+
+    # ── Path B: restore PRE-probe-step model, grow (exact) + migrate moments, THEN adam_step ──
+    m64_restored = build_gssm_lm(V, mask, d_model=64, n_layers=2, n_heads=n_heads, d_head=16)
+    m64_restored.load_state_dict(m64_pre_sd)
+    opt64_restored = torch.optim.Adam(m64_restored.parameters(), lr=args.lr)
+    named_restored = dict(m64_restored.named_parameters())
+    named_orig = dict(m64.named_parameters())  # same names, used only to align original Parameter objects
+    # opt64_pre_state is keyed by the ORIGINAL m64 Parameter objects (pre-step, but same objects since
+    # opt.step() mutates in place, not replaces) -- since m64 IS mutated in place, opt64_pre_state was
+    # snapshotted by VALUE (cloned tensors) above, so re-key it onto m64_restored's parameters by name.
+    name_to_param64 = dict(m64.named_parameters())
+    param64_to_name = {p: n for n, p in name_to_param64.items()}
+    opt64_restored.state = {}
+    for p_orig, st in opt64_pre_state.items():
+        nm = param64_to_name[p_orig]
+        opt64_restored.state[named_restored[nm]] = st
+
+    model128_B, _ = grow_model(m64_restored, V, mask, n_layers=2, n_heads=n_heads,
+                                noise_std=0.0, noise_seed=args.seed)
+    opt128_B, migrated_names, missing_names = migrate_adam_moments(
+        opt64_restored, m64_restored, model128_B, args.lr, n_layers=2, n_heads=n_heads)
+    states128_pre = migrate_z_state(states_pre, n_heads=n_heads)
+
+    logitsB, _ = model128_B(x_probe, states128_pre)
+    lossB = F.cross_entropy(logitsB.reshape(-1, logitsB.size(-1)), y_probe.reshape(-1))
+    opt128_B.zero_grad(set_to_none=True)
+    lossB.backward()
+    torch.nn.utils.clip_grad_norm_(model128_B.parameters(), 5.0)
+    opt128_B.step()
+    sdB = {k: v.clone() for k, v in model128_B.state_dict().items()}
+
+    print(f"[check-moments] migrate_adam_moments: {len(migrated_names)} migrated, "
+          f"{len(missing_names)} cold-fallback", flush=True)
+
+    # ── compare, grouped by parameter "family" ──
+    print("\n" + "=" * 78)
+    print("P27a COMMUTATION GATE: grow(adam_step(m64)) [A] vs adam_step(migrate(grow(m64))) [B]")
+    print("=" * 78)
+    overall_max = 0.0
+    rows = []
+    for k in sdA:
+        a, b = sdA[k], sdB[k]
+        diff = (a - b).abs().max().item()
+        upd = (b - torch.zeros_like(b)).abs().mean().item()  # placeholder, replaced below with true update norm
+        rows.append((k, diff, tuple(a.shape)))
+        overall_max = max(overall_max, diff)
+
+    # update magnitude reference: ||model128_A - model128_(pre-step, grown)|| i.e. what the probe
+    # step itself moved things by, so we can say "is the A/B gap small vs the step size"
+    model128_prestep, _ = grow_model(m64_restored, V, mask, n_layers=2, n_heads=n_heads,
+                                      noise_std=0.0, noise_seed=args.seed)
+    sd_prestep = model128_prestep.state_dict()
+
+    tol = 1e-3
+    n_exact, n_approx = 0, 0
+    for k, diff, shape in rows:
+        upd_size = (sdA[k] - sd_prestep[k]).abs().max().item()
+        rel = diff / upd_size if upd_size > 1e-12 else float("nan")
+        status = "PASS" if diff < tol else ("small-vs-update" if (rel == rel and rel < 0.05) else "FAIL")
+        if diff < tol:
+            n_exact += 1
+        else:
+            n_approx += 1
+        print(f"  {k:32s} shape={str(shape):16s} max|A-B|={diff:.3e}  step-size={upd_size:.3e}  "
+              f"rel={rel:.4f}  {status}")
+    print("-" * 78)
+    print(f"  overall max|A-B| across all parameters = {overall_max:.3e} (tol {tol:.0e})")
+    print(f"  {n_exact}/{len(rows)} tensors commute EXACTLY (< {tol:.0e}); "
+          f"{n_approx}/{len(rows)} only approximately (Adam's exp_avg_sq sqrt-denominator nonlinearity)")
+    print("=" * 78)
+    return {"max_abs_err": overall_max, "rows": [(k, d) for k, d, _ in rows], "tol": tol}
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -461,7 +785,14 @@ def run_experiment(args):
         print(f"[surgery] Z-state migrated: {len(states128)} layers, "
               f"shape {tuple(states64_pre[0].shape)} -> {tuple(states128[0].shape)}", flush=True)
 
-    opt_grown = torch.optim.Adam(model128.parameters(), lr=args.lr)  # fresh Adam post-surgery
+    if args.migrate_moments:
+        opt64_grown = arms_phaseA["grown"]["opt"]
+        opt_grown, migrated_names, missing_names = migrate_adam_moments(
+            opt64_grown, model64_pre, model128, args.lr, n_layers=2, n_heads=n_heads)
+        print(f"[surgery] Adam moments MIGRATED (P27): {len(migrated_names)} tensors migrated, "
+              f"{len(missing_names)} fell back to cold state", flush=True)
+    else:
+        opt_grown = torch.optim.Adam(model128.parameters(), lr=args.lr)  # fresh Adam post-surgery
     arm_grown = {"tag": "grown", "model": model128, "opt": opt_grown, "states": states128,
                  "grad_tokens": arms_phaseA["grown"]["grad_tokens"], "n_chunks": 0, "n_bwd": 0}
 
@@ -608,7 +939,18 @@ def main():
     ap.add_argument("--eval-every-tokens", type=int, default=150_000)
     ap.add_argument("--transient-chunks", type=int, default=20)
     ap.add_argument("--tag", default="")
+    ap.add_argument("--migrate-moments", action="store_true",
+                     help="P27/MS14: migrate opt64's Adam moments (exp_avg/exp_avg_sq/step) through "
+                          "the duplication map instead of a fresh Adam for the grown arm post-surgery")
+    ap.add_argument("--check-moments", action="store_true",
+                     help="P27a commutation gate ONLY (no streaming): adam_step then grow (Path A) vs "
+                          "grow+migrate then adam_step (Path B) on a fixed toy batch; report max|A-B| "
+                          "per parameter group and exit")
     args = ap.parse_args()
+
+    if args.check_moments:
+        run_commutation_check(args)
+        return
 
     if args.smoke:
         args.phaseA_tokens = args.phaseA_tokens or 300_000
@@ -617,6 +959,11 @@ def main():
     else:
         args.phaseA_tokens = args.phaseA_tokens or 1_200_000
         args.phaseB_tokens = args.phaseB_tokens or 1_200_000
+
+    if args.migrate_moments and not args.tag:
+        args.tag = "mig"
+    elif args.migrate_moments and not args.tag.endswith("mig"):
+        args.tag = f"{args.tag}_mig"
 
     run_experiment(args)
 
