@@ -1,0 +1,43 @@
+Device: cpu
+[data] vocab=5000 | frozen WT-2 held-out 19,968 tokens
+[arms] grown/stay64 identical d64 init (seed 42)
+[eval] n=         0 wall=   0.6s | grown 8.7200 | stay64 8.7200
+[phase A] streaming... target=1,200,000 tokens (B=8 K=64)
+[eval] n=   150,016 wall=  13.0s | grown 5.9061 | stay64 5.9061
+[eval] n=   300,032 wall=  25.6s | grown 5.7331 | stay64 5.7331
+[eval] n=   450,048 wall=  38.0s | grown 5.6216 | stay64 5.6216
+[eval] n=   600,064 wall=  50.5s | grown 5.5765 | stay64 5.5765
+[eval] n=   750,080 wall=  63.1s | grown 5.4716 | stay64 5.4716
+[eval] n=   900,096 wall=  76.0s | grown 5.4475 | stay64 5.4475
+[eval] n= 1,050,112 wall=  89.9s | grown 5.4231 | stay64 5.4231
+[eval] n= 1,200,128 wall= 104.0s | grown 5.4009 | stay64 5.4009
+[eval] n= 1,200,128 wall= 104.6s | grown 5.4009 | stay64 5.4009
+[phase A] done at 1,200,128 tokens. grown=5.4009 stay64=5.4009
+
+[surgery] widening grown: d_model 64 -> 128 (channel duplication)...
+[surgery] equivalence: stateless max|delta logits| = 6.676e-06 PASS
+[surgery] equivalence: chunked+carried(3 chunks) max|delta logits| = 6.676e-06 PASS
+[surgery] Z-state migrated: 2 layers, shape (8, 4, 16) -> (8, 4, 32)
+[eval] n=         0 wall=   1.1s | grown 5.4009 | stay64 5.4009 | fresh128 8.6894 | post-surgery baseline
+
+[phase B] streaming... target=1,200,000 tokens post-surgery (B=8 K=64)
+[eval] n=   150,016 wall=  26.9s | grown 5.5265 | stay64 5.3470 | fresh128 6.0453 | total=1,350,144
+[eval] n=   300,032 wall=  52.4s | grown 5.4618 | stay64 5.3495 | fresh128 5.8055 | total=1,500,160
+[eval] n=   450,048 wall=  79.0s | grown 5.3830 | stay64 5.2858 | fresh128 5.6322 | total=1,650,176
+[eval] n=   600,064 wall= 107.1s | grown 5.4405 | stay64 5.3406 | fresh128 5.6038 | total=1,800,192
+[eval] n=   750,080 wall= 136.9s | grown 5.3824 | stay64 5.2982 | fresh128 5.5497 | total=1,950,208
+[eval] n=   900,096 wall= 166.6s | grown 5.3280 | stay64 5.2617 | fresh128 5.4616 | total=2,100,224
+[eval] n= 1,050,112 wall= 194.7s | grown 5.3235 | stay64 5.2397 | fresh128 5.4267 | total=2,250,240
+[eval] n= 1,200,128 wall= 219.5s | grown 5.2839 | stay64 5.2474 | fresh128 5.4107 | total=2,400,256
+[eval] n= 1,200,128 wall= 220.6s | grown 5.2839 | stay64 5.2474 | fresh128 5.4107 | FINAL
+
+==============================================================================
+VERDICT -- P24 hot-swap growth (d64 -> d128 mid-stream)
+  (a) surgery equivalence: stateless 6.676e-06, chunked(3) 6.676e-06 (tol 1e-4) PASS
+  (b) no post-surgery transient: mean|grown-stay64| over first 20 post-surgery chunks = 0.0465 nats (grown 4.8399, stay64 4.7935) (tol < 0.05) PASS
+  (c) growth pays off: final held-out grown 5.2839 vs stay64 5.2474 -> grown better by -0.0365 nats (need >= 0.03) FAIL
+  (d) growth beats restart: final held-out grown 5.2839 vs fresh128 5.4107 -> grown better by +0.1269 nats (need > 0) PASS
+  OVERALL: NOT ALL CHECKS PASS -- see above
+==============================================================================
+
+-> results/hot_swap_growth.json

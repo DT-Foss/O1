@@ -177,6 +177,29 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   training distance, and a state-alignment map becomes the next disclosed
   primitive — either outcome is the measurement.
 
+### Wave-5 scoring (as results land)
+
+- **P23 SCORED (results/state_weight_swap.json, A3 organism, 600 chunks):**
+  (a) **FALSIFIED, cleanly and instructively** — cold (Z=0) shows NEGATIVE
+  first-50-token excess (−0.085) vs native; the carried fast-path state holds
+  no NLL value beyond the ~5–8-token receptive field. This is F2 measured
+  from the other side, not a bug. (b) **CONFIRMED, far beyond the bar** —
+  both swap arms converge to the native trajectory in 4 chunks (256 tokens;
+  bar was 300 chunks). (c) inconclusive by construction: past chunk ~4 all
+  arms are bit-identical (deterministic convergence), so windowed separation
+  only exists in the onset (where the 30-trial diagnosis separates shuffled
+  at +0.9). Net reading: weight hot-swap on the fast path is a NON-EVENT —
+  no lock-in, no compatibility risk, nothing to migrate; the portable value
+  lives in the slow channels (→ P26).
+- **P24 SCORED (results/hot_swap_growth.json, 1.2M+1.2M):** (a) CONFIRMED
+  6.7e-6; (b) CONFIRMED gap 0.046 (and conservatively measured: the grown
+  arm restarts Adam, stay64 keeps warm moments — the pure surgery transient
+  is smaller); (d) CONFIRMED growth beats restart by 0.127 nats. (c)
+  **FALSIFIED at this scale**: grown trails stay64 by 0.036 at 1.2M
+  post-surgery tokens — but the deficit HALVED from 0.073 at 300k, monotone;
+  next lever registered: migrate Adam moments through the duplication map
+  instead of resetting, and/or longer horizon.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

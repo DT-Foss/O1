@@ -26,12 +26,12 @@ curiosity, grows without restarting, and shares memory with others.
 | MS5 | **Language-stream holographic recall** (holo graft on the 400M-token POS model) | the knee/carrier story leaves synthetic MQAR: real facts recalled over real silence in a real language stream | M3 ✅, POS ckpt | ⏳ |
 | MS6 | **CHIMERA — the complete organism** | all validated organs in ONE process on real text, measured against the sum of its parts | MS1, MS2/M4, MS3 | ⏳ |
 | MS7 | **Two organisms, one index** (social memory) | organism B learns from A's surprises: collective memory across O(1) individuals | M5 ✅ | ⏳ |
-| MS8 | **Hot-swap growth** (in-flight network surgery, d_model grows, state migrated, no restart) | the brain grows without sleeping; the twin experiment is the control | POS twin ✅ | ⏳ |
+| MS8 | **Hot-swap growth** (in-flight network surgery, d_model grows, state migrated, no restart) | the brain grows without sleeping; the twin experiment is the control | POS twin ✅ | ✅ |
 | MS9 | **Auto-falsifier** (PREDICTIONS.md → machine-checkable scores) | the science machine audits itself: every new result JSON auto-scored against every registered prediction | — | 🔨 |
 | MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ⏳ |
-| MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | 🔨 |
+| MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | ✅ |
 | MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 🔨 |
-| MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | 🔨 |
+| MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | 🚀 |
 
 ## Foundations track (F1–F6) — claim the primitives, not the effects
 
@@ -126,3 +126,15 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
   recall across a weight swap. MS12 smoke: regularizer mechanically works
   (alpha_filler drops dose-dependently); causal knee test needs full budget
   (curriculum must actually reach long gaps first).
+- day3 ~20:20 — MS8 ✅ + MS11 ✅ harvested; the TWO-TIMESCALE LAW emerges:
+  the fast path forgets by design (P23a falsified: cold BEATS carried state;
+  swap converges in 256 tokens — weight updates are a non-event, no lock-in),
+  while the slow carrier holds the content (MS13 smoke: bit survives surgery
+  AND swap at 1.000, cold collapses; carrier channel ADDRESS migrates
+  Head0/Chan2→Head3/Chan8 across training yet the read stays perfect —
+  portability by REDUNDANT ENCODING, not address stability). MS8: growth
+  beats restart +0.127, surgery exact, no transient; capacity payoff not yet
+  at 1.2M (deficit halved 0.073→0.036 — next lever: migrate Adam moments
+  through the duplication map). **Coupling → MS6/CHIMERA: model updates and
+  model growth are SAFE operations on the living organism; the state layer
+  that needs care is exactly the layer the index+carrier own.**

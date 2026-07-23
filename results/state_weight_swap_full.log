@@ -1,0 +1,39 @@
+Device: cpu
+[ms11] loading snapshots (read-only) ...
+[ms11] snapshot config: B=8 K=64 d_model=128 n_streamed(native)=359,050,240 n_streamed(far)=128,219,648 n_streamed(near)=240,350,208
+[ms11] training distance: far=230,830,592 tok | near=118,700,032 tok
+[ms11] Z[native] shapes=[(8, 4, 32), (8, 4, 32)]
+[ms11] Z[far] shapes=[(8, 4, 32), (8, 4, 32)]
+[ms11] Z[near] shapes=[(8, 4, 32), (8, 4, 32)]
+[ms11] Z[shuffled] shapes=[(8, 4, 32), (8, 4, 32)]
+[ms11] vocab=5000
+[ms11] all 5 arms share identical W(359M) weights (param-abs-sum 1805985.5405)
+[ms11] streaming fresh C4 (doc 0..) | 600 chunks | B=8 K=64 | ~307,200 tokens/arm | token-trace over first 1 chunk(s) (64 tokens)
+[chunk    1/600] wall=  0.1s docs=1,385 | native 4.3531 | swap_far 4.3137 | swap_near 4.3912 | cold 4.2804 | shuffled 4.3855
+[chunk   60/600] wall=  3.2s docs=1,385 | native 4.2296 | swap_far 4.2296 | swap_near 4.2296 | cold 4.2296 | shuffled 4.2296
+[chunk  120/600] wall=  6.7s docs=1,385 | native 4.5028 | swap_far 4.5028 | swap_near 4.5028 | cold 4.5028 | shuffled 4.5028
+[chunk  180/600] wall= 10.1s docs=1,385 | native 4.2241 | swap_far 4.2241 | swap_near 4.2241 | cold 4.2241 | shuffled 4.2241
+[chunk  240/600] wall= 13.4s docs=1,385 | native 4.1162 | swap_far 4.1162 | swap_near 4.1162 | cold 4.1162 | shuffled 4.1162
+[chunk  300/600] wall= 16.6s docs=1,385 | native 4.1966 | swap_far 4.1966 | swap_near 4.1966 | cold 4.1966 | shuffled 4.1966
+[chunk  360/600] wall= 19.8s docs=1,385 | native 4.3307 | swap_far 4.3307 | swap_near 4.3307 | cold 4.3307 | shuffled 4.3307
+[chunk  420/600] wall= 23.0s docs=1,385 | native 4.6564 | swap_far 4.6564 | swap_near 4.6564 | cold 4.6564 | shuffled 4.6564
+[chunk  480/600] wall= 26.2s docs=1,385 | native 4.2000 | swap_far 4.2000 | swap_near 4.2000 | cold 4.2000 | shuffled 4.2000
+[chunk  540/600] wall= 29.5s docs=1,385 | native 4.1891 | swap_far 4.1891 | swap_near 4.1891 | cold 4.1891 | shuffled 4.1891
+[chunk  600/600] wall= 32.6s docs=1,385 | native 4.5429 | swap_far 4.5429 | swap_near 4.5429 | cold 4.5429 | shuffled 4.5429
+
+==============================================================================
+VERDICT — P23: does a carried OLD state survive a weight hot-swap?
+==============================================================================
+  native     excess_first50=+0.0000  excess_last100=+0.0000  convergence_chunk=0
+  swap_far   excess_first50=-0.0443  excess_last100=+0.0000  convergence_chunk=4
+  swap_near  excess_first50=+0.0503  excess_last100=+0.0000  convergence_chunk=4
+  cold       excess_first50=-0.0848  excess_last100=+0.0000  convergence_chunk=8
+  shuffled   excess_first50=+0.0276  excess_last100=+0.0000  convergence_chunk=4
+------------------------------------------------------------------------------
+(a) cold excess >= 2x swap_far excess: -0.0848 >= 2 x -0.0443 = -0.0885  -> FAIL
+(b) swap_far & swap_near converge <300 chunks: far=4 near=4  -> PASS
+(c) shuffled worse than swap_far in every 50-chunk window: 1/12 windows  -> FAIL
+==============================================================================
+OVERALL: PARTIAL/FALSIFIED (see individual checks above)
+
+-> results/state_weight_swap.json
