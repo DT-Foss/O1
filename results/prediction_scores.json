@@ -2,10 +2,10 @@
   "generated_by": "src/score_predictions.py",
   "n_predictions": 13,
   "summary": {
-    "PENDING": 4,
+    "PENDING": 3,
     "CONFIRMED": 3,
     "FALSIFIED": 1,
-    "PARTIAL": 5
+    "PARTIAL": 6
   },
   "predictions": [
     {
@@ -613,12 +613,13 @@
       "source_files": [
         "pos_dream.json"
       ],
-      "status": "PENDING",
-      "reason": "missing source(s): ['pos_dream']",
+      "status": "PARTIAL",
+      "reason": "deltas: sleep=+0.0002 dream=-0.0283 fresh=-0.0142 shuffled=-0.8129; dream-vs-fresh=-0.0141 (>=+0.03: False), sleep>dream: True",
       "measured": {
-        "_missing": [
-          "pos_dream"
-        ]
+        "sleep": 0.000187,
+        "dream": -0.028342,
+        "fresh": -0.014244,
+        "dream_shuffled": -0.812914
       }
     },
     {

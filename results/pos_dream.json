@@ -1,0 +1,59 @@
+{
+  "ckpt_n_streamed": 417710592,
+  "n_spans": 20000,
+  "grad_tokens_per_arm": 102400,
+  "base_heldout": 4.772765,
+  "c4val": {
+    "base": 4.305173,
+    "sleep": {
+      "final": 4.322618,
+      "delta": -0.017445
+    },
+    "dream": {
+      "final": 4.340734,
+      "delta": -0.035561
+    },
+    "fresh": {
+      "final": 4.31621,
+      "delta": -0.011037
+    },
+    "dream_shuffled": {
+      "final": 5.11569,
+      "delta": -0.810517
+    }
+  },
+  "arms": {
+    "sleep": {
+      "final_heldout": 4.772577,
+      "delta": 0.000187
+    },
+    "dream": {
+      "final_heldout": 4.801107,
+      "delta": -0.028342
+    },
+    "fresh": {
+      "final_heldout": 4.787008,
+      "delta": -0.014244
+    },
+    "dream_shuffled": {
+      "final_heldout": 5.585678,
+      "delta": -0.812914
+    }
+  },
+  "self_consistency": {
+    "mean_nll_dream_tokens_under_generator": 4.70988,
+    "mean_nll_stored_spans_under_generator": 4.568787,
+    "gap": -0.141093,
+    "note": "dreams are sampled FROM the generator's own distribution, so their NLL under it is low by construction; stored spans were selected BECAUSE they were high-NLL surprises. A positive gap here is expected and is not itself evidence about which arm wins on heldout \u2014 it's the mechanism explanation."
+  },
+  "dream_sampling": {
+    "sampled_tokens": 102912,
+    "ignition_tokens": 8,
+    "ignition_frac": 7.8e-05,
+    "mean_self_nll": 4.622224,
+    "gen_wall_s": 26.563,
+    "tok_per_s": 3874.27
+  },
+  "p19_scoring": "FALSIFIED (dream does not beat fresh)",
+  "verdict": "sleep delta=+0.000187 dream delta=-0.028342 fresh delta=-0.014244 dream_shuffled delta=-0.812914 | dream-vs-fresh=-0.014098 (fresh ahead) | sleep-vs-dream=+0.028529 (sleep ahead) | dream-vs-dream_shuffled=+0.784572 (structure matters) | P19=FALSIFIED (dream does not beat fresh)"
+}

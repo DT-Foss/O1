@@ -318,7 +318,8 @@ def extract_p19(data):
     miss = _missing(data, required)
     if miss:
         return {"_missing": miss}
-    return {"raw": data["pos_dream"]}
+    arms = data["pos_dream"]["arms"]
+    return {k: arms[k]["delta"] for k in ("sleep", "dream", "fresh", "dream_shuffled")}
 
 
 def rule_p18(m):
@@ -336,6 +337,17 @@ def rule_p18(m):
               f"wrong@P2={m['wrong_p2']:.3f} (>0.30: {c3}; conflict-variant passes this bar but is "
               f"diagnosed as global trust decay, see holo_reminded_conflict.json); "
               f"unregistered headline: read-jump hybrid@P2={m['read_jump_p2']:.3f} vs M5 0.715")
+    return status, reason
+
+
+def rule_p19(m):
+    c1 = m["dream"] - m["fresh"] >= 0.03      # registered: dream beats fresh by >=0.03
+    c2 = m["sleep"] > m["dream"]               # registered: sleep beats dream
+    status = "CONFIRMED" if (c1 and c2) else ("PARTIAL" if c2 else "FALSIFIED")
+    reason = (f"deltas: sleep={m['sleep']:+.4f} dream={m['dream']:+.4f} "
+              f"fresh={m['fresh']:+.4f} shuffled={m['dream_shuffled']:+.4f}; "
+              f"dream-vs-fresh={m['dream']-m['fresh']:+.4f} (>=+0.03: {c1}), "
+              f"sleep>dream: {c2}")
     return status, reason
 
 
@@ -630,7 +642,7 @@ REGISTRY = [
         "claim": "dream generator (MS2): training on self-sampled continuations beats fresh data but loses to stored-span replay",
         "source_files": ["pos_dream.json"],
         "extractor": extract_p19,
-        "rule": rule_pending_only("dream vs fresh vs sleep-replay deltas"),
+        "rule": rule_p19,
     },
     {
         "id": "P20",
