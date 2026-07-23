@@ -162,6 +162,21 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   (c) drift reduction and knee position are dose-monotone in λ. If large λ
   strangles the write itself, that trade-off boundary is the measurement.
 
+- **P26 — the stored bit survives the surgery and the swap (MS13,
+  src/beacon_swap.py, registered before the build):** on the beacon
+  idle-persistence task (write-once-freeze carrier, streaming_train.py §D/E):
+  (a) across the MS8 widening surgery (d64→d128, carried-Z migrated,
+  post-gate) beacon recall through a 256-token gap stays ≥ 0.99 — the bit
+  survives the brain operation exactly; (b) within one training run, writing
+  the bit under W(T1)'s encoder and reading it under W(T2)'s decoder (weights
+  from 2× further training, state carried across the swap) keeps recall
+  ≥ 0.9 — the state CODE (which channel carries the bit, at what scale) is
+  stable across training distance once the carrier has locked; (c) the
+  channel-shuffled state control collapses to chance at both (a) and (b). If
+  (b) fails while (a) passes, the honest reading is: state code drifts with
+  training distance, and a state-alignment map becomes the next disclosed
+  primitive — either outcome is the measurement.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
