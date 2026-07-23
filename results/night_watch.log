@@ -1,0 +1,15 @@
+23:01 POS phase=running n=1,977,344 tok/s=310.8 rss=0.215GB idx=0e/0p | WP4 done/dead | disk=8.3GB
+23:05 POS phase=running n=2,064,384 tok/s=311.9 rss=0.148GB idx=0e/0p | WP4 v2-running | disk=8.3GB | v1-harvest committed, v2+N4 in flight
+00:01 POS phase=running pid_alive=True n=2,978,816 tok/s=297.3 rss=0.186GB idx=0e/0p recur=0 | v2=ended | disk=8.1GB
+00:59 POS phase=running pid_alive=True n=4,265,472 tok/s=316.1 rss=0.179GB idx=0e/0p recur=0 | disk=8.1GB
+01:00 v3 harvested+committed: P2 carried 0.80 (+27pp vs off) G<=32; gamma-knee 32<G*<128; sleep-smoke waits for index (n=4.3M/5M)
+02:01 POS phase=running pid_alive=True n=11,339,776 tok/s=658.9 rss=0.272GB idx=20000e/0p recur=686 | disk=9.2GB
+02:03 sleep-smoke null@40chunks (shuffled -0.685 = falsifier OK); warm-opt fix committed; full sleep run launching
+02:19 SLEEP CONFIRMED vs train-far control: +0.078 paired, falsifier holds; committed
+03:10 POS phase=running pid_alive=True n=31,980,544 tok/s=1499.3 rss=1.048GB idx=20000e/0p recur=2149 | disk=9.1GB
+04:12 POS phase=running pid_alive=True n=57,648,640 tok/s=2299.2 rss=0.793GB idx=20000e/30p recur=3921 | disk=9.1GB
+  probes n=30 mean_d_inj=-0.057246 mean_d_rand=-0.161202 inj>rand: 19/30 dt_h_range=(2.00,2.17)
+05:13 POS phase=running pid_alive=True n=85,763,584 tok/s=2988.9 rss=0.981GB idx=20000e/60p recur=5760 | disk=9.1GB
+  probes n=60 mean_d_inj=-0.054088 mean_d_rand=-0.162186 inj>rand: 43/60 | 2nd-half: d_inj=-0.050930 d_rand=-0.163170
+06:14 POS phase=running pid_alive=True n=113,873,920 tok/s=3517.3 rss=0.412GB probes=90 inj>rand=66/90 | disk=8.9GB
+06:40 MORGEN: POS phase=running alive=True n=126,026,240 tok/s=3712.5 rss=0.364GB wall=9.4h probes=120 inj>rand=91/120 d_inj=-0.0701 d_rand=-0.2098 | disk=8.9GB
