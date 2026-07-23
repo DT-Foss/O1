@@ -1,0 +1,128 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 800,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 60,
+    "g_start": 2,
+    "patience": 25,
+    "curriculum_bar": 0.8,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "32,128,256,512",
+    "zero_null_gaps": "128",
+    "seeds": "0",
+    "variants": "V2_kickstart_magnorm",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_magread_smoke.json",
+    "variants_list": [
+      "V2_kickstart_magnorm"
+    ]
+  },
+  "equivalence": {
+    "reference_streaming": 0.0,
+    "magnorm": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "kickstart_logit": 5.3,
+  "kickstart_head": 0,
+  "curriculum": {
+    "seed0_V2_kickstart_magnorm": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5312,
+      "train_mode": "fullseq",
+      "train_gap_cap": 128
+    }
+  },
+  "sweep": {
+    "V2_kickstart_magnorm|seed0|G32": {
+      "seed": 0,
+      "variant": "V2_kickstart_magnorm",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.4167,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "V2_kickstart_magnorm|seed0|G128": {
+      "seed": 0,
+      "variant": "V2_kickstart_magnorm",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.3833,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "V2_kickstart_magnorm|seed0|G128|zeroed": {
+      "seed": 0,
+      "variant": "V2_kickstart_magnorm",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.1,
+      "arm": "zeroed_at_gap"
+    },
+    "V2_kickstart_magnorm|seed0|G256": {
+      "seed": 0,
+      "variant": "V2_kickstart_magnorm",
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.1167,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "V2_kickstart_magnorm|seed0|G512": {
+      "seed": 0,
+      "variant": "V2_kickstart_magnorm",
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.0333,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "gamma_spectrum": {
+    "seed0_V2_kickstart_magnorm": {
+      "per_layer_head": [
+        [
+          0.995917,
+          0.571695,
+          0.59035,
+          0.578051
+        ],
+        [
+          0.548895,
+          0.537569,
+          0.688596,
+          0.667009
+        ]
+      ],
+      "max_gamma": 0.995917,
+      "tau_at_max_gamma": 244.9,
+      "max_channel_gamma": 0.997755,
+      "tau_at_max_channel": 445.3
+    }
+  },
+  "knees": {
+    "seed0_V2_kickstart_magnorm": {
+      "knee_G": 128,
+      "ref_G": 32,
+      "acc_at_ref": 0.4167
+    }
+  },
+  "theory_check": [
+    "V2_kickstart_magnorm: mean_knee_G=128.0  mean_tau_max_channel=445.3  knee/tau_ratio=0.287"
+  ],
+  "verdict": "P14a (V2 knee>=1024): NOT MET (measured 128.0, V1 reference knee None) | P14b (V3 knee>=512, no kickstart needed): NOT MET (measured None) | P14c (V3 @G=32 within 10pp of V1 @G=32, i.e. mag-norm doesn't cost near-field recall): NOT MET (V1=None, V3=None)",
+  "elapsed_s": 5.3
+}
