@@ -64,6 +64,22 @@ with explicit references back to each P-number.
   100%): one binding needs no key-conditioning — that tie is *predicted*, not
   a failure of the mechanism.
 
+## Day-1 moonshots (registered ~07:20, before the --full runs)
+
+- **P12 — held-out-key binding** (src/holo_heldout_keys.py, full run in
+  flight): original form — holo generalizes to unseen keys (≥3× chance,
+  ≥ off + 10pp), off drops to ~chance. The smoke already fired the
+  pre-written alternative branch (BOTH arms generalize at 600 iters); the
+  full-budget question is whether the v3 phase advantage (+25 pp) reappears
+  on train keys and extends to test keys. Honest state: the channel-
+  allocation lookup story is already wounded; embedding geometry may carry
+  key identity for both mechanisms.
+- **P13 — γ-knee mobility** (src/holo_gap_knee.py): full-sequence training
+  (the equivalence theorem licenses train-unchunked/deploy-chunked) moves
+  the recall knee from 32<G*<128 (v3) to ≥256; with a γ-kickstart head to
+  ≥1024; knee position correlates with the measured filler-γ across
+  variants (the theory's G* ≈ ln-margin/(1−γ) tested directly).
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

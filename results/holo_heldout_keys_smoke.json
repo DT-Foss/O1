@@ -1,0 +1,197 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "p_max": 64,
+    "train_keys": 40,
+    "v_max": 16,
+    "f_fillers": 16,
+    "heldout_rate": 0.2,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 600,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "patience": 25,
+    "train_gap_cap": 0,
+    "log_every": 0,
+    "gaps": "0,8",
+    "seeds": "0",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_heldout_keys_smoke.json"
+  },
+  "key_split": {
+    "key_lo": 0,
+    "n_train_keys": 40,
+    "n_test_keys": 24
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "holo_carried|train_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.595,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|train_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.515,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.635,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.525,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.52,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.63,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_zeroed_at_gap|train_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.045,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.045,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|train_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.035,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "curriculum": {
+    "seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5938,
+      "train_gap_cap": 8
+    },
+    "seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5,
+      "train_gap_cap": 8
+    },
+    "seed0_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5938,
+      "train_gap_cap": 8
+    }
+  },
+  "generalization_gap": {
+    "holo_carried": {
+      "G0": 0.095,
+      "G8": -0.12
+    },
+    "holo_off": {
+      "G0": 0.005,
+      "G8": -0.11
+    },
+    "holo_zeroed_at_gap": {
+      "G0": 0.0,
+      "G8": 0.025
+    }
+  },
+  "verdict": "BOTH ARMS GENERALIZE to held-out keys \u2014 the channel-allocation hypothesis for the v3 P11 tie-break is wrong (or incomplete); embedding geometry alone appears to carry enough key identity for the magnitude-only baseline to bind unseen keys too",
+  "verdict_detail": [
+    "holo_carried         G=   0: train_keys=0.595 test_keys=0.500 gen_gap=+0.095  chance=0.062",
+    "holo_carried         G=   8: train_keys=0.515 test_keys=0.635 gen_gap=-0.120  chance=0.062",
+    "holo_off             G=   0: train_keys=0.530 test_keys=0.525 gen_gap=+0.005  chance=0.062",
+    "holo_off             G=   8: train_keys=0.520 test_keys=0.630 gen_gap=-0.110  chance=0.062",
+    "holo_zeroed_at_gap   G=   0: train_keys=0.045 test_keys=0.045 gen_gap=+0.000  chance=0.062",
+    "holo_zeroed_at_gap   G=   8: train_keys=0.060 test_keys=0.035 gen_gap=+0.025  chance=0.062"
+  ],
+  "elapsed_s": 9.2
+}
