@@ -289,11 +289,28 @@ def extract_p17(data):
 
 
 def extract_p18(data):
-    required = ["holo_reminded"]
+    required = ["holo_reminded", "holo_hybrid"]
     miss = _missing(data, required)
     if miss:
         return {"_missing": miss}
-    return {"raw": data["holo_reminded"]}
+    sw = data["holo_reminded"]["sweep"]
+    def mean_over_seeds(P, G, field):
+        vals = [v[field] for v in sw.values() if v["P"] == P and v["G"] == G]
+        return sum(vals) / len(vals) if vals else None
+    # M5 reference: base at P=16 from the hybrid sweep (gate 1.0 rows carry base too)
+    m5 = data["holo_hybrid"]["sweep"] if isinstance(data["holo_hybrid"].get("sweep"), dict) else {}
+    m5_base16 = [v["base"] for v in m5.values()
+                 if isinstance(v, dict) and v.get("P") == 16 and v.get("gate") in (1.0, None)]
+    m5_base16 = sum(m5_base16) / len(m5_base16) if m5_base16 else 0.154
+    return {
+        "hybrid_p16": min(x for x in (mean_over_seeds(16, 8, "hybrid"),
+                                       mean_over_seeds(16, 32, "hybrid")) if x is not None),
+        "base_p16": mean_over_seeds(16, 8, "base"),
+        "m5_base_p16": m5_base16,
+        "wrong_p2": max(x for x in (mean_over_seeds(2, 8, "random"),
+                                     mean_over_seeds(2, 32, "random")) if x is not None),
+        "read_jump_p2": mean_over_seeds(2, 8, "hybrid"),
+    }
 
 
 def extract_p19(data):
@@ -302,6 +319,24 @@ def extract_p19(data):
     if miss:
         return {"_missing": miss}
     return {"raw": data["pos_dream"]}
+
+
+def rule_p18(m):
+    """Scores the ORIGINAL registered P18 (immutable): hybrid@P16 >= 0.85,
+    base@P16 within 5pp of M5's base, wrong-reminder@P2 > 0.30. The hardened
+    read-jump at P=2 is reported in the reason, not scored (it was not the
+    registered claim)."""
+    c1 = m["hybrid_p16"] >= 0.85
+    c2 = abs(m["base_p16"] - m["m5_base_p16"]) <= 0.05
+    c3 = m["wrong_p2"] > 0.30
+    n_pass = sum([c1, c2, c3])
+    status = "CONFIRMED" if n_pass == 3 else ("PARTIAL" if n_pass >= 1 else "FALSIFIED")
+    reason = (f"hybrid@P16={m['hybrid_p16']:.3f} (>=0.85: {c1}), "
+              f"base@P16={m['base_p16']:.3f} vs M5 {m['m5_base_p16']:.3f} (within 5pp: {c2}), "
+              f"wrong@P2={m['wrong_p2']:.3f} (>0.30: {c3}; conflict-variant passes this bar but is "
+              f"diagnosed as global trust decay, see holo_reminded_conflict.json); "
+              f"unregistered headline: read-jump hybrid@P2={m['read_jump_p2']:.3f} vs M5 0.715")
+    return status, reason
 
 
 def extract_p20(data):
@@ -586,9 +621,9 @@ REGISTRY = [
     {
         "id": "P18",
         "claim": "learned to be reminded (MS1): training with stochastic consultation lifts hybrid@P16 from 0.51 to >=0.85",
-        "source_files": ["holo_reminded.json"],
+        "source_files": ["holo_reminded.json", "holo_hybrid.json"],
         "extractor": extract_p18,
-        "rule": rule_pending_only("training with stochastic consultation vs M5 baseline"),
+        "rule": rule_p18,
     },
     {
         "id": "P19",
