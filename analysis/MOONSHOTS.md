@@ -19,7 +19,7 @@ curiosity, grows without restarting, and shares memory with others.
 
 | # | Moonshot | four-levels-up claim | deps | status |
 |---|---|---|---|---|
-| MS1 | **Learned to be reminded** (consultation IN training) | the state+index seam disappears: hybrid ≥0.85 at P=16, and the model learns to ARBITRATE state vs. injection | M5 ✅ | 🔨 |
+| MS1 | **Learned to be reminded** (consultation IN training) | the state+index seam disappears: hybrid ≥0.85 at P=16, and the model learns to ARBITRATE state vs. injection | M5 ✅ | ✅ |
 | MS2 | **The dream generator** (generative replay) | sleep without storage: training on the model's OWN sampled dreams rivals stored-span replay — memory becomes optional | M4 ✅ | 🔨 |
 | MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | 🔨 |
 | MS4 | **Curiosity homeostasis** (self-set q) | the organism sets its own learning threshold; adaptive q beats every fixed q on non-stationary streams | MS3 harness | ⏳ |
@@ -50,3 +50,12 @@ curiosity, grows without restarting, and shares memory with others.
 
 - day1 15:00 — portfolio opened; wave 3 = MS1+MS2+MS3+MS9 (MS4 waits for
   MS3's non-stationary harness; MS5/MS6 wait for wave-3 signals).
+- day1 ~17:10 — MS9 ✅ (auto-falsifier live; side gift: live interim_ratio
+  1.002 @410M). MS1 ✅ harvested: the READ ceiling is broken and hardened
+  (0.99–1.00 at P=2, both seeds, both G — vs M5's 0.72–0.84); hybrid@P16
+  stays ~0.49 (state interference, not reading, is the high-P bottleneck);
+  the conflict variant exposed trust-decay-not-arbitration (hybrid falls WITH
+  random rising). **Coupling applied → MS6 (CHIMERA): index consultation =
+  in-sequence reminders trained with reliable-index statistics (base setup);
+  arbitration-by-contrastive-signal is its own later moonshot, NOT folded
+  into MS6.**

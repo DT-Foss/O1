@@ -1,0 +1,288 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "p_max": 32,
+    "v_max": 16,
+    "f_fillers": 16,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 64,
+    "iters": 2000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "patience": 25,
+    "train_gap_cap": 0,
+    "p_correct": 0.5,
+    "p_wrong": 0.3,
+    "log_every": 0,
+    "pairs": "2,8,16",
+    "gaps": "8,32",
+    "seeds": "1,2",
+    "out": "results/holo_reminded_conflict.json"
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "seed1|P2|G8": {
+      "seed": 1,
+      "P": 2,
+      "G": 8,
+      "base": 0.57,
+      "hybrid": 0.94,
+      "random": 0.475,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed1|P2|G32": {
+      "seed": 1,
+      "P": 2,
+      "G": 32,
+      "base": 0.51,
+      "hybrid": 0.94,
+      "random": 0.39,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed1|P8|G8": {
+      "seed": 1,
+      "P": 8,
+      "G": 8,
+      "base": 0.24,
+      "hybrid": 0.545,
+      "random": 0.215,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed1|P8|G32": {
+      "seed": 1,
+      "P": 8,
+      "G": 32,
+      "base": 0.255,
+      "hybrid": 0.58,
+      "random": 0.185,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed1|P16|G8": {
+      "seed": 1,
+      "P": 16,
+      "G": 8,
+      "base": 0.2,
+      "hybrid": 0.3,
+      "random": 0.155,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed1|P16|G32": {
+      "seed": 1,
+      "P": 16,
+      "G": 32,
+      "base": 0.18,
+      "hybrid": 0.355,
+      "random": 0.175,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed2|P2|G8": {
+      "seed": 2,
+      "P": 2,
+      "G": 8,
+      "base": 0.52,
+      "hybrid": 0.99,
+      "random": 0.525,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed2|P2|G32": {
+      "seed": 2,
+      "P": 2,
+      "G": 32,
+      "base": 0.53,
+      "hybrid": 0.94,
+      "random": 0.49,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed2|P8|G8": {
+      "seed": 2,
+      "P": 8,
+      "G": 8,
+      "base": 0.285,
+      "hybrid": 0.415,
+      "random": 0.265,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed2|P8|G32": {
+      "seed": 2,
+      "P": 8,
+      "G": 32,
+      "base": 0.345,
+      "hybrid": 0.47,
+      "random": 0.23,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed2|P16|G8": {
+      "seed": 2,
+      "P": 16,
+      "G": 8,
+      "base": 0.2,
+      "hybrid": 0.3,
+      "random": 0.18,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed2|P16|G32": {
+      "seed": 2,
+      "P": 16,
+      "G": 32,
+      "base": 0.18,
+      "hybrid": 0.305,
+      "random": 0.205,
+      "chance": 0.0625,
+      "n": 200
+    }
+  },
+  "curriculum": {
+    "seed1": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.6562,
+      "train_regime_frac": {
+        "correct": 0.501,
+        "wrong": 0.3018,
+        "none": 0.1972
+      },
+      "train_gap_cap": 32,
+      "train_P": 2
+    },
+    "seed2": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.8125,
+      "train_regime_frac": {
+        "correct": 0.5002,
+        "wrong": 0.2979,
+        "none": 0.2019
+      },
+      "train_gap_cap": 32,
+      "train_P": 2
+    }
+  },
+  "m5_reference": {
+    "gate_used": 1.0,
+    "cells": {
+      "P2|G8": {
+        "base": 0.5475,
+        "hybrid": 0.715,
+        "random": 0.3,
+        "gate_rate": 1.0,
+        "n_seeds": 2
+      },
+      "P2|G32": {
+        "base": 0.5375,
+        "hybrid": 0.8425,
+        "random": 0.215,
+        "gate_rate": 1.0,
+        "n_seeds": 2
+      },
+      "P8|G8": {
+        "base": 0.2,
+        "hybrid": 0.5925,
+        "random": 0.1675,
+        "gate_rate": 1.0,
+        "n_seeds": 2
+      },
+      "P8|G32": {
+        "base": 0.2025,
+        "hybrid": 0.66,
+        "random": 0.105,
+        "gate_rate": 1.0,
+        "n_seeds": 2
+      },
+      "P16|G8": {
+        "base": 0.1575,
+        "hybrid": 0.45,
+        "random": 0.1,
+        "gate_rate": 1.0,
+        "n_seeds": 2
+      },
+      "P16|G32": {
+        "base": 0.15,
+        "hybrid": 0.5125,
+        "random": 0.1125,
+        "gate_rate": 1.0,
+        "n_seeds": 2
+      }
+    },
+    "source": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_hybrid.json"
+  },
+  "comparison_vs_m5": {
+    "P2|G8": {
+      "p18_base": 0.545,
+      "p18_hybrid": 0.965,
+      "p18_random": 0.5,
+      "m5_base": 0.5475,
+      "m5_hybrid": 0.715,
+      "m5_random": 0.3
+    },
+    "P2|G32": {
+      "p18_base": 0.52,
+      "p18_hybrid": 0.94,
+      "p18_random": 0.44,
+      "m5_base": 0.5375,
+      "m5_hybrid": 0.8425,
+      "m5_random": 0.215
+    },
+    "P8|G8": {
+      "p18_base": 0.2625,
+      "p18_hybrid": 0.48,
+      "p18_random": 0.24,
+      "m5_base": 0.2,
+      "m5_hybrid": 0.5925,
+      "m5_random": 0.1675
+    },
+    "P8|G32": {
+      "p18_base": 0.3,
+      "p18_hybrid": 0.525,
+      "p18_random": 0.2075,
+      "m5_base": 0.2025,
+      "m5_hybrid": 0.66,
+      "m5_random": 0.105
+    },
+    "P16|G8": {
+      "p18_base": 0.2,
+      "p18_hybrid": 0.3,
+      "p18_random": 0.1675,
+      "m5_base": 0.1575,
+      "m5_hybrid": 0.45,
+      "m5_random": 0.1
+    },
+    "P16|G32": {
+      "p18_base": 0.18,
+      "p18_hybrid": 0.33,
+      "p18_random": 0.19,
+      "m5_base": 0.15,
+      "m5_hybrid": 0.5125,
+      "m5_random": 0.1125
+    }
+  },
+  "verdict": "training with stochastic consultation does not clear all P18 acceptance checks in this sweep \u2014 see 'checks' and 'comparison_vs_m5' for the per-cell numbers against M5's own reference",
+  "checks": {
+    "hybrid@P16>=0.85": false,
+    "base@P16_within_5pp_of_m5_base": true,
+    "wrong_reminder@P2>m5_random@P2(0.30)": true
+  },
+  "verdict_detail": [
+    "P=2 G=8: base=0.545 hybrid=0.965 random=0.500 chance=0.062 | M5: base=0.547 hybrid=0.715 random=0.300",
+    "P=2 G=32: base=0.520 hybrid=0.940 random=0.440 chance=0.062 | M5: base=0.537 hybrid=0.843 random=0.215",
+    "P=8 G=8: base=0.262 hybrid=0.480 random=0.240 chance=0.062 | M5: base=0.200 hybrid=0.593 random=0.168",
+    "P=8 G=32: base=0.300 hybrid=0.525 random=0.208 chance=0.062 | M5: base=0.203 hybrid=0.660 random=0.105",
+    "P=16 G=8: base=0.200 hybrid=0.300 random=0.167 chance=0.062 | M5: base=0.158 hybrid=0.450 random=0.100",
+    "P=16 G=32: base=0.180 hybrid=0.330 random=0.190 chance=0.062 | M5: base=0.150 hybrid=0.512 random=0.113"
+  ],
+  "elapsed_s": 36.5
+}
