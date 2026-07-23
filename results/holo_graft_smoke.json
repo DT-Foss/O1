@@ -1,0 +1,175 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "gaps": "8,32",
+    "seeds": "0",
+    "chunk": 32,
+    "iters": 600,
+    "lr": 0.003,
+    "batch": 16,
+    "eval_batch": 100,
+    "g_start": 2,
+    "g_train_max": 64,
+    "patience": 25,
+    "bar": 0.8,
+    "log_every": 0,
+    "eval_skip": 20000,
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_graft_smoke.json"
+  },
+  "fact_vocab": {
+    "key_words": [
+      "fernandez",
+      "rebuilt",
+      "angle",
+      "graves",
+      "arguing",
+      "opponent",
+      "acted",
+      "jurchens",
+      "preparing",
+      "spin",
+      "signal",
+      "creutz",
+      "bir",
+      "determine",
+      "retreat",
+      "fires",
+      "christians",
+      "suddenly",
+      "gwen",
+      "bears",
+      "pagoda",
+      "brooks",
+      "genera",
+      "asian",
+      "youtube",
+      "dubbed",
+      "saved",
+      "ongoing",
+      "ballad",
+      "hnc",
+      "dc",
+      "failing"
+    ],
+    "val_words": [
+      "wellington",
+      "uncle",
+      "rocks",
+      "tanks",
+      "memories",
+      "radiation",
+      "ignored",
+      "honours",
+      "sq",
+      "ideal",
+      "acre",
+      "measuring",
+      "dennis",
+      "sanskrit",
+      "mystery",
+      "ian"
+    ],
+    "rank_band": [
+      3000,
+      5000
+    ],
+    "n_keys": 32,
+    "n_vals": 16
+  },
+  "equivalence": {
+    "max_abs_delta": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "holo|G8|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 8,
+      "accuracy": 0.8,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "ctrl|G8|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 8,
+      "accuracy": 0.43,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "null|G8|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 8,
+      "accuracy": 0.16,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G32|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 32,
+      "accuracy": 0.09,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G32|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 32,
+      "accuracy": 0.09,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G32|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 32,
+      "accuracy": 0.1,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "curriculum": {
+    "seed0_holo": {
+      "final_train_gap": 7,
+      "final_train_acc": 0.9375
+    },
+    "seed0_ctrl": {
+      "final_train_gap": 4,
+      "final_train_acc": 0.6875
+    }
+  },
+  "gamma_spectrum": {
+    "seed0": {
+      "use_phase": true,
+      "per_head_max_over_channels": [
+        0.9492,
+        0.9079,
+        0.9339,
+        0.9286
+      ],
+      "per_head_mean_over_channels": [
+        0.5478,
+        0.5397,
+        0.5387,
+        0.5418
+      ],
+      "global_max_gamma": 0.9492
+    }
+  },
+  "verdict": "language-stream keyed recall SURVIVES real text at at least one G (holo beats zeroed-at-gap null and clears 3x chance) \u2014 see per-G detail",
+  "detail": [
+    "G=8: holo=0.800 ctrl=0.430 null=0.160 chance=0.062 -> SURVIVES",
+    "G=32: holo=0.090 ctrl=0.090 null=0.100 chance=0.062 -> no"
+  ],
+  "p21_prediction": {
+    "statement": "holo-graft >= 3x chance (>=0.1875) at G=128 on real text; ctrl-graft below that; null at chance",
+    "holo_acc_at_g128_mean": null,
+    "threshold": 0.1875,
+    "passed": false
+  },
+  "elapsed_s": 95.9
+}
