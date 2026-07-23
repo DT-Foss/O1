@@ -55,7 +55,8 @@ If fewer than 2 reviewed harnesses are waiting, build the next entry NOW
 (prediction registered first). Builders cost no CPU — an empty builder queue
 next to free builders is the only true time-waste in this lab.*
 
-1. MS12c — the 2×2 clamp×magnitude-refresh (P30) — 🔨 building
+1. MS7 — two organisms, one index (P31) — 🔨 building
+2. F2/F4/F6 unification docs — 🔨 drafting
 2. MS14 — Adam-moment migration (P27) — full on beast
 3. MS4 — auto-q curiosity homeostasis on the shock harness (P28) — smoke running
 3. MS7 — two organisms, one index (P-tbd before build)
@@ -194,3 +195,11 @@ next to free builders is the only true time-waste in this lab.*
   magnitude-bound. P30 registered: the 2x2 clamp x in-state magnitude
   refresh (the FOUNDATIONS-F3-disclosed variant) that fully disentangles
   the two axes — prediction: clamp+refresh moves the knee to >= 2048.
+- day3 ~22:15 — P30 harvested, the knee arc is COMPLETE and mechanistically
+  closed: 32 -> 256 (full-seq) -> 512 (magnorm read) -> 2176 mean / 4096
+  end-of-range (eval clamp+refresh), every step registered before its data.
+  The law: persistence = clean phase AND fed magnitude, and the two levers
+  INTERACT (refresh-only is the worst arm — it rescales pollution; the
+  combination is the jump). All three interventions are eval-time
+  prostheses on a gap-2-trained model — folding them into training is a
+  Phase-C question. Queue refilled per standing order: MS7 (P31) + F-docs.

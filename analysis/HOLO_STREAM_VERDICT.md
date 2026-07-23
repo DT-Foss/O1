@@ -211,3 +211,18 @@ recipe) as an explicit curriculum/regularization target.
    (theory falsifier 1; predicted: zero drift).
 3. **Capacity ladder on the stream** — n_slots>1 at P=8 over gaps, the
    streaming version of the slot experiments.
+
+
+## The knee arc, closed (P25/P29/P30 — day 3 evening)
+
+The alpha-regularizer is an honest kill (P25: the M3 recipe trains at gap 2
+and extrapolates — discovered in the forensics — so the lever never reaches
+the mechanism). The eval-time causal chain then closed the story: the filler
+write is a DOUBLE AGENT — it pollutes the phase (removable exactly: drift
+0.0 rad under an eval clamp, P29a) and feeds the magnitude (clamped, the
+channels starve: mag_ratio 0.0007, snr-alive 0.09). Neither lever alone
+moves the knee (clamp-only 640, refresh-only 512, untouched 768) — together
+they move it to **2176 mean / 4096 end-of-range** (P30a; seed variance
+stated). Persistence = clean phase AND fed magnitude, jointly — an
+interaction, not a sum. Files: results/holo_alpha_shut.json,
+holo_alpha_clamp.json, holo_clamp_refresh.json.

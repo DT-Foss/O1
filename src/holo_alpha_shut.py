@@ -695,6 +695,413 @@ def run_eval_alpha_clamp(args):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# 3c. P30 (MS12c) — the 2x2 that disentangles the two axes. P29 found the
+#     filler write is a DOUBLE AGENT: it pollutes the phase (drift) but also
+#     REFRESHES the magnitude (mag_ratio 30-80x unclamped vs ~0.0007 under
+#     full clamp @G=2048) -- the knee past 512 is magnitude-bound, not
+#     pollution-bound. This crosses clamp (kills the pollution, also kills
+#     the feed) with an EXPLICIT magnitude refresh (feeds the state WITHOUT
+#     reintroducing pollution, since renormalizing |S|->1 touches ONLY the
+#     magnitude -- arg(S) = atan2(S_im,S_re) is invariant under a positive
+#     rescaling of both components by the same factor, so phase is untouched
+#     BY CONSTRUCTION regardless of what the phase currently is).
+#
+#     REFRESH IS A STATE OP BETWEEN CHUNKS, NOT A LAYER-FORWARD CHANGE: it
+#     mutates the carried (S_re, S_im) dict returned by chunked_forward /
+#     model(...) between chunk calls -- exactly the shape/call-site
+#     zero_states already uses for the zeroed-at-gap null (holo_stream_recall.
+#     StreamingHolographicScanLayer... consumed via model.zero_states(states)
+#     between two chunked_forward calls). refresh_magnitude below is the
+#     same idiom: read states[0]["S_re"/"S_im"], renormalize, hand back a new
+#     states list. No layer class is touched, no forward() is overridden for
+#     this purpose (clamp still uses its own existing forward hook, refresh
+#     does not add another one).
+# ═══════════════════════════════════════════════════════════════════════════
+REFRESH_EPS = 1e-8
+"""Below this |S|, the channel is treated as dead (write-once-frozen-at-zero
+or never written): renormalizing it would manufacture a unit-magnitude
+vector out of what is essentially float noise, inventing information the
+mission's P30c gate explicitly forbids (zeroed-at-gap null must stay at
+chance in every arm, refresh included -- a refresh that resurrects a
+zeroed state would violate that by construction). Channels with
+|S| < REFRESH_EPS are left EXACTLY as they are (both S_re and S_im
+untouched), so a genuinely zeroed state stays genuinely zero under refresh."""
+
+
+def refresh_magnitude(states, eps=REFRESH_EPS):
+    """Renormalize layer 0's carried complex state to per-channel unit
+    magnitude: S <- S / |S|, applied identically to S_re and S_im so the
+    RATIO S_im/S_re (and therefore phase = atan2(S_im, S_re)) is exactly
+    preserved -- a positive scalar rescaling of a 2D vector never changes
+    its angle. Channels with |S| < eps are passed through UNCHANGED (the
+    eps-guard from the mission spec: "a zeroed state stays dead"). Returns a
+    NEW states list (does not mutate the input in place), mirroring
+    model.zero_states's return-a-new-list convention. Only layer 0 is
+    touched -- deeper layers' states are untouched, matching P29's clamp
+    scope (layer 0 is where the holographic accumulator under test lives)."""
+    st0 = states[0]
+    S_re, S_im = st0["S_re"], st0["S_im"]
+    mag = torch.sqrt(S_re * S_re + S_im * S_im + 1e-12)
+    alive = mag >= eps
+    S_re_new = torch.where(alive, S_re / mag.clamp(min=eps), S_re)
+    S_im_new = torch.where(alive, S_im / mag.clamp(min=eps), S_im)
+    new_st0 = dict(st0)
+    new_st0["S_re"] = S_re_new
+    new_st0["S_im"] = S_im_new
+    return [new_st0] + list(states[1:])
+
+
+@torch.no_grad()
+def eval_gap_recall_chunked_clamprefresh(model, P, G, NB, seed, P_max, V_max, F, chunk,
+                                         clamp_factor, refresh):
+    """The P30 2x2 eval sweep: chunked+carried (the deployment path), with
+    the FILLER span optionally alpha-clamped (clamp_factor, same semantics
+    as P29's eval_gap_recall_chunked_alphaclamp -- None=off) AND/OR
+    magnitude-refreshed at every chunk boundary strictly inside the filler
+    span (refresh: bool). Refresh is applied to the RETURNED states AFTER
+    each filler chunk's forward call, before the next chunk consumes them --
+    a pure state-op between chunks, never inside the layer's forward. The KV
+    write phase and the query position are NEVER clamped and NEVER
+    refreshed (matching P29's write-untouched constraint, extended here to
+    the new refresh axis for the same reason: the write itself is not what
+    either intervention is meant to test)."""
+    key_lo, val_lo, fill_lo, _ = _gap_vocab(P_max, V_max, F)
+    gen = torch.Generator().manual_seed(seed)
+    x, y = make_gap_mqar_batch(NB, P, G, gen, P_max, V_max, F, key_lo, val_lo, fill_lo)
+    model.eval()
+    scan0 = model.layers[0].scan
+    kv_len = 2 * P
+    T = x.shape[1]
+
+    states = None
+    outs = []
+    pos = 0
+    while pos < T:
+        hi = min(T, pos + chunk)
+        is_pure_filler = (pos >= kv_len) and (hi <= kv_len + G)
+        clamp_here = clamp_factor if (is_pure_filler and clamp_factor is not None) else None
+        with EvalClampContext(scan0, clamp_here):
+            logits_c, states = model(x[:, pos:hi], states)
+        if is_pure_filler and refresh:
+            states = refresh_magnitude(states)   # STATE OP between chunks, not in forward
+        outs.append(logits_c)
+        pos = hi
+    logits = torch.cat(outs, dim=1)
+
+    pred = logits[:, -1, :V_max]
+    acc = float((pred.argmax(-1) == y).float().mean())
+    return acc
+
+
+@torch.no_grad()
+def eval_gap_recall_chunked_zeroed_clamprefresh(model, P, G, NB, seed, P_max, V_max, F, chunk,
+                                                clamp_factor, refresh):
+    """P30c control: zeroed-at-gap null UNDER each of the four arms -- the
+    KV phase runs normally, then model.zero_states zeros the ENTIRE carried
+    state (all layers, exactly holo_stream_recall.zero_states), then the
+    filler span runs with clamp/refresh exactly as in the non-null sweep
+    (refresh's eps-guard means a zeroed state, |S|=0 < REFRESH_EPS, is left
+    at zero -- refresh must not manufacture information from nothing, the
+    literal P30c requirement). Accuracy here should sit at chance in EVERY
+    arm; a refresh arm that beats chance here would mean refresh invented a
+    signal, which the eps-guard is specifically built to prevent."""
+    key_lo, val_lo, fill_lo, _ = _gap_vocab(P_max, V_max, F)
+    gen = torch.Generator().manual_seed(seed)
+    x, y = make_gap_mqar_batch(NB, P, G, gen, P_max, V_max, F, key_lo, val_lo, fill_lo)
+    model.eval()
+    scan0 = model.layers[0].scan
+    kv_len = 2 * P
+
+    logits_kv, states = chunked_forward(model, x[:, :kv_len], chunk)
+    states = model.zero_states(states)   # decisive null: zero EVERY carried tensor, every layer
+
+    outs = [logits_kv]
+    pos = kv_len
+    T = x.shape[1]
+    while pos < T:
+        hi = min(T, pos + chunk)
+        is_pure_filler = (hi <= kv_len + G)
+        clamp_here = clamp_factor if (is_pure_filler and clamp_factor is not None) else None
+        with EvalClampContext(scan0, clamp_here):
+            logits_c, states = model(x[:, pos:hi], states)
+        if is_pure_filler and refresh:
+            states = refresh_magnitude(states)   # eps-guard: zeroed |S|=0 stays untouched
+        outs.append(logits_c)
+        pos = hi
+    logits = torch.cat(outs, dim=1)
+
+    pred = logits[:, -1, :V_max]
+    acc = float((pred.argmax(-1) == y).float().mean())
+    return acc
+
+
+@torch.no_grad()
+def measure_filler_drift_clamprefresh(model, P, G, NB, seed, P_max, V_max, F, chunk,
+                                      clamp_factor, refresh):
+    """Drift + mag_ratio diagnosis under the 2x2: same machinery as
+    measure_filler_drift_alphaclamp, plus refresh applied to layer 0's
+    (S_re,S_im) at every filler chunk boundary (after the chunk's forward,
+    before the next chunk starts) when refresh=True. Phase is measured
+    exactly as before (atan2 on the possibly-refreshed S_re/S_im) -- since
+    refresh preserves phase EXACTLY by construction, any measured drift under
+    refresh=True is not an artifact of the renormalization; it can only come
+    from the alpha-clamp axis (or its absence)."""
+    key_lo, val_lo, fill_lo, _ = _gap_vocab(P_max, V_max, F)
+    gen = torch.Generator().manual_seed(seed)
+    keys = torch.stack([torch.randperm(P_max, generator=gen)[:P] for _ in range(NB)]) + key_lo
+    vals = torch.randint(0, V_max, (NB, P), generator=gen) + val_lo
+    fillers = torch.randint(0, F, (NB, G), generator=gen) + fill_lo
+    kv = torch.stack([keys, vals], dim=2).reshape(NB, 2 * P)
+
+    model.eval()
+    scan0 = model.layers[0].scan
+    logits_kv, states = chunked_forward(model, kv, chunk)   # KV phase: always unclamped, unrefreshed
+    s0_re = states[0]["S_re"].clone()
+    s0_im = states[0]["S_im"].clone()
+    mag0 = torch.sqrt(s0_re ** 2 + s0_im ** 2 + 1e-12)
+    phase0 = torch.atan2(s0_im, s0_re)
+
+    st = states
+    pos = 0
+    s_re_last, s_im_last = s0_re, s0_im
+    while pos < G:
+        hi = min(G, pos + chunk)
+        xc = fillers[:, pos:hi]
+        h = model.embed(xc)
+        with EvalClampContext(scan0, clamp_factor):
+            y0, st_new, internals = model.layers[0].scan(h, st[0], return_internals=True)
+        s_re_last = internals["S_re"][:, -1].clone()
+        s_im_last = internals["S_im"][:, -1].clone()
+        h1 = model.layers[0].ln1(h + y0)
+        h1 = model.layers[0].ln2(h1 + model.layers[0].ffn(h1))
+        new_states = [st_new]
+        hcur = h1
+        for li in range(1, len(model.layers)):
+            y, sto = model.layers[li].scan(hcur, st[li])
+            hcur = model.layers[li].ln1(hcur + y)
+            hcur = model.layers[li].ln2(hcur + model.layers[li].ffn(hcur))
+            new_states.append(sto)
+        st = [{k: v.detach() for k, v in s.items()} for s in new_states]
+        if refresh:
+            st = refresh_magnitude(st)
+            s_re_last, s_im_last = st[0]["S_re"], st[0]["S_im"]
+        pos = hi
+
+    mag_t = torch.sqrt(s_re_last ** 2 + s_im_last ** 2 + 1e-12)
+    phase_t = torch.atan2(s_im_last, s_re_last)
+    dphi = wrapped_delta(phase_t, phase0).abs()
+
+    alive = mag_t >= SNR_FLOOR
+    n_alive = int(alive.sum())
+    n_total = int(alive.numel())
+    if n_alive > 0:
+        w_snr = mag_t[alive] / (mag_t[alive].sum() + 1e-12)
+        dphi_snr_weighted = float((dphi[alive] * w_snr).sum())
+    else:
+        dphi_snr_weighted = float("nan")
+    mag_ratio_mean = float((mag_t / (mag0 + 1e-12)).mean())
+
+    return {"G": G, "dphi_snr_gated_weighted": round(dphi_snr_weighted, 6) if n_alive else None,
+           "mag_ratio_mean": round(mag_ratio_mean, 6),
+           "snr_alive_frac": round(n_alive / n_total, 4)}
+
+
+def run_eval_clamp_refresh(args):
+    """P30 orchestration: train ONE lambda=0 M3-recipe model per seed
+    (identical training path to P25's control / P29's build), then run the
+    2x2 {clamp, no-clamp} x {refresh, no-refresh} eval sweep + drift
+    diagnosis + zeroed-at-gap null, all four arms against the SAME trained
+    model per seed. No training-time change anywhere -- both axes are
+    eval-only hooks."""
+    P_max, V_max, F = args.p_max, args.v_max, args.f_fillers
+    key_lo, val_lo, fill_lo, vocab_size = _gap_vocab(P_max, V_max, F)
+    mask_idx = vocab_size
+    P = args.pairs
+    chance = 1.0 / V_max
+
+    Gs_eval = [int(g) for g in args.gaps.split(",")]
+    Gs_drift = [int(g) for g in args.drift_gaps.split(",") if g]
+    seeds = [int(s) for s in args.seeds.split(",")]
+    # arm name -> (clamp_factor, refresh)
+    arms = [("unclamped_norefresh", (None, False)),
+            ("clamp_norefresh", (0.0, False)),
+            ("unclamped_refresh", (None, True)),
+            ("clamp_refresh", (0.0, True))]
+
+    print("=" * 78)
+    print("HOLO-ALPHA-SHUT — P30/MS12c: the 2x2 that disentangles phase-pollution from magnitude-feed")
+    print(f"P={P}  P_max={P_max} V_max={V_max} F={F} vocab={vocab_size}  chance={chance:.4f}")
+    print(f"eval gaps(G)={Gs_eval}  drift gaps={Gs_drift}  seeds={seeds}  arms={[a for a,_ in arms]}")
+    print("=" * 78)
+
+    print("\n── equivalence gates (reused, un-normalized + magnorm) ──")
+    eq_ref = check_equivalence(vocab_size, mask_idx, seed=0, T=48, chunk=16, use_phase=True)
+    eq_magnorm = check_equivalence_magnorm(vocab_size, mask_idx, seed=0, T=48, chunk=args.chunk,
+                                           d_model=args.d_model, n_layers=args.n_layers,
+                                           n_heads=args.n_heads, d_head=args.d_head)
+    print(f"   reference_streaming max|Δ| = {eq_ref:.3e}")
+    print(f"   magnorm             max|Δ| = {eq_magnorm:.3e}")
+    eq_ok = eq_ref < 1e-5 and eq_magnorm < 1e-5
+    print(f"   {'PASS' if eq_ok else 'FAIL — do not trust anything below'}")
+    equivalence = {"reference_streaming": eq_ref, "magnorm": eq_magnorm, "passed": eq_ok}
+    if not eq_ok:
+        out = {"config": vars(args), "equivalence": equivalence,
+              "verdict": "VOID — equivalence check failed"}
+        os.makedirs(RESULTS, exist_ok=True)
+        json.dump(out, open(args.out, "w"), indent=2)
+        print(f"\n→ {args.out}")
+        return
+
+    t0 = time.time()
+    results = {"config": vars(args), "equivalence": equivalence, "chance": chance,
+              "recipe": "M3 V2_kickstart_magnorm, lambda=0, trained ONCE per seed (identical to "
+                        "P25's control / P29's build). Eval-only 2x2: alpha-clamp on filler "
+                        "positions (P29 mechanism) crossed with in-state magnitude refresh at "
+                        "filler chunk boundaries (S <- S/|S| per channel, eps-guarded, phase "
+                        "exactly preserved by construction). No training-time change.",
+              "refresh_eps": REFRESH_EPS,
+              "kickstart_logit": KICKSTART_LOGIT, "kickstart_head": KICKSTART_HEAD,
+              "curriculum": {}, "sweep": {}, "knees": {}, "drift": {}, "zeroed_null": {}}
+
+    for seed in seeds:
+        print(f"\n{'='*78}\nseed={seed}  (training M3 recipe, lambda=0, ONCE)\n{'='*78}")
+        torch.manual_seed(seed)
+        model = _build_lm_alphashut(vocab_size, mask_idx, args.d_model, args.n_layers,
+                                    args.n_heads, args.d_head)
+        curr = train_fullseq_curriculum_alphashut(
+            model, P, args.g_train_max, args.iters, args.lr, seed, args.batch, 0.0,
+            P_max, V_max, F, log_every=args.log_every, g_start=args.g_start,
+            patience=args.patience, bar=args.curriculum_bar)
+        results["curriculum"][f"seed{seed}"] = curr
+        print(f"  curriculum done: final_train_gap={curr['final_train_gap']} "
+              f"final_train_acc={curr['final_train_acc']:.3f}")
+
+        for arm_name, (factor, refresh) in arms:
+            key = f"seed{seed}_{arm_name}"
+            print(f"  ── arm={arm_name} (clamp_factor={factor}, refresh={refresh}) ──")
+            by_G = {}
+            for G in Gs_eval:
+                if G >= 4096:
+                    eb = max(10, args.eval_batch // 8)
+                elif G >= 2048:
+                    eb = max(10, args.eval_batch // 4)
+                elif G >= 1024:
+                    eb = max(10, args.eval_batch // 2)
+                else:
+                    eb = args.eval_batch
+                acc = eval_gap_recall_chunked_clamprefresh(model, P, G, eb, seed + 1000 + G,
+                                                            P_max, V_max, F, args.chunk,
+                                                            factor, refresh)
+                acc0 = eval_gap_recall_chunked_zeroed_clamprefresh(model, P, G, eb, seed + 1000 + G,
+                                                                   P_max, V_max, F, args.chunk,
+                                                                   factor, refresh)
+                by_G[G] = acc
+                sk = f"{arm_name}|seed{seed}|G{G}"
+                results["sweep"][sk] = {"seed": seed, "arm": arm_name, "clamp_factor": factor,
+                                        "refresh": refresh, "P": P, "G": G,
+                                        "accuracy": round(acc, 4), "chance": round(chance, 4),
+                                        "beats_chance_3x": bool(acc > 3 * chance)}
+                results["zeroed_null"][sk] = {"seed": seed, "arm": arm_name, "G": G,
+                                              "accuracy": round(acc0, 4), "chance": round(chance, 4),
+                                              "within_5pp_of_chance": bool(abs(acc0 - chance) <= 0.05)}
+                print(f"      G={G:>5}: acc={acc:.4f} (chance {chance:.4f})  "
+                      f"zeroed-null={acc0:.4f}")
+
+            ref_G = Gs_eval[0]
+            knee = estimate_knee(by_G, Gs_eval, ref_G=ref_G)
+            results["knees"][key] = {"knee_G": knee, "ref_G": ref_G,
+                                     "acc_at_ref": round(by_G.get(ref_G, float("nan")), 4)}
+            print(f"      knee estimate (last G with acc >= 0.5*acc@{ref_G}): {knee}")
+
+            drift_by_G = {}
+            for G in Gs_drift:
+                nb_drift = max(20, min(60, args.eval_batch // 2))
+                d = measure_filler_drift_clamprefresh(model, P, G, nb_drift, seed + 3000 + G,
+                                                      P_max, V_max, F, args.chunk, factor, refresh)
+                drift_by_G[str(G)] = d
+                print(f"      drift@G={G:>5}: Δφ_snr={d['dphi_snr_gated_weighted']}  "
+                      f"mag_ratio={d['mag_ratio_mean']}  alive={d['snr_alive_frac']}")
+            results["drift"][key] = drift_by_G
+
+    # ── aggregate per-arm (mean over seeds): knee, drift@512, acc@ref_G, zeroed-null pass ──
+    ref_G0 = Gs_eval[0]
+    per_arm = {}
+    for arm_name, (factor, refresh) in arms:
+        knee_vals = [v["knee_G"] for k, v in results["knees"].items()
+                    if k.endswith(f"_{arm_name}") and v["knee_G"] is not None]
+        mean_knee = sum(knee_vals) / len(knee_vals) if knee_vals else None
+
+        drift512_vals = [v["512"]["dphi_snr_gated_weighted"] for k, v in results["drift"].items()
+                         if k.endswith(f"_{arm_name}") and "512" in v
+                         and v["512"]["dphi_snr_gated_weighted"] is not None]
+        mean_drift512 = sum(drift512_vals) / len(drift512_vals) if drift512_vals else None
+
+        acc_ref_vals = [v["accuracy"] for k, v in results["sweep"].items()
+                        if v["arm"] == arm_name and v["G"] == ref_G0]
+        mean_acc_ref = sum(acc_ref_vals) / len(acc_ref_vals) if acc_ref_vals else None
+
+        null_ok_vals = [v["within_5pp_of_chance"] for k, v in results["zeroed_null"].items()
+                        if v["arm"] == arm_name]
+        all_null_ok = all(null_ok_vals) if null_ok_vals else None
+
+        per_arm[arm_name] = {"clamp_factor": factor, "refresh": refresh, "mean_knee_G": mean_knee,
+                             "mean_drift_at_512": mean_drift512,
+                             f"mean_acc_at_G{ref_G0}": mean_acc_ref,
+                             "zeroed_null_all_within_5pp_of_chance": all_null_ok}
+    results["per_arm_summary"] = per_arm
+
+    # ── P30 checks ──
+    cr = per_arm["clamp_refresh"]
+    rr = per_arm["unclamped_refresh"]
+    uu = per_arm["unclamped_norefresh"]
+    cc = per_arm["clamp_norefresh"]
+
+    p30a_pass = (cr["mean_knee_G"] is not None and cr["mean_knee_G"] >= 2048)
+
+    def _k(arm):
+        v = per_arm[arm]["mean_knee_G"]
+        return v if v is not None else -1
+    ordering = ["clamp_refresh", "unclamped_refresh", "unclamped_norefresh", "clamp_norefresh"]
+    knee_by_arm = {a: _k(a) for a in ordering}
+    p30b_pass = (knee_by_arm["clamp_refresh"] >= knee_by_arm["unclamped_refresh"] >=
+                knee_by_arm["unclamped_norefresh"] >= knee_by_arm["clamp_norefresh"])
+
+    p30c_pass = all(per_arm[a]["zeroed_null_all_within_5pp_of_chance"] for a, _ in arms)
+
+    acc_u = uu.get(f"mean_acc_at_G{ref_G0}")
+    p30d_pass = True
+    p30d_detail = []
+    for arm_name, _ in arms:
+        a = per_arm[arm_name].get(f"mean_acc_at_G{ref_G0}")
+        if acc_u is not None and a is not None:
+            ok = abs(acc_u - a) <= 0.05
+            p30d_pass = p30d_pass and ok
+            p30d_detail.append(f"{arm_name}={a}")
+
+    verdict_bits = []
+    verdict_bits.append(f"P30a (clamp+refresh knee >= 2048): {'CONFIRMED' if p30a_pass else 'NOT MET'} "
+                        f"(measured {cr['mean_knee_G']})")
+    verdict_bits.append(f"P30b (ordering clamp+refresh >= refresh-only >= unclamped >= clamp-only): "
+                        f"{'CONFIRMED' if p30b_pass else 'NOT MET'} (knees: {knee_by_arm})")
+    verdict_bits.append(f"P30c (zeroed-at-gap null within 5pp of chance, every arm): "
+                        f"{'CONFIRMED' if p30c_pass else 'NOT MET'}")
+    verdict_bits.append(f"P30d (in-range recall @G{ref_G0} within 5pp of unclamped/no-refresh baseline, "
+                        f"every arm): {'CONFIRMED' if p30d_pass else 'NOT MET'} ({', '.join(p30d_detail)})")
+
+    results["verdict"] = " | ".join(verdict_bits)
+    results["elapsed_s"] = round(time.time() - t0, 1)
+
+    os.makedirs(RESULTS, exist_ok=True)
+    with open(args.out, "w") as f:
+        json.dump(results, f, indent=2)
+    print("\n" + "=" * 78)
+    print("VERDICT")
+    for b in verdict_bits:
+        print("  " + b)
+    print(f"\n→ {args.out}  ({results['elapsed_s']}s)")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # 4. Orchestration: build lambda x seed grid, train, eval sweep, drift
 #    diagnosis, dose-monotonicity + P25 checks, write JSON.
 # ═══════════════════════════════════════════════════════════════════════════
@@ -922,6 +1329,11 @@ def main():
                          "the eval sweep + drift diagnosis three times (unclamped, clamp_full=0.0, "
                          "clamp_half=0.5) against filler positions ONLY, at eval time. Combine with "
                          "--smoke for a fast 1-seed/G-in-{128,512} sanity pass.")
+    ap.add_argument("--eval-clamp-refresh", action="store_true",
+                    help="P30/MS12c mode: train ONE lambda=0 (M3 recipe) model per seed, then run "
+                         "the 2x2 {clamp,no-clamp} x {magnitude-refresh,no-refresh} eval sweep + "
+                         "drift diagnosis + zeroed-at-gap null, four arms, at eval time. --full "
+                         "extends gaps to include 4096. Combine with --smoke for a fast sanity pass.")
     ap.add_argument("--p-max", type=int, default=16)
     ap.add_argument("--v-max", type=int, default=16)
     ap.add_argument("--f-fillers", type=int, default=16)
@@ -946,11 +1358,16 @@ def main():
     ap.add_argument("--seeds", default="0,1")
     ap.add_argument("--lam-list", default="0,3e-3,1e-2,3e-2", help="comma list of lambda values (alpha-shut weight)")
     ap.add_argument("--out", default=None, help="defaults to results/holo_alpha_shut.json ("
-                    "or holo_alpha_clamp.json under --eval-alpha-clamp), _smoke suffixed under --smoke")
+                    "or holo_alpha_clamp.json under --eval-alpha-clamp, holo_clamp_refresh.json "
+                    "under --eval-clamp-refresh), _smoke suffixed under --smoke")
     args = ap.parse_args()
 
-    default_out = (os.path.join(RESULTS, "holo_alpha_clamp.json") if args.eval_alpha_clamp
-                   else os.path.join(RESULTS, "holo_alpha_shut.json"))
+    if args.eval_clamp_refresh:
+        default_out = os.path.join(RESULTS, "holo_clamp_refresh.json")
+    elif args.eval_alpha_clamp:
+        default_out = os.path.join(RESULTS, "holo_alpha_clamp.json")
+    else:
+        default_out = os.path.join(RESULTS, "holo_alpha_shut.json")
     if args.out is None:
         args.out = default_out
 
@@ -969,10 +1386,15 @@ def main():
         args.seeds = "0,1"
         args.lam_list = "0,3e-3,1e-2,3e-2"
         args.iters = max(args.iters, 3000)
-        args.gaps = "128,256,512,1024,2048"
+        if args.eval_clamp_refresh:
+            args.gaps = "128,256,512,1024,2048,4096"
+        else:
+            args.gaps = "128,256,512,1024,2048"
         args.drift_gaps = "128,512,2048"
 
-    if args.eval_alpha_clamp:
+    if args.eval_clamp_refresh:
+        run_eval_clamp_refresh(args)
+    elif args.eval_alpha_clamp:
         run_eval_alpha_clamp(args)
     else:
         run(args)

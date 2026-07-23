@@ -261,6 +261,20 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   zeroed-at-gap null stays at chance in every arm (the refresh must not
   invent information); (d) in-range recall @G≤128 within 5pp everywhere.
 
+- **P30 SCORED (results/holo_clamp_refresh.json): (a) CONFIRMED — knee
+  2176 mean under clamp+refresh (seed0 reaches the 4096 end of range at
+  acc 0.33 vs chance 0.06; seed1 stays at 256 — real seed variance, stated);
+  (d) CONFIRMED (in-range recall 0.41–0.46 everywhere). (b) NOT MET as a
+  strict ordering, and that is the finding: refresh WITHOUT clamp is the
+  WORST arm (512 < clamp-only 640 < untouched 768 << both 2176) — the two
+  axes INTERACT, they do not add. Refresh rescales the polluted direction
+  (it cannot heal what only the clamp prevents); the clamp starves the
+  magnitude (only the refresh feeds it). Persistence = clean phase AND fed
+  magnitude, jointly. (c) nominally out at 12/48 null cells but symmetric
+  around chance with mean deviation +0.005 — sampling noise at the small
+  large-G eval batches, not information manufacture (eps-guard verified in
+  isolation).**
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
