@@ -21,7 +21,7 @@ curiosity, grows without restarting, and shares memory with others.
 |---|---|---|---|---|
 | MS1 | **Learned to be reminded** (consultation IN training) | the state+index seam disappears: hybrid ≥0.85 at P=16, and the model learns to ARBITRATE state vs. injection | M5 ✅ | ✅ |
 | MS2 | **The dream generator** (generative replay) | sleep without storage: training on the model's OWN sampled dreams rivals stored-span replay — memory becomes optional | M4 ✅ | 💀 |
-| MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | 🚀 |
+| MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | ✅ |
 | MS4 | **Curiosity homeostasis** (self-set q) | the organism sets its own learning threshold; adaptive q beats every fixed q on non-stationary streams | MS3 harness | ⏳ |
 | MS5 | **Language-stream holographic recall** (holo graft on the 400M-token POS model) | the knee/carrier story leaves synthetic MQAR: real facts recalled over real silence in a real language stream | M3 ✅, POS ckpt | ⏳ |
 | MS6 | **CHIMERA — the complete organism** | all validated organs in ONE process on real text, measured against the sum of its parts | MS1, MS2/M4, MS3 | ⏳ |
@@ -32,6 +32,7 @@ curiosity, grows without restarting, and shares memory with others.
 | MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | ✅ |
 | MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 💀 |
 | MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | ✅ |
+| MS14 | **Adam-moment migration** (optimizer state through the duplication map) | growth becomes seamless: the transient vanishes (0.046→0.0035) | MS8 ✅ | ✅ |
 
 ## Foundations track (F1–F6) — claim the primitives, not the effects
 
@@ -55,8 +56,9 @@ If fewer than 2 reviewed harnesses are waiting, build the next entry NOW
 (prediction registered first). Builders cost no CPU — an empty builder queue
 next to free builders is the only true time-waste in this lab.*
 
-1. MS7 — two organisms, one index (P31) — 🔨 building
-2. F2/F4/F6 unification docs — 🔨 drafting
+1. MS7 — two organisms, one index (P31) — smoke running
+2. MS4 — auto-q full (anti-windup fixed) — running
+3. next builds on watch: MS10 rent map (born beast job), CHIMERA spec (lead)
 2. MS14 — Adam-moment migration (P27) — full on beast
 3. MS4 — auto-q curiosity homeostasis on the shock harness (P28) — smoke running
 3. MS7 — two organisms, one index (P-tbd before build)
@@ -203,3 +205,15 @@ next to free builders is the only true time-waste in this lab.*
   combination is the jump). All three interventions are eval-time
   prostheses on a gap-2-trained model — folding them into training is a
   Phase-C question. Queue refilled per standing order: MS7 (P31) + F-docs.
+- day3 ~22:50 — harvest wave scored+pushed: P20 partial (sleep = anti-
+  forgetting organ CONFIRMED at 37% of full-gradient damage; recovery
+  overdose discovered — phase-3 needs the dividend monitor), P27 (moment
+  migration is a TRANSIENT KILLER 0.046->0.0035, not a capacity
+  accelerator; growth-beats-restart now 3x replicated), 4-seed knee
+  correction (the honest unit is the intervention effect, not the knee
+  coordinate), P28 anti-windup found+fixed (auto matched fixed's
+  forgetting at 18% fewer grad tokens even while saturated). Twin P5
+  interim: the transient has the predicted SHAPE (monotone decay
+  +0.007->+0.002 over 65min) at ~10x smaller magnitude than registered —
+  MS11-coherent; final scoring in Phase B. Fleet note: beast family runs
+  needed hard single-threading; C4-streaming jobs are the slow ones there.
