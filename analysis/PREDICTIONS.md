@@ -275,6 +275,21 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   large-G eval batches, not information manufacture (eps-guard verified in
   isolation).**
 
+- **P31 — two organisms, one index: A pre-learns the shock for B (MS7,
+  src/pos_shared_index.py, registered before the build):** organism A
+  streams a C4+code mix and stores its surprise spans; organism B streams
+  pure C4, then hits a code shock (the MS3 protocol). Arms for B, matched
+  budgets: (i) B replaying A's shared spans during the shock, (ii) B with
+  only its own (pure-C4) spans, (iii) B with no replay, (iv) control: B
+  replaying token-shuffled versions of A's spans. Predictions: (a) B's
+  code-phase forgetting with A's spans ≤ 0.7× of arm (ii); (b) B's code
+  plasticity in arm (i) ≥ arm (ii) (A's spans carry usable code, not just
+  regularization); (c) the shuffled control (iv) does NOT beat (ii) —
+  the benefit is content, not noise injection; (d) A itself is unharmed
+  (its own trajectory is not part of B's budget). This is collective
+  memory across O(1) individuals: one organism's surprises become another's
+  immunity.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
