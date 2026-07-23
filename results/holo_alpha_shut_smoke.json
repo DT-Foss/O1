@@ -1,0 +1,156 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 1500,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 40,
+    "g_start": 2,
+    "patience": 15,
+    "curriculum_bar": 0.8,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "128,512",
+    "drift_gaps": "128,512",
+    "seeds": "0",
+    "lam_list": "0,1e-2",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_alpha_shut_smoke.json"
+  },
+  "equivalence": {
+    "reference_streaming": 0.0,
+    "magnorm": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "recipe": "M3 V2_kickstart_magnorm (GammaKickstartScanLayer + MagNormReadMixin), trained via unchunked full-sequence gap curriculum (g_train_max=128, bar=0.8, patience=25), eval chunked+carried (chunk=16). lambda=0 arm is this recipe exactly (byte-identical loss), lambda>0 arms add lambda*mean(alpha_t over filler positions) to the training loss.",
+  "kickstart_logit": 5.3,
+  "kickstart_head": 0,
+  "curriculum": {
+    "seed0_lam0": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5938,
+      "final_task_loss": 0.7113,
+      "final_alpha_reg": 0.0,
+      "mean_alpha_filler_last_window": 0.425663,
+      "alpha_log_window": 100
+    },
+    "seed0_lam0.01": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5938,
+      "final_task_loss": 0.6768,
+      "final_alpha_reg": 0.369806,
+      "mean_alpha_filler_last_window": 0.372674,
+      "alpha_log_window": 100
+    }
+  },
+  "sweep": {
+    "lam0|seed0|G128": {
+      "seed": 0,
+      "lambda": 0.0,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.45,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.0
+    },
+    "lam0|seed0|G512": {
+      "seed": 0,
+      "lambda": 0.0,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.125,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.075
+    },
+    "lam0.01|seed0|G128": {
+      "seed": 0,
+      "lambda": 0.01,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.425,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.025
+    },
+    "lam0.01|seed0|G512": {
+      "seed": 0,
+      "lambda": 0.01,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.025,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.0
+    }
+  },
+  "knees": {
+    "seed0_lam0": {
+      "knee_G": 128,
+      "ref_G": 128,
+      "acc_at_ref": 0.45
+    },
+    "seed0_lam0.01": {
+      "knee_G": 128,
+      "ref_G": 128,
+      "acc_at_ref": 0.425
+    }
+  },
+  "drift": {
+    "seed0_lam0": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 1.041839,
+        "mag_ratio_mean": 10.267082,
+        "snr_alive_frac": 1.0
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.244788,
+        "mag_ratio_mean": 10.694852,
+        "snr_alive_frac": 1.0
+      }
+    },
+    "seed0_lam0.01": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 1.1937,
+        "mag_ratio_mean": 8.891058,
+        "snr_alive_frac": 1.0
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.422998,
+        "mag_ratio_mean": 14.951352,
+        "snr_alive_frac": 1.0
+      }
+    }
+  },
+  "per_lambda_summary": {
+    "lam0": {
+      "mean_knee_G": 128.0,
+      "mean_drift_at_512": 1.244788,
+      "mean_acc_at_G128": 0.45,
+      "mean_alpha_filler_trainwindow": 0.425663
+    },
+    "lam0.01": {
+      "mean_knee_G": 128.0,
+      "mean_drift_at_512": 1.422998,
+      "mean_acc_at_G128": 0.425,
+      "mean_alpha_filler_trainwindow": 0.372674
+    }
+  },
+  "verdict": "P25a (best lambda>0 drift@512 < 0.5 rad): NOT MET (best_lambda=0.01, drift=1.422998, lambda=0 reference drift=1.244788) | P25b (best lambda>0 knee >= 1024): NOT MET (best_lambda=0.01, knee=128.0, lambda=0 reference knee=128.0) | P25c (dose-monotonicity: drift@512 non-increasing AND knee non-decreasing in lambda): NOT MET (drift sequence over lambda=[0.0, 0.01]: [1.244788, 1.422998], knee sequence: [128.0, 128.0]) | No trade-off flag: recall@ref_G stays within 10pp of lambda=0 across all lambda>0 arms.",
+  "elapsed_s": 17.8
+}

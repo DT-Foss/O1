@@ -114,3 +114,14 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
   α-shut (P25, the causal intervention on F3's pollution law). MS7 shared
   index queued as wave 6. Predictions committed BEFORE builders launched —
   the P21/P22 caveat does not repeat.
+- day3 ~20:15 — wave-5 harnesses built (all three self-smoked): MS8 smoke
+  shows exact surgery (5e-6), no transient, growth-beats-restart (+0.09);
+  capacity payoff needs full scale. MS11 smoke PRE-FINDING: cold start is NOT
+  worse than the carried state on the plain-LM path — which is F2 from the
+  other side (receptive field ~5-8 tok ⇒ fast-path Z rebuilds within a chunk;
+  shuffled-control +0.9 excess shows structure still matters). If the full
+  run confirms, P23(a) is honestly falsified and the REAL portability claim
+  moves to the slow channels (carrier/index) — sharper follow-up: beacon
+  recall across a weight swap. MS12 smoke: regularizer mechanically works
+  (alpha_filler drops dose-dependently); causal knee test needs full budget
+  (curriculum must actually reach long gaps first).
