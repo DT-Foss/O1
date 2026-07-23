@@ -1,0 +1,36 @@
+Device: cpu
+[data] vocab=5000 | frozen WT-2 held-out 49,984 tokens
+[equivalence] GSSM full-seq vs chunked+carried max|delta| = 0.000e+00 PASS
+[equivalence] S6   full-seq vs chunked+carried max|delta| = 0.000e+00 PASS
+[params] GSSM scan-layer params (both layers) = 163,840 | total = 1,713,673
+[params] S6   scan-layer params (both layers) = 164,096 | total = 1,713,929
+[params] S6/GSSM scan-param ratio = 1.0016 PASS (within +/-10%)
+[arms] GSSM_full/GSSM_gated identical init | S6_full/S6_gated identical init
+[eval] n=         0 wall=   2.1s | GSSM_full 8.6613 | GSSM_gated 8.6613 | S6_full 8.6750 | S6_gated 8.6750
+[pos-family] streaming... target=6,000,000 tokens/arm-family (B=8 K=64)
+[eval] n=   500,224 wall= 146.6s | GSSM_full 5.6783 | GSSM_gated 5.9492 | S6_full 5.8277 | S6_gated 6.0658
+[eval] n= 1,000,448 wall= 304.6s | GSSM_full 5.5556 | GSSM_gated 5.7575 | S6_full 5.7238 | S6_gated 5.9748
+[eval] n= 1,500,160 wall= 486.1s | GSSM_full 5.4740 | GSSM_gated 5.7325 | S6_full 5.6082 | S6_gated 5.9277
+[eval] n= 2,000,384 wall= 675.6s | GSSM_full 5.4261 | GSSM_gated 5.6383 | S6_full 5.6236 | S6_gated 5.8296
+[eval] n= 2,500,096 wall= 853.0s | GSSM_full 5.3608 | GSSM_gated 5.5666 | S6_full 5.5148 | S6_gated 5.7379
+[eval] n= 3,000,320 wall=1005.7s | GSSM_full 5.3121 | GSSM_gated 5.5569 | S6_full 5.4372 | S6_gated 5.7628
+[eval] n= 3,500,032 wall=1155.2s | GSSM_full 5.2766 | GSSM_gated 5.4509 | S6_full 5.4250 | S6_gated 5.6558
+[eval] n= 4,000,256 wall=1306.3s | GSSM_full 5.3045 | GSSM_gated 5.4225 | S6_full 5.4045 | S6_gated 5.6052
+[eval] n= 4,500,480 wall=1483.2s | GSSM_full 5.2189 | GSSM_gated 5.4560 | S6_full 5.3295 | S6_gated 5.6305
+[eval] n= 5,000,192 wall=1651.1s | GSSM_full 5.2660 | GSSM_gated 5.4050 | S6_full 5.3616 | S6_gated 5.5695
+[eval] n= 5,500,416 wall=1824.2s | GSSM_full 5.2452 | GSSM_gated 5.4145 | S6_full 5.3571 | S6_gated 5.6099
+[eval] n= 6,000,128 wall=2002.6s | GSSM_full 5.1772 | GSSM_gated 5.3434 | S6_full 5.3333 | S6_gated 5.5549
+[eval] n= 6,000,128 wall=2005.3s | GSSM_full 5.1772 | GSSM_gated 5.3434 | S6_full 5.3333 | S6_gated 5.5549
+
+==============================================================================
+VERDICT (a) — POS-ratio family-generic?
+  GSSM: full-improvement +3.4841 nats | gated-improvement +3.3179 nats | POS-ratio 0.9523
+  S6:   full-improvement +3.3417 nats | gated-improvement +3.1200 nats | POS-ratio 0.9337
+  S6-ratio / GSSM-ratio = 0.9804  (P22 threshold >= 0.85) PASS -- family-generic
+------------------------------------------------------------------------------
+VERDICT (b) — architecture head-to-head at full-gradient (DD baseline)
+  GSSM-full held-out 5.1772 nats | S6-full held-out 5.3333 nats | gap (GSSM-S6) -0.1560 nats
+  P22 threshold: GSSM-full <= S6-full + 0.1 nats PASS -- competitive
+==============================================================================
+
+-> results/pos_family.json

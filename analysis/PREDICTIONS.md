@@ -120,6 +120,24 @@ with explicit references back to each P-number.
   gating + dosed replay of phase-1 spans forgets the least (≤50% of
   full-gradient's forgetting) — sleep as the anti-forgetting organ.
 
+## Foundations track / wave 4 (P21–P22)
+
+*P21 and P22 were written into their builder scripts' docstrings before the runs
+launched; unlike P1–P20 they were committed together with the first harvest, not
+in advance — recorded here with that caveat, scored with the same rigor.*
+
+- **P21 — language-stream holographic graft (MS5,
+  src/holo_language_graft.py):** the holo graft on the frozen 400M-token POS
+  snapshot clears ≥3× chance (≥0.19, chance 0.0625) at G=128 on real text;
+  the ctrl graft stays below that; the zeroed null decays to chance.
+- **P22 — family transfer (F5, src/pos_family_transfer.py):** S6-POS-ratio ≥
+  0.85 × GSSM-POS-ratio (family-generic gating); GSSM-full ≤ S6-full + 0.1
+  nats (architecture-competitive, the DD baseline). **SCORED on the 6M full
+  run (results/pos_family.json): CONFIRMED, both parts** — ratio-of-ratios
+  0.9804 (GSSM 0.9523 at gate 22.6%, S6 0.9337 at gate 23.1%); head-to-head
+  GSSM-full 5.177 vs S6-full 5.333 nats — GSSM *leads* by 0.156 nats at scan
+  parameter parity 1.0016 and identical pipeline/tokens/seed.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

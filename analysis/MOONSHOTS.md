@@ -42,7 +42,7 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
 | F2 | **The exactness license** — bounded contraction ⇒ detach-carry exact ⇒ train-anyhow/deploy-chunked equivalence | formalize + equivalence sweep table (numbers exist for 3 operators) | ⏳ |
 | F3 | **Phase–magnitude separation** — phase=content (written, never evolved), magnitude=persistence (learnable γ) | direct φ-drift measurement across gaps (theory falsifier 1, never run) | ✅ |
 | F4 | **The two-system law** — sharp capacity cliff in gated readouts ⇒ compounding belongs to the index | unification doc (cliff + rank-1 theorem + M5 hybrid) | ⏳ |
-| F5 | **Operating modes are family-generic** — POS gating + sleep run on the Mamba/S6 configuration of the same codebase | POS-on-Mamba head-to-head (doubles as the DD baseline) | 🔨 |
+| F5 | **Operating modes are family-generic** — POS gating + sleep run on the Mamba/S6 configuration of the same codebase | POS-on-Mamba head-to-head (doubles as the DD baseline) | ✅ |
 | F6 | **Train-short, deploy-unbounded** — shift-equivariance (length) and gap extrapolation are one principle on two axes | unification doc | ⏳ |
 
 ## Dynamics rules (how the portfolio reprioritizes itself)
@@ -97,3 +97,11 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
 - day2 ~19:30 — F3 ✅ LAW LOCKED (a=0 ⇒ |Δφ|≈1e-8) + discovery: real fillers
   actively pollute the phase (α>0, magnitude×35) — the knee's far-field
   falloff is pollution, not decay; α-shut-on-fillers is the next knee lever.
+- day2 ~19:45 — F5 ✅ P22 CONFIRMED both parts at 6M tokens: POS-ratio
+  ratio-of-ratios S6/GSSM = 0.98 (0.9337 vs 0.9523, gates 23%/23%) — the
+  gating benefit belongs to the operator FAMILY, not the house architecture;
+  and the DD baseline lands as a lead: GSSM-full beats S6-full by 0.156 nats
+  at scan-param parity 1.0016, same stream/seed/pipeline. **Coupling applied →
+  CHIMERA (MS6) claims run family-wide by construction; a surprise-gated
+  Mamba is an instance of the disclosed system (FOUNDATIONS.md F5 now has its
+  locking experiment).**

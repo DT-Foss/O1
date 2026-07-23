@@ -30,7 +30,7 @@ Formal statements, each over the *class* of systems it applies to, in
 | F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10) |
 | F3 | **Phase–magnitude separation** — in complex bound states, content (phase) is written and never evolves; persistence (magnitude) decays; the two never mix | zero-drive phase invariance \|Δφ\| ≈ 1e-8; recall knee moved 32→512 in one day (§10) |
 | F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall 0.15→0.51 at P=16; reminded reads ~1.0 (§12) |
-| F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.99× of POS-on-GSSM (§13) |
+| F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.98× of POS-on-GSSM, GSSM ahead 0.156 nats head-to-head (§13) |
 | F6 | **Train short, deploy unbounded** — no absolute position + exactness ⇒ tiny training horizons, unbounded deployment | ×0.98 PPL at 4096×; 1B tokens at flat 4.36 GB (§4); recall flat across 8 detached boundaries (§10) |
 
 ---
@@ -530,12 +530,14 @@ to never-trained keys.
 
 ### 13 — Family transfer: the operating mode belongs to the operator class
 
-The POS recipe run identically on GSSM-Selective and on a parameter-matched (ratio 1.0016)
-Mamba/S6 configuration of the same codebase — same stream, same seed, same gate: **POS-ratio
-S6/GSSM = 0.99** — the gating benefit is a property of the *family* (F5), not of one
-architecture. Head-to-head at full gradient, GSSM-Selective leads (5.49 vs 5.66 nats at 800k
-tokens; the 6M-token run is in flight). Equivalence gates: full-seq ≡ chunked+carried at
-max-abs-delta 0.0 for both architectures.
+The POS recipe run identically on GSSM-Selective and on a parameter-matched (scan ratio
+1.0016) Mamba/S6 configuration of the same codebase — same stream, same seed, same gate, 6M
+tokens per arm: **POS-ratio S6/GSSM = 0.98** (GSSM 0.952 at 22.6% gradient chunks, S6 0.934
+at 23.1%) — the gating benefit is a property of the *family* (F5), not of one architecture.
+And the head-to-head at full gradient lands as a lead, not a tie: **GSSM-Selective beats the
+S6 configuration by 0.156 nats** (5.18 vs 5.33 held-out) at identical pipeline, tokens, and
+seed. Equivalence gates: full-seq ≡ chunked+carried at max-abs-delta 0.0 for both
+architectures. Registered as P22, confirmed on both parts.
 → `src/pos_family_transfer.py`, `src/ssm_family_reduction.py`, `results/pos_family*.json`
 
 ### The method: pre-registered, auto-scored, falsifications kept
@@ -702,7 +704,8 @@ full-gradient learning at 25% of the gradient tokens on a live 40-hour stream, *
 holographic recall carried through silence** with a knee moved 32→512 in one theory-led day
 and a machine-precision φ-invariance law behind it, **dosed sleep consolidation** with a
 measured life curve, **index-reminded reads at ~1.0** above the state's capacity cliff, and
-the whole operating mode **transferred to the Mamba/S6 configuration at 0.99×** — six
+the whole operating mode **transferred to the Mamba/S6 configuration at 0.98×** (with
+GSSM-Selective ahead 0.156 nats head-to-head at parameter parity) — six
 foundations, formalized in [FOUNDATIONS.md](FOUNDATIONS.md), every step pre-registered in
 [analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) before its data existed.
 
