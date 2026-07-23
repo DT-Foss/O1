@@ -1,0 +1,361 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "p_max": 64,
+    "train_keys": 40,
+    "v_max": 16,
+    "f_fillers": 16,
+    "heldout_rate": 0.2,
+    "pairs": 2,
+    "d_models": "64,256",
+    "n_layers": 2,
+    "n_heads": 4,
+    "null_check_d_model": 256,
+    "chunk": 16,
+    "curriculum_bar": 0.8,
+    "iters": 1000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "patience": 25,
+    "train_gap_cap": 0,
+    "log_every": 0,
+    "gaps": "0,8",
+    "seeds": "0",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_capreturn_smoke.json"
+  },
+  "key_split": {
+    "key_lo": 0,
+    "n_train_keys": 40,
+    "n_test_keys": 24
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "d64|holo_carried|train_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.47,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.515,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|train_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.46,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.49,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.535,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.48,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.55,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.58,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.15,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_off|test_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.2,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.15,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_off|test_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.17,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.04,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "curriculum": {
+    "d64_seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.625,
+      "train_gap_cap": 8,
+      "d_model": 64,
+      "d_head": 16
+    },
+    "d64_seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "train_gap_cap": 8,
+      "d_model": 64,
+      "d_head": 16
+    },
+    "d256_seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.625,
+      "train_gap_cap": 8,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.2188,
+      "train_gap_cap": 8,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed0_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.625,
+      "train_gap_cap": 8,
+      "d_model": 256,
+      "d_head": 64
+    }
+  },
+  "timing": {
+    "d64_seed0_holo_carried": 6.01,
+    "d64_seed0_holo_off": 3.76,
+    "d256_seed0_holo_carried": 21.63,
+    "d256_seed0_holo_off": 18.75,
+    "d256_seed0_holo_zeroed_at_gap": 23.86
+  },
+  "phase_advantage": {
+    "64": {
+      "train_keys_G0": 0.01,
+      "train_keys_G8": -0.035,
+      "test_keys_G0": 0.025,
+      "test_keys_G8": 0.015
+    },
+    "256": {
+      "train_keys_G0": 0.33,
+      "train_keys_G8": 0.38,
+      "test_keys_G0": 0.35,
+      "test_keys_G8": 0.41
+    }
+  },
+  "verdict_detail": [
+    "d= 64 train_keys G=   0: holo_carried=0.470 holo_off=0.460 phase_advantage=+0.010  chance=0.062",
+    "d= 64 train_keys G=   8: holo_carried=0.500 holo_off=0.535 phase_advantage=-0.035  chance=0.062",
+    "d= 64 test_keys  G=   0: holo_carried=0.515 holo_off=0.490 phase_advantage=+0.025  chance=0.062",
+    "d= 64 test_keys  G=   8: holo_carried=0.545 holo_off=0.530 phase_advantage=+0.015  chance=0.062",
+    "d=256 train_keys G=   0: holo_carried=0.480 holo_off=0.150 phase_advantage=+0.330  chance=0.062",
+    "d=256 train_keys G=   8: holo_carried=0.530 holo_off=0.150 phase_advantage=+0.380  chance=0.062",
+    "d=256 test_keys  G=   0: holo_carried=0.550 holo_off=0.200 phase_advantage=+0.350  chance=0.062",
+    "d=256 test_keys  G=   8: holo_carried=0.580 holo_off=0.170 phase_advantage=+0.410  chance=0.062"
+  ],
+  "consolidation_check": {
+    "64": {
+      "final_train_acc_range": [
+        0.4688,
+        0.625
+      ],
+      "final_train_gap_range": [
+        2,
+        2
+      ],
+      "left_g_start": false
+    },
+    "256": {
+      "final_train_acc_range": [
+        0.2188,
+        0.625
+      ],
+      "final_train_gap_range": [
+        2,
+        2
+      ],
+      "left_g_start": false
+    }
+  },
+  "advantage_trend_best_per_d": [
+    [
+      64,
+      0.025
+    ],
+    [
+      256,
+      0.41
+    ]
+  ],
+  "verdict": "P17 CONFIRMED: the phase advantage RETURNS with capacity -- at d_model=256, holo_carried beats holo_off by >=15pp on BOTH train_keys and test_keys in at least one G cell. Capacity law, not a small-key-space-only phenomenon.",
+  "elapsed_s": 74.8
+}

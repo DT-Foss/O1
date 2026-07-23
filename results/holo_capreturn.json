@@ -1,0 +1,1177 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "offlr_control": false,
+    "offlr_d_model": 256,
+    "offlr_candidates": "1e-3,3e-3",
+    "p_max": 64,
+    "train_keys": 40,
+    "v_max": 16,
+    "f_fillers": 16,
+    "heldout_rate": 0.2,
+    "pairs": 2,
+    "d_models": "64,128,256",
+    "n_layers": 2,
+    "n_heads": 4,
+    "null_check_d_model": 256,
+    "chunk": 16,
+    "curriculum_bar": 0.8,
+    "iters": 3000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "patience": 25,
+    "train_gap_cap": 0,
+    "log_every": 0,
+    "gaps": "0,8,32",
+    "seeds": "0,1",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_capreturn.json"
+  },
+  "key_split": {
+    "key_lo": 0,
+    "n_train_keys": 40,
+    "n_test_keys": 24
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "d64|holo_carried|train_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.535,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|train_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.455,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.575,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|train_keys|G32|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.585,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G32|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.52,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G0|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.495,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.485,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G8|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G32|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G32|seed0": {
+      "d_model": 64,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.54,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|train_keys|G0|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G0|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.575,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|train_keys|G8|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G8|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.605,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|train_keys|G32|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_carried|test_keys|G32|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G0|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.525,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G0|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.56,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G8|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G8|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.565,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|train_keys|G32|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.495,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d64|holo_off|test_keys|G32|seed1": {
+      "d_model": 64,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|train_keys|G0|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.54,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|test_keys|G0|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.49,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|train_keys|G8|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.515,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|test_keys|G8|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.495,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|train_keys|G32|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|test_keys|G32|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.52,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|train_keys|G0|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.535,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|test_keys|G0|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|train_keys|G8|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.505,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|test_keys|G8|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|train_keys|G32|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.515,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|test_keys|G32|seed0": {
+      "d_model": 128,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.525,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|train_keys|G0|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|test_keys|G0|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.58,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|train_keys|G8|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.585,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|test_keys|G8|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.625,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|train_keys|G32|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.515,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_carried|test_keys|G32|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.545,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|train_keys|G0|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.515,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|test_keys|G0|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.56,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|train_keys|G8|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.585,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|test_keys|G8|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.59,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|train_keys|G32|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d128|holo_off|test_keys|G32|seed1": {
+      "d_model": 128,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.54,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.51,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.52,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.51,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.57,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G32|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.465,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G32|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.495,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.475,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|test_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.47,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.455,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|test_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.51,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G32|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.47,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|test_keys|G32|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.04,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G0|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.1,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G8|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.05,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G32|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.045,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G32|seed0": {
+      "d_model": 256,
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_carried|train_keys|G0|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.835,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G0|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.63,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G8|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.8,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G8|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.61,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|train_keys|G32|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.475,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_carried|test_keys|G32|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.445,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G0|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.465,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|test_keys|G0|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.44,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G8|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.49,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|test_keys|G8|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.44,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|train_keys|G32|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.44,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_off|test_keys|G32|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.455,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G0|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G0|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G8|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.04,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G8|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.075,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|train_keys|G32|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.075,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "d256|holo_zeroed_at_gap|test_keys|G32|seed1": {
+      "d_model": 256,
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "curriculum": {
+    "d64_seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4375,
+      "train_gap_cap": 10,
+      "d_model": 64,
+      "d_head": 16
+    },
+    "d64_seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "train_gap_cap": 10,
+      "d_model": 64,
+      "d_head": 16
+    },
+    "d64_seed1_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5625,
+      "train_gap_cap": 10,
+      "d_model": 64,
+      "d_head": 16
+    },
+    "d64_seed1_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5312,
+      "train_gap_cap": 10,
+      "d_model": 64,
+      "d_head": 16
+    },
+    "d128_seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4375,
+      "train_gap_cap": 10,
+      "d_model": 128,
+      "d_head": 32
+    },
+    "d128_seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "train_gap_cap": 10,
+      "d_model": 128,
+      "d_head": 32
+    },
+    "d128_seed1_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4375,
+      "train_gap_cap": 10,
+      "d_model": 128,
+      "d_head": 32
+    },
+    "d128_seed1_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5625,
+      "train_gap_cap": 10,
+      "d_model": 128,
+      "d_head": 32
+    },
+    "d256_seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4062,
+      "train_gap_cap": 10,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "train_gap_cap": 10,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed0_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4062,
+      "train_gap_cap": 10,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed1_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.875,
+      "train_gap_cap": 10,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed1_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4375,
+      "train_gap_cap": 10,
+      "d_model": 256,
+      "d_head": 64
+    },
+    "d256_seed1_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.875,
+      "train_gap_cap": 10,
+      "d_model": 256,
+      "d_head": 64
+    }
+  },
+  "timing": {
+    "d64_seed0_holo_carried": 17.24,
+    "d64_seed0_holo_off": 12.06,
+    "d64_seed1_holo_carried": 16.52,
+    "d64_seed1_holo_off": 10.9,
+    "d128_seed0_holo_carried": 29.53,
+    "d128_seed0_holo_off": 19.81,
+    "d128_seed1_holo_carried": 27.06,
+    "d128_seed1_holo_off": 21.25,
+    "d256_seed0_holo_carried": 58.84,
+    "d256_seed0_holo_off": 45.99,
+    "d256_seed0_holo_zeroed_at_gap": 61.69,
+    "d256_seed1_holo_carried": 60.37,
+    "d256_seed1_holo_off": 40.81,
+    "d256_seed1_holo_zeroed_at_gap": 61.36
+  },
+  "phase_advantage": {
+    "64": {
+      "train_keys_G0": 0.0125,
+      "train_keys_G8": -0.015,
+      "train_keys_G32": 0.045,
+      "test_keys_G0": 0.01,
+      "test_keys_G8": 0.035,
+      "test_keys_G32": -0.0175
+    },
+    "128": {
+      "train_keys_G0": 0.01,
+      "train_keys_G8": 0.005,
+      "train_keys_G32": 0.0225,
+      "test_keys_G0": 0.005,
+      "test_keys_G8": 0.0,
+      "test_keys_G32": 0.0
+    },
+    "256": {
+      "train_keys_G0": 0.2025,
+      "train_keys_G8": 0.1825,
+      "train_keys_G32": 0.015,
+      "test_keys_G0": 0.12,
+      "test_keys_G8": 0.115,
+      "test_keys_G32": -0.0225
+    }
+  },
+  "verdict_detail": [
+    "d= 64 train_keys G=   0: holo_carried=0.540 holo_off=0.528 phase_advantage=+0.013  chance=0.062",
+    "d= 64 train_keys G=   8: holo_carried=0.500 holo_off=0.515 phase_advantage=-0.015  chance=0.062",
+    "d= 64 train_keys G=  32: holo_carried=0.542 holo_off=0.497 phase_advantage=+0.045  chance=0.062",
+    "d= 64 test_keys  G=   0: holo_carried=0.537 holo_off=0.528 phase_advantage=+0.010  chance=0.062",
+    "d= 64 test_keys  G=   8: holo_carried=0.590 holo_off=0.555 phase_advantage=+0.035  chance=0.062",
+    "d= 64 test_keys  G=  32: holo_carried=0.525 holo_off=0.542 phase_advantage=-0.018  chance=0.062",
+    "d=128 train_keys G=   0: holo_carried=0.535 holo_off=0.525 phase_advantage=+0.010  chance=0.062",
+    "d=128 train_keys G=   8: holo_carried=0.550 holo_off=0.545 phase_advantage=+0.005  chance=0.062",
+    "d=128 train_keys G=  32: holo_carried=0.530 holo_off=0.508 phase_advantage=+0.022  chance=0.062",
+    "d=128 test_keys  G=   0: holo_carried=0.535 holo_off=0.530 phase_advantage=+0.005  chance=0.062",
+    "d=128 test_keys  G=   8: holo_carried=0.560 holo_off=0.560 phase_advantage=+0.000  chance=0.062",
+    "d=128 test_keys  G=  32: holo_carried=0.532 holo_off=0.532 phase_advantage=+0.000  chance=0.062",
+    "d=256 train_keys G=   0: holo_carried=0.672 holo_off=0.470 phase_advantage=+0.203  chance=0.062",
+    "d=256 train_keys G=   8: holo_carried=0.655 holo_off=0.473 phase_advantage=+0.182  chance=0.062",
+    "d=256 train_keys G=  32: holo_carried=0.470 holo_off=0.455 phase_advantage=+0.015  chance=0.062",
+    "d=256 test_keys  G=   0: holo_carried=0.575 holo_off=0.455 phase_advantage=+0.120  chance=0.062",
+    "d=256 test_keys  G=   8: holo_carried=0.590 holo_off=0.475 phase_advantage=+0.115  chance=0.062",
+    "d=256 test_keys  G=  32: holo_carried=0.470 holo_off=0.493 phase_advantage=-0.022  chance=0.062"
+  ],
+  "consolidation_check": {
+    "64": {
+      "final_train_acc_range": [
+        0.4375,
+        0.5625
+      ],
+      "final_train_gap_range": [
+        2,
+        2
+      ],
+      "left_g_start": false
+    },
+    "128": {
+      "final_train_acc_range": [
+        0.4375,
+        0.5625
+      ],
+      "final_train_gap_range": [
+        2,
+        2
+      ],
+      "left_g_start": false
+    },
+    "256": {
+      "final_train_acc_range": [
+        0.4062,
+        0.875
+      ],
+      "final_train_gap_range": [
+        2,
+        2
+      ],
+      "left_g_start": false
+    }
+  },
+  "advantage_trend_best_per_d": [
+    [
+      64,
+      0.045
+    ],
+    [
+      128,
+      0.0225
+    ],
+    [
+      256,
+      0.2025
+    ]
+  ],
+  "verdict": "P17 PARTIAL: the phase advantage returns on train_keys at d_model=256 (>=15pp) but NOT on test_keys -- capacity restores raw binding fidelity but not (yet, at this budget) compositional generalization to held-out key ids. Reported as-is, not hedged.",
+  "elapsed_s": 489.2
+}
