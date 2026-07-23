@@ -1,19 +1,37 @@
-# O1 — a constant-memory living mind
+# o1-state — the O(1)-state organism
 
-**An O(1)-state sequence model that consumes an unbounded stream at constant memory, stays awake through silence, and consults an external knowledge index at runtime.**
+**An O(1)-state sequence model that consumes an unbounded stream at constant memory, decides from its own surprise when to learn, carries keyed holographic memory through silence, consolidates in dosed sleep, and consults an external knowledge index at runtime.**
 
-**Author:** David Tom Foss · **Disclosed:** 2026-06-26 · **License:** Apache-2.0
+**Author:** David Tom Foss · **First disclosed:** 2026-06-26, extended continuously (commit timestamps are the record) · **License:** Apache-2.0
 
-> This README is a **timestamped public disclosure** (prior art), first published 2026-06-26.
-> Every claim below is a number we measured, with the exact script that reproduces it. The
-> dates, the code, and the result JSON in this repository are the record.
+> This README is a **timestamped public disclosure** (prior art). Every claim below is a
+> number we measured, with the exact script that reproduces it. The dates, the code, and the
+> result JSONs in this repository are the record. The six primitives underlying everything
+> here are formalized in their broadest form in **[FOUNDATIONS.md](FOUNDATIONS.md)** — read
+> that first for the claims; read on for the evidence.
 >
-> **O1 builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit
+> **o1-state builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit
 > history. GSSM is the architecture — the bounded reproducing-kernel SSM operator, the
-> length-invariant NoPE-selective recurrence, the `O(log T)` parallel scan. O1 is what that
-> architecture becomes when you let it live: the five GSSM contributions below, plus
-> constant-memory streaming (training and inference), a runtime-consulted knowledge index,
-> and a measured capacity threshold in the gated readout.
+> length-invariant NoPE-selective recurrence, the `O(log T)` parallel scan. o1-state is what
+> that architecture becomes when you let it live: constant-memory streaming (training and
+> inference), surprise-gated plasticity, holographic memory carried through silence, sleep
+> consolidation, and a runtime-consulted knowledge index.
+
+---
+
+## The six foundations
+
+Formal statements, each over the *class* of systems it applies to, in
+[FOUNDATIONS.md](FOUNDATIONS.md). One line each, with the measured anchor:
+
+| # | Primitive | Measured anchor |
+|---|---|---|
+| F1 | **The surprise calculus** — the learner's own prediction error is the universal control signal: when to learn, what to store, when to consult, when and how much to sleep, how curious to be | POS: ~25% gradient tokens ≈ 100% of full-gradient learning (§9); span store, sleep dosing, runtime consultation (§11–12) |
+| F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10) |
+| F3 | **Phase–magnitude separation** — in complex bound states, content (phase) is written and never evolves; persistence (magnitude) decays; the two never mix | zero-drive phase invariance \|Δφ\| ≈ 1e-8; recall knee moved 32→512 in one day (§10) |
+| F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall 0.15→0.51 at P=16; reminded reads ~1.0 (§12) |
+| F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.99× of POS-on-GSSM (§13) |
+| F6 | **Train short, deploy unbounded** — no absolute position + exactness ⇒ tiny training horizons, unbounded deployment | ×0.98 PPL at 4096×; 1B tokens at flat 4.36 GB (§4); recall flat across 8 detached boundaries (§10) |
 
 ---
 
@@ -431,6 +449,107 @@ in the data alone.
 
 ---
 
+## The organism results (the o1-state layer)
+
+The contributions above are the substrate. The results below make it an *organism*: one
+process that decides from its own surprise when to learn, what to remember, and when to
+sleep — measured under a pre-registered, auto-scored ledger
+([analysis/PREDICTIONS.md](analysis/PREDICTIONS.md), scored by `src/score_predictions.py`;
+predictions committed before the data, falsifications kept in the record).
+
+### 9 — Plasticity on surprise (POS): ~25% of the gradients, ~100% of the learning
+
+Three arms, one C4 stream, identical from-scratch init (seed 42): A1 forward-only (frozen
+control), A2 full-gradient, A3 **surprise-gated** — backward only when the chunk's own NLL
+clears a rolling quantile (q=0.75, window 500) of its own history. Live interim at 410M
+streamed tokens: **A3 matches A2's held-out improvement (ratio 1.002) at 25.1% of the
+gradient tokens.** The gate needs no oracle, no second model, no labels — the learner's own
+surprise is the signal (F1). The 40h run (bit-deterministic, single-thread, flat RSS,
+crash-resumable) also carries a **twin fork**: at T+24h A3's weights are copied into a fresh
+process with zero carried state — the price of restarting a living stream, measured. Final
+verdict and protocol land in `analysis/POS_THESIS.md` (Phase B).
+→ `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
+`analysis/DECISIONS.md`, `results/pos_*`
+
+### 10 — Keyed holographic recall on the carried stream: a movable knee, and why it moves
+
+The MQAR line (Contribution 3) goes streaming: the complex holographic write runs as a
+**stateful layer carried across detach boundaries** (full-seq ≡ chunked+carried < 1.2e-6 —
+the F2 license), trained at tiny gaps, evaluated far beyond them:
+
+- **Keyed recall survives silence across chunk boundaries**: P=2 recall 0.79–0.83 through
+  G=32 (+25–30 pp over the magnitude-only ablation), P=1 at 1.00 through G=32, and the
+  zeroed-at-gap null at chance in every cell of every version.
+- **The knee is movable, theory-led** (G* ≈ ln-margin/(1−γ)): train-short-eval-long moved it
+  to 32, full-sequence training to 256, the magnitude-normalized read to **512**
+  (seed-stable) — a 16× shift in one day, each step predicted before it was run.
+- **The φ-drift falsifier locks the law**: under zero drive the phase is invariant to
+  |Δφ| ≈ 1e-8 (machine precision) — content is *written, never evolved*. The deployment
+  measurement then reinterprets the far field: real fillers actively pollute the phase
+  (α(x_filler) > 0, magnitude grows 35×), so the falloff past the knee is **pollution, not
+  decay** — which is why the magnitude-normalized read stops at 512, and α-shut on fillers
+  (the measured write-once-freeze register, Contribution 4E) is the next lever.
+- The wrong fixes are documented at full strength too: patience curricula *cannot* repair
+  multi-chunk training — truncated BPTT is structurally gradient-blind to the write
+  (measured twice) — which is exactly why F2's train-anyhow/deploy-chunked decoupling is
+  load-bearing.
+
+Full arc with every version, prediction, and falsification:
+[analysis/HOLO_STREAM_VERDICT.md](analysis/HOLO_STREAM_VERDICT.md),
+[analysis/HOLO_CARRIER_THEORY.md](analysis/HOLO_CARRIER_THEORY.md).
+→ `src/holo_stream_recall.py`, `src/holo_gap_knee.py`, `src/holo_mag_read.py`,
+`src/phi_drift_probe.py`, `results/holo_*.json`, `results/phi_drift.json`
+
+### 11 — Sleep: dosed replay of self-selected surprises, with a measured life curve
+
+The organism stores its own high-surprise spans (F1) and replays them offline. Measured:
+
+- **Replay of own surprise spans beats fresh data** at equal gradient budget (paired
+  +0.078 nats early), and beats the model's own sampled "dreams" — self-generated data is
+  self-confirmation (the generator finds its own dreams *less* surprising than the world,
+  NLL 4.71 vs 4.77), so **storage stays**. The dream generator is killed by evidence, and
+  the kill is a result.
+- **Consolidation, not relearning**: the stored spans are no longer surprising to the mature
+  snapshot, yet replaying them still wins — sleep stabilizes what was learned.
+- **A dose law and a life curve**: overdosed replay overfits (the budget must be
+  volume-coupled); the dividend is strong early (+0.033 @10M tokens), positive mid-training,
+  spent at maturity — so the sleep organ runs on a dividend monitor, not a fixed cadence.
+
+→ `src/pos_sleep.py`, `src/pos_sleep_cycles.py`, `src/pos_dream.py`, `results/pos_sleep*`
+
+### 12 — The two-system law, closed loop: index + state, reminded reads at ~1.0
+
+Above the state's capacity cliff (Contribution 8), the external index carries the load —
+measured end-to-end on recall. At P=16 pairs (far above state capacity; state alone 0.15),
+runtime injection of index content lifts recall to **0.51**, dose-dependent, with the
+random-injection control at floor. Training *with* stochastic consultation makes the read
+near-perfect: **0.99–1.00 at P=2** (vs 0.72–0.84 un-reminded) — the model learns to *be
+reminded* (F4). Held-out-key controls kill the lookup-table explanation: binding generalizes
+to never-trained keys.
+→ `src/holo_index_hybrid.py`, `src/holo_reminded.py`, `src/holo_heldout_keys.py`
+
+### 13 — Family transfer: the operating mode belongs to the operator class
+
+The POS recipe run identically on GSSM-Selective and on a parameter-matched (ratio 1.0016)
+Mamba/S6 configuration of the same codebase — same stream, same seed, same gate: **POS-ratio
+S6/GSSM = 0.99** — the gating benefit is a property of the *family* (F5), not of one
+architecture. Head-to-head at full gradient, GSSM-Selective leads (5.49 vs 5.66 nats at 800k
+tokens; the 6M-token run is in flight). Equivalence gates: full-seq ≡ chunked+carried at
+max-abs-delta 0.0 for both architectures.
+→ `src/pos_family_transfer.py`, `src/ssm_family_reduction.py`, `results/pos_family*.json`
+
+### The method: pre-registered, auto-scored, falsifications kept
+
+Every run above was preceded by a numbered prediction in
+[analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) (immutable P-numbers, committed before the
+data existed). `src/score_predictions.py` scores result JSONs against the register
+automatically. Falsified predictions stay in the record with the number that killed them —
+the falsify-then-confirm arc of the phase-rent question, the dream generator's kill, and the
+twice-measured gradient-blindness of multi-chunk training are documented at the same strength
+as the confirmations. Learning-rate controls guard every "X beats Y" claim.
+
+---
+
 ## The knowledge index — `.causal` / fabel
 
 The external memory O1 consults (Contribution 6) is a real, peer-reviewed engine, vendored in
@@ -491,14 +610,6 @@ responsible disclosure to IBM PSIRT). The complete list, with venues and DOIs, i
 
 ---
 
-## A note on FORGE
-
-A related deterministic code-generation engine (FORGE) is described — as a **capability
-statement only** — in [FORGE.md](FORGE.md). No generator and no generated artifacts are
-shipped; the full system is available on request for verified security research.
-
----
-
 ## Reproduce
 
 ```bash
@@ -536,21 +647,27 @@ Supporting / plateau-diagnostic runs (all under `src/` → `results/`):
 ## Repository layout
 
 ```
-O1/
-├── README.md / FORGE.md / PAPERS.md
+o1-state/
+├── README.md / FOUNDATIONS.md / PAPERS.md
 ├── reference/               the architecture (frozen reference modules)
 │   └── moebius_scan_transformer_selective.py     ← the Selective GSSM layer
-├── src/                     experiments + runnable verifications (63 files)
-│   ├── ssm_family_reduction.py, constant_gate_kernel_match*.py   kernel unification (C1)
-│   ├── parallel_scan*.py, scan_dispatch.py                       the O(log T) scan (C2)
-│   ├── holographic_gssm.py + holographic_*_run.py                key-conditioned recall (C3)
-│   ├── length_extrap_v2.py, scale_to_a_million.py, scale_to_a_billion.py   length/stream (C4)
-│   ├── streaming_train.py, longcontext_run.py                    living-stream + capability (C4/C5)
-│   ├── closed_loop.py, pathfinding_bridge.py, attic.py           runtime retrieval (O1-6)
-│   ├── percolation_hard.py, reinforcement_loop.py               capacity threshold (O1-7)
-│   └── gssm_potentiation.py, operator_readout.py               threshold in the readout (O1-8)
+├── src/                     experiments + runnable verifications
+│   ├── ssm_family_reduction.py, constant_gate_kernel_match*.py   kernel unification (§1)
+│   ├── parallel_scan*.py, scan_dispatch.py                       the O(log T) scan (§2)
+│   ├── holographic_gssm.py + holographic_*_run.py                key-conditioned recall (§3)
+│   ├── length_extrap_v2.py, scale_to_a_million.py, scale_to_a_billion.py   length/stream (§4)
+│   ├── streaming_train.py, longcontext_run.py                    living-stream + capability (§4/§5)
+│   ├── closed_loop.py, pathfinding_bridge.py, attic.py           runtime retrieval (§6)
+│   ├── percolation_hard.py, reinforcement_loop.py                capacity threshold (§7)
+│   ├── gssm_potentiation.py, operator_readout.py                 threshold in the readout (§8)
+│   ├── pos_run.py, pos_index.py, pos_analyze.py, verify_pos.py   plasticity on surprise (§9)
+│   ├── holo_stream_recall.py, holo_gap_knee.py, holo_mag_read.py, phi_drift_probe.py   the knee arc (§10)
+│   ├── pos_sleep*.py, pos_dream.py                               sleep + dreams (§11)
+│   ├── holo_index_hybrid.py, holo_reminded.py, holo_heldout_keys.py   two-system closed loop (§12)
+│   ├── pos_family_transfer.py                                    family transfer (§13)
+│   └── score_predictions.py                                      the auto-falsifier
 ├── vendor/fabel/            the .causal deterministic knowledge engine (the index)
-├── analysis/                theory + measured research logs
+├── analysis/                theory, pre-registered predictions, research logs
 ├── results/                 measured JSON + logs — the evidence
 └── plots/                   figures
 ```
@@ -580,6 +697,15 @@ exact to gradient cosine 1.0000), a **state that survives a 256-token silence**,
 `.causal` index** the stream consults without a gradient, and a **measured capacity threshold**
 that is a sharp cliff in the gated readout (slope 1.32 vs 0.57 for a linear read).
 
+And the o1-state layer makes it an organism: **surprise-gated plasticity** that matches
+full-gradient learning at 25% of the gradient tokens on a live 40-hour stream, **keyed
+holographic recall carried through silence** with a knee moved 32→512 in one theory-led day
+and a machine-precision φ-invariance law behind it, **dosed sleep consolidation** with a
+measured life curve, **index-reminded reads at ~1.0** above the state's capacity cliff, and
+the whole operating mode **transferred to the Mamba/S6 configuration at 0.99×** — six
+foundations, formalized in [FOUNDATIONS.md](FOUNDATIONS.md), every step pre-registered in
+[analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) before its data existed.
+
 Every number here is reproducible from the scripts in `src/`. The kernel reductions are exact
 identities; the recall result is 5-seed with the attention validity gate at 0.994; the threshold
 controls (random/shuffle) are null across 3 seeds.
@@ -593,15 +719,18 @@ Apache License 2.0. See `LICENSE`.
 ## Citation
 
 ```bibtex
-@misc{foss2026o1,
+@misc{foss2026o1state,
   author = {Foss, David Tom},
-  title  = {{O1: A Constant-Memory Living Mind --- An O(1)-State Stream
-            Coupled to a Growing Knowledge Index}},
+  title  = {{o1-state: The O(1)-State Organism --- Constant-Memory Streaming,
+            Surprise-Gated Plasticity, Holographic Carry, and a Runtime
+            Knowledge Index}},
   year   = {2026},
-  note   = {Public research disclosure (prior art). Builds on GSSM
-            (github.com/DT-Foss/gssm). A bounded reproducing-kernel SSM that
-            consumes an unbounded stream at constant memory, trains in O(1),
-            persists through input gaps, consults an external .causal index at
-            runtime, with a measured capacity threshold in the gated readout.}
+  note   = {Public research disclosure (prior art), github.com/DT-Foss/o1-state.
+            Builds on GSSM (github.com/DT-Foss/gssm). A bounded
+            reproducing-kernel SSM that consumes an unbounded stream at constant
+            memory, gates its own plasticity on self-measured surprise, carries
+            keyed holographic memory through silence, consolidates in dosed
+            sleep, and consults an external .causal index at runtime. Six
+            underlying primitives formalized in FOUNDATIONS.md.}
 }
 ```
