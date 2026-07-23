@@ -1,0 +1,129 @@
+{
+  "config": {
+    "smoke": false,
+    "full": false,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 3000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 60,
+    "g_start": 2,
+    "patience": 25,
+    "curriculum_bar": 0.8,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "128,256,512,1024",
+    "drift_gaps": "128,512,2048",
+    "seeds": "0",
+    "lam_list": "0",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_alpha_shut_lam0check.json"
+  },
+  "equivalence": {
+    "reference_streaming": 0.0,
+    "magnorm": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "recipe": "M3 V2_kickstart_magnorm (GammaKickstartScanLayer + MagNormReadMixin), trained via unchunked full-sequence gap curriculum (g_train_max=128, bar=0.8, patience=25), eval chunked+carried (chunk=16). lambda=0 arm is this recipe exactly (byte-identical loss), lambda>0 arms add lambda*mean(alpha_t over filler positions) to the training loss.",
+  "kickstart_logit": 5.3,
+  "kickstart_head": 0,
+  "curriculum": {
+    "seed0_lam0": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "final_task_loss": 0.7412,
+      "final_alpha_reg": 0.0,
+      "mean_alpha_filler_last_window": 0.439836,
+      "alpha_log_window": 100
+    }
+  },
+  "sweep": {
+    "lam0|seed0|G128": {
+      "seed": 0,
+      "lambda": 0.0,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.4167,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.0667
+    },
+    "lam0|seed0|G256": {
+      "seed": 0,
+      "lambda": 0.0,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.45,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.0667
+    },
+    "lam0|seed0|G512": {
+      "seed": 0,
+      "lambda": 0.0,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.3167,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.0333
+    },
+    "lam0|seed0|G1024": {
+      "seed": 0,
+      "lambda": 0.0,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.1667,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.0
+    }
+  },
+  "knees": {
+    "seed0_lam0": {
+      "knee_G": 512,
+      "ref_G": 128,
+      "acc_at_ref": 0.4167
+    }
+  },
+  "drift": {
+    "seed0_lam0": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 1.181499,
+        "mag_ratio_mean": 162.768753,
+        "snr_alive_frac": 1.0
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.353975,
+        "mag_ratio_mean": 150.836334,
+        "snr_alive_frac": 1.0
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 1.337835,
+        "mag_ratio_mean": 141.744522,
+        "snr_alive_frac": 1.0
+      }
+    }
+  },
+  "per_lambda_summary": {
+    "lam0": {
+      "mean_knee_G": 512.0,
+      "mean_drift_at_512": 1.353975,
+      "mean_acc_at_G128": 0.4167,
+      "mean_alpha_filler_trainwindow": 0.439836
+    }
+  },
+  "verdict": "P25a (best lambda>0 drift@512 < 0.5 rad): NOT MET (best_lambda=None, drift=None, lambda=0 reference drift=1.353975) | P25b (best lambda>0 knee >= 1024): NOT MET (best_lambda=None, knee=None, lambda=0 reference knee=512.0) | P25c (dose-monotonicity: drift@512 non-increasing AND knee non-decreasing in lambda): NOT MET (drift sequence over lambda=[0.0]: [1.353975], knee sequence: [512.0]) | No trade-off flag: recall@ref_G stays within 10pp of lambda=0 across all lambda>0 arms.",
+  "elapsed_s": 20.2
+}

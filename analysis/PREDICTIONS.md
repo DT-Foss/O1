@@ -220,6 +220,27 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   trajectory itself is the measurement: it must RISE during the shock (the
   organism becomes pickier when everything is surprising) and relax after.
 
+- **P25 SCORED (results/holo_alpha_shut.json + _lam0check.json): FALSIFIED
+  in the registered regime, with the mechanism found.** The α-filler
+  regularizer neither reduces trained drift@512 (1.19 vs 1.20 reference) nor
+  moves the knee (λ=0 knees 1024/512 across seeds; λ>0 knees 256–512 — the
+  regularizer HURT where it did anything). Root cause, discovered by the
+  builder's forensic pass: the M3 recipe's curriculum NEVER ignites —
+  final_train_gap=2 in all six cells of the original holo_magread run too;
+  the 512 knee was always pure kickstart+magnorm EXTRAPOLATION from a
+  gap-2-trained model. So the regularizer only ever acted on 2 filler
+  positions; α-behavior on long gaps was never trained in any arm. The
+  registered lever cannot reach the mechanism in this regime — honest kill.
+- **P29 — inference-time α-clamp, the direct pollution causality test (MS12b,
+  registered before the build):** on the M3-recipe model (λ=0, gap-2-trained,
+  knee 512), clamping α(x) toward 0 on filler positions AT EVAL ONLY (state
+  write suppressed during silence, no training change): (a) trained filler
+  φ-drift at G=512 drops below 0.3 rad (untouched: ~1.3); (b) the recall
+  knee moves to ≥ 1024; (c) recall at G≤128 is unchanged within 5 pp (the
+  clamp must not damage in-range recall). If (b) fails while (a) passes,
+  pollution is real but NOT the binding constraint at 512+ — the honest
+  alternative (magnitude floor? phase SNR?) becomes the next measurement.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

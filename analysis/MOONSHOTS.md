@@ -30,7 +30,7 @@ curiosity, grows without restarting, and shares memory with others.
 | MS9 | **Auto-falsifier** (PREDICTIONS.md → machine-checkable scores) | the science machine audits itself: every new result JSON auto-scored against every registered prediction | — | 🔨 |
 | MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ⏳ |
 | MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | ✅ |
-| MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 🔨 |
+| MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 💀 |
 | MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | ✅ |
 
 ## Foundations track (F1–F6) — claim the primitives, not the effects
@@ -55,8 +55,9 @@ If fewer than 2 reviewed harnesses are waiting, build the next entry NOW
 (prediction registered first). Builders cost no CPU — an empty builder queue
 next to free builders is the only true time-waste in this lab.*
 
-1. MS14 — Adam-moment migration (P27) — 🔨 building
-2. MS4 — auto-q curiosity homeostasis on the shock harness (P28) — 🔨 building
+1. MS12b — inference-time α-clamp, the direct pollution causality test (P29) — 🔨 building
+2. MS14 — Adam-moment migration (P27) — full on beast
+3. MS4 — auto-q curiosity homeostasis on the shock harness (P28) — smoke running
 3. MS7 — two organisms, one index (P-tbd before build)
 4. F2/F4/F6 unification docs (zero-CPU, any idle moment)
 5. CHIMERA spec (MS6) — written by the lead, not delegated
@@ -177,3 +178,12 @@ next to free builders is the only true time-waste in this lab.*
   DNS was broken (dead tailscale MagicDNS + dead IPv6 upstream preferred);
   fixed via the official resolv.conf upstream-mode symlink, flagged to David.
   Queue note: MS10 (rent map, many cells) is the born beast job.
+- day3 ~21:45 — MS12 💀 P25 FALSIFIED in-regime, and the forensic pass
+  found something bigger: M3's curriculum NEVER ignited (final_train_gap=2
+  in all six original cells) — the 512 knee was always kickstart+magnorm
+  EXTRAPOLATION from a gap-2-trained model. The regularizer never had long
+  gaps to train on; the lever cannot reach the mechanism in this regime.
+  Sharper causal test registered (P29/MS12b): clamp α on fillers AT EVAL
+  ONLY — if pollution binds the knee, the clamp must move it immediately,
+  no training involved. Science hygiene note: 'bar 0.8 makes the curriculum
+  ignite' in the M3 notes was a misreading; ignition never happened anywhere.

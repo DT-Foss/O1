@@ -1,0 +1,131 @@
+==============================================================================
+HOLO-ALPHA-SHUT (MS12) — does regularizing filler alpha causally reduce drift and move the knee?
+P=2  P_max=16 V_max=16 F=16 vocab=48  chance=0.0625
+eval gaps(G)=[128, 256, 512, 1024, 2048]  drift gaps=[128, 512, 2048]  seeds=[0, 1]  lambdas=[0.0, 0.003, 0.01, 0.03]
+==============================================================================
+
+── equivalence gates (reused, un-normalized + magnorm) ──
+   reference_streaming max|Δ| = 0.000e+00
+   magnorm             max|Δ| = 0.000e+00
+   PASS
+
+==============================================================================
+seed=0  lambda=0
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.469  mean_alpha_filler(last window)=0.439836
+    G=  128: acc=0.4300 (chance 0.0625)  zeroed-null=0.0600
+    G=  256: acc=0.4200 (chance 0.0625)  zeroed-null=0.0600
+    G=  512: acc=0.3700 (chance 0.0625)  zeroed-null=0.0100
+    G= 1024: acc=0.2200 (chance 0.0625)  zeroed-null=0.1000
+    G= 2048: acc=0.1200 (chance 0.0625)  zeroed-null=0.0800
+    knee estimate (last G with acc >= 0.5*acc@128): 1024
+    drift@G=  128: Δφ_snr=1.144748  mag_ratio=156.306305  alive=1.0
+    drift@G=  512: Δφ_snr=1.332957  mag_ratio=80.911072  alive=1.0
+    drift@G= 2048: Δφ_snr=1.33917  mag_ratio=73.526741  alive=1.0
+
+==============================================================================
+seed=0  lambda=0.003
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.562  mean_alpha_filler(last window)=0.41033
+    G=  128: acc=0.4100 (chance 0.0625)  zeroed-null=0.0400
+    G=  256: acc=0.2700 (chance 0.0625)  zeroed-null=0.0300
+    G=  512: acc=0.1600 (chance 0.0625)  zeroed-null=0.0400
+    G= 1024: acc=0.1000 (chance 0.0625)  zeroed-null=0.1200
+    G= 2048: acc=0.0800 (chance 0.0625)  zeroed-null=0.0800
+    knee estimate (last G with acc >= 0.5*acc@128): 256
+    drift@G=  128: Δφ_snr=1.045527  mag_ratio=626.146301  alive=1.0
+    drift@G=  512: Δφ_snr=1.154084  mag_ratio=324.757568  alive=1.0
+    drift@G= 2048: Δφ_snr=1.254214  mag_ratio=119.851845  alive=0.9997
+
+==============================================================================
+seed=0  lambda=0.01
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.375  mean_alpha_filler(last window)=0.307701
+    G=  128: acc=0.3500 (chance 0.0625)  zeroed-null=0.0400
+    G=  256: acc=0.2500 (chance 0.0625)  zeroed-null=0.0700
+    G=  512: acc=0.2100 (chance 0.0625)  zeroed-null=0.0300
+    G= 1024: acc=0.1000 (chance 0.0625)  zeroed-null=0.0800
+    G= 2048: acc=0.1200 (chance 0.0625)  zeroed-null=0.1200
+    knee estimate (last G with acc >= 0.5*acc@128): 512
+    drift@G=  128: Δφ_snr=1.167411  mag_ratio=10.51345  alive=0.9997
+    drift@G=  512: Δφ_snr=1.361287  mag_ratio=21.623489  alive=1.0
+    drift@G= 2048: Δφ_snr=1.404953  mag_ratio=21.396696  alive=0.9994
+
+==============================================================================
+seed=0  lambda=0.03
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.438  mean_alpha_filler(last window)=0.15893
+    G=  128: acc=0.4900 (chance 0.0625)  zeroed-null=0.0400
+    G=  256: acc=0.3500 (chance 0.0625)  zeroed-null=0.0700
+    G=  512: acc=0.2900 (chance 0.0625)  zeroed-null=0.0300
+    G= 1024: acc=0.1200 (chance 0.0625)  zeroed-null=0.0400
+    G= 2048: acc=0.0800 (chance 0.0625)  zeroed-null=0.0800
+    knee estimate (last G with acc >= 0.5*acc@128): 512
+    drift@G=  128: Δφ_snr=0.860106  mag_ratio=8.929927  alive=0.9997
+    drift@G=  512: Δφ_snr=1.235918  mag_ratio=10.210814  alive=0.9997
+    drift@G= 2048: Δφ_snr=1.333706  mag_ratio=17.576445  alive=1.0
+
+==============================================================================
+seed=1  lambda=0
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.500  mean_alpha_filler(last window)=0.434672
+    G=  128: acc=0.4900 (chance 0.0625)  zeroed-null=0.0800
+    G=  256: acc=0.4500 (chance 0.0625)  zeroed-null=0.0700
+    G=  512: acc=0.3900 (chance 0.0625)  zeroed-null=0.0900
+    G= 1024: acc=0.2200 (chance 0.0625)  zeroed-null=0.0600
+    G= 2048: acc=0.0800 (chance 0.0625)  zeroed-null=0.0800
+    knee estimate (last G with acc >= 0.5*acc@128): 512
+    drift@G=  128: Δφ_snr=1.034993  mag_ratio=19.523367  alive=0.9988
+    drift@G=  512: Δφ_snr=1.060618  mag_ratio=28.646513  alive=0.9991
+    drift@G= 2048: Δφ_snr=1.084322  mag_ratio=33.594032  alive=0.9994
+
+==============================================================================
+seed=1  lambda=0.003
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.500  mean_alpha_filler(last window)=0.417308
+    G=  128: acc=0.3800 (chance 0.0625)  zeroed-null=0.0700
+    G=  256: acc=0.3000 (chance 0.0625)  zeroed-null=0.0600
+    G=  512: acc=0.1400 (chance 0.0625)  zeroed-null=0.1100
+    G= 1024: acc=0.1200 (chance 0.0625)  zeroed-null=0.1200
+    G= 2048: acc=0.0800 (chance 0.0625)  zeroed-null=0.0800
+    knee estimate (last G with acc >= 0.5*acc@128): 256
+    drift@G=  128: Δφ_snr=1.255704  mag_ratio=10.939297  alive=0.9997
+    drift@G=  512: Δφ_snr=1.356142  mag_ratio=15.222742  alive=1.0
+    drift@G= 2048: Δφ_snr=1.411183  mag_ratio=17.790117  alive=1.0
+
+==============================================================================
+seed=1  lambda=0.01
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.594  mean_alpha_filler(last window)=0.355671
+    G=  128: acc=0.4200 (chance 0.0625)  zeroed-null=0.0800
+    G=  256: acc=0.4200 (chance 0.0625)  zeroed-null=0.1100
+    G=  512: acc=0.2500 (chance 0.0625)  zeroed-null=0.0900
+    G= 1024: acc=0.0600 (chance 0.0625)  zeroed-null=0.0400
+    G= 2048: acc=0.0800 (chance 0.0625)  zeroed-null=0.0400
+    knee estimate (last G with acc >= 0.5*acc@128): 512
+    drift@G=  128: Δφ_snr=1.29842  mag_ratio=48.417892  alive=0.9997
+    drift@G=  512: Δφ_snr=1.347981  mag_ratio=39.373623  alive=1.0
+    drift@G= 2048: Δφ_snr=1.343255  mag_ratio=36.751888  alive=0.9997
+
+==============================================================================
+seed=1  lambda=0.03
+==============================================================================
+  curriculum done: final_train_gap=2 final_train_acc=0.531  mean_alpha_filler(last window)=0.182925
+    G=  128: acc=0.5300 (chance 0.0625)  zeroed-null=0.0500
+    G=  256: acc=0.3700 (chance 0.0625)  zeroed-null=0.0600
+    G=  512: acc=0.3200 (chance 0.0625)  zeroed-null=0.1300
+    G= 1024: acc=0.0200 (chance 0.0625)  zeroed-null=0.0200
+    G= 2048: acc=0.0400 (chance 0.0625)  zeroed-null=0.0400
+    knee estimate (last G with acc >= 0.5*acc@128): 512
+    drift@G=  128: Δφ_snr=1.036951  mag_ratio=6.682289  alive=0.9972
+    drift@G=  512: Δφ_snr=1.141427  mag_ratio=12.531398  alive=0.9988
+    drift@G= 2048: Δφ_snr=1.251173  mag_ratio=11.174374  alive=0.9991
+
+==============================================================================
+VERDICT
+  P25a (best lambda>0 drift@512 < 0.5 rad): NOT MET (best_lambda=0.03, drift=1.1886725, lambda=0 reference drift=1.1967875000000001)
+  P25b (best lambda>0 knee >= 1024): NOT MET (best_lambda=0.03, knee=512.0, lambda=0 reference knee=768.0)
+  P25c (dose-monotonicity: drift@512 non-increasing AND knee non-decreasing in lambda): NOT MET (drift sequence over lambda=[0.0, 0.003, 0.01, 0.03]: [1.1967875000000001, 1.2551130000000001, 1.354634, 1.1886725], knee sequence: [768.0, 256.0, 512.0, 512.0])
+  No trade-off flag: recall@ref_G stays within 10pp of lambda=0 across all lambda>0 arms.
+
+→ /Users/bhkmie/Documents/Forschung/O1_juli/results/holo_alpha_shut.json  (169.7s)
