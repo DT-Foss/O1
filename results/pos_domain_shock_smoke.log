@@ -1,0 +1,74 @@
+Device: cpu
+[shock] ckpt n_streamed=474,926,592 | phase_chunks=40 eval_every=10 | B=8 K=64 lr=0.003
+[shock] code-val slice: 19,968 tokens, unk_rate=0.4438
+[shock] base_heldout_wt2=4.770375
+
+[shock] ===== regime R1 =====
+[shock][R1] phase=base    chunk=   0 wt2=4.770375 code=4.425062
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_domain_shock.py:207: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return new_states, x.numel(), float(loss), x.detach(), nll.detach()
+[shock][R1] phase=phase1  chunk=  10 wt2=4.783856 code=4.411896
+[shock][R1] phase=phase1  chunk=  20 wt2=4.773051 code=4.330962
+[shock][R1] phase=phase1  chunk=  30 wt2=4.774249 code=4.468898
+[shock][R1] phase=phase1  chunk=  40 wt2=4.786124 code=4.423813
+[shock][R1] phase=phase2  chunk=  50 wt2=5.069554 code=4.041397
+[shock][R1] phase=phase2  chunk=  60 wt2=5.104183 code=4.029357
+[shock][R1] phase=phase2  chunk=  70 wt2=5.059124 code=3.795899
+[shock][R1] phase=phase2  chunk=  80 wt2=5.268768 code=3.714454
+[shock][R1] phase=phase3  chunk=  90 wt2=4.909074 code=4.197858
+[shock][R1] phase=phase3  chunk= 100 wt2=4.852359 code=4.338301
+[shock][R1] phase=phase3  chunk= 110 wt2=4.841306 code=4.306087
+[shock][R1] phase=phase3  chunk= 120 wt2=4.867398 code=4.133509
+[shock][R1] forgetting=+0.482644 plasticity=+0.709359 recovery=+0.081274 gate_frac=1.0000 grad_tokens=61,440
+
+[shock] ===== regime R2 =====
+[shock][R2] phase=base    chunk=   0 wt2=4.770375 code=4.425062
+[shock][R2] phase=phase1  chunk=  10 wt2=4.778935 code=4.393048
+[shock][R2] phase=phase1  chunk=  20 wt2=4.767153 code=4.335950
+[shock][R2] phase=phase1  chunk=  30 wt2=4.767513 code=4.437145
+[shock][R2] phase=phase1  chunk=  40 wt2=4.778781 code=4.412951
+[shock][R2] phase=phase2  chunk=  50 wt2=5.017946 code=4.065324
+[shock][R2] phase=phase2  chunk=  60 wt2=5.033657 code=4.055742
+[shock][R2] phase=phase2  chunk=  70 wt2=5.044106 code=4.048035
+[shock][R2] phase=phase2  chunk=  80 wt2=5.055146 code=4.020864
+[shock][R2] phase=phase3  chunk=  90 wt2=4.914166 code=4.158595
+[shock][R2] phase=phase3  chunk= 100 wt2=4.792796 code=4.362863
+[shock][R2] phase=phase3  chunk= 110 wt2=4.777989 code=4.387375
+[shock][R2] phase=phase3  chunk= 120 wt2=4.778525 code=4.386550
+[shock][R2] forgetting=+0.276365 plasticity=+0.392087 recovery=-0.000256 gate_frac=0.5833 grad_tokens=35,840
+
+[shock] ===== regime R3 =====
+[shock][R3] phase=base    chunk=   0 wt2=4.770375 code=4.425062
+[shock][R3] phase=phase1  chunk=  10 wt2=4.768091 code=4.462880
+[shock][R3] phase=phase1  chunk=  20 wt2=4.777779 code=4.319311
+[shock][R3] phase=phase1  chunk=  30 wt2=4.765233 code=4.411286
+[shock][R3] phase=phase1  chunk=  40 wt2=4.768821 code=4.413055
+[shock][R3] phase=phase2  chunk=  46 wt2=4.847773 code=4.112425
+[shock][R3] phase=phase2_sleep chunk=  50 wt2=4.899843 code=4.066366
+[shock][R3] phase2 sleep: 4 chunks (pool=22 spans, 1058 tok, 1.94 epochs) -> wt2=4.899843 code=4.066366
+[shock][R3] phase=phase2  chunk=  56 wt2=4.904529 code=4.052639
+[shock][R3] phase=phase2_sleep chunk=  60 wt2=4.875781 code=4.082277
+[shock][R3] phase2 sleep: 4 chunks (pool=24 spans, 1159 tok, 1.77 epochs) -> wt2=4.875781 code=4.082277
+[shock][R3] phase=phase2  chunk=  66 wt2=4.875781 code=4.082277
+[shock][R3] phase=phase2_sleep chunk=  70 wt2=4.849035 code=4.073498
+[shock][R3] phase2 sleep: 4 chunks (pool=24 spans, 1159 tok, 1.77 epochs) -> wt2=4.849035 code=4.073498
+[shock][R3] phase=phase2  chunk=  76 wt2=4.849035 code=4.073498
+[shock][R3] phase=phase2_sleep chunk=  80 wt2=4.854772 code=4.046921
+[shock][R3] phase2 sleep: 4 chunks (pool=24 spans, 1159 tok, 1.77 epochs) -> wt2=4.854772 code=4.046921
+[shock][R3] phase=phase3  chunk=  86 wt2=4.857539 code=4.045715
+[shock][R3] phase=phase3_sleep chunk=  90 wt2=4.882954 code=4.041284
+[shock][R3] phase3 sleep: 4 chunks (pool=24 spans, 1159 tok, 1.77 epochs) -> wt2=4.882954 code=4.041284
+[shock][R3] phase=phase3  chunk=  96 wt2=4.883476 code=4.047658
+[shock][R3] phase=phase3_sleep chunk= 100 wt2=4.894850 code=4.055169
+[shock][R3] phase3 sleep: 4 chunks (pool=28 spans, 1348 tok, 1.52 epochs) -> wt2=4.894850 code=4.055169
+[shock][R3] phase=phase3  chunk= 106 wt2=4.883335 code=4.058769
+[shock][R3] phase=phase3_sleep chunk= 110 wt2=4.885072 code=4.060627
+[shock][R3] phase3 sleep: 4 chunks (pool=38 spans, 1766 tok, 1.16 epochs) -> wt2=4.885072 code=4.060627
+[shock][R3] phase=phase3  chunk= 116 wt2=4.883422 code=4.059759
+[shock][R3] phase=phase3_sleep chunk= 120 wt2=4.891438 code=4.047077
+[shock][R3] phase3 sleep: 4 chunks (pool=40 spans, 1862 tok, 1.10 epochs) -> wt2=4.891438 code=4.047077
+[shock][R3] forgetting=+0.135708 plasticity=+0.366134 recovery=+0.122617 gate_frac=0.7045 grad_tokens=48,128
+
+[shock] forgetting R1=+0.482644 R2=+0.276365 R3=+0.135708 | plasticity R1=+0.709359 R2=+0.392087 (comparable: False) | recovery R1=+0.081274 R2=-0.000256 R3=+0.122617 | P20: PARTIAL/FAIL (R1>=0.15: True, R2<R1@comparable: False, R3<=50%R1: True)
+[shock] -> results/pos_domain_shock_smoke.json

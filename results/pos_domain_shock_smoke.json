@@ -1,0 +1,651 @@
+{
+  "ckpt_n_streamed": 474926592,
+  "phase2_dataset": "codeparrot/github-code-clean (language==Python, client-filtered)",
+  "phase2_dataset_note": "bigcode/the-stack-smol is gated (HF auth); wikitext-103 fallback unreachable in this environment (datasets HfUriError, not gating); codeparrot/github-code-clean verified reachable+ungated, languages= kwarg silently ignored by installed builder -> filtered client-side to language=='Python'",
+  "budget": {
+    "phase_chunks": 40,
+    "eval_every": 10,
+    "sleep_chunks_max": 4,
+    "max_replay_epochs": 2.0,
+    "gate_q": 0.75,
+    "gate_window": 200,
+    "min_window": 50,
+    "spike_min_nll": 7.0,
+    "span_half": 32,
+    "sleep_every_n_chunks": 10
+  },
+  "code_val_tokens": 19968,
+  "code_val_unk_rate": 0.443777,
+  "base_heldout_wt2": 4.770375,
+  "regimes": {
+    "R1": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.770375
+        ],
+        [
+          10,
+          "phase1",
+          4.783856
+        ],
+        [
+          20,
+          "phase1",
+          4.773051
+        ],
+        [
+          30,
+          "phase1",
+          4.774249
+        ],
+        [
+          40,
+          "phase1",
+          4.786124
+        ],
+        [
+          50,
+          "phase2",
+          5.069554
+        ],
+        [
+          60,
+          "phase2",
+          5.104183
+        ],
+        [
+          70,
+          "phase2",
+          5.059124
+        ],
+        [
+          80,
+          "phase2",
+          5.268768
+        ],
+        [
+          90,
+          "phase3",
+          4.909074
+        ],
+        [
+          100,
+          "phase3",
+          4.852359
+        ],
+        [
+          110,
+          "phase3",
+          4.841306
+        ],
+        [
+          120,
+          "phase3",
+          4.867398
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.425062
+        ],
+        [
+          10,
+          "phase1",
+          4.411896
+        ],
+        [
+          20,
+          "phase1",
+          4.330962
+        ],
+        [
+          30,
+          "phase1",
+          4.468898
+        ],
+        [
+          40,
+          "phase1",
+          4.423813
+        ],
+        [
+          50,
+          "phase2",
+          4.041397
+        ],
+        [
+          60,
+          "phase2",
+          4.029357
+        ],
+        [
+          70,
+          "phase2",
+          3.795899
+        ],
+        [
+          80,
+          "phase2",
+          3.714454
+        ],
+        [
+          90,
+          "phase3",
+          4.197858
+        ],
+        [
+          100,
+          "phase3",
+          4.338301
+        ],
+        [
+          110,
+          "phase3",
+          4.306087
+        ],
+        [
+          120,
+          "phase3",
+          4.133509
+        ]
+      ],
+      "grad_tokens_total": 61440,
+      "n_chunks_gated": 120,
+      "n_chunks_seen": 120,
+      "gate_frac": 1.0,
+      "pre_phase2_wt2": 4.786124,
+      "pre_phase2_code": 4.423813,
+      "post_phase3_wt2": 4.867398,
+      "forgetting": 0.482644,
+      "plasticity": 0.709359,
+      "recovery": 0.081274
+    },
+    "R2": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.770375
+        ],
+        [
+          10,
+          "phase1",
+          4.778935
+        ],
+        [
+          20,
+          "phase1",
+          4.767153
+        ],
+        [
+          30,
+          "phase1",
+          4.767513
+        ],
+        [
+          40,
+          "phase1",
+          4.778781
+        ],
+        [
+          50,
+          "phase2",
+          5.017946
+        ],
+        [
+          60,
+          "phase2",
+          5.033657
+        ],
+        [
+          70,
+          "phase2",
+          5.044106
+        ],
+        [
+          80,
+          "phase2",
+          5.055146
+        ],
+        [
+          90,
+          "phase3",
+          4.914166
+        ],
+        [
+          100,
+          "phase3",
+          4.792796
+        ],
+        [
+          110,
+          "phase3",
+          4.777989
+        ],
+        [
+          120,
+          "phase3",
+          4.778525
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.425062
+        ],
+        [
+          10,
+          "phase1",
+          4.393048
+        ],
+        [
+          20,
+          "phase1",
+          4.33595
+        ],
+        [
+          30,
+          "phase1",
+          4.437145
+        ],
+        [
+          40,
+          "phase1",
+          4.412951
+        ],
+        [
+          50,
+          "phase2",
+          4.065324
+        ],
+        [
+          60,
+          "phase2",
+          4.055742
+        ],
+        [
+          70,
+          "phase2",
+          4.048035
+        ],
+        [
+          80,
+          "phase2",
+          4.020864
+        ],
+        [
+          90,
+          "phase3",
+          4.158595
+        ],
+        [
+          100,
+          "phase3",
+          4.362863
+        ],
+        [
+          110,
+          "phase3",
+          4.387375
+        ],
+        [
+          120,
+          "phase3",
+          4.38655
+        ]
+      ],
+      "grad_tokens_total": 35840,
+      "n_chunks_gated": 70,
+      "n_chunks_seen": 120,
+      "gate_frac": 0.5833,
+      "pre_phase2_wt2": 4.778781,
+      "pre_phase2_code": 4.412951,
+      "post_phase3_wt2": 4.778525,
+      "forgetting": 0.276365,
+      "plasticity": 0.392087,
+      "recovery": -0.000256
+    },
+    "R3": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.770375
+        ],
+        [
+          10,
+          "phase1",
+          4.768091
+        ],
+        [
+          20,
+          "phase1",
+          4.777779
+        ],
+        [
+          30,
+          "phase1",
+          4.765233
+        ],
+        [
+          40,
+          "phase1",
+          4.768821
+        ],
+        [
+          46,
+          "phase2",
+          4.847773
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.899843
+        ],
+        [
+          56,
+          "phase2",
+          4.904529
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.875781
+        ],
+        [
+          66,
+          "phase2",
+          4.875781
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.849035
+        ],
+        [
+          76,
+          "phase2",
+          4.849035
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.854772
+        ],
+        [
+          86,
+          "phase3",
+          4.857539
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.882954
+        ],
+        [
+          96,
+          "phase3",
+          4.883476
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.89485
+        ],
+        [
+          106,
+          "phase3",
+          4.883335
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.885072
+        ],
+        [
+          116,
+          "phase3",
+          4.883422
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.891438
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.425062
+        ],
+        [
+          10,
+          "phase1",
+          4.46288
+        ],
+        [
+          20,
+          "phase1",
+          4.319311
+        ],
+        [
+          30,
+          "phase1",
+          4.411286
+        ],
+        [
+          40,
+          "phase1",
+          4.413055
+        ],
+        [
+          46,
+          "phase2",
+          4.112425
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.066366
+        ],
+        [
+          56,
+          "phase2",
+          4.052639
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.082277
+        ],
+        [
+          66,
+          "phase2",
+          4.082277
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.073498
+        ],
+        [
+          76,
+          "phase2",
+          4.073498
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.046921
+        ],
+        [
+          86,
+          "phase3",
+          4.045715
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.041284
+        ],
+        [
+          96,
+          "phase3",
+          4.047658
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.055169
+        ],
+        [
+          106,
+          "phase3",
+          4.058769
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.060627
+        ],
+        [
+          116,
+          "phase3",
+          4.059759
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.047077
+        ]
+      ],
+      "grad_tokens_total": 48128,
+      "n_chunks_gated": 62,
+      "n_chunks_seen": 88,
+      "gate_frac": 0.7045,
+      "pre_phase2_wt2": 4.768821,
+      "pre_phase2_code": 4.413055,
+      "post_phase3_wt2": 4.891438,
+      "forgetting": 0.135708,
+      "plasticity": 0.366134,
+      "recovery": 0.122617,
+      "n_spans_collected": 40,
+      "sleep_events": [
+        {
+          "phase": "phase2",
+          "global_idx": 50,
+          "n_sleep_chunks": 4,
+          "pool_spans": 22,
+          "pool_tokens": 1058,
+          "replay_epochs": 1.936,
+          "wt2_after": 4.899843,
+          "code_after": 4.066366
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 60,
+          "n_sleep_chunks": 4,
+          "pool_spans": 24,
+          "pool_tokens": 1159,
+          "replay_epochs": 1.767,
+          "wt2_after": 4.875781,
+          "code_after": 4.082277
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 70,
+          "n_sleep_chunks": 4,
+          "pool_spans": 24,
+          "pool_tokens": 1159,
+          "replay_epochs": 1.767,
+          "wt2_after": 4.849035,
+          "code_after": 4.073498
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 80,
+          "n_sleep_chunks": 4,
+          "pool_spans": 24,
+          "pool_tokens": 1159,
+          "replay_epochs": 1.767,
+          "wt2_after": 4.854772,
+          "code_after": 4.046921
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 90,
+          "n_sleep_chunks": 4,
+          "pool_spans": 24,
+          "pool_tokens": 1159,
+          "replay_epochs": 1.767,
+          "wt2_after": 4.882954,
+          "code_after": 4.041284
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 100,
+          "n_sleep_chunks": 4,
+          "pool_spans": 28,
+          "pool_tokens": 1348,
+          "replay_epochs": 1.519,
+          "wt2_after": 4.89485,
+          "code_after": 4.055169
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 110,
+          "n_sleep_chunks": 4,
+          "pool_spans": 38,
+          "pool_tokens": 1766,
+          "replay_epochs": 1.16,
+          "wt2_after": 4.885072,
+          "code_after": 4.060627
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 120,
+          "n_sleep_chunks": 4,
+          "pool_spans": 40,
+          "pool_tokens": 1862,
+          "replay_epochs": 1.1,
+          "wt2_after": 4.891438,
+          "code_after": 4.047077
+        }
+      ]
+    }
+  },
+  "chunk_budget_check": {
+    "n_chunks_visited": {
+      "R1": 120,
+      "R2": 120,
+      "R3": 120
+    },
+    "equal": true
+  },
+  "p20_scoring": {
+    "R1_forgets_geq_0.15": {
+      "pass": true,
+      "measured": 0.482644
+    },
+    "R2_forgets_less_than_R1_at_comparable_plasticity": {
+      "pass": false,
+      "R2_forgetting": 0.276365,
+      "R1_forgetting": 0.482644,
+      "plasticity_R1": 0.709359,
+      "plasticity_R2": 0.392087,
+      "plasticity_comparable_within_20pct": false
+    },
+    "R3_forgets_leq_half_of_R1": {
+      "pass": true,
+      "R3_forgetting": 0.135708,
+      "half_R1_forgetting": 0.241322
+    }
+  },
+  "verdict": "forgetting R1=+0.482644 R2=+0.276365 R3=+0.135708 | plasticity R1=+0.709359 R2=+0.392087 (comparable: False) | recovery R1=+0.081274 R2=-0.000256 R3=+0.122617 | P20: PARTIAL/FAIL (R1>=0.15: True, R2<R1@comparable: False, R3<=50%R1: True)"
+}

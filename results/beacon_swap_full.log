@@ -1,0 +1,44 @@
+Device: cpu
+── training beacon model to criterion (recall>=0.99 @ gap=256) ──
+   it   100: loss 0.000 train-acc 1.000 (train-gap 256) | recall@256 = 1.000
+   >>> T1 CHECKPOINT at iter 100 (recall 1.000 >= 0.99)
+── continuing training for 100 more iters (2x budget) -> T2 ──
+   it   200: loss 0.000 train-acc 1.000 (train-gap 256) | recall@256 = 1.000
+   >>> T2 CHECKPOINT at iter 200
+
+[checkpoints] T1 iters=100 recall@256=1.000 | T2 iters=200 recall@256=1.000
+
+[adapter] verifying StreamingNoPELM <-> FamilyStreamingLM state_dict compatibility...
+[adapter] stateless max|delta|=0.000e+00  chunked(3) max|delta|=0.000e+00 PASS
+
+==============================================================================
+(a) SURGERY: plant+carry with T2-d64, widen mid-episode, probe with d128
+==============================================================================
+[surgery-adapter] equivalence gate: stateless 2.384e-06, chunked(3) 2.384e-06 -> PASS
+   [surgery] gap=  64: recall = 1.000 | cold 0.465 | shuffled 0.745
+   [surgery] gap= 256: recall = 1.000 | cold 0.430 | shuffled 0.675
+   [surgery] gap= 512: recall = 1.000 | cold 0.535 | shuffled 0.645
+
+==============================================================================
+(b) SWAP: write with W(T1), read with W(T2), state carried across
+==============================================================================
+   [swap] gap=  64: native-T1 1.000 | native-T2 1.000 | SWAP(w=T1,r=T2) 1.000 | cold 0.495 | shuffled 0.735 | shuffled+norm-matched(diag) 0.705
+   [swap] gap= 256: native-T1 1.000 | native-T2 1.000 | SWAP(w=T1,r=T2) 1.000 | cold 0.540 | shuffled 0.700 | shuffled+norm-matched(diag) 0.650
+   [swap] gap= 512: native-T1 1.000 | native-T2 1.000 | SWAP(w=T1,r=T2) 1.000 | cold 0.475 | shuffled 0.605 | shuffled+norm-matched(diag) 0.570
+
+==============================================================================
+DIAGNOSIS: carrier channel at T1 vs T2 (gap=512)
+==============================================================================
+   L0: T1 carrier H1C4 (corr -0.15, gamma 0.544) | T2 carrier H1C4 (corr -0.15, gamma 0.545) | SAME CHANNEL
+   L1: T1 carrier H0C2 (corr +1.00, gamma 1.000) | T2 carrier H0C2 (corr +1.00, gamma 1.000) | SAME CHANNEL
+
+==============================================================================
+VERDICT -- P26 (the stored bit survives the surgery and the swap)
+  (a) surgery recall >= 0.99: gate=PASS recall=1.0 PASS
+  (b) swap recall >= 0.9: 1.0 PASS
+  (c) shuffled ~= chance (0.5+-0.1): surgery=0.675 (FAIL)  swap=0.7 (FAIL)  FAIL
+      [diagnostic, not scored] norm-matched shuffle (swap) = 0.650 -- if this is closer to chance than 'shuffled', the residual-above-chance signal is carried by state MAGNITUDE, not position
+  OVERALL: NOT ALL CHECKS PASS -- see above
+==============================================================================
+
+-> results/beacon_swap.json

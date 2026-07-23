@@ -21,7 +21,7 @@ curiosity, grows without restarting, and shares memory with others.
 |---|---|---|---|---|
 | MS1 | **Learned to be reminded** (consultation IN training) | the state+index seam disappears: hybrid ≥0.85 at P=16, and the model learns to ARBITRATE state vs. injection | M5 ✅ | ✅ |
 | MS2 | **The dream generator** (generative replay) | sleep without storage: training on the model's OWN sampled dreams rivals stored-span replay — memory becomes optional | M4 ✅ | 💀 |
-| MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | 🔨 |
+| MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | 🚀 |
 | MS4 | **Curiosity homeostasis** (self-set q) | the organism sets its own learning threshold; adaptive q beats every fixed q on non-stationary streams | MS3 harness | ⏳ |
 | MS5 | **Language-stream holographic recall** (holo graft on the 400M-token POS model) | the knee/carrier story leaves synthetic MQAR: real facts recalled over real silence in a real language stream | M3 ✅, POS ckpt | ⏳ |
 | MS6 | **CHIMERA — the complete organism** | all validated organs in ONE process on real text, measured against the sum of its parts | MS1, MS2/M4, MS3 | ⏳ |
@@ -31,7 +31,7 @@ curiosity, grows without restarting, and shares memory with others.
 | MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ⏳ |
 | MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | ✅ |
 | MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 🔨 |
-| MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | 🚀 |
+| MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | ✅ |
 
 ## Foundations track (F1–F6) — claim the primitives, not the effects
 
@@ -138,3 +138,15 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
   through the duplication map). **Coupling → MS6/CHIMERA: model updates and
   model growth are SAFE operations on the living organism; the state layer
   that needs care is exactly the layer the index+carrier own.**
+- day3 ~20:30 — MS13 ✅ FULL: the bit survives BOTH operations at 1.000
+  (surgery gate 2.4e-6; swap through gap 512; cold at chance). P26c honestly
+  falsified-as-posed: the code is REDUNDANT (position+magnitude), permutation
+  is not a sharp control here — recorded as the third outcome. Carrier
+  address stable at convergence (H0C2==H0C2, gamma 1.000); smoke showed it
+  CAN relocate with the read still perfect. The two-timescale law now has
+  its content-level half measured. ms3 smoke complete: R3 (gated+sleep)
+  forgets +0.136 = 28% of R1's +0.483 at near-R2 plasticity — P20's core
+  ranking (R3<R2<R1) already visible; R3's phase-3 recovery (+0.123) is the
+  full run's open question. ms3-full + MS12-full launched; ms5 smoke still
+  computing its real-text evals (2h+, alive at 100% cpu — needs progress
+  prints, builder feedback noted).
