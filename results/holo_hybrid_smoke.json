@@ -1,0 +1,74 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "p_max": 32,
+    "v_max": 16,
+    "f_fillers": 16,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 64,
+    "iters": 800,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "patience": 25,
+    "train_gap_cap": 0,
+    "log_every": 0,
+    "pairs": "2,16",
+    "gaps": "8",
+    "gates": "1.0",
+    "seeds": "1",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_hybrid_smoke.json"
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "seed1|P2|G8|gate1.0": {
+      "seed": 1,
+      "P": 2,
+      "G": 8,
+      "gate_rate": 1.0,
+      "base": 0.56,
+      "hybrid": 0.81,
+      "random": 0.245,
+      "gate_hit_rate": 1.0,
+      "chance": 0.0625,
+      "n": 200
+    },
+    "seed1|P16|G8|gate1.0": {
+      "seed": 1,
+      "P": 16,
+      "G": 8,
+      "gate_rate": 1.0,
+      "base": 0.17,
+      "hybrid": 0.405,
+      "random": 0.145,
+      "gate_hit_rate": 1.0,
+      "chance": 0.0625,
+      "n": 200
+    }
+  },
+  "curriculum": {
+    "seed1": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4375,
+      "train_gap_cap": 8,
+      "train_P": 2
+    }
+  },
+  "verdict": "hybrid does not clear all acceptance checks in this sweep \u2014 see 'checks' and 'verdict_detail' for the per-cell numbers",
+  "checks": {
+    "hybrid@P16_gate1.0>=0.9": false,
+    "base@P16<=0.15": false,
+    "random@P16~=base": true,
+    "hybrid@P2>=base@P2": true
+  },
+  "verdict_detail": [
+    "P=2 G=8 gate=1.0: base=0.560 hybrid=0.810 random=0.245 chance=0.062",
+    "P=16 G=8 gate=1.0: base=0.170 hybrid=0.405 random=0.145 chance=0.062"
+  ],
+  "elapsed_s": 7.5
+}
