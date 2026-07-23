@@ -138,6 +138,30 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   GSSM-full 5.177 vs S6-full 5.333 nats — GSSM *leads* by 0.156 nats at scan
   parameter parity 1.0016 and identical pipeline/tokens/seed.
 
+## Wave 5 — the deployment primitives (registered day 3 ~20:00, before any build)
+
+- **P23 — weight hot-swap on the living stream (MS11,
+  src/state_weight_swap.py):** carrying an OLD state into NEW weights works.
+  With W(359M) fixed and fresh C4 chunks cloned to all arms (forward-only):
+  (a) the cold-start arm's online-NLL excess over the native arm in the first
+  50 chunks is ≥ 2× the hot-swap-far arm's (state from 128M, 231M tokens of
+  training distance); (b) both hot-swap arms converge to within 0.01 nats of
+  native inside 300 chunks; (c) the channel-shuffled control is worse than
+  hot-swap-far throughout (compatibility is structural, not a bias artifact).
+- **P24 — hot-swap growth (MS8, src/hot_swap_growth.py):** function- and
+  state-preserving widening (channel duplication, d64→d128, carried Z
+  migrated) on a live C4 stream: (a) surgery equivalence |Δlogits| < 1e-4;
+  (b) no post-surgery transient (first-20-chunk online NLL within 0.05 of the
+  stay-d64 arm); (c) at +1.5M post-surgery tokens the grown arm's held-out
+  beats stay-d64 by ≥ 0.03 nats (the new capacity is used); (d) grown beats
+  fresh-d128-from-scratch at the same wall-token axis (growth beats restart).
+- **P25 — α-shut pollution control (MS12, src/holo_alpha_shut.py):** the F3
+  discovery is causal: adding an α(x_filler) regularizer to the T2+MagNorm
+  knee recipe (λ sweep incl. λ=0 control) (a) cuts trained filler φ-drift at
+  G=512 from ~1.5 rad to < 0.5 rad, (b) moves the recall knee to ≥ 1024, and
+  (c) drift reduction and knee position are dose-monotone in λ. If large λ
+  strangles the write itself, that trade-off boundary is the measurement.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

@@ -29,6 +29,8 @@ curiosity, grows without restarting, and shares memory with others.
 | MS8 | **Hot-swap growth** (in-flight network surgery, d_model grows, state migrated, no restart) | the brain grows without sleeping; the twin experiment is the control | POS twin ✅ | ⏳ |
 | MS9 | **Auto-falsifier** (PREDICTIONS.md → machine-checkable scores) | the science machine audits itself: every new result JSON auto-scored against every registered prediction | — | 🔨 |
 | MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ⏳ |
+| MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | 🔨 |
+| MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 🔨 |
 
 ## Foundations track (F1–F6) — claim the primitives, not the effects
 
@@ -105,3 +107,10 @@ pushed = defensively published breadth) + where cheap, one locking experiment.*
   CHIMERA (MS6) claims run family-wide by construction; a surprise-gated
   Mamba is an instance of the disclosed system (FOUNDATIONS.md F5 now has its
   locking experiment).**
+- day3 ~20:00 — wave 5 opened (the deployment primitives, FTO-led): MS11
+  weight-hot-swap (P23, near-free via the snapshot archive), MS8 hot-swap
+  growth reframed honestly (Net2Net widening is 2015 prior art; OUR claim is
+  exact carried-Z migration on a live stream with no transient) (P24), MS12
+  α-shut (P25, the causal intervention on F3's pollution law). MS7 shared
+  index queued as wave 6. Predictions committed BEFORE builders launched —
+  the P21/P22 caveat does not repeat.
