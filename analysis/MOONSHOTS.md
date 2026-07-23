@@ -167,3 +167,13 @@ next to free builders is the only true time-waste in this lab.*
   full run's open question. ms3-full + MS12-full launched; ms5 smoke still
   computing its real-text evals (2h+, alive at 100% cpu — needs progress
   prints, builder feedback noted).
+- day3 ~21:00 — FLEET ONLINE: beast (16 cores, torch 2.10) set up as the
+  replication engine — running: M3 magnorm-knee seeds 2+3, F5 family-transfer
+  seeds 43+44 (hardening 512-knee and P22 against seed luck). Found on intel:
+  Davids WALLCLOCK lifetime run at 491M tokens, RSS flat 0.79GB, 5.7k tok/s —
+  a second independent ~500M-token living stream on a SECOND architecture
+  (linux/x86 vs macOS/ARM): cross-platform evidence for the streaming thesis.
+  core is full (load 4.75/4) with 0 disk free — flagged, not touched. beast
+  DNS was broken (dead tailscale MagicDNS + dead IPv6 upstream preferred);
+  fixed via the official resolv.conf upstream-mode symlink, flagged to David.
+  Queue note: MS10 (rent map, many cells) is the born beast job.
