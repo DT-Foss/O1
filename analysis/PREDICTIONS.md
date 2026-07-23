@@ -344,6 +344,19 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   the better curiosity policy. A surprise-LEVEL target instead of a rate
   target would be a new registered question, not a rescue of this one.
 
+- **P32 — the rent map of the phase (MS10, src/holo_rent_map.py,
+  registered before the build):** sweeping P_max ∈ {8,16,32,64} × d_model ∈
+  {32,64,128,256} (holo_on vs holo_off, P ∈ {2,4}, G ∈ {8,32}, 2 seeds,
+  matched budgets; best-of-2 lr control for the off arm at the corner
+  cells — the lr lesson): (a) the phase rent (holo−off) is governed by the
+  ratio d/P_max, with a transition in the band d/P_max ≈ 2–4 (anchors
+  measured so far: rent at 16/64=×4 [v3, +25–30pp], none at 64/64=×1 [M1],
+  small at 64/256=×4-but-large-d [M6, +13–15pp]); (b) cells collapse onto
+  one curve in d/P_max (a ratio law, not two independent axes); (c) the
+  off arm's recall varies smoothly with d and is flat in P_max beyond
+  interference (no phase mechanism to gain rent from). Any cell where the
+  lr-control flips the sign is reported as such, not averaged away.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
