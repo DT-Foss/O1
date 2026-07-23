@@ -2,9 +2,9 @@
   "generated_by": "src/score_predictions.py",
   "n_predictions": 13,
   "summary": {
-    "PENDING": 3,
+    "PENDING": 2,
     "CONFIRMED": 3,
-    "FALSIFIED": 1,
+    "FALSIFIED": 2,
     "PARTIAL": 6
   },
   "predictions": [
@@ -435,18 +435,18 @@
         "pos_sleep_cycles.json (full)",
         "pos_sleep_cycles_smoke.json (interim)"
       ],
-      "status": "PENDING",
-      "reason": "[INTERIM \u2014 smoke only, full run pending] source=pos_sleep_cycles_smoke (interim) gap(W_final-C_final)=+0.0326 (need>0.02) sleep_dividends=[-0.011712, 0.004157, 0.022616] verdict_string='W_final=4.907529 C_final=4.874924 | C-vs-W gap=+0.032605 (C ahead (closed loop wins)) | sleep dividends=[-0.011712, 0.004157, 0.022616] (sustained across cycles) | P15: PASS (gap>0.02: True, dividends sustained: True)'",
+      "status": "FALSIFIED",
+      "reason": "source=pos_sleep_cycles gap(W_final-C_final)=-0.0062 (need>0.02) sleep_dividends=[0.02263, 0.003836, -0.04233] verdict_string='W_final=4.820983 C_final=4.827193 | C-vs-W gap=-0.006210 (W ahead (continuous wake wins)) | sleep dividends=[0.02263, 0.003836, -0.04233] (sustained across cycles) | P15: FAIL (gap>0.02: False, dividends sustained: True)'",
       "measured": {
-        "has_full": false,
-        "source": "pos_sleep_cycles_smoke (interim)",
-        "gap": 0.03260500000000022,
+        "has_full": true,
+        "source": "pos_sleep_cycles",
+        "gap": -0.006210000000000271,
         "sleep_dividends": [
-          -0.011712,
-          0.004157,
-          0.022616
+          0.02263,
+          0.003836,
+          -0.04233
         ],
-        "verdict_string": "W_final=4.907529 C_final=4.874924 | C-vs-W gap=+0.032605 (C ahead (closed loop wins)) | sleep dividends=[-0.011712, 0.004157, 0.022616] (sustained across cycles) | P15: PASS (gap>0.02: True, dividends sustained: True)"
+        "verdict_string": "W_final=4.820983 C_final=4.827193 | C-vs-W gap=-0.006210 (W ahead (continuous wake wins)) | sleep dividends=[0.02263, 0.003836, -0.04233] (sustained across cycles) | P15: FAIL (gap>0.02: False, dividends sustained: True)"
       }
     },
     {

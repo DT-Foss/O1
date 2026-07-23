@@ -1,0 +1,16 @@
+Device: cpu
+[cycles] ckpt n_streamed=430,845,440 | budget=600 (3x(150+50)) | spike_quantile=0.75 max_replay_epochs=2.0 | base_heldout=4.787349
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_sleep_cycles.py:202: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return new_states, grad_tokens, float(loss), x.detach(), nll.detach()
+[cycles][W] chunks=200 heldout=4.783241
+[cycles][W] chunks=400 heldout=4.806357
+[cycles][W] chunks=600 heldout=4.820983
+[cycles][C] cycle=1 wake done (nominal=150+leftover=40) chunks=190 heldout=4.787432 new_spans=78 pool=78
+[cycles][C] cycle=1 sleep done chunks=200 heldout=4.764802 dividend=+0.022630 | pool_spans=78 pool_tokens=2551 replay_epochs=2.007 sleep_chunks_used=10/50
+[cycles][C] cycle=2 wake done (nominal=150+leftover=19) chunks=369 heldout=4.811622 new_spans=92 pool=170
+[cycles][C] cycle=2 sleep done chunks=400 heldout=4.807786 dividend=+0.003836 | pool_spans=170 pool_tokens=7709 replay_epochs=2.059 sleep_chunks_used=31/50
+[cycles][C] cycle=3 wake done (nominal=150+leftover=2) chunks=552 heldout=4.784864 new_spans=86 pool=256
+[cycles][C] cycle=3 sleep done chunks=600 heldout=4.827193 dividend=-0.042330 | pool_spans=256 pool_tokens=12241 replay_epochs=2.008 sleep_chunks_used=48/50
+[cycles] W_final=4.820983 C_final=4.827193 | C-vs-W gap=-0.006210 (W ahead (continuous wake wins)) | sleep dividends=[0.02263, 0.003836, -0.04233] (sustained across cycles) | P15: FAIL (gap>0.02: False, dividends sustained: True)
+[cycles] -> results/pos_sleep_cycles.json

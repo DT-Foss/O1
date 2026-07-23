@@ -69,3 +69,9 @@ curiosity, grows without restarting, and shares memory with others.
   as the snapshot matures (+0.033 → +0.0002 over ~250M tokens). MS6's sleep
   organ should therefore replay RECENT spans (freshness-weighted), and the
   dividend is largest mid-training — both now design inputs for CHIMERA.
+- day1 ~18:10 — M4/P15 final: FAIL in registered form at the mature snapshot
+  (~430M: gap −0.006, dividends decay +0.023→+0.004→−0.042 with healthy span
+  pools) — combined with MS2's finding, the sleep dividend has a LIFE CURVE:
+  strong early (+0.033 @10M), positive mid (@146M smoke), spent late.
+  **Coupling → MS6: the sleep organ gets a dividend monitor (measure each
+  sleep's heldout delta, throttle sleep when ≤0) instead of a fixed cadence.**

@@ -1,0 +1,114 @@
+{
+  "ckpt_n_streamed": 430845440,
+  "budget": {
+    "chunks_total": 600,
+    "n_wake": 150,
+    "n_sleep_max": 50,
+    "n_cycles": 3,
+    "max_replay_epochs": 2.0,
+    "spike_quantile": 0.75
+  },
+  "base_heldout": 4.787349,
+  "arms": {
+    "W": {
+      "curve": [
+        [
+          0,
+          4.787349
+        ],
+        [
+          200,
+          4.783241
+        ],
+        [
+          400,
+          4.806357
+        ],
+        [
+          600,
+          4.820983
+        ]
+      ],
+      "final": 4.820983,
+      "delta": -0.033634,
+      "grad_tokens": 307200
+    },
+    "C": {
+      "curve": [
+        [
+          0,
+          "base",
+          4.787349
+        ],
+        [
+          190,
+          "wake1",
+          4.787432
+        ],
+        [
+          200,
+          "sleep1",
+          4.764802
+        ],
+        [
+          369,
+          "wake2",
+          4.811622
+        ],
+        [
+          400,
+          "sleep2",
+          4.807786
+        ],
+        [
+          552,
+          "wake3",
+          4.784864
+        ],
+        [
+          600,
+          "sleep3",
+          4.827193
+        ]
+      ],
+      "final": 4.827193,
+      "delta": -0.039844,
+      "grad_tokens": 307200,
+      "sleep_dividends": [
+        0.02263,
+        0.003836,
+        -0.04233
+      ],
+      "n_spans_collected_per_cycle": [
+        78,
+        92,
+        86
+      ],
+      "n_spans_total": 256,
+      "sleep_detail": [
+        {
+          "n_spans": 78,
+          "span_tokens": 2551,
+          "replay_epochs_effective": 2.007,
+          "n_sleep_chunks_used": 10,
+          "n_leftover_wake_chunks": 40
+        },
+        {
+          "n_spans": 170,
+          "span_tokens": 7709,
+          "replay_epochs_effective": 2.059,
+          "n_sleep_chunks_used": 31,
+          "n_leftover_wake_chunks": 19
+        },
+        {
+          "n_spans": 256,
+          "span_tokens": 12241,
+          "replay_epochs_effective": 2.008,
+          "n_sleep_chunks_used": 48,
+          "n_leftover_wake_chunks": 2
+        }
+      ]
+    }
+  },
+  "verdict": "W_final=4.820983 C_final=4.827193 | C-vs-W gap=-0.006210 (W ahead (continuous wake wins)) | sleep dividends=[0.02263, 0.003836, -0.04233] (sustained across cycles) | P15: FAIL (gap>0.02: False, dividends sustained: True)"
+}
