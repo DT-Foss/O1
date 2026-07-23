@@ -55,7 +55,7 @@ If fewer than 2 reviewed harnesses are waiting, build the next entry NOW
 (prediction registered first). Builders cost no CPU — an empty builder queue
 next to free builders is the only true time-waste in this lab.*
 
-1. MS12b — inference-time α-clamp, the direct pollution causality test (P29) — 🔨 building
+1. MS12c — the 2×2 clamp×magnitude-refresh (P30) — 🔨 building
 2. MS14 — Adam-moment migration (P27) — full on beast
 3. MS4 — auto-q curiosity homeostasis on the shock harness (P28) — smoke running
 3. MS7 — two organisms, one index (P-tbd before build)
@@ -187,3 +187,10 @@ next to free builders is the only true time-waste in this lab.*
   ONLY — if pollution binds the knee, the clamp must move it immediately,
   no training involved. Science hygiene note: 'bar 0.8 makes the curriculum
   ignite' in the M3 notes was a misreading; ignition never happened anywhere.
+- day3 ~22:00 — P29 harvested: pollution is REAL and exactly removable
+  (drift 0.0 under eval-clamp) but NOT the binding constraint past 512 —
+  the filler write is a DOUBLE AGENT (pollutes phase, feeds magnitude:
+  30-80x refresh unclamped vs 0.0007 collapse clamped). The knee is
+  magnitude-bound. P30 registered: the 2x2 clamp x in-state magnitude
+  refresh (the FOUNDATIONS-F3-disclosed variant) that fully disentangles
+  the two axes — prediction: clamp+refresh moves the knee to >= 2048.

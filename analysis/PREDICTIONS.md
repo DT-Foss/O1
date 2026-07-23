@@ -241,6 +241,26 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   pollution is real but NOT the binding constraint at 512+ — the honest
   alternative (magnitude floor? phase SNR?) becomes the next measurement.
 
+- **P29 SCORED (results/holo_alpha_clamp.json): (a) CONFIRMED — the eval
+  clamp eliminates trained filler drift exactly (0.0 rad @512, both seeds;
+  the zero-drive law demonstrated on the trained model); (c) CONFIRMED
+  (in-range recall −5pp, at tolerance); (b) NOT MET — the clamped knee (640
+  mean) is not higher than unclamped (768). The honest fallback fired, with
+  the mechanism visible in the raw data: WITHOUT filler writes the magnitude
+  collapses unfed (mag_ratio → 0.0007 @2048, snr-alive 1.0→0.09) while
+  unclamped filler writes REFRESH it (30–80×) even as they pollute the
+  phase. The filler write is a double agent: phase pollutant, magnitude
+  feeder. The knee past 512 is MAGNITUDE-bound, not pollution-bound.**
+- **P30 — the 2×2 that disentangles the two axes (MS12c, registered before
+  the build):** eval-time arms {clamp, no-clamp} × {in-state magnitude
+  refresh at chunk boundaries (renormalize |S|→1, phase untouched — the
+  variant disclosed in FOUNDATIONS F3; eps-guarded so a zeroed state stays
+  dead), no-refresh} on the M3-recipe model: (a) clamp+refresh knee ≥ 2048;
+  (b) ordering clamp+refresh > refresh-only > unclamped > clamp-only (drift
+  costs recall once magnitude is guaranteed; feeding beats starving); (c)
+  zeroed-at-gap null stays at chance in every arm (the refresh must not
+  invent information); (d) in-range recall @G≤128 within 5pp everywhere.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

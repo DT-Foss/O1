@@ -1,0 +1,565 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "eval_alpha_clamp": true,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 3000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 100,
+    "g_start": 2,
+    "patience": 25,
+    "curriculum_bar": 0.8,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "128,256,512,1024,2048",
+    "drift_gaps": "128,512,2048",
+    "seeds": "0,1",
+    "lam_list": "0,3e-3,1e-2,3e-2",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_alpha_clamp.json"
+  },
+  "equivalence": {
+    "reference_streaming": 0.0,
+    "magnorm": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "recipe": "M3 V2_kickstart_magnorm, lambda=0 (identical to P25's control arm / lam0check), trained ONCE per seed. Eval sweep + drift diagnosis run THREE times per seed against the SAME trained model: unclamped, alpha-clamped-to-0 on filler positions (eval-only), and alpha-clamped-to-0.5x (dose midpoint). No training-time change.",
+  "kickstart_logit": 5.3,
+  "kickstart_head": 0,
+  "curriculum": {
+    "seed0": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "final_task_loss": 0.7412,
+      "final_alpha_reg": 0.0,
+      "mean_alpha_filler_last_window": 0.439836,
+      "alpha_log_window": 100
+    },
+    "seed1": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5,
+      "final_task_loss": 0.759,
+      "final_alpha_reg": 0.0,
+      "mean_alpha_filler_last_window": 0.434672,
+      "alpha_log_window": 100
+    }
+  },
+  "sweep": {
+    "unclamped|seed0|G128": {
+      "seed": 0,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.43,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "unclamped|seed0|G256": {
+      "seed": 0,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.42,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "unclamped|seed0|G512": {
+      "seed": 0,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.37,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.01
+    },
+    "unclamped|seed0|G1024": {
+      "seed": 0,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.22,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.1
+    },
+    "unclamped|seed0|G2048": {
+      "seed": 0,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 2048,
+      "accuracy": 0.12,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.08
+    },
+    "clamp_full|seed0|G128": {
+      "seed": 0,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.28,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "clamp_full|seed0|G256": {
+      "seed": 0,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.29,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "clamp_full|seed0|G512": {
+      "seed": 0,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.18,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.01
+    },
+    "clamp_full|seed0|G1024": {
+      "seed": 0,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.24,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.1
+    },
+    "clamp_full|seed0|G2048": {
+      "seed": 0,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 2048,
+      "accuracy": 0.12,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.08
+    },
+    "clamp_half|seed0|G128": {
+      "seed": 0,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.47,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "clamp_half|seed0|G256": {
+      "seed": 0,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.42,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "clamp_half|seed0|G512": {
+      "seed": 0,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.38,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.01
+    },
+    "clamp_half|seed0|G1024": {
+      "seed": 0,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.22,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.1
+    },
+    "clamp_half|seed0|G2048": {
+      "seed": 0,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 2048,
+      "accuracy": 0.12,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.08
+    },
+    "unclamped|seed1|G128": {
+      "seed": 1,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.49,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.08
+    },
+    "unclamped|seed1|G256": {
+      "seed": 1,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.45,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.07
+    },
+    "unclamped|seed1|G512": {
+      "seed": 1,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.39,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.09
+    },
+    "unclamped|seed1|G1024": {
+      "seed": 1,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.22,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "unclamped|seed1|G2048": {
+      "seed": 1,
+      "arm": "unclamped",
+      "clamp_factor": null,
+      "P": 2,
+      "G": 2048,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.08
+    },
+    "clamp_full|seed1|G128": {
+      "seed": 1,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.54,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.08
+    },
+    "clamp_full|seed1|G256": {
+      "seed": 1,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.46,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.07
+    },
+    "clamp_full|seed1|G512": {
+      "seed": 1,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.23,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.09
+    },
+    "clamp_full|seed1|G1024": {
+      "seed": 1,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.26,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "clamp_full|seed1|G2048": {
+      "seed": 1,
+      "arm": "clamp_full",
+      "clamp_factor": 0.0,
+      "P": 2,
+      "G": 2048,
+      "accuracy": 0.0,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.08
+    },
+    "clamp_half|seed1|G128": {
+      "seed": 1,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.49,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.08
+    },
+    "clamp_half|seed1|G256": {
+      "seed": 1,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.46,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.07
+    },
+    "clamp_half|seed1|G512": {
+      "seed": 1,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 512,
+      "accuracy": 0.39,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.09
+    },
+    "clamp_half|seed1|G1024": {
+      "seed": 1,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 1024,
+      "accuracy": 0.22,
+      "chance": 0.0625,
+      "beats_chance_3x": true,
+      "zeroed_null_accuracy": 0.06
+    },
+    "clamp_half|seed1|G2048": {
+      "seed": 1,
+      "arm": "clamp_half",
+      "clamp_factor": 0.5,
+      "P": 2,
+      "G": 2048,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false,
+      "zeroed_null_accuracy": 0.08
+    }
+  },
+  "knees": {
+    "seed0_unclamped": {
+      "knee_G": 1024,
+      "ref_G": 128,
+      "acc_at_ref": 0.43
+    },
+    "seed0_clamp_full": {
+      "knee_G": 1024,
+      "ref_G": 128,
+      "acc_at_ref": 0.28
+    },
+    "seed0_clamp_half": {
+      "knee_G": 512,
+      "ref_G": 128,
+      "acc_at_ref": 0.47
+    },
+    "seed1_unclamped": {
+      "knee_G": 512,
+      "ref_G": 128,
+      "acc_at_ref": 0.49
+    },
+    "seed1_clamp_full": {
+      "knee_G": 256,
+      "ref_G": 128,
+      "acc_at_ref": 0.54
+    },
+    "seed1_clamp_half": {
+      "knee_G": 512,
+      "ref_G": 128,
+      "acc_at_ref": 0.49
+    }
+  },
+  "drift": {
+    "seed0_unclamped": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 1.144748,
+        "mag_ratio_mean": 156.306305,
+        "snr_alive_frac": 1.0
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.332957,
+        "mag_ratio_mean": 80.911072,
+        "snr_alive_frac": 1.0
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 1.33917,
+        "mag_ratio_mean": 73.526741,
+        "snr_alive_frac": 1.0
+      }
+    },
+    "seed0_clamp_full": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 0.0,
+        "mag_ratio_mean": 0.132437,
+        "snr_alive_frac": 0.2484
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 0.0,
+        "mag_ratio_mean": 0.027559,
+        "snr_alive_frac": 0.2491
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 0.0,
+        "mag_ratio_mean": 0.000691,
+        "snr_alive_frac": 0.0912
+      }
+    },
+    "seed0_clamp_half": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 1.021396,
+        "mag_ratio_mean": 78.178383,
+        "snr_alive_frac": 0.9997
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.318392,
+        "mag_ratio_mean": 40.456898,
+        "snr_alive_frac": 0.9997
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 1.338898,
+        "mag_ratio_mean": 36.76334,
+        "snr_alive_frac": 1.0
+      }
+    },
+    "seed1_unclamped": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 1.034993,
+        "mag_ratio_mean": 19.523367,
+        "snr_alive_frac": 0.9988
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.060618,
+        "mag_ratio_mean": 28.646513,
+        "snr_alive_frac": 0.9991
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 1.084322,
+        "mag_ratio_mean": 33.594032,
+        "snr_alive_frac": 0.9994
+      }
+    },
+    "seed1_clamp_full": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 0.0,
+        "mag_ratio_mean": 0.098377,
+        "snr_alive_frac": 0.2188
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 0.0,
+        "mag_ratio_mean": 0.013133,
+        "snr_alive_frac": 0.2178
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 0.0,
+        "mag_ratio_mean": 3.2e-05,
+        "snr_alive_frac": 0.0581
+      }
+    },
+    "seed1_clamp_half": {
+      "128": {
+        "G": 128,
+        "dphi_snr_gated_weighted": 0.96003,
+        "mag_ratio_mean": 9.783686,
+        "snr_alive_frac": 0.9984
+      },
+      "512": {
+        "G": 512,
+        "dphi_snr_gated_weighted": 1.054896,
+        "mag_ratio_mean": 14.326053,
+        "snr_alive_frac": 0.9991
+      },
+      "2048": {
+        "G": 2048,
+        "dphi_snr_gated_weighted": 1.084313,
+        "mag_ratio_mean": 16.797022,
+        "snr_alive_frac": 0.9991
+      }
+    }
+  },
+  "per_arm_summary": {
+    "unclamped": {
+      "clamp_factor": null,
+      "mean_knee_G": 768.0,
+      "mean_drift_at_512": 1.1967875000000001,
+      "mean_acc_at_G128": 0.45999999999999996
+    },
+    "clamp_full": {
+      "clamp_factor": 0.0,
+      "mean_knee_G": 640.0,
+      "mean_drift_at_512": 0.0,
+      "mean_acc_at_G128": 0.41000000000000003
+    },
+    "clamp_half": {
+      "clamp_factor": 0.5,
+      "mean_knee_G": 512.0,
+      "mean_drift_at_512": 1.186644,
+      "mean_acc_at_G128": 0.48
+    }
+  },
+  "verdict": "P29a (clamped drift@512 < 0.3 rad): CONFIRMED (clamped=0.0, unclamped=1.1967875000000001) | P29b (clamped knee >= 1024): NOT MET (clamped=640.0, unclamped=768.0) | P29c (recall@G128 unchanged within 5pp): CONFIRMED (unclamped=0.45999999999999996, clamped=0.41000000000000003) | HONEST READING: pollution is real (drift suppressed) but NOT the binding constraint at 512+ -- the knee is capped by something else (magnitude floor? phase SNR?) even once filler alpha-write is eliminated at eval time. That becomes the next measurement, per the pre-registered fallback in P29's text. | dose midpoint (clamp_half=0.5x): drift@512=1.186644, knee=512.0, acc@G128=0.48",
+  "elapsed_s": 52.4
+}
