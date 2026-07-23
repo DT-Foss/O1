@@ -1,0 +1,64 @@
+Device: cpu
+[autoq] ckpt n_streamed=547,356,672 | phase_chunks=150 eval_every=25 | B=8 K=64 lr=0.003
+[autoq] homeostat: r_star=0.25 halflife=50.0 chunks k=0.5 q0=0.75 clip=[0.5,0.95]
+[autoq] code-val slice: 19,968 tokens, unk_rate=0.4438
+[autoq] base_heldout_wt2=4.772888
+
+[autoq] ===== arm fixed =====
+[autoq][fixed] phase=base    chunk=   0 wt2=4.772888 code=4.473982
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00000-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00000-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00009-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_auto_q.py:187: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return new_states, x.numel(), float(loss)
+[autoq][fixed] phase=phase1  chunk=  25 wt2=4.771334 code=4.409584
+[autoq][fixed] phase=phase1  chunk=  50 wt2=4.792674 code=4.458489
+[autoq][fixed] phase=phase1  chunk=  75 wt2=4.756018 code=4.478679
+[autoq][fixed] phase=phase1  chunk= 100 wt2=4.752261 code=4.450612
+[autoq][fixed] phase=phase1  chunk= 125 wt2=4.751898 code=4.448234
+[autoq][fixed] phase=phase1  chunk= 150 wt2=4.753265 code=4.441342
+[autoq][fixed] phase=phase2  chunk= 175 wt2=4.794256 code=4.174929
+[autoq][fixed] phase=phase2  chunk= 200 wt2=4.855101 code=4.050586
+[autoq][fixed] phase=phase2  chunk= 225 wt2=5.024650 code=3.910121
+[autoq][fixed] phase=phase2  chunk= 250 wt2=5.092523 code=3.966343
+[autoq][fixed] phase=phase2  chunk= 275 wt2=5.103740 code=4.025149
+[autoq][fixed] phase=phase2  chunk= 300 wt2=5.005077 code=3.875886
+[autoq][fixed] phase=phase3  chunk= 325 wt2=4.819365 code=4.235973
+[autoq][fixed] phase=phase3  chunk= 350 wt2=4.812161 code=4.149977
+[autoq][fixed] phase=phase3  chunk= 375 wt2=4.817342 code=4.133560
+[autoq][fixed] phase=phase3  chunk= 400 wt2=4.811948 code=4.069334
+[autoq][fixed] phase=phase3  chunk= 425 wt2=4.791741 code=4.057756
+[autoq][fixed] phase=phase3  chunk= 450 wt2=4.782454 code=4.086525
+[autoq][fixed] forgetting=+0.350475 plasticity=+0.565456 recovery=+0.029189 gate_frac=0.3378 (by phase: {'phase1': 0.4533, 'phase2': 0.2267, 'phase3': 0.3333}) grad_tokens=77,824
+
+[autoq] ===== arm auto =====
+[autoq][auto] phase=base    chunk=   0 wt2=4.772888 code=4.473982
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00001-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+[autoq][auto] phase=phase1  chunk=  25 wt2=4.765871 code=4.414970
+[autoq][auto] phase=phase1  chunk=  50 wt2=4.785296 code=4.460637
+[autoq][auto] phase=phase1  chunk=  75 wt2=4.758897 code=4.480285
+[autoq][auto] phase=phase1  chunk= 100 wt2=4.745940 code=4.468150
+[autoq][auto] phase=phase1  chunk= 125 wt2=4.743405 code=4.469773
+[autoq][auto] phase=phase1  chunk= 150 wt2=4.780472 code=4.456701
+[autoq][auto] phase=phase2  chunk= 175 wt2=4.861356 code=4.117007
+[autoq][auto] phase=phase2  chunk= 200 wt2=4.927409 code=4.032087
+[autoq][auto] phase=phase2  chunk= 225 wt2=5.120476 code=3.901670
+[autoq][auto] phase=phase2  chunk= 250 wt2=5.181918 code=3.958396
+[autoq][auto] phase=phase2  chunk= 275 wt2=5.122575 code=3.989415
+[autoq][auto] phase=phase2  chunk= 300 wt2=5.029826 code=3.892346
+[autoq][auto] phase=phase3  chunk= 325 wt2=4.844306 code=4.204560
+[autoq][auto] phase=phase3  chunk= 350 wt2=4.824498 code=4.245975
+[autoq][auto] phase=phase3  chunk= 375 wt2=4.819384 code=4.166310
+[autoq][auto] phase=phase3  chunk= 400 wt2=4.828113 code=4.132918
+[autoq][auto] phase=phase3  chunk= 425 wt2=4.831812 code=4.121621
+[autoq][auto] phase=phase3  chunk= 450 wt2=4.826386 code=4.129309
+[autoq][auto] forgetting=+0.401446 plasticity=+0.564355 recovery=+0.045914 gate_frac=0.3267 (by phase: {'phase1': 0.4933, 'phase2': 0.2467, 'phase3': 0.24}) grad_tokens=75,264
+[autoq][auto] q_by_phase={'phase1': {'min': 0.5, 'median': 0.75, 'max': 0.95}, 'phase2': {'min': 0.5, 'median': 0.733286, 'max': 0.857589}, 'phase3': {'min': 0.54157, 'median': 0.762098, 'max': 0.95}}
+
+[autoq] gate_frac auto(phase1/2/3)={'phase1': 0.4933, 'phase2': 0.2467, 'phase3': 0.24} fixed(phase1/2/3)={'phase1': 0.4533, 'phase2': 0.2267, 'phase3': 0.3333} | forgetting auto=+0.401446 fixed=+0.350475 | plasticity auto=+0.564355 fixed=+0.565456 | q_median phase1/2/3=0.75/0.733286/0.762098 | P28: PARTIAL/FAIL (a=False, b=False, c=False)
+[autoq] -> results/pos_auto_q.json

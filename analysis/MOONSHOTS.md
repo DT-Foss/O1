@@ -22,7 +22,7 @@ curiosity, grows without restarting, and shares memory with others.
 | MS1 | **Learned to be reminded** (consultation IN training) | the state+index seam disappears: hybrid ≥0.85 at P=16, and the model learns to ARBITRATE state vs. injection | M5 ✅ | ✅ |
 | MS2 | **The dream generator** (generative replay) | sleep without storage: training on the model's OWN sampled dreams rivals stored-span replay — memory becomes optional | M4 ✅ | 💀 |
 | MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | ✅ |
-| MS4 | **Curiosity homeostasis** (self-set q) | the organism sets its own learning threshold; adaptive q beats every fixed q on non-stationary streams | MS3 harness | ⏳ |
+| MS4 | **Curiosity homeostasis** (self-set q) | the organism sets its own learning threshold; adaptive q beats every fixed q on non-stationary streams | MS3 harness | 💀 |
 | MS5 | **Language-stream holographic recall** (holo graft on the 400M-token POS model) | the knee/carrier story leaves synthetic MQAR: real facts recalled over real silence in a real language stream | M3 ✅, POS ckpt | ⏳ |
 | MS6 | **CHIMERA — the complete organism** | all validated organs in ONE process on real text, measured against the sum of its parts | MS1, MS2/M4, MS3 | ⏳ |
 | MS7 | **Two organisms, one index** (social memory) | organism B learns from A's surprises: collective memory across O(1) individuals | M5 ✅ | ⏳ |
@@ -217,3 +217,10 @@ next to free builders is the only true time-waste in this lab.*
   +0.007->+0.002 over 65min) at ~10x smaller magnitude than registered —
   MS11-coherent; final scoring in Phase B. Fleet note: beast family runs
   needed hard single-threading; C4-streaming jobs are the slow ones there.
+- day3 ~23:45 — MS4 💀 P28 falsified cleanly: the rate-homeostat achieves
+  its target exactly and loses exactly because of it — it damps the shock
+  response instead of sharpening it (+0.401 vs +0.350 forgetting at equal
+  plasticity). The fixed quantile IS the better curiosity policy; the
+  organism should keep its bar, not its rate. (A surprise-level-target
+  controller is a new question, not a rescue.) ms5 full restarted with
+  --eval-skip 50000 (the full path still had the expensive default).

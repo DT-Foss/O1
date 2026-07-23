@@ -330,6 +330,20 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   matches fixed's forgetting (+0.274 vs +0.281) at 18% fewer gradient
   tokens. Full run follows after the fix.
 
+- **P28 SCORED (results/pos_auto_q.json, full, anti-windup fixed):
+  FALSIFIED — and the mechanism is instructive.** The controller works as
+  designed (q moves freely: medians 0.75/0.73/0.76; phase-2 gate rate lands
+  exactly on target, 0.247 vs r*=0.25). That is precisely why it loses:
+  under shock it holds the RATE constant instead of getting pickier — q
+  even dips during phase 2 (0.733 < 0.75), admitting mid-surprise chunks —
+  and forgets MORE than fixed q (+0.401 vs +0.350) at equal code
+  plasticity (0.564 vs 0.565). (a) also out: both arms gate ~0.45–0.49 in
+  phase 1 (the registered band was too tight for a warm-snapshot resume).
+  Honest verdict: rate-homeostasis is the WRONG controller — the fixed
+  quantile's shock response (gate the top surprises, whatever the rate) is
+  the better curiosity policy. A surprise-LEVEL target instead of a rate
+  target would be a new registered question, not a rescue of this one.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
