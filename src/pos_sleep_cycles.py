@@ -160,7 +160,10 @@ from collections import deque
 sys.path.insert(0, "reference")
 sys.path.insert(0, "src")
 
-os.nice(19)
+try:
+    os.nice(19)
+except OSError:
+    pass          # already at max niceness (launched under `nice -n 19`)
 
 import numpy as np
 import torch
