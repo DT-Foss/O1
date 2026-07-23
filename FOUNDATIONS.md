@@ -1,7 +1,7 @@
 # FOUNDATIONS — the primitives underlying the o1-state architecture
 
 **Author: David Tom Foss · Public technical disclosure, first published in this
-repository 2026-07-24 (commit timestamp is authoritative). This document
+repository 2026-07-22 (commit timestamp is authoritative). This document
 deliberately discloses each foundation in its broadest form, including
 contemplated variants and generalizations beyond the specific implementations
 in `src/`. Everything below is prior art as of its commit date.**
