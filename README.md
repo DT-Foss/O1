@@ -29,7 +29,7 @@ Formal statements, each over the *class* of systems it applies to, in
 | F1 | **The surprise calculus** — the learner's own prediction error is the universal control signal: when to learn, what to store, when to consult, when and how much to sleep, how curious to be | POS: ~25% gradient tokens ≈ 100% of full-gradient learning (§9); span store, sleep dosing, runtime consultation (§11–12) |
 | F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10); any state×weight mismatch heals in 256 tokens (§14) |
 | F3 | **Phase–magnitude separation** — in complex bound states, content (phase) is written and never evolves; persistence (magnitude) decays; the two never mix | zero-drive phase invariance \|Δφ\| ≈ 1e-8; knee moved 32→2176+ via the disclosed clamp+refresh pair, an interaction of both axes (§10) |
-| F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall 0.15→0.51 at P=16; reminded reads ~1.0 (§12) |
+| F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall at P=16: base 0.10–0.20 → 0.41–0.62 (§12); reminded reads ~1.0 (§12) |
 | F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.98× of POS-on-GSSM, GSSM ahead 0.156 nats head-to-head (§13) |
 | F6 | **Train short, deploy unbounded** — no absolute position + exactness ⇒ tiny training horizons, unbounded deployment | ×0.98 PPL at 4096×; 1B tokens at flat 4.36 GB (§4); recall flat across 8 detached boundaries (§10) |
 
@@ -524,9 +524,9 @@ The organism stores its own high-surprise spans (F1) and replays them offline. M
 ### 12 — The two-system law, closed loop: index + state, reminded reads at ~1.0
 
 Above the state's capacity cliff (Contribution 8), the external index carries the load —
-measured end-to-end on recall. At P=16 pairs (far above state capacity; state alone 0.15),
-runtime injection of index content lifts recall to **0.51**, dose-dependent, with the
-random-injection control at floor. Training *with* stochastic consultation makes the read
+measured end-to-end on recall. At P=16 pairs (far above state capacity; state alone
+0.10–0.20 across cells), runtime injection of index content lifts recall to **0.41–0.62**
+— a consistent 2–4× lift, dose-dependent, with the random-injection control at floor. Training *with* stochastic consultation makes the read
 near-perfect: **0.99–1.00 at P=2** (vs 0.72–0.84 un-reminded) — the model learns to *be
 reminded* (F4). Held-out-key controls kill the lookup-table explanation: binding generalizes
 to never-trained keys.
