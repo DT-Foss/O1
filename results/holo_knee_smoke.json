@@ -1,0 +1,178 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 800,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 60,
+    "g_start": 2,
+    "patience": 25,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "32,128,256",
+    "zero_null_gaps": "128,512",
+    "seeds": "0",
+    "variants": "T1_baseline_v3,T2_fullseq_curriculum",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_knee_smoke.json",
+    "variants_list": [
+      "T1_baseline_v3",
+      "T2_fullseq_curriculum"
+    ]
+  },
+  "equivalence": 0.0,
+  "chance": 0.0625,
+  "kickstart_logit": 5.3,
+  "kickstart_head": 0,
+  "curriculum": {
+    "seed0_T1_baseline_v3": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.625,
+      "train_mode": "chunked",
+      "train_gap_cap": 10
+    },
+    "seed0_T2_fullseq_curriculum": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.625,
+      "train_mode": "fullseq",
+      "train_gap_cap": 128
+    }
+  },
+  "sweep": {
+    "T1_baseline_v3|seed0|G32": {
+      "seed": 0,
+      "variant": "T1_baseline_v3",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.5833,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "T1_baseline_v3|seed0|G128": {
+      "seed": 0,
+      "variant": "T1_baseline_v3",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.55,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "T1_baseline_v3|seed0|G128|zeroed": {
+      "seed": 0,
+      "variant": "T1_baseline_v3",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.0667,
+      "arm": "zeroed_at_gap"
+    },
+    "T1_baseline_v3|seed0|G256": {
+      "seed": 0,
+      "variant": "T1_baseline_v3",
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.35,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "T2_fullseq_curriculum|seed0|G32": {
+      "seed": 0,
+      "variant": "T2_fullseq_curriculum",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.5833,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "T2_fullseq_curriculum|seed0|G128": {
+      "seed": 0,
+      "variant": "T2_fullseq_curriculum",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.55,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "T2_fullseq_curriculum|seed0|G128|zeroed": {
+      "seed": 0,
+      "variant": "T2_fullseq_curriculum",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.0667,
+      "arm": "zeroed_at_gap"
+    },
+    "T2_fullseq_curriculum|seed0|G256": {
+      "seed": 0,
+      "variant": "T2_fullseq_curriculum",
+      "P": 2,
+      "G": 256,
+      "accuracy": 0.35,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    }
+  },
+  "gamma_spectrum": {
+    "seed0_T1_baseline_v3": {
+      "per_layer_head": [
+        [
+          0.494499,
+          0.52708,
+          0.516806,
+          0.547944
+        ],
+        [
+          0.679872,
+          0.847291,
+          0.818548,
+          0.728667
+        ]
+      ],
+      "max_gamma": 0.847291,
+      "tau_at_max_gamma": 6.5
+    },
+    "seed0_T2_fullseq_curriculum": {
+      "per_layer_head": [
+        [
+          0.494499,
+          0.52708,
+          0.516806,
+          0.547944
+        ],
+        [
+          0.679872,
+          0.847291,
+          0.818548,
+          0.728667
+        ]
+      ],
+      "max_gamma": 0.847291,
+      "tau_at_max_gamma": 6.5
+    }
+  },
+  "knees": {
+    "seed0_T1_baseline_v3": {
+      "knee_G": 256,
+      "ref_G": 32,
+      "acc_at_ref": 0.5833
+    },
+    "seed0_T2_fullseq_curriculum": {
+      "knee_G": 256,
+      "ref_G": 32,
+      "acc_at_ref": 0.5833
+    }
+  },
+  "theory_check": [
+    "T1_baseline_v3: mean_knee_G=256.0  max_filler_gamma=0.8473  tau=1/(1-gamma)=6.5",
+    "T2_fullseq_curriculum: mean_knee_G=256.0  max_filler_gamma=0.8473  tau=1/(1-gamma)=6.5"
+  ],
+  "verdict": "P1 (T2 knee>=256): CONFIRMED (measured 256.0) | P2 (T3 knee>=1024): NOT MET (measured None) | P3 (knee order tracks filler-gamma order): CONFIRMED (knee order ['T1_baseline_v3', 'T2_fullseq_curriculum'], gamma order ['T1_baseline_v3', 'T2_fullseq_curriculum'])",
+  "elapsed_s": 9.6
+}

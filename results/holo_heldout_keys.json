@@ -1,0 +1,458 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "p_max": 64,
+    "train_keys": 40,
+    "v_max": 16,
+    "f_fillers": 16,
+    "heldout_rate": 0.2,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 2000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 200,
+    "g_start": 2,
+    "patience": 25,
+    "train_gap_cap": 0,
+    "log_every": 0,
+    "gaps": "0,8,32",
+    "seeds": "0,1",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_heldout_keys.json"
+  },
+  "key_split": {
+    "key_lo": 0,
+    "n_train_keys": 40,
+    "n_test_keys": 24
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "holo_carried|train_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.495,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.5,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|train_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.505,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.56,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|train_keys|G32|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.565,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G32|seed0": {
+      "seed": 0,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.525,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.45,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.505,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.495,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.555,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G32|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.54,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G32|seed0": {
+      "seed": 0,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.565,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_zeroed_at_gap|train_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G0|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.095,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|train_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G8|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|train_keys|G32|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.035,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G32|seed0": {
+      "seed": 0,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.065,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_carried|train_keys|G0|seed1": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.585,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G0|seed1": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.62,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|train_keys|G8|seed1": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.565,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G8|seed1": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.585,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|train_keys|G32|seed1": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.51,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_carried|test_keys|G32|seed1": {
+      "seed": 1,
+      "arm": "holo_carried",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.575,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G0|seed1": {
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.605,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G0|seed1": {
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.605,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G8|seed1": {
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.565,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G8|seed1": {
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.59,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|train_keys|G32|seed1": {
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.53,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_off|test_keys|G32|seed1": {
+      "seed": 1,
+      "arm": "holo_off",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.54,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo_zeroed_at_gap|train_keys|G0|seed1": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.09,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G0|seed1": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 0,
+      "accuracy": 0.035,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|train_keys|G8|seed1": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.075,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G8|seed1": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 8,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|train_keys|G32|seed1": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "train_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo_zeroed_at_gap|test_keys|G32|seed1": {
+      "seed": 1,
+      "arm": "holo_zeroed_at_gap",
+      "key_set": "test_keys",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.04,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "curriculum": {
+    "seed0_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.7812,
+      "train_gap_cap": 10
+    },
+    "seed0_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.6875,
+      "train_gap_cap": 10
+    },
+    "seed0_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.7812,
+      "train_gap_cap": 10
+    },
+    "seed1_holo_carried": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "train_gap_cap": 10
+    },
+    "seed1_holo_off": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4375,
+      "train_gap_cap": 10
+    },
+    "seed1_holo_zeroed_at_gap": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4688,
+      "train_gap_cap": 10
+    }
+  },
+  "generalization_gap": {
+    "holo_carried": {
+      "G0": -0.02,
+      "G8": -0.0375,
+      "G32": -0.0125
+    },
+    "holo_off": {
+      "G0": -0.0275,
+      "G8": -0.0425,
+      "G32": -0.0175
+    },
+    "holo_zeroed_at_gap": {
+      "G0": 0.01,
+      "G8": 0.005,
+      "G32": -0.005
+    }
+  },
+  "verdict": "BOTH ARMS GENERALIZE to held-out keys \u2014 the channel-allocation hypothesis for the v3 P11 tie-break is wrong (or incomplete); embedding geometry alone appears to carry enough key identity for the magnitude-only baseline to bind unseen keys too",
+  "verdict_detail": [
+    "holo_carried         G=   0: train_keys=0.540 test_keys=0.560 gen_gap=-0.020  chance=0.062",
+    "holo_carried         G=   8: train_keys=0.535 test_keys=0.573 gen_gap=-0.037  chance=0.062",
+    "holo_carried         G=  32: train_keys=0.537 test_keys=0.550 gen_gap=-0.013  chance=0.062",
+    "holo_off             G=   0: train_keys=0.527 test_keys=0.555 gen_gap=-0.028  chance=0.062",
+    "holo_off             G=   8: train_keys=0.530 test_keys=0.573 gen_gap=-0.043  chance=0.062",
+    "holo_off             G=  32: train_keys=0.535 test_keys=0.552 gen_gap=-0.018  chance=0.062",
+    "holo_zeroed_at_gap   G=   0: train_keys=0.075 test_keys=0.065 gen_gap=+0.010  chance=0.062",
+    "holo_zeroed_at_gap   G=   8: train_keys=0.073 test_keys=0.068 gen_gap=+0.005  chance=0.062",
+    "holo_zeroed_at_gap   G=  32: train_keys=0.048 test_keys=0.053 gen_gap=-0.005  chance=0.062"
+  ],
+  "elapsed_s": 58.3
+}

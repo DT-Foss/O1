@@ -1,0 +1,97 @@
+{
+  "config": {
+    "smoke": false,
+    "full": false,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 200,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 40,
+    "g_start": 2,
+    "patience": 25,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "32,128",
+    "zero_null_gaps": "",
+    "seeds": "0",
+    "variants": "T3_fullseq_kickstart",
+    "out": "results/holo_knee_t3check.json",
+    "variants_list": [
+      "T3_fullseq_kickstart"
+    ]
+  },
+  "equivalence": 0.0,
+  "chance": 0.0625,
+  "kickstart_logit": 5.3,
+  "kickstart_head": 0,
+  "curriculum": {
+    "seed0_T3_fullseq_kickstart": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.4062,
+      "train_mode": "fullseq",
+      "train_gap_cap": 128
+    }
+  },
+  "sweep": {
+    "T3_fullseq_kickstart|seed0|G32": {
+      "seed": 0,
+      "variant": "T3_fullseq_kickstart",
+      "P": 2,
+      "G": 32,
+      "accuracy": 0.375,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "T3_fullseq_kickstart|seed0|G128": {
+      "seed": 0,
+      "variant": "T3_fullseq_kickstart",
+      "P": 2,
+      "G": 128,
+      "accuracy": 0.1,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "gamma_spectrum": {
+    "seed0_T3_fullseq_kickstart": {
+      "per_layer_head": [
+        [
+          0.994807,
+          0.547528,
+          0.549893,
+          0.548625
+        ],
+        [
+          0.694921,
+          0.77369,
+          0.755716,
+          0.743876
+        ]
+      ],
+      "max_gamma": 0.994807,
+      "tau_at_max_gamma": 192.6,
+      "max_channel_gamma": 0.996891,
+      "tau_at_max_channel": 321.6
+    }
+  },
+  "knees": {
+    "seed0_T3_fullseq_kickstart": {
+      "knee_G": 32,
+      "ref_G": 32,
+      "acc_at_ref": 0.375
+    }
+  },
+  "theory_check": [
+    "T3_fullseq_kickstart: mean_knee_G=32.0  max_filler_gamma=0.9948  tau=1/(1-gamma)=192.6"
+  ],
+  "verdict": "P1 (T2 knee>=256): NOT MET (measured None) | P2 (T3 knee>=1024): NOT MET (measured 32.0) | P3 (knee order tracks filler-gamma order): NOT MET (knee order ['T3_fullseq_kickstart'], gamma order ['T3_fullseq_kickstart'])",
+  "elapsed_s": 1.8
+}

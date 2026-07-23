@@ -115,6 +115,26 @@ streaming state is real (0.8 at P=2 through 32-token gaps, +27 pp over the
 magnitude baseline, null at chance), and the open frontier is a measured
 decay knee, not a mystery. Phase B+ items below, updated accordingly.
 
+## Day-1 moonshot M1: held-out keys — P12 falsified, and the finding underneath
+
+*Added ~07:45. Data: results/holo_heldout_keys.json (2000 iters) and
+_8k.json (8000 iters, the consolidation control); P12 was registered in
+ef93620 before the runs.*
+
+- **Both arms generalize to never-trained-as-key ids** — generalization gap
+  ≈ 0 (−0.04…+0.08) against a 0.49 margin over chance, at 2k AND 8k iters,
+  null at chance. The P12 dichotomy (phase = function vs baseline = lookup
+  table) was wrongly posed: the magnitude arm's binding is ALSO a function of
+  embedding geometry, not a per-key register file. Channel-allocation-as-
+  lookup is dead as an explanation of anything in this series.
+- **The v3 phase advantage does not appear at P_max=64** (both arms ~0.55 vs
+  v3's 0.80/0.53 at P_max=16), and this is NOT a budget artifact: 4× the
+  iterations produced no consolidation trend (final_train_acc 0.38–0.63,
+  curriculum never left G=2). In this config (d=64, V=16, 64 keys) the task
+  plateaus for both mechanisms. Open question for Phase B+: is the phase
+  advantage a small-key-space phenomenon, or does it return with capacity
+  (d_model, n_slots) scaled to the key space?
+
 ## Next attacks (Phase B+)
 
 1. **Compositional-binding test** — where the phase must pay rent: P_max=256
