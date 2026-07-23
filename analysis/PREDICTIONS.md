@@ -100,6 +100,26 @@ with explicit references back to each P-number.
   holo−off ≥ **+15 pp** at G≤32. If it does NOT return, the v3 phase
   advantage is a small-key-space phenomenon — scored honestly either way.
 
+## Wave 3 — the dynamic portfolio opens (registered day 1 ~15:05, see analysis/MOONSHOTS.md)
+
+- **P18 — learned to be reminded (MS1):** training WITH stochastic
+  consultation (p=0.5 correct, p=0.1 wrong injection) lifts hybrid@P=16 from
+  M5's 0.51 to **≥0.85**; base (no injection) stays within 5pp of M5's base
+  (the skill is arbitration, not degradation); and on wrong injections the
+  trained model loses LESS than M5's random arm did (it learns to weigh
+  state against reminder).
+- **P19 — the dream generator (MS2):** training on the model's own sampled
+  continuations ("dreams", same gradient budget, warm opt) beats fresh data
+  (self-distillation stabilizes: dream delta > fresh delta by ≥0.03) but
+  loses to stored-span replay (real surprises carry information dreams
+  cannot invent). If dream ≥ sleep instead: storage-free consolidation —
+  MS6/MS7 redesign per MOONSHOTS.md rule 2.
+- **P20 — domain shock (MS3):** on C4→code→C4, full-gradient learns code
+  fastest but forgets most (WT-2 heldout degrades ≥0.15 during the code
+  phase); surprise-gating alone forgets less at comparable code plasticity;
+  gating + dosed replay of phase-1 spans forgets the least (≤50% of
+  full-gradient's forgetting) — sleep as the anti-forgetting organ.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
