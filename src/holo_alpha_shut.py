@@ -1102,6 +1102,141 @@ def run_eval_clamp_refresh(args):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# 3d. P36 (MS12d) — null hardening. F6 flagged that P30c's zeroed-at-gap null
+#     (the decisive "no information is being invented" control) was measured
+#     at whatever eval_batch the sweep happened to use, which at small G can
+#     be as few as ~25-100 episodes -- not enough to rule out sampling noise
+#     being the reason a cell reads a point or two off chance. This mode
+#     trains the SAME lambda=0 M3-recipe model per seed (identical path to
+#     P29/P30's build -- reused, not re-derived) and RE-MEASURES the P30c
+#     zeroed-at-gap null under the same four {clamp,no-clamp} x {refresh,
+#     no-refresh} arms at G in {1024, 2048} ONLY, with eval_batch forced to
+#     >= 100 (no G-dependent shrinkage the P30 sweep applies at 1024+ -- this
+#     mode exists specifically to remove that shrinkage). Gate: every cell
+#     within 3pp of chance (tighter than P30c's 5pp -- the hardened bar F6
+#     asked for).
+# ═══════════════════════════════════════════════════════════════════════════
+def run_null_hardening(args):
+    """P36 orchestration: train ONE lambda=0 M3-recipe model per seed
+    (train_fullseq_curriculum_alphashut with lam=0.0, byte-identical build
+    path to P29/P30), then re-measure ONLY the zeroed-at-gap null
+    (eval_gap_recall_chunked_zeroed_clamprefresh) across the four P30 arms
+    at G in {1024, 2048}, with eval_batch >= 100 forced regardless of what
+    --eval-batch requests (max() floor below) -- large-batch is the entire
+    point of this hardening pass."""
+    P_max, V_max, F = args.p_max, args.v_max, args.f_fillers
+    key_lo, val_lo, fill_lo, vocab_size = _gap_vocab(P_max, V_max, F)
+    mask_idx = vocab_size
+    P = args.pairs
+    chance = 1.0 / V_max
+
+    Gs_null = [int(g) for g in args.null_gaps.split(",")]
+    seeds = [int(s) for s in args.seeds.split(",")]
+    eval_batch_hardened = max(100, args.eval_batch)
+    arms = [("unclamped_norefresh", (None, False)),
+            ("clamp_norefresh", (0.0, False)),
+            ("unclamped_refresh", (None, True)),
+            ("clamp_refresh", (0.0, True))]
+
+    print("=" * 78)
+    print("HOLO-ALPHA-SHUT — P36/MS12d: null hardening (P30c zeroed-at-gap null, eval_batch>=100)")
+    print(f"P={P}  P_max={P_max} V_max={V_max} F={F} vocab={vocab_size}  chance={chance:.4f}")
+    print(f"null gaps(G)={Gs_null}  seeds={seeds}  eval_batch={eval_batch_hardened}  arms={[a for a,_ in arms]}")
+    print("=" * 78)
+
+    print("\n── equivalence gates (reused, un-normalized + magnorm) ──")
+    eq_ref = check_equivalence(vocab_size, mask_idx, seed=0, T=48, chunk=16, use_phase=True)
+    eq_magnorm = check_equivalence_magnorm(vocab_size, mask_idx, seed=0, T=48, chunk=args.chunk,
+                                           d_model=args.d_model, n_layers=args.n_layers,
+                                           n_heads=args.n_heads, d_head=args.d_head)
+    print(f"   reference_streaming max|Δ| = {eq_ref:.3e}")
+    print(f"   magnorm             max|Δ| = {eq_magnorm:.3e}")
+    eq_ok = eq_ref < 1e-5 and eq_magnorm < 1e-5
+    print(f"   {'PASS' if eq_ok else 'FAIL — do not trust anything below'}")
+    equivalence = {"reference_streaming": eq_ref, "magnorm": eq_magnorm, "passed": eq_ok}
+    if not eq_ok:
+        out = {"config": vars(args), "equivalence": equivalence,
+              "verdict": "VOID — equivalence check failed"}
+        os.makedirs(RESULTS, exist_ok=True)
+        json.dump(out, open(args.out, "w"), indent=2)
+        print(f"\n→ {args.out}")
+        return
+
+    t0 = time.time()
+    results = {"config": vars(args), "equivalence": equivalence, "chance": chance,
+              "eval_batch_hardened": eval_batch_hardened,
+              "recipe": "M3 V2_kickstart_magnorm, lambda=0, trained ONCE per seed (identical build "
+                        "path to P29/P30). Re-measures ONLY the P30c zeroed-at-gap null across the "
+                        "same four clamp/refresh arms, at G in {1024,2048}, with eval_batch forced "
+                        ">= 100 (no shrinkage) -- the F6-flagged sampling-noise gap on the decisive "
+                        "no-information-invented control.",
+              "refresh_eps": REFRESH_EPS, "gate_pp": 3.0,
+              "curriculum": {}, "null": {}}
+
+    for seed in seeds:
+        print(f"\n{'='*78}\nseed={seed}  (training M3 recipe, lambda=0, ONCE)\n{'='*78}")
+        torch.manual_seed(seed)
+        model = _build_lm_alphashut(vocab_size, mask_idx, args.d_model, args.n_layers,
+                                    args.n_heads, args.d_head)
+        curr = train_fullseq_curriculum_alphashut(
+            model, P, args.g_train_max, args.iters, args.lr, seed, args.batch, 0.0,
+            P_max, V_max, F, log_every=args.log_every, g_start=args.g_start,
+            patience=args.patience, bar=args.curriculum_bar)
+        results["curriculum"][f"seed{seed}"] = curr
+        print(f"  curriculum done: final_train_gap={curr['final_train_gap']} "
+              f"final_train_acc={curr['final_train_acc']:.3f}")
+
+        for arm_name, (factor, refresh) in arms:
+            print(f"  ── arm={arm_name} (clamp_factor={factor}, refresh={refresh}) ──")
+            for G in Gs_null:
+                acc0 = eval_gap_recall_chunked_zeroed_clamprefresh(
+                    model, P, G, eval_batch_hardened, seed + 1000 + G,
+                    P_max, V_max, F, args.chunk, factor, refresh)
+                dev_pp = round(abs(acc0 - chance) * 100, 3)
+                sk = f"{arm_name}|seed{seed}|G{G}"
+                results["null"][sk] = {"seed": seed, "arm": arm_name, "clamp_factor": factor,
+                                       "refresh": refresh, "G": G, "eval_batch": eval_batch_hardened,
+                                       "accuracy": round(acc0, 4), "chance": round(chance, 4),
+                                       "deviation_pp": dev_pp, "within_3pp_of_chance": bool(dev_pp <= 3.0)}
+                print(f"      G={G:>5}: zeroed-null acc={acc0:.4f} (chance {chance:.4f})  "
+                      f"deviation={dev_pp}pp  {'PASS' if dev_pp <= 3.0 else 'FAIL'}")
+
+    all_cells = list(results["null"].values())
+    all_within_3pp = all(c["within_3pp_of_chance"] for c in all_cells) if all_cells else None
+    worst = max(all_cells, key=lambda c: c["deviation_pp"]) if all_cells else None
+
+    per_G = {}
+    for G in Gs_null:
+        cells_G = [c for c in all_cells if c["G"] == G]
+        per_G[str(G)] = {"n_cells": len(cells_G),
+                         "all_within_3pp": all(c["within_3pp_of_chance"] for c in cells_G) if cells_G else None,
+                         "max_deviation_pp": max((c["deviation_pp"] for c in cells_G), default=None)}
+    results["per_G_summary"] = per_G
+
+    verdict_bits = []
+    verdict_bits.append(f"P36 (zeroed-at-gap null within 3pp of chance, every cell, eval_batch>={eval_batch_hardened}, "
+                        f"G in {Gs_null}, {len(seeds)} seed(s) x 4 arms = {len(all_cells)} cells): "
+                        f"{'CONFIRMED' if all_within_3pp else 'NOT MET'}")
+    if worst is not None:
+        verdict_bits.append(f"worst cell: {worst['arm']} seed{worst['seed']} G={worst['G']} "
+                            f"acc={worst['accuracy']} (chance {worst['chance']}) "
+                            f"deviation={worst['deviation_pp']}pp")
+
+    results["all_checks_pass"] = bool(all_within_3pp) if all_within_3pp is not None else False
+    results["verdict"] = " | ".join(verdict_bits)
+    results["elapsed_s"] = round(time.time() - t0, 1)
+
+    os.makedirs(RESULTS, exist_ok=True)
+    with open(args.out, "w") as f:
+        json.dump(results, f, indent=2)
+    print("\n" + "=" * 78)
+    print("VERDICT")
+    for b in verdict_bits:
+        print("  " + b)
+    print(f"\n→ {args.out}  ({results['elapsed_s']}s)")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # 4. Orchestration: build lambda x seed grid, train, eval sweep, drift
 #    diagnosis, dose-monotonicity + P25 checks, write JSON.
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1334,6 +1469,14 @@ def main():
                          "the 2x2 {clamp,no-clamp} x {magnitude-refresh,no-refresh} eval sweep + "
                          "drift diagnosis + zeroed-at-gap null, four arms, at eval time. --full "
                          "extends gaps to include 4096. Combine with --smoke for a fast sanity pass.")
+    ap.add_argument("--null-hardening", action="store_true",
+                    help="P36/MS12d mode: train ONE lambda=0 (M3 recipe) model per seed, then "
+                         "RE-MEASURE ONLY the P30c zeroed-at-gap null (four clamp/refresh arms) at "
+                         "G in --null-gaps (default 1024,2048) with eval_batch forced >= 100 (no "
+                         "G-dependent shrinkage). Gate: every cell within 3pp of chance. Combine "
+                         "with --smoke for a fast (smaller-batch, single-seed) sanity pass.")
+    ap.add_argument("--null-gaps", default="1024,2048",
+                    help="comma list of gaps for --null-hardening's zeroed-at-gap re-measurement")
     ap.add_argument("--p-max", type=int, default=16)
     ap.add_argument("--v-max", type=int, default=16)
     ap.add_argument("--f-fillers", type=int, default=16)
@@ -1359,10 +1502,13 @@ def main():
     ap.add_argument("--lam-list", default="0,3e-3,1e-2,3e-2", help="comma list of lambda values (alpha-shut weight)")
     ap.add_argument("--out", default=None, help="defaults to results/holo_alpha_shut.json ("
                     "or holo_alpha_clamp.json under --eval-alpha-clamp, holo_clamp_refresh.json "
-                    "under --eval-clamp-refresh), _smoke suffixed under --smoke")
+                    "under --eval-clamp-refresh, holo_null_hardening.json under --null-hardening), "
+                    "_smoke suffixed under --smoke")
     args = ap.parse_args()
 
-    if args.eval_clamp_refresh:
+    if args.null_hardening:
+        default_out = os.path.join(RESULTS, "holo_null_hardening.json")
+    elif args.eval_clamp_refresh:
         default_out = os.path.join(RESULTS, "holo_clamp_refresh.json")
     elif args.eval_alpha_clamp:
         default_out = os.path.join(RESULTS, "holo_alpha_clamp.json")
@@ -1379,6 +1525,12 @@ def main():
         args.drift_gaps = "128,512"
         args.g_train_max = min(args.g_train_max, 128)
         args.eval_batch = min(args.eval_batch, 40)
+        if args.null_hardening:
+            # smoke here means "fast build/gate sanity", NOT a relaxed null gate --
+            # P36 exists specifically to force eval_batch>=100, so smoke only
+            # shrinks --null-gaps to a single rung and shortens training iters;
+            # eval_batch stays hardened at >=100 inside run_null_hardening.
+            args.null_gaps = "1024"
         if args.out == default_out:
             root, ext = os.path.splitext(default_out)
             args.out = root + "_smoke" + ext
@@ -1392,7 +1544,9 @@ def main():
             args.gaps = "128,256,512,1024,2048"
         args.drift_gaps = "128,512,2048"
 
-    if args.eval_clamp_refresh:
+    if args.null_hardening:
+        run_null_hardening(args)
+    elif args.eval_clamp_refresh:
         run_eval_clamp_refresh(args)
     elif args.eval_alpha_clamp:
         run_eval_alpha_clamp(args)
