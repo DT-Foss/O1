@@ -384,6 +384,37 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   at 2500): the graft sits at d=128/P_max=16 — P_max·d=2048, squarely in
   the rent map's valley. Two instruments, one law.
 
+## Wave 7 — the three gaps it would be stupid not to close (registered day 4 ~07:30, before any build)
+
+- **P33 — CHIMERA v0 (MS6, src/chimera.py, spec in analysis/CHIMERA_SPEC.md):**
+  on the MS3 shock protocol at matched gradient tokens: (a) CHIMERA
+  forgetting ≤ R3's (+0.246) at ≥ R3's plasticity (+0.366); (b) CHIMERA
+  recovery beats R3's +0.234 — the dividend monitor must fix P20's
+  recovery overdose; (c) each ablation (minus-reminder, minus-monitor) is
+  worse than full CHIMERA on ≥1 axis; (d) no single-organ arm dominates
+  CHIMERA on all three axes. F1's locking experiment.
+- **P34 — the phase lifts binding rank per channel to ≥2 (src/rank_sweep.py):**
+  an Eckart–Young-style capacity sweep (K keys vs D channels, the
+  rank1_capacity method) on the COMPLEX holographic state: (a) inverting
+  the recall bound gives D_eff ≥ 1.8 per channel for the phase arm where
+  the scalar arm inverts to ~1.0 (measured anchor: D_eff≈1.02); (b) the
+  phase arm's capacity cliff sits at load ≈ 2K/D, the scalar's at ≈ K/D;
+  (c) attention validity gate at ~1.0 throughout. If D_eff stays ~1, the
+  phase's rent is NOT rank — the honest alternative (SNR-based) is stated.
+- **P35 — the gap ladder to a million (src/gap_ladder.py):** eval-only, on
+  the M3-recipe model with the P30 clamp+refresh prosthesis, gaps
+  {4096, 16384, 65536, 262144, 1048576} chunked-carried: (a) MQAR recall at
+  G=65536 ≥ 0.5× its G=4096 level; (b) the beacon bit (write-once-freeze
+  carrier, MS13 harness) survives G=1M at recall ≥ 0.9 with the refresh
+  prosthesis (γ=0.9995 alone decays at τ≈2000 — the refresh is load-bearing
+  and that is the point); (c) zeroed null at chance at every rung (large
+  eval batches per P36's protocol). Any rung that breaks is the measured
+  wall, reported as such.
+- **P36 — P30c null hardening (src/holo_alpha_shut.py --null-hardening):**
+  the zeroed-at-gap null re-run with eval batches ≥ 100 at G ∈ {1024, 2048}:
+  all null cells within 3pp of chance. Closes the F6-flagged sampling-noise
+  gap.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
