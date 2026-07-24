@@ -339,3 +339,25 @@ next to free builders is the only true time-waste in this lab.*
   regression protocol replaces run-vs-run bit-identity); MS18 registered
   (retrodiction head — David's time-mirror). Beacon ladder interim:
   G=16384 WITH-refresh 1.0000 vs WITHOUT 0.4600 (+54pp). Lifetime at 930M.
+- day6 evening — SECOND HARVEST WAVE: P40 scored (point call falsified in
+  the best direction: time-scrambled second stream is WORSE than none,
+  retained −0.575; corrected-sign counter fires at 0.141 nats; synthesis
+  with P37c ⇒ the mixed gate's fuel is TEMPORAL COHERENCE — not content,
+  not diversity; horizon-v2 licensed). P39 final (absolute overheads
+  35.5ms stall / 14.6ms-per-chunk replay; against the measured 81ms
+  production cadence (a) holds at 0.44 chunk slots, (c) replays 5.5×
+  faster than the source; ratios remain toy-cadence-undecidable, named).
+  Beacon-half OOM mystery SOLVED after two 25.6GB kills: the cold-control
+  forwarded (NB,G) in ONE pass — a single sub-30s allocation burst;
+  chunked+carried fix proven at the death rung (65536 in 79.9s at 1.3GB,
+  WITH-refresh 1.0000). NEW BEACON FINDING (interim): the refresh ladder
+  has a KNEE — 1.0000 at 65536, 0.5600 at 262144 (+11.5pp) — P35b's
+  ≥0.9@1M heading for falsification with a measured breakpoint. P41 smoke
+  self-diagnosed a step-inequality confound ⇒ clauses re-based on the
+  REAL−SHUFFLED contrast before the full (running at phase_chunks=200 on
+  core). P42 REGISTERED AND LAUNCHED (the anti-goalpost move): the exact
+  40h recipe at d=256/4× FLOPs to 50M tokens vs the 40h run's own
+  same-token anchor (0.9729@49.6M) — the width axis of the core law.
+  GOALPOST LINE FIXED IN WRITING: after this wave + Möbius ⇒ paper v0.2 →
+  arXiv; new organs go to backlog, not the critical path. Lifetime
+  crossing 1,000,000,000 streamed tokens tonight.
