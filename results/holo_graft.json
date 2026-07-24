@@ -1,0 +1,394 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "gaps": "8,32,128,256,512",
+    "seeds": "0,1",
+    "chunk": 32,
+    "iters": 2500,
+    "lr": 0.003,
+    "batch": 16,
+    "eval_batch": 100,
+    "g_start": 2,
+    "g_train_max": 64,
+    "patience": 25,
+    "bar": 0.8,
+    "log_every": 0,
+    "eval_skip": 50000,
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/holo_graft.json"
+  },
+  "fact_vocab": {
+    "key_words": [
+      "fernandez",
+      "rebuilt",
+      "angle",
+      "graves",
+      "arguing",
+      "opponent",
+      "acted",
+      "jurchens",
+      "preparing",
+      "spin",
+      "signal",
+      "creutz",
+      "bir",
+      "determine",
+      "retreat",
+      "fires",
+      "christians",
+      "suddenly",
+      "gwen",
+      "bears",
+      "pagoda",
+      "brooks",
+      "genera",
+      "asian",
+      "youtube",
+      "dubbed",
+      "saved",
+      "ongoing",
+      "ballad",
+      "hnc",
+      "dc",
+      "failing"
+    ],
+    "val_words": [
+      "wellington",
+      "uncle",
+      "rocks",
+      "tanks",
+      "memories",
+      "radiation",
+      "ignored",
+      "honours",
+      "sq",
+      "ideal",
+      "acre",
+      "measuring",
+      "dennis",
+      "sanskrit",
+      "mystery",
+      "ian"
+    ],
+    "rank_band": [
+      3000,
+      5000
+    ],
+    "n_keys": 32,
+    "n_vals": 16
+  },
+  "equivalence": {
+    "max_abs_delta": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "sweep": {
+    "holo|G8|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 8,
+      "accuracy": 0.97,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "ctrl|G8|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 8,
+      "accuracy": 0.92,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "null|G8|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 8,
+      "accuracy": 0.11,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G32|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 32,
+      "accuracy": 0.92,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "ctrl|G32|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 32,
+      "accuracy": 0.89,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "null|G32|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 32,
+      "accuracy": 0.11,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G128|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 128,
+      "accuracy": 0.12,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G128|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 128,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G128|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 128,
+      "accuracy": 0.1,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G256|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 256,
+      "accuracy": 0.04,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G256|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 256,
+      "accuracy": 0.05,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G256|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 256,
+      "accuracy": 0.05,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G512|seed0": {
+      "seed": 0,
+      "arm": "holo",
+      "G": 512,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G512|seed0": {
+      "seed": 0,
+      "arm": "ctrl",
+      "G": 512,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G512|seed0": {
+      "seed": 0,
+      "arm": "null",
+      "G": 512,
+      "accuracy": 0.04,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G8|seed1": {
+      "seed": 1,
+      "arm": "holo",
+      "G": 8,
+      "accuracy": 0.93,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "ctrl|G8|seed1": {
+      "seed": 1,
+      "arm": "ctrl",
+      "G": 8,
+      "accuracy": 0.96,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "null|G8|seed1": {
+      "seed": 1,
+      "arm": "null",
+      "G": 8,
+      "accuracy": 0.24,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "holo|G32|seed1": {
+      "seed": 1,
+      "arm": "holo",
+      "G": 32,
+      "accuracy": 0.9,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "ctrl|G32|seed1": {
+      "seed": 1,
+      "arm": "ctrl",
+      "G": 32,
+      "accuracy": 0.87,
+      "chance": 0.0625,
+      "beats_chance_3x": true
+    },
+    "null|G32|seed1": {
+      "seed": 1,
+      "arm": "null",
+      "G": 32,
+      "accuracy": 0.14,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G128|seed1": {
+      "seed": 1,
+      "arm": "holo",
+      "G": 128,
+      "accuracy": 0.14,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G128|seed1": {
+      "seed": 1,
+      "arm": "ctrl",
+      "G": 128,
+      "accuracy": 0.06,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G128|seed1": {
+      "seed": 1,
+      "arm": "null",
+      "G": 128,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G256|seed1": {
+      "seed": 1,
+      "arm": "holo",
+      "G": 256,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G256|seed1": {
+      "seed": 1,
+      "arm": "ctrl",
+      "G": 256,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G256|seed1": {
+      "seed": 1,
+      "arm": "null",
+      "G": 256,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "holo|G512|seed1": {
+      "seed": 1,
+      "arm": "holo",
+      "G": 512,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "ctrl|G512|seed1": {
+      "seed": 1,
+      "arm": "ctrl",
+      "G": 512,
+      "accuracy": 0.08,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    },
+    "null|G512|seed1": {
+      "seed": 1,
+      "arm": "null",
+      "G": 512,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "beats_chance_3x": false
+    }
+  },
+  "curriculum": {
+    "seed0_holo": {
+      "final_train_gap": 40,
+      "final_train_acc": 0.9375
+    },
+    "seed0_ctrl": {
+      "final_train_gap": 40,
+      "final_train_acc": 0.625
+    },
+    "seed1_holo": {
+      "final_train_gap": 61,
+      "final_train_acc": 0.75
+    },
+    "seed1_ctrl": {
+      "final_train_gap": 26,
+      "final_train_acc": 0.9375
+    }
+  },
+  "gamma_spectrum": {
+    "seed0": {
+      "use_phase": true,
+      "per_head_max_over_channels": [
+        0.9987,
+        0.9967,
+        0.998,
+        0.9983
+      ],
+      "per_head_mean_over_channels": [
+        0.5725,
+        0.5711,
+        0.5773,
+        0.5643
+      ],
+      "global_max_gamma": 0.9987
+    },
+    "seed1": {
+      "use_phase": true,
+      "per_head_max_over_channels": [
+        0.998,
+        0.9993,
+        0.9985,
+        0.9981
+      ],
+      "per_head_mean_over_channels": [
+        0.5641,
+        0.5989,
+        0.5096,
+        0.5643
+      ],
+      "global_max_gamma": 0.9993
+    }
+  },
+  "verdict": "language-stream keyed recall SURVIVES real text at at least one G (holo beats zeroed-at-gap null and clears 3x chance) \u2014 see per-G detail",
+  "detail": [
+    "G=8: holo=0.950 ctrl=0.940 null=0.175 chance=0.062 -> SURVIVES",
+    "G=32: holo=0.910 ctrl=0.880 null=0.125 chance=0.062 -> SURVIVES",
+    "G=128: holo=0.130 ctrl=0.060 null=0.085 chance=0.062 -> no",
+    "G=256: holo=0.055 ctrl=0.065 null=0.065 chance=0.062 -> no",
+    "G=512: holo=0.070 ctrl=0.070 null=0.055 chance=0.062 -> no"
+  ],
+  "p21_prediction": {
+    "statement": "holo-graft >= 3x chance (>=0.1875) at G=128 on real text; ctrl-graft below that; null at chance",
+    "holo_acc_at_g128_mean": 0.13,
+    "threshold": 0.1875,
+    "passed": false
+  },
+  "elapsed_s": 355.4
+}

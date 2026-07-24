@@ -1,0 +1,148 @@
+Device: cpu
+[shared_index] ckpt n_streamed=359,050,240 | a_chunks=30 b_phase_chunks=40 eval_every=10 | B=8 K=64 lr=0.003
+[shared_index] code-val slice: 19,968 tokens, unk_rate=0.4438
+[shared_index] base_heldout_wt2=4.798344
+
+[shared_index] ===== organism A (pre-learns the shock) =====
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00004-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00004-of-01024.json.gz
+Retrying in 2s [Retry 2/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00004-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'_ssl.c:983: The handshake operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00004-of-01024.json.gz
+Retrying in 2s [Retry 2/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00004-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00005-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00006-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'_ssl.c:983: The handshake operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00008-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00008-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00013-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_domain_shock.py:207: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return new_states, x.numel(), float(loss), x.detach(), nll.detach()
+[shared_index][A] done: 12 spans harvested (15 C4 chunks, 15 code chunks, 15,360 grad tokens) | unk_hist mean=0.1599 code_like_frac=0.0
+[shared_index][A] FROZEN — A's trajectory is not part of B's budget (P31d, structural by construction).
+
+[shared_index] ===== organism B, arm=shared =====
+[shared_index][shared] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00001-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+[shared_index][shared] phase=phase1  chunk=  10 wt2=4.785814 code=4.340442
+[shared_index][shared] phase=phase1  chunk=  20 wt2=4.797985 code=4.232465
+[shared_index][shared] phase=phase1  chunk=  30 wt2=4.790237 code=4.306491
+[shared_index][shared] phase=phase1  chunk=  40 wt2=4.815482 code=4.289293
+[shared_index][shared] phase=phase2  chunk=  46 wt2=4.916716 code=4.009313
+[shared_index][shared] phase=phase2_sleep chunk=  50 wt2=4.928963 code=3.962735
+[shared_index][shared] phase2 sleep: 4 chunks (pool=32 spans, 1472 tok, 1.39 epochs) -> wt2=4.928963 code=3.962735
+[shared_index][shared] phase=phase2  chunk=  56 wt2=4.914650 code=3.963310
+[shared_index][shared] phase=phase2_sleep chunk=  60 wt2=4.889246 code=4.029571
+[shared_index][shared] phase2 sleep: 4 chunks (pool=32 spans, 1472 tok, 1.39 epochs) -> wt2=4.889246 code=4.029571
+[shared_index][shared] phase=phase2  chunk=  66 wt2=4.889246 code=4.029571
+[shared_index][shared] phase=phase2_sleep chunk=  70 wt2=4.871364 code=4.068836
+[shared_index][shared] phase2 sleep: 4 chunks (pool=32 spans, 1472 tok, 1.39 epochs) -> wt2=4.871364 code=4.068836
+[shared_index][shared] phase=phase2  chunk=  76 wt2=4.871364 code=4.068836
+[shared_index][shared] phase=phase2_sleep chunk=  80 wt2=4.888731 code=4.076997
+[shared_index][shared] phase2 sleep: 4 chunks (pool=32 spans, 1472 tok, 1.39 epochs) -> wt2=4.888731 code=4.076997
+[shared_index][shared] phase=phase3  chunk=  86 wt2=4.898026 code=4.092846
+[shared_index][shared] phase=phase3_sleep chunk=  90 wt2=4.933567 code=4.159507
+[shared_index][shared] phase3 sleep: 4 chunks (pool=34 spans, 1567 tok, 1.31 epochs) -> wt2=4.933567 code=4.159507
+[shared_index][shared] phase=phase3  chunk=  96 wt2=4.942339 code=4.224949
+[shared_index][shared] phase=phase3_sleep chunk= 100 wt2=4.935963 code=4.222701
+[shared_index][shared] phase3 sleep: 4 chunks (pool=40 spans, 1852 tok, 1.11 epochs) -> wt2=4.935963 code=4.222701
+[shared_index][shared] phase=phase3  chunk= 106 wt2=4.902886 code=4.180552
+[shared_index][shared] phase=phase3_sleep chunk= 110 wt2=4.895962 code=4.196316
+[shared_index][shared] phase3 sleep: 4 chunks (pool=52 spans, 2394 tok, 0.86 epochs) -> wt2=4.895962 code=4.196316
+[shared_index][shared] phase=phase3  chunk= 116 wt2=4.895962 code=4.196316
+[shared_index][shared] phase=phase3_sleep chunk= 120 wt2=4.918418 code=4.211373
+[shared_index][shared] phase3 sleep: 4 chunks (pool=52 spans, 2394 tok, 0.86 epochs) -> wt2=4.918418 code=4.211373
+[shared_index][shared] forgetting=+0.113481 plasticity=+0.326558 recovery=+0.102936 gate_frac=0.7159 grad_tokens=48,640 own_spans=40
+
+[shared_index] ===== organism B, arm=private =====
+[shared_index][private] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][private] phase=phase1  chunk=  10 wt2=4.810737 code=4.414359
+[shared_index][private] phase=phase1  chunk=  20 wt2=4.794073 code=4.350171
+[shared_index][private] phase=phase1  chunk=  30 wt2=4.785006 code=4.433423
+[shared_index][private] phase=phase1  chunk=  40 wt2=4.809080 code=4.415712
+[shared_index][private] phase=phase2  chunk=  46 wt2=4.912515 code=4.121945
+[shared_index][private] phase=phase2_sleep chunk=  50 wt2=4.938490 code=4.068377
+[shared_index][private] phase2 sleep: 4 chunks (pool=22 spans, 1072 tok, 1.91 epochs) -> wt2=4.938490 code=4.068377
+[shared_index][private] phase=phase2  chunk=  56 wt2=4.920553 code=4.050665
+[shared_index][private] phase=phase2_sleep chunk=  60 wt2=4.894115 code=4.065858
+[shared_index][private] phase2 sleep: 4 chunks (pool=24 spans, 1173 tok, 1.75 epochs) -> wt2=4.894115 code=4.065858
+[shared_index][private] phase=phase2  chunk=  66 wt2=4.894115 code=4.065858
+[shared_index][private] phase=phase2_sleep chunk=  70 wt2=4.887322 code=4.058008
+[shared_index][private] phase2 sleep: 4 chunks (pool=24 spans, 1173 tok, 1.75 epochs) -> wt2=4.887322 code=4.058008
+[shared_index][private] phase=phase2  chunk=  76 wt2=4.887322 code=4.058008
+[shared_index][private] phase=phase2_sleep chunk=  80 wt2=4.914848 code=4.023812
+[shared_index][private] phase2 sleep: 4 chunks (pool=24 spans, 1173 tok, 1.75 epochs) -> wt2=4.914848 code=4.023812
+[shared_index][private] phase=phase3  chunk=  86 wt2=4.920878 code=4.017762
+[shared_index][private] phase=phase3_sleep chunk=  90 wt2=4.955247 code=4.045343
+[shared_index][private] phase3 sleep: 4 chunks (pool=26 spans, 1274 tok, 1.61 epochs) -> wt2=4.955247 code=4.045343
+[shared_index][private] phase=phase3  chunk=  96 wt2=4.970065 code=4.084861
+[shared_index][private] phase=phase3_sleep chunk= 100 wt2=4.982448 code=4.092044
+[shared_index][private] phase3 sleep: 4 chunks (pool=30 spans, 1478 tok, 1.39 epochs) -> wt2=4.982448 code=4.092044
+[shared_index][private] phase=phase3  chunk= 106 wt2=4.981827 code=4.069101
+[shared_index][private] phase=phase3_sleep chunk= 110 wt2=4.988802 code=4.077515
+[shared_index][private] phase3 sleep: 4 chunks (pool=36 spans, 1713 tok, 1.20 epochs) -> wt2=4.988802 code=4.077515
+[shared_index][private] phase=phase3  chunk= 116 wt2=4.993329 code=4.118436
+[shared_index][private] phase=phase3_sleep chunk= 120 wt2=4.994791 code=4.126731
+[shared_index][private] phase3 sleep: 4 chunks (pool=40 spans, 1863 tok, 1.10 epochs) -> wt2=4.994791 code=4.126731
+[shared_index][private] forgetting=+0.129410 plasticity=+0.391900 recovery=+0.185711 gate_frac=0.7386 grad_tokens=49,664 own_spans=40
+
+[shared_index] ===== organism B, arm=none =====
+[shared_index][none] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][none] phase=phase1  chunk=  10 wt2=4.803632 code=4.399210
+[shared_index][none] phase=phase1  chunk=  20 wt2=4.786944 code=4.332633
+[shared_index][none] phase=phase1  chunk=  30 wt2=4.779516 code=4.407744
+[shared_index][none] phase=phase1  chunk=  40 wt2=4.804694 code=4.398595
+[shared_index][none] phase=phase2  chunk=  50 wt2=5.041236 code=4.030432
+[shared_index][none] phase=phase2  chunk=  60 wt2=5.053909 code=4.020441
+[shared_index][none] phase=phase2  chunk=  70 wt2=5.063759 code=4.012900
+[shared_index][none] phase=phase2  chunk=  80 wt2=5.076111 code=3.980312
+[shared_index][none] phase=phase3  chunk=  90 wt2=4.954089 code=4.118268
+[shared_index][none] phase=phase3  chunk= 100 wt2=4.839669 code=4.297756
+[shared_index][none] phase=phase3  chunk= 110 wt2=4.816863 code=4.340186
+[shared_index][none] phase=phase3  chunk= 120 wt2=4.811857 code=4.344983
+[shared_index][none] forgetting=+0.271417 plasticity=+0.418283 recovery=+0.007163 gate_frac=0.5833 grad_tokens=35,840 own_spans=16
+
+[shared_index] ===== organism B, arm=shuffled =====
+[shared_index][shuffled] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][shuffled] phase=phase1  chunk=  10 wt2=4.791975 code=4.466594
+[shared_index][shuffled] phase=phase1  chunk=  20 wt2=4.784829 code=4.353895
+[shared_index][shuffled] phase=phase1  chunk=  30 wt2=4.780204 code=4.407449
+[shared_index][shuffled] phase=phase1  chunk=  40 wt2=4.801976 code=4.389746
+[shared_index][shuffled] phase=phase2  chunk=  46 wt2=4.899443 code=4.110634
+[shared_index][shuffled] phase=phase2_sleep chunk=  50 wt2=4.964403 code=4.039486
+[shared_index][shuffled] phase2 sleep: 4 chunks (pool=34 spans, 1561 tok, 1.31 epochs) -> wt2=4.964403 code=4.039486
+[shared_index][shuffled] phase=phase2  chunk=  56 wt2=4.984578 code=4.013196
+[shared_index][shuffled] phase=phase2_sleep chunk=  60 wt2=4.969865 code=4.033833
+[shared_index][shuffled] phase2 sleep: 4 chunks (pool=36 spans, 1657 tok, 1.24 epochs) -> wt2=4.969865 code=4.033833
+[shared_index][shuffled] phase=phase2  chunk=  66 wt2=4.969865 code=4.033833
+[shared_index][shuffled] phase=phase2_sleep chunk=  70 wt2=4.961645 code=4.065005
+[shared_index][shuffled] phase2 sleep: 4 chunks (pool=36 spans, 1657 tok, 1.24 epochs) -> wt2=4.961645 code=4.065005
+[shared_index][shuffled] phase=phase2  chunk=  76 wt2=4.961645 code=4.065005
+[shared_index][shuffled] phase=phase2_sleep chunk=  80 wt2=4.969619 code=4.079794
+[shared_index][shuffled] phase2 sleep: 4 chunks (pool=36 spans, 1657 tok, 1.24 epochs) -> wt2=4.969619 code=4.079794
+[shared_index][shuffled] phase=phase3  chunk=  86 wt2=4.935694 code=4.108547
+[shared_index][shuffled] phase=phase3_sleep chunk=  90 wt2=4.919701 code=4.120149
+[shared_index][shuffled] phase3 sleep: 4 chunks (pool=42 spans, 1902 tok, 1.08 epochs) -> wt2=4.919701 code=4.120149
+[shared_index][shuffled] phase=phase3  chunk=  96 wt2=4.908086 code=4.121040
+[shared_index][shuffled] phase=phase3_sleep chunk= 100 wt2=4.898215 code=4.099159
+[shared_index][shuffled] phase3 sleep: 4 chunks (pool=46 spans, 2085 tok, 0.98 epochs) -> wt2=4.898215 code=4.099159
+[shared_index][shuffled] phase=phase3  chunk= 106 wt2=4.878682 code=4.086024
+[shared_index][shuffled] phase=phase3_sleep chunk= 110 wt2=4.883150 code=4.097400
+[shared_index][shuffled] phase3 sleep: 4 chunks (pool=52 spans, 2338 tok, 0.88 epochs) -> wt2=4.883150 code=4.097400
+[shared_index][shuffled] phase=phase3  chunk= 116 wt2=4.883150 code=4.097400
+[shared_index][shuffled] phase=phase3_sleep chunk= 120 wt2=4.909508 code=4.073563
+[shared_index][shuffled] phase3 sleep: 4 chunks (pool=52 spans, 2338 tok, 0.88 epochs) -> wt2=4.909508 code=4.073563
+[shared_index][shuffled] forgetting=+0.182602 plasticity=+0.376550 recovery=+0.107532 gate_frac=0.7045 grad_tokens=48,128 own_spans=40
+
+[shared_index] forgetting shared=+0.113481 private=+0.129410 none=+0.271417 shuffled=+0.182602 | plasticity shared=+0.326558 private=+0.391900 | A: 12 spans (0.0% code-like by unk_rate>0.3) | P31: PARTIAL/FAIL (a: False, b: False, c: True, d: True)
+[shared_index] -> results/pos_shared_index_smoke.json

@@ -357,6 +357,33 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   interference (no phase mechanism to gain rent from). Any cell where the
   lr-control flips the sign is reported as such, not averaged away.
 
+- **P31 SCORED (results/pos_shared_index.json, full): CONFIRMED, all four
+  checks.** B replaying A's spans through the code shock forgets +0.156 vs
+  +0.233 with only its own spans (ratio 0.67 ≤ 0.7) at BETTER plasticity
+  (0.542 vs 0.518); the token-shuffled control (+0.317) is nearly as bad as
+  no replay (+0.376) — the benefit is content, not noise regularization.
+  A's store: 64 spans, 7.8% code-like. Collective memory across O(1)
+  individuals is real: one organism's surprises are another's immunity.
+- **P32 SCORED (results/holo_rent_map.json, full 16-cell grid): (a) PARTIAL
+  (low-ratio cells < 5pp holds; high-ratio ≥ 10pp fails), (b) FALSIFIED —
+  no ratio law (ratio-4 cells span 44pp: +32.1 to −11.9) and the interim
+  product law also breaks at d=256. The map itself is the result: the
+  phase pays robust rent only in the SCARCE CORNER (P_max ≤ 16 AND
+  d ≤ 64: +11 to +32pp), a near-zero valley in between (±3pp), and a
+  second positive region at mid-P_max × large d (16–32/256: +12.5/+13.4 —
+  the M6/P17 capacity-return, now mapped), with the extreme corners
+  lr-sensitive and excluded. No one-parameter law fits; two rent regions
+  separated by a valley is the measured shape.
+- **P21 SCORED (results/holo_graft.json, full, both seeds): FALSIFIED as
+  registered — and explained by the rent map.** The graft on the frozen
+  475M-token organism recalls facts over REAL C4 text at 0.90–0.97 through
+  G=32 (zeroed null at chance in every cell — the carried state carries the
+  binding; real-text filler γ reaches 0.9996), but G=128 lands at 0.12–0.14
+  (~2× chance, not the registered 3×; ctrl exactly at chance). And the
+  phase rent vs ctrl vanishes at full budget (+37pp at 600 iters → +1–3pp
+  at 2500): the graft sits at d=128/P_max=16 — P_max·d=2048, squarely in
+  the rent map's valley. Two instruments, one law.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

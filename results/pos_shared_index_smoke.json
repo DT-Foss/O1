@@ -1,0 +1,1168 @@
+{
+  "ckpt_n_streamed": 359050240,
+  "phase2_dataset": "codeparrot/github-code-clean (language==Python, client-filtered)",
+  "budget": {
+    "a_chunks": 30,
+    "phase_chunks": 40,
+    "eval_every": 10,
+    "sleep_chunks_max": 4,
+    "max_replay_epochs": 2.0,
+    "gate_q": 0.75,
+    "gate_window": 200,
+    "min_window": 50,
+    "spike_min_nll": 7.0,
+    "span_half": 32,
+    "sleep_every_n_chunks": 10
+  },
+  "code_val_tokens": 19968,
+  "code_val_unk_rate": 0.443777,
+  "base_heldout_wt2": 4.798344,
+  "organism_a": {
+    "n_spans": 12,
+    "grad_tokens": 15360,
+    "n_c4_chunks": 15,
+    "n_code_chunks": 15,
+    "span_unk_histogram": {
+      "edges": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.01
+      ],
+      "counts": [
+        2,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "n": 12,
+      "mean": 0.1599,
+      "code_like_frac": 0.0
+    },
+    "span_token_total": 544,
+    "frozen_note": "A does not train after this point; A is deepcopy-isolated from B."
+  },
+  "organism_b_arms": {
+    "shared": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.798344
+        ],
+        [
+          10,
+          "phase1",
+          4.785814
+        ],
+        [
+          20,
+          "phase1",
+          4.797985
+        ],
+        [
+          30,
+          "phase1",
+          4.790237
+        ],
+        [
+          40,
+          "phase1",
+          4.815482
+        ],
+        [
+          46,
+          "phase2",
+          4.916716
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.928963
+        ],
+        [
+          56,
+          "phase2",
+          4.91465
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.889246
+        ],
+        [
+          66,
+          "phase2",
+          4.889246
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.871364
+        ],
+        [
+          76,
+          "phase2",
+          4.871364
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.888731
+        ],
+        [
+          86,
+          "phase3",
+          4.898026
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.933567
+        ],
+        [
+          96,
+          "phase3",
+          4.942339
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.935963
+        ],
+        [
+          106,
+          "phase3",
+          4.902886
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.895962
+        ],
+        [
+          116,
+          "phase3",
+          4.895962
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.918418
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.440183
+        ],
+        [
+          10,
+          "phase1",
+          4.340442
+        ],
+        [
+          20,
+          "phase1",
+          4.232465
+        ],
+        [
+          30,
+          "phase1",
+          4.306491
+        ],
+        [
+          40,
+          "phase1",
+          4.289293
+        ],
+        [
+          46,
+          "phase2",
+          4.009313
+        ],
+        [
+          50,
+          "phase2_sleep",
+          3.962735
+        ],
+        [
+          56,
+          "phase2",
+          3.96331
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.029571
+        ],
+        [
+          66,
+          "phase2",
+          4.029571
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.068836
+        ],
+        [
+          76,
+          "phase2",
+          4.068836
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.076997
+        ],
+        [
+          86,
+          "phase3",
+          4.092846
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.159507
+        ],
+        [
+          96,
+          "phase3",
+          4.224949
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.222701
+        ],
+        [
+          106,
+          "phase3",
+          4.180552
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.196316
+        ],
+        [
+          116,
+          "phase3",
+          4.196316
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.211373
+        ]
+      ],
+      "grad_tokens_total": 48640,
+      "n_chunks_gated": 63,
+      "n_chunks_seen": 88,
+      "gate_frac": 0.7159,
+      "pre_phase2_wt2": 4.815482,
+      "pre_phase2_code": 4.289293,
+      "post_phase3_wt2": 4.918418,
+      "forgetting": 0.113481,
+      "plasticity": 0.326558,
+      "recovery": 0.102936,
+      "n_own_spans_collected": 40,
+      "sleep_events": [
+        {
+          "phase": "phase2",
+          "global_idx": 50,
+          "n_sleep_chunks": 4,
+          "pool_size": 32,
+          "pool_tokens": 1472,
+          "replay_epochs": 1.391,
+          "wt2_after": 4.928963,
+          "code_after": 3.962735
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 60,
+          "n_sleep_chunks": 4,
+          "pool_size": 32,
+          "pool_tokens": 1472,
+          "replay_epochs": 1.391,
+          "wt2_after": 4.889246,
+          "code_after": 4.029571
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 70,
+          "n_sleep_chunks": 4,
+          "pool_size": 32,
+          "pool_tokens": 1472,
+          "replay_epochs": 1.391,
+          "wt2_after": 4.871364,
+          "code_after": 4.068836
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 80,
+          "n_sleep_chunks": 4,
+          "pool_size": 32,
+          "pool_tokens": 1472,
+          "replay_epochs": 1.391,
+          "wt2_after": 4.888731,
+          "code_after": 4.076997
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 90,
+          "n_sleep_chunks": 4,
+          "pool_size": 34,
+          "pool_tokens": 1567,
+          "replay_epochs": 1.307,
+          "wt2_after": 4.933567,
+          "code_after": 4.159507
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 100,
+          "n_sleep_chunks": 4,
+          "pool_size": 40,
+          "pool_tokens": 1852,
+          "replay_epochs": 1.106,
+          "wt2_after": 4.935963,
+          "code_after": 4.222701
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 110,
+          "n_sleep_chunks": 4,
+          "pool_size": 52,
+          "pool_tokens": 2394,
+          "replay_epochs": 0.855,
+          "wt2_after": 4.895962,
+          "code_after": 4.196316
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 120,
+          "n_sleep_chunks": 4,
+          "pool_size": 52,
+          "pool_tokens": 2394,
+          "replay_epochs": 0.855,
+          "wt2_after": 4.918418,
+          "code_after": 4.211373
+        }
+      ]
+    },
+    "private": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.798344
+        ],
+        [
+          10,
+          "phase1",
+          4.810737
+        ],
+        [
+          20,
+          "phase1",
+          4.794073
+        ],
+        [
+          30,
+          "phase1",
+          4.785006
+        ],
+        [
+          40,
+          "phase1",
+          4.80908
+        ],
+        [
+          46,
+          "phase2",
+          4.912515
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.93849
+        ],
+        [
+          56,
+          "phase2",
+          4.920553
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.894115
+        ],
+        [
+          66,
+          "phase2",
+          4.894115
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.887322
+        ],
+        [
+          76,
+          "phase2",
+          4.887322
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.914848
+        ],
+        [
+          86,
+          "phase3",
+          4.920878
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.955247
+        ],
+        [
+          96,
+          "phase3",
+          4.970065
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.982448
+        ],
+        [
+          106,
+          "phase3",
+          4.981827
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.988802
+        ],
+        [
+          116,
+          "phase3",
+          4.993329
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.994791
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.440183
+        ],
+        [
+          10,
+          "phase1",
+          4.414359
+        ],
+        [
+          20,
+          "phase1",
+          4.350171
+        ],
+        [
+          30,
+          "phase1",
+          4.433423
+        ],
+        [
+          40,
+          "phase1",
+          4.415712
+        ],
+        [
+          46,
+          "phase2",
+          4.121945
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.068377
+        ],
+        [
+          56,
+          "phase2",
+          4.050665
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.065858
+        ],
+        [
+          66,
+          "phase2",
+          4.065858
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.058008
+        ],
+        [
+          76,
+          "phase2",
+          4.058008
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.023812
+        ],
+        [
+          86,
+          "phase3",
+          4.017762
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.045343
+        ],
+        [
+          96,
+          "phase3",
+          4.084861
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.092044
+        ],
+        [
+          106,
+          "phase3",
+          4.069101
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.077515
+        ],
+        [
+          116,
+          "phase3",
+          4.118436
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.126731
+        ]
+      ],
+      "grad_tokens_total": 49664,
+      "n_chunks_gated": 65,
+      "n_chunks_seen": 88,
+      "gate_frac": 0.7386,
+      "pre_phase2_wt2": 4.80908,
+      "pre_phase2_code": 4.415712,
+      "post_phase3_wt2": 4.994791,
+      "forgetting": 0.12941,
+      "plasticity": 0.3919,
+      "recovery": 0.185711,
+      "n_own_spans_collected": 40,
+      "sleep_events": [
+        {
+          "phase": "phase2",
+          "global_idx": 50,
+          "n_sleep_chunks": 4,
+          "pool_size": 22,
+          "pool_tokens": 1072,
+          "replay_epochs": 1.91,
+          "wt2_after": 4.93849,
+          "code_after": 4.068377
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 60,
+          "n_sleep_chunks": 4,
+          "pool_size": 24,
+          "pool_tokens": 1173,
+          "replay_epochs": 1.746,
+          "wt2_after": 4.894115,
+          "code_after": 4.065858
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 70,
+          "n_sleep_chunks": 4,
+          "pool_size": 24,
+          "pool_tokens": 1173,
+          "replay_epochs": 1.746,
+          "wt2_after": 4.887322,
+          "code_after": 4.058008
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 80,
+          "n_sleep_chunks": 4,
+          "pool_size": 24,
+          "pool_tokens": 1173,
+          "replay_epochs": 1.746,
+          "wt2_after": 4.914848,
+          "code_after": 4.023812
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 90,
+          "n_sleep_chunks": 4,
+          "pool_size": 26,
+          "pool_tokens": 1274,
+          "replay_epochs": 1.608,
+          "wt2_after": 4.955247,
+          "code_after": 4.045343
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 100,
+          "n_sleep_chunks": 4,
+          "pool_size": 30,
+          "pool_tokens": 1478,
+          "replay_epochs": 1.386,
+          "wt2_after": 4.982448,
+          "code_after": 4.092044
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 110,
+          "n_sleep_chunks": 4,
+          "pool_size": 36,
+          "pool_tokens": 1713,
+          "replay_epochs": 1.196,
+          "wt2_after": 4.988802,
+          "code_after": 4.077515
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 120,
+          "n_sleep_chunks": 4,
+          "pool_size": 40,
+          "pool_tokens": 1863,
+          "replay_epochs": 1.099,
+          "wt2_after": 4.994791,
+          "code_after": 4.126731
+        }
+      ]
+    },
+    "none": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.798344
+        ],
+        [
+          10,
+          "phase1",
+          4.803632
+        ],
+        [
+          20,
+          "phase1",
+          4.786944
+        ],
+        [
+          30,
+          "phase1",
+          4.779516
+        ],
+        [
+          40,
+          "phase1",
+          4.804694
+        ],
+        [
+          50,
+          "phase2",
+          5.041236
+        ],
+        [
+          60,
+          "phase2",
+          5.053909
+        ],
+        [
+          70,
+          "phase2",
+          5.063759
+        ],
+        [
+          80,
+          "phase2",
+          5.076111
+        ],
+        [
+          90,
+          "phase3",
+          4.954089
+        ],
+        [
+          100,
+          "phase3",
+          4.839669
+        ],
+        [
+          110,
+          "phase3",
+          4.816863
+        ],
+        [
+          120,
+          "phase3",
+          4.811857
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.440183
+        ],
+        [
+          10,
+          "phase1",
+          4.39921
+        ],
+        [
+          20,
+          "phase1",
+          4.332633
+        ],
+        [
+          30,
+          "phase1",
+          4.407744
+        ],
+        [
+          40,
+          "phase1",
+          4.398595
+        ],
+        [
+          50,
+          "phase2",
+          4.030432
+        ],
+        [
+          60,
+          "phase2",
+          4.020441
+        ],
+        [
+          70,
+          "phase2",
+          4.0129
+        ],
+        [
+          80,
+          "phase2",
+          3.980312
+        ],
+        [
+          90,
+          "phase3",
+          4.118268
+        ],
+        [
+          100,
+          "phase3",
+          4.297756
+        ],
+        [
+          110,
+          "phase3",
+          4.340186
+        ],
+        [
+          120,
+          "phase3",
+          4.344983
+        ]
+      ],
+      "grad_tokens_total": 35840,
+      "n_chunks_gated": 70,
+      "n_chunks_seen": 120,
+      "gate_frac": 0.5833,
+      "pre_phase2_wt2": 4.804694,
+      "pre_phase2_code": 4.398595,
+      "post_phase3_wt2": 4.811857,
+      "forgetting": 0.271417,
+      "plasticity": 0.418283,
+      "recovery": 0.007163,
+      "n_own_spans_collected": 16,
+      "sleep_events": []
+    },
+    "shuffled": {
+      "curve_wt2": [
+        [
+          0,
+          "base",
+          4.798344
+        ],
+        [
+          10,
+          "phase1",
+          4.791975
+        ],
+        [
+          20,
+          "phase1",
+          4.784829
+        ],
+        [
+          30,
+          "phase1",
+          4.780204
+        ],
+        [
+          40,
+          "phase1",
+          4.801976
+        ],
+        [
+          46,
+          "phase2",
+          4.899443
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.964403
+        ],
+        [
+          56,
+          "phase2",
+          4.984578
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.969865
+        ],
+        [
+          66,
+          "phase2",
+          4.969865
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.961645
+        ],
+        [
+          76,
+          "phase2",
+          4.961645
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.969619
+        ],
+        [
+          86,
+          "phase3",
+          4.935694
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.919701
+        ],
+        [
+          96,
+          "phase3",
+          4.908086
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.898215
+        ],
+        [
+          106,
+          "phase3",
+          4.878682
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.88315
+        ],
+        [
+          116,
+          "phase3",
+          4.88315
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.909508
+        ]
+      ],
+      "curve_code": [
+        [
+          0,
+          "base",
+          4.440183
+        ],
+        [
+          10,
+          "phase1",
+          4.466594
+        ],
+        [
+          20,
+          "phase1",
+          4.353895
+        ],
+        [
+          30,
+          "phase1",
+          4.407449
+        ],
+        [
+          40,
+          "phase1",
+          4.389746
+        ],
+        [
+          46,
+          "phase2",
+          4.110634
+        ],
+        [
+          50,
+          "phase2_sleep",
+          4.039486
+        ],
+        [
+          56,
+          "phase2",
+          4.013196
+        ],
+        [
+          60,
+          "phase2_sleep",
+          4.033833
+        ],
+        [
+          66,
+          "phase2",
+          4.033833
+        ],
+        [
+          70,
+          "phase2_sleep",
+          4.065005
+        ],
+        [
+          76,
+          "phase2",
+          4.065005
+        ],
+        [
+          80,
+          "phase2_sleep",
+          4.079794
+        ],
+        [
+          86,
+          "phase3",
+          4.108547
+        ],
+        [
+          90,
+          "phase3_sleep",
+          4.120149
+        ],
+        [
+          96,
+          "phase3",
+          4.12104
+        ],
+        [
+          100,
+          "phase3_sleep",
+          4.099159
+        ],
+        [
+          106,
+          "phase3",
+          4.086024
+        ],
+        [
+          110,
+          "phase3_sleep",
+          4.0974
+        ],
+        [
+          116,
+          "phase3",
+          4.0974
+        ],
+        [
+          120,
+          "phase3_sleep",
+          4.073563
+        ]
+      ],
+      "grad_tokens_total": 48128,
+      "n_chunks_gated": 62,
+      "n_chunks_seen": 88,
+      "gate_frac": 0.7045,
+      "pre_phase2_wt2": 4.801976,
+      "pre_phase2_code": 4.389746,
+      "post_phase3_wt2": 4.909508,
+      "forgetting": 0.182602,
+      "plasticity": 0.37655,
+      "recovery": 0.107532,
+      "n_own_spans_collected": 40,
+      "sleep_events": [
+        {
+          "phase": "phase2",
+          "global_idx": 50,
+          "n_sleep_chunks": 4,
+          "pool_size": 34,
+          "pool_tokens": 1561,
+          "replay_epochs": 1.312,
+          "wt2_after": 4.964403,
+          "code_after": 4.039486
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 60,
+          "n_sleep_chunks": 4,
+          "pool_size": 36,
+          "pool_tokens": 1657,
+          "replay_epochs": 1.236,
+          "wt2_after": 4.969865,
+          "code_after": 4.033833
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 70,
+          "n_sleep_chunks": 4,
+          "pool_size": 36,
+          "pool_tokens": 1657,
+          "replay_epochs": 1.236,
+          "wt2_after": 4.961645,
+          "code_after": 4.065005
+        },
+        {
+          "phase": "phase2",
+          "global_idx": 80,
+          "n_sleep_chunks": 4,
+          "pool_size": 36,
+          "pool_tokens": 1657,
+          "replay_epochs": 1.236,
+          "wt2_after": 4.969619,
+          "code_after": 4.079794
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 90,
+          "n_sleep_chunks": 4,
+          "pool_size": 42,
+          "pool_tokens": 1902,
+          "replay_epochs": 1.077,
+          "wt2_after": 4.919701,
+          "code_after": 4.120149
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 100,
+          "n_sleep_chunks": 4,
+          "pool_size": 46,
+          "pool_tokens": 2085,
+          "replay_epochs": 0.982,
+          "wt2_after": 4.898215,
+          "code_after": 4.099159
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 110,
+          "n_sleep_chunks": 4,
+          "pool_size": 52,
+          "pool_tokens": 2338,
+          "replay_epochs": 0.876,
+          "wt2_after": 4.88315,
+          "code_after": 4.0974
+        },
+        {
+          "phase": "phase3",
+          "global_idx": 120,
+          "n_sleep_chunks": 4,
+          "pool_size": 52,
+          "pool_tokens": 2338,
+          "replay_epochs": 0.876,
+          "wt2_after": 4.909508,
+          "code_after": 4.073563
+        }
+      ]
+    }
+  },
+  "chunk_budget_check": {
+    "n_chunks_visited": {
+      "shared": 120,
+      "private": 120,
+      "none": 120,
+      "shuffled": 120
+    },
+    "equal": true
+  },
+  "p31_scoring": {
+    "a_shared_forgetting_leq_0.7x_private": {
+      "pass": false,
+      "shared": 0.113481,
+      "private": 0.12941,
+      "threshold_0.7x_private": 0.090587
+    },
+    "b_shared_plasticity_geq_private": {
+      "pass": false,
+      "shared": 0.326558,
+      "private": 0.3919
+    },
+    "c_shuffled_does_not_beat_private": {
+      "pass": true,
+      "shuffled": 0.182602,
+      "private": 0.12941,
+      "private_minus_0.02": 0.10941
+    },
+    "d_a_frozen_structural": {
+      "pass": true,
+      "note": "A never trains after its own phase; not measured, guaranteed by construction (del a_model before B starts)."
+    }
+  },
+  "verdict": "forgetting shared=+0.113481 private=+0.129410 none=+0.271417 shuffled=+0.182602 | plasticity shared=+0.326558 private=+0.391900 | A: 12 spans (0.0% code-like by unk_rate>0.3) | P31: PARTIAL/FAIL (a: False, b: False, c: True, d: True)"
+}

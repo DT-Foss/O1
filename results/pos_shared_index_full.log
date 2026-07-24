@@ -1,0 +1,158 @@
+Device: cpu
+[shared_index] ckpt n_streamed=359,050,240 | a_chunks=120 b_phase_chunks=150 eval_every=25 | B=8 K=64 lr=0.003
+[shared_index] code-val slice: 19,968 tokens, unk_rate=0.4438
+[shared_index] base_heldout_wt2=4.798344
+
+[shared_index] ===== organism A (pre-learns the shock) =====
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_domain_shock.py:207: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return new_states, x.numel(), float(loss), x.detach(), nll.detach()
+[shared_index][A] done: 64 spans harvested (60 C4 chunks, 60 code chunks, 61,440 grad tokens) | unk_hist mean=0.1834 code_like_frac=0.0781
+[shared_index][A] FROZEN — A's trajectory is not part of B's budget (P31d, structural by construction).
+
+[shared_index] ===== organism B, arm=shared =====
+[shared_index][shared] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][shared] phase=phase1  chunk=  25 wt2=4.803278 code=4.445163
+[shared_index][shared] phase=phase1  chunk=  50 wt2=4.827885 code=4.441089
+[shared_index][shared] phase=phase1  chunk=  75 wt2=4.790037 code=4.435429
+[shared_index][shared] phase=phase1  chunk= 100 wt2=4.783912 code=4.427278
+[shared_index][shared] phase=phase1  chunk= 125 wt2=4.778362 code=4.440465
+[shared_index][shared] phase=phase1  chunk= 150 wt2=4.797905 code=4.470174
+[shared_index][shared] phase=phase2  chunk= 170 wt2=4.840655 code=4.171713
+[shared_index][shared] phase=phase2_sleep chunk= 180 wt2=4.831292 code=4.098338
+[shared_index][shared] phase2 sleep: 10 chunks (pool=118 spans, 5486 tok, 0.93 epochs) -> wt2=4.831292 code=4.098338
+[shared_index][shared] phase=phase2  chunk= 200 wt2=4.833152 code=4.080020
+[shared_index][shared] phase=phase2_sleep chunk= 210 wt2=4.843674 code=3.988247
+[shared_index][shared] phase2 sleep: 10 chunks (pool=122 spans, 5683 tok, 0.90 epochs) -> wt2=4.843674 code=3.988247
+[shared_index][shared] phase=phase2  chunk= 230 wt2=4.845382 code=3.977080
+[shared_index][shared] phase=phase2_sleep chunk= 240 wt2=4.863307 code=3.978789
+[shared_index][shared] phase2 sleep: 10 chunks (pool=122 spans, 5683 tok, 0.90 epochs) -> wt2=4.863307 code=3.978789
+[shared_index][shared] phase=phase2  chunk= 260 wt2=4.899927 code=3.927970
+[shared_index][shared] phase=phase2_sleep chunk= 270 wt2=4.915770 code=3.930453
+[shared_index][shared] phase2 sleep: 10 chunks (pool=128 spans, 5961 tok, 0.86 epochs) -> wt2=4.915770 code=3.930453
+[shared_index][shared] phase=phase2  chunk= 290 wt2=4.943069 code=3.967445
+[shared_index][shared] phase=phase2_sleep chunk= 300 wt2=4.953688 code=3.995334
+[shared_index][shared] phase2 sleep: 10 chunks (pool=134 spans, 6227 tok, 0.82 epochs) -> wt2=4.953688 code=3.995334
+[shared_index][shared] phase=phase3  chunk= 320 wt2=4.888730 code=3.976241
+[shared_index][shared] phase=phase3_sleep chunk= 330 wt2=4.889051 code=3.948534
+[shared_index][shared] phase3 sleep: 10 chunks (pool=148 spans, 7005 tok, 0.73 epochs) -> wt2=4.889051 code=3.948534
+[shared_index][shared] phase=phase3  chunk= 350 wt2=4.906523 code=4.009046
+[shared_index][shared] phase=phase3_sleep chunk= 360 wt2=4.916759 code=3.928650
+[shared_index][shared] phase3 sleep: 10 chunks (pool=152 spans, 7185 tok, 0.71 epochs) -> wt2=4.916759 code=3.928650
+[shared_index][shared] phase=phase3  chunk= 380 wt2=4.928119 code=3.971085
+[shared_index][shared] phase=phase3_sleep chunk= 390 wt2=4.934630 code=3.906296
+[shared_index][shared] phase3 sleep: 10 chunks (pool=162 spans, 7616 tok, 0.67 epochs) -> wt2=4.934630 code=3.906296
+[shared_index][shared] phase=phase3  chunk= 410 wt2=4.918266 code=3.935389
+[shared_index][shared] phase=phase3_sleep chunk= 420 wt2=4.943892 code=3.926075
+[shared_index][shared] phase3 sleep: 10 chunks (pool=170 spans, 8024 tok, 0.64 epochs) -> wt2=4.943892 code=3.926075
+[shared_index][shared] phase=phase3  chunk= 440 wt2=4.917637 code=3.954938
+[shared_index][shared] phase=phase3_sleep chunk= 450 wt2=4.954722 code=3.923354
+[shared_index][shared] phase3 sleep: 10 chunks (pool=176 spans, 8302 tok, 0.62 epochs) -> wt2=4.954722 code=3.923354
+[shared_index][shared] forgetting=+0.155783 plasticity=+0.542204 recovery=+0.156817 gate_frac=0.4114 grad_tokens=124,928 own_spans=112
+
+[shared_index] ===== organism B, arm=private =====
+[shared_index][private] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][private] phase=phase1  chunk=  25 wt2=4.792578 code=4.378508
+[shared_index][private] phase=phase1  chunk=  50 wt2=4.821379 code=4.417279
+[shared_index][private] phase=phase1  chunk=  75 wt2=4.791444 code=4.419476
+[shared_index][private] phase=phase1  chunk= 100 wt2=4.783378 code=4.408976
+[shared_index][private] phase=phase1  chunk= 125 wt2=4.779778 code=4.420796
+[shared_index][private] phase=phase1  chunk= 150 wt2=4.786361 code=4.433071
+[shared_index][private] phase=phase2  chunk= 170 wt2=4.829742 code=4.188022
+[shared_index][private] phase=phase2  chunk= 171 wt2=4.829742 code=4.188022
+[shared_index][private] phase=phase2_sleep chunk= 180 wt2=4.846992 code=4.085190
+[shared_index][private] phase2 sleep: 9 chunks (pool=48 spans, 2200 tok, 2.09 epochs) -> wt2=4.846992 code=4.085190
+[shared_index][private] phase=phase2  chunk= 200 wt2=4.838787 code=4.077426
+[shared_index][private] phase=phase2  chunk= 201 wt2=4.838787 code=4.077426
+[shared_index][private] phase=phase2_sleep chunk= 210 wt2=4.836916 code=3.996494
+[shared_index][private] phase2 sleep: 9 chunks (pool=50 spans, 2289 tok, 2.01 epochs) -> wt2=4.836916 code=3.996494
+[shared_index][private] phase=phase2  chunk= 230 wt2=4.852273 code=3.943943
+[shared_index][private] phase=phase2_sleep chunk= 240 wt2=4.899083 code=3.925830
+[shared_index][private] phase2 sleep: 10 chunks (pool=56 spans, 2570 tok, 1.99 epochs) -> wt2=4.899083 code=3.925830
+[shared_index][private] phase=phase2  chunk= 260 wt2=4.923746 code=3.915477
+[shared_index][private] phase=phase2_sleep chunk= 270 wt2=4.976400 code=3.915756
+[shared_index][private] phase2 sleep: 10 chunks (pool=58 spans, 2673 tok, 1.92 epochs) -> wt2=4.976400 code=3.915756
+[shared_index][private] phase=phase2  chunk= 290 wt2=4.988538 code=3.940661
+[shared_index][private] phase=phase2_sleep chunk= 300 wt2=5.019481 code=3.954535
+[shared_index][private] phase2 sleep: 10 chunks (pool=66 spans, 3020 tok, 1.70 epochs) -> wt2=5.019481 code=3.954535
+[shared_index][private] phase=phase3  chunk= 320 wt2=4.915257 code=3.977734
+[shared_index][private] phase=phase3_sleep chunk= 330 wt2=4.919959 code=3.900973
+[shared_index][private] phase3 sleep: 10 chunks (pool=82 spans, 3906 tok, 1.31 epochs) -> wt2=4.919959 code=3.900973
+[shared_index][private] phase=phase3  chunk= 350 wt2=4.948198 code=3.997306
+[shared_index][private] phase=phase3_sleep chunk= 360 wt2=4.934245 code=3.900163
+[shared_index][private] phase3 sleep: 10 chunks (pool=86 spans, 4086 tok, 1.25 epochs) -> wt2=4.934245 code=3.900163
+[shared_index][private] phase=phase3  chunk= 380 wt2=4.944339 code=3.921768
+[shared_index][private] phase=phase3_sleep chunk= 390 wt2=4.967762 code=3.885029
+[shared_index][private] phase3 sleep: 10 chunks (pool=92 spans, 4339 tok, 1.18 epochs) -> wt2=4.967762 code=3.885029
+[shared_index][private] phase=phase3  chunk= 410 wt2=4.956500 code=3.910837
+[shared_index][private] phase=phase3_sleep chunk= 420 wt2=5.006848 code=3.909594
+[shared_index][private] phase3 sleep: 10 chunks (pool=98 spans, 4670 tok, 1.10 epochs) -> wt2=5.006848 code=3.909594
+[shared_index][private] phase=phase3  chunk= 440 wt2=5.005338 code=3.931477
+[shared_index][private] phase=phase3_sleep chunk= 450 wt2=5.031276 code=3.941946
+[shared_index][private] phase3 sleep: 10 chunks (pool=104 spans, 4943 tok, 1.04 epochs) -> wt2=5.031276 code=3.941946
+[shared_index][private] forgetting=+0.233120 plasticity=+0.517594 recovery=+0.244915 gate_frac=0.4091 grad_tokens=123,904 own_spans=104
+
+[shared_index] ===== organism B, arm=none =====
+[shared_index][none] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][none] phase=phase1  chunk=  25 wt2=4.792702 code=4.366803
+[shared_index][none] phase=phase1  chunk=  50 wt2=4.813854 code=4.422371
+[shared_index][none] phase=phase1  chunk=  75 wt2=4.788810 code=4.415274
+[shared_index][none] phase=phase1  chunk= 100 wt2=4.782342 code=4.402202
+[shared_index][none] phase=phase1  chunk= 125 wt2=4.779548 code=4.407417
+[shared_index][none] phase=phase1  chunk= 150 wt2=4.778979 code=4.417921
+[shared_index][none] phase=phase2  chunk= 175 wt2=4.813800 code=4.201162
+[shared_index][none] phase=phase2  chunk= 200 wt2=4.872606 code=4.085741
+[shared_index][none] phase=phase2  chunk= 225 wt2=5.044554 code=3.972292
+[shared_index][none] phase=phase2  chunk= 250 wt2=5.139862 code=4.014563
+[shared_index][none] phase=phase2  chunk= 275 wt2=5.154700 code=3.995891
+[shared_index][none] phase=phase2  chunk= 300 wt2=5.151922 code=3.930658
+[shared_index][none] phase=phase3  chunk= 325 wt2=4.843861 code=4.187483
+[shared_index][none] phase=phase3  chunk= 350 wt2=4.835914 code=4.116175
+[shared_index][none] phase=phase3  chunk= 375 wt2=4.843701 code=4.116995
+[shared_index][none] phase=phase3  chunk= 400 wt2=4.835055 code=4.105976
+[shared_index][none] phase=phase3  chunk= 425 wt2=4.809451 code=4.113681
+[shared_index][none] phase=phase3  chunk= 450 wt2=4.804244 code=4.137280
+[shared_index][none] forgetting=+0.375721 plasticity=+0.487263 recovery=+0.025265 gate_frac=0.3356 grad_tokens=77,312 own_spans=44
+
+[shared_index] ===== organism B, arm=shuffled =====
+[shared_index][shuffled] phase=base    chunk=   0 wt2=4.798344 code=4.440183
+[shared_index][shuffled] phase=phase1  chunk=  25 wt2=4.785542 code=4.394291
+[shared_index][shuffled] phase=phase1  chunk=  50 wt2=4.813467 code=4.435026
+[shared_index][shuffled] phase=phase1  chunk=  75 wt2=4.786500 code=4.436097
+[shared_index][shuffled] phase=phase1  chunk= 100 wt2=4.777972 code=4.421001
+[shared_index][shuffled] phase=phase1  chunk= 125 wt2=4.774353 code=4.423320
+[shared_index][shuffled] phase=phase1  chunk= 150 wt2=4.773016 code=4.429501
+[shared_index][shuffled] phase=phase2  chunk= 170 wt2=4.805714 code=4.218656
+[shared_index][shuffled] phase=phase2_sleep chunk= 180 wt2=4.969079 code=4.091119
+[shared_index][shuffled] phase2 sleep: 10 chunks (pool=114 spans, 5231 tok, 0.98 epochs) -> wt2=4.969079 code=4.091119
+[shared_index][shuffled] phase=phase2  chunk= 200 wt2=5.015084 code=4.093298
+[shared_index][shuffled] phase=phase2_sleep chunk= 210 wt2=5.088645 code=4.119960
+[shared_index][shuffled] phase2 sleep: 10 chunks (pool=116 spans, 5309 tok, 0.96 epochs) -> wt2=5.088645 code=4.119960
+[shared_index][shuffled] phase=phase2  chunk= 230 wt2=5.087374 code=4.082275
+[shared_index][shuffled] phase=phase2_sleep chunk= 240 wt2=5.080887 code=4.035222
+[shared_index][shuffled] phase2 sleep: 10 chunks (pool=120 spans, 5464 tok, 0.94 epochs) -> wt2=5.080887 code=4.035222
+[shared_index][shuffled] phase=phase2  chunk= 260 wt2=5.090276 code=3.964548
+[shared_index][shuffled] phase=phase2_sleep chunk= 270 wt2=5.049605 code=3.924045
+[shared_index][shuffled] phase2 sleep: 10 chunks (pool=128 spans, 5813 tok, 0.88 epochs) -> wt2=5.049605 code=3.924045
+[shared_index][shuffled] phase=phase2  chunk= 290 wt2=5.056763 code=3.969436
+[shared_index][shuffled] phase=phase2_sleep chunk= 300 wt2=5.078429 code=4.008126
+[shared_index][shuffled] phase2 sleep: 10 chunks (pool=136 spans, 6181 tok, 0.83 epochs) -> wt2=5.078429 code=4.008126
+[shared_index][shuffled] phase=phase3  chunk= 320 wt2=4.862911 code=4.076643
+[shared_index][shuffled] phase=phase3_sleep chunk= 330 wt2=4.891723 code=3.908089
+[shared_index][shuffled] phase3 sleep: 10 chunks (pool=148 spans, 6820 tok, 0.75 epochs) -> wt2=4.891723 code=3.908089
+[shared_index][shuffled] phase=phase3  chunk= 350 wt2=4.874114 code=3.992011
+[shared_index][shuffled] phase=phase3_sleep chunk= 360 wt2=4.903154 code=3.903976
+[shared_index][shuffled] phase3 sleep: 10 chunks (pool=150 spans, 6902 tok, 0.74 epochs) -> wt2=4.903154 code=3.903976
+[shared_index][shuffled] phase=phase3  chunk= 380 wt2=4.896692 code=3.894456
+[shared_index][shuffled] phase=phase3_sleep chunk= 390 wt2=4.923659 code=3.900690
+[shared_index][shuffled] phase3 sleep: 10 chunks (pool=154 spans, 7081 tok, 0.72 epochs) -> wt2=4.923659 code=3.900690
+[shared_index][shuffled] phase=phase3  chunk= 410 wt2=4.910882 code=3.923958
+[shared_index][shuffled] phase=phase3_sleep chunk= 420 wt2=4.927917 code=3.890953
+[shared_index][shuffled] phase3 sleep: 10 chunks (pool=156 spans, 7181 tok, 0.71 epochs) -> wt2=4.927917 code=3.890953
+[shared_index][shuffled] phase=phase3  chunk= 440 wt2=4.909958 code=3.903072
+[shared_index][shuffled] phase=phase3_sleep chunk= 450 wt2=4.928825 code=3.904029
+[shared_index][shuffled] phase3 sleep: 10 chunks (pool=160 spans, 7356 tok, 0.70 epochs) -> wt2=4.928825 code=3.904029
+[shared_index][shuffled] forgetting=+0.317260 plasticity=+0.505456 recovery=+0.155809 gate_frac=0.3943 grad_tokens=121,856 own_spans=96
+
+[shared_index] forgetting shared=+0.155783 private=+0.233120 none=+0.375721 shuffled=+0.317260 | plasticity shared=+0.542204 private=+0.517594 | A: 64 spans (7.8% code-like by unk_rate>0.3) | P31: PASS (a: True, b: True, c: True, d: True)
+[shared_index] -> results/pos_shared_index.json

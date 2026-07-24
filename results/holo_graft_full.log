@@ -1,0 +1,100 @@
+Device: cpu
+==============================================================================
+HOLO-LANGUAGE-GRAFT (MS5) — key-conditioned recall grafted onto the real 400M-token POS language stream
+==============================================================================
+
+── loading frozen A3 snapshot (read-only) ──
+   A3: n_streamed=612,001,792  d_model=128  V=5000
+   fact vocab: 32 keys / 16 values, rank band [3000,5000) — e.g. keys[:5]=['fernandez', 'rebuilt', 'angle', 'graves', 'arguing'] vals[:5]=['wellington', 'uncle', 'rocks', 'tanks', 'memories']
+
+── equivalence: full-sequence forward == chunked+carried forward (3-block stack) ──
+   max|Δ| = 0.000e+00
+   PASS — chunked carry is the SAME operator
+
+Gaps(G)=[8, 32, 128, 256, 512]  seeds=[0, 1]  chunk=32  g_train_max=64
+
+==============================================================================
+seed=0
+==============================================================================
+  [holo  ] curriculum done: final_train_gap=40 final_train_acc=0.938
+    gamma-spectrum (real-text fillers): {'use_phase': True, 'per_head_max_over_channels': [0.9987, 0.9967, 0.998, 0.9983], 'per_head_mean_over_channels': [0.5725, 0.5711, 0.5773, 0.5643], 'global_max_gamma': 0.9987}
+  [ctrl  ] curriculum done: final_train_gap=40 final_train_acc=0.625
+    [eval  ] batcher ready (holo G=8, skip=50,000, 3s)
+    [holo  ] G=   8: acc=0.9700 (chance 0.0625, 3x-chance YES)
+    [eval  ] batcher ready (ctrl G=8, skip=50,000, 3s)
+    [ctrl  ] G=   8: acc=0.9200 (chance 0.0625, 3x-chance YES)
+    [eval  ] null batcher ready (G=8, skip=100,000, 3s)
+    [null  ] G=   8: acc=0.1100 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=32, skip=50,000, 3s)
+    [holo  ] G=  32: acc=0.9200 (chance 0.0625, 3x-chance YES)
+    [eval  ] batcher ready (ctrl G=32, skip=50,000, 3s)
+    [ctrl  ] G=  32: acc=0.8900 (chance 0.0625, 3x-chance YES)
+    [eval  ] null batcher ready (G=32, skip=100,000, 3s)
+    [null  ] G=  32: acc=0.1100 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=128, skip=50,000, 3s)
+    [holo  ] G= 128: acc=0.1200 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (ctrl G=128, skip=50,000, 3s)
+    [ctrl  ] G= 128: acc=0.0600 (chance 0.0625, 3x-chance no)
+    [eval  ] null batcher ready (G=128, skip=100,000, 3s)
+    [null  ] G= 128: acc=0.1000 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=256, skip=50,000, 3s)
+    [holo  ] G= 256: acc=0.0400 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (ctrl G=256, skip=50,000, 3s)
+    [ctrl  ] G= 256: acc=0.0500 (chance 0.0625, 3x-chance no)
+    [eval  ] null batcher ready (G=256, skip=100,000, 3s)
+    [null  ] G= 256: acc=0.0500 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=512, skip=50,000, 3s)
+    [holo  ] G= 512: acc=0.0600 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (ctrl G=512, skip=50,000, 3s)
+    [ctrl  ] G= 512: acc=0.0600 (chance 0.0625, 3x-chance no)
+    [eval  ] null batcher ready (G=512, skip=100,000, 3s)
+    [null  ] G= 512: acc=0.0400 (chance 0.0625, 3x-chance no)
+
+==============================================================================
+seed=1
+==============================================================================
+  [holo  ] curriculum done: final_train_gap=61 final_train_acc=0.750
+    gamma-spectrum (real-text fillers): {'use_phase': True, 'per_head_max_over_channels': [0.998, 0.9993, 0.9985, 0.9981], 'per_head_mean_over_channels': [0.5641, 0.5989, 0.5096, 0.5643], 'global_max_gamma': 0.9993}
+  [ctrl  ] curriculum done: final_train_gap=26 final_train_acc=0.938
+    [eval  ] batcher ready (holo G=8, skip=50,000, 3s)
+    [holo  ] G=   8: acc=0.9300 (chance 0.0625, 3x-chance YES)
+    [eval  ] batcher ready (ctrl G=8, skip=50,000, 3s)
+    [ctrl  ] G=   8: acc=0.9600 (chance 0.0625, 3x-chance YES)
+    [eval  ] null batcher ready (G=8, skip=100,000, 3s)
+    [null  ] G=   8: acc=0.2400 (chance 0.0625, 3x-chance YES)
+    [eval  ] batcher ready (holo G=32, skip=50,000, 3s)
+    [holo  ] G=  32: acc=0.9000 (chance 0.0625, 3x-chance YES)
+    [eval  ] batcher ready (ctrl G=32, skip=50,000, 3s)
+    [ctrl  ] G=  32: acc=0.8700 (chance 0.0625, 3x-chance YES)
+    [eval  ] null batcher ready (G=32, skip=100,000, 3s)
+    [null  ] G=  32: acc=0.1400 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=128, skip=50,000, 3s)
+    [holo  ] G= 128: acc=0.1400 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (ctrl G=128, skip=50,000, 3s)
+    [ctrl  ] G= 128: acc=0.0600 (chance 0.0625, 3x-chance no)
+    [eval  ] null batcher ready (G=128, skip=100,000, 3s)
+    [null  ] G= 128: acc=0.0700 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=256, skip=50,000, 3s)
+    [holo  ] G= 256: acc=0.0700 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (ctrl G=256, skip=50,000, 3s)
+    [ctrl  ] G= 256: acc=0.0800 (chance 0.0625, 3x-chance no)
+    [eval  ] null batcher ready (G=256, skip=100,000, 3s)
+    [null  ] G= 256: acc=0.0800 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (holo G=512, skip=50,000, 3s)
+    [holo  ] G= 512: acc=0.0800 (chance 0.0625, 3x-chance no)
+    [eval  ] batcher ready (ctrl G=512, skip=50,000, 3s)
+    [ctrl  ] G= 512: acc=0.0800 (chance 0.0625, 3x-chance no)
+    [eval  ] null batcher ready (G=512, skip=100,000, 3s)
+    [null  ] G= 512: acc=0.0700 (chance 0.0625, 3x-chance no)
+
+==============================================================================
+VERDICT
+  G=8: holo=0.950 ctrl=0.940 null=0.175 chance=0.062 -> SURVIVES
+  G=32: holo=0.910 ctrl=0.880 null=0.125 chance=0.062 -> SURVIVES
+  G=128: holo=0.130 ctrl=0.060 null=0.085 chance=0.062 -> no
+  G=256: holo=0.055 ctrl=0.065 null=0.065 chance=0.062 -> no
+  G=512: holo=0.070 ctrl=0.070 null=0.055 chance=0.062 -> no
+>>> language-stream keyed recall SURVIVES real text at at least one G (holo beats zeroed-at-gap null and clears 3x chance) — see per-G detail
+>>> P21 (holo>=3x chance at G=128): MISS (holo=0.13)
+
+→ /Users/bhkmie/Documents/Forschung/O1_juli/results/holo_graft.json  (355.4s)

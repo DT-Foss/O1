@@ -23,12 +23,12 @@ curiosity, grows without restarting, and shares memory with others.
 | MS2 | **The dream generator** (generative replay) | sleep without storage: training on the model's OWN sampled dreams rivals stored-span replay — memory becomes optional | M4 ✅ | 💀 |
 | MS3 | **Domain-shock resilience** (C4→code→C4) | gating+dosed replay = a natural anti-forgetting machine: continual learning at O(1) state without any CL machinery | POS, M4 ✅ | ✅ |
 | MS4 | **Curiosity homeostasis** (self-set q) | the organism sets its own learning threshold; adaptive q beats every fixed q on non-stationary streams | MS3 harness | 💀 |
-| MS5 | **Language-stream holographic recall** (holo graft on the 400M-token POS model) | the knee/carrier story leaves synthetic MQAR: real facts recalled over real silence in a real language stream | M3 ✅, POS ckpt | ⏳ |
+| MS5 | **Language-stream holographic recall** (holo graft on the 400M-token POS model) | the knee/carrier story leaves synthetic MQAR: real facts recalled over real silence in a real language stream | M3 ✅, POS ckpt | ✅ |
 | MS6 | **CHIMERA — the complete organism** | all validated organs in ONE process on real text, measured against the sum of its parts | MS1, MS2/M4, MS3 | ⏳ |
-| MS7 | **Two organisms, one index** (social memory) | organism B learns from A's surprises: collective memory across O(1) individuals | M5 ✅ | ⏳ |
+| MS7 | **Two organisms, one index** (social memory) | organism B learns from A's surprises: collective memory across O(1) individuals | M5 ✅ | ✅ |
 | MS8 | **Hot-swap growth** (in-flight network surgery, d_model grows, state migrated, no restart) | the brain grows without sleeping; the twin experiment is the control | POS twin ✅ | ✅ |
 | MS9 | **Auto-falsifier** (PREDICTIONS.md → machine-checkable scores) | the science machine audits itself: every new result JSON auto-scored against every registered prediction | — | 🔨 |
-| MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ⏳ |
+| MS10 | **The rent map of the phase** (P_max × d × n_slots phase diagram with critical line) | "where phase pays rent" becomes a law with a measured critical boundary, not an anecdote | M1/M6 ✅ | ✅ |
 | MS11 | **Weight hot-swap on the living stream** (old carried state × new weights, snapshot cross-matrix) | the state is a portable asset across model versions: session continuity through weight updates, measured | POS snapshots ✅ | ✅ |
 | MS12 | **α-shut pollution control** (filler-write regularizer on the knee recipe) | the F3 pollution law made causal: a dial that moves the persistence knee past 1024 | F3 ✅, M3 ✅ | 💀 |
 | MS13 | **The bit survives the surgery/swap** (beacon recall across widening + across weight updates) | the SLOW state is the portable asset: stored content survives model growth and model updates — or the state-code-drift law is discovered | MS8 ✅gate, MS11, carrier ✅ | ✅ |
@@ -224,3 +224,16 @@ next to free builders is the only true time-waste in this lab.*
   organism should keep its bar, not its rate. (A surprise-level-target
   controller is a new question, not a rescue.) ms5 full restarted with
   --eval-skip 50000 (the full path still had the expensive default).
+- day4 ~03:00 — triple harvest: MS7 ✅ P31 ALL FOUR CHECKS (collective
+  memory is real: A's surprises are B's immunity — 0.67x forgetting at
+  better plasticity, shuffle control kills the noise story). MS10 ✅ P32
+  scored honestly: no one-parameter law — the map shows TWO rent regions
+  (scarce corner +11..32pp; mid-Pmax/large-d capacity return +12..13pp)
+  separated by a valley. MS5 ✅ P21 falsified-as-registered AND explained:
+  real-text recall 0.90-0.97 through G=32 (null at chance, filler gamma
+  0.9996), but the graft lives at Pmax*d=2048 — the rent map's valley;
+  ctrl catches up at full budget exactly like M1. Two instruments, one
+  law. Bonus fix en route: C4ValStream.next_block busy-loop (n>64k spun
+  forever) — the true cause of both graft hangs, diagnosed by stack
+  sample. beast family replication abandoned (C4-starved) — Mac replication
+  slot tomorrow.
