@@ -134,6 +134,13 @@ the *architecture* — it is a wall in one particular *training recipe*, and the
   larger, the way the length axis holds flat to 4096× training length, is untested.
   `[not yet measured — candidate experiment: extend `holo_clamp_refresh` gap sweep past 4096,
   analogous to `scale_to_the_wall.py`'s length ladder]`
+- **P35, the gap ladder to a million (`src/gap_ladder.py`), is registered in `PREDICTIONS.md` but
+  not yet scored locally** — no `results/gap_ladder*.json` or committed log exists in this
+  checkout. A beacon-ladder rerun at larger gaps (reported informally as in progress on a remote
+  worker) is **not** used as a source here per this document's sourcing rule (local
+  `results/*.json` and `analysis/*.md` only); no number from it is claimed above. `[in
+  progress — do not cite a G=16384 or any other beacon-ladder figure until it lands in
+  `results/` in this checkout]`
 - `holo_clamp_refresh.json`'s own acceptance checks `P30c` (zeroed-at-gap null within 5pp of
   chance, every arm) is explicitly **NOT MET** — flagged here at full strength rather than
   smoothed over: the null-control discipline that holds cleanly elsewhere in the repo (e.g.

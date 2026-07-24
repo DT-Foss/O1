@@ -118,13 +118,41 @@ capacity; F1's surprise signal is what triggers the hand-off between them.
 
 ---
 
+## 5. P34, scored — the rank hypothesis dies on mqar, the SNR fallback engages
+
+The Rank-1 theorem (§2) leaves one conjecture open: does the *complex/phase* state (F3) lift
+per-channel binding rank above the scalar ceiling `D_eff ≈ 1`? P34 pre-registered a relational
+test on the reproducible `src/mqar.py` instrument (the original 0.1406 Task-B anchor's generating
+script is lost — a documented reproduction debt, not a new problem) with an explicit fallback: if
+`D_eff` stays flat, the phase's capacity rent is not rank, and the honest alternative is SNR-based.
+
+**Scored 2026-07-24, full grid** (`results/rank_sweep_final.json`, K∈{2,4,8,16,32} × 4 arms × 4
+seeds): the harness itself is calibrated — attention validity min recall **0.9898**, scalar anchor
+reproduction **exact** (0.0166 vs anchor 0.0170±0.0022). The rank criterion then **fails both
+sub-clauses as registered**: at the one eligible cell (K=2, 3/4 seeds ignited) the phase/scalar
+`D_eff` ratio is **0.371** — phase capacity per channel *lower* than scalar, the opposite sign of
+the prediction — and no higher K clears 3× chance on seed-mean to even be scorable. The cliff-ratio
+clause is flat at **1.0** (no shift). **The registered fallback therefore engages as written: the
+phase's capacity rent is not per-channel rank — SNR is now the standing hypothesis** for why phase
+memory pays a cost under load. The dominating phenomenon underneath the failed rank test is itself
+a finding: phase **ignition collapses with load** (3/4 → 1/4 → 1/4 → 0/4 → 0/4 ignited seeds across
+rising K) — whatever capacity the phase channel could offer at high K, training reliability to
+reach it dies first. This is a clean negative, named as one: rank-lift was the wrong mechanism,
+stated plainly rather than left as an open conjecture, and it sharpens rather than weakens the
+two-system law — the index (§3, §4) is not competing with a rank advantage the state secretly has;
+the state's ceiling is real and mechanism-identified, which is exactly why the external index is
+not optional scaffolding but the required second system.
+
+---
+
 ## What this chains into
 
 Cliff (§1, measured slope 1.318 vs 0.57) → theorem for the cliff's location (§2, `D_eff ≈ 1.02`
 measured) → hybrid measurement of what an external index buys back above the cliff (§3, 0.15→0.51
 class of lift, reminded reads at 0.99–1.00) → the same effect, closed-loop, on real text (§4,
-+0.0256 nats, 27/40). Four independent instruments, same law: **compounding belongs to the index;
-the bounded state consults it.**
++0.0256 nats, 27/40) → the one candidate escape from the cliff (phase-lifted rank) tested and
+closed, fallback mechanism now standing (§5). Five independent instruments, same law: **compounding
+belongs to the index; the bounded state consults it, and it cannot rank its way out of that.**
 
 ## What is not yet measured
 
@@ -134,9 +162,7 @@ the bounded state consults it.**
   `P`, but P=16 reminded (0.45–0.53) has not been pushed to the same near-1.0 regime P=2 reaches.
   `[not yet measured — candidate experiment: reminded training at P=16 with a longer curriculum or
   larger gate_rate schedule]`
-- Whether the rank-1 ceiling (§2) is lifted by a complex/phase channel to rank ≥2 per channel, as
-  the Rank-1 theorem's §7 conjecture proposes, remains unrun at the capacity-sweep level (the
-  streaming phase results in F6/HOLO_STREAM_VERDICT measure *persistence*, not *binding rank*
-  directly). `[not yet measured — candidate experiment: Eckart–Young-style rank sweep on the
-  complex/phase state, analogous to `analysis/rank1_capacity_check.py` but for a 2-D-per-channel
-  state]`
+- P34's SNR-based fallback (§5) is now the standing hypothesis but is itself untested — no SNR
+  model of the phase channel's capacity rent has been fit or scored against the collapsing-ignition
+  data. `[not yet measured — candidate experiment: fit an SNR-vs-load model to the ignition-rate
+  curve (3/4→1/4→1/4→0/4→0/4) and test its predicted capacity independently of the rank framing]`
