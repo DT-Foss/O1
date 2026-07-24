@@ -8,7 +8,9 @@
 > number we measured, with the exact script that reproduces it. The dates, the code, and the
 > result JSONs in this repository are the record. The six primitives underlying everything
 > here are formalized in their broadest form in **[FOUNDATIONS.md](FOUNDATIONS.md)** — read
-> that first for the claims; read on for the evidence.
+> that first for the claims; read on for the evidence. The prediction ledger
+> ([analysis/PREDICTIONS.md](analysis/PREDICTIONS.md)) holds 38 registered predictions, most
+> already scored — confirmations and falsifications at the same strength.
 >
 > **o1-state builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit
 > history. GSSM is the architecture — the bounded reproducing-kernel SSM operator, the
@@ -19,19 +21,20 @@
 
 ---
 
-## The six foundations
+## The seven foundations
 
 Formal statements, each over the *class* of systems it applies to, in
 [FOUNDATIONS.md](FOUNDATIONS.md). One line each, with the measured anchor:
 
 | # | Primitive | Measured anchor |
 |---|---|---|
-| F1 | **The surprise calculus** — the learner's own prediction error is the universal control signal: when to learn, what to store, when to consult, when and how much to sleep, how curious to be | POS: ~25% gradient tokens ≈ 100% of full-gradient learning (§9); span store, sleep dosing, runtime consultation (§11–12) |
+| F1 | **The surprise calculus** — the learner's own prediction error, at every horizon: a ladder of deposited predictions about the future, scored when the future arrives, controls when to learn, store, consult, sleep | POS: ~25% gradient tokens ≈ 100% of full-gradient learning (§9); span store, sleep dosing, runtime consultation (§11–12); multi-horizon extension disclosed, first experiment registered (P37) |
 | F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10); any state×weight mismatch heals in 256 tokens (§14) |
 | F3 | **Phase–magnitude separation** — in complex bound states, content (phase) is written and never evolves; persistence (magnitude) decays; the two never mix | zero-drive phase invariance \|Δφ\| ≈ 1e-8; knee moved 32→2176+ via the disclosed clamp+refresh pair, an interaction of both axes (§10) |
 | F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall at P=16: base 0.10–0.20 → 0.41–0.62 (§12); reminded reads ~1.0 (§12) |
 | F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.98× of POS-on-GSSM, GSSM ahead 0.156 nats head-to-head (§13) |
 | F6 | **Train short, deploy unbounded** — no absolute position + exactness ⇒ tiny training horizons, unbounded deployment | ×0.98 PPL at 4096×; 1B tokens at flat 4.36 GB (§4); recall flat across 8 detached boundaries (§10) |
+| F7 | **The portable organism** — the living system is a ~53 MB serializable asset; organs couple through kilobytes (spans, reminders, deltas), not activations: migratable, forkable, shardable, seedable, offline-capable | live ARM→x86 mid-stream migration behaviorally identical to six decimals (§15); shared-index rejoin cover measured (§15); fork cost measured (twin, §9) |
 
 ---
 
@@ -580,6 +583,28 @@ falsifications (P23a, P24c-at-1.2M) are kept in the ledger at full strength.
 → `src/hot_swap_growth.py`, `src/state_weight_swap.py`, `src/beacon_swap.py`,
 `results/hot_swap_growth*.json`, `results/state_weight_swap.json`, `results/beacon_swap.json`
 
+### 15 — Collective memory, and the organism as a portable asset
+
+- **One organism's surprises are another's immunity (P31, all four checks).** Organism A
+  streams a C4+code mix and stores its surprise spans; organism B, hit by a code shock,
+  replays A's shared spans and forgets only **0.67×** of what it forgets with its own spans —
+  at *better* plasticity — while token-shuffled A-spans are nearly as useless as no replay
+  (content, not regularization). Collective memory across O(1) individuals is measured.
+- **Live migration across CPU architectures is a free operation (P38a).** A running organism
+  checkpointed mid-stream on Apple Silicon and resumed on an x86 server ends **behaviorally
+  identical to six decimals** with its never-migrated twin (heldout 6.182391 == 6.182391,
+  every gate decision matched); only the BLAS bit-digest differs, and it does not propagate.
+  Locally, checkpoint→new-process→resume is bit-identical line-by-line. The full state —
+  weights, optimizer, carried Z, gating windows, store, stream position, RNG — is one
+  atomic ~53 MB artifact.
+- **Where the phase pays rent is now a map, not an anecdote (P32).** A 16-cell
+  P_max × d_model sweep (corner lr-controls) kills both one-parameter laws (ratio and
+  product) and shows two rent regions — the scarce corner (P_max ≤ 16, d ≤ 64: +11 to
+  +32 pp) and a capacity-return region at mid-P_max × large d — separated by a valley.
+  The real-text graft result (§ below) is *explained* by this map: it sits in the valley.
+→ `src/pos_shared_index.py`, `src/portable_organism.py`, `src/holo_rent_map.py`,
+`results/pos_shared_index.json`, `results/holo_rent_map.json`
+
 ### The method: pre-registered, auto-scored, falsifications kept
 
 Every run above was preceded by a numbered prediction in
@@ -747,7 +772,10 @@ measured life curve, **index-reminded reads at ~1.0** above the state's capacity
 the whole operating mode **transferred to the Mamba/S6 configuration at 0.98×** (with
 GSSM-Selective ahead 0.156 nats head-to-head at parameter parity) — six
 foundations, formalized in [FOUNDATIONS.md](FOUNDATIONS.md), every step pre-registered in
-[analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) before its data existed.
+[analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) before its data existed. And the organism
+is *social* and *portable*: collective memory across individuals is measured (P31), and a
+living run migrates across CPU architectures mid-stream with behavior identical to six
+decimals (P38a) — the complete state is one ~53 MB artifact.
 
 Every number here is reproducible from the scripts in `src/`. The kernel reductions are exact
 identities; the recall result is 5-seed with the attention validity gate at 0.994; the threshold
@@ -773,7 +801,8 @@ Apache License 2.0. See `LICENSE`.
             reproducing-kernel SSM that consumes an unbounded stream at constant
             memory, gates its own plasticity on self-measured surprise, carries
             keyed holographic memory through silence, consolidates in dosed
-            sleep, and consults an external .causal index at runtime. Six
-            underlying primitives formalized in FOUNDATIONS.md.}
+            sleep, and consults an external .causal index at runtime — and
+            migrates live across CPU architectures with identical behavior.
+            Seven underlying primitives formalized in FOUNDATIONS.md.}
 }
 ```
