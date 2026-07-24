@@ -20,3 +20,14 @@ One line per decision, in order. Context: BRIEFING_POS.md + David's session dire
 - **WP4 built and launched live** (David's go, revised from the earlier defer): src/holo_stream_recall.py marries the holographic complex write with detach-carried streaming state; equivalence full-vs-chunked < 1.2e-6; smoke P=1: carried recall 100% through gap 8 across chunk boundaries, zeroed-at-gap null at chance — the --full sweep (P∈{1,2,4}×G∈{0,8,32,128}, 2 seeds) runs nice-19 beside the long run; per David the historic ~9% MQAR ceiling is one agent-day of exploration, not a law — no ceiling assumption in the code.
 - **Smoke checkpoints (47–67 MB each) deleted, not committed**: runtime artifacts only; every gate is evidenced by the committed jsonl/json logs; the long run's pos_ckpt.pt stays untracked (resume-only).
 - **verify_pos.py two-tier**: hard PASS/FAIL only on data integrity + internal consistency; thesis numbers (A3/A2 ratio, injection deltas, twin warmup) are computed and printed as measured headlines — deviations are data points, not failures (briefing: Zielbild is orientation, not stop criterion).
+- day4 ~10:30 — METHOD NOTE (rank-sweep builder's find): torch thread count
+  changes TRAINING DYNAMICS near ignition boundaries, not just speed — the
+  phase arm's 8.9% MQAR ceiling ignites under default multithreading (5/5
+  historic seeds + 1/1 rebuild) but dies at threads=1 (0/4 seeds, ~4 sigma
+  below reference). Reduction-order sensitivity in the early unstable phase.
+  Consequences: (1) instruments measuring against a historic reference must
+  reproduce the reference's threading regime; (2) all existing knee-arc /
+  POS results remain internally valid (every arm-vs-arm comparison ran in
+  ONE regime — fairness holds), but cross-regime numeric comparisons are
+  not meaningful; (3) rank_sweep.py runs at torch default threads; beast
+  striping compensates with fewer parallel stripes (4 stripes x 4 threads).
