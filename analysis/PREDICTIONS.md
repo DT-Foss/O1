@@ -436,6 +436,29 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   recurrence-seeded protocol as a NEW registered experiment. Instrument
   dimensioning (max_per_chunk=2, spike_min_nll=7.0) deliberately left AS
   SPEC'D — no post-smoke retuning.
+  **SCORED 2026-07-24 (full on core, results/chimera_full.json; 150
+  chunks/phase, 5 arms):** instrument deviation named first: the
+  registered "matched gradient tokens" clause is unenforceable for gated
+  arms (the gate chooses); arms ran at matched CHUNKS — chimera used
+  100.9k grad tokens vs r3's 141.3k vs r1's 230.4k. (a) FAILED as
+  measured: chimera forgetting +0.259 > r3's +0.189 at essentially equal
+  plasticity (0.625 vs 0.621) — with the caveat that chimera took 29%
+  fewer gradient tokens. (b) CONFIRMED DECISIVELY — the headline: chimera
+  residual damage after recovery +0.0028 (fully healed) vs r3's +0.151;
+  and the ablation nails the attribution within the run: no_monitor
+  (same organs, monitor removed) regresses to +0.146 while the monitor
+  actively suspended 9 sleep blocks in the chimera arm. The dividend
+  monitor IS the recovery organ — P20's overdose, fixed in composition.
+  (c) SPLIT: minus-monitor worse CONFIRMED (recovery collapses);
+  minus-reminder UNDECIDABLE-AT-EXPOSURE per the pre-registered rule —
+  only 2 reminders fired (<10), the no_reminder deltas cannot be
+  attributed to the organ. (d) CONFIRMED: no single-organ arm dominates
+  (r3 wins forgetting, chimera wins plasticity+recovery; r1_full is the
+  firehose signature — best plasticity +0.866, catastrophic forgetting
+  +0.590, echoing the 40h result). Verdict: CHIMERA v0's composition
+  trades some shock-forgetting for near-perfect recovery at equal
+  plasticity and fewer gradient tokens; the monitor earns its place, the
+  reminder organ still awaits index-scale exposure.
 - **P34 — the phase lifts binding rank per channel to ≥2 (src/rank_sweep.py):**
   an Eckart–Young-style capacity sweep (K keys vs D channels, the
   rank1_capacity method) on the COMPLEX holographic state: (a) inverting
