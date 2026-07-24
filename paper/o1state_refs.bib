@@ -1,0 +1,117 @@
+% ===================================================================
+% o1state_refs.bib -- The O(1)-State Organism paper
+% Entries limited to related-work anchors the draft (O1STATE_PAPER_DRAFT.md)
+% explicitly names. Cross-checked against arXiv / journal / proceedings
+% metadata known with confidence; anything uncertain is marked with a
+% % TODO comment instead of being guessed.
+% ===================================================================
+
+% ---------- The vision lineage: predictive coding, JEPA-adjacent ----------
+
+@article{lecun2022path,
+  title   = {A Path Towards Autonomous Machine Intelligence},
+  author  = {LeCun, Yann},
+  journal = {OpenReview preprint},
+  year    = {2022},
+  note    = {Version 0.9.2, June 27, 2022; openreview.net}
+}
+
+@article{rao1999predictive,
+  title   = {Predictive Coding in the Visual Cortex: A Functional Interpretation of Some Extra-Classical Receptive-Field Effects},
+  author  = {Rao, Rajesh P. N. and Ballard, Dana H.},
+  journal = {Nature Neuroscience},
+  volume  = {2},
+  number  = {1},
+  pages   = {79--87},
+  year    = {1999}
+}
+
+% ---------- TD-learning: multi-horizon prediction error ----------
+
+@article{sutton1988td,
+  title   = {Learning to Predict by the Methods of Temporal Differences},
+  author  = {Sutton, Richard S.},
+  journal = {Machine Learning},
+  volume  = {3},
+  number  = {1},
+  pages   = {9--44},
+  year    = {1988}
+}
+
+% ---------- Recall instrument: zoology / MQAR ----------
+
+@inproceedings{arora2024zoology,
+  title     = {Zoology: Measuring and Improving Recall in Efficient Language Models},
+  author    = {Arora, Simran and Eyuboglu, Sabri and Timalsina, Aman and Johnson, Isys and
+               Poli, Michael and Zou, James and Rudra, Atri and R{\'e}, Christopher},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2312.04927; introduces the MQAR benchmark}
+}
+
+% ---------- The operator family: Mamba / S5 / LRU ----------
+
+@article{gu2023mamba,
+  title   = {Mamba: Linear-Time Sequence Modeling with Selective State Spaces},
+  author  = {Gu, Albert and Dao, Tri},
+  journal = {arXiv preprint arXiv:2312.00752},
+  year    = {2023},
+  note    = {Also in Conference on Language Modeling (COLM), 2024}
+}
+
+@inproceedings{smith2023s5,
+  title     = {Simplified State Space Layers for Sequence Modeling},
+  author    = {Smith, Jimmy T.H. and Warrington, Andrew and Linderman, Scott W.},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  note      = {arXiv:2208.04933, 2022}
+}
+
+@inproceedings{orvieto2023lru,
+  title     = {Resurrecting Recurrent Neural Networks for Long Sequences},
+  author    = {Orvieto, Antonio and Smith, Samuel L. and Gu, Albert and
+               Fernando, Anushan and Gulcehre, Caglar and Pascanu, Razvan},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2023},
+  note      = {arXiv:2303.06349}
+}
+
+% ---------- The systems analogy: live VM migration ----------
+
+@inproceedings{clark2005livemigration,
+  title     = {Live Migration of Virtual Machines},
+  author    = {Clark, Christopher and Fraser, Keir and Hand, Steven and
+               Hansen, Jacob Gorm and Jul, Eric and Limpach, Christian and
+               Pratt, Ian and Warfield, Andrew},
+  booktitle = {Proceedings of the 2nd Symposium on Networked Systems Design and Implementation (NSDI)},
+  year      = {2005}
+}
+
+% ---------- Continual learning: catastrophic forgetting mitigation ----------
+
+@article{kirkpatrick2017ewc,
+  title   = {Overcoming Catastrophic Forgetting in Neural Networks},
+  author  = {Kirkpatrick, James and Pascanu, Razvan and Rabinowitz, Neil and
+             Veness, Joel and Desjardins, Guillaume and Rusu, Andrei A. and
+             Milan, Kieran and Quan, John and Ramalho, Tiago and
+             Grabska-Barwinska, Agnieszka and Hassabis, Demis and
+             Clopath, Claudia and Kumaran, Dharshan and Hadsell, Raia},
+  journal = {Proceedings of the National Academy of Sciences (PNAS)},
+  volume  = {114},
+  number  = {13},
+  pages   = {3521--3526},
+  year    = {2017}
+}
+
+@article{vandeven2019replay,
+  title   = {Three Scenarios for Continual Learning},
+  author  = {van de Ven, Gido M. and Tolias, Andreas S.},
+  journal = {arXiv preprint arXiv:1904.07734},
+  year    = {2019}
+}
+
+% TODO: Hinton 2022 "The Forward-Forward Algorithm" -- omitted. I could not
+% confirm the exact venue/page metadata (NeurIPS 2022 workshop vs. arXiv-only
+% preprint) with certainty, and the draft's closing note only lists it as an
+% optional related-work anchor ("if you know the reference for sure --
+% otherwise omit"). Add back with verified venue details if needed for v0.2.

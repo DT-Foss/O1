@@ -7,3 +7,10 @@ __pycache__/
 .venv/
 results/*.tmp
 results/bench_*_smoke.json
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
