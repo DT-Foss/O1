@@ -480,6 +480,25 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   shuffling the deposited predictions destroys (a) and (b). If (a) holds
   but (b) does not, the horizon signal is a detector, not yet a teacher —
   reported as such.
+  **SCORED 2026-07-24 (full on core, results/horizon_pos_full.json):**
+  (a) FALSIFIED — the H=8 detector fired 65 chunks LATER than 1-step
+  surprise at the phase1→2 boundary (fire idx 304 vs 239) and never fired
+  at phase2→3. No early warning at this scale — consistent with the
+  smoke's structural finding. (b) CONFIRMED with room: horizon-mix gate
+  forgetting +0.300 vs base gate +0.392, at plasticity +0.736 vs +0.544 —
+  both axes better, not a trade. (c) FALSIFIED, and this kills the
+  attribution: the SHUFFLED-deposit control keeps the (b)-shaped benefit
+  (forgetting +0.324, also beats base) — whatever improves the mixed
+  gate, it is NOT the content of the deposited predictions. Verdict: at
+  this scale the future-trained gate is neither detector (a) nor
+  attributable teacher (c); the measured (b) win is real but structural —
+  a second, differently-tempered surprise stream diversifies the gate.
+  Next attack (unregistered design note): a rate-matched noise-gate
+  control carrying the same firing statistics but zero predictive
+  content — if (b) survives it, gate DIVERSITY is a cheap new F1 organ in
+  its own right; if it dies, the horizon content matters and the shuffle
+  control was too weak. The multi-horizon architecture idea stays open at
+  larger H / richer targets — this scores THIS instrument, not the idea.
 
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
   before any build; David's seeding insight, day 4):** three compositions,

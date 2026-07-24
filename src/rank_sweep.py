@@ -240,6 +240,13 @@ def d_eff_from_recall(recall, K, V=N_VALUES):
 
 def run_one(arm, K, steps, lr, batch, train_len, test_len, d_model, n_layers,
             n_heads, d_head, seed, vocab_size, mask_idx):
+    # mqar geometry: kv_len(2K) + n_queries(K) must fit in seq_len. K=32 at the
+    # grid default train_len=64 is infeasible (96 > 64). Lift ONLY infeasible
+    # cells to 4*K (filler stays proportional to the K16/64 cell); feasible
+    # cells keep the exact length they already ran at, so completed grid cells
+    # stay comparable and mergeable.
+    if 3 * K > train_len:
+        train_len = 4 * K
     train_cfg = dict(batch_size=batch, seq_len=train_len, n_pairs=K,
                       n_queries=K, n_keys=N_KEYS, n_values=N_VALUES)
     test_cfg = dict(batch_size=batch, seq_len=test_len, n_pairs=K,
@@ -627,7 +634,8 @@ def main():
         if args.out == os.path.join(RESULTS, "rank_sweep.json"):
             args.out = os.path.join(RESULTS, "rank_sweep_smoke.json")
     elif args.full:
-        args.cells = ""
+        # NOTE: do NOT reset args.cells here -- an explicit --cells stripe must
+        # survive --full (it did not, which silently reran the whole grid).
         args.seeds = "0,1,7,42"
         args.steps = max(args.steps, DEFAULT_STEPS)
 
