@@ -475,7 +475,20 @@ def run_beacon_ladder(args):
         x, k = _make_beacon_batch(NB, G, gen3, F_, beta0, beta1, probe)
         x_bg, x_probe = x[:, :-1], x[:, -1:]
         with torch.no_grad():
-            states_cold = write_and_carry(model, x_bg, None)
+            # chunked+carried like the WITH/WITHOUT arms. The original single
+            # write_and_carry(model, x_bg, None) call forwarded (NB, G) in ONE
+            # pass, materializing O(G) per-token internals (logits, hidden,
+            # S_re/S_im/Z_seq, drives, phases) -- ~25.6 GB at G=65536, the
+            # cause of BOTH beast OOM kills of the beacon half (a single
+            # sub-30s allocation burst, invisible to a 30s RSS watchdog).
+            # Chunked-carry is bit-exact for this operator family (F2), so
+            # the cold control's semantics are unchanged.
+            states_cold = None
+            posc, Tc = 0, x_bg.shape[1]
+            while posc < Tc:
+                hic = min(Tc, posc + chunk)
+                states_cold = write_and_carry(model, x_bg[:, posc:hic], states_cold)
+                posc = hic
             logits_cold = probe_with_states(model, x_probe, zero_states(states_cold))
             acc_cold = float((logits_cold.argmax(-1).cpu() == k).float().mean())
 
