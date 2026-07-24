@@ -865,7 +865,8 @@ def exp_a(args):
     cmd = [sys.executable, "-u", os.path.abspath(__file__),
            "--_internal-continue", "--resume", resumed_ckpt, "--name", "leg2",
            "--chunks", str(N), "--ckpt-every", str(N), "--out-dir", leg2_dir,
-           "--eval-every", str(N), "--result-json", out_json]
+           "--eval-every", str(N), "--result-json", out_json,
+           "--d-model", str(D_MODEL)]
     t0 = time.time()
     proc = subprocess.run(cmd, cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                           capture_output=True, text=True)
@@ -1209,7 +1210,8 @@ def _launch_source(name, total_chunks, snapshot_at, out_dir, result_json):
     cmd = [sys.executable, "-u", os.path.abspath(__file__),
            "--_internal-source", "--name", name, "--chunks", str(total_chunks),
            "--snapshot-at", ",".join(str(v) for v in snapshot_at),
-           "--out-dir", out_dir, "--result-json", result_json]
+           "--out-dir", out_dir, "--result-json", result_json,
+           "--d-model", str(D_MODEL)]
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return subprocess.Popen(cmd, cwd=repo_root, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
@@ -1233,7 +1235,8 @@ def _launch_catchup(name, snapshot_path, n_chunks, out_dir, result_json):
     caught up — no reason to background this one)."""
     cmd = [sys.executable, "-u", os.path.abspath(__file__),
            "--_internal-catchup", "--name", name, "--resume", snapshot_path,
-           "--chunks", str(n_chunks), "--out-dir", out_dir, "--result-json", result_json]
+           "--chunks", str(n_chunks), "--out-dir", out_dir, "--result-json", result_json,
+           "--d-model", str(D_MODEL)]
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     proc = subprocess.run(cmd, cwd=repo_root, capture_output=True, text=True)
     if proc.returncode != 0:
@@ -1515,6 +1518,11 @@ def _run_iterated_replication(args, root):
 def build_argparser():
     ap = argparse.ArgumentParser(description="PORTABLE ORGANISM: migration, kill+rejoin, offline mode, "
                                              "stop-free streaming migration (P38/P39, F7)")
+    ap.add_argument("--d-model", type=int, default=64,
+                     help="organism width; 64 = the toy scale every P38/P39 result so far ran at, "
+                          "128 = POS scale (chunk compute heavy enough that fixed snapshot/IPC "
+                          "overheads stop dominating -- the P39 a/c final measurement). Replaces "
+                          "the beast-only local-edit workaround; NEVER hand-edit the constant.")
     ap.add_argument("--exp", choices=["a", "b", "c", "d"], help="run an orchestrated P38/P39 experiment")
     ap.add_argument("--smoke", action="store_true", help="small N for fast iteration")
     ap.add_argument("--n", type=int, default=400, help="chunks per leg/segment (full scale)")
@@ -1560,6 +1568,9 @@ def build_argparser():
 def main():
     ap = build_argparser()
     args = ap.parse_args()
+
+    global D_MODEL
+    D_MODEL = args.d_model
 
     if args._internal_continue:
         _resume_subprocess_entry(args)
