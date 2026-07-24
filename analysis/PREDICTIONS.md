@@ -477,6 +477,28 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   chance, and D_eff_phase(K=8) consistent with the measured 8.9% ceiling
   (≈0.6 model-wide); (b') the phase cliff sits at ≥2× the scalar cliff-K;
   (c) unchanged. Same law, honest instrument.
+  **SCORED 2026-07-24 (full grid on the reference Mac,
+  results/rank_sweep_final.json; K∈{2,4,8,16,32} × 4 arms × 4 seeds):**
+  (c) CONFIRMED — attention validity min recall 0.9898, the tasks are
+  solvable and the harness correct. Anchor reproduction is EXACT for
+  scalar (0.0166 vs anchor 0.0170±0.0022), phase_off, and attn — the
+  instrument is calibrated. (a') FALSIFIED at the one eligible cell and
+  unscorable elsewhere: at K=2 (3/4 ignited) the ratio is 0.371 — the
+  phase's per-channel capacity among ignited seeds is LOWER than the
+  scalar's, the opposite sign of the prediction; no higher K clears 3×
+  chance on seed-mean. (b') FAIL as computed (cliff ratio 1.0). The
+  registered fallback therefore ENGAGES as written: the phase's measured
+  rent (P32's map) is NOT per-channel rank — the SNR-based alternative is
+  now the standing hypothesis. Dominating phenomenon and method finding:
+  phase IGNITION COLLAPSES WITH LOAD (3/4 → 1/4 → 1/4 → 0/4 → 0/4 across
+  K) — whatever the phase could pay at high K, training reliability dies
+  first; and the single ignited K=8 seed (0.0728) sits ~1σ below the
+  5-seed anchor mean, i.e. the ignition coin drifts with machine co-load
+  even on the reference machine. Process note: the full was launched
+  without --verify-anchor (the harness's own guard); the post-hoc anchor
+  comparison above recovers it. The 0.1406 Task-B anchor's reproduction
+  debt (P34 amendment) stands unchanged — this scores the mqar.py
+  instrument, on which the rank hypothesis is dead.
 - **P35 — the gap ladder to a million (src/gap_ladder.py):** eval-only, on
   the M3-recipe model with the P30 clamp+refresh prosthesis, gaps
   {4096, 16384, 65536, 262144, 1048576} chunked-carried: (a) MQAR recall at

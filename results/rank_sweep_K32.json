@@ -1,0 +1,532 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "k_grid": "2,4,8,16,32",
+    "arms": "scalar,phase,phase_off,attn",
+    "seeds": "0,1,7,42",
+    "n_heads": 4,
+    "d_head": 32,
+    "verify_anchor": false,
+    "steps": 2500,
+    "lr": 0.003,
+    "batch": 32,
+    "train_len": 64,
+    "test_len": 256,
+    "d_model": 128,
+    "n_layers": 2,
+    "seed": 0,
+    "cells": "32",
+    "out": "results/rank_sweep_K32.json",
+    "merge": ""
+  },
+  "D_total": 128,
+  "anchor_validation": null,
+  "chance": 0.015625,
+  "n_keys": 64,
+  "n_values": 64,
+  "ks_run": [
+    32
+  ],
+  "grid": {
+    "K32": {
+      "K": 32,
+      "seeds": {
+        "0": {
+          "scalar": {
+            "train_recall": 0.016,
+            "test_recall": 0.0144,
+            "D_eff_per_channel": 0.012,
+            "D_eff_per_real_dof": null,
+            "params": 461826,
+            "wall_s": 238.6,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.03333333333333333,
+              "17-24": 0.012084592145015106,
+              "25-32": 0.020179372197309416,
+              "33-48": 0.012510425354462052,
+              "49-64": 0.02145214521452145,
+              "65-128": 0.01447876447876448,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase": {
+            "train_recall": 0.016,
+            "test_recall": 0.0144,
+            "D_eff_per_channel": 0.012,
+            "D_eff_per_real_dof": 0.006,
+            "params": 527362,
+            "wall_s": 383.8,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.03333333333333333,
+              "17-24": 0.012084592145015106,
+              "25-32": 0.020179372197309416,
+              "33-48": 0.012510425354462052,
+              "49-64": 0.02145214521452145,
+              "65-128": 0.01447876447876448,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase_off": {
+            "train_recall": 0.016,
+            "test_recall": 0.0144,
+            "D_eff_per_channel": 0.012,
+            "D_eff_per_real_dof": null,
+            "params": 527362,
+            "wall_s": 250.3,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.03333333333333333,
+              "17-24": 0.012084592145015106,
+              "25-32": 0.020179372197309416,
+              "33-48": 0.012510425354462052,
+              "49-64": 0.02145214521452145,
+              "65-128": 0.01447876447876448,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "attn": {
+            "train_recall": 0.9999,
+            "test_recall": 1.0,
+            "D_eff_per_channel": 31.997,
+            "D_eff_per_real_dof": null,
+            "params": 560769,
+            "wall_s": 155.7,
+            "by_gap_train": {
+              "1-2": 1.0,
+              "3-4": 1.0,
+              "5-8": 1.0,
+              "9-12": 1.0,
+              "13-16": 1.0,
+              "17-24": 1.0,
+              "25-32": 1.0,
+              "33-48": 1.0,
+              "49-64": 1.0,
+              "65-128": 0.9997586872586872,
+              "129-256": null,
+              "257-1024": null
+            }
+          }
+        },
+        "1": {
+          "scalar": {
+            "train_recall": 0.0137,
+            "test_recall": 0.016,
+            "D_eff_per_channel": -0.063,
+            "D_eff_per_real_dof": null,
+            "params": 461826,
+            "wall_s": 257.0,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.0,
+              "17-24": 0.01,
+              "25-32": 0.012578616352201259,
+              "33-48": 0.016496465043205028,
+              "49-64": 0.014689265536723164,
+              "65-128": 0.01364190012180268,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase": {
+            "train_recall": 0.0134,
+            "test_recall": 0.0165,
+            "D_eff_per_channel": -0.072,
+            "D_eff_per_real_dof": -0.036,
+            "params": 527362,
+            "wall_s": 406.6,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.0,
+              "17-24": 0.013333333333333334,
+              "25-32": 0.012578616352201259,
+              "33-48": 0.016496465043205028,
+              "49-64": 0.014124293785310734,
+              "65-128": 0.01315468940316687,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase_off": {
+            "train_recall": 0.0137,
+            "test_recall": 0.016,
+            "D_eff_per_channel": -0.063,
+            "D_eff_per_real_dof": null,
+            "params": 527362,
+            "wall_s": 269.6,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.0,
+              "17-24": 0.01,
+              "25-32": 0.012578616352201259,
+              "33-48": 0.016496465043205028,
+              "49-64": 0.014689265536723164,
+              "65-128": 0.01364190012180268,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "attn": {
+            "train_recall": 0.9999,
+            "test_recall": 0.9995,
+            "D_eff_per_channel": 31.997,
+            "D_eff_per_real_dof": null,
+            "params": 560769,
+            "wall_s": 157.9,
+            "by_gap_train": {
+              "1-2": 1.0,
+              "3-4": 1.0,
+              "5-8": 1.0,
+              "9-12": 1.0,
+              "13-16": 1.0,
+              "17-24": 1.0,
+              "25-32": 1.0,
+              "33-48": 0.9992144540455616,
+              "49-64": 1.0,
+              "65-128": 1.0,
+              "129-256": null,
+              "257-1024": null
+            }
+          }
+        },
+        "7": {
+          "scalar": {
+            "train_recall": 0.0137,
+            "test_recall": 0.016,
+            "D_eff_per_channel": -0.063,
+            "D_eff_per_real_dof": null,
+            "params": 461826,
+            "wall_s": 267.7,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.023255813953488372,
+              "9-12": 0.03529411764705882,
+              "13-16": 0.02830188679245283,
+              "17-24": 0.015105740181268883,
+              "25-32": 0.0045351473922902496,
+              "33-48": 0.017557251908396947,
+              "49-64": 0.01295045045045045,
+              "65-128": 0.012738853503184714,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase": {
+            "train_recall": 0.0162,
+            "test_recall": 0.0146,
+            "D_eff_per_channel": 0.019,
+            "D_eff_per_real_dof": 0.009,
+            "params": 527362,
+            "wall_s": 411.4,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.023529411764705882,
+              "13-16": 0.0,
+              "17-24": 0.006042296072507553,
+              "25-32": 0.02040816326530612,
+              "33-48": 0.019083969465648856,
+              "49-64": 0.02027027027027027,
+              "65-128": 0.014453699167074964,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase_off": {
+            "train_recall": 0.0162,
+            "test_recall": 0.0146,
+            "D_eff_per_channel": 0.019,
+            "D_eff_per_real_dof": null,
+            "params": 527362,
+            "wall_s": 251.7,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.023529411764705882,
+              "13-16": 0.0,
+              "17-24": 0.006042296072507553,
+              "25-32": 0.02040816326530612,
+              "33-48": 0.019083969465648856,
+              "49-64": 0.02027027027027027,
+              "65-128": 0.014453699167074964,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "attn": {
+            "train_recall": 1.0,
+            "test_recall": 1.0,
+            "D_eff_per_channel": 32.0,
+            "D_eff_per_real_dof": null,
+            "params": 560769,
+            "wall_s": 164.4,
+            "by_gap_train": {
+              "1-2": 1.0,
+              "3-4": 1.0,
+              "5-8": 1.0,
+              "9-12": 1.0,
+              "13-16": 1.0,
+              "17-24": 1.0,
+              "25-32": 1.0,
+              "33-48": 1.0,
+              "49-64": 1.0,
+              "65-128": 1.0,
+              "129-256": null,
+              "257-1024": null
+            }
+          }
+        },
+        "42": {
+          "scalar": {
+            "train_recall": 0.0142,
+            "test_recall": 0.0184,
+            "D_eff_per_channel": -0.046,
+            "D_eff_per_real_dof": null,
+            "params": 461826,
+            "wall_s": 259.9,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.016260162601626018,
+              "17-24": 0.01529051987767584,
+              "25-32": 0.015625,
+              "33-48": 0.01751592356687898,
+              "49-64": 0.012229016120066704,
+              "65-128": 0.014194811551639746,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase": {
+            "train_recall": 0.0156,
+            "test_recall": 0.0145,
+            "D_eff_per_channel": -0.001,
+            "D_eff_per_real_dof": -0.0,
+            "params": 527362,
+            "wall_s": 404.2,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.016260162601626018,
+              "17-24": 0.03058103975535168,
+              "25-32": 0.017857142857142856,
+              "33-48": 0.00875796178343949,
+              "49-64": 0.017231795441912175,
+              "65-128": 0.016152716593245228,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase_off": {
+            "train_recall": 0.0156,
+            "test_recall": 0.0145,
+            "D_eff_per_channel": -0.001,
+            "D_eff_per_real_dof": null,
+            "params": 527362,
+            "wall_s": 252.2,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.0,
+              "5-8": 0.0,
+              "9-12": 0.0,
+              "13-16": 0.016260162601626018,
+              "17-24": 0.03058103975535168,
+              "25-32": 0.017857142857142856,
+              "33-48": 0.00875796178343949,
+              "49-64": 0.017231795441912175,
+              "65-128": 0.016152716593245228,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "attn": {
+            "train_recall": 0.9988,
+            "test_recall": 0.9991,
+            "D_eff_per_channel": 31.961,
+            "D_eff_per_real_dof": null,
+            "params": 560769,
+            "wall_s": 167.2,
+            "by_gap_train": {
+              "1-2": 1.0,
+              "3-4": 1.0,
+              "5-8": 1.0,
+              "9-12": 1.0,
+              "13-16": 1.0,
+              "17-24": 1.0,
+              "25-32": 0.9977678571428571,
+              "33-48": 1.0,
+              "49-64": 0.9977765425236242,
+              "65-128": 0.9987763093489965,
+              "129-256": null,
+              "257-1024": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "elapsed_s": 4298.3,
+  "analysis": {
+    "per_arm_curve": {
+      "scalar": {
+        "32": {
+          "recall_mean": 0.0144,
+          "recall_seeds": [
+            0.016,
+            0.0137,
+            0.0137,
+            0.0142
+          ],
+          "n_seeds": 4,
+          "n_ignited": 0,
+          "ignition_rate": 0.0,
+          "IGNITION_DEAD": true,
+          "D_eff_per_channel_mean_all_seeds": -0.04,
+          "D_eff_per_channel_mean_ignited": null,
+          "D_eff_seeds_ignited_only": []
+        }
+      },
+      "phase": {
+        "32": {
+          "recall_mean": 0.0153,
+          "recall_seeds": [
+            0.016,
+            0.0134,
+            0.0162,
+            0.0156
+          ],
+          "n_seeds": 4,
+          "n_ignited": 0,
+          "ignition_rate": 0.0,
+          "IGNITION_DEAD": true,
+          "D_eff_per_channel_mean_all_seeds": -0.01,
+          "D_eff_per_channel_mean_ignited": null,
+          "D_eff_seeds_ignited_only": []
+        }
+      },
+      "phase_off": {
+        "32": {
+          "recall_mean": 0.0154,
+          "recall_seeds": [
+            0.016,
+            0.0137,
+            0.0162,
+            0.0156
+          ],
+          "n_seeds": 4,
+          "n_ignited": 0,
+          "ignition_rate": 0.0,
+          "IGNITION_DEAD": true,
+          "D_eff_per_channel_mean_all_seeds": -0.008,
+          "D_eff_per_channel_mean_ignited": null,
+          "D_eff_seeds_ignited_only": []
+        }
+      },
+      "attn": {
+        "32": {
+          "recall_mean": 0.9997,
+          "recall_seeds": [
+            0.9999,
+            0.9999,
+            1.0,
+            0.9988
+          ],
+          "n_seeds": 4,
+          "n_ignited": 4,
+          "ignition_rate": 1.0,
+          "IGNITION_DEAD": false,
+          "D_eff_per_channel_mean_all_seeds": 31.989,
+          "D_eff_per_channel_mean_ignited": 31.989,
+          "D_eff_seeds_ignited_only": [
+            31.997,
+            31.997,
+            32.0,
+            31.961
+          ]
+        }
+      }
+    },
+    "checks": {
+      "a_prime_relational_rank": {
+        "three_x_chance": 0.0469,
+        "min_ignited_seeds_required": 2,
+        "per_K": {
+          "32": {
+            "phase_recall_mean": 0.0153,
+            "phase_ignition_rate": 0.0,
+            "phase_n_ignited": 0,
+            "phase_IGNITION_DEAD": true,
+            "clears_3x_chance": false,
+            "enough_ignited_seeds (>=2)": false,
+            "eligible_for_a_prime": false,
+            "phase_D_eff_ignited": null,
+            "scalar_D_eff_ignited": null,
+            "ratio_phase_over_scalar": null,
+            "passes_2x_at_this_K": null
+          }
+        },
+        "eligible_Ks (clears 3x chance AND >=2 ignited seeds)": [],
+        "IGNITION_DEAD_Ks (excluded, not scored as null-effect)": [
+          32
+        ],
+        "passes_2x_ratio_at_all_eligible_Ks": null,
+        "K8_phase_D_eff_ignited": null,
+        "K8_n_ignited": 0,
+        "K8_ceiling_target_D_eff (from 8.9pct anchor)": 0.596,
+        "K8_consistent_with_ceiling (+-0.3, requires >=2 ignited)": null,
+        "passes_a_prime": null
+      },
+      "b_prime_cliff_ratio": {
+        "D_total": 128,
+        "scalar_cliff": {
+          "cliff_K": null,
+          "note": "no cell with >=2 ignited seeds -- cliff undefined"
+        },
+        "phase_cliff": {
+          "cliff_K": null,
+          "note": "no cell with >=2 ignited seeds -- cliff undefined"
+        },
+        "cliff_ratio_phase_over_scalar": null,
+        "passes_b_prime (ratio>=2)": null
+      },
+      "c_attention_validity": {
+        "attn_recall_by_K": {
+          "32": 0.9997
+        },
+        "min_attn_recall": 0.9997,
+        "passes_ge_0_90": true
+      }
+    },
+    "verdict": "(c) attention validity: PASS (min recall 0.9997) | IGNITION_DEAD phase cells (excluded from a'/b'): [32] | (a') insufficient data (no K clears 3x chance for phase, or K=8 missing) -- cannot score | (b') cliff ratio undefined (scalar cliff_K=0 or missing data)"
+  }
+}
