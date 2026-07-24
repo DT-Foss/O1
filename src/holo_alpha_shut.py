@@ -434,7 +434,7 @@ def eval_gap_recall_chunked_alphaclamp(model, P, G, NB, seed, P_max, V_max, F, c
     T = x.shape[1]
 
     states = None
-    outs = []
+    last_logits = None
     pos = 0
     while pos < T:
         hi = min(T, pos + chunk)
@@ -451,9 +451,9 @@ def eval_gap_recall_chunked_alphaclamp(model, P, G, NB, seed, P_max, V_max, F, c
         is_pure_filler = (clamp_factor is not None) and (pos >= kv_len) and (hi <= kv_len + G)
         with EvalClampContext(scan0, clamp_factor if is_pure_filler else None):
             logits_c, states = model(x[:, pos:hi], states)
-        outs.append(logits_c)
-        pos = hi
-    logits = torch.cat(outs, dim=1)
+        last_logits = logits_c   # only the final position is ever read below;
+        pos = hi                 # storing every chunk's logits is O(G) memory
+    logits = last_logits         # (measured: 20 GB dead logits -> OOM at G=1M)
 
     pred = logits[:, -1, :V_max]
     acc = float((pred.argmax(-1) == y).float().mean())
@@ -774,7 +774,7 @@ def eval_gap_recall_chunked_clamprefresh(model, P, G, NB, seed, P_max, V_max, F,
     T = x.shape[1]
 
     states = None
-    outs = []
+    last_logits = None
     pos = 0
     while pos < T:
         hi = min(T, pos + chunk)
@@ -784,9 +784,9 @@ def eval_gap_recall_chunked_clamprefresh(model, P, G, NB, seed, P_max, V_max, F,
             logits_c, states = model(x[:, pos:hi], states)
         if is_pure_filler and refresh:
             states = refresh_magnitude(states)   # STATE OP between chunks, not in forward
-        outs.append(logits_c)
-        pos = hi
-    logits = torch.cat(outs, dim=1)
+        last_logits = logits_c   # only the final position is ever read below;
+        pos = hi                 # storing every chunk's logits is O(G) memory
+    logits = last_logits         # (measured: 20 GB dead logits -> OOM at G=1M)
 
     pred = logits[:, -1, :V_max]
     acc = float((pred.argmax(-1) == y).float().mean())
@@ -815,7 +815,7 @@ def eval_gap_recall_chunked_zeroed_clamprefresh(model, P, G, NB, seed, P_max, V_
     logits_kv, states = chunked_forward(model, x[:, :kv_len], chunk)
     states = model.zero_states(states)   # decisive null: zero EVERY carried tensor, every layer
 
-    outs = [logits_kv]
+    last_logits = logits_kv
     pos = kv_len
     T = x.shape[1]
     while pos < T:
@@ -826,9 +826,9 @@ def eval_gap_recall_chunked_zeroed_clamprefresh(model, P, G, NB, seed, P_max, V_
             logits_c, states = model(x[:, pos:hi], states)
         if is_pure_filler and refresh:
             states = refresh_magnitude(states)   # eps-guard: zeroed |S|=0 stays untouched
-        outs.append(logits_c)
-        pos = hi
-    logits = torch.cat(outs, dim=1)
+        last_logits = logits_c   # only the final position is ever read below;
+        pos = hi                 # storing every chunk's logits is O(G) memory
+    logits = last_logits         # (measured: 20 GB dead logits -> OOM at G=1M)
 
     pred = logits[:, -1, :V_max]
     acc = float((pred.argmax(-1) == y).float().mean())

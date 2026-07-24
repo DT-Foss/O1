@@ -419,6 +419,23 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   recovery overdose; (c) each ablation (minus-reminder, minus-monitor) is
   worse than full CHIMERA on ≥1 axis; (d) no single-organ arm dominates
   CHIMERA on all three axes. F1's locking experiment.
+  **Run-time note, registered BEFORE the full run (2026-07-24 ~15:00):**
+  smoke (results/chimera_smoke.json, 120 chunks/arm): all five arms ran
+  end-to-end; the dividend monitor demonstrably intervened (sleep SUSPENDED
+  at EMA=−0.040, 7 monitor skips); the reminder organ fired ZERO times in
+  every arm. Mechanical verification (unit test, same day): store→harvest→
+  lookup fires correctly on an exact 4-gram recurrence — the organ works;
+  the smoke's exposure is below the recurrence base rate (POS-measured:
+  ≥1020 capped hits / 900M tokens / 20k spans ⇒ ~0.1 expected fires at
+  smoke exposure; observed 0, consistent). The full run (150 chunks/phase)
+  expects single-digit fires from the C4 base rate; code-phase boilerplate
+  may raise it. Scoring consequence, fixed now: if fewer than 10 reminders
+  fire in the chimera arm, clause (c)'s minus-reminder ablation is scored
+  UNDECIDABLE-AT-EXPOSURE (neither confirmed nor falsified) — the organ's
+  in-composition value then needs index-scale exposure or a
+  recurrence-seeded protocol as a NEW registered experiment. Instrument
+  dimensioning (max_per_chunk=2, spike_min_nll=7.0) deliberately left AS
+  SPEC'D — no post-smoke retuning.
 - **P34 — the phase lifts binding rank per channel to ≥2 (src/rank_sweep.py):**
   an Eckart–Young-style capacity sweep (K keys vs D channels, the
   rank1_capacity method) on the COMPLEX holographic state: (a) inverting
