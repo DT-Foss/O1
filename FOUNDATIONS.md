@@ -56,7 +56,24 @@ surprise signals computed against an exponential-moving-average teacher copy;
 gating of optimizer moments separately from gradients; threshold schedules
 tied to wall-clock duty cycles ("waking hours"); multi-signal calculi
 combining surprise with uncertainty (entropy) and disagreement (ensemble
-variance).
+variance); and — disclosed in full breadth — the **multi-horizon extension**:
+a ladder of prediction heads over horizons H ∈ {1, …, unbounded}, each
+DEPOSITING a prediction about the stream's future (token statistics, summary
+signatures, its own future surprise, or any functional of the future
+segment), holding it in any persistence mechanism (the carried state, a
+write-once channel, the external index) until the future arrives, scoring it
+against the realized stream, and feeding the per-horizon error back as (i) a
+gating signal at its own timescale, (ii) a storage/consultation trigger,
+(iii) a regime-change early-warning (long-horizon error rises before
+short-horizon error under distribution shift), and (iv) a training signal
+for the depositing head — so that the present's model of the future improves
+from the future's own arrival. This applies to any number of horizons, any
+number of parallel input streams, and any composition with the other
+foundations (a deposited prediction is content in the F3 sense; a scored
+prediction→outcome pair is index material in the F4 sense; the whole ladder
+is family-generic in the F5 sense). A living stream is the only setting in
+which this loop closes at deployment time — a batch-trained model never
+experiences its own future.
 
 ## F2 — The exactness license: bounded contraction makes streaming training exact and decouples training layout from deployment layout
 

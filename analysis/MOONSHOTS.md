@@ -237,3 +237,10 @@ next to free builders is the only true time-waste in this lab.*
   forever) — the true cause of both graft hangs, diagnosed by stack
   sample. beast family replication abandoned (C4-starved) — Mac replication
   slot tomorrow.
+- day4 ~08:30 — MS15 REGISTERED (David's walk insight): the multi-horizon
+  ladder — deposit predictions about the future, score them when the future
+  arrives, learn from the error at every timescale. F1's disclosure extended
+  to full multi-horizon breadth in FOUNDATIONS.md (the living stream is the
+  only setting where this loop closes at deployment — a batch model never
+  experiences its own future). First experiment P37 on the shock harness:
+  long-horizon surprise as regime early-warning + as a gating teacher.

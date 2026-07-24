@@ -425,6 +425,19 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   all null cells within 3pp of chance. Closes the F6-flagged sampling-noise
   gap.
 
+- **P37 — the future-trained organism (MS15, src/horizon_pos.py, registered
+  before any build; David's architecture insight, day 4):** add an H-step
+  prediction head to the streaming organism (predict a summary functional of
+  chunk t+H at chunk t; score on arrival; horizon-surprise = the error).
+  On the MS3 shock protocol: (a) horizon-surprise (H ≥ 8 chunks) rises ≥ 5
+  chunks EARLIER at the domain boundary than 1-step surprise (the
+  early-warning claim); (b) gating on a mix of 1-step and H-step surprise
+  at matched gradient tokens forgets ≤ the 1-step gate's forgetting with
+  plasticity within 10%; (c) the deposited-prediction mechanism is honest:
+  shuffling the deposited predictions destroys (a) and (b). If (a) holds
+  but (b) does not, the horizon signal is a detector, not yet a teacher —
+  reported as such.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
