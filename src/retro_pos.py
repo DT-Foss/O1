@@ -1032,7 +1032,11 @@ def main():
         if args.out == "results/retro_pos.json":
             args.out = "results/retro_pos_smoke.json"
     elif args.full:
-        args.phase_chunks = 150
+        # NOTE: do NOT reset phase_chunks here — 150 is already the parser
+        # default, and an explicit --phase-chunks (e.g. 200 per the P41
+        # amendment: top rung needs >=70 pre-boundary steps) must survive
+        # --full. Same stomp pattern already bit rank_sweep's --cells.
+        pass
         args.eval_every = 25
 
     def eval_wt2_fn(model):
