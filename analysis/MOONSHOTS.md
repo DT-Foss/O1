@@ -59,6 +59,20 @@ next to free builders is the only true time-waste in this lab.*
 0. MS15b — P40 noise-gate attribution decider (REGISTERED 2026-07-24;
    surgical horizon_pos.py variant; runs on core when chimera-full ends;
    after it: horizon-v2 self-surprise instrument, numbered at spec-freeze)
+0b. MS18 — the retrodiction head / backward-surprise organ (David's
+   time-mirror insight, 2026-07-24; design note, numbered at spec-freeze):
+   a head that RECONSTRUCTS a summary of chunk t−H from the current state.
+   Its error measures not foresight but RETENTION — an online forgetting
+   meter. Backward H-ladder {2,8,32,128} = the F3 persistence knee as a
+   live per-chunk observable instead of eval probes. The organ it licenses:
+   consolidation triggered by MEASURED decay (retrodiction failure on
+   stored spans → replay exactly those spans) — the precision version of
+   the dividend monitor + freshness weighting. Substrate note: the
+   contractive recurrence (γ<1) makes backward inference expansive —
+   uncertainty splits exactly as the forward pass narrows; the γ-product
+   underflow measured in P35 is this arrow of time surfacing numerically.
+   Perfect F1 symmetry: future-surprise says LEARN NOW, past-surprise says
+   CONSOLIDATE NOW.
 1. MS7 — two organisms, one index (P31) — smoke running
 2. MS4 — auto-q full (anti-windup fixed) — running
 3. next builds on watch: MS10 rent map (born beast job), CHIMERA spec (lead)
