@@ -46,7 +46,10 @@ fixed linear readout can recover at most `D` bindings exactly (Eckart–Young ce
 accumulation** — no operation in the recurrence conditions the write on a match between a stored
 key and an incoming query — so the achievable **binding rank per channel is 1**, and the trained
 stack's effective binding rank `D_eff` is `O(1)`, far below the raw channel count `D=128`.
-Measured: on `K=8, V=64` MQAR (`results/hybrid_B.json`), pure-Selective recall **0.1406/0.1445**
+Measured: on `K=8, V=64` MQAR (`paper/evidence_companion/hybrid_B.json` — the paper's
+Task-B harness, `src/stack_mqar_run.py`; note this is a DIFFERENT instrument from
+`src/mqar.py`, whose scalar floor sits at ~0.017 — two instruments, two floors, both real),
+pure-Selective recall **0.1406/0.1445**
 (train/test) lands almost exactly on the closed-form `D_eff=1` prediction **0.139**; inverting the
 bound gives `D_eff ≈ 1.02`. Attention (rank `K`) and the Selective+attention hybrid (SSAS) both
 hit **1.000** — the double dissociation that discharges the theorem's one modeling assumption.

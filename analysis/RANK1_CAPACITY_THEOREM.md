@@ -14,14 +14,14 @@ Every step below is tagged **[PROVEN]** (clean math, or numerically exact), **[A
 
 ## 0. The task, exactly as measured
 
-From `src/mqar.py` and `results/hybrid_B.json` (the M4 Task-B run that produced the 14%):
+From `src/mqar.py` and `paper/evidence_companion/hybrid_B.json` (the M4 Task-B run that produced the 14%):
 
 - **Keys** `K_q ∈ {0,…,n_keys−1}`, **values** `V ∈ {0,…,n_values−1}`, here `n_keys = n_values = 64`.
 - A sequence lays down `K := n_pairs = 8` distinct `(key, value)` bindings, then spreads `n_queries = 8` query-keys through the rest of the sequence; at each query position the target is the *next token* = the value bound to that key.
 - **Scored chance** = `1/n_values = 1/64 ≈ 1.56%` (the model must name the exact value among 64).
 - **Measured pure-Selective (SSSS) recall:** `0.1406` at train len 64, `0.1445` at test len 256. Pure-proxy (PPAP) `0.157 / 0.161`. Attention (AAAA) and the Selective hybrid (SSAS) `≈ 1.000`.
 
-**The decisive empirical signature — it is *flat in the gap*, not a decay cliff.** Pure-Selective `by_gap` recall (train): gaps 3‑4 → 0.15, 5‑8 → 0.25, 9‑12 → 0.17, 13‑16 → 0.11, 17‑24 → 0.14, 25‑32 → 0.17, 33‑48 → 0.13, 49‑64 → 0.12. There is **no cliff**: recall is a roughly constant `~0.13–0.17` floor at *every* distance, including gap 3‑4. Attention is `1.000` flat at the top. A *memory-decay* limit would fall off with the gap; a *capacity* limit is flat. **The data say capacity, not forgetting.** [PROVEN — direct from `hybrid_B.json`]
+**The decisive empirical signature — it is *flat in the gap*, not a decay cliff.** Pure-Selective `by_gap` recall (train): gaps 3‑4 → 0.15, 5‑8 → 0.25, 9‑12 → 0.17, 13‑16 → 0.11, 17‑24 → 0.14, 25‑32 → 0.17, 33‑48 → 0.13, 49‑64 → 0.12. There is **no cliff**: recall is a roughly constant `~0.13–0.17` floor at *every* distance, including gap 3‑4. Attention is `1.000` flat at the top. A *memory-decay* limit would fall off with the gap; a *capacity* limit is flat. **The data say capacity, not forgetting.** [PROVEN — direct from `paper/evidence_companion/hybrid_B.json`]
 
 This single fact is what the theorem must explain: the wall is not "the leaky integrator forgot," it is "the scalar channel never had room to bind more than `O(1)` pairs in the first place."
 
@@ -134,7 +134,7 @@ Script: `analysis/rank1_capacity_check.py` (committed alongside this doc). It bu
   32   64    8        0.465           0.262  1.000
 ```
 
-**Connect to the measurement** (`results/hybrid_B.json`, `n_pairs = K = 8`, `V = 64`):
+**Connect to the measurement** (`paper/evidence_companion/hybrid_B.json`, `n_pairs = K = 8`, `V = 64`):
 
 | quantity | value |
 |---|---|
@@ -177,7 +177,7 @@ What is a **clean theorem** (part 1, 2): the rank-`D` upper bound and attention'
 - Exact MQAR ⇒ recovering a rank-`K` association; attention realizes it; recall ceiling = rank + chance (§2, eq. RankBound).
 - `D` scalars with fixed linear readout ⇒ association rank ≤ `D` ⇒ Eckart–Young recall ceiling (§3, eqs. D-Bound, EY).
 - The measured 14% is bracketed by the bound at `D_eff ≈ 1`; inversion gives `D_eff ≈ 1.02` (§5, code-run numbers).
-- The flat-in-gap recall profile (capacity signature, not decay) is read directly from `hybrid_B.json` (§0).
+- The flat-in-gap recall profile (capacity signature, not decay) is read directly from `paper/evidence_companion/hybrid_B.json` (§0).
 
 **[ARGUED]** (rigorous, one stated assumption each)
 - The leaky scalar mechanism has per-channel **binding** rank 1 because the increment is key-agnostic (first-order in the token stream); no outer product (§4). *Discharge:* SSAS (=1.000) vs SSSS (=0.14) double dissociation — the only difference is the added outer-product layer.
@@ -199,5 +199,5 @@ The scalar-channel limit is now a **prediction of the same operator algebra** th
 ### Reproducibility
 
 - `analysis/rank1_capacity_check.py` — Eckart–Young rank-`D` recall curve, `D/K` closed form, and `--info` channel-counting cross-check. Numbers in §5 are this script's stdout (`numpy` only, runs in <1 s).
-- Measured recall: `results/hybrid_B.json` (M4 Task B, `sel4`/`attn4`/`hyb_mid`/`pure_proxy`).
+- Measured recall: `paper/evidence_companion/hybrid_B.json` (M4 Task B, `sel4`/`attn4`/`hyb_mid`/`pure_proxy`).
 - Task generator and chance level: `src/mqar.py` (`n_keys = n_values = 64`, `n_pairs = 8`).
