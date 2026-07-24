@@ -401,6 +401,16 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   phase arm's capacity cliff sits at load ≈ 2K/D, the scalar's at ≈ K/D;
   (c) attention validity gate at ~1.0 throughout. If D_eff stays ~1, the
   phase's rent is NOT rank — the honest alternative (SNR-based) is stated.
+  **AMENDED before the sweep ran (day 4 ~08:15), reason on record:** the
+  0.1406 anchor's generating script is lost (two documented reconstruction
+  attempts land at chance; the artifact paper/evidence_companion/
+  hybrid_B.json remains the anchor's source of truth, flagged as
+  reproduction debt in RANK1_CAPACITY_THEOREM.md). P34 therefore runs on
+  the reproducible mqar.py instrument with the criterion made RELATIONAL:
+  (a') D_eff_phase ≥ 2× D_eff_scalar at every K where phase clears 3×
+  chance, and D_eff_phase(K=8) consistent with the measured 8.9% ceiling
+  (≈0.6 model-wide); (b') the phase cliff sits at ≥2× the scalar cliff-K;
+  (c) unchanged. Same law, honest instrument.
 - **P35 — the gap ladder to a million (src/gap_ladder.py):** eval-only, on
   the M3-recipe model with the P30 clamp+refresh prosthesis, gaps
   {4096, 16384, 65536, 262144, 1048576} chunked-carried: (a) MQAR recall at

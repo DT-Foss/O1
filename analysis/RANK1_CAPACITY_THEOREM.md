@@ -201,3 +201,18 @@ The scalar-channel limit is now a **prediction of the same operator algebra** th
 - `analysis/rank1_capacity_check.py` — Eckart–Young rank-`D` recall curve, `D/K` closed form, and `--info` channel-counting cross-check. Numbers in §5 are this script's stdout (`numpy` only, runs in <1 s).
 - Measured recall: `paper/evidence_companion/hybrid_B.json` (M4 Task B, `sel4`/`attn4`/`hyb_mid`/`pure_proxy`).
 - Task generator and chance level: `src/mqar.py` (`n_keys = n_values = 64`, `n_pairs = 8`).
+
+
+## Reproduction debt (recorded day 4)
+
+The measured numbers in §0 are read from `paper/evidence_companion/hybrid_B.json`
+(the committed artifact, which remains authoritative). The SCRIPT that generated
+it is not in the repository; two documented reconstruction attempts (canonical
+`mqar.py` 2-layer, and a 4-layer SSSS stack rebuilt from the existing layer
+classes at the recorded config) land at the mqar.py scalar floor (~0.017), not
+at 0.1406 — a 131,072-parameter gap vs the recorded 1.021M suggests a learned
+positional embedding (1024×128) the rebuild lacks, and the by-gap histogram in
+the JSON implies an interleaved (zoology-style) key/query layout rather than
+mqar.py's block layout. Until reconstructed, the 0.1406 anchor is
+artifact-backed but not re-runnable; P34's sweep therefore uses relational
+criteria on the reproducible instrument (see PREDICTIONS.md P34 amendment).
