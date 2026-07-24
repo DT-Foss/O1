@@ -499,6 +499,27 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   its own right; if it dies, the horizon content matters and the shuffle
   control was too weak. The multi-horizon architecture idea stays open at
   larger H / richer targets — this scores THIS instrument, not the idea.
+- **P40 — gate diversity vs. content (the P37 attribution decider,
+  registered 2026-07-24 before any build):** three arms on the MS3 shock
+  protocol at matched gradient tokens, same ckpt, seed 42 primary:
+  base_gate (1-step only), horizon_gate (P37's mix, unchanged), and
+  noise_gate — identical machinery and compute, except at gate-decision
+  time the second stream's value is the horizon-surprise from a uniformly
+  random EARLIER chunk (large random lag): distribution-identical,
+  rate-matched through the same rolling quantile, zero temporal content.
+  (a) REGISTERED POINT CALL: the noise arm RETAINS ≥70% of horizon_gate's
+  forgetting improvement over base — the P37-(b) win is DIVERSITY, not
+  content. If instead horizon beats noise by >0.03 nats forgetting at
+  ≥ noise's plasticity, content matters and P37's shuffle control was too
+  weak — reported at full strength either way. (b) sanity: noise arm's
+  realized second-stream firing rate within 2pp of horizon_gate's.
+  Either outcome is a win: diversity ⇒ a near-free new F1 organ (multiple
+  gate tempers); content ⇒ horizon-v2 is justified sharper. Design note
+  for horizon-v2 (numbered only when its spec freezes): SELF-SURPRISE
+  target — the head predicts the organism's own chunk-NLL at t+H (one
+  scalar, purer and cheaper than v1's histogram), H-ladder {2, 8, 32}, on
+  a shift-denser schedule (early warning needs boundaries to warn about;
+  MS3 has only two).
 
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
   before any build; David's seeding insight, day 4):** three compositions,

@@ -56,6 +56,9 @@ If fewer than 2 reviewed harnesses are waiting, build the next entry NOW
 (prediction registered first). Builders cost no CPU — an empty builder queue
 next to free builders is the only true time-waste in this lab.*
 
+0. MS15b — P40 noise-gate attribution decider (REGISTERED 2026-07-24;
+   surgical horizon_pos.py variant; runs on core when chimera-full ends;
+   after it: horizon-v2 self-surprise instrument, numbered at spec-freeze)
 1. MS7 — two organisms, one index (P31) — smoke running
 2. MS4 — auto-q full (anti-windup fixed) — running
 3. next builds on watch: MS10 rent map (born beast job), CHIMERA spec (lead)
