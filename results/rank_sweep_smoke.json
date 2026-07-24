@@ -1,0 +1,285 @@
+{
+  "config": {
+    "smoke": true,
+    "full": false,
+    "k_grid": "2,4,8,16,32",
+    "arms": "scalar,phase,phase_off,attn",
+    "seeds": "0",
+    "n_heads": 4,
+    "d_head": 32,
+    "verify_anchor": false,
+    "steps": 400,
+    "lr": 0.003,
+    "batch": 32,
+    "train_len": 64,
+    "test_len": 256,
+    "d_model": 128,
+    "n_layers": 2,
+    "seed": 0,
+    "cells": "8",
+    "out": "/Users/bhkmie/Documents/Forschung/O1_juli/results/rank_sweep_smoke.json",
+    "merge": ""
+  },
+  "D_total": 128,
+  "anchor_validation": {
+    "rows": {
+      "scalar": {
+        "recall": 0.0171,
+        "target_mean": 0.017,
+        "target_std": 0.0022,
+        "within_2sigma": true,
+        "wall_s": 22.1,
+        "params": 461826
+      },
+      "phase_off": {
+        "recall": 0.0171,
+        "target_mean": 0.0167,
+        "target_std": 0.0019,
+        "within_2sigma": true,
+        "wall_s": 21.4,
+        "params": 527362
+      },
+      "phase": {
+        "recall": 0.0132,
+        "target_mean": 0.0889,
+        "target_std": 0.0186,
+        "within_2sigma": false,
+        "wall_s": 36.8,
+        "params": 527362
+      },
+      "attn": {
+        "recall": 0.9976,
+        "target_mean": 0.994,
+        "target_std": 0.009,
+        "within_2sigma": true,
+        "wall_s": 14.0,
+        "params": 560769
+      }
+    },
+    "all_within_2sigma": false,
+    "steps_used": 400,
+    "full_budget_steps": 2500
+  },
+  "chance": 0.015625,
+  "n_keys": 64,
+  "n_values": 64,
+  "ks_run": [
+    8
+  ],
+  "grid": {
+    "K8": {
+      "K": 8,
+      "seeds": {
+        "0": {
+          "scalar": {
+            "train_recall": 0.0171,
+            "test_recall": 0.0142,
+            "D_eff_per_channel": 0.012,
+            "D_eff_per_real_dof": null,
+            "params": 461826,
+            "wall_s": 22.8,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.07692307692307693,
+              "5-8": 0.0,
+              "9-12": 0.009708737864077669,
+              "13-16": 0.0,
+              "17-24": 0.0111731843575419,
+              "25-32": 0.03225806451612903,
+              "33-48": 0.014005602240896359,
+              "49-64": 0.02654867256637168,
+              "65-128": null,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase": {
+            "train_recall": 0.0132,
+            "test_recall": 0.0171,
+            "D_eff_per_channel": -0.02,
+            "D_eff_per_real_dof": -0.01,
+            "params": 527362,
+            "wall_s": 36.5,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.07692307692307693,
+              "5-8": 0.0,
+              "9-12": 0.019417475728155338,
+              "13-16": 0.014492753623188406,
+              "17-24": 0.0111731843575419,
+              "25-32": 0.01935483870967742,
+              "33-48": 0.00980392156862745,
+              "49-64": 0.014749262536873156,
+              "65-128": null,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "phase_off": {
+            "train_recall": 0.0171,
+            "test_recall": 0.0142,
+            "D_eff_per_channel": 0.012,
+            "D_eff_per_real_dof": null,
+            "params": 527362,
+            "wall_s": 22.2,
+            "by_gap_train": {
+              "1-2": 0.0,
+              "3-4": 0.07692307692307693,
+              "5-8": 0.0,
+              "9-12": 0.009708737864077669,
+              "13-16": 0.0,
+              "17-24": 0.0111731843575419,
+              "25-32": 0.03225806451612903,
+              "33-48": 0.014005602240896359,
+              "49-64": 0.02654867256637168,
+              "65-128": null,
+              "129-256": null,
+              "257-1024": null
+            }
+          },
+          "attn": {
+            "train_recall": 0.9976,
+            "test_recall": 0.9985,
+            "D_eff_per_channel": 7.98,
+            "D_eff_per_real_dof": null,
+            "params": 560769,
+            "wall_s": 14.3,
+            "by_gap_train": {
+              "1-2": 1.0,
+              "3-4": 1.0,
+              "5-8": 1.0,
+              "9-12": 1.0,
+              "13-16": 1.0,
+              "17-24": 0.994413407821229,
+              "25-32": 1.0,
+              "33-48": 0.9971988795518207,
+              "49-64": 0.9970501474926253,
+              "65-128": null,
+              "129-256": null,
+              "257-1024": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "elapsed_s": 95.8,
+  "analysis": {
+    "per_arm_curve": {
+      "scalar": {
+        "8": {
+          "recall_mean": 0.0171,
+          "recall_seeds": [
+            0.0171
+          ],
+          "n_seeds": 1,
+          "n_ignited": 0,
+          "ignition_rate": 0.0,
+          "IGNITION_DEAD": true,
+          "D_eff_per_channel_mean_all_seeds": 0.012,
+          "D_eff_per_channel_mean_ignited": null,
+          "D_eff_seeds_ignited_only": []
+        }
+      },
+      "phase": {
+        "8": {
+          "recall_mean": 0.0132,
+          "recall_seeds": [
+            0.0132
+          ],
+          "n_seeds": 1,
+          "n_ignited": 0,
+          "ignition_rate": 0.0,
+          "IGNITION_DEAD": true,
+          "D_eff_per_channel_mean_all_seeds": -0.02,
+          "D_eff_per_channel_mean_ignited": null,
+          "D_eff_seeds_ignited_only": []
+        }
+      },
+      "phase_off": {
+        "8": {
+          "recall_mean": 0.0171,
+          "recall_seeds": [
+            0.0171
+          ],
+          "n_seeds": 1,
+          "n_ignited": 0,
+          "ignition_rate": 0.0,
+          "IGNITION_DEAD": true,
+          "D_eff_per_channel_mean_all_seeds": 0.012,
+          "D_eff_per_channel_mean_ignited": null,
+          "D_eff_seeds_ignited_only": []
+        }
+      },
+      "attn": {
+        "8": {
+          "recall_mean": 0.9976,
+          "recall_seeds": [
+            0.9976
+          ],
+          "n_seeds": 1,
+          "n_ignited": 1,
+          "ignition_rate": 1.0,
+          "IGNITION_DEAD": false,
+          "D_eff_per_channel_mean_all_seeds": 7.98,
+          "D_eff_per_channel_mean_ignited": 7.98,
+          "D_eff_seeds_ignited_only": [
+            7.98
+          ]
+        }
+      }
+    },
+    "checks": {
+      "a_prime_relational_rank": {
+        "three_x_chance": 0.0469,
+        "min_ignited_seeds_required": 2,
+        "per_K": {
+          "8": {
+            "phase_recall_mean": 0.0132,
+            "phase_ignition_rate": 0.0,
+            "phase_n_ignited": 0,
+            "phase_IGNITION_DEAD": true,
+            "clears_3x_chance": false,
+            "enough_ignited_seeds (>=2)": false,
+            "eligible_for_a_prime": false,
+            "phase_D_eff_ignited": null,
+            "scalar_D_eff_ignited": null,
+            "ratio_phase_over_scalar": null,
+            "passes_2x_at_this_K": null
+          }
+        },
+        "eligible_Ks (clears 3x chance AND >=2 ignited seeds)": [],
+        "IGNITION_DEAD_Ks (excluded, not scored as null-effect)": [
+          8
+        ],
+        "passes_2x_ratio_at_all_eligible_Ks": null,
+        "K8_phase_D_eff_ignited": null,
+        "K8_n_ignited": 0,
+        "K8_ceiling_target_D_eff (from 8.9pct anchor)": 0.596,
+        "K8_consistent_with_ceiling (+-0.3, requires >=2 ignited)": null,
+        "passes_a_prime": null
+      },
+      "b_prime_cliff_ratio": {
+        "D_total": 128,
+        "scalar_cliff": {
+          "cliff_K": null,
+          "note": "no cell with >=2 ignited seeds -- cliff undefined"
+        },
+        "phase_cliff": {
+          "cliff_K": null,
+          "note": "no cell with >=2 ignited seeds -- cliff undefined"
+        },
+        "cliff_ratio_phase_over_scalar": null,
+        "passes_b_prime (ratio>=2)": null
+      },
+      "c_attention_validity": {
+        "attn_recall_by_K": {
+          "8": 0.9976
+        },
+        "min_attn_recall": 0.9976,
+        "passes_ge_0_90": true
+      }
+    },
+    "verdict": "(c) attention validity: PASS (min recall 0.9976) | IGNITION_DEAD phase cells (excluded from a'/b'): [8] | (a') insufficient data (no K clears 3x chance for phase, or K=8 missing) -- cannot score | (b') cliff ratio undefined (scalar cliff_K=0 or missing data)"
+  }
+}
