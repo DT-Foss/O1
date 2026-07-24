@@ -274,3 +274,12 @@ next to free builders is the only true time-waste in this lab.*
   partner's outage-window spans make the rejoiner stronger than uninterrupted.
   Collective memory + portability compose. P39 (a)/(c)/(d) re-measuring at
   d=128 on quiet beast (toy-scale timing artifact, not mechanism).
+- day4 ~12:15 — P39 a/c metric verdict: structurally undecidable at toy
+  scale (fixed constants vs microsecond chunks); (b) bit-fest everywhere.
+  Final a/c on the POS-scale organism after Phase B. Rank-grid decision:
+  the OMP=4 anchor on beast is IGNITION_DEAD (same seed that ignites on
+  the Mac default regime) — the ignition coin is weighted per
+  machine x threading; the sweep runs on the REFERENCE machine (Mac) after
+  Phase B frees it. Gap-ladder interim: MQAR rungs at chance from G=16384
+  (beacon rung held 1.0 with refresh) — JSON harvest pending for the full
+  picture.

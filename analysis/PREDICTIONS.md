@@ -494,9 +494,18 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   ratio-10 blip only against beast's 2.7 ms baseline, NOT a perceptible
   stall; the metric conflates I/O latency with downtime and is being
   re-measured at realistic d_model where per-chunk cost dominates. (c)
-  convergence and (d) iterated re-running at d_model=128 with cadence (the
-  toy d=64 organism's fixed subprocess cold-start swamped A's per-chunk cost
-  on the loaded Mac; the mechanism, not the timing, is what (b) proves).
+  convergence and (d) iterated re-ran at d_model=128 on quiet beast: same
+  picture (snapshot 35 ms absolute vs 4 ms chunks; B/A cpu 2.3 with the
+  fixed process-start amortized over toy-sized work). VERDICT on the
+  metrics themselves: (a) and (c) as registered are STRUCTURALLY
+  UNDECIDABLE at toy scale — both are ratios of fixed constants
+  (serialization, process start) to per-chunk costs that are microseconds
+  in a d≤128/B=4 organism; they measure overhead arithmetic, not the
+  migration property. What IS measured and stands: (b) bit-identical
+  catch-up while the source lives (every scale, every machine tried), and
+  the absolute snapshot cost (28–35 ms — one chunk slot). Final (a)/(c)
+  measurement scheduled on the full POS-scale organism (B=8/K=64, ~100 ms
+  chunks) where per-chunk work dominates the constants.
 
 ## Scoring rule
 

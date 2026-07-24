@@ -1,0 +1,65 @@
+{
+  "exp_d": {
+    "n_before_snapshot": 800,
+    "transfer_window_T": 200,
+    "lockstep_M": 200,
+    "a_result_summary": {
+      "n_chunks": 1200,
+      "final_heldout": 6.070776,
+      "wall_s_total": 13.374114,
+      "snapshots": [
+        {
+          "n": 800,
+          "path": "results/portable/exp_d/source_A/snap_800.pt",
+          "wall_s": 10.15319
+        }
+      ]
+    },
+    "b_catchup_summary": {
+      "chunks_replayed": 200,
+      "catchup_wall_s": 2.628405,
+      "catchup_cpu_s": 25.398877,
+      "final_heldout_after_catchup": 6.089731
+    },
+    "b_lockstep_summary": {
+      "chunks_replayed": 200,
+      "final_heldout_after_lockstep": 6.070776
+    },
+    "check_a_zero_downtime": {
+      "measured": true,
+      "post_snapshot_gap_s": 0.034979,
+      "baseline_median_gap_s": 0.00404,
+      "ratio": 8.658,
+      "no_stall": false
+    },
+    "check_b_state_parity": {
+      "chunk_log_tail_matches": true,
+      "final_heldout_matches": true,
+      "first_mismatch": null,
+      "a_final_heldout": 6.070776,
+      "b_final_heldout": 6.070776
+    },
+    "check_c_convergence": {
+      "metric": "cpu_time, A's rate = median per-chunk CPU delta over A's full run x T (robust to isolated background-load spikes; wall-clock reported for transparency, does not gate \u2014 see note)",
+      "a_live_cpu_s_for_T_chunks": 11.0736,
+      "b_catchup_cpu_s_for_T_chunks": 25.398877,
+      "ratio_b_over_a_cpu": 2.2936,
+      "a_live_wall_s_for_T_chunks": 1.762105,
+      "b_catchup_wall_s_for_T_chunks": 2.628405,
+      "ratio_b_over_a_wall": 1.4916,
+      "converges": false,
+      "note": "wall-clock ratio is noisy on this machine (saturating background load); CPU time (median-rate based) is the gating metric."
+    },
+    "p39_scoring": {
+      "a_zero_downtime": false,
+      "b_state_parity": true,
+      "c_convergence": false,
+      "d_iterated_replication": null
+    },
+    "check_d_iterated_replication": {
+      "skipped": true,
+      "reason": "base checks (a)-(c) not all PASS"
+    },
+    "verdict": "P39: (a) zero-downtime=FAIL (gap ratio 8.658) | (b) state-parity=PASS (tail_matches=True, heldout_matches=True) | (c) convergence=FAIL (cpu ratio B/A=2.2936, wall ratio=1.4916) | (d) iterated=SKIPPED | PARTIAL/FAIL"
+  }
+}
