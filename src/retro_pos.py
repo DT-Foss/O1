@@ -41,15 +41,20 @@ HEAD DESIGN (mirrors horizon_pos.py's HorizonHead exactly, for comparability):
           is never gated by the base model's own gate decision).
 
 RING BUFFER (the load-bearing difference from horizon_pos's HorizonQueue):
-  A bounded deque of length <= 128 (= max(H_LADDER)), one entry per chunk,
+  A bounded deque of length <= 129 (= max(H_LADDER)+1 -- the +1 is
+  load-bearing: the current chunk is pushed BEFORE the rung lookups, so a
+  capacity of exactly max(H) would evict the H=max target one position too
+  early and silently starve the top rung; caught in review, guarded by the
+  RED/GREEN self-test), one entry per chunk,
   each entry the (global_idx, top-256 histogram) of that chunk's REALIZED
   tokens (not a pooled hidden state -- the retrodiction target is always the
   histogram, computed once per chunk and shared by all rungs and both arms,
   unlike horizon's per-deposit prediction which is rung-specific). At chunk
   t, rung H reads buffer entry (t-H) directly by index arithmetic (the
-  buffer holds the last <=128 chunks; t-H is in range whenever t >= H and
-  t-H is still within the trailing 128-window, which it always is by
-  construction since maxlen=128 >= every H in the ladder). No FIFO pop/push
+  buffer holds the trailing max(H)+1 chunks INCLUDING the just-pushed
+  current one, so t-H is in range whenever t >= H for every rung -- with a
+  capacity of only max(H) the top rung's target would already be evicted
+  at lookup time, see the +1 note above). No FIFO pop/push
   pairing with a "score when it arrives" step -- the buffer is a rolling
   window read at arbitrary lag, not a fixed-depth pipeline. This is the
   actual mechanism referenced by "bounded ring-buffer of the last 128 chunk
