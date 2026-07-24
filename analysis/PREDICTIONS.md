@@ -559,7 +559,30 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   weak — reported at full strength either way. (b) sanity: noise arm's
   realized second-stream firing rate within 2pp of horizon_gate's.
   Either outcome is a win: diversity ⇒ a near-free new F1 organ (multiple
-  gate tempers); content ⇒ horizon-v2 is justified sharper. Design note
+  gate tempers); content ⇒ horizon-v2 is justified sharper.
+  **SCORED 2026-07-24 evening (full on core,
+  results/horizon_p40_full.json; head-init seeded, min_lag=50, fallback
+  11.1% = the designed cold-start window):** the registered point call is
+  FALSIFIED in the most informative direction — retained_fraction is
+  **−0.575**: the temporally-scrambled second stream doesn't keep 70% of
+  the win, it is WORSE THAN NO second stream at all (noise forgetting
+  0.443 vs base 0.392, plasticity 0.559), while horizon_gate replicates
+  its P37 win cleanly (0.302 / 0.726). The counter-clause FIRES once the
+  implementation's sign slip is corrected at scoring (the code tested
+  forg_horizon−forg_noise > 0.03; the registered sense is noise−horizon:
+  **0.141 nats, ~5× the threshold, at horizon plasticity ≥ noise's** —
+  reviewed-and-missed by the lead, recovered from the logged raw numbers,
+  which is what raw-numbers-next-to-every-pass/fail is FOR). (b)
+  rate-match fails as anticipated after the smoke: 4.0pp overall, widest
+  in the shock phase (0.313 vs 0.220) — content-driven boundary firing,
+  measured. SYNTHESIS with P37(c): shuffled DEPOSITS kept the win (a
+  scrambled deposit is still scored NOW against NOW — its error still
+  carries the current regime); time-scrambled VALUES destroy it. The
+  mixed gate's fuel is neither deposit content nor generic diversity but
+  the second stream's TEMPORAL COHERENCE with the current regime. This
+  is the sharpest mechanism statement the horizon program has produced
+  and it directly licenses horizon-v2 (self-surprise ladder), which
+  maximizes exactly that component. Design note
   for horizon-v2 (numbered only when its spec freezes): SELF-SURPRISE
   target — the head predicts the organism's own chunk-NLL at t+H (one
   scalar, purer and cheaper than v1's histogram), H-ladder {2, 8, 32}, on
