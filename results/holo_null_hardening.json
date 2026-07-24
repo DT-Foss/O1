@@ -1,0 +1,270 @@
+{
+  "config": {
+    "smoke": false,
+    "full": false,
+    "eval_alpha_clamp": false,
+    "eval_clamp_refresh": false,
+    "null_hardening": true,
+    "null_gaps": "1024,2048",
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 3000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 400,
+    "g_start": 2,
+    "patience": 25,
+    "curriculum_bar": 0.8,
+    "g_train_max": 128,
+    "log_every": 0,
+    "gaps": "128,256,512,1024,2048",
+    "drift_gaps": "128,512,2048",
+    "seeds": "0,1",
+    "lam_list": "0,3e-3,1e-2,3e-2",
+    "out": "/root/o1lab/results/holo_null_hardening.json"
+  },
+  "equivalence": {
+    "reference_streaming": 0.0,
+    "magnorm": 0.0,
+    "passed": true
+  },
+  "chance": 0.0625,
+  "eval_batch_hardened": 400,
+  "recipe": "M3 V2_kickstart_magnorm, lambda=0, trained ONCE per seed (identical build path to P29/P30). Re-measures ONLY the P30c zeroed-at-gap null across the same four clamp/refresh arms, at G in {1024,2048}, with eval_batch forced >= 100 (no shrinkage) -- the F6-flagged sampling-noise gap on the decisive no-information-invented control.",
+  "refresh_eps": 1e-08,
+  "gate_pp": 3.0,
+  "curriculum": {
+    "seed0": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.3438,
+      "final_task_loss": 0.8878,
+      "final_alpha_reg": 0.0,
+      "mean_alpha_filler_last_window": 0.443908,
+      "alpha_log_window": 100
+    },
+    "seed1": {
+      "final_train_gap": 2,
+      "final_train_acc": 0.5625,
+      "final_task_loss": 0.7641,
+      "final_alpha_reg": 0.0,
+      "mean_alpha_filler_last_window": 0.465704,
+      "alpha_log_window": 100
+    }
+  },
+  "null": {
+    "unclamped_norefresh|seed0|G1024": {
+      "seed": 0,
+      "arm": "unclamped_norefresh",
+      "clamp_factor": null,
+      "refresh": false,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.0775,
+      "chance": 0.0625,
+      "deviation_pp": 1.5,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_norefresh|seed0|G2048": {
+      "seed": 0,
+      "arm": "unclamped_norefresh",
+      "clamp_factor": null,
+      "refresh": false,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.0625,
+      "chance": 0.0625,
+      "deviation_pp": 0.0,
+      "within_3pp_of_chance": true
+    },
+    "clamp_norefresh|seed0|G1024": {
+      "seed": 0,
+      "arm": "clamp_norefresh",
+      "clamp_factor": 0.0,
+      "refresh": false,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.0725,
+      "chance": 0.0625,
+      "deviation_pp": 1.0,
+      "within_3pp_of_chance": true
+    },
+    "clamp_norefresh|seed0|G2048": {
+      "seed": 0,
+      "arm": "clamp_norefresh",
+      "clamp_factor": 0.0,
+      "refresh": false,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "deviation_pp": 0.75,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_refresh|seed0|G1024": {
+      "seed": 0,
+      "arm": "unclamped_refresh",
+      "clamp_factor": null,
+      "refresh": true,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.065,
+      "chance": 0.0625,
+      "deviation_pp": 0.25,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_refresh|seed0|G2048": {
+      "seed": 0,
+      "arm": "unclamped_refresh",
+      "clamp_factor": null,
+      "refresh": true,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.065,
+      "chance": 0.0625,
+      "deviation_pp": 0.25,
+      "within_3pp_of_chance": true
+    },
+    "clamp_refresh|seed0|G1024": {
+      "seed": 0,
+      "arm": "clamp_refresh",
+      "clamp_factor": 0.0,
+      "refresh": true,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.0725,
+      "chance": 0.0625,
+      "deviation_pp": 1.0,
+      "within_3pp_of_chance": true
+    },
+    "clamp_refresh|seed0|G2048": {
+      "seed": 0,
+      "arm": "clamp_refresh",
+      "clamp_factor": 0.0,
+      "refresh": true,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "deviation_pp": 0.75,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_norefresh|seed1|G1024": {
+      "seed": 1,
+      "arm": "unclamped_norefresh",
+      "clamp_factor": null,
+      "refresh": false,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.0475,
+      "chance": 0.0625,
+      "deviation_pp": 1.5,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_norefresh|seed1|G2048": {
+      "seed": 1,
+      "arm": "unclamped_norefresh",
+      "clamp_factor": null,
+      "refresh": false,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.0725,
+      "chance": 0.0625,
+      "deviation_pp": 1.0,
+      "within_3pp_of_chance": true
+    },
+    "clamp_norefresh|seed1|G1024": {
+      "seed": 1,
+      "arm": "clamp_norefresh",
+      "clamp_factor": 0.0,
+      "refresh": false,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "deviation_pp": 0.75,
+      "within_3pp_of_chance": true
+    },
+    "clamp_norefresh|seed1|G2048": {
+      "seed": 1,
+      "arm": "clamp_norefresh",
+      "clamp_factor": 0.0,
+      "refresh": false,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "deviation_pp": 0.75,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_refresh|seed1|G1024": {
+      "seed": 1,
+      "arm": "unclamped_refresh",
+      "clamp_factor": null,
+      "refresh": true,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.0625,
+      "chance": 0.0625,
+      "deviation_pp": 0.0,
+      "within_3pp_of_chance": true
+    },
+    "unclamped_refresh|seed1|G2048": {
+      "seed": 1,
+      "arm": "unclamped_refresh",
+      "clamp_factor": null,
+      "refresh": true,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.0675,
+      "chance": 0.0625,
+      "deviation_pp": 0.5,
+      "within_3pp_of_chance": true
+    },
+    "clamp_refresh|seed1|G1024": {
+      "seed": 1,
+      "arm": "clamp_refresh",
+      "clamp_factor": 0.0,
+      "refresh": true,
+      "G": 1024,
+      "eval_batch": 400,
+      "accuracy": 0.055,
+      "chance": 0.0625,
+      "deviation_pp": 0.75,
+      "within_3pp_of_chance": true
+    },
+    "clamp_refresh|seed1|G2048": {
+      "seed": 1,
+      "arm": "clamp_refresh",
+      "clamp_factor": 0.0,
+      "refresh": true,
+      "G": 2048,
+      "eval_batch": 400,
+      "accuracy": 0.07,
+      "chance": 0.0625,
+      "deviation_pp": 0.75,
+      "within_3pp_of_chance": true
+    }
+  },
+  "per_G_summary": {
+    "1024": {
+      "n_cells": 8,
+      "all_within_3pp": true,
+      "max_deviation_pp": 1.5
+    },
+    "2048": {
+      "n_cells": 8,
+      "all_within_3pp": true,
+      "max_deviation_pp": 1.0
+    }
+  },
+  "all_checks_pass": true,
+  "verdict": "P36 (zeroed-at-gap null within 3pp of chance, every cell, eval_batch>=400, G in [1024, 2048], 2 seed(s) x 4 arms = 16 cells): CONFIRMED | worst cell: unclamped_norefresh seed0 G=1024 acc=0.0775 (chance 0.0625) deviation=1.5pp",
+  "elapsed_s": 174.1
+}
