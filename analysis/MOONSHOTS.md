@@ -60,7 +60,8 @@ next to free builders is the only true time-waste in this lab.*
    surgical horizon_pos.py variant; runs on core when chimera-full ends;
    after it: horizon-v2 self-surprise instrument, numbered at spec-freeze)
 0b. MS18 — the retrodiction head / backward-surprise organ (David's
-   time-mirror insight, 2026-07-24; design note, numbered at spec-freeze):
+   time-mirror insight, 2026-07-24; **P41 REGISTERED, builder spawned
+   same day — v0 = the meter; smoke waits for a free machine slot**):
    a head that RECONSTRUCTS a summary of chunk t−H from the current state.
    Its error measures not foresight but RETENTION — an online forgetting
    meter. Backward H-ladder {2,8,32,128} = the F3 persistence knee as a

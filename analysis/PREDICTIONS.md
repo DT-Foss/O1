@@ -565,6 +565,24 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   scalar, purer and cheaper than v1's histogram), H-ladder {2, 8, 32}, on
   a shift-denser schedule (early warning needs boundaries to warn about;
   MS3 has only two).
+- **P41 — the retrodiction meter (MS18 v0, David's time-mirror, registered
+  2026-07-24 before any build):** a BACKWARD head ladder on the streaming
+  organism: at chunk t, one linear head per rung reconstructs the
+  top-256-bucket histogram of chunk t−H from the current carried
+  state/features, H ∈ {2, 8, 32, 128}. Targets are past chunks — available
+  immediately from a bounded rolling buffer (no deposit queue); heads
+  train online, matched budgets, MS3 shock stream, same ckpt as
+  P37/P40. Registered: (a) TWO-REGIME DECAY — the two-timescale law seen
+  backward: error rises steeply across the receptive-field scale and
+  PLATEAUS beyond it on the weights level. Point call:
+  err(H=128) − err(H=32) < 0.25 × (err(H=8) − err(H=2)). (b) Shuffle
+  control: temporally shuffled targets erase the H-structure (rungs
+  within noise of each other, no monotone ladder). (c) LIVE FORGETTING:
+  after the phase-2 boundary, rungs whose target lies PRE-boundary rise
+  within ≤32 chunks while heldout forgetting accumulates — the meter sees
+  forgetting as it happens (direction registered; magnitude exploratory
+  in v0). Scope: v0 is the METER only — the consolidation organ
+  (decay-triggered targeted replay) is a separate later registration.
 
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
   before any build; David's seeding insight, day 4):** three compositions,
