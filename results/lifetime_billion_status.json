@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-07-24T18:48:38",
+  "streamed_tokens": 1000320000,
+  "step": 1953750,
+  "loss_ema": 4.1815,
+  "rss_gb": 0.761,
+  "peak_rss_gb": 0.763,
+  "uptime_s": 22146.8,
+  "uptime_h": 6.152,
+  "tok_per_s": 5993.2,
+  "free_disk_gb": 34.8,
+  "paused": false,
+  "note": "",
+  "pid": 2095339,
+  "ckpt": "results_lifetime/lifetime_ckpt.pt",
+  "d_model": 128,
+  "chunk": 64,
+  "batch": 8
+}

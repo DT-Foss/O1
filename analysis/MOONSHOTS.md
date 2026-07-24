@@ -361,3 +361,10 @@ next to free builders is the only true time-waste in this lab.*
   GOALPOST LINE FIXED IN WRITING: after this wave + Möbius ⇒ paper v0.2 →
   arXiv; new organs go to backlog, not the critical path. Lifetime
   crossing 1,000,000,000 streamed tokens tonight.
+- day6 22:48 (2026-07-24T18:48:12Z) — **ONE BILLION STREAMED TOKENS IN ONE
+  UNINTERRUPTED LIFE**: the lifetime organism on intel crossed
+  1,000,166,400 tokens at loss_ema 4.179 and RSS 0.76 GB — constant
+  memory across three orders of magnitude of experience, one HF-stall
+  (healed from its own checkpoint, ~3 min lost, stall-guard armed since).
+  Artifact: results/lifetime_billion_status.json. On the day the VAE PhD
+  application went to Rennes.
