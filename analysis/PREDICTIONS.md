@@ -610,6 +610,38 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   full phase lengths (direction registered; magnitude exploratory in
   v0). Scope: v0 is the METER only — the consolidation organ
   (decay-triggered targeted replay) is a separate later registration.
+  **AMENDED before the full (2026-07-24 evening, from the smoke's own
+  diagnosis, results/retro_pos_smoke.json):** the smoke found a real
+  instrument confound: rung H only starts training at chunk H, so higher
+  rungs carry fewer optimizer steps and a ladder appears from
+  under-training alone — the SHUFFLED arm showed nearly the same ladder
+  (4.54/4.74/5.41 vs real 4.49/4.77/5.45), and H=128 is structurally
+  empty in a 120-chunk smoke. The shuffled arm shares the exact training
+  schedule, so the confound cancels in the per-rung contrast. All three
+  clauses are therefore re-based on REAL−SHUFFLED per-rung differences:
+  (a) two-regime decay on the CONTRAST curve; (b) becomes the contrast
+  being significantly > 0 with ladder structure (the old absolute-flat
+  test is retired); (c) unchanged in anchor/window but measured on the
+  contrast. phase_chunks for the full raised to 200 (top rung trains ≥70
+  steps before the boundary). Scoring happens from the logged raw curves
+  of both arms (fully recorded), not the in-run pass/fail block.
+- **P42 — the gate law survives width (the transfer axis, registered
+  2026-07-24 before launch):** the exact 40h recipe (q=0.75, window 500,
+  min 100, ignition 100, B=8, K=64, lr 3e-3, seed 42, from-scratch,
+  streamed C4) at d_model=256 — 4× the FLOPs, 2× the width of every POS
+  result so far — to 50M streamed tokens, token-scheduled evals, twin and
+  index off (the pure three-arm gate law). Anchor, computed from the 40h
+  run's own curve at the same token count: at 49.6M tokens d=128 stood at
+  ratio_A3_vs_A2 = 0.9729 with gate 0.2472. Registered: (a) ratio(d=256,
+  50M) ≥ 0.93 — the gate's token-efficiency advantage does not weaken
+  materially with width; point call: it lands ≥ the d=128 anchor 0.9729
+  (selection should matter MORE when each gradient is 4× as expensive is
+  the intuition, stated but not required); (b) post-ignition gate
+  fraction in 0.20–0.30 (the q75 band transfers). Either direction of
+  (a) is a law-shaping datapoint: growth ⇒ the law strengthens with
+  scale, shrinkage ⇒ width dilutes selection and the GPU-scale question
+  sharpens. This is the anti-goalpost move: not another organ, the
+  scaling axis of the core result itself.
 
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
   before any build; David's seeding insight, day 4):** three compositions,
