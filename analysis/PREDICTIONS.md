@@ -577,11 +577,15 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   PLATEAUS beyond it on the weights level. Point call:
   err(H=128) − err(H=32) < 0.25 × (err(H=8) − err(H=2)). (b) Shuffle
   control: temporally shuffled targets erase the H-structure (rungs
-  within noise of each other, no monotone ladder). (c) LIVE FORGETTING:
-  after the phase-2 boundary, rungs whose target lies PRE-boundary rise
-  within ≤32 chunks while heldout forgetting accumulates — the meter sees
-  forgetting as it happens (direction registered; magnitude exploratory
-  in v0). Scope: v0 is the METER only — the consolidation organ
+  within noise of each other, no monotone ladder). (c) LIVE FORGETTING
+  (wording clarified before any run, 2026-07-24 evening — "the phase-2
+  boundary" means the boundary INTO phase 2, the phase1→2 shock at B12):
+  in the window (B12, B12+32], on decisions whose target lies pre-shock
+  (t−H < B12), the qualifying rungs' error rises above their own
+  end-of-phase-1 mean + 2σ — the meter sees phase-1 content fade WHILE
+  the model adapts to code; H∈{8,32,128} qualify richly at both smoke and
+  full phase lengths (direction registered; magnitude exploratory in
+  v0). Scope: v0 is the METER only — the consolidation organ
   (decay-triggered targeted replay) is a separate later registration.
 
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
