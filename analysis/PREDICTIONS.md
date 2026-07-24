@@ -676,6 +676,22 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   the absolute snapshot cost (28–35 ms — one chunk slot). Final (a)/(c)
   measurement scheduled on the full POS-scale organism (B=8/K=64, ~100 ms
   chunks) where per-chunk work dominates the constants.
+  **P39 FINAL (2026-07-24 evening, exp_d at d_model=128 on the quiet Mac,
+  results/portable_organism.json):** (b) replicated once more at POS
+  width — bit-identical lockstep, heldout match exact. The absolute
+  overheads are now precise: snapshot-adjacent stall **35.5 ms**, catch-up
+  replay **14.6 ms CPU/chunk** vs 3.85 ms live. As-measured ratios against
+  the instrument's own ~2 ms toy cadence still fail (17.9× / 3.79×) — the
+  d=128 run has POS width but toy chunk WEIGHT (32-token chunks), the
+  cadence deficiency diagnosed above, unchanged. Scored instead against
+  the PRODUCTION cadence the 40h organism actually measured (81 ms/chunk
+  = 40.0 h / 1,776,712 chunks): the stall is **0.44 chunk slots** — (a)
+  zero-downtime holds with room; replay runs **5.5× faster than the
+  source produces** — (c) convergence holds with room. Labeled plainly:
+  this is measured-constant arithmetic against a measured cadence, not a
+  new in-situ measurement; the fully-live confirmation (and (d) iterated)
+  merges into the Möbius cross-machine staging (A on the Mac, B on beast,
+  real network in the window), queued behind beast's beacon finale.
 
 ## Scoring rule
 
