@@ -205,7 +205,17 @@ Disclosed variants: layer- and organ-level partitions in any mixture;
 delta-based weight synchronization between replicas at any cadence;
 majority/quorum reads over replica ensembles; heterogeneous fleets (replicas
 at different d_model via the growth operator, P24/P27); index-only seeding
-(a new organism bootstrapped from a lineage's span store and index alone).
+(a new organism bootstrapped from a lineage's span store and index alone);
+and — disclosed in full breadth — **stop-free streaming migration**: the
+source organism never pauses; a snapshot flows to the target while the
+source keeps living, the target resumes and REPLAYS the source's
+subsequently-consumed input (deterministic resume — measured to six decimals
+across CPU architectures — makes the catch-up provably exact), and cut-over
+happens at parity with zero downtime; iterated at any cadence this becomes
+CONTINUOUS REPLICATION, in which the organism exists as the stream of its
+own deltas rather than as a file at any location — never 100% transferred,
+never final, always alive — with the surprise calculus itself dosing the
+replication bandwidth (only gated chunks produce deltas).
 
 ---
 

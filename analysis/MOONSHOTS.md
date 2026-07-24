@@ -262,3 +262,9 @@ next to free builders is the only true time-waste in this lab.*
   identical grad tokens; only the bit digest differs across BLAS and it
   does not propagate). The living organism is a portable asset, measured.
   b/c fulls on core.
+- day4 ~10:20 — MS17/P39 REGISTERED (David's möbius insight): stop-free
+  streaming migration — the source never pauses, the target catches up by
+  deterministic replay (licensed by P38a's six-decimal resume), cut-over at
+  parity, zero downtime; iterated = continuous replication: the organism as
+  the stream of its own deltas, never a file, never 100%, always alive. F7
+  disclosure extended accordingly. Builder: ms16 (has full context).

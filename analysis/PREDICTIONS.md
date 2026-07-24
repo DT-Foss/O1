@@ -471,6 +471,23 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   small-budget boundary on offline-sleep (toy span pools are not
   representative — full budget decides).
 
+- **P39 — stop-free streaming migration (MS17,
+  src/portable_organism.py --exp d, registered before the build; David's
+  möbius insight, day 4):** organism A streams continuously and NEVER
+  pauses; at chunk N a snapshot is taken (sub-second) and transferred while
+  A keeps streaming; target B resumes from the snapshot and replays the
+  chunk range A consumed during the transfer window, then both process the
+  next chunks in lockstep. Checks: (a) zero source downtime (A's chunk
+  cadence shows no gap at the snapshot point); (b) B reaches state parity
+  with A — identical held-out and identical gate decisions on the first
+  shared post-catch-up chunks (locally bit-identical; cross-ISA to six
+  decimals per P38a); (c) the catch-up window is bounded and small
+  (transfer+replay < the time A needs to stream the same chunks — the
+  migration CONVERGES rather than chasing forever); (d) iterated
+  delta-sync (repeat snapshot/catch-up at cadence C) keeps a standing
+  replica within one sync window of the living source at all times —
+  continuous replication as a standing state.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
