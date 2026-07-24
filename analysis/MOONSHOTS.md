@@ -268,3 +268,9 @@ next to free builders is the only true time-waste in this lab.*
   parity, zero downtime; iterated = continuous replication: the organism as
   the stream of its own deltas, never a file, never 100%, always alive. F7
   disclosure extended accordingly. Builder: ms16 (has full context).
+- day4 ~11:00 — P38 ✅ COMPLETE (all three limbs), P36 ✅, P39 core claim ✅
+  (b state-parity bit-identical). Standout: the kill+rejoin replica that
+  sleeps from the SHARED store beats its never-killed twin (−0.014) — the
+  partner's outage-window spans make the rejoiner stronger than uninterrupted.
+  Collective memory + portability compose. P39 (a)/(c)/(d) re-measuring at
+  d=128 on quiet beast (toy-scale timing artifact, not mechanism).

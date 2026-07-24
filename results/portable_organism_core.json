@@ -1,0 +1,67 @@
+{
+  "exp_c": {
+    "n_per_leg": 2000,
+    "k_offline": 500,
+    "results": {
+      "idle": {
+        "pre_outage_heldout": 5.934967,
+        "pre_outage_spans": 932,
+        "post_outage_heldout": 5.934967,
+        "final_heldout_at_reconnect_plus_N": 5.751097,
+        "grad_tokens": 120576,
+        "n_chunks_total": 4500,
+        "sleep_dosing": {
+          "n_used": 0,
+          "span_tokens": 0,
+          "replay_epochs": 0.0
+        }
+      },
+      "sleep": {
+        "pre_outage_heldout": 5.934967,
+        "pre_outage_spans": 932,
+        "post_outage_heldout": 5.867855,
+        "final_heldout_at_reconnect_plus_N": 5.686532,
+        "grad_tokens": 177152,
+        "n_chunks_total": 4500,
+        "sleep_dosing": {
+          "n_used": 440,
+          "span_tokens": 28125,
+          "replay_epochs": 2.002
+        }
+      }
+    },
+    "margin_idle_minus_sleep_at_reconnect_plus_N": 0.064565,
+    "p38c_sleep_beats_idle": true,
+    "verdict": "P38c: reconnect+N heldout sleep=5.686532 idle=5.751097 (margin +0.064565) | PASS (sleep beats idle)"
+  },
+  "exp_b": {
+    "n_per_leg": 2000,
+    "k_pause": 250,
+    "half": 1000,
+    "organism_a_spans": 1030,
+    "b_control_heldout": 5.877507,
+    "b_shared": {
+      "tag": "shared",
+      "heldout": 5.86338,
+      "n_chunks": 2250,
+      "grad_tokens": 68096,
+      "sleep_chunks_used": 20,
+      "pool_size_at_rejoin": 1520
+    },
+    "b_private": {
+      "tag": "private",
+      "heldout": 5.881067,
+      "n_chunks": 2250,
+      "grad_tokens": 67456,
+      "sleep_chunks_used": 20,
+      "pool_size_at_rejoin": 490
+    },
+    "heldout_delta_shared_vs_control": -0.014127,
+    "heldout_delta_private_vs_control": 0.00356,
+    "p38b_scoring": {
+      "rejoined_shared_leq_rejoined_private": true,
+      "rejoined_shared_within_0.02_of_never_killed": true
+    },
+    "verdict": "P38b: heldout control=5.877507 shared=5.863380 (delta -0.014127) private=5.881067 (delta +0.003560) | shared<=private: True | within 0.02 of never-killed: True | PASS"
+  }
+}
