@@ -43,6 +43,29 @@ with explicit references back to each P-number.
 - **P7 — probe volume.** 100–600 probes total (30/h cap, ~5h warmup + 2h
   recurrence latency, C4 4-gram recurrence rates).
 
+### POS long-run scoring (Phase B, day 4 — results/pos_summary.json, verify_pos 16/16 exit 0)
+
+- **P1 CONFIRMED BEYOND ITS OWN CEILING: ratio 1.0091 at grad-token
+  fraction 0.2517** — the registered embarrassment threshold ("ratio > 1.0
+  would be a bigger result than the thesis itself") fired. A3 8.6588→4.7430
+  vs A2 8.6588→4.7782 on 909.7M streamed tokens.
+- **P2 CONFIRMED**: cumulative gate fraction 0.2517, post-ignition 0.2516
+  (band 0.18–0.26).
+- **P3 FALSIFIED as written**: RSS span 0.972 GB vs the <0.15 GB band — the
+  prediction ignored the index, the twin's second model, and the windows.
+  Absolute ceiling 1.094 GB for the whole organism; zero restarts.
+- **P4 PARTIAL**: constancy perfect (Δ0.0000 over 40h); anchor value 8.6588
+  vs the smoke-derived 8.6656±0.001.
+- **P5 FALSIFIED IN MAGNITUDE, CONFIRMED IN FORM — the restart is free**:
+  (i) surprise excess 0.0029 vs [0.03,0.15]; (ii) over-gating 1.0002× vs
+  ≥1.5×; (iii) converged at n+1 CHUNK vs 2–8h; end gap −0.0065 (A3R ahead).
+  Third independent measurement of the two-timescale law (P23, P38a).
+- **P6 FALSIFIED as registered, mechanism intact**: both deltas negative
+  (stale 5–11M-era spans on an 80×-older model disturb absolutely) but the
+  paired contrast is sharp — inj −0.0866 vs rand −0.2793 (3.2×), helped
+  0.35 vs 0.10. Provenance-limited, not mechanism-dead.
+- **P7 EXCEEDED**: 1020 probes vs 100–600.
+
 ## WP4 full sweep (results/holo_stream_recall.json, tonight)
 
 - **P8 — persistence axis (G).** For every (P, arm=carried) cell whose

@@ -1,0 +1,102 @@
+{
+  "pid": 39826,
+  "phase": "done",
+  "config": {
+    "hours": 40.0,
+    "target_tokens": 0,
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "lr": 0.003,
+    "seed": 42,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100,
+    "eval_tokens": 200000,
+    "eval_every_s": 900.0,
+    "eval_every_tokens": 0,
+    "ckpt_every_s": 600.0,
+    "status_every_s": 60.0,
+    "twin_fork_hours": 24.0,
+    "twin_fork_tokens": 0,
+    "index_warmup_tokens": 5000000,
+    "recur_min_hours": 2.0,
+    "spike_min_nll": 7.0,
+    "span_half": 32,
+    "lookahead": 16,
+    "max_index_entries": 20000,
+    "max_probes_per_hour": 30,
+    "pause_rss_gb": 12.0,
+    "pause_disk_gb": 5.0,
+    "no_index": false,
+    "resume": false,
+    "tag": ""
+  },
+  "started_utc": "2026-07-22T19:14:19Z",
+  "wall_s": 144005.8,
+  "n_streamed": 909676544,
+  "tok_per_s": 6316.9,
+  "rss_gb": 0.742,
+  "disk_free_gb": 25.7,
+  "stream_docs": 2508299,
+  "stream_reconnects": 0,
+  "arms": {
+    "A1": {
+      "grad_tokens": 0,
+      "n_chunks": 1776712,
+      "n_bwd": 0
+    },
+    "A2": {
+      "grad_tokens": 909676544,
+      "n_chunks": 1776712,
+      "n_bwd": 1776712
+    },
+    "A3": {
+      "grad_tokens": 228934656,
+      "n_chunks": 1776712,
+      "n_bwd": 447138
+    },
+    "A3R": {
+      "grad_tokens": 97068032,
+      "n_chunks": 751838,
+      "n_bwd": 189586
+    }
+  },
+  "index": {
+    "entries": 20000,
+    "stored_total": 20000,
+    "probes": 1020,
+    "recurrences_seen": 62003
+  },
+  "twin_forked": true,
+  "digest": "d0c0f0428e7960746ab6ecbd04e5283a31c942648ffa1c5572965b42e65c7cfa",
+  "final": {
+    "type": "eval",
+    "wall_s": 144000.1,
+    "n_streamed": 909676544,
+    "rss_gb": 0.48,
+    "arms": {
+      "A1": {
+        "heldout": 8.658815,
+        "grad_tokens": 0
+      },
+      "A2": {
+        "heldout": 4.778174,
+        "grad_tokens": 909676544
+      },
+      "A3": {
+        "heldout": 4.742984,
+        "grad_tokens": 228934656,
+        "gate_frac_recent": 0.28,
+        "gate_frac_cum": 0.2517
+      },
+      "A3R": {
+        "heldout": 4.736495,
+        "grad_tokens": 97068032,
+        "gate_frac_recent": 0.28,
+        "gate_frac_cum": 0.2522
+      }
+    }
+  }
+}

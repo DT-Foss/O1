@@ -464,13 +464,16 @@ predictions committed before the data, falsifications kept in the record).
 
 Three arms, one C4 stream, identical from-scratch init (seed 42): A1 forward-only (frozen
 control), A2 full-gradient, A3 **surprise-gated** — backward only when the chunk's own NLL
-clears a rolling quantile (q=0.75, window 500) of its own history. Live interim at 410M
-streamed tokens: **A3 matches A2's held-out improvement (ratio 1.002) at 25.1% of the
-gradient tokens.** The gate needs no oracle, no second model, no labels — the learner's own
-surprise is the signal (F1). The 40h run (bit-deterministic, single-thread, flat RSS,
-crash-resumable) also carries a **twin fork**: at T+24h A3's weights are copied into a fresh
-process with zero carried state — the price of restarting a living stream, measured. Final
-verdict and protocol land in `analysis/POS_THESIS.md` (Phase B).
+clears a rolling quantile (q=0.75, window 500) of its own history. Final, 909.7M streamed
+tokens over 40h, 16/16 integrity checks: **A3 BEAT the full-gradient arm — ratio 1.0091 of
+A2's held-out improvement at 25.17% of the gradient tokens** (A3 4.7430 vs A2 4.7782 from
+8.6588). The registered prediction's own embarrassment threshold ("ratio > 1.0 would be a
+bigger result than the thesis itself") fired. The gate needs no oracle, no second model, no
+labels — the learner's own surprise is the signal (F1). The run also carried a **twin fork**
+at T+24h (A3's weights into a fresh process, zero carried state): the restart proved FREE —
+surprise excess 0.0029 (10–50× below the registered band), identical post-fork gate rates,
+converged one chunk after the fork, and the twin finished ahead (4.7365). Full verdict:
+[analysis/POS_THESIS.md](analysis/POS_THESIS.md).
 → `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
 `analysis/DECISIONS.md`, `results/pos_*`
 
