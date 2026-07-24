@@ -354,7 +354,13 @@ def horizon_chunk_step(model, opt, head, head_opt, x, y, states, global_idx,
         head_opt.step()
 
     # ---- gate decision (base_gate ignores horizon_surprise; horizon_gate /
-    #      shuffled mix it in — gate_fn encapsulates the difference) ----
+    #      shuffled mix it in — gate_fn encapsulates the difference). The
+    #      current global chunk index is stamped into gate_state so
+    #      make_noise_gate can compute its lag-eligibility window; the other
+    #      gate_fns (base_gate, mixed_gate) simply never read this key, so
+    #      this stamp is a no-op for them. ----
+    if isinstance(gate_state, dict):
+        gate_state["idx"] = global_idx
     gated, mixed_score, thresh = gate_fn(s1, horizon_surprise, gate_state)
 
     if gated:
@@ -427,6 +433,84 @@ def make_mixed_gate(gate_q, min_window):
         win_mixed.append(mixed)
         return gated, mixed, thresh
     return gate_fn, {"win_1step": win_1step, "win_horizon": win_horizon, "win_mixed": win_mixed}
+
+
+def make_noise_gate(gate_q, min_window, min_lag, seed):
+    """P40's decorrelated-control arm: mechanically identical to
+    make_mixed_gate (same 1-step/horizon z-mix, same q75-on-rolling-window
+    gate), EXCEPT the second stream's value fed into the mix is NOT the
+    most-recently-scored horizon_surprise but the horizon_surprise of a
+    uniformly-random EARLIER chunk, drawn with lag >= min_lag from the
+    current chunk (min_lag defaults to args.ref_window, NOT the full
+    args.gate_window: decorrelation needs distance from the rolling
+    statistics' own autocorrelation time -- ref_window is well past
+    fire_window and gives room for the rolling z/quantile windows to have
+    turned over -- but does not need the FULL 200-chunk gate-window depth,
+    which collides with the run's phase geometry (150 chunks/phase in
+    --full, 40 in --smoke) and would make most or all lag draws structurally
+    ineligible, degenerating the arm toward the cold-start fallback i.e.
+    toward horizon_gate itself. P40's registered text only specifies "large
+    random lag"; the concrete depth is a dimensioning choice, corrected here
+    after review to fit the run geometry rather than collide with it). This
+    is a SEPARATE implementation from make_mixed_gate (not a thin wrapper)
+    so that horizon_gate's code path is untouched by construction -- the
+    only way to guarantee zero regression on the existing regime is to not
+    reuse/branch its function body.
+
+    History bookkeeping: every SCORED horizon_surprise value is appended to
+    `history` (a plain list, append-only, one entry per scored chunk, in
+    scoring order) together with the chunk index it was scored at. At each
+    gate decision, if len(history) has at least one entry with index <=
+    (current_index - min_lag), a uniformly random one of those eligible
+    entries is drawn (own seeded RNG, not the global torch RNG, not the
+    HorizonQueue's shuffle RNG) and its value is used as the z-mix's second
+    stream this chunk. Below that lag depth (cold-start: early chunks of a
+    phase-cursor, or the first ~min_lag scored chunks of the whole run), the
+    CURRENT chunk's own most-recently-scored horizon_surprise is used
+    instead (identical fallback semantics to make_mixed_gate's
+    `last_horizon["val"]`), and the fallback is counted so its rate can be
+    reported and checked for contamination."""
+    win_1step = deque(maxlen=200)
+    win_noise = deque(maxlen=200)
+    win_mixed = deque(maxlen=200)
+    last_horizon = {"val": None}
+    history = []                                             # [(scored_at_idx, value), ...] append-only
+    rng = np.random.default_rng(seed)
+    counters = {"n_decisions": 0, "n_fallback": 0}
+
+    def gate_fn(s1, hsurp, state):
+        current_idx = state["idx"]
+        if hsurp is not None:
+            last_horizon["val"] = hsurp
+            history.append((current_idx, hsurp))
+        eligible_hi = current_idx - min_lag                  # inclusive upper bound on eligible idx
+        # binary-search-free linear scan is fine here (history grows by <=1
+        # per chunk and phase_chunks is O(100s)); eligibility is idx <= eligible_hi
+        eligible = [v for (i, v) in history if i <= eligible_hi]
+        counters["n_decisions"] += 1
+        if eligible:
+            noise_val = eligible[int(rng.integers(0, len(eligible)))]
+        elif last_horizon["val"] is not None:
+            noise_val = last_horizon["val"]                  # cold-start fallback
+            counters["n_fallback"] += 1
+        else:
+            noise_val = None                                 # no horizon signal at all yet
+        z1 = rolling_z(s1, win_1step)
+        if noise_val is not None:
+            zn = rolling_z(noise_val, win_noise)
+            mixed = 0.5 * z1 + 0.5 * zn
+        else:
+            mixed = z1
+        gated, thresh = gate_decision(mixed, win_mixed, gate_q, min_window)
+        win_1step.append(s1)
+        if noise_val is not None:
+            win_noise.append(noise_val)
+        win_mixed.append(mixed)
+        return gated, mixed, thresh
+
+    gate_state = {"idx": 0, "counters": counters,
+                  "win_1step": win_1step, "win_noise": win_noise, "win_mixed": win_mixed}
+    return gate_fn, gate_state
 
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -530,9 +614,25 @@ def run_horizon(args, eval_wt2_fn, vocab_fn=_real_vocab):
         "regimes": {},
     }
 
+    regime_tags = [t.strip() for t in args.regimes.split(",") if t.strip()]
+    # min_lag default = ref_window (50), not gate_window (200): decorrelation
+    # needs distance from the rolling stats' autocorrelation time, not the
+    # full gate-window depth, which collides with phase geometry (150/40
+    # chunks per phase) and would starve the eligible-draw pool. Corrected
+    # post-review; see make_noise_gate's docstring for the full reasoning.
+    noise_min_lag = args.noise_min_lag if args.noise_min_lag is not None else args.ref_window
+
     regime_results = {}
-    for tag in ("base_gate", "horizon_gate", "shuffled"):
+    for tag in regime_tags:
         print(f"\n[horizon] ===== regime {tag} =====", flush=True)
+        # pin the torch RNG per regime: the base model comes from the ckpt
+        # (deterministic) but the HorizonHead init used to draw from the
+        # UNSEEDED global generator -- the only nondeterministic element in
+        # the whole run (found by the P40 deterministic A/B: every model
+        # curve bit-identical, only the head-dependent horizon curves moved).
+        # Seeding HERE gives every arm the identical head init on top of the
+        # identical base model -- a strictly cleaner matched comparison.
+        torch.manual_seed(args.seed)
         model, opt, head, head_opt = fresh_model_opt_head()
 
         phase13_src = make_phase1_source(stoi, unk)
@@ -544,6 +644,13 @@ def run_horizon(args, eval_wt2_fn, vocab_fn=_real_vocab):
         queue = HorizonQueue(H, shuffle=(tag == "shuffled"), seed=args.seed)
         if tag == "base_gate":
             gate_fn, gate_state = make_base_gate(args.gate_q, args.min_window)
+        elif tag == "noise_gate":
+            # own seed namespace (seed+4000), independent of HorizonQueue's
+            # shuffle RNG (plain args.seed) and of the global torch RNG, so
+            # the noise-lag draw stream cannot diverge/collide with any
+            # other arm's randomness (P40 requirement 3)
+            gate_fn, gate_state = make_noise_gate(args.gate_q, args.min_window,
+                                                   noise_min_lag, args.seed + 4000)
         else:
             gate_fn, gate_state = make_mixed_gate(args.gate_q, args.min_window)
 
@@ -553,6 +660,7 @@ def run_horizon(args, eval_wt2_fn, vocab_fn=_real_vocab):
         curve_horizon = []                                      # [(idx, phase, horizon_surprise or None)]
         grad_tokens_total = 0
         gate_frac_log = []
+        phase_gate_log = {"phase1": [], "phase2": [], "phase3": []}
         boundary_idx = {}
 
         def record(global_idx, phase):
@@ -580,6 +688,7 @@ def run_horizon(args, eval_wt2_fn, vocab_fn=_real_vocab):
                     states = res["states"]
                     grad_tokens_total += res["grad_tokens"]
                     gate_frac_log.append(1 if res["gated"] else 0)
+                    phase_gate_log[phase_name].append(1 if res["gated"] else 0)
                     curve_s1.append([global_idx, phase_name, round(res["s1"], 6)])
                     curve_horizon.append([global_idx, phase_name,
                                           None if res["horizon_surprise"] is None
@@ -632,12 +741,29 @@ def run_horizon(args, eval_wt2_fn, vocab_fn=_real_vocab):
                 "ref_mean_horizon": ref_mu_h, "ref_std_horizon": ref_sd_h,
             }
 
+        # ---- per-phase realized gate ("second-stream") firing rate, P40 req. 4 ----
+        phase_gate_rate = {
+            ph: (round(sum(v) / len(v), 4) if v else None) for ph, v in phase_gate_log.items()
+        }
+
+        # ---- noise_gate's cold-start fallback fraction (P40 req. 2): must be
+        #      small, else the arm is contaminated by current-chunk leakage ----
+        noise_fallback = None
+        if tag == "noise_gate":
+            c = gate_state["counters"]
+            noise_fallback = {
+                "n_decisions": c["n_decisions"], "n_fallback": c["n_fallback"],
+                "fallback_frac": round(c["n_fallback"] / max(1, c["n_decisions"]), 4),
+            }
+
         regime_results[tag] = {
             "curve_wt2": curve_wt2, "curve_code": curve_code,
             "curve_s1": curve_s1, "curve_horizon": curve_horizon,
             "grad_tokens_total": grad_tokens_total,
             "n_chunks_gated": sum(gate_frac_log), "n_chunks_seen": len(gate_frac_log),
             "gate_frac": round(gate_frac, 4),
+            "gate_frac_by_phase": phase_gate_rate,
+            "noise_fallback": noise_fallback,
             "pre_phase2_wt2": round(pre_phase2_wt2, 6), "pre_phase2_code": round(pre_phase2_code, 6),
             "post_phase3_wt2": round(post_phase3_wt2, 6),
             "forgetting": forgetting, "plasticity": plasticity, "recovery": recovery,
@@ -645,73 +771,153 @@ def run_horizon(args, eval_wt2_fn, vocab_fn=_real_vocab):
         }
         print(f"[horizon][{tag}] forgetting={forgetting:+.6f} plasticity={plasticity:+.6f} "
               f"recovery={recovery:+.6f} gate_frac={gate_frac:.4f} "
+              f"by_phase={phase_gate_rate} "
               f"grad_tokens={grad_tokens_total:,}", flush=True)
+        if noise_fallback is not None:
+            print(f"[horizon][{tag}] noise_fallback: {noise_fallback}", flush=True)
         for bname, ew in early_warning.items():
             print(f"[horizon][{tag}] {bname}: fire_1step={ew['fire_1step']} "
                   f"fire_horizon={ew['fire_horizon']} lead={ew['lead_chunks_horizon_earlier']}", flush=True)
 
     out["regimes"] = regime_results
 
-    n_visited = {t: regime_results[t]["n_chunks_seen"] for t in ("base_gate", "horizon_gate", "shuffled")}
+    present = set(regime_results.keys())
+    n_visited = {t: regime_results[t]["n_chunks_seen"] for t in present}
     out["chunk_budget_check"] = {
         "n_chunks_visited": n_visited,
-        "equal": n_visited["base_gate"] == n_visited["horizon_gate"] == n_visited["shuffled"],
+        "equal": len(set(n_visited.values())) <= 1,
     }
-
-    bg = regime_results["base_gate"]
-    hg = regime_results["horizon_gate"]
-    sh = regime_results["shuffled"]
 
     def leads(regime):
         vals = [ew["lead_chunks_horizon_earlier"] for ew in regime["early_warning"].values()
                 if ew["lead_chunks_horizon_earlier"] is not None]
         return vals
 
-    hg_leads = leads(hg)
-    sh_leads = leads(sh)
-    p37a = bool(hg_leads) and all(v >= 5 for v in hg_leads)
+    verdict_parts = []
 
-    plasticity_ok = (bg["plasticity"] == 0 and hg["plasticity"] == 0) or (
-        bg["plasticity"] != 0 and hg["plasticity"] >= 0.9 * bg["plasticity"])
-    p37b = (hg["forgetting"] <= bg["forgetting"]) and plasticity_ok
+    # ---- P37 scoring: only meaningful/computable if its three original arms
+    #      (base_gate, horizon_gate, shuffled) were all part of THIS run ----
+    if {"base_gate", "horizon_gate", "shuffled"} <= present:
+        bg = regime_results["base_gate"]
+        hg = regime_results["horizon_gate"]
+        sh = regime_results["shuffled"]
 
-    # (c) shuffled must destroy (a) and (b): no reliable early lead, no forgetting edge
-    shuffled_destroys_a = not (bool(sh_leads) and all(v >= 5 for v in sh_leads))
-    shuffled_destroys_b = not (sh["forgetting"] <= bg["forgetting"])
-    p37c = shuffled_destroys_a and shuffled_destroys_b
+        hg_leads = leads(hg)
+        sh_leads = leads(sh)
+        p37a = bool(hg_leads) and all(v >= 5 for v in hg_leads)
 
-    out["p37_scoring"] = {
-        "a_early_warning_geq_5_chunks": {
-            "pass": p37a, "horizon_gate_leads": hg["early_warning"],
-        },
-        "b_forgetting_leq_base_at_plasticity_geq_0.9x": {
-            "pass": bool(p37b), "horizon_gate_forgetting": hg["forgetting"],
-            "base_gate_forgetting": bg["forgetting"],
-            "horizon_gate_plasticity": hg["plasticity"], "base_gate_plasticity": bg["plasticity"],
-            "plasticity_ok": bool(plasticity_ok),
-        },
-        "c_shuffled_destroys_a_and_b": {
-            "pass": bool(p37c), "shuffled_destroys_early_warning": bool(shuffled_destroys_a),
-            "shuffled_destroys_forgetting_edge": bool(shuffled_destroys_b),
-            "shuffled_leads": sh["early_warning"],
-        },
-    }
-    if p37a and not p37b:
-        out["p37_scoring"]["note"] = ("(a) holds but (b) does not: the horizon signal is a "
-                                      "detector, not yet a teacher -- reported as such per "
-                                      "PREDICTIONS.md P37.")
+        plasticity_ok = (bg["plasticity"] == 0 and hg["plasticity"] == 0) or (
+            bg["plasticity"] != 0 and hg["plasticity"] >= 0.9 * bg["plasticity"])
+        p37b = (hg["forgetting"] <= bg["forgetting"]) and plasticity_ok
 
-    all_pass = p37a and p37b and p37c
-    out["verdict"] = (
-        f"forgetting base={bg['forgetting']:+.6f} horizon={hg['forgetting']:+.6f} "
-        f"shuffled={sh['forgetting']:+.6f} | "
-        f"plasticity base={bg['plasticity']:+.6f} horizon={hg['plasticity']:+.6f} "
-        f"(ok: {plasticity_ok}) | "
-        f"early-warning leads (horizon-earlier, chunks): {hg_leads} | "
-        f"shuffled leads: {sh_leads} | "
-        f"P37: {'PASS' if all_pass else 'PARTIAL/FAIL'} "
-        f"(a={p37a}, b={p37b}, c={p37c})"
-    )
+        # (c) shuffled must destroy (a) and (b): no reliable early lead, no forgetting edge
+        shuffled_destroys_a = not (bool(sh_leads) and all(v >= 5 for v in sh_leads))
+        shuffled_destroys_b = not (sh["forgetting"] <= bg["forgetting"])
+        p37c = shuffled_destroys_a and shuffled_destroys_b
+
+        out["p37_scoring"] = {
+            "a_early_warning_geq_5_chunks": {
+                "pass": p37a, "horizon_gate_leads": hg["early_warning"],
+            },
+            "b_forgetting_leq_base_at_plasticity_geq_0.9x": {
+                "pass": bool(p37b), "horizon_gate_forgetting": hg["forgetting"],
+                "base_gate_forgetting": bg["forgetting"],
+                "horizon_gate_plasticity": hg["plasticity"], "base_gate_plasticity": bg["plasticity"],
+                "plasticity_ok": bool(plasticity_ok),
+            },
+            "c_shuffled_destroys_a_and_b": {
+                "pass": bool(p37c), "shuffled_destroys_early_warning": bool(shuffled_destroys_a),
+                "shuffled_destroys_forgetting_edge": bool(shuffled_destroys_b),
+                "shuffled_leads": sh["early_warning"],
+            },
+        }
+        if p37a and not p37b:
+            out["p37_scoring"]["note"] = ("(a) holds but (b) does not: the horizon signal is a "
+                                          "detector, not yet a teacher -- reported as such per "
+                                          "PREDICTIONS.md P37.")
+
+        all_pass = p37a and p37b and p37c
+        verdict_parts.append(
+            f"forgetting base={bg['forgetting']:+.6f} horizon={hg['forgetting']:+.6f} "
+            f"shuffled={sh['forgetting']:+.6f} | "
+            f"plasticity base={bg['plasticity']:+.6f} horizon={hg['plasticity']:+.6f} "
+            f"(ok: {plasticity_ok}) | "
+            f"early-warning leads (horizon-earlier, chunks): {hg_leads} | "
+            f"shuffled leads: {sh_leads} | "
+            f"P37: {'PASS' if all_pass else 'PARTIAL/FAIL'} "
+            f"(a={p37a}, b={p37b}, c={p37c})"
+        )
+
+    # ---- P40 scoring: gate DIVERSITY vs. prediction CONTENT attribution,
+    #      only computable if base_gate/horizon_gate/noise_gate were all run
+    #      together (within-run consistency, matched gradient tokens) ----
+    if {"base_gate", "horizon_gate", "noise_gate"} <= present:
+        bg = regime_results["base_gate"]
+        hg = regime_results["horizon_gate"]
+        ng = regime_results["noise_gate"]
+
+        forg_base, forg_horizon, forg_noise = bg["forgetting"], hg["forgetting"], ng["forgetting"]
+        denom = forg_base - forg_horizon
+        if abs(denom) < 1e-12:
+            retained_fraction = None                          # horizon_gate had no forgetting edge to attribute
+        else:
+            retained_fraction = (forg_base - forg_noise) / denom
+        retained_pass = retained_fraction is not None and retained_fraction >= 0.70
+
+        # noise plasticity vs horizon plasticity (P40: "plasticity comparison",
+        # same >=0.9x-of-reference convention used by P37b, reference=horizon here)
+        noise_plasticity_ok = (hg["plasticity"] == 0 and ng["plasticity"] == 0) or (
+            hg["plasticity"] != 0 and ng["plasticity"] >= 0.9 * hg["plasticity"])
+
+        # counter-clause: horizon beats noise by > 0.03 nats forgetting at >= noise's plasticity
+        content_matters = ((forg_horizon - forg_noise) > 0.03) and (hg["plasticity"] >= ng["plasticity"])
+
+        rate_noise = ng["gate_frac"]
+        rate_horizon = hg["gate_frac"]
+        rate_diff_pp = abs(rate_noise - rate_horizon) * 100.0
+        rate_match_pass = rate_diff_pp <= 2.0
+
+        out["p40_scoring"] = {
+            "a_retained_fraction": {
+                "pass": bool(retained_pass), "retained_fraction": (
+                    round(retained_fraction, 4) if retained_fraction is not None else None),
+                "forgetting_base": forg_base, "forgetting_horizon": forg_horizon,
+                "forgetting_noise": forg_noise,
+                "threshold": 0.70,
+                "interpretation": "retained_fraction >= 0.70 => the P37-(b) win is gate DIVERSITY, "
+                                   "not prediction content (registered point call)",
+            },
+            "a_counter_content_matters": {
+                "pass": bool(content_matters),
+                "horizon_minus_noise_forgetting": round(forg_horizon - forg_noise, 6),
+                "threshold_nats": 0.03,
+                "noise_plasticity_ok_for_counter": bool(hg["plasticity"] >= ng["plasticity"]),
+                "interpretation": "horizon beats noise by >0.03 nats forgetting at >= noise's "
+                                   "plasticity => CONTENT matters, P37's shuffle control was too weak",
+            },
+            "plasticity_comparison": {
+                "horizon_gate_plasticity": hg["plasticity"], "noise_gate_plasticity": ng["plasticity"],
+                "noise_plasticity_geq_0.9x_horizon": bool(noise_plasticity_ok),
+            },
+            "b_rate_match": {
+                "pass": bool(rate_match_pass), "rate_noise": rate_noise, "rate_horizon": rate_horizon,
+                "diff_pp": round(rate_diff_pp, 4), "threshold_pp": 2.0,
+                "rate_noise_by_phase": ng["gate_frac_by_phase"],
+                "rate_horizon_by_phase": hg["gate_frac_by_phase"],
+            },
+            "noise_fallback": ng["noise_fallback"],
+            "noise_min_lag": noise_min_lag,
+        }
+        verdict_parts.append(
+            f"P40: retained_fraction={out['p40_scoring']['a_retained_fraction']['retained_fraction']} "
+            f"(pass={retained_pass}) | content_matters_counter={content_matters} | "
+            f"rate_match diff_pp={round(rate_diff_pp, 4)} (pass={rate_match_pass}) | "
+            f"noise_fallback_frac={ng['noise_fallback']['fallback_frac'] if ng['noise_fallback'] else None}"
+        )
+
+    out["verdict"] = " || ".join(verdict_parts) if verdict_parts else (
+        f"regimes run: {sorted(present)} (neither P37's nor P40's full arm-set was present -- "
+        f"no scoring block computed)")
     print(f"\n[horizon] {out['verdict']}", flush=True)
 
     d = os.path.dirname(args.out) or "."
@@ -747,6 +953,19 @@ def build_argparser():
     ap.add_argument("--fire-window", type=int, default=5, help="rolling-mean window the detector fires on")
     ap.add_argument("--smoke", action="store_true", help="phase-chunks=40, eval-every=10, out=*_smoke.json")
     ap.add_argument("--full", action="store_true", help="phase-chunks=150, eval-every=25 (explicit; also the default)")
+    # P40: noise_gate decorrelated-control arm (min-lag draw from horizon_surprise history)
+    ap.add_argument("--noise-min-lag", type=int, default=None,
+                     help="min lag (chunks) for noise_gate's random-earlier-chunk draw; "
+                          "defaults to --ref-window (decorrelation distance, sized to the "
+                          "run's phase geometry -- NOT --gate-window, which is too deep "
+                          "relative to phase length and starves eligible draws)")
+    ap.add_argument("--regimes", default="base_gate,horizon_gate,shuffled",
+                     help="comma-separated regime list to run this invocation. Default is the "
+                          "ORIGINAL P37 triple, unchanged, so every pre-P40 invocation (no "
+                          "--regimes flag) reproduces bit-identical behavior. Pass "
+                          "'base_gate,horizon_gate,noise_gate' for the P40 three-arm run, or a "
+                          "single tag (e.g. 'horizon_gate') to smoke-test one regime in isolation "
+                          "for a regression check.")
     ap.add_argument("--out", default="results/horizon_pos.json")
     return ap
 
