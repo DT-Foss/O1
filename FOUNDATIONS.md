@@ -170,6 +170,43 @@ length; 1B streamed tokens at flat 4.36 GB; keyed recall flat across 8
 detached chunk boundaries). Length, in this architecture class, is a
 wall-clock quantity, never a memory or validity quantity.
 
+## F7 — The portable organism: the living state is a small, serializable, migratable, shardable, seedable asset
+
+**Statement.** In this architecture class the complete living system — weights,
+optimizer moments, carried state, gating windows, span store, index — is a
+small serializable artifact (measured: ~53 MB at the reference scale), and
+every operation a distributed deployment needs is either measured or a
+composition of measured primitives:
+
+- **live migration** — checkpoint/resume is exact (crash-resume with tail
+  trim, `src/pos_run.py`); a transplanted state heals against any weights of
+  the same lineage within ~256 tokens (P23) while stored content survives the
+  move at recall 1.0 (P26); migration across machines and across CPU
+  architectures (ARM↔x86) is therefore a bounded-cost, no-downtime operation;
+- **forking and seeding** — a running organism can be forked live (the twin
+  experiment, P5: the fork's transient is small and decays), and because the
+  artifact is small, organisms can be distributed, mirrored, and seeded like
+  files — N replicas from one lineage;
+- **organ-level sharding ("each holds a slice")** — unlike dense
+  architectures whose parallelism couples through high-bandwidth activations,
+  this organism's organs couple through the surprise calculus: spans,
+  reminders, prediction→outcome records, and weight deltas — kilobytes.
+  The index can live on one machine (shared across organisms, measured:
+  P31), the sleep organ on another (replaying from the shared store),
+  wake-streams on others; loss of any replica is compensated by the
+  remaining ones, and a rejoining replica catches up by snapshot + the
+  measured ~256-token heal;
+- **offline mode** — when the stream disappears, the organism idles (state
+  persists through silence: the carrier measurements) or sleeps (dosed
+  replay from its own store, dividend-monitored — measured), and resumes on
+  reconnect; connectivity is a duty-cycle input, not a liveness requirement.
+
+Disclosed variants: layer- and organ-level partitions in any mixture;
+delta-based weight synchronization between replicas at any cadence;
+majority/quorum reads over replica ensembles; heterogeneous fleets (replicas
+at different d_model via the growth operator, P24/P27); index-only seeding
+(a new organism bootstrapped from a lineage's span store and index alone).
+
 ---
 
 ## Interactions (disclosed as a system)

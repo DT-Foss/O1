@@ -438,6 +438,22 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   but (b) does not, the horizon signal is a detector, not yet a teacher —
   reported as such.
 
+- **P38 — the portable organism (MS16, src/portable_organism.py, registered
+  before any build; David's seeding insight, day 4):** three compositions,
+  each against a never-moved control at matched token budgets: (a) LIVE
+  CROSS-ARCHITECTURE MIGRATION — a running organism checkpointed on the Mac
+  (ARM) resumes on beast (x86) mid-stream; its held-out trajectory rejoins
+  the control's within 0.02 nats inside 1M tokens (bit-determinism is lost
+  across BLAS — behavioral equivalence is the claim); (b) KILL+REJOIN — of
+  two replicas sharing an index (P31 harness), one is killed for K chunks
+  and rejoins by snapshot; after the measured heal it is within 0.02 nats
+  of its uninterrupted twin, and the surviving replica's index writes cover
+  the gap (the rejoiner benefits from spans collected while it was dead);
+  (c) OFFLINE MODE — a stream outage of K chunks spent SLEEPING (dosed
+  replay, dividend-monitored) beats the same outage spent idle by a
+  measurable held-out margin at reconnect+N chunks, and both resume
+  cleanly. Any part that fails is the measured boundary of portability.
+
 ## Scoring rule
 
 Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,

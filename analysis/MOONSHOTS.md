@@ -244,3 +244,11 @@ next to free builders is the only true time-waste in this lab.*
   only setting where this loop closes at deployment — a batch model never
   experiences its own future). First experiment P37 on the shock harness:
   long-horizon surprise as regime early-warning + as a gating teacher.
+- day4 ~08:50 — MS16 REGISTERED (David's seeding insight) + F7 disclosed in
+  full breadth: the living system is a ~53MB serializable asset — migratable
+  (P23/P26 measured the halves), forkable (twin), organ-shardable (organs
+  couple through KILOBYTES — spans/reminders/deltas — not activations; P31
+  measured the shared index), offline-capable (idle + dosed sleep). P38
+  composes them: cross-architecture live migration Mac→beast, kill+rejoin
+  with index cover, and outage-spent-sleeping vs idle. The fleet is the
+  testbed.
