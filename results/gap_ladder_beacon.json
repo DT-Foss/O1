@@ -1,0 +1,119 @@
+{
+  "config": {
+    "smoke": false,
+    "full": true,
+    "p_max": 16,
+    "v_max": 16,
+    "f_fillers": 16,
+    "pairs": 2,
+    "d_model": 64,
+    "n_layers": 2,
+    "n_heads": 4,
+    "d_head": 16,
+    "chunk": 16,
+    "iters": 3000,
+    "lr": 0.003,
+    "batch": 32,
+    "eval_batch": 100,
+    "g_start": 2,
+    "patience": 25,
+    "curriculum_bar": 0.8,
+    "g_train_max": 128,
+    "log_every": 0,
+    "seeds": "0,1",
+    "mqar_gaps": "4096,16384,65536,262144,1048576",
+    "beacon_d_model": 64,
+    "beacon_batch": 64,
+    "beacon_criterion_gap": 256,
+    "beacon_criterion": 0.99,
+    "beacon_max_iters": 6000,
+    "beacon_check_every": 100,
+    "beacon_seed": 42,
+    "beacon_n_episodes": 200,
+    "beacon_gaps": "4096,16384,65536,262144,1048576",
+    "beacon_chunk": 64,
+    "skip_mqar": true,
+    "skip_beacon": false,
+    "out": "results/gap_ladder_beacon.json"
+  },
+  "prediction_id": "P35",
+  "beacon": {
+    "config_beacon": {
+      "d_model": 64,
+      "batch": 64,
+      "train_gap": 256,
+      "criterion_gap": 256,
+      "criterion": 0.99,
+      "max_iters": 6000,
+      "check_every": 100
+    },
+    "criterion_check": {
+      "recall_at_criterion_gap": 1.0,
+      "criterion": 0.99,
+      "criterion_gap": 256,
+      "iters": 100,
+      "train_wall_s": 96.5,
+      "passed": true
+    },
+    "rungs": {
+      "4096": {
+        "G": 4096,
+        "chunk": 64,
+        "n_episodes": 200,
+        "recall_with_refresh": 1.0,
+        "wall_s_with_refresh": 5.09,
+        "recall_without_refresh": 1.0,
+        "wall_s_without_refresh": 5.23,
+        "recall_cold": 0.42,
+        "refresh_advantage_pp": 0.0
+      },
+      "16384": {
+        "G": 16384,
+        "chunk": 64,
+        "n_episodes": 200,
+        "recall_with_refresh": 1.0,
+        "wall_s_with_refresh": 20.05,
+        "recall_without_refresh": 0.46,
+        "wall_s_without_refresh": 19.6,
+        "recall_cold": 0.46,
+        "refresh_advantage_pp": 54.0
+      },
+      "65536": {
+        "G": 65536,
+        "chunk": 64,
+        "n_episodes": 200,
+        "recall_with_refresh": 1.0,
+        "wall_s_with_refresh": 79.92,
+        "recall_without_refresh": 0.51,
+        "wall_s_without_refresh": 78.33,
+        "recall_cold": 0.51,
+        "refresh_advantage_pp": 49.0
+      },
+      "262144": {
+        "G": 262144,
+        "chunk": 64,
+        "n_episodes": 200,
+        "recall_with_refresh": 0.56,
+        "wall_s_with_refresh": 326.79,
+        "recall_without_refresh": 0.445,
+        "wall_s_without_refresh": 316.81,
+        "recall_cold": 0.445,
+        "refresh_advantage_pp": 11.5
+      },
+      "1048576": {
+        "G": 1048576,
+        "chunk": 64,
+        "n_episodes": 200,
+        "recall_with_refresh": 0.495,
+        "wall_s_with_refresh": 1279.32,
+        "recall_without_refresh": 0.505,
+        "wall_s_without_refresh": 1266.45,
+        "recall_cold": 0.505,
+        "refresh_advantage_pp": -1.0
+      }
+    },
+    "elapsed_s_beacon": 5189.0
+  },
+  "verdict": "P35b (beacon bit survives G=1048576 at recall>=0.9 WITH refresh): NOT MET (with-refresh=0.495, without-refresh=0.505, cold=0.505, advantage=-1.00pp) | P35b mechanism check (refresh load-bearing: with-refresh beats without-refresh by >10pp at G=1048576): NOT MET (advantage=-1.00pp)",
+  "elapsed_s_total": 5189.1
+}

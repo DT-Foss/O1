@@ -508,6 +508,26 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   and that is the point); (c) zeroed null at chance at every rung (large
   eval batches per P36's protocol). Any rung that breaks is the measured
   wall, reported as such.
+  **SCORED 2026-07-24 night (MQAR: results/gap_ladder_full.oom1239.log +
+  rerun log, both seeds complete under the O(1) eval fix, bit-identical
+  regression; beacon: results/gap_ladder_beacon.json after the
+  cold-path fix):** (a) FALSIFIED in both seeds — recall@65536 /
+  recall@4096 = 0.125 (seed 0) and 0.31 (seed 1); the MQAR wall stands at
+  G=16384, exactly as the interim saw it. (b) FALSIFIED WITH A MEASURED
+  BREAKPOINT — the refresh ladder holds 1.0000 through G=65536 (+49pp
+  over no-refresh), then breaks: 0.5600 at 262144 (+11.5pp), −1.0pp at
+  1M where both arms sit at the cold floor. The beacon knee lives between
+  65k and 262k; the γ-compensation is load-bearing to 65k and dead by
+  262k. (c) as-written NOT MET at this run's eval power (max null dev
+  3.75pp vs the 3pp line at eval_batch=100, where 2σ ≈ 4.9pp —
+  underpowered, anticipated; P36's dedicated batch-400 nulls stand and
+  are the authority). SUMMARY: silence extrapolation's honest boundary is
+  now measured on BOTH instruments — F6 gains two precise walls (MQAR
+  16k, beacon 65k→262k) in place of an open-ended promise. Method
+  footnote: this measurement cost three OOM kills with two distinct
+  mechanisms (MQAR per-chunk logits accumulation; beacon cold-control's
+  unchunked (NB,G) forward) — both fixed, both regression-verified
+  bit-identical.
 - **P36 — P30c null hardening (src/holo_alpha_shut.py --null-hardening):**
   the zeroed-at-gap null re-run with eval batches ≥ 100 at G ∈ {1024, 2048}:
   all null cells within 3pp of chance. Closes the F6-flagged sampling-noise
@@ -625,6 +645,25 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   contrast. phase_chunks for the full raised to 200 (top rung trains ≥70
   steps before the boundary). Scoring happens from the logged raw curves
   of both arms (fully recorded), not the in-run pass/fail block.
+  **SCORED 2026-07-24 night (full on core, phase_chunks=200,
+  results/retro_pos_full.json, contrast-based per the amendment):** the
+  instrument reads NULL — and the null teaches. Per-rung REAL−SHUFFLED
+  contrasts at end-of-phase-1: +0.030/+0.059/+0.021/+0.021, each within
+  ~1–2σ of zero, no ladder; if anything the temporally-locked target is
+  slightly HARDER than a random recent chunk. The smoke's ladder is
+  confirmed as pure step-count confound (absolutes converge to 4.32–4.41
+  under 200-chunk training). (a)'s formal pass on a flat-zero contrast is
+  vacuous and NOT claimed; (b) NOT MET; (c) no coherent contrast rise at
+  the shock (+0.04/−0.12/−0.04 across eligible rungs). VERDICT:
+  chunk-specific retention is INVISIBLE to bulk-histogram reconstruction
+  from mean-pooled features on stationary text — the state's marginal
+  statistics are interchangeable across recent chunks, so the probe
+  measures the marginal, not memory. The time-mirror idea itself stands
+  on other evidence: the F3 knee IS keyed retrodiction (specific bindings
+  probed with keys survive measured gaps) — the meter's v1 must therefore
+  probe with KEYS, not bulk summaries. MS18 v1 design note: keyed
+  retrodiction probes (ask the state for a SPECIFIC past binding at lag
+  H), numbered when its spec freezes.
 - **P42 — the gate law survives width (the transfer axis, registered
   2026-07-24 before launch):** the exact 40h recipe (q=0.75, window 500,
   min 100, ignition 100, B=8, K=64, lr 3e-3, seed 42, from-scratch,
