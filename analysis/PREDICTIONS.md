@@ -681,6 +681,17 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   scale, shrinkage ⇒ width dilutes selection and the GPU-scale question
   sharpens. This is the anti-goalpost move: not another organ, the
   scaling axis of the core result itself.
+  **SCORED 2026-07-24 night (results/pos_d256.log, 50,000,384 tokens in
+  2.01h on the quiet Mac, RSS ≤ 1.1 GB):** (a) CONFIRMED WITH ROOM AND
+  THE POINT CALL HITS — ratio(d=256, 50M) = **0.9953** (A1 8.6834, A2
+  5.0363, A3 5.0534) vs the d=128 same-token anchor 0.9729: the gate's
+  token-efficiency advantage GROWS with width. At 4× the FLOPs per
+  gradient, the surprise-gated arm sits at 99.5% of full-gradient
+  progress on 24.7% of the gradient tokens — selection pays MORE where
+  gradients cost more, exactly the stated intuition. (b) CONFIRMED: gate
+  fraction 0.247 inside the 0.20–0.30 band — the q75 calculus transfers
+  untouched. The width axis of the core law bends UPWARD; the GPU-scale
+  question sharpens in the favorable direction.
 
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
   before any build; David's seeding insight, day 4):** three compositions,
