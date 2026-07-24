@@ -322,3 +322,19 @@ next to free builders is the only true time-waste in this lab.*
   live side-by-side on core. All four machines loaded: Mac rank-grid,
   core horizon+chimera, beast gap-ladder (G=1M rung under the new O(1)
   eval), intel lifetime at 869M tokens.
+- day6 ~17:30 — HARVEST TRIPLE: P37 scored ((a) falsified — detector fires
+  65 chunks LATE; (b) confirmed with room 0.300/0.736 vs 0.392/0.544;
+  (c) falsified — shuffle KEEPS the win ⇒ gate diversity, not content).
+  P33 scored (dividend monitor IS the recovery organ: +0.0028 residual vs
+  r3's +0.151, no_monitor ablation regresses to +0.146 — P20's overdose
+  fixed and causally attributed; minus-reminder UNDECIDABLE-AT-EXPOSURE at
+  2 fires, exactly as pre-registered). P34 scored (rank hypothesis DEAD on
+  the mqar instrument: reversed sign 0.371× at the one eligible cell,
+  SNR fallback engages as registered; anchor reproduction exact for
+  scalar/phase_off/attn; phase ignition collapses with K, and the coin
+  drifts with co-load ON the reference machine — run-vs-run heldout curves
+  are not bit-stable, first direct sighting outside the ignition study).
+  P40 registered + MS15b built (noise-gate decider; deterministic-A/B
+  regression protocol replaces run-vs-run bit-identity); MS18 registered
+  (retrodiction head — David's time-mirror). Beacon ladder interim:
+  G=16384 WITH-refresh 1.0000 vs WITHOUT 0.4600 (+54pp). Lifetime at 930M.
