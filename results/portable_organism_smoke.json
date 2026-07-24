@@ -1,0 +1,1145 @@
+{
+  "exp_a": {
+    "n_per_leg": 40,
+    "control": {
+      "name": "control",
+      "n_chunks": 80,
+      "grad_tokens": 4352,
+      "n_bwd": 34,
+      "final_heldout": 6.350721,
+      "digest": "917942dd0a1a0a93c8c662c85e216403c3d989468796d1a7cb6b5802a2c4e59a",
+      "metrics": [
+        {
+          "n_chunks": 0,
+          "heldout": 8.7202,
+          "grad_tokens": 0,
+          "event": "start"
+        },
+        {
+          "n_chunks": 40,
+          "heldout": 6.422314,
+          "grad_tokens": 3840,
+          "n_own_spans": 60,
+          "offline": false
+        },
+        {
+          "n_chunks": 80,
+          "heldout": 6.350721,
+          "grad_tokens": 4352,
+          "n_own_spans": 68,
+          "offline": false
+        },
+        {
+          "n_chunks": 80,
+          "heldout": 6.350721,
+          "grad_tokens": 4352,
+          "n_own_spans": 68,
+          "event": "final"
+        }
+      ],
+      "ckpt_path": "results/portable/exp_a/control/ckpt.pt",
+      "n_own_spans": 68,
+      "chunk_log": [
+        {
+          "n": 1,
+          "kind": "wake",
+          "s": 8.799408,
+          "gated": 1
+        },
+        {
+          "n": 2,
+          "kind": "wake",
+          "s": 8.462339,
+          "gated": 1
+        },
+        {
+          "n": 3,
+          "kind": "wake",
+          "s": 8.067606,
+          "gated": 1
+        },
+        {
+          "n": 4,
+          "kind": "wake",
+          "s": 8.014178,
+          "gated": 1
+        },
+        {
+          "n": 5,
+          "kind": "wake",
+          "s": 7.590604,
+          "gated": 1
+        },
+        {
+          "n": 6,
+          "kind": "wake",
+          "s": 7.56074,
+          "gated": 1
+        },
+        {
+          "n": 7,
+          "kind": "wake",
+          "s": 7.537458,
+          "gated": 1
+        },
+        {
+          "n": 8,
+          "kind": "wake",
+          "s": 6.929203,
+          "gated": 1
+        },
+        {
+          "n": 9,
+          "kind": "wake",
+          "s": 7.161295,
+          "gated": 1
+        },
+        {
+          "n": 10,
+          "kind": "wake",
+          "s": 6.80724,
+          "gated": 1
+        },
+        {
+          "n": 11,
+          "kind": "wake",
+          "s": 6.617783,
+          "gated": 1
+        },
+        {
+          "n": 12,
+          "kind": "wake",
+          "s": 6.218691,
+          "gated": 1
+        },
+        {
+          "n": 13,
+          "kind": "wake",
+          "s": 6.360054,
+          "gated": 1
+        },
+        {
+          "n": 14,
+          "kind": "wake",
+          "s": 5.658163,
+          "gated": 1
+        },
+        {
+          "n": 15,
+          "kind": "wake",
+          "s": 6.403912,
+          "gated": 1
+        },
+        {
+          "n": 16,
+          "kind": "wake",
+          "s": 6.14474,
+          "gated": 1
+        },
+        {
+          "n": 17,
+          "kind": "wake",
+          "s": 6.007877,
+          "gated": 1
+        },
+        {
+          "n": 18,
+          "kind": "wake",
+          "s": 5.999855,
+          "gated": 1
+        },
+        {
+          "n": 19,
+          "kind": "wake",
+          "s": 5.977783,
+          "gated": 1
+        },
+        {
+          "n": 20,
+          "kind": "wake",
+          "s": 5.942861,
+          "gated": 1
+        },
+        {
+          "n": 21,
+          "kind": "wake",
+          "s": 5.477261,
+          "gated": 1
+        },
+        {
+          "n": 22,
+          "kind": "wake",
+          "s": 6.001384,
+          "gated": 1
+        },
+        {
+          "n": 23,
+          "kind": "wake",
+          "s": 6.901727,
+          "gated": 1
+        },
+        {
+          "n": 24,
+          "kind": "wake",
+          "s": 6.328312,
+          "gated": 1
+        },
+        {
+          "n": 25,
+          "kind": "wake",
+          "s": 6.26984,
+          "gated": 1
+        },
+        {
+          "n": 26,
+          "kind": "wake",
+          "s": 6.641153,
+          "gated": 1
+        },
+        {
+          "n": 27,
+          "kind": "wake",
+          "s": 6.278043,
+          "gated": 1
+        },
+        {
+          "n": 28,
+          "kind": "wake",
+          "s": 6.065975,
+          "gated": 1
+        },
+        {
+          "n": 29,
+          "kind": "wake",
+          "s": 5.9312,
+          "gated": 1
+        },
+        {
+          "n": 30,
+          "kind": "wake",
+          "s": 6.370119,
+          "gated": 1
+        },
+        {
+          "n": 31,
+          "kind": "wake",
+          "s": 6.482528,
+          "gated": 0
+        },
+        {
+          "n": 32,
+          "kind": "wake",
+          "s": 6.648811,
+          "gated": 0
+        },
+        {
+          "n": 33,
+          "kind": "wake",
+          "s": 5.886572,
+          "gated": 0
+        },
+        {
+          "n": 34,
+          "kind": "wake",
+          "s": 5.699486,
+          "gated": 0
+        },
+        {
+          "n": 35,
+          "kind": "wake",
+          "s": 6.124671,
+          "gated": 0
+        },
+        {
+          "n": 36,
+          "kind": "wake",
+          "s": 6.232963,
+          "gated": 0
+        },
+        {
+          "n": 37,
+          "kind": "wake",
+          "s": 6.21007,
+          "gated": 0
+        },
+        {
+          "n": 38,
+          "kind": "wake",
+          "s": 5.790572,
+          "gated": 0
+        },
+        {
+          "n": 39,
+          "kind": "wake",
+          "s": 5.779954,
+          "gated": 0
+        },
+        {
+          "n": 40,
+          "kind": "wake",
+          "s": 5.773024,
+          "gated": 0
+        },
+        {
+          "n": 41,
+          "kind": "wake",
+          "s": 5.730074,
+          "gated": 0
+        },
+        {
+          "n": 42,
+          "kind": "wake",
+          "s": 5.427379,
+          "gated": 0
+        },
+        {
+          "n": 43,
+          "kind": "wake",
+          "s": 5.529158,
+          "gated": 0
+        },
+        {
+          "n": 44,
+          "kind": "wake",
+          "s": 5.847298,
+          "gated": 0
+        },
+        {
+          "n": 45,
+          "kind": "wake",
+          "s": 6.345068,
+          "gated": 0
+        },
+        {
+          "n": 46,
+          "kind": "wake",
+          "s": 6.700042,
+          "gated": 1
+        },
+        {
+          "n": 47,
+          "kind": "wake",
+          "s": 6.119225,
+          "gated": 0
+        },
+        {
+          "n": 48,
+          "kind": "wake",
+          "s": 6.280007,
+          "gated": 0
+        },
+        {
+          "n": 49,
+          "kind": "wake",
+          "s": 6.224155,
+          "gated": 0
+        },
+        {
+          "n": 50,
+          "kind": "wake",
+          "s": 5.670449,
+          "gated": 0
+        },
+        {
+          "n": 51,
+          "kind": "wake",
+          "s": 6.068502,
+          "gated": 0
+        },
+        {
+          "n": 52,
+          "kind": "wake",
+          "s": 5.989074,
+          "gated": 0
+        },
+        {
+          "n": 53,
+          "kind": "wake",
+          "s": 6.097859,
+          "gated": 0
+        },
+        {
+          "n": 54,
+          "kind": "wake",
+          "s": 5.90541,
+          "gated": 0
+        },
+        {
+          "n": 55,
+          "kind": "wake",
+          "s": 6.089426,
+          "gated": 0
+        },
+        {
+          "n": 56,
+          "kind": "wake",
+          "s": 6.216347,
+          "gated": 0
+        },
+        {
+          "n": 57,
+          "kind": "wake",
+          "s": 6.153277,
+          "gated": 0
+        },
+        {
+          "n": 58,
+          "kind": "wake",
+          "s": 6.561106,
+          "gated": 0
+        },
+        {
+          "n": 59,
+          "kind": "wake",
+          "s": 5.944763,
+          "gated": 0
+        },
+        {
+          "n": 60,
+          "kind": "wake",
+          "s": 5.885562,
+          "gated": 0
+        },
+        {
+          "n": 61,
+          "kind": "wake",
+          "s": 5.994674,
+          "gated": 0
+        },
+        {
+          "n": 62,
+          "kind": "wake",
+          "s": 6.014106,
+          "gated": 0
+        },
+        {
+          "n": 63,
+          "kind": "wake",
+          "s": 6.506382,
+          "gated": 0
+        },
+        {
+          "n": 64,
+          "kind": "wake",
+          "s": 6.116431,
+          "gated": 0
+        },
+        {
+          "n": 65,
+          "kind": "wake",
+          "s": 6.063403,
+          "gated": 0
+        },
+        {
+          "n": 66,
+          "kind": "wake",
+          "s": 6.218302,
+          "gated": 0
+        },
+        {
+          "n": 67,
+          "kind": "wake",
+          "s": 6.043733,
+          "gated": 0
+        },
+        {
+          "n": 68,
+          "kind": "wake",
+          "s": 6.159962,
+          "gated": 0
+        },
+        {
+          "n": 69,
+          "kind": "wake",
+          "s": 6.235495,
+          "gated": 0
+        },
+        {
+          "n": 70,
+          "kind": "wake",
+          "s": 5.597773,
+          "gated": 0
+        },
+        {
+          "n": 71,
+          "kind": "wake",
+          "s": 5.846911,
+          "gated": 0
+        },
+        {
+          "n": 72,
+          "kind": "wake",
+          "s": 6.23135,
+          "gated": 0
+        },
+        {
+          "n": 73,
+          "kind": "wake",
+          "s": 6.283354,
+          "gated": 0
+        },
+        {
+          "n": 74,
+          "kind": "wake",
+          "s": 6.234775,
+          "gated": 0
+        },
+        {
+          "n": 75,
+          "kind": "wake",
+          "s": 6.629889,
+          "gated": 1
+        },
+        {
+          "n": 76,
+          "kind": "wake",
+          "s": 6.333934,
+          "gated": 0
+        },
+        {
+          "n": 77,
+          "kind": "wake",
+          "s": 6.106674,
+          "gated": 0
+        },
+        {
+          "n": 78,
+          "kind": "wake",
+          "s": 5.914206,
+          "gated": 0
+        },
+        {
+          "n": 79,
+          "kind": "wake",
+          "s": 6.479865,
+          "gated": 1
+        },
+        {
+          "n": 80,
+          "kind": "wake",
+          "s": 6.582215,
+          "gated": 1
+        }
+      ]
+    },
+    "leg1": {
+      "name": "leg1",
+      "n_chunks": 40,
+      "grad_tokens": 3840,
+      "n_bwd": 30,
+      "final_heldout": 6.422314,
+      "digest": "975a5f6ce58c2b16e5b44d65429290bca716774f2d07319fa5914092e2971837",
+      "metrics": [
+        {
+          "n_chunks": 0,
+          "heldout": 8.7202,
+          "grad_tokens": 0,
+          "event": "start"
+        },
+        {
+          "n_chunks": 40,
+          "heldout": 6.422314,
+          "grad_tokens": 3840,
+          "n_own_spans": 60,
+          "offline": false
+        },
+        {
+          "n_chunks": 40,
+          "heldout": 6.422314,
+          "grad_tokens": 3840,
+          "n_own_spans": 60,
+          "event": "final"
+        }
+      ],
+      "ckpt_path": "results/portable/exp_a/leg1/ckpt.pt",
+      "n_own_spans": 60,
+      "chunk_log": [
+        {
+          "n": 1,
+          "kind": "wake",
+          "s": 8.799408,
+          "gated": 1
+        },
+        {
+          "n": 2,
+          "kind": "wake",
+          "s": 8.462339,
+          "gated": 1
+        },
+        {
+          "n": 3,
+          "kind": "wake",
+          "s": 8.067606,
+          "gated": 1
+        },
+        {
+          "n": 4,
+          "kind": "wake",
+          "s": 8.014178,
+          "gated": 1
+        },
+        {
+          "n": 5,
+          "kind": "wake",
+          "s": 7.590604,
+          "gated": 1
+        },
+        {
+          "n": 6,
+          "kind": "wake",
+          "s": 7.56074,
+          "gated": 1
+        },
+        {
+          "n": 7,
+          "kind": "wake",
+          "s": 7.537458,
+          "gated": 1
+        },
+        {
+          "n": 8,
+          "kind": "wake",
+          "s": 6.929203,
+          "gated": 1
+        },
+        {
+          "n": 9,
+          "kind": "wake",
+          "s": 7.161295,
+          "gated": 1
+        },
+        {
+          "n": 10,
+          "kind": "wake",
+          "s": 6.80724,
+          "gated": 1
+        },
+        {
+          "n": 11,
+          "kind": "wake",
+          "s": 6.617783,
+          "gated": 1
+        },
+        {
+          "n": 12,
+          "kind": "wake",
+          "s": 6.218691,
+          "gated": 1
+        },
+        {
+          "n": 13,
+          "kind": "wake",
+          "s": 6.360054,
+          "gated": 1
+        },
+        {
+          "n": 14,
+          "kind": "wake",
+          "s": 5.658163,
+          "gated": 1
+        },
+        {
+          "n": 15,
+          "kind": "wake",
+          "s": 6.403912,
+          "gated": 1
+        },
+        {
+          "n": 16,
+          "kind": "wake",
+          "s": 6.14474,
+          "gated": 1
+        },
+        {
+          "n": 17,
+          "kind": "wake",
+          "s": 6.007877,
+          "gated": 1
+        },
+        {
+          "n": 18,
+          "kind": "wake",
+          "s": 5.999855,
+          "gated": 1
+        },
+        {
+          "n": 19,
+          "kind": "wake",
+          "s": 5.977783,
+          "gated": 1
+        },
+        {
+          "n": 20,
+          "kind": "wake",
+          "s": 5.942861,
+          "gated": 1
+        },
+        {
+          "n": 21,
+          "kind": "wake",
+          "s": 5.477261,
+          "gated": 1
+        },
+        {
+          "n": 22,
+          "kind": "wake",
+          "s": 6.001384,
+          "gated": 1
+        },
+        {
+          "n": 23,
+          "kind": "wake",
+          "s": 6.901727,
+          "gated": 1
+        },
+        {
+          "n": 24,
+          "kind": "wake",
+          "s": 6.328312,
+          "gated": 1
+        },
+        {
+          "n": 25,
+          "kind": "wake",
+          "s": 6.26984,
+          "gated": 1
+        },
+        {
+          "n": 26,
+          "kind": "wake",
+          "s": 6.641153,
+          "gated": 1
+        },
+        {
+          "n": 27,
+          "kind": "wake",
+          "s": 6.278043,
+          "gated": 1
+        },
+        {
+          "n": 28,
+          "kind": "wake",
+          "s": 6.065975,
+          "gated": 1
+        },
+        {
+          "n": 29,
+          "kind": "wake",
+          "s": 5.9312,
+          "gated": 1
+        },
+        {
+          "n": 30,
+          "kind": "wake",
+          "s": 6.370119,
+          "gated": 1
+        },
+        {
+          "n": 31,
+          "kind": "wake",
+          "s": 6.482528,
+          "gated": 0
+        },
+        {
+          "n": 32,
+          "kind": "wake",
+          "s": 6.648811,
+          "gated": 0
+        },
+        {
+          "n": 33,
+          "kind": "wake",
+          "s": 5.886572,
+          "gated": 0
+        },
+        {
+          "n": 34,
+          "kind": "wake",
+          "s": 5.699486,
+          "gated": 0
+        },
+        {
+          "n": 35,
+          "kind": "wake",
+          "s": 6.124671,
+          "gated": 0
+        },
+        {
+          "n": 36,
+          "kind": "wake",
+          "s": 6.232963,
+          "gated": 0
+        },
+        {
+          "n": 37,
+          "kind": "wake",
+          "s": 6.21007,
+          "gated": 0
+        },
+        {
+          "n": 38,
+          "kind": "wake",
+          "s": 5.790572,
+          "gated": 0
+        },
+        {
+          "n": 39,
+          "kind": "wake",
+          "s": 5.779954,
+          "gated": 0
+        },
+        {
+          "n": 40,
+          "kind": "wake",
+          "s": 5.773024,
+          "gated": 0
+        }
+      ]
+    },
+    "leg2": {
+      "name": "leg2",
+      "n_chunks": 80,
+      "grad_tokens": 4352,
+      "n_bwd": 34,
+      "final_heldout": 6.350721,
+      "digest": "0277a3c0938cc9597d93f8ca127d433d579deca3234198697238ac4658da6c00",
+      "metrics": [
+        {
+          "n_chunks": 40,
+          "heldout": 6.422314,
+          "grad_tokens": 3840,
+          "event": "start"
+        },
+        {
+          "n_chunks": 80,
+          "heldout": 6.350721,
+          "grad_tokens": 4352,
+          "n_own_spans": 8,
+          "offline": false
+        },
+        {
+          "n_chunks": 80,
+          "heldout": 6.350721,
+          "grad_tokens": 4352,
+          "n_own_spans": 8,
+          "event": "final"
+        }
+      ],
+      "ckpt_path": "results/portable/exp_a/leg2/ckpt.pt",
+      "n_own_spans": 8,
+      "chunk_log": [
+        {
+          "n": 41,
+          "kind": "wake",
+          "s": 5.730074,
+          "gated": 0
+        },
+        {
+          "n": 42,
+          "kind": "wake",
+          "s": 5.427379,
+          "gated": 0
+        },
+        {
+          "n": 43,
+          "kind": "wake",
+          "s": 5.529158,
+          "gated": 0
+        },
+        {
+          "n": 44,
+          "kind": "wake",
+          "s": 5.847298,
+          "gated": 0
+        },
+        {
+          "n": 45,
+          "kind": "wake",
+          "s": 6.345068,
+          "gated": 0
+        },
+        {
+          "n": 46,
+          "kind": "wake",
+          "s": 6.700042,
+          "gated": 1
+        },
+        {
+          "n": 47,
+          "kind": "wake",
+          "s": 6.119225,
+          "gated": 0
+        },
+        {
+          "n": 48,
+          "kind": "wake",
+          "s": 6.280007,
+          "gated": 0
+        },
+        {
+          "n": 49,
+          "kind": "wake",
+          "s": 6.224155,
+          "gated": 0
+        },
+        {
+          "n": 50,
+          "kind": "wake",
+          "s": 5.670449,
+          "gated": 0
+        },
+        {
+          "n": 51,
+          "kind": "wake",
+          "s": 6.068502,
+          "gated": 0
+        },
+        {
+          "n": 52,
+          "kind": "wake",
+          "s": 5.989074,
+          "gated": 0
+        },
+        {
+          "n": 53,
+          "kind": "wake",
+          "s": 6.097859,
+          "gated": 0
+        },
+        {
+          "n": 54,
+          "kind": "wake",
+          "s": 5.90541,
+          "gated": 0
+        },
+        {
+          "n": 55,
+          "kind": "wake",
+          "s": 6.089426,
+          "gated": 0
+        },
+        {
+          "n": 56,
+          "kind": "wake",
+          "s": 6.216347,
+          "gated": 0
+        },
+        {
+          "n": 57,
+          "kind": "wake",
+          "s": 6.153277,
+          "gated": 0
+        },
+        {
+          "n": 58,
+          "kind": "wake",
+          "s": 6.561106,
+          "gated": 0
+        },
+        {
+          "n": 59,
+          "kind": "wake",
+          "s": 5.944763,
+          "gated": 0
+        },
+        {
+          "n": 60,
+          "kind": "wake",
+          "s": 5.885562,
+          "gated": 0
+        },
+        {
+          "n": 61,
+          "kind": "wake",
+          "s": 5.994674,
+          "gated": 0
+        },
+        {
+          "n": 62,
+          "kind": "wake",
+          "s": 6.014106,
+          "gated": 0
+        },
+        {
+          "n": 63,
+          "kind": "wake",
+          "s": 6.506382,
+          "gated": 0
+        },
+        {
+          "n": 64,
+          "kind": "wake",
+          "s": 6.116431,
+          "gated": 0
+        },
+        {
+          "n": 65,
+          "kind": "wake",
+          "s": 6.063403,
+          "gated": 0
+        },
+        {
+          "n": 66,
+          "kind": "wake",
+          "s": 6.218302,
+          "gated": 0
+        },
+        {
+          "n": 67,
+          "kind": "wake",
+          "s": 6.043733,
+          "gated": 0
+        },
+        {
+          "n": 68,
+          "kind": "wake",
+          "s": 6.159962,
+          "gated": 0
+        },
+        {
+          "n": 69,
+          "kind": "wake",
+          "s": 6.235495,
+          "gated": 0
+        },
+        {
+          "n": 70,
+          "kind": "wake",
+          "s": 5.597773,
+          "gated": 0
+        },
+        {
+          "n": 71,
+          "kind": "wake",
+          "s": 5.846911,
+          "gated": 0
+        },
+        {
+          "n": 72,
+          "kind": "wake",
+          "s": 6.23135,
+          "gated": 0
+        },
+        {
+          "n": 73,
+          "kind": "wake",
+          "s": 6.283354,
+          "gated": 0
+        },
+        {
+          "n": 74,
+          "kind": "wake",
+          "s": 6.234775,
+          "gated": 0
+        },
+        {
+          "n": 75,
+          "kind": "wake",
+          "s": 6.629889,
+          "gated": 1
+        },
+        {
+          "n": 76,
+          "kind": "wake",
+          "s": 6.333934,
+          "gated": 0
+        },
+        {
+          "n": 77,
+          "kind": "wake",
+          "s": 6.106674,
+          "gated": 0
+        },
+        {
+          "n": 78,
+          "kind": "wake",
+          "s": 5.914206,
+          "gated": 0
+        },
+        {
+          "n": 79,
+          "kind": "wake",
+          "s": 6.479865,
+          "gated": 1
+        },
+        {
+          "n": 80,
+          "kind": "wake",
+          "s": 6.582215,
+          "gated": 1
+        }
+      ]
+    },
+    "chunk_log_matches": true,
+    "first_mismatch": null,
+    "heldout_delta_leg2_vs_control": 0.0,
+    "gate_bit_identical_local": true,
+    "verdict": "P38a LOCAL GATE: PASS (bit-identical) | heldout delta leg2 vs control = 0.00000000 | chunk_log matches exactly",
+    "note": "cross-architecture (Mac ARM -> beast x86) arm orchestrated separately via --resume + rsync; behavioral (not bit) equivalence is the claim there. This local gate proves checkpoint/resume is exact bit-for-bit."
+  },
+  "exp_b": {
+    "n_per_leg": 40,
+    "k_pause": 5,
+    "half": 20,
+    "organism_a_spans": 60,
+    "b_control_heldout": 6.422314,
+    "b_shared": {
+      "tag": "shared",
+      "heldout": 6.468551,
+      "n_chunks": 45,
+      "grad_tokens": 4480,
+      "sleep_chunks_used": 5,
+      "pool_size_at_rejoin": 100
+    },
+    "b_private": {
+      "tag": "private",
+      "heldout": 6.499631,
+      "n_chunks": 45,
+      "grad_tokens": 4480,
+      "sleep_chunks_used": 5,
+      "pool_size_at_rejoin": 40
+    },
+    "heldout_delta_shared_vs_control": 0.046237,
+    "heldout_delta_private_vs_control": 0.077317,
+    "p38b_scoring": {
+      "rejoined_shared_leq_rejoined_private": true,
+      "rejoined_shared_within_0.02_of_never_killed": false
+    },
+    "verdict": "P38b: heldout control=6.422314 shared=6.468551 (delta +0.046237) private=6.499631 (delta +0.077317) | shared<=private: True | within 0.02 of never-killed: False | PARTIAL/FAIL"
+  },
+  "exp_c": {
+    "n_per_leg": 40,
+    "k_offline": 10,
+    "results": {
+      "idle": {
+        "pre_outage_heldout": 6.422314,
+        "pre_outage_spans": 60,
+        "post_outage_heldout": 6.422314,
+        "final_heldout_at_reconnect_plus_N": 6.350721,
+        "grad_tokens": 4352,
+        "n_chunks_total": 90,
+        "sleep_dosing": {
+          "n_used": 0,
+          "span_tokens": 0,
+          "replay_epochs": 0.0
+        }
+      },
+      "sleep": {
+        "pre_outage_heldout": 6.422314,
+        "pre_outage_spans": 60,
+        "post_outage_heldout": 6.56127,
+        "final_heldout_at_reconnect_plus_N": 6.402718,
+        "grad_tokens": 5888,
+        "n_chunks_total": 90,
+        "sleep_dosing": {
+          "n_used": 10,
+          "span_tokens": 1827,
+          "replay_epochs": 0.701
+        }
+      }
+    },
+    "margin_idle_minus_sleep_at_reconnect_plus_N": -0.051997,
+    "p38c_sleep_beats_idle": false,
+    "verdict": "P38c: reconnect+N heldout sleep=6.402718 idle=6.350721 (margin -0.051997) | FAIL/PARTIAL"
+  }
+}
