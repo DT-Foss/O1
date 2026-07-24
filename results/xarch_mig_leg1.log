@@ -1,0 +1,3 @@
+Device: cpu
+[xarch_mig] done n_chunks=300 heldout=6.305405 grad_tokens=7,936 digest=49050b00d8be426c...
+[portable_organism] -> results/portable/xarch_mig/ckpt.pt, results/portable/xarch_mig/metrics.jsonl

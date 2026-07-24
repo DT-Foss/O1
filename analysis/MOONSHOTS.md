@@ -257,3 +257,8 @@ next to free builders is the only true time-waste in this lab.*
   core passed the C4-streaming test — the earlier stall was beast-specific,
   not a Hetzner problem; core is now a full C4-capable compute node.
   Five builders in flight (P33/P34/P35+36/P37/P38); three smokes landed.
+- day4 ~09:15 — P38a CONFIRMED spectacularly: live ARM→x86 migration is
+  BEHAVIORALLY IDENTICAL to six decimals (heldout 6.182391 == 6.182391,
+  identical grad tokens; only the bit digest differs across BLAS and it
+  does not propagate). The living organism is a portable asset, measured.
+  b/c fulls on core.

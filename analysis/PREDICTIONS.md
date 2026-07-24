@@ -456,6 +456,20 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   replay, dividend-monitored) beats the same outage spent idle by a
   measurable held-out margin at reconnect+N chunks, and both resume
   cleanly. Any part that fails is the measured boundary of portability.
+  **P38a SCORED (day 4 ~09:15): CONFIRMED far beyond the registered bar.**
+  Local gate: checkpoint→new-process→resume is BIT-identical (line-by-line
+  chunk log). Cross-architecture: a live organism checkpointed mid-stream on
+  the Mac (ARM) and resumed on beast (x86) ends at heldout 6.182391 —
+  identical to six decimals with the never-migrated control (6.182391),
+  with identical gradient tokens (17,664: every gate decision matched).
+  The only divergence is the bit-level digest (BLAS rounding differs across
+  ISAs) and it does NOT propagate into behavior. The registered bar was
+  "rejoin within 0.02 nats inside 1M tokens"; the measurement is immediate
+  behavioral identity. Live cross-ISA migration is a solved, free operation.
+  (b) and (c) full runs in flight on core; smoke already shows the
+  index-cover mechanism (shared ≤ private on rejoin) and an honest
+  small-budget boundary on offline-sleep (toy span pools are not
+  representative — full budget decides).
 
 ## Scoring rule
 
