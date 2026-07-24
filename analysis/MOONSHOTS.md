@@ -283,3 +283,25 @@ next to free builders is the only true time-waste in this lab.*
   Phase B frees it. Gap-ladder interim: MQAR rungs at chance from G=16384
   (beacon rung held 1.0 with refresh) — JSON harvest pending for the full
   picture.
+- day6 (2026-07-24) morning — PHASE B ✅ HARVESTED: ratio 1.0091 at 25.17%
+  grad tokens over 909.7M tokens — the gated arm BEAT full-gradient; P1's
+  own embarrassment threshold (>1.0) fell. Twin restart free (excess
+  0.0029, converged n+1 chunk). verify_pos 16/16, POS_THESIS.md written,
+  P1–P7 scored, README §9 final. The thesis experiment is over; the thesis
+  won bigger than registered.
+- day6 ~15:00 — PAPER v0.1 ✅ SHIPPED (paper/o1state.pdf, 8pp,
+  warning-free): draft + LaTeX + 4 measured vector figures (40h curves,
+  twin fork, knee, rent map) rendered from results/*.json only — no
+  schematic diagrams, top-venue aesthetic, review-hardened captions
+  (online-surprise attribution; >3x-chance knee claim). Fleet triage the
+  same hour, three dead runs revived with three distinct root causes:
+  gap-ladder OOM = 20GB dead per-chunk logits (O(1) fix, regression
+  bit-identical), horizon = datasets 5.0 script-API removal (pinned 2.19.0),
+  lifetime = HF-stream futex hang (kill+resume from atomic ckpt, ~3 min
+  lost; stall-guard cron installed on intel). CHIMERA smoke: organs run,
+  dividend monitor demonstrably intervenes; reminder organ mechanically
+  verified but base-rate-starved at smoke exposure — UNDECIDABLE-AT-EXPOSURE
+  rule registered in P33 BEFORE the full; chimera-full + horizon-full now
+  live side-by-side on core. All four machines loaded: Mac rank-grid,
+  core horizon+chimera, beast gap-ladder (G=1M rung under the new O(1)
+  eval), intel lifetime at 869M tokens.
