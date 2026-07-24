@@ -137,6 +137,9 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   0.9804 (GSSM 0.9523 at gate 22.6%, S6 0.9337 at gate 23.1%); head-to-head
   GSSM-full 5.177 vs S6-full 5.333 nats — GSSM *leads* by 0.156 nats at scan
   parameter parity 1.0016 and identical pipeline/tokens/seed.
+  **HARDENED to n=3 seeds across two CPU architectures (day 4):** seed43
+  (Mac/ARM): ratio 0.955, GSSM +0.148; seed44 (core/x86): ratio 0.968,
+  GSSM +0.133. Both verdicts replicate on every seed and both machines.
 
 ## Wave 5 — the deployment primitives (registered day 3 ~20:00, before any build)
 

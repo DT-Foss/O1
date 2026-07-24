@@ -252,3 +252,8 @@ next to free builders is the only true time-waste in this lab.*
   composes them: cross-architecture live migration Mac→beast, kill+rejoin
   with index cover, and outage-spent-sleeping vs idle. The fleet is the
   testbed.
+- day4 ~09:50 — P22 hardened to n=3 seeds on TWO cpu architectures
+  (ratio-of-ratios 0.98/0.955/0.968; GSSM leads +0.156/+0.148/+0.133).
+  core passed the C4-streaming test — the earlier stall was beast-specific,
+  not a Hetzner problem; core is now a full C4-capable compute node.
+  Five builders in flight (P33/P34/P35+36/P37/P38); three smokes landed.
