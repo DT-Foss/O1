@@ -1,0 +1,124 @@
+==============================================================================
+RANK-SWEEP — K-sweep at fixed D_total (P34, amended/relational)
+K=[2, 4, 8, 16, 32]  D_total=128 (n_heads=4,d_head=32)  arms=['scalar', 'phase', 'phase_off', 'attn']  seeds=[0, 1, 7, 42]  steps=2500  lr=0.003
+==============================================================================
+
+==============================================================================
+K=2
+==============================================================================
+  -- seed=0 --
+    [scalar    ] recall=0.0781 (test 0.0840)  D_eff=0.127  (88.1s)
+    [phase     ] recall=0.0645 (test 0.0605)  D_eff=0.099  (144.3s)
+    [phase_off ] recall=0.0273 (test 0.0293)  D_eff=0.024  (110.7s)
+/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    [attn      ] recall=0.9922 (test 0.9883)  D_eff=1.984  (66.7s)
+  -- seed=1 --
+    [scalar    ] recall=0.0391 (test 0.0449)  D_eff=0.048  (88.8s)
+    [phase     ] recall=0.0234 (test 0.0234)  D_eff=0.016  (144.0s)
+    [phase_off ] recall=0.2520 (test 0.2676)  D_eff=0.480  (89.9s)
+    [attn      ] recall=0.9844 (test 0.9863)  D_eff=1.968  (63.7s)
+  -- seed=7 --
+    [scalar    ] recall=0.0293 (test 0.0273)  D_eff=0.028  (89.9s)
+    [phase     ] recall=0.1602 (test 0.1270)  D_eff=0.294  (152.3s)
+    [phase_off ] recall=0.0312 (test 0.0371)  D_eff=0.032  (94.8s)
+    [attn      ] recall=0.9922 (test 0.9883)  D_eff=1.984  (68.6s)
+  -- seed=42 --
+    [scalar    ] recall=0.3574 (test 0.2773)  D_eff=0.694  (98.4s)
+    [phase     ] recall=0.0469 (test 0.0332)  D_eff=0.064  (145.8s)
+    [phase_off ] recall=0.1582 (test 0.1484)  D_eff=0.290  (89.8s)
+    [attn      ] recall=0.9902 (test 0.9922)  D_eff=1.980  (63.1s)
+
+==============================================================================
+K=4
+==============================================================================
+  -- seed=0 --
+    [scalar    ] recall=0.0137 (test 0.0059)  D_eff=-0.008  (98.2s)
+    [phase     ] recall=0.0137 (test 0.0127)  D_eff=-0.008  (147.7s)
+    [phase_off ] recall=0.0664 (test 0.0645)  D_eff=0.206  (93.9s)
+    [attn      ] recall=0.9912 (test 0.9902)  D_eff=3.964  (63.4s)
+  -- seed=1 --
+    [scalar    ] recall=0.0117 (test 0.0166)  D_eff=-0.016  (96.5s)
+    [phase     ] recall=0.0352 (test 0.0361)  D_eff=0.080  (159.8s)
+    [phase_off ] recall=0.0137 (test 0.0107)  D_eff=-0.008  (98.5s)
+    [attn      ] recall=0.9941 (test 0.9961)  D_eff=3.976  (68.1s)
+  -- seed=7 --
+    [scalar    ] recall=0.0322 (test 0.0283)  D_eff=0.067  (95.6s)
+    [phase     ] recall=0.0146 (test 0.0068)  D_eff=-0.004  (149.6s)
+    [phase_off ] recall=0.0146 (test 0.0068)  D_eff=-0.004  (95.1s)
+    [attn      ] recall=0.9990 (test 0.9980)  D_eff=3.996  (70.6s)
+  -- seed=42 --
+    [scalar    ] recall=0.0146 (test 0.0137)  D_eff=-0.004  (97.9s)
+    [phase     ] recall=0.1201 (test 0.1055)  D_eff=0.425  (156.1s)
+    [phase_off ] recall=0.0645 (test 0.0723)  D_eff=0.199  (98.8s)
+    [attn      ] recall=0.9941 (test 0.9951)  D_eff=3.976  (72.9s)
+
+==============================================================================
+K=8
+==============================================================================
+  -- seed=0 --
+    [scalar    ] recall=0.0200 (test 0.0171)  D_eff=0.036  (104.9s)
+    [phase     ] recall=0.0200 (test 0.0171)  D_eff=0.036  (161.5s)
+    [phase_off ] recall=0.0200 (test 0.0171)  D_eff=0.036  (102.9s)
+    [attn      ] recall=1.0000 (test 0.9995)  D_eff=8.000  (76.5s)
+  -- seed=1 --
+    [scalar    ] recall=0.0137 (test 0.0171)  D_eff=-0.016  (103.7s)
+    [phase     ] recall=0.0728 (test 0.0669)  D_eff=0.465  (171.7s)
+    [phase_off ] recall=0.0137 (test 0.0171)  D_eff=-0.016  (115.1s)
+    [attn      ] recall=0.9766 (test 0.9819)  D_eff=7.810  (68.7s)
+  -- seed=7 --
+    [scalar    ] recall=0.0156 (test 0.0151)  D_eff=-0.000  (96.8s)
+    [phase     ] recall=0.0156 (test 0.0151)  D_eff=-0.000  (154.6s)
+    [phase_off ] recall=0.0156 (test 0.0151)  D_eff=-0.000  (100.5s)
+    [attn      ] recall=0.9995 (test 1.0000)  D_eff=7.996  (72.4s)
+  -- seed=42 --
+    [scalar    ] recall=0.0171 (test 0.0190)  D_eff=0.012  (101.1s)
+    [phase     ] recall=0.0171 (test 0.0190)  D_eff=0.012  (162.0s)
+    [phase_off ] recall=0.0171 (test 0.0190)  D_eff=0.012  (100.5s)
+    [attn      ] recall=0.9995 (test 0.9990)  D_eff=7.996  (71.7s)
+
+==============================================================================
+K=16
+==============================================================================
+  -- seed=0 --
+    [scalar    ] recall=0.0142 (test 0.0166)  D_eff=-0.023  (106.4s)
+    [phase     ] recall=0.0142 (test 0.0168)  D_eff=-0.023  (161.1s)
+    [phase_off ] recall=0.0193 (test 0.0156)  D_eff=0.060  (107.2s)
+    [attn      ] recall=0.9998 (test 1.0000)  D_eff=15.997  (82.8s)
+  -- seed=1 --
+    [scalar    ] recall=0.0146 (test 0.0156)  D_eff=-0.017  (107.6s)
+    [phase     ] recall=0.0264 (test 0.0220)  D_eff=0.175  (158.9s)
+    [phase_off ] recall=0.0146 (test 0.0156)  D_eff=-0.017  (106.2s)
+    [attn      ] recall=0.9944 (test 0.9939)  D_eff=15.909  (78.6s)
+  -- seed=7 --
+    [scalar    ] recall=0.0144 (test 0.0151)  D_eff=-0.020  (106.4s)
+    [phase     ] recall=0.0205 (test 0.0200)  D_eff=0.079  (163.9s)
+    [phase_off ] recall=0.0144 (test 0.0151)  D_eff=-0.020  (111.3s)
+    [attn      ] recall=0.9885 (test 0.9924)  D_eff=15.813  (68.7s)
+  -- seed=42 --
+    [scalar    ] recall=0.0146 (test 0.0181)  D_eff=-0.017  (96.3s)
+    [phase     ] recall=0.0146 (test 0.0181)  D_eff=-0.017  (155.1s)
+    [phase_off ] recall=0.0146 (test 0.0181)  D_eff=-0.017  (101.5s)
+    [attn      ] recall=0.9998 (test 1.0000)  D_eff=15.997  (74.5s)
+
+==============================================================================
+K=32
+==============================================================================
+  -- seed=0 --
+Traceback (most recent call last):
+  File "/Users/bhkmie/Documents/Forschung/O1_juli/src/rank_sweep.py", line 638, in <module>
+    main()
+  File "/Users/bhkmie/Documents/Forschung/O1_juli/src/rank_sweep.py", line 634, in main
+    run_grid(args)
+  File "/Users/bhkmie/Documents/Forschung/O1_juli/src/rank_sweep.py", line 340, in run_grid
+    res = run_one(arm, K, args.steps, args.lr, args.batch,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhkmie/Documents/Forschung/O1_juli/src/rank_sweep.py", line 251, in run_one
+    train_arm(model, train_cfg, steps, lr, seed, DEVICE)
+  File "/Users/bhkmie/Documents/Forschung/O1_juli/src/rank_sweep.py", line 212, in train_arm
+    tokens, targets, mask, _ = make_mqar_batch(generator=gen, device=device, **cfg)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhkmie/Documents/Forschung/O1_juli/src/mqar.py", line 85, in make_mqar_batch
+    assert kv_len + n_queries <= seq_len, \
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: sequence too short: 2*32+32 > 64

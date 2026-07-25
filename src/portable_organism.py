@@ -578,7 +578,7 @@ def make_stream(stoi, unk, skip_docs=0):
 def run_organism(name, n_chunks, ckpt_every, out_dir, resume_path=None,
                   offline_for=0, offline_mode="idle", offline_at=None,
                   shared_store_dir=None, eval_every=0, extra_state=None,
-                  quiet=False):
+                  quiet=False, metrics_stream_path=None):
     """Streams n_chunks additional chunks (from wherever the organism currently
     is — 0 if fresh, ck['organism']['n_chunks'] if resumed), checkpointing
     every ckpt_every chunks, and returns (organism, stream, bufs, metrics,
@@ -587,7 +587,17 @@ def run_organism(name, n_chunks, ckpt_every, out_dir, resume_path=None,
     of streaming fresh C4 data.
 
     A per-run digest (sha256 over every chunk's (n_chunks, s, gate, loss)) is
-    accumulated and returned — the bit-identical-resume gate compares this."""
+    accumulated and returned — the bit-identical-resume gate compares this.
+
+    metrics_stream_path: if set, every metrics record is ALSO appended to that
+    file (one JSON object per line, flushed + fsync'd) at the moment it is
+    produced, instead of only being available in the returned list once the
+    run finishes. Readers that need to observe a still-running organism —
+    e.g. scripts/moebius_stage.py's parity check, which compares B's heldout
+    against A's heldout at an equal chunk count WHILE A keeps streaming —
+    require this; without it a long-running A publishes nothing until it
+    exits. Off by default so existing callers keep their exact write
+    behaviour (the CLI still writes the full list at the end)."""
     vocab, stoi, unk, mask, val_ids = get_vocab()
     V = len(vocab)
     evX, evY = build_eval_set(val_ids, EVAL_TOKENS, CHUNK)
@@ -627,9 +637,22 @@ def run_organism(name, n_chunks, ckpt_every, out_dir, resume_path=None,
     def base_eval():
         return heldout(organism.model, evX, evY)
 
+    def emit_metric(rec):
+        """Append to the in-memory list (returned to the caller as before) and,
+        if metrics_stream_path is set, publish the record immediately so a
+        concurrent reader can see it while this organism is still running.
+        flush + fsync so a reader polling the file never observes a partial
+        line."""
+        metrics.append(rec)
+        if metrics_stream_path:
+            with open(metrics_stream_path, "a") as mf:
+                mf.write(json.dumps(rec) + "\n")
+                mf.flush()
+                os.fsync(mf.fileno())
+
     if eval_every:
-        metrics.append({"n_chunks": organism.n_chunks, "heldout": round(base_eval(), 6),
-                        "grad_tokens": organism.grad_tokens, "event": "start"})
+        emit_metric({"n_chunks": organism.n_chunks, "heldout": round(base_eval(), 6),
+                     "grad_tokens": organism.grad_tokens, "event": "start"})
 
     offline_lo = offline_at if offline_at is not None else start_chunk
     offline_hi = offline_lo + offline_for
@@ -676,15 +699,15 @@ def run_organism(name, n_chunks, ckpt_every, out_dir, resume_path=None,
             save_snapshot(last_ckpt_path, organism, stream, feeder.bufs,
                           time.time() - t0 + wall_off, extra=extra_state)
         if eval_every and organism.n_chunks % eval_every == 0:
-            metrics.append({"n_chunks": organism.n_chunks, "heldout": round(base_eval(), 6),
-                            "grad_tokens": organism.grad_tokens,
-                            "n_own_spans": len(organism.own_spans),
-                            "offline": in_offline})
+            emit_metric({"n_chunks": organism.n_chunks, "heldout": round(base_eval(), 6),
+                         "grad_tokens": organism.grad_tokens,
+                         "n_own_spans": len(organism.own_spans),
+                         "offline": in_offline})
 
     final_heldout = base_eval()
-    metrics.append({"n_chunks": organism.n_chunks, "heldout": round(final_heldout, 6),
-                    "grad_tokens": organism.grad_tokens, "n_own_spans": len(organism.own_spans),
-                    "event": "final"})
+    emit_metric({"n_chunks": organism.n_chunks, "heldout": round(final_heldout, 6),
+                 "grad_tokens": organism.grad_tokens, "n_own_spans": len(organism.own_spans),
+                 "event": "final"})
     last_ckpt_path = os.path.join(out_dir, "ckpt.pt")
     save_snapshot(last_ckpt_path, organism, stream, feeder.bufs,
                   time.time() - t0 + wall_off, extra=extra_state)
@@ -1554,6 +1577,11 @@ def build_argparser():
     ap.add_argument("--chunks", type=int, default=200)
     ap.add_argument("--ckpt-every", type=int, default=50)
     ap.add_argument("--eval-every", type=int, default=0)
+    ap.add_argument("--stream-metrics", action="store_true",
+                    help="append each metrics record to out_dir/metrics.jsonl as it is produced "
+                         "(flush+fsync) instead of writing the whole list at exit. Required by any "
+                         "reader that observes this organism WHILE it runs — e.g. moebius_stage.py's "
+                         "cross-machine parity check against a live source organism")
     ap.add_argument("--out-dir", default=None)
     ap.add_argument("--result-json", default=None)
 
@@ -1607,15 +1635,23 @@ def main():
 
     if args.run or args.resume:
         out_dir = args.out_dir or os.path.join(args.results_dir, args.name)
+        metrics_path = os.path.join(out_dir, "metrics.jsonl")
+        # --stream-metrics: publish each record to metrics.jsonl as it is
+        # produced, so a concurrent reader (moebius_stage.py's parity check)
+        # can see a still-running organism's heldout trajectory. Without it
+        # the file only appears once the run exits, which for a long-lived
+        # source organism is never, in practice.
+        stream_path = metrics_path if args.stream_metrics else None
         _, result = run_organism(args.name, args.chunks, ckpt_every=args.ckpt_every,
                                  out_dir=out_dir, resume_path=args.resume,
                                  offline_for=args.offline_for, offline_mode=args.offline_mode,
                                  offline_at=args.offline_at, shared_store_dir=args.shared_store,
-                                 eval_every=args.eval_every)
-        metrics_path = os.path.join(out_dir, "metrics.jsonl")
-        with open(metrics_path, "a") as f:
-            for m in result["metrics"]:
-                f.write(json.dumps(m) + "\n")
+                                 eval_every=args.eval_every, metrics_stream_path=stream_path)
+        if not args.stream_metrics:
+            # already written incrementally when streaming — don't duplicate
+            with open(metrics_path, "a") as f:
+                for m in result["metrics"]:
+                    f.write(json.dumps(m) + "\n")
         if args.result_json:
             with open(args.result_json, "w") as f:
                 json.dump(result, f, indent=2)

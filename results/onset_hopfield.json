@@ -1,0 +1,98 @@
+{
+  "config": {
+    "lever": "1_hopfield_learned_beta",
+    "steps": 2500,
+    "seeds": "1,7,42",
+    "n_pairs": 8,
+    "train_len": 64,
+    "d_model": 128,
+    "d_head": 32,
+    "p": 3.0,
+    "readout_note": "hopfield readouts start==rms (\u03bb=0), need 2500 steps",
+    "out": "results/onset_hopfield.json"
+  },
+  "chance": 0.015625,
+  "summary": {
+    "attn": {
+      "mean": 0.99951171875,
+      "std": 0.0006905339660024879,
+      "per_seed": [
+        0.99853515625,
+        1.0,
+        1.0
+      ]
+    },
+    "holo_off": {
+      "mean": 0.015462239583333334,
+      "std": 0.0014001180447660525,
+      "per_seed": [
+        0.013671875,
+        0.015625,
+        0.01708984375
+      ]
+    },
+    "holo_rms": {
+      "mean": 0.03515625,
+      "std": 0.026592282820683794,
+      "per_seed": [
+        0.07275390625,
+        0.015625,
+        0.01708984375
+      ]
+    },
+    "holo_tanh_m": {
+      "mean": 0.08837890625,
+      "std": 0.01774461806107597,
+      "per_seed": [
+        0.0888671875,
+        0.10986328125,
+        0.06640625
+      ]
+    },
+    "holo_hopfield_beta": {
+      "mean": 0.015462239583333334,
+      "std": 0.0014001180447660525,
+      "per_seed": [
+        0.013671875,
+        0.015625,
+        0.01708984375
+      ]
+    },
+    "holo_poly_before_norm": {
+      "mean": 0.0146484375,
+      "std": 0.002489755621871477,
+      "per_seed": [
+        0.01123046875,
+        0.015625,
+        0.01708984375
+      ]
+    }
+  },
+  "verdicts": {
+    "holo_hopfield_beta": {
+      "verdict": "KILL (no lift over tanh_m, \u0394=-7.29pp)",
+      "delta_vs_best_base_pp": -7.292,
+      "delta_std_pp": 1.841,
+      "per_seed_diff": [
+        -0.0751953125,
+        -0.09423828125,
+        -0.04931640625
+      ]
+    },
+    "holo_poly_before_norm": {
+      "verdict": "KILL (no lift over tanh_m, \u0394=-7.37pp)",
+      "delta_vs_best_base_pp": -7.373,
+      "delta_std_pp": 1.855,
+      "per_seed_diff": [
+        -0.07763671875,
+        -0.09423828125,
+        -0.04931640625
+      ]
+    }
+  },
+  "best_baseline": {
+    "name": "tanh_m",
+    "mean": 0.08837890625
+  },
+  "elapsed_s": 23582.4
+}

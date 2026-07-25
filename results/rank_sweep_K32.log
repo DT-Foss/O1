@@ -1,0 +1,36 @@
+==============================================================================
+RANK-SWEEP — K-sweep at fixed D_total (P34, amended/relational)
+K=[32]  D_total=128 (n_heads=4,d_head=32)  arms=['scalar', 'phase', 'phase_off', 'attn']  seeds=[0, 1, 7, 42]  steps=2500  lr=0.003
+==============================================================================
+
+==============================================================================
+K=32
+==============================================================================
+  -- seed=0 --
+    [scalar    ] recall=0.0160 (test 0.0144)  D_eff=0.012  (238.6s)
+    [phase     ] recall=0.0160 (test 0.0144)  D_eff=0.012  (383.8s)
+    [phase_off ] recall=0.0160 (test 0.0144)  D_eff=0.012  (250.3s)
+/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    [attn      ] recall=0.9999 (test 1.0000)  D_eff=31.997  (155.7s)
+  -- seed=1 --
+    [scalar    ] recall=0.0137 (test 0.0160)  D_eff=-0.063  (257.0s)
+    [phase     ] recall=0.0134 (test 0.0165)  D_eff=-0.072  (406.6s)
+    [phase_off ] recall=0.0137 (test 0.0160)  D_eff=-0.063  (269.6s)
+    [attn      ] recall=0.9999 (test 0.9995)  D_eff=31.997  (157.9s)
+  -- seed=7 --
+    [scalar    ] recall=0.0137 (test 0.0160)  D_eff=-0.063  (267.7s)
+    [phase     ] recall=0.0162 (test 0.0146)  D_eff=0.019  (411.4s)
+    [phase_off ] recall=0.0162 (test 0.0146)  D_eff=0.019  (251.7s)
+    [attn      ] recall=1.0000 (test 1.0000)  D_eff=32.000  (164.4s)
+  -- seed=42 --
+    [scalar    ] recall=0.0142 (test 0.0184)  D_eff=-0.046  (259.9s)
+    [phase     ] recall=0.0156 (test 0.0145)  D_eff=-0.001  (404.2s)
+    [phase_off ] recall=0.0156 (test 0.0145)  D_eff=-0.001  (252.2s)
+    [attn      ] recall=0.9988 (test 0.9991)  D_eff=31.961  (167.2s)
+
+==============================================================================
+VERDICT
+(c) attention validity: PASS (min recall 0.9997) | IGNITION_DEAD phase cells (excluded from a'/b'): [32] | (a') insufficient data (no K clears 3x chance for phase, or K=8 missing) -- cannot score | (b') cliff ratio undefined (scalar cliff_K=0 or missing data)
+
+-> results/rank_sweep_K32.json  (4298.3s)

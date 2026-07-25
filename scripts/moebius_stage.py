@@ -528,10 +528,16 @@ def main():
     # 2*sync_window, ...) — --lockstep is validated as a multiple of --sync-window,
     # so B's post-lockstep chunk count always lands on one of these exact
     # readout points (see _wait_for_a_heldout_at / run_cycle's parity comment).
+    # --stream-metrics is REQUIRED here, not optional: the parity check reads
+    # A's metrics.jsonl while A is still streaming. Without it, portable_organism
+    # buffers every record in memory and writes the file only at exit, so a
+    # long-lived A publishes nothing for the entire staging and every parity
+    # comparison degrades to "no reading at the matching chunk count".
     a_cmd_preview = [
         sys.executable, "-u", PORTABLE, "--run", "--name", "moebius_A",
         "--chunks", str(args.a_total_chunks), "--ckpt-every", str(args.sync_window),
-        "--eval-every", str(args.sync_window), "--d-model", str(args.d_model),
+        "--eval-every", str(args.sync_window), "--stream-metrics",
+        "--d-model", str(args.d_model),
         "--out-dir", a_out_dir,
     ]
     if args.dry_run:
