@@ -1250,10 +1250,21 @@ def _launch_source(name, total_chunks, snapshot_at, out_dir, result_json):
     return subprocess.Popen(cmd, cwd=repo_root, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
 
-def _wait_for_snapshot(out_dir, chunk_n, timeout=120.0, poll=0.02):
+def _wait_for_snapshot(out_dir, chunk_n, timeout=None, poll=0.02):
     """Polls for out_dir/snap_<chunk_n>.pt to appear (A writes it via
     tmpfile+os.replace, so its existence at this final path means the write
-    is already complete and atomic — no partial-file race)."""
+    is already complete and atomic — no partial-file race).
+
+    timeout=None derives the budget from the actual cadence instead of a
+    fixed constant: A has to stream chunk_n chunks before it can write this
+    snapshot, and a chunk's cost scales with BATCH*CHUNK*D_MODEL. The old
+    flat 120 s was calibrated on the toy cadence and expires mid-run at
+    production cadence on a slower machine — beast wrote snap_400 about a
+    minute after the constant gave up, which looks like a hang and is not
+    one. Floor of 120 s keeps toy-scale behaviour unchanged."""
+    if timeout is None:
+        weight = (BATCH * CHUNK * D_MODEL) / (4 * 32 * 64)   # 1.0 at toy scale
+        timeout = max(120.0, chunk_n * 0.05 * weight * 4.0)
     path = os.path.join(out_dir, f"snap_{chunk_n}.pt")
     t0 = time.time()
     while not os.path.exists(path):
