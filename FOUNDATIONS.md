@@ -156,10 +156,23 @@ by construction into: (i) a bounded state carrying few live bindings with a
 sharp read, and (ii) an external, growable index (symbolic graph, span
 store, key-value registry — any persistence layer) written and consulted
 under the surprise calculus (F1). Runtime consultation without any gradient
-measurably lifts performance far beyond state capacity (recall 0.15→0.51 at
-P=16, dose-dependent, `src/holo_index_hybrid.py`), and models trained *with*
-in-stream consultation read reminders at ~1.0 fidelity
-(`src/holo_reminded.py`). Disclosed variants: shared indices across multiple
+measurably lifts performance far beyond state capacity, dose-dependently: at
+P=16, G=32 the state alone reads 0.150, a half-dose reminder 0.340, a full
+reminder 0.512, against chance 0.0625 and a random-reminder control at 0.112
+(`results/holo_hybrid.json`). Stated with its own limit: that sweep's
+pre-registered acceptance bar was hybrid ≥ 0.9 at P=16, and 0.512 does not
+clear it — consultation lifts the read far above the state's capacity
+without restoring full fidelity at high load.
+
+Training *with* in-stream consultation closes the gap at low load and moves
+it at high load, but does not remove it: reminders are then read at
+**0.998 / 0.995 at P=2** (vs 0.715 / 0.843 read-time-only) and **0.487 /
+0.505 at P=16** (vs 0.450 / 0.512) — near-perfect where the state is not
+contended, essentially unchanged where it is
+(`results/holo_reminded.json`; its own P18 bar of ≥0.85 at P=16 is likewise
+not cleared). The honest reading across both artifacts: **the ceiling at
+high load is state interference, not reading.** That is precisely why
+compounding has to leave the state — which is this foundation's claim. Disclosed variants: shared indices across multiple
 independent organisms (collective memory); freshness-weighted and
 dividend-monitored replay from the index; index entries as reminders
 injected in-stream at any position; consultation policies trained end-to-end.
@@ -180,9 +193,24 @@ an external index are instances of the same disclosed system.
 **Statement.** An operator with no absolute-position term (NoPE; the only
 index-dependence is through lags) is in-distribution at every sequence
 length; combined with F2, training at tiny horizons (T=32, gap≤12) yields
-deployment at unbounded horizons (measured: PPL ×0.98 at 4096× training
-length; 1B streamed tokens at flat 4.36 GB; keyed recall flat across 8
-detached chunk boundaries). Length, in this architecture class, is a
+deployment at unbounded horizons. Measured, on a model trained at T=32:
+
+| eval length | × training length | PPL ratio | peak RSS |
+|---|---|---|---|
+| 131,072 | 4,096× | ×0.896 | 1.93 GB |
+| 1,048,576 | 32,768× | ×0.886 | 2.09 GB |
+| 4,194,304 | 131,072× | ×0.825 | 2.13 GB |
+| **16,777,216** | **524,288×** | **×0.803** | **2.48 GB** |
+
+(`results/scale_to_a_million.json`, chunked+carried per F2.) Perplexity does
+not merely hold — it *improves* monotonically with length, while memory grows
+by 0.5 GB across four orders of magnitude. The position-free variant is what
+carries this: at 256× the same comparison gives NoPE ×0.973 against ×4.23 for
+the position-bearing Selective arm and ×11.25 for Pure
+(`results/length_extrap_v2_extreme.json`) — the wall is the position term,
+not the length. Extended independently to 1B streamed tokens at flat RSS
+(`results/lifetime_billion_status.json`), and keyed recall stays flat across
+8 detached chunk boundaries. Length, in this architecture class, is a
 wall-clock quantity, never a memory or validity quantity.
 
 ## F7 — The portable organism: the living state is a small, serializable, migratable, shardable, seedable asset
