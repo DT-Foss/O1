@@ -474,6 +474,14 @@ at T+24h (A3's weights into a fresh process, zero carried state): the restart pr
 surprise excess 0.0029 (10–50× below the registered band), identical post-fork gate rates,
 converged one chunk after the fork, and the twin finished ahead (4.7365). Full verdict:
 [analysis/POS_THESIS.md](analysis/POS_THESIS.md).
+
+**The gate law grows with width (P42).** Re-run at d=256 on a 50M-token anchor, the gated arm
+reaches **0.9966** of the full-gradient arm's held-out quality on **24.7%** of the backward
+passes (A3 5.0534 vs A2 5.0363, from a frozen 8.6834) — against 0.9729 at d=128 on the same
+token anchor. Selection pays *more* where gradients cost more. The gate rate is not drifting
+noise: it rises from 23.2% at 8M tokens and settles at 24.7%, and memory stays flat at
+**0.41 GB RSS** across the whole run with zero stream reconnects over 138,532 documents.
+→ `results/pos_d256_status.json`, `results/pos_d256_metrics.jsonl`
 → `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
 `analysis/DECISIONS.md`, `results/pos_*`
 
@@ -600,13 +608,23 @@ falsifications (P23a, P24c-at-1.2M) are kept in the ledger at full strength.
   Locally, checkpoint→new-process→resume is bit-identical line-by-line. The full state —
   weights, optimizer, carried Z, gating windows, store, stream position, RNG — is one
   atomic ~53 MB artifact.
+- **The same parity holds across two live machines on a real network (Möbius staging).**
+  Organism A streams continuously on the Mac and is never paused; organism B rises on an
+  x86 server from A's snapshot over real `scp`/`ssh` and chases A's stream position. At the
+  one chunk count where both organisms stood (560), the heldout delta is **0.0 — exact**
+  (ARM 6.199778 vs x86 6.199778), reproduced across two independent stagings. Parity is
+  scored *only* at equal chunk counts: B on 16 server cores outruns A on the Mac and
+  overtakes it, and a comparison at unequal stream positions is not a parity check at all.
+  Multi-cycle parity therefore needs rate-matched machines — the single-cycle number is the
+  measured one.
 - **Where the phase pays rent is now a map, not an anecdote (P32).** A 16-cell
   P_max × d_model sweep (corner lr-controls) kills both one-parameter laws (ratio and
   product) and shows two rent regions — the scarce corner (P_max ≤ 16, d ≤ 64: +11 to
   +32 pp) and a capacity-return region at mid-P_max × large d — separated by a valley.
   The real-text graft result (§ below) is *explained* by this map: it sits in the valley.
 → `src/pos_shared_index.py`, `src/portable_organism.py`, `src/holo_rent_map.py`,
-`results/pos_shared_index.json`, `results/holo_rent_map.json`
+`scripts/moebius_stage.py`, `results/pos_shared_index.json`, `results/holo_rent_map.json`,
+`results/moebius_parity.json`
 
 ### The method: pre-registered, auto-scored, falsifications kept
 
@@ -710,7 +728,17 @@ python src/holographic_mqar_run.py
 Supporting / plateau-diagnostic runs (all under `src/` → `results/`):
 `holographic_qk_run.py` (separate-QK control), `holographic_capacity_run.py` (channel sweep),
 `holographic_readout_shootout.py` (readout ablation), `holographic_crosstalk_diag.py`,
-`phase_mqar_run.py` (the additive-phase negative this corrects), `mqar.py` (task harness).
+`phase_mqar_run.py` (the additive-phase negative this corrects), `mqar.py` (task harness),
+`rank_sweep.py` (the relational-rank negative below).
+
+**A kept negative — relational rank (`results/rank_sweep.json`).** Across K = 2…32 the
+attention control solves the task at every rank (recall 0.9898 → 0.9997), so the harness is
+sound and the task is solvable. Both state arms collapse to chance from K = 4 on (phase
+0.046 → 0.015, scalar 0.018 → 0.014, against chance 0.0156), and the cliff ratio
+phase/scalar is **1.0** against a pre-registered ≥ 2 — phase buys nothing over scalar here.
+The rank check itself is reported as *insufficient data* rather than as a pass or a fail: no
+K clears 3× chance for phase with the required ≥ 2 ignited seeds, so no cell was eligible to
+score.
 
 ---
 
@@ -778,7 +806,9 @@ foundations, formalized in [FOUNDATIONS.md](FOUNDATIONS.md), every step pre-regi
 [analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) before its data existed. And the organism
 is *social* and *portable*: collective memory across individuals is measured (P31), and a
 living run migrates across CPU architectures mid-stream with behavior identical to six
-decimals (P38a) — the complete state is one ~53 MB artifact.
+decimals (P38a) — the complete state is one ~53 MB artifact. Staged across two live machines
+on a real network, at the one stream position where both organisms stood the heldout delta is
+**0.0, exact**.
 
 Every number here is reproducible from the scripts in `src/`. The kernel reductions are exact
 identities; the recall result is 5-seed with the attention validity gate at 0.994; the threshold

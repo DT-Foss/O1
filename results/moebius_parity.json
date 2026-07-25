@@ -1,0 +1,23 @@
+{
+  "note": "Moebius cross-ISA parity, 2026-07-25. A=Mac (ARM), B=beast (x86), real network, real ssh/scp.",
+  "a_max_chunk": 3000,
+  "cycles": [
+    {
+      "b_chunks": 560,
+      "b_heldout": 6.199778,
+      "a_heldout_same_chunk": 6.199778,
+      "heldout_abs_delta": 0.0,
+      "parity_measured": true,
+      "reason": null
+    },
+    {
+      "b_chunks": 5480,
+      "b_heldout": 5.715593,
+      "a_heldout_same_chunk": null,
+      "heldout_abs_delta": null,
+      "parity_measured": false,
+      "reason": "B overtook A: A never reached chunk 5480 (max 3000); parity is only defined at equal chunk counts"
+    }
+  ],
+  "verdict": "cross-ISA parity at equal chunk count 560: heldout delta 0.0 EXACT (Mac ARM 6.199778 vs beast x86 6.199778) \u2014 P38a 6-decimal claim met with room to spare. Later cycles undefined by construction: B on 16 beast cores outruns A on the Mac, so B overtakes A and no equal chunk count exists to compare at."
+}
