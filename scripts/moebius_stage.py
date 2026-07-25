@@ -74,6 +74,18 @@ BEAST_PY = "/usr/bin/python3"
 # P39d scoring tolerances (registered expectations, per the task brief).
 PARITY_TOL = 1e-5          # heldout diff, 6-decimal cross-ISA parity (P38a)
 
+# Auto-derivation of A's --chunks budget. A must never be the process that
+# runs out first: it is the continuous source, and a cycle that outlives A
+# stalls forever on a wait target A can no longer reach.
+#
+# A_CHUNKS_PER_SEC is A's observed local streaming rate (measured 2026-07-25:
+# 960 chunks in ~35 s at d_model=128 on this Mac, i.e. ~27/s — rounded down
+# for headroom, since a SLOWER assumed rate yields a LARGER, safer budget).
+# A_SECONDS_PER_CYCLE_BUDGET is a generous wall-clock allowance per cycle for
+# the beast round-trip (scp of a ~20 MB checkpoint + two ssh-driven runs).
+A_CHUNKS_PER_SEC = 20
+A_SECONDS_PER_CYCLE_BUDGET = 180
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 #  Small process helpers
@@ -272,6 +284,14 @@ def run_cycle(args, cycle_idx, a_ckpt_path, b_chunk_before, b_last_ckpt_remote):
 
     # ── (i) wait for A to have advanced at least one fresh sync window
     #    past wherever B currently is (or past 0 for cycle 0). ──────────────
+    #    NOTE: B ends every cycle at (A's snapshot position + lockstep), i.e.
+    #    B OVERTAKES A by exactly --lockstep chunks each cycle. So the next
+    #    cycle's wait target must be past B's current position, and A's total
+    #    budget must cover cycles*lockstep on top of A's own streaming — see
+    #    the a_total_chunks derivation in main(). Waiting on
+    #    b_chunk_before + sync_window without that budget headroom is what
+    #    stalled the 2026-07-24 run at cycle 2 (waited for A>=1440, A capped
+    #    at 960).
     target_min_chunks = b_chunk_before + args.sync_window
     print(f"\n[moebius] === cycle {cycle_idx}: waiting for A >= chunk {target_min_chunks} ===", flush=True)
     a_meta, wait_s = _wait_for_a_snapshot_at_least(a_ckpt_path, target_min_chunks, dry)
@@ -443,7 +463,10 @@ def build_argparser():
                          "one of A's --eval-every readout points (parity is only defined at equal "
                          "chunk counts — see run_cycle's parity comment)")
     ap.add_argument("--a-total-chunks", type=int, default=0,
-                    help="A's total --chunks budget; 0 = auto (cycles * (sync_window+lockstep) * 4, generous slack)")
+                    help="A's total --chunks budget; 0 = auto (max of a structural floor "
+                         "cycles*lockstep+sync_window and a WALL-CLOCK floor covering the beast "
+                         "round-trips at A's local streaming rate). The wall-clock floor is the "
+                         "binding one: A streams far faster than a cycle's ssh/scp round-trip")
     ap.add_argument("--local-out-dir", default=os.path.join(REPO_ROOT, "results", "moebius_stage"),
                     help="local (Mac) output root for A's checkpoints/metrics and pulled-back B results")
     ap.add_argument("--result-json", default=os.path.join(REPO_ROOT, "results", "moebius_stage.json"),
@@ -466,7 +489,29 @@ def main():
                  f"equal chunk count to compare against (see run_cycle's parity comment)")
 
     if args.a_total_chunks <= 0:
-        args.a_total_chunks = args.cycles * (args.sync_window + args.lockstep) * 4
+        # A must never be the process that runs out first. Its budget cannot
+        # be derived from the cycle arithmetic alone, because the binding
+        # constraint is WALL-CLOCK, not chunk count: A streams locally at
+        # tens of chunks/s (see A_CHUNKS_PER_SEC) while each cycle costs a
+        # beast round-trip (scp +
+        # two ssh-driven catch-up/lockstep runs, tens of seconds each). A
+        # cycle-arithmetic budget therefore expires long before the cycles
+        # finish — that is exactly what stalled the 2026-07-24 run.
+        #
+        # Two independent floors, whichever is larger:
+        #   (1) structural: B overtakes A by --lockstep chunks per cycle,
+        #       and cycle i+1 waits for A >= B + sync_window, so the final
+        #       wait target is at least cycles*lockstep + sync_window.
+        #   (2) wall-clock: A must still be streaming after the whole run,
+        #       i.e. cover cycles * A_SECONDS_PER_CYCLE_BUDGET seconds at
+        #       A's observed local rate.
+        structural = args.cycles * args.lockstep + args.sync_window
+        walltime = int(args.cycles * A_SECONDS_PER_CYCLE_BUDGET * A_CHUNKS_PER_SEC)
+        args.a_total_chunks = max(structural + args.sync_window, walltime)
+        print(f"[moebius] a_total_chunks auto = {args.a_total_chunks} "
+              f"(structural floor {structural}, wall-clock floor {walltime} = "
+              f"{args.cycles} cycles x {A_SECONDS_PER_CYCLE_BUDGET}s x "
+              f"{A_CHUNKS_PER_SEC} chunks/s)", flush=True)
 
     if not args.dry_run:
         os.makedirs(args.local_out_dir, exist_ok=True)
