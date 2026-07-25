@@ -1141,5 +1141,68 @@
     "margin_idle_minus_sleep_at_reconnect_plus_N": -0.051997,
     "p38c_sleep_beats_idle": false,
     "verdict": "P38c: reconnect+N heldout sleep=6.402718 idle=6.350721 (margin -0.051997) | FAIL/PARTIAL"
+  },
+  "exp_d": {
+    "n_before_snapshot": 40,
+    "transfer_window_T": 15,
+    "lockstep_M": 15,
+    "a_result_summary": {
+      "n_chunks": 70,
+      "final_heldout": 6.310148,
+      "wall_s_total": 6.565361,
+      "snapshots": [
+        {
+          "n": 40,
+          "path": "results/portable_pos_smoke/exp_d/source_A/snap_40.pt",
+          "wall_s": 6.116325
+        }
+      ]
+    },
+    "b_catchup_summary": {
+      "chunks_replayed": 15,
+      "catchup_wall_s": 0.465278,
+      "catchup_cpu_s": 0.41168,
+      "final_heldout_after_catchup": 6.357104
+    },
+    "b_lockstep_summary": {
+      "chunks_replayed": 15,
+      "final_heldout_after_lockstep": 6.310148
+    },
+    "check_a_zero_downtime": {
+      "measured": true,
+      "post_snapshot_gap_s": 0.034692,
+      "baseline_median_gap_s": 0.010216,
+      "ratio": 3.396,
+      "no_stall": false
+    },
+    "check_b_state_parity": {
+      "chunk_log_tail_matches": true,
+      "final_heldout_matches": true,
+      "first_mismatch": null,
+      "a_final_heldout": 6.310148,
+      "b_final_heldout": 6.310148
+    },
+    "check_c_convergence": {
+      "metric": "cpu_time, A's rate = median per-chunk CPU delta over A's full run x T (robust to isolated background-load spikes; wall-clock reported for transparency, does not gate \u2014 see note)",
+      "a_live_cpu_s_for_T_chunks": 0.133695,
+      "b_catchup_cpu_s_for_T_chunks": 0.41168,
+      "ratio_b_over_a_cpu": 3.0792,
+      "a_live_wall_s_for_T_chunks": 0.071417,
+      "b_catchup_wall_s_for_T_chunks": 0.465278,
+      "ratio_b_over_a_wall": 6.5149,
+      "converges": false,
+      "note": "wall-clock ratio is noisy on this machine (saturating background load); CPU time (median-rate based) is the gating metric."
+    },
+    "p39_scoring": {
+      "a_zero_downtime": false,
+      "b_state_parity": true,
+      "c_convergence": false,
+      "d_iterated_replication": null
+    },
+    "check_d_iterated_replication": {
+      "skipped": true,
+      "reason": "--cadence not set"
+    },
+    "verdict": "P39: (a) zero-downtime=FAIL (gap ratio 3.396) | (b) state-parity=PASS (tail_matches=True, heldout_matches=True) | (c) convergence=FAIL (cpu ratio B/A=3.0792, wall ratio=6.5149) | (d) iterated=SKIPPED | PARTIAL/FAIL"
   }
 }
