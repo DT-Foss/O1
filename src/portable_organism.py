@@ -452,8 +452,11 @@ class Organism:
     def __init__(self, name, vocab_size, mask, seed=SEED):
         self.name = name
         torch.manual_seed(seed)
+        # seq_len tracks CHUNK: a chunk IS the sequence the model sees per
+        # step, so raising --chunk-size without raising seq_len would feed
+        # longer chunks to a model built for shorter ones.
         self.model = StreamingNoPELM(vocab_size, mask, d_model=D_MODEL, n_layers=N_LAYERS,
-                                      n_heads=N_HEADS, d_head=D_MODEL // N_HEADS, seq_len=32,
+                                      n_heads=N_HEADS, d_head=D_MODEL // N_HEADS, seq_len=CHUNK,
                                       dropout=0.0, causal=True)
         self.model.train()
         self.opt = torch.optim.Adam(self.model.parameters(), lr=LR)
@@ -889,7 +892,11 @@ def exp_a(args):
            "--_internal-continue", "--resume", resumed_ckpt, "--name", "leg2",
            "--chunks", str(N), "--ckpt-every", str(N), "--out-dir", leg2_dir,
            "--eval-every", str(N), "--result-json", out_json,
-           "--d-model", str(D_MODEL)]
+           "--d-model", str(D_MODEL),
+           # cadence axes must ride along too: a subprocess that falls back to the
+           # toy BATCH/CHUNK defaults measures a different organism than the parent,
+           # which silently invalidates every per-chunk ratio P39 (a)/(c) compute.
+           "--batch", str(BATCH), "--chunk-size", str(CHUNK)]
     t0 = time.time()
     proc = subprocess.run(cmd, cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                           capture_output=True, text=True)
@@ -1234,7 +1241,11 @@ def _launch_source(name, total_chunks, snapshot_at, out_dir, result_json):
            "--_internal-source", "--name", name, "--chunks", str(total_chunks),
            "--snapshot-at", ",".join(str(v) for v in snapshot_at),
            "--out-dir", out_dir, "--result-json", result_json,
-           "--d-model", str(D_MODEL)]
+           "--d-model", str(D_MODEL),
+           # cadence axes must ride along too: a subprocess that falls back to the
+           # toy BATCH/CHUNK defaults measures a different organism than the parent,
+           # which silently invalidates every per-chunk ratio P39 (a)/(c) compute.
+           "--batch", str(BATCH), "--chunk-size", str(CHUNK)]
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return subprocess.Popen(cmd, cwd=repo_root, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
@@ -1259,7 +1270,11 @@ def _launch_catchup(name, snapshot_path, n_chunks, out_dir, result_json):
     cmd = [sys.executable, "-u", os.path.abspath(__file__),
            "--_internal-catchup", "--name", name, "--resume", snapshot_path,
            "--chunks", str(n_chunks), "--out-dir", out_dir, "--result-json", result_json,
-           "--d-model", str(D_MODEL)]
+           "--d-model", str(D_MODEL),
+           # cadence axes must ride along too: a subprocess that falls back to the
+           # toy BATCH/CHUNK defaults measures a different organism than the parent,
+           # which silently invalidates every per-chunk ratio P39 (a)/(c) compute.
+           "--batch", str(BATCH), "--chunk-size", str(CHUNK)]
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     proc = subprocess.run(cmd, cwd=repo_root, capture_output=True, text=True)
     if proc.returncode != 0:
@@ -1543,9 +1558,20 @@ def build_argparser():
                                              "stop-free streaming migration (P38/P39, F7)")
     ap.add_argument("--d-model", type=int, default=64,
                      help="organism width; 64 = the toy scale every P38/P39 result so far ran at, "
-                          "128 = POS scale (chunk compute heavy enough that fixed snapshot/IPC "
-                          "overheads stop dominating -- the P39 a/c final measurement). Replaces "
-                          "the beast-only local-edit workaround; NEVER hand-edit the constant.")
+                          "128 = POS scale. NOTE: width alone does NOT make a chunk compute-heavy "
+                          "-- P39 FINAL measured d=128 and the a/c ratios still failed (17.9x / "
+                          "3.79x), because BATCH/CHUNK stayed at toy values. Chunk WEIGHT is the "
+                          "axis that dominates the fixed overheads: see --batch/--chunk-size. "
+                          "Replaces the beast-only local-edit workaround; NEVER hand-edit the constant.")
+    ap.add_argument("--batch", type=int, default=4,
+                     help="chunks-in-flight batch B; 4 = the toy default every P38/P39 result ran "
+                          "at, 8 = the width the 40h POS organism actually streamed. Together with "
+                          "--chunk-size this sets per-chunk COMPUTE, the quantity P39 (a)/(c) are "
+                          "ratios against -- at B=4/K=32 a chunk costs microseconds and both checks "
+                          "measure serialization/process-start constants instead of the migration.")
+    ap.add_argument("--chunk-size", type=int, default=32,
+                     help="tokens per chunk K (also the model's seq_len, which tracks it); 32 = toy, "
+                          "64 = the 40h POS organism's cadence. See --batch.")
     ap.add_argument("--exp", choices=["a", "b", "c", "d"], help="run an orchestrated P38/P39 experiment")
     ap.add_argument("--smoke", action="store_true", help="small N for fast iteration")
     ap.add_argument("--n", type=int, default=400, help="chunks per leg/segment (full scale)")
@@ -1597,8 +1623,10 @@ def main():
     ap = build_argparser()
     args = ap.parse_args()
 
-    global D_MODEL
+    global D_MODEL, BATCH, CHUNK
     D_MODEL = args.d_model
+    BATCH = args.batch
+    CHUNK = args.chunk_size
 
     if args._internal_continue:
         _resume_subprocess_entry(args)

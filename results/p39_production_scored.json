@@ -1,0 +1,32 @@
+{
+  "note": "P39 (a)/(c) re-measured at the PRODUCTION cadence (d=128, B=8, K=64 \u2014 the exact config the 40h POS organism streamed), 2026-07-25. Previous runs left BATCH/CHUNK at toy values (4/32) because exp_d did not forward them to its subprocesses; only --d-model rode along.",
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "tokens_per_chunk": 512,
+    "baseline_ms_per_chunk": 5.458
+  },
+  "check_a": {
+    "post_snapshot_gap_ms": 38.674,
+    "baseline_ms": 5.458,
+    "ratio": 7.085,
+    "ratio_at_toy_cadence": 17.935,
+    "passes": false
+  },
+  "check_b": {
+    "passes": true,
+    "note": "state parity: tail matches, heldout matches exactly \u2014 holds at every cadence tried"
+  },
+  "check_c": {
+    "cpu_ratio_b_over_a": 2.219,
+    "ratio_at_toy_cadence": 3.7887,
+    "wall_ratio": 3.9244,
+    "passes": false
+  },
+  "check_d": {
+    "skipped": true,
+    "reason": "gated on (a)-(c) by design"
+  },
+  "verdict": "Cadence is load-bearing but NOT sufficient. Moving from the toy cadence to the production cadence the 40h organism actually ran cuts (a) from 17.9x to 7.09x and (c) from 3.79x to 2.22x \u2014 both roughly halve, confirming the register diagnosis that these ratios were partly measuring fixed overheads. Neither clears its threshold. So the register entry is only half right: the toy cadence inflated the numbers, but a real residual remains at production cadence, and (a)/(c) as registered do NOT pass on a single Mac. (b) state parity passes at every cadence, unchanged."
+}

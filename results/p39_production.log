@@ -1,0 +1,14 @@
+Device: cpu
+[exp_d] A: continuous subprocess, 800 chunks (snapshot at 400, transfer window 200, lockstep 200)
+[exp_d] A snapshot ready at chunk 400 (results/p39_production/exp_d/source_A/snap_400.pt); A keeps streaming in the background
+[exp_d] B: subprocess loads snapshot, replays 200 chunks to catch up
+[exp_d] B: caught up to chunk 600 in 8.817s (pure compute, no network wait simulated)
+[exp_d] B: streaming 200 more lockstep chunks
+[exp_d] waiting for A to finish its 800-chunk continuous run...
+[exp_d] A finished: n_chunks=800 heldout=5.927187
+
+[exp_d] base checks (a)-(c) did NOT all pass — skipping check (d) (P39d is gated on the base checks by design)
+
+[exp_d] P39: (a) zero-downtime=FAIL (gap ratio 7.085) | (b) state-parity=PASS (tail_matches=True, heldout_matches=True) | (c) convergence=FAIL (cpu ratio B/A=2.219, wall ratio=3.9244) | (d) iterated=SKIPPED | PARTIAL/FAIL
+
+[portable_organism] exp d -> results/portable_organism.json
