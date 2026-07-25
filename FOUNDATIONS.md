@@ -85,12 +85,27 @@ not approximate:
 
 1. **Detach-carry streaming training**: truncated BPTT with the state carried
    and detached at chunk boundaries reproduces full-window BPTT gradients
-   (measured: cosine 1.0, max-abs-delta 0.0, `results/streaming_check.json`)
-   whenever the chunk exceeds r.
+   whenever the chunk exceeds r *and a warmup overlap of order r is
+   recomputed per chunk* — cosine 1.000000000000 at overlap 16, relative
+   error ~5e-7, across every operator and chunk size swept
+   (`results/f2_equivalence_sweep.json`, 4 operator configurations × 6
+   (chunk, overlap) points).
+
+   The overlap is load-bearing and this is the sweep's sharpest finding:
+   it dominates chunk size. With overlap dropped to 0 the relative error
+   rises by four orders of magnitude (5e-3 to 2e-1) while cosine falls to
+   0.9762 in the worst cell (complex scan, chunk 16). The exactness license
+   is therefore a statement about *overlap ≳ r*, not about chunk length —
+   a long chunk with no warmup is measurably worse than a short chunk with
+   one.
 2. **Layout decoupling**: full-sequence forward with zero initial state and
-   chunked-carried forward are the same operator (measured to float
-   precision for the selective scalar scan, the complex holographic scan,
-   and biased-γ variants). Therefore the *training* computation graph
+   chunked-carried forward are the same operator — and here the result is
+   stronger than "to float precision": with pure detach-carry the logits
+   agree to **exactly 0.0** at every operator and every chunk size down to
+   16 (same artifact). Measured on the selective scalar scan, the complex
+   holographic scan under both of its read paths, and a phase-off control
+   that isolates the scan from the binding. Therefore the *training*
+   computation graph
    (full-sequence, arbitrarily long, gradient reaching every write) and the
    *deployment* computation (chunked, O(chunk) memory, unbounded length) may
    be chosen independently — train however the gradient needs, deploy

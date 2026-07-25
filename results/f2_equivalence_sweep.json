@@ -1,0 +1,220 @@
+{
+  "check": "F2 exactness license, swept over operators x (chunk, overlap)",
+  "full_T": 512,
+  "seed": 0,
+  "torch_threads": 1,
+  "operators_claimed_by_F2": [
+    "selective_scalar",
+    "holographic_complex",
+    "holographic_tanh_m",
+    "phase_off_control"
+  ],
+  "operators_measured": [
+    "selective_scalar",
+    "holographic_complex",
+    "holographic_tanh_m",
+    "phase_off_control"
+  ],
+  "operators_unavailable": [],
+  "rows": [
+    {
+      "operator": "selective_scalar",
+      "desc": "the selective scalar scan (F2's primary anchor)",
+      "available": true,
+      "points": [
+        {
+          "chunk": 64,
+          "overlap": 16,
+          "layout_max_abs_delta": 3.337860107421875e-06,
+          "grad_cosine": 1.0,
+          "grad_rel_err": 5.70518e-07
+        },
+        {
+          "chunk": 64,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999965794502,
+          "grad_rel_err": 0.008271169284
+        },
+        {
+          "chunk": 128,
+          "overlap": 16,
+          "layout_max_abs_delta": 2.2724270820617676e-06,
+          "grad_cosine": 1.0,
+          "grad_rel_err": 4.78527e-07
+        },
+        {
+          "chunk": 128,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999985946214,
+          "grad_rel_err": 0.005301651351
+        },
+        {
+          "chunk": 32,
+          "overlap": 8,
+          "layout_max_abs_delta": 0.0006358325481414795,
+          "grad_cosine": 0.999999992422,
+          "grad_rel_err": 0.000123112007
+        },
+        {
+          "chunk": 16,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999871822748,
+          "grad_rel_err": 0.016010613885
+        }
+      ]
+    },
+    {
+      "operator": "holographic_complex",
+      "desc": "the complex holographic scan",
+      "available": true,
+      "points": [
+        {
+          "chunk": 64,
+          "overlap": 16,
+          "layout_max_abs_delta": 0.00016760826110839844,
+          "grad_cosine": 0.999999999785,
+          "grad_rel_err": 2.0741715e-05
+        },
+        {
+          "chunk": 64,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.994747210346,
+          "grad_rel_err": 0.102391365395
+        },
+        {
+          "chunk": 128,
+          "overlap": 16,
+          "layout_max_abs_delta": 0.00016760826110839844,
+          "grad_cosine": 0.999999999905,
+          "grad_rel_err": 1.3812498e-05
+        },
+        {
+          "chunk": 128,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.998139029449,
+          "grad_rel_err": 0.061015569565
+        },
+        {
+          "chunk": 32,
+          "overlap": 8,
+          "layout_max_abs_delta": 0.025027334690093994,
+          "grad_cosine": 0.999992456118,
+          "grad_rel_err": 0.003886239743
+        },
+        {
+          "chunk": 16,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.976191650301,
+          "grad_rel_err": 0.217070225702
+        }
+      ]
+    },
+    {
+      "operator": "holographic_tanh_m",
+      "desc": "the complex scan under the tanh_m readout (the second read path)",
+      "available": true,
+      "points": [
+        {
+          "chunk": 64,
+          "overlap": 16,
+          "layout_max_abs_delta": 9.834766387939453e-07,
+          "grad_cosine": 1.0,
+          "grad_rel_err": 4.20521e-07
+        },
+        {
+          "chunk": 64,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999996925367,
+          "grad_rel_err": 0.002479769606
+        },
+        {
+          "chunk": 128,
+          "overlap": 16,
+          "layout_max_abs_delta": 7.152557373046875e-07,
+          "grad_cosine": 1.0,
+          "grad_rel_err": 4.0519e-07
+        },
+        {
+          "chunk": 128,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999998676361,
+          "grad_rel_err": 0.001627046286
+        },
+        {
+          "chunk": 32,
+          "overlap": 8,
+          "layout_max_abs_delta": 0.00012569501996040344,
+          "grad_cosine": 0.999999999712,
+          "grad_rel_err": 2.3993356e-05
+        },
+        {
+          "chunk": 16,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999986462972,
+          "grad_rel_err": 0.005203261003
+        }
+      ]
+    },
+    {
+      "operator": "phase_off_control",
+      "desc": "phase-off control: same container, no complex binding \u2014 isolates whether the exactness comes from the scan or the phase",
+      "available": true,
+      "points": [
+        {
+          "chunk": 64,
+          "overlap": 16,
+          "layout_max_abs_delta": 3.2782554626464844e-06,
+          "grad_cosine": 1.0,
+          "grad_rel_err": 5.60312e-07
+        },
+        {
+          "chunk": 64,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999968780818,
+          "grad_rel_err": 0.00790173331
+        },
+        {
+          "chunk": 128,
+          "overlap": 16,
+          "layout_max_abs_delta": 2.950429916381836e-06,
+          "grad_cosine": 1.0,
+          "grad_rel_err": 4.76557e-07
+        },
+        {
+          "chunk": 128,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999987777904,
+          "grad_rel_err": 0.00494413774
+        },
+        {
+          "chunk": 32,
+          "overlap": 8,
+          "layout_max_abs_delta": 0.0007125139236450195,
+          "grad_cosine": 0.999999994373,
+          "grad_rel_err": 0.000106081673
+        },
+        {
+          "chunk": 16,
+          "overlap": 0,
+          "layout_max_abs_delta": 0.0,
+          "grad_cosine": 0.999869621241,
+          "grad_rel_err": 0.016147518594
+        }
+      ]
+    }
+  ],
+  "worst_layout_max_abs_delta": 0.025027334690093994,
+  "worst_grad_cosine": 0.976191650301,
+  "note": "Supersedes results/streaming_check.json as F2's anchor: that file measured one operator at one (chunk, overlap) point while F2's text claims three operators. Chunks below the stated receptive field are included deliberately \u2014 a license with no measured failure mode is a claim, not a law."
+}
