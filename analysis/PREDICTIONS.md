@@ -796,6 +796,21 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   NOT pass on a single Mac, and they are not merely toy-scale arithmetic
   artifacts. (b) state parity passes at every cadence tried, unchanged.
   (d) remains gated on (a)-(c) by design and stays SKIPPED.
+  **REPLICATED ON BEAST (2026-07-25, results/p39_two_machine_scored.json).**
+  Run again at the same production cadence on beast (x86, 16 cores, B gets
+  its own) to test the obvious explanation — that (c) fails on the Mac only
+  because A and B contend for cores. **That explanation is REFUTED.**
+  (a) 5.603× and (c) 2.039× on beast, against 7.085× / 2.219× on the Mac:
+  the same picture, both still over threshold. Uncontended cores move (c)
+  by 0.18, not by the 2× it would need. The raw cpu seconds locate the
+  cause: B spends **45.4 s** replaying the chunks A produced with **22.3 s**
+  of cpu — replay costs ~2× live streaming per chunk, on both ISAs,
+  contended or not. That is a property of catch-up replay, not of any
+  machine, and (c) as registered asks replay to run FASTER than production.
+  Two independent machines now agree; (a)/(c) are **FALSIFIED as
+  registered**, and the honest next move is to re-derive what (c) should
+  ask for rather than to keep hunting for a machine that clears < 1.0.
+  (b) passes on both machines with exact heldout match.
 
 ## Scoring rule
 
