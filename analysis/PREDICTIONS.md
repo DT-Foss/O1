@@ -774,6 +774,28 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   new in-situ measurement; the fully-live confirmation (and (d) iterated)
   merges into the Möbius cross-machine staging (A on the Mac, B on beast,
   real network in the window), queued behind beast's beacon finale.
+  **P39 IN-SITU AT PRODUCTION CADENCE (2026-07-25,
+  results/p39_production_scored.json) — this SUPERSEDES the arithmetic
+  above, and overturns its conclusion.** The scheduled measurement was
+  never actually runnable: BATCH and CHUNK were module constants with no
+  CLI, and `exp_d` forwarded only `--d-model` to its subprocesses, so
+  every earlier "d=128" run measured toy chunk WEIGHT (B=4/K=32) no
+  matter what the parent was told. Both are now exposed
+  (`--batch`/`--chunk-size`, seq_len tracks CHUNK) and forwarded;
+  confirmed via the config recorded in A's own snapshot (batch 8,
+  chunk 64). Re-measured in situ at d=128/B=8/K=64 — 512 tokens per
+  chunk, the exact 40h POS configuration: **(a) 17.935× → 7.085×**
+  (38.7 ms post-snapshot gap vs 5.46 ms baseline), **(c) 3.789× → 2.219×**
+  (cpu, B/A). The cadence hypothesis is therefore HALF confirmed and HALF
+  falsified, and both halves stand: the toy cadence really did inflate
+  these ratios — both roughly halve once a chunk carries real work — but
+  cadence was not the whole story, and a residual survives. **Neither (a)
+  nor (c) clears its threshold in situ.** The projection above (0.44 chunk
+  slots; replay 5.5× faster than the source) does not survive contact with
+  the measurement it was standing in for: as registered, (a) and (c) do
+  NOT pass on a single Mac, and they are not merely toy-scale arithmetic
+  artifacts. (b) state parity passes at every cadence tried, unchanged.
+  (d) remains gated on (a)-(c) by design and stays SKIPPED.
 
 ## Scoring rule
 
