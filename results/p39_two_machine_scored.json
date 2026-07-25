@@ -1,0 +1,46 @@
+{
+  "note": "P39 (a)/(c) in situ at the production cadence (d=128, B=8, K=64 \u2014 the exact 40h POS config), measured independently on two machines, 2026-07-25.",
+  "threshold_a": "gap ratio < 3.0",
+  "threshold_c": "cpu ratio B/A < 1.0",
+  "runs": [
+    {
+      "machine": "Mac (ARM)",
+      "cores": 10,
+      "a_post_gap_ms": 38.67,
+      "a_baseline_ms": 5.46,
+      "a_ratio": 7.085,
+      "a_passes": false,
+      "c_a_live_cpu_s": 2.7828,
+      "c_b_catchup_cpu_s": 6.175021,
+      "c_cpu_ratio": 2.219,
+      "c_passes": false,
+      "b_state_parity": true
+    },
+    {
+      "machine": "beast (x86)",
+      "cores": 16,
+      "a_post_gap_ms": 43.88,
+      "a_baseline_ms": 7.83,
+      "a_ratio": 5.603,
+      "a_passes": false,
+      "c_a_live_cpu_s": 22.2858,
+      "c_b_catchup_cpu_s": 45.435645,
+      "c_cpu_ratio": 2.0388,
+      "c_passes": false,
+      "b_state_parity": true
+    }
+  ],
+  "toy_cadence_reference": {
+    "a_ratio": 17.935,
+    "c_cpu_ratio": 3.7887,
+    "note": "d=128 but BATCH/CHUNK stuck at 4/32"
+  },
+  "cadence_probe": {
+    "toy_ms_per_chunk": 4.449,
+    "production_ms_per_chunk": 20.199,
+    "snapshot_mb_toy": 9.15,
+    "snapshot_mb_production": 20.72,
+    "note": "snapshot size scales with MODEL, not with chunk weight \u2014 so raising chunk weight shrinks the snapshot cost measured in chunk slots (7.94 -> 2.59), which is the whole mechanism behind the (a) ratio"
+  },
+  "verdict": "Two independent machines agree, and both refute the projection that stood in for this measurement. (a) 7.09x on the Mac, 5.60x on beast \u2014 better than the toy cadence 17.9x, still far above the 3.0 threshold. (c) 2.22x and 2.04x \u2014 better than toy 3.79x, still above 1.0. The shared-core hypothesis for (c) is REFUTED: beast gives B its own cores among 16 and the ratio barely moves (2.22 -> 2.04). The cpu numbers show why: B spends 45.4 s replaying what cost A 22.3 s to produce \u2014 almost exactly 2x. Catch-up replay is intrinsically about twice as expensive per chunk as live streaming, independent of machine and of core contention. (c) as registered (< 1.0) asks replay to be FASTER than production; nothing in these two runs suggests it can be. (b) state parity passes on both machines, exact heldout match \u2014 unchanged at every cadence and every machine tried."
+}

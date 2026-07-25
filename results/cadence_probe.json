@@ -1,0 +1,55 @@
+{
+  "warmup_chunks": 10,
+  "measured_chunks": 40,
+  "torch_threads": 1,
+  "results": [
+    {
+      "d_model": 64,
+      "batch": 4,
+      "chunk": 32,
+      "label": "toy (every P38/P39 result so far)",
+      "tokens_per_chunk": 128,
+      "wall_ms_per_chunk": 4.449,
+      "cpu_ms_per_chunk": 8.398,
+      "snapshot_ms": 14.16,
+      "snapshot_mb": 9.15,
+      "snapshot_in_chunk_slots": 3.182
+    },
+    {
+      "d_model": 128,
+      "batch": 4,
+      "chunk": 32,
+      "label": "d128 only (what P39 FINAL measured)",
+      "tokens_per_chunk": 128,
+      "wall_ms_per_chunk": 6.41,
+      "cpu_ms_per_chunk": 12.251,
+      "snapshot_ms": 50.91,
+      "snapshot_mb": 20.69,
+      "snapshot_in_chunk_slots": 7.943
+    },
+    {
+      "d_model": 64,
+      "batch": 8,
+      "chunk": 64,
+      "label": "chunk weight only",
+      "tokens_per_chunk": 512,
+      "wall_ms_per_chunk": 9.922,
+      "cpu_ms_per_chunk": 23.17,
+      "snapshot_ms": 27.58,
+      "snapshot_mb": 9.19,
+      "snapshot_in_chunk_slots": 2.78
+    },
+    {
+      "d_model": 128,
+      "batch": 8,
+      "chunk": 64,
+      "label": "production (the 40h POS organism)",
+      "tokens_per_chunk": 512,
+      "wall_ms_per_chunk": 20.199,
+      "cpu_ms_per_chunk": 46.408,
+      "snapshot_ms": 52.33,
+      "snapshot_mb": 20.72,
+      "snapshot_in_chunk_slots": 2.591
+    }
+  ]
+}
