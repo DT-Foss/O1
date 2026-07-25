@@ -1,0 +1,43 @@
+{
+  "note": "MS-H: the gate-law width curve, three points at a matched ~50M-token anchor. d=128 read off the 40h run at its nearest eval (49.6M); d=256 and d=512 are dedicated 50M runs on the identical recipe (B=8, K=64, lr 3e-3, seed 42, q=0.75, window 500, no index) with ONLY the width changed.",
+  "points": [
+    {
+      "d_model": 128,
+      "n_streamed": 49618944,
+      "A1_frozen": 8.658815,
+      "A2_full": 4.916141,
+      "A3_gated": 5.017554,
+      "gate_frac": 0.2472,
+      "grad_tokens_A3": 12264960,
+      "improvement_ratio": 0.9729,
+      "improvement_per_Mgrad_token": 0.2969
+    },
+    {
+      "d_model": 256,
+      "n_streamed": 50000384,
+      "A1_frozen": 8.683416,
+      "A2_full": 5.036284,
+      "A3_gated": 5.053426,
+      "gate_frac": 0.2472,
+      "grad_tokens_A3": 12359168,
+      "improvement_ratio": 0.9953,
+      "improvement_per_Mgrad_token": 0.2937
+    },
+    {
+      "d_model": 512,
+      "n_streamed": 50000384,
+      "A1_frozen": 8.688618,
+      "A2_full": 5.0898,
+      "A3_gated": 5.170144,
+      "gate_frac": 0.1984,
+      "grad_tokens_A3": 9920000,
+      "improvement_ratio": 0.9777,
+      "improvement_per_Mgrad_token": 0.3547
+    }
+  ],
+  "headline": "The two-point trend does NOT extend. improvement_ratio goes 0.9729 -> 0.9953 -> 0.9777: a maximum at d=256, not a monotone rise.",
+  "confound_found": "The d=512 arm gated at 19.8% where d=128 and d=256 both gated at 24.7% \u2014 stable from the start of the run, not a drift. A3 therefore received ~20% fewer gradient tokens at d=512, so the three ratios are NOT equally dosed and the drop is not attributable to width alone.",
+  "what_survives": "Per gradient token spent, d=512 is the BEST of the three (0.3547 vs 0.2969 / 0.2937 improvement per M grad-token). Selection did not get worse with width \u2014 it got cheaper. The ratio fell because the dose fell.",
+  "also": "A2 (full gradient) degrades with width at this fixed token budget (4.9161 -> 5.0363 -> 5.0898), as expected: wider models need more tokens. The anchor measures selection efficiency, not model quality.",
+  "open": "Why the gate fires less often at d=512 is unexplained and is now the load-bearing question \u2014 the quantile gate (q=0.75, window 500) is width-agnostic by construction, so a stable 19.8% instead of 24.7% means the SURPRISE DISTRIBUTION itself changed shape with width. That is a finding about the signal, not about the gate."
+}

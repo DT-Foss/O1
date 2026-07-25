@@ -475,13 +475,28 @@ surprise excess 0.0029 (10–50× below the registered band), identical post-for
 converged one chunk after the fork, and the twin finished ahead (4.7365). Full verdict:
 [analysis/POS_THESIS.md](analysis/POS_THESIS.md).
 
-**The gate law grows with width (P42).** Re-run at d=256 on a 50M-token anchor, the gated arm
-reaches **0.9966** of the full-gradient arm's held-out quality on **24.7%** of the backward
-passes (A3 5.0534 vs A2 5.0363, from a frozen 8.6834) — against 0.9729 at d=128 on the same
-token anchor. Selection pays *more* where gradients cost more. The gate rate is not drifting
-noise: it rises from 23.2% at 8M tokens and settles at 24.7%, and memory stays flat at
-**0.41 GB RSS** across the whole run with zero stream reconnects over 138,532 documents.
-→ `results/pos_d256_status.json`, `results/pos_d256_metrics.jsonl`
+**The width curve, three points (P42 + MS-H).** Same recipe, only the width changed, all read
+at a matched ~50M-token anchor:
+
+| d_model | gate fires | A3 gated | A2 full | improvement ratio | per M grad-token |
+|---|---|---|---|---|---|
+| 128 | 24.7% | 5.0176 | 4.9161 | 0.9729 | 0.2969 |
+| 256 | 24.7% | 5.0534 | 5.0363 | **0.9953** | 0.2937 |
+| 512 | 19.8% | 5.1701 | 5.0898 | 0.9777 | **0.3547** |
+
+The two-point reading — "the gate law grows with width" — **does not survive the third point**:
+the ratio peaks at d=256 and falls again. But the three arms are not equally dosed. The d=512
+gate fires at 19.8% where both narrower runs fire at 24.7%, stable from the start of the run
+rather than drifting, so A3 there gets ~20% fewer gradient tokens. Per gradient token actually
+spent, d=512 is the *best* of the three: selection did not get worse with width, it got
+cheaper. What the ratio measures at d=512 is a smaller dose, not a weaker gate.
+
+The open question this hands forward is sharper than the one it answers: the quantile gate
+(q=0.75, window 500) is width-agnostic by construction, so a *stable* 19.8% instead of 24.7%
+means the surprise distribution itself changes shape with width — a finding about the signal,
+not about the gate. Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero
+stream reconnects over 138,532 documents at d=256).
+→ `results/gate_law_width_curve.json`, `results/pos_d512_status.json`, `results/pos_d256_status.json`
 → `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
 `analysis/DECISIONS.md`, `results/pos_*`
 

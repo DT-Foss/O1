@@ -1,0 +1,30 @@
+Device: cpu
+[pos] 3-arm plasticity-on-surprise | seed 42 q=0.8 window=500 B=8 K=64 d=512 | hours=40.0 target=50000000
+[data] vocab 5000 | frozen eval 176,960 WT-2 val tokens (2765 stateless rows)
+[arms] A1/A2/A3 identical init (param-abs-sum 2211178.0526)
+[index] OFF
+[eval] n=           0 wall=  0.00h rss=0.79GB | A1 8.6886 | A2 8.6886 | A3 8.6886 | A3 grad 0 (0.0%)
+[pos] streaming...
+/Users/bhkmie/Documents/Forschung/O1_juli/src/pos_run.py:156: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  return float(loss)
+[eval] n=   3,933,184 wall=  0.25h rss=1.45GB | A1 8.6886 | A2 5.4342 | A3 5.5640 | A3 grad 701,952 (17.8%)
+[eval] n=   7,730,176 wall=  0.51h rss=1.84GB | A1 8.6886 | A2 5.3544 | A3 5.4621 | A3 grad 1,445,376 (18.7%)
+[eval] n=  11,526,656 wall=  0.76h rss=1.86GB | A1 8.6886 | A2 5.2505 | A3 5.3576 | A3 grad 2,207,232 (19.1%)
+[eval] n=  15,244,288 wall=  1.02h rss=1.87GB | A1 8.6886 | A2 5.2503 | A3 5.3573 | A3 grad 2,951,680 (19.4%)
+[eval] n=  19,190,784 wall=  1.27h rss=1.98GB | A1 8.6886 | A2 5.1701 | A3 5.3176 | A3 grad 3,730,432 (19.4%)
+[eval] n=  23,224,320 wall=  1.52h rss=2.03GB | A1 8.6886 | A2 5.1775 | A3 5.3231 | A3 grad 4,549,632 (19.6%)
+[eval] n=  27,325,952 wall=  1.78h rss=2.03GB | A1 8.6886 | A2 5.1312 | A3 5.2466 | A3 grad 5,359,104 (19.6%)
+[eval] n=  31,372,288 wall=  2.03h rss=2.03GB | A1 8.6886 | A2 5.1117 | A3 5.2602 | A3 grad 6,183,936 (19.7%)
+[eval] n=  35,525,632 wall=  2.28h rss=2.04GB | A1 8.6886 | A2 5.0903 | A3 5.2101 | A3 grad 6,997,504 (19.7%)
+[eval] n=  39,671,808 wall=  2.54h rss=2.04GB | A1 8.6886 | A2 5.1148 | A3 5.1841 | A3 grad 7,835,136 (19.7%)
+[eval] n=  42,553,856 wall=  2.80h rss=0.93GB | A1 8.6886 | A2 5.0968 | A3 5.1855 | A3 grad 8,410,624 (19.8%)
+[eval] n=  43,443,712 wall=  3.06h rss=0.92GB | A1 8.6886 | A2 5.1026 | A3 5.1952 | A3 grad 8,589,312 (19.8%)
+[eval] n=  44,281,856 wall=  3.32h rss=0.85GB | A1 8.6886 | A2 5.1111 | A3 5.1904 | A3 grad 8,747,008 (19.8%)
+[eval] n=  45,225,472 wall=  3.58h rss=0.79GB | A1 8.6886 | A2 5.1352 | A3 5.1715 | A3 grad 8,936,960 (19.8%)
+[eval] n=  46,431,232 wall=  3.84h rss=0.96GB | A1 8.6886 | A2 5.1138 | A3 5.1846 | A3 grad 9,185,792 (19.8%)
+[eval] n=  49,498,112 wall=  4.09h rss=1.36GB | A1 8.6886 | A2 5.0625 | A3 5.1718 | A3 grad 9,807,360 (19.8%)
+[eval] n=  50,000,384 wall=  4.14h rss=1.73GB | A1 8.6886 | A2 5.0898 | A3 5.1701 | A3 grad 9,920,000 (19.8%)
+
+[pos] DONE n=50,000,384 wall=4.14h  digest=bb1d20d87c015f5c13c6f7855819c3efc42da99a00c0510088bc769042725ddf
+[pos] A3 gradient tokens 9,920,000 (19.8% of stream) vs A2 50,000,384
