@@ -14,3 +14,7 @@ paper/*.bbl
 paper/*.blg
 paper/*.log
 paper/*.out
+
+# Private lab notes — not published (decision 2026-07-25)
+analysis/MOONSHOTS.md
+analysis/JOURNAL.md

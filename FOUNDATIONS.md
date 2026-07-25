@@ -227,8 +227,9 @@ plasticity and memory action from its own surprise (F1), carries live keyed
 bindings through silence in phase (F3), accumulates unbounded knowledge in
 an external index it writes and consults in flight (F4), and does all of
 this identically across the SSM family (F5). A reference composition is
-specified as CHIMERA in `analysis/MOONSHOTS.md` (MS6); partial compositions
-are already measured throughout `results/`.
+specified as CHIMERA (internal design note); partial compositions are already
+measured throughout `results/`, and the composed run is scored in
+`results/chimera_full.json` against `analysis/PREDICTIONS.md` P33.
 
 *Every claim above is either measured in this repository (file references
 inline) or explicitly disclosed here as a contemplated variant. Measured

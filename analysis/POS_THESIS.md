@@ -63,7 +63,8 @@ ceiling of 1.094 GB for three living models + twin + index stands). P4 partial
 ~free. P6 falsified as registered, mechanism-contrast intact. P7 exceeded
 (1020 probes).
 
-*Context and siblings: the day-1/2/3 moonshot record (knee arc, sleep laws,
-deployment primitives, collective memory, portability) lives in
-`analysis/HOLO_STREAM_VERDICT.md`, `analysis/MOONSHOTS.md`, and the ledger
-`analysis/PREDICTIONS.md` — this note deliberately covers only the long run.*
+*Context and siblings: the day-1/2/3 record (knee arc, sleep laws, deployment
+primitives, collective memory, portability) lives in
+`analysis/HOLO_STREAM_VERDICT.md` and the ledger `analysis/PREDICTIONS.md`,
+where every one of those results is registered and scored — this note
+deliberately covers only the long run.*
