@@ -491,11 +491,19 @@ rather than drifting, so A3 there gets ~20% fewer gradient tokens. Per gradient 
 spent, d=512 is the *best* of the three: selection did not get worse with width, it got
 cheaper. What the ratio measures at d=512 is a smaller dose, not a weaker gate.
 
-The open question this hands forward is sharper than the one it answers: the quantile gate
-(q=0.75, window 500) is width-agnostic by construction, so a *stable* 19.8% instead of 24.7%
-means the surprise distribution itself changes shape with width — a finding about the signal,
-not about the gate. Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero
-stream reconnects over 138,532 documents at d=256).
+Why the d=512 gate fires less was probed directly from the run checkpoints, and the obvious
+explanation is wrong. The surprise distribution does **not** change shape with width: relative
+spread is flat at 0.0381 / 0.0354 / 0.0340 and absolute spread at 0.163 / 0.164 / 0.161. Nor
+does within-window drift separate the arms — the fraction of recent window entries above the
+q75 threshold is 0.230 at *both* d=256 and d=512, while their gate rates are 0.220 and 0.185.
+What the data does show is *where* the difference is born: the cumulative gate fraction at the
+first eval is already 0.2042 (d=256) against 0.1785 (d=512), and both then move by under 0.02
+across the remaining 46M tokens. The rate is set during ignition and held. What happens inside
+ignition to separate them is not resolvable from these runs — only aggregates were logged, not
+the per-chunk surprise trace — and needs an instrumented ignition run.
+Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
+138,532 documents at d=256).
+→ `results/gate_rate_width_probe.json`
 → `results/gate_law_width_curve.json`, `results/pos_d512_status.json`, `results/pos_d256_status.json`
 → `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
 `analysis/DECISIONS.md`, `results/pos_*`

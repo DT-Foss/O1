@@ -1,0 +1,50 @@
+{
+  "note": "MS-H follow-up: why does the d=512 gate fire at 19.8% where d=128/256 fire at 24.7%? Measured from the run checkpoints (rolling surprise window, 500 entries) and the early metrics, 2026-07-26.",
+  "window_stats": {
+    "d128": {
+      "mean": 4.2709,
+      "std": 0.1628,
+      "rel_spread_std_over_mean": 0.03813,
+      "within_window_drift_h2_minus_h1": 0.0282,
+      "q75": 4.3732,
+      "frac_last200_above_q75": 0.255,
+      "recent_gates_mean": 0.28
+    },
+    "d256": {
+      "mean": 4.6176,
+      "std": 0.1636,
+      "rel_spread_std_over_mean": 0.03544,
+      "within_window_drift_h2_minus_h1": 0.0185,
+      "q75": 4.7356,
+      "frac_last200_above_q75": 0.23,
+      "recent_gates_mean": 0.22
+    },
+    "d512": {
+      "mean": 4.7275,
+      "std": 0.1609,
+      "rel_spread_std_over_mean": 0.03404,
+      "within_window_drift_h2_minus_h1": 0.0124,
+      "q75": 4.8407,
+      "frac_last200_above_q75": 0.23,
+      "recent_gates_mean": 0.185
+    }
+  },
+  "hypotheses_tested": [
+    {
+      "hypothesis": "the surprise DISTRIBUTION changes shape with width (my first guess, stated in b0f8fc8)",
+      "verdict": "REFUTED",
+      "evidence": "relative spread is essentially constant: std/mean 0.0381 / 0.0354 / 0.0340 at d=128/256/512, and absolute std 0.163 / 0.164 / 0.161. The window is the same shape at every width."
+    },
+    {
+      "hypothesis": "within-window drift explains it (an upward-drifting window puts more recent values above q75, firing more often)",
+      "verdict": "REFUTED as sufficient",
+      "evidence": "drift does fall monotonically with width (+0.0282 / +0.0185 / +0.0124) which points the right way, but the direct test does not separate the arms: the fraction of the last 200 window entries above q75 is 0.230 at BOTH d=256 and d=512, while their actual gate rates are 0.220 and 0.185."
+    },
+    {
+      "hypothesis": "the rate is set during ignition and then held",
+      "verdict": "SUPPORTED, and this is where the difference lives",
+      "evidence": "cumulative gate fraction at the FIRST eval is already 0.2042 (d=256) vs 0.1785 (d=512), and both drift up by under 0.02 for the remaining 46M tokens. The arms separate before the first eval, inside the ignition phase (ignition_chunks=100, min_window=100), not over the course of the run."
+    }
+  ],
+  "conclusion": "The gate rate at d=512 is set in the ignition phase and then held, not driven by a width-dependent change in the surprise distribution \u2014 that first guess is refuted by the window statistics, which are the same shape at every width. What happens during ignition to separate them is NOT resolved by the data these runs recorded: the per-chunk surprise trace is not logged, only aggregates. Answering it needs an instrumented ignition run, which is a new experiment rather than a re-reading of these three."
+}
