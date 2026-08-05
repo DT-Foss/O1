@@ -1,0 +1,84 @@
+{
+  "p47": true,
+  "smoke": false,
+  "seed": 42,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "producer_chunks": 1500,
+  "n_entries": 540,
+  "file_sha256": "c861b3dba0804414cf5051613e4f0ce054b5818fe43a416ce7468a06aaf1e16a",
+  "file_path": "/root/o1lab/results/knowledge_file_full/producer.knowledge.jsonl",
+  "h_pre": 5.674196,
+  "arms": {
+    "intact": {
+      "name": "intact",
+      "h_post": 5.560457,
+      "forgetting": -0.113738,
+      "replays": 32
+    },
+    "shuffled": {
+      "name": "shuffled",
+      "h_post": 5.629301,
+      "forgetting": -0.044894,
+      "replays": 32
+    },
+    "none": {
+      "name": "none",
+      "h_post": 5.696637,
+      "forgetting": 0.022441,
+      "replays": 0
+    }
+  },
+  "benefit_intact": 0.136179,
+  "benefit_shuffled": 0.067335,
+  "p47a_ratio_intact_vs_none": -5.0683,
+  "p47a_pass": true,
+  "p47b_provenance": [
+    {
+      "doc_coord": 1221,
+      "n_chunk": 854,
+      "span_len": 32,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 78,
+      "span_len": 38,
+      "found": true
+    },
+    {
+      "doc_coord": 1579,
+      "n_chunk": 1128,
+      "span_len": 47,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 25,
+      "span_len": 29,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 38,
+      "span_len": 43,
+      "found": true
+    }
+  ],
+  "p47b_found": "5/5",
+  "p47b_pass": true,
+  "p47c_pass": true,
+  "p47_scoring": {
+    "a_file_mediated_immunity": "PASS, beyond the bar in kind: the intact-file arm does not merely forget less (bar: <=0.8x of no-file) \u2014 it ends BETTER on C4 than before the shock (-0.1137 vs no-file +0.0224). Dosed replay of the frozen file during a foreign-domain shock turns the shock into net home-domain improvement. Note the exposure asymmetry honestly: the file arms receive 32 extra C4-token gradient batches the none arm does not; the v1 control that separates \"these specific surprise-selected spans\" from \"any C4 replay\" is a fresh-C4-replay arm.",
+    "b_provenance": "PASS 5/5, now across spread coordinates (docs 188 / 1,221 / 1,579): every sampled entry re-found exactly by re-instantiating the deterministic stream at its recorded coordinate. Source traceability holds at full scale.",
+    "c_poisoning_control": "PASS at the knife edge, and the decomposition is the finding: benefit_intact 0.1362 vs benefit_shuffled 0.0673 = 0.494x, just under the registered 0.5 bar (n=1, margin 0.006 \u2014 reported as such). Read as a decomposition: roughly HALF the file benefit is content-in-order (intact vs shuffled), half is token-bag regularization (shuffled vs none). The smoke tie at 6 replays resolved into separation at 32 replays \u2014 exposure-dependence exactly as the P37c/P33 pattern predicted.",
+    "verdict": "The refinery loop is measured end to end: stream -> surprise-selected harvest -> frozen hashed provenance-carrying file -> a stranger consumes it through a shock and comes out better than it went in -> every sampled source replays. The poisoning control separates at full exposure with content carrying ~half the benefit. What the loop does NOT yet show: content mediation on the recall axis (keyed reads from the file) and defense against poisoned content (the reader does not arbitrate; named as future work in the registration)."
+  }
+}

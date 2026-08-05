@@ -981,3 +981,16 @@ artifact is a number about the defaults, not about the system.
       reader is NOT expected to defend itself (trust-decay, not
       arbitration); the defense organ is future work and is hereby named,
       not smuggled in.
+  **P47 SCORED (2026-08-05 night, results/knowledge_file.json, full on
+  core).** ALL THREE CHECKS PASS. (a) beyond the bar in kind: the
+  intact-file arm ends BETTER on C4 than pre-shock (−0.1137) while
+  no-file forgets (+0.0224) — the frozen interface turns a foreign-domain
+  shock into net home-domain improvement (exposure asymmetry noted: file
+  arms get 32 extra C4-token batches; fresh-C4-replay arm is the v1
+  control). (b) provenance 5/5 at spread coordinates — source
+  traceability as a passing measurement. (c) knife-edge pass (0.494× vs
+  0.5 bar, margin 0.006, n=1) whose decomposition is the finding: ~half
+  the file benefit is content-in-order, ~half token-bag regularization;
+  the smoke's tie at 6 replays separated at 32 — exposure-dependence as
+  P37c/P33 predicted. Still unmeasured, named: content on the keyed-
+  recall axis, and the arbitration/defense organ.
