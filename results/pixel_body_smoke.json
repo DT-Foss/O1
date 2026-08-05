@@ -1,0 +1,60 @@
+{
+  "p48": true,
+  "smoke": true,
+  "maze_seed": 7,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "n_chunks": 1600,
+  "n_knowledge": 78,
+  "n_room_entries": 209,
+  "loss_plateau_ignition": 0.5925,
+  "loss_late": 0.4032,
+  "p48a_drop": 0.3195,
+  "p48a_pass": true,
+  "rss_span_gb": 0.0,
+  "gate_rate_entry": 0.1636,
+  "gate_rate_steady": 0.1506,
+  "p48b_ratio": 1.087,
+  "p48b_pass": false,
+  "n_entry_events_post": 165,
+  "habituation_first_n": 48,
+  "habituation_second_n": 60,
+  "p48d_drop": 0.0536,
+  "p48d_pass": false,
+  "p48c_provenance": [
+    {
+      "walker": 6,
+      "step": 314,
+      "found": true
+    },
+    {
+      "walker": 1,
+      "step": 316,
+      "found": true
+    },
+    {
+      "walker": 2,
+      "step": 392,
+      "found": true
+    },
+    {
+      "walker": 3,
+      "step": 309,
+      "found": true
+    },
+    {
+      "walker": 2,
+      "step": 399,
+      "found": true
+    }
+  ],
+  "p48c_found": "5/5",
+  "p48c_pass": true
+}
