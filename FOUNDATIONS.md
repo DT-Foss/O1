@@ -287,14 +287,94 @@ equal hardware; the fixed costs, not the compute, are the design target
 
 ---
 
+## F8 — The trainability wall: capacity and ignition trade off on the read/key path
+
+**Statement.** In bounded-state recall mechanisms, every ADDITIONAL learned
+degree of freedom on the read/key path lowers the probability that the
+optimizer finds the mechanism at all. The limit these systems hit first is
+not representation and not capacity — it is OPTIMIZATION ONSET: the working
+mechanism is a sharp minimum that a fraction of inits find and added
+parameters hide. Eight independent negatives, measured on the same MQAR
+instrument family (d_model 128, n_pairs 8 unless stated, attention control
+solving the task in-run every time), triangulate this one cause:
+
+1. **Separate read/write keys (Q≠K):** 3.53% vs 7.18% shared — −3.65pp
+   from one extra learned key path; attention control 99.67% in the same
+   run (`results/holographic_qk.json`, 3 seeds).
+2. **Bigger key space (d_k 32→64), DeltaNet line:** ignition rate falls
+   2/6 (33%) → 0/3 (0%); non-igniting runs freeze at exactly
+   ln(64) = 4.159, the uniform fixpoint — flat from step 500 to 4500,
+   not undertrained (`analysis/RECALL_DEADENDS_LOG.md` #17,
+   `src/deltanet_onset_test.py`).
+3. **Learned D×D read matrix (MMSE), identity-init:** starts
+   BYTE-IDENTICAL to the rms baseline (init diff 0.00e+00, verified) and
+   TRAINS AWAY to 1.32% = chance while the baseline reaches 7.28% — the
+   learned matrix itself derails, not a nonlinearity
+   (`RECALL_DEADENDS_LOG.md` #19, `src/holographic_gssm.py`).
+4. **Hopfield learned-β readout** — the theory-faithful form the naive
+   power readout pointed to: 1.55% = chance, −7.29pp vs tanh_m 8.84%
+   (`results/onset_hopfield.json`, 3 seeds, attention 99.95%).
+5. **poly-before-norm readout**, same run: 1.46% = chance, −7.37pp
+   (`results/onset_hopfield.json`).
+6. **6-member ensemble** (1.87M params vs 527k single, diverse init,
+   learned combine): NEVER ignites — 1.3–1.6% at every mark through 2500
+   steps while the single-channel config ignites to ~9% by step 1500
+   (`RECALL_DEADENDS_LOG.md` #20, `src/holographic_ensemble.py`).
+7. **Resonator cleanup (K Newton steps on the read):** K=0 7.23%±1.78 →
+   K≥1 CRASHES to 1.38–1.71% ≈ floor; its learned step size is
+   untrainable (gradient saturates; λ wanders sign-free in
+   (−0.073, +0.025)); reproduced by adversary on fresh seeds
+   (`RECALL_DEADENDS_LOG.md` #12).
+8. **The rank sweep** (4 seeds, `results/rank_sweep.json`): the phase
+   degree of freedom loses everywhere it can be compared — at K=2 the
+   phase arm (527k params) reads 6.1% against 10.8% (scalar, 462k) and
+   12.1% (phase_off); by K=4 scalar sits exactly at chance (1.61%), by
+   K=16 every bounded arm does (1.6–1.9%) — while the attention control
+   solves every cell (98.9–99.7%).
+
+**The positive flank that makes this a wall and not a ceiling:** the
+bounded DeltaNet matrix CAN beat the holographic capacity limit — 12.21% /
+9.42% (seeds 1, 123) vs 7.28% same-run — WHEN it ignites. The mechanism
+exists and works; the optimizer finds it on a third of seeds at d_k=32 and
+on none at d_k=64. Capacity was never the missing ingredient; every
+attempt to add it made the minimum harder to find. (The capacity story of
+the single bounded channel is itself closed separately: 8.89% at
+n_pairs=8, crosstalk-bound, six in-channel levers dead —
+`RECALL_DEADENDS_LOG.md`.)
+
+**Why this is a foundation and not a footnote.** F8 is the trainability
+reason the organism is SMALL and the knowledge lives OUTSIDE the weights.
+F4 measured that unbounded knowledge belongs in an external index; F8
+supplies the complementary force from the optimization side: growing the
+learned read/key machinery to "hold more" measurably destroys the
+mechanism's ability to come into existence. A small, ignitable mechanism
+plus unbounded external memory is not an economy choice — at these scales
+it is the only configuration in which both halves work. The width
+evidence at the organism scale is consistent: the gate law's rate is born
+in ignition depth, not width (P45), and selection pays MORE per gradient
+token at d=512 than at d=128 (the width curve) — nothing at the organism
+scale contradicts the wall the recall line measured microscopically.
+
+**Falsification line.** F8 is measured on the MQAR/recall instrument
+family at d_model 128. It is falsified by any bounded-state mechanism in
+which ADDING learned read/key degrees of freedom RAISES the ignition rate
+at matched steps and seeds (5-seed same-run bar, per the variance lesson
+in `RECALL_DEADENDS_LOG.md`). It is NOT falsified by attention solving
+the task — attention is the unbounded-KV control that defines the
+instrument's validity.
+
+---
+
 ## Interactions (disclosed as a system)
 
-The six foundations compose into a single organism — one process that
+The eight foundations compose into a single organism — one process that
 streams unboundedly (F6) at exact constant memory (F2), decides every
 plasticity and memory action from its own surprise (F1), carries live keyed
 bindings through silence in phase (F3), accumulates unbounded knowledge in
-an external index it writes and consults in flight (F4), and does all of
-this identically across the SSM family (F5). A reference composition is
+an external index it writes and consults in flight (F4), does all of this
+identically across the SSM family (F5), moves and replicates as a small
+portable asset (F7), and stays deliberately small because trainability
+demands it (F8). A reference composition is
 specified as CHIMERA (internal design note); partial compositions are already
 measured throughout `results/`, and the composed run is scored in
 `results/chimera_full.json` against `analysis/PREDICTIONS.md` P33.
