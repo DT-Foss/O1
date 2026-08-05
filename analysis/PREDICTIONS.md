@@ -934,3 +934,17 @@ artifact is a number about the defaults, not about the system.
   spikes, returning home is quiet, both decaying into steady bands within
   the window length. A cleaner regime-detector law than the one
   registered, and crisp only because the wrong sign was committed first.
+  **P44 SCORED (2026-08-05 night, results/five_brain.json).** (a) PASS at
+  the bar (5.9791 vs 6.0633). (b) FALSIFIED decisively: the brain is worse
+  than EVERY arm (5.9791 vs best 5.7633; required ≥+0.02 over arm0,
+  measured −0.216) — after ~768k tokens of disjoint-stream divergence,
+  one-shot weight averaging averages away more than it adds. (c) CONFIRMED
+  as registered: no free lunch (brain trails 5×S by 0.620). Side finding:
+  the five arms gated at 138k–179k grad tokens on identical config — the
+  ignition lottery reproduces across STREAM CONTENT. Convergent reading
+  with P31: memory-level fusion works (shared store, 0.67× forgetting),
+  naive weight-level fusion fails — composability lives in the memory
+  layer, not the weight layer (F4 extended to collectivity). Next attack
+  (to be registered as P46 before build): iterated merge-redistribute
+  every M chunks, and the memory-route hybrid (five arms, one store, one
+  reader).

@@ -1,0 +1,41 @@
+{
+  "p44": true,
+  "smoke": false,
+  "n_arms": 5,
+  "S": 1500,
+  "offset_docs": 200000,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "seed": 42,
+  "arm_heldouts": [
+    5.763336,
+    5.767047,
+    5.836674,
+    5.871073,
+    5.816802
+  ],
+  "arm_mean": 5.810986,
+  "arm_best": 5.763336,
+  "brain_heldout": 5.979112,
+  "ctrl_NxS_heldout": 5.358632,
+  "p44a_noncollapse": true,
+  "p44b_brain_beats_single_arm_by": -0.215776,
+  "p44b_pass": false,
+  "p44c_brain_vs_NxS": 0.62048,
+  "p44c_embarrassment_fired": false,
+  "p44_scoring": {
+    "a_noncollapse": "PASS at the bar (brain 5.9791 <= arm0+0.3 = 6.0633) \u2014 the merge does not destroy the model, but it sits close to the bar, not comfortably inside it.",
+    "b_brain_beats_parts": "FALSIFIED, decisively: the brain is WORSE than every single arm (5.9791 vs best 5.7633, mean 5.8110; required: beat arm0 by >=0.02, measured -0.216). After 1500 chunks (~768k tokens) of divergence on disjoint streams, one-shot weight averaging of five same-init organisms averages AWAY more than it adds.",
+    "c_no_free_lunch": "CONFIRMED in the registered direction: brain trails the equal-total-compute control by 0.620. No federated free lunch, exactly as registered.",
+    "side_finding_lottery": "The five arms gated at visibly different doses on their disjoint streams \u2014 grad_tokens 138k/141k/159k/179k/150k at identical config and seed. The ignition lottery (P45c) reproduces across stream content, not just across runs.",
+    "the_convergent_reading": "Wave 8 now says it from both sides: memory-level fusion WORKS (P31: shared store, 0.67x forgetting) and naive weight-level fusion FAILS at this divergence (P44b). Composability lives in the memory layer, not the weight layer \u2014 the two-system law (F4) extended to collectivity.",
+    "next_attack": "Iterated merge-redistribute every M chunks (bounded divergence, FedAvg-style) \u2014 the same harness with a --merge-every flag; and the memory-route hybrid: five arms, one shared store, ONE reader. Queued behind the decisive 50M runs; to be registered as P46 before building."
+  }
+}
