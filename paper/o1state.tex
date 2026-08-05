@@ -42,7 +42,7 @@ Seven Measured Foundations for Continuously Living Sequence Models}
 
 \author{David Tom Foss\,\orcidlink{0009-0004-0289-7154}\\[3pt]
 {\normalsize\href{mailto:d.foss@ieee.org}{\texttt{d.foss@ieee.org}}}}
-\date{Draft v0.1, July 24, 2026}
+\date{Draft v0.2, August 5, 2026}
 
 \begin{document}
 \maketitle
@@ -64,31 +64,38 @@ measured foundations for the alternative: a bounded-state organism that
 consumes an unbounded stream at constant memory, decides \emph{from its own
 prediction error} when to learn, what to remember, when to consult an
 external index, and when to sleep --- and whose complete living state is a
-small, portable, forkable asset. In a pre-registered 40-hour experiment
-(909.7M streamed tokens, 16/16 integrity checks), the organism's surprise
-gate did not merely approach full-gradient training at 25.2\% of the gradient
-tokens --- it \textbf{beat} it (improvement ratio 1.0091), crossing the
-prediction's own registered ``embarrassment threshold.'' A twin forked
-mid-run showed that restarting a living stream is \emph{free} (surprise
-excess 0.0029, convergence one chunk after the fork) --- one of three
-independent measurements establishing a \textbf{two-timescale law}: the fast
-state rebuilds within a receptive field and carries no durable value, while
-everything worth keeping lives in slow carrier channels, weights, and an
-external index. We further measure: exact detach-carry streaming (gradient
-cosine 1.0), keyed holographic recall through silence with a movable
-persistence knee (32 $\to$ 2176+ via an interaction of two eval-time
-levers), dosed sleep consolidation with a measured life curve, collective
-memory (one organism's stored surprises cut another's shock-forgetting to
-0.67$\times$), live cross-architecture migration with behaviorally identical
-continuation to six decimals, and family-generic transfer of the entire
-operating mode to a Mamba/S6 parametrization (0.98$\times$). Thirty-nine
-predictions were registered before their data; the falsifications are
-reported at the same strength as the confirmations. We argue these
+small, portable, forkable asset. Three measurements carry the case.
+\textbf{(i)} In a pre-registered 40-hour experiment (909.7M streamed tokens,
+16/16 integrity checks), the organism's surprise gate did not merely approach
+full-gradient training at 25.2\% of the gradient tokens --- it \textbf{beat}
+it (improvement ratio 1.0091), crossing the prediction's own registered
+``embarrassment threshold.'' A three-point width curve then \emph{falsified}
+the two-point reading of that result: the ratio peaks at $d{=}256$ (0.9729,
+0.9953, 0.9777) rather than rising with width. What survives is sharper ---
+per gradient token actually spent, the widest arm is the best of the three
+(0.3547 vs.\ 0.2969/0.2937). \textbf{(ii)} A 1{,}713{,}673-parameter organism
+has now streamed \textbf{7.05 billion tokens in one continuous life} at a
+process memory that never left 0.69--0.83~GB, 0.87B$\to$7.05B of it in a
+single OS process over roughly twelve days; its one stall self-healed from
+its own atomic checkpoint. \textbf{(iii)} Two live machines on a real
+network, source never paused: at the one equal chunk count the held-out
+delta between an ARM and an x86 replica is \textbf{0.0, exact}. We further
+measure: an exactness license swept over four operators and six
+(chunk,~overlap) points --- layout decoupling exact to 0.0, gradient
+exactness gated by warmup \emph{overlap} rather than chunk length; a
+two-timescale law from three independent experiments; keyed holographic
+recall through silence with a movable persistence knee; collective memory
+(one organism's stored surprises cut another's shock-forgetting to
+0.67$\times$); and family-generic transfer of the entire operating mode to a
+Mamba/S6 parametrization (0.98$\times$). Forty-two predictions were registered
+before their data; the falsifications --- a replay-cost law, a rank
+hypothesis, two migration thresholds --- are reported at the same strength as
+the confirmations, with the numbers that killed them. We argue these
 primitives compose into a \textbf{reality prediction engine}: a system that
-lives on streams of the present, deposits predictions about its own future
-at every horizon, and learns from their arrival --- an axis of capability
-orthogonal to parameter scaling, and one on which batch models cannot
-compete by construction.
+lives on streams of the present, deposits predictions about its own future at
+every horizon, and learns from their arrival --- an axis of capability
+orthogonal to parameter scaling, and one on which batch models cannot compete
+by construction.
 \end{abstract}
 
 \section{The blind spot}
@@ -121,14 +128,15 @@ $z_t = \gamma_t z_{t-1} + a_t$ in which Mamba/S6 \cite{gu2023mamba}, S5
 one affine prefix-scan operator (family reduction measured at $\sim$1e-15;
 repository \S 1). Three prior structural results carry the present work:
 \textbf{(a)} the operator is shift-equivariant with a $\sim$5--8-token
-contraction receptive field, giving flat perplexity at $4096\times$ the
-training length and a billion streamed tokens at 4.36~GB flat RSS;
-\textbf{(b)} truncated-BPTT with a detached carried state reproduces
-full-window gradients exactly (cosine 1.0000, max-abs-delta 0.0) ---
-streaming \emph{training} is exact, not approximate; \textbf{(c)} gated
-readouts have a sharp capacity cliff at load $\approx 1$ (slope 1.32 vs.\
-0.57 linear), which \emph{forces} the two-system split between a bounded
-live state and a growable external index.
+contraction receptive field, giving perplexity that \emph{improves} to
+$524{,}288\times$ the training length (\S\ref{sec:length}) and a billion
+streamed tokens at flat RSS; \textbf{(b)} truncated-BPTT with a detached
+carried state reproduces full-window gradients exactly --- streaming
+\emph{training} is exact, not approximate, under a condition this draft
+measures precisely (\S\ref{sec:f2}); \textbf{(c)} gated readouts have a sharp
+capacity cliff at load $\approx 1$ (slope 1.32 vs.\ 0.57 linear), which
+\emph{forces} the two-system split between a bounded live state and a
+growable external index.
 
 \section{Seven foundations}
 
@@ -139,16 +147,17 @@ measurements. (Full formal statements: \code{FOUNDATIONS.md}.)
 suffices as the universal control signal: when to learn (gate), what to
 remember (spike-selected spans), when to consult (retrieval triggers), when
 and how much to sleep (dividend-monitored replay), how curious to be.
-\emph{Anchor:} the 40h result of \S\ref{sec:40h}. \emph{Extension (disclosed,
-first experiment registered):} a ladder of horizons --- deposit predictions
-about the stream's own future, score them on arrival, learn at every
-timescale.
+\emph{Anchor:} the 40h result of \S\ref{sec:40h} and its width curve
+(\S\ref{sec:width}). \emph{Extension (disclosed, first experiment
+registered):} a ladder of horizons --- deposit predictions about the
+stream's own future, score them on arrival, learn at every timescale.
 
 \paragraph{F2 --- The exactness license.} Bounded contraction makes
 detach-carry streaming exact and decouples training layout from deployment
-layout. Twelve independent equivalence measurements across every deployment
-primitive (train, grow, graft, swap, regularize, re-read) all pass at
-0.0--1e-6.
+layout. Swept over four operators $\times$ six (chunk,~overlap) points, the
+license holds with a precisely located boundary: layout decoupling is exact
+to 0.0 everywhere; gradient exactness is bought by warmup \emph{overlap}, not
+by chunk length (\S\ref{sec:f2}).
 
 \paragraph{F3 --- Phase--magnitude separation.} In complex bound states,
 content (phase) is written and never evolves (zero-drive invariance
@@ -175,9 +184,14 @@ together holds recall at more than $3{\times}$ chance out to $G{=}4096$
 \paragraph{F4 --- The two-system law.} The gated-readout cliff
 (rank-1-per-channel binding, $D_\text{eff} \approx 1.02$ measured against a
 closed-form bound) forces unbounded accumulation into an external index.
-Runtime consultation lifts recall far past state capacity (0.10--0.20
-$\to$ 0.41--0.62 at 16 pairs, dose-dependent, random-injection controlled);
-models trained \emph{with} consultation read reminders at 0.99--1.00.
+Runtime consultation lifts recall far past state capacity: at 16 pairs,
+0.150--0.158 unaided $\to$ 0.310--0.512 consulted, dose-dependent (a full
+gate roughly doubles the half gate) with the random-injection control at
+0.100--0.143. Training \emph{with} stochastic consultation makes the read
+near-perfect at low load --- 0.995--0.998 at 2 pairs, against 0.530--0.565
+unaided --- and still lifts 16 pairs to 0.487--0.505. Held-out-key controls
+kill the lookup-table explanation: the binding generalizes to never-trained
+keys.
 
 \paragraph{F5 --- Family-generic operating modes.} The full POS recipe run
 on a scan-parameter-matched Mamba/S6 configuration transfers at
@@ -186,11 +200,12 @@ beats S6 head-to-head (+0.13 to +0.16 nats) at parity. The calculus attaches
 to the operator class, not to one network.
 
 \paragraph{F6 --- Train short, deploy unbounded.} One shift-equivariance
-symmetry on two axes: sequence length (flat to $4096\times$; corpus-as-
-iterator to $10^9$ tokens) and silence (keyed bindings held through gaps
-$128\times$ the training horizon). Its honest boundary is measured twice:
-multi-chunk training is structurally gradient-blind to the write --- the
-cure is to train inside the boundary and let exactness carry the skill out.
+symmetry on two axes: sequence length (perplexity improving to
+$524{,}288\times$; corpus-as-iterator to $10^9$ tokens and beyond) and
+silence (keyed bindings held through gaps $128\times$ the training horizon).
+Its honest boundary is measured twice: multi-chunk training is structurally
+gradient-blind to the write --- the cure is to train inside the boundary and
+let exactness carry the skill out.
 
 \paragraph{F7 --- The portable organism.} The complete living system ---
 weights, optimizer moments, carried state, gating windows, span store,
@@ -200,12 +215,11 @@ Measured: local checkpoint$\to$new-process$\to$resume is bit-identical;
 \textbf{live mid-stream migration from Apple Silicon to x86 continues
 behaviorally identically to six decimals} (heldout 6.182391 == 6.182391,
 every gate decision matched --- only the BLAS bit-digest differs, and it
-does not propagate); a killed replica rejoining through a \emph{shared} span
-store ends \emph{better} than its never-killed twin ($-0.014$: the
-partner's outage-window spans are a gift); an outage spent sleeping beats
-one spent idle (+0.065); stop-free migration (source never pauses, target
-catches up by deterministic replay) achieves bit-identical parity at every
-scale tried.
+does not propagate); the same parity holds \emph{between two live machines
+on a real network} (\S\ref{sec:moebius}); a killed replica rejoining through
+a \emph{shared} span store ends \emph{better} than its never-killed twin
+($-0.014$: the partner's outage-window spans are a gift); an outage spent
+sleeping beats one spent idle (+0.065).
 
 \section{The 40-hour experiment: the gate beats the firehose}
 \label{sec:40h}
@@ -216,7 +230,7 @@ only. A2: backward on every chunk. A3: backward only when the chunk's own
 mean NLL clears the rolling 75th percentile of its own history --- no
 oracle, no second model, no labels, no schedule.
 
-\begin{table}[h]
+\begin{table}[tb]
 \centering
 \caption{The 40-hour surprise-gated run vs.\ full-gradient training.}
 \label{tab:40h}
@@ -251,7 +265,7 @@ ahead (ratio 1.0091). Source: \code{results/pos\_metrics.jsonl}.}
 \textbf{The twin.} At T+24h, A3's weights were copied into a fresh process
 with zero carried state. Registered: a warmup tax (+0.03--0.15 excess
 surprise, $\ge 1.5\times$ over-gating, hours to converge). Measured: excess
-0.0029, gate rates identical to four decimals, convergence one chunk after
+0.0029, post-fork gate rates 0.2521 vs.\ 0.2522, convergence one chunk after
 the fork, and the twin finished \emph{ahead} (4.7365). Restarting a living
 stream is free at the fast timescale --- the third independent measurement
 of the two-timescale law (\S\ref{sec:twotimescale}).
@@ -263,7 +277,7 @@ of the two-timescale law (\S\ref{sec:twotimescale}).
 carried state) opens ${\approx}0.02$ nats above A3, crosses into A3's own
 fluctuation band within a few evaluations, and finishes ahead (4.7365
 vs.\ 4.7430). On the registered online-surprise criterion the restart is
-free: excess 0.0029, gate fractions identical to four decimals,
+free: excess 0.0029, post-fork gate fractions 0.2521 vs.\ 0.2522,
 convergence one chunk after the fork. Source:
 \code{results/pos\_metrics.jsonl}, \code{results/pos\_summary.json}.}
 \label{fig:twin}
@@ -277,6 +291,209 @@ helped 0.35 vs.\ 0.10) --- the mechanism carries information; the
 provenance was stale. Registered as falsified; the v2 (rolling spike
 threshold) is specified.
 
+\section{The width curve: a two-point law, falsified by its own third point}
+\label{sec:width}
+
+The natural next question is whether the gate's advantage survives width.
+P42 registered it as a scaling axis of the core result, with the point call
+stated in advance: the ratio at $d{=}256$ should land at or above the
+$d{=}128$ anchor, because selection ought to matter \emph{more} where each
+gradient is four times as expensive. The same recipe (q=0.75, window 500,
+$B{=}8$, $K{=}64$, lr 3e-3, seed 42, from-scratch, streamed C4) was run with
+only the width changed, all three points read at a matched $\sim$50M-token
+anchor.
+
+\begin{table}[tb]
+\centering
+\caption{The gate-law width curve at a matched $\sim$50M-token anchor. The
+registered metric (improvement ratio) peaks at $d{=}256$; per gradient token
+spent, the widest arm is the best of the three. Sources:
+\code{results/gate\_law\_width\_curve.json},
+\code{results/gate\_rate\_width\_probe.json}.}
+\label{tab:width}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$d_\text{model}$ & gate fires & A3 gated & A2 full & improvement ratio
+& improvement / M grad-token\\
+\midrule
+128 & 24.72\% & 5.017554 & 4.916141 & 0.9729 & 0.2969\\
+256 & 24.72\% & 5.053426 & 5.036284 & \textbf{0.9953} & 0.2937\\
+512 & 19.84\% & 5.170144 & 5.089800 & 0.9777 & \textbf{0.3547}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At two points the reading was clean and was reported as such: 0.9729 $\to$
+0.9953, the gate law \emph{grows} with width. \textbf{The third point
+falsifies it.} The ratio does not rise monotonically; it peaks at $d{=}256$
+and falls to 0.9777 at $d{=}512$. The two-point trend was an artifact of
+having only two points, and the third was run on purpose to find out.
+
+What survives the falsification is sharper than what it replaced, and it
+turns on a dosing confound the artifact records. The three arms are not
+equally dosed: the $d{=}512$ gate fires at 19.84\% where both narrower runs
+fire at 24.72\%, so A3 there receives roughly 20\% fewer gradient tokens.
+\textbf{Per gradient token actually spent, $d{=}512$ is the best of the
+three} --- 0.3547 against 0.2969 and 0.2937. Selection did not get worse
+with width; it got cheaper. The ratio fell because the dose fell.
+
+Two candidate explanations for the smaller dose were measured and both were
+refuted. The surprise distribution does \emph{not} change shape with width:
+relative spread is 0.03813 / 0.03544 / 0.03404 and absolute standard
+deviation 0.163 / 0.164 / 0.161 across $d{=}128/256/512$. Nor does
+within-window drift separate the arms: the fraction of the last 200 window
+entries above the q75 threshold is 0.230 at \emph{both} $d{=}256$ and
+$d{=}512$, while their gate rates are 0.220 and 0.185. What the data does
+locate is \emph{when} the difference is born --- the cumulative gate
+fraction at the first eval is already 0.2042 ($d{=}256$) against 0.1785
+($d{=}512$), and both then move by under 0.02 across the remaining 46M
+tokens. The rate is set during ignition and held. What happens inside
+ignition to separate them is not resolvable from these runs, which logged
+aggregates rather than the per-chunk surprise trace; an instrumented
+ignition run is the registered next experiment.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=5.50in]{fig_gate_width_curve.pdf}
+\caption{The gate-law width curve. \emph{Left:} the registered metric. The
+two-point trend (dashed) does not survive the third point --- the
+improvement ratio peaks at $d{=}256$. \emph{Right:} what survives. Per
+gradient token spent, $d{=}512$ is the best of the three (0.3547), and the
+gate fires there at 19.8\% rather than 24.7\%: the ratio fell because the
+dose fell, not because selection weakened. Sources:
+\code{results/gate\_law\_width\_curve.json},
+\code{results/gate\_rate\_width\_probe.json}.}
+\label{fig:width}
+\end{figure}
+
+One control on the reading: A2 itself degrades with width at this fixed
+token budget (4.9161 $\to$ 5.0363 $\to$ 5.0898), exactly as expected --- wider
+models need more tokens. The anchor measures selection efficiency, not model
+quality, and no claim about the latter is made from these three runs.
+
+\section{The exactness license, swept}
+\label{sec:f2}
+
+F2 is the load-bearing license: if detach-carry streaming were merely
+approximate, every downstream claim about living training would inherit an
+uncontrolled error. v0.1 anchored it on one operator at one (chunk, overlap)
+point. A license with no measured failure mode is a claim, not a law, so the
+sweep runs four operator configurations --- the selective scalar scan, the
+complex holographic scan, the same scan under the tanh-$m$ readout, and a
+phase-off control --- across six (chunk, overlap) points, including chunk
+sizes deliberately below the stated receptive field.
+
+Two separate statements come out, and only one of them is unconditional.
+\textbf{Layout decoupling is exact to 0.0} --- at every operator and every
+chunk size down to 16, with pure detach-carry (overlap 0), the chunked and
+full-sequence forward layouts agree to \emph{max-abs-delta 0.0} exactly.
+Training layout and deployment layout are interchangeable, full stop.
+\textbf{Gradient exactness is gated by warmup overlap, not by chunk length.}
+With overlap 16 the gradient cosine is 1.000000000000 at relative error
+$\sim$5e-7; with overlap 0 the relative error runs 5e-3 to 2e-1 and the
+worst cosine over the whole sweep is 0.9762 (the complex holographic scan at
+chunk 16). Chunk length is not what buys exactness --- a 128-token chunk
+with no overlap is worse than a 64-token chunk with overlap 16. The
+condition is that the carried state be re-warmed past the contraction
+receptive field before gradients are scored, which is precisely what the
+$\sim$5--8-token field predicts and what the $\ge$16-token overlaps deliver.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=5.50in]{fig_f2_sweep.pdf}
+\caption{The exactness license, swept over four operators $\times$ six
+(chunk, overlap) points. \emph{Left:} gradient relative error. Filled
+markers (overlap $>$ 0) sit in the exact band at $\sim$5e-7 regardless of
+chunk length; open markers (overlap $=$ 0) run 5e-3 to 2e-1. Exactness is
+bought by overlap, not by chunk size. \emph{Right:} the layout decoupling
+is exactly 0.0 with pure detach-carry at every operator, including chunks
+below the receptive field. Source:
+\code{results/f2\_equivalence\_sweep.json}.}
+\label{fig:f2}
+\end{figure}
+
+This supersedes the single-point anchor of v0.1 and states F2 with its
+boundary attached: the license is real, it covers every operator we run, and
+it has an operating condition that is measured rather than assumed.
+
+\section{Seven billion tokens in one life}
+\label{sec:lifetime}
+
+A 1{,}713{,}673-parameter organism has learned online through
+\textbf{7{,}053{,}926{,}400 streamed tokens in one continuous life} --- no
+dataset stored, no epochs, no growing context --- at a process memory that
+never left the band \textbf{0.69--0.83~GB}. The stretch from 0.87B to 7.05B
+tokens ran in a \emph{single OS process} for roughly twelve days with zero
+interventions.
+
+The one stall in that life is part of the result rather than an exception to
+it. On 2026-07-24 an upstream stream hang killed the process at
+869{,}734{,}400 logged tokens; it resumed from its own atomic checkpoint at
+869{,}683{,}200 --- \textbf{51{,}200 tokens replayed, roughly three minutes
+of stream lost} --- and continued for another six billion tokens without
+further intervention. The organism healed itself out of its own snapshot,
+which is exactly what F7 is for.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=5.50in]{fig_lifetime_7b.pdf}
+\caption{The 7-billion-token life. Loss EMA (left axis) and process RSS
+(right axis) against tokens streamed through one O(1) state. Memory stays
+inside 0.69--0.83~GB across almost four orders of magnitude of experience;
+the marked stall is the single interruption, self-healed from the run's own
+atomic checkpoint. Sources: \code{results/lifetime\_7b\_series.json},
+\code{results/lifetime\_7b\_curve.json}.}
+\label{fig:lifetime}
+\end{figure}
+
+\textbf{What this artifact does and does not claim.} Over the logged stretch
+the loss EMA moves 4.25 $\to$ 4.169. At 1.7M parameters the model is at its
+capacity floor, and we state the consequence plainly: this measures the
+\textbf{constancy of resources over experience}, not continued learning. The
+cost of having lived through seven billion tokens is zero additional memory
+--- that is the claim, and it is the one no batch model can make at any
+parameter count, because the quantity it holds constant is not a
+hyperparameter but a lifetime. (A further honesty note the artifact carries:
+the 0$\to$512M stretch of this life predates the oldest retained log and is
+documented only by the run's status artifact and its start lines; the
+plotted series therefore begins at 512M tokens.)
+
+\section{Length, re-anchored}
+\label{sec:length}
+
+The strongest length statement in this program is not flatness. Using the
+O(1) recurrent forward with chunked streaming (chunk 8192, overlap
+128 $\gg$ the receptive field), a model trained at $T{=}32$ was evaluated on
+a single effective sequence of \textbf{16{,}777{,}216 tokens ---
+$524{,}288\times$ the training length} --- at a peak RSS moving only
+1.90 $\to$ 2.48~GB, and the perplexity \emph{improves monotonically the whole
+way} ($\times$1.000, $\times$0.896, $\times$0.886, $\times$0.825,
+$\times$0.803). The model is integrating causal context across the distance
+as a noise filter; it is not merely failing to crash.
+
+The clean causal ablation says what the wall actually is. At $256\times$ the
+training length, the position-free Selective arm sits at $\times$0.973 while
+the \emph{identical} architecture with a sinusoidal positional encoding
+degrades to $\times$4.23 and the ungated Pure arm explodes to $\times$11.25.
+The only difference between the first two arms is the positional encoding.
+\textbf{The wall is the position term, not the length} --- and both
+ingredients are necessary, since removing the gate breaks the bounded state
+on its own.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=5.50in]{fig_length_reanchor.pdf}
+\caption{Length, re-anchored. \emph{Left:} perplexity ratio and peak RSS
+against effective sequence length --- $\times$0.803 at $524{,}288\times$ the
+training length, improving monotonically, at 1.90$\to$2.48~GB. \emph{Right:}
+the control. Position-free Selective holds $\times$0.973 to $256\times$;
+the same architecture with a positional encoding degrades to $\times$4.23
+and the ungated arm to $\times$11.25. Sources:
+\code{results/scale\_to\_a\_million.json},
+\code{results/length\_extrap\_v2\_extreme.json}.}
+\label{fig:length}
+\end{figure}
+
 \section{The two-timescale law of operation}
 \label{sec:twotimescale}
 
@@ -286,11 +503,13 @@ cross-matrix (weights at 359M tokens $\times$ states from
 128M/240M/359M/zero/shuffled): every arm converges to the native trajectory
 within 4 chunks --- 256 tokens, the receptive-field scale; a cold start is
 not worse than the carried state. (3) The beacon: a \emph{stored bit} in a
-write-once-freeze carrier channel ($\gamma \approx 0.9995$) survives a
+write-once-freeze carrier channel (measured at $\gamma = 0.9998$ in the gap,
+input gate 0.0133 there against 0.5652 at the beacon) survives a
 d64$\to$d128 widening surgery at recall 1.000 and survives a weight swap
 across $2\times$ training distance at recall 1.000 through 512 tokens of
-silence --- by redundant encoding (the carrier's channel address can
-relocate; the read still lands).
+silence, against a zeroed-state control at chance (0.475--0.54) --- by
+redundant encoding (the carrier's channel address can relocate; the read
+still lands).
 
 \textbf{The law:} the fast path forgets by design --- so weight updates,
 model growth (function-preserving widening: surgery equivalence 6.7e-6, no
@@ -302,28 +521,129 @@ the answer to a question every persistent-model deployment will face:
 \emph{what must be preserved across an update?} Measured: almost nothing ---
 if the architecture separates its timescales.
 
+\section{Two live machines, one organism}
+\label{sec:moebius}
+
+v0.1 reported cross-ISA migration as a checkpoint-and-resume operation. The
+stronger staging runs it \emph{live}: organism A streams continuously on an
+Apple Silicon machine and is \textbf{never paused}; organism B rises on an
+x86 server from A's snapshot transferred over real \code{scp}/\code{ssh} and
+chases A's stream position by deterministic replay. At the one chunk count
+where both organisms stood (560), the held-out delta is \textbf{0.0 ---
+exact}: ARM 6.199778 against x86 6.199778, reproduced across two independent
+stagings.
+
+The limit of the claim is structural and we state it as the artifact does.
+\textbf{Parity is defined only at equal chunk counts.} B on 16 server cores
+outruns A on the Mac and overtakes it; at B's 5480 chunks A had never
+reached that position (its maximum was 3000), so no comparison exists there
+--- and a comparison at unequal stream positions would not be a parity check
+at all. Multi-cycle parity therefore requires rate-matched machines. The
+single-cycle number is the measured one, and it is exact.
+
+\section{The replay-cost law: two falsifications and the mechanism behind them}
+\label{sec:replay}
+
+P39 registered stop-free migration with four checks. Check (b) --- B reaches
+state parity with A while A never pauses --- passes at every cadence and on
+every machine tried, including the cross-ISA staging above. Checks (a) and
+(c) are \textbf{falsified as registered}, on two independent machines.
+
+\begin{table}[tb]
+\centering
+\caption{P39 (a)/(c) measured in situ at the production cadence
+($d{=}128$, $B{=}8$, $K{=}64$ --- the exact 40h configuration).
+Source: \code{results/p39\_two\_machine\_scored.json}.}
+\label{tab:p39}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+machine & cores & (a) gap ratio & threshold & (c) CPU ratio B/A & threshold\\
+\midrule
+Mac (ARM) & 10 & 7.085 & $<$ 3.0 & 2.219 & $<$ 1.0\\
+beast (x86) & 16 & 5.603 & $<$ 3.0 & 2.039 & $<$ 1.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The obvious explanation was tested and refuted. If (c) failed because A and
+B contend for cores on one machine, then giving B its own cores among
+sixteen should fix it; it moves the ratio by 0.18, not by the 2$\times$ it
+would need. The raw CPU seconds locate the cause instead: \textbf{B spends
+45.4~s replaying the chunks A produced with 22.3~s of CPU} --- replay costs
+approximately \textbf{twice} live streaming per chunk, on both ISAs,
+contended or not. Check (c) as registered asks replay to run \emph{faster}
+than production, and nothing in these two runs suggests it can. That is a
+property of catch-up replay, not of any machine, and it is the standing
+constraint on continuous replication: a replica cannot catch up on a machine
+no faster than its source.
+
+A second, methodological lesson rides along. Earlier ratios for the same two
+checks were inflated by toy chunk weight --- 17.935 and 3.789 at
+$B{=}4$/$K{=}32$, roughly halving to 7.085 and 2.219 once a chunk carries
+production work. The mechanism is arithmetic: snapshot size scales with the
+model, not with chunk weight, so raising chunk weight shrinks the snapshot
+cost measured in chunk slots (7.94 $\to$ 2.59 slots). The cadence hypothesis
+is therefore half confirmed and half falsified, and both halves stand: toy
+cadence really did inflate these ratios, and cadence was not the whole story
+--- a residual survives that no cadence correction removes.
+
 \section{The organism is social and collective}
 
 Organism A streams a C4+code mix, storing its surprise spans. Organism B,
 facing a code shock, replays A's shared spans and forgets \textbf{0.67$\times$}
-of what it forgets with only its own spans --- at better plasticity ---
-while token-shuffled A-spans are as useless as no replay: the benefit is
-content, not regularization. Combined with F7: a fleet of small organisms
-sharing an index is a \emph{measured} design, not an aspiration --- including
-the striking corollary that a replica which dies and rejoins through the
-shared store can end \emph{better} than one that never died.
+of what it forgets with only its own spans (0.155783 vs.\ 0.233120) --- at
+better plasticity (0.542204 vs.\ 0.517594) --- while token-shuffled A-spans
+do not beat B's own private spans (0.317260, against 0.375721 for no replay
+at all): the benefit is content, not regularization. This is replay as a continual-learning
+mechanism \cite{vandeven2019replay} with the selection made by the
+learner's own surprise rather than by a curator, and with no weight-space
+penalty \cite{kirkpatrick2017ewc} in the loop. Combined with F7: a fleet of
+small organisms sharing an index is a \emph{measured} design, not an
+aspiration --- including the striking corollary that a replica which dies
+and rejoins through the shared store can end \emph{better} than one that
+never died.
 
 \section{Method as contribution: the adversarial ledger}
+\label{sec:ledger}
 
 Every experiment in this program was preceded by a numbered, committed
-prediction (P1--P39 at this writing); a scoring script audits result JSONs
+prediction (P1--P42 at this writing); a scoring script audits result JSONs
 against the register; falsified predictions remain in the ledger with the
-numbers that killed them. Of the scored predictions, roughly one third were
-falsified or partial --- including the program's own favorite hypotheses
-(the dream generator; rate-homeostatic curiosity; the $\alpha$-regularizer;
-a one-parameter rent law; the phase advantage on real text --- falsified
-\emph{and then explained} by a 16-cell rent map measured the same night,
-Figure~\ref{fig:rent}).
+numbers that killed them. The register is immutable in its P-numbers: a
+prediction is amended only before its data exists, with the reason on
+record, and never after.
+
+Of the scored predictions, roughly one third were falsified or partial ---
+including the program's own favorite hypotheses. Four are load-bearing
+enough to name with their killing numbers.
+
+\begin{itemize}
+\item \textbf{The width law (P42, \S\ref{sec:width}).} ``The gate law grows
+with width'' held at two points and died at the third: 0.9729, 0.9953,
+0.9777. The third point was run to test the trend, not to confirm it.
+\item \textbf{Replay cost (P39a, P39c, \S\ref{sec:replay}).} Registered
+thresholds $<$3.0 and $<$1.0; measured 7.085/5.603 and 2.219/2.039 on two
+machines, with the shared-core explanation refuted and the 2$\times$
+replay-cost mechanism located.
+\item \textbf{Relational rank (P34).} Registered: the phase lifts
+per-channel binding rank to $\ge$2$\times$ the scalar's. Measured on a
+4-arm $\times$ 5-load $\times$ 4-seed sweep --- the attention control solves
+every load (test recall 0.9888 to 0.9997, so the harness is sound and the
+task solvable), while both state arms sit at chance from $K{=}4$ on
+(chance 0.015625). The registered relational criterion had exactly one
+eligible cell, at $K{=}2$, where the ratio is 0.371 --- the opposite sign of
+the prediction --- and the cliff ratio is 1.0 against a registered $\ge$2.
+The rank check itself is reported as \emph{insufficient data} rather than as
+a pass or a fail: no load clears $3\times$ chance for the phase arm with the
+required two ignited seeds, so no cell was eligible to score. The
+dominating phenomenon is a different one, and it is a finding: phase
+ignition collapses with load (3/4 ignited seeds at $K{=}2$, 0/4 by
+$K{=}16$). Whatever the phase might pay at high load, training reliability
+dies first.
+\item \textbf{The one-parameter rent law (P32).} Falsified \emph{and then
+explained} by a 16-cell rent map measured the same night
+(Figure~\ref{fig:rent}).
+\end{itemize}
 
 \begin{figure}[t]
 \centering
@@ -336,58 +656,74 @@ the phase advantage on real text holds and where it does not. Source:
 \code{results/holo\_rent\_map.json}.}
 \label{fig:rent}
 \end{figure}
+
 Two method-level findings emerged from the discipline itself:
 \textbf{training-dynamics sensitivity to floating-point reduction order near
 ignition boundaries} (thread count changes \emph{whether} a model ignites,
 not just speed --- 6/6 seeds ignite in one regime, 0/4 in another), and the
-resulting rule that instruments must reproduce their reference regime. We
-offer the ledger pattern itself as a transferable practice: a vision paper
-whose every claim is either a committed measurement or an explicitly open
-registered question.
+resulting rule that instruments must reproduce their reference regime. A
+third, from \S\ref{sec:replay}: an instrument must reproduce its reference
+\emph{cadence} as well, or it measures overhead arithmetic rather than the
+property under test. We offer the ledger pattern itself as a transferable
+practice: a vision paper whose every claim is either a committed measurement
+or an explicitly open registered question.
 
 \section{The reality prediction engine (the road this opens)}
 
 The foundations compose into something none of them states alone. A system
-that (i) lives indefinitely on present streams at constant memory (F2, F6),
-(ii) controls all plasticity from its own prediction error (F1) --- in the
-spirit of temporal-difference learning's use of prediction error as a
-teaching signal \cite{sutton1988td} and predictive coding's use of
-prediction error as the currency of cortical inference \cite{rao1999predictive},
-(iii) can \emph{deposit} a prediction about its own future in a persistence
+that (i) lives indefinitely on present streams at constant memory (F2, F6)
+--- measured to seven billion tokens (\S\ref{sec:lifetime}), (ii) controls
+all plasticity from its own prediction error (F1) --- in the spirit of
+temporal-difference learning's use of prediction error as a teaching signal
+\cite{sutton1988td} and predictive coding's use of prediction error as the
+currency of cortical inference \cite{rao1999predictive}, (iii) can
+\emph{deposit} a prediction about its own future in a persistence
 mechanism built for exactly that (F3's carrier; measured to survive
 silence, surgery, and weight updates) --- the world-model commitment
 articulated for autonomous machine intelligence \cite{lecun2022path}, (iv)
 scores the deposit when the future arrives --- a loop only a \emph{living}
 system can close, because a batch model never experiences its own future
 --- and (v) exists as a portable, forkable, shardable, collectively-
-remembering asset (F7, \S 6): this is a \textbf{reality prediction engine}.
-Its scaling axis is not parameters but \emph{scope} --- more streams, more
-horizons, more organisms sharing more index. The first horizon-ladder
-experiment (early-warning under distribution shift; the long-horizon head
-as gating teacher) is registered (P37) and running at this draft's commit.
+remembering asset (F7, \S\ref{sec:moebius}): this is a \textbf{reality
+prediction engine}. Its scaling axis is not parameters but \emph{scope} ---
+more streams, more horizons, more organisms sharing more index. The first
+horizon-ladder experiment (early-warning under distribution shift; the
+long-horizon head as gating teacher) is registered (P37) and running at this
+draft's commit.
 
 \section{Limitations, stated plainly}
 
-Scale: $d_\text{model} \le 128$, WT-2-derived vocabularies; no claim of
-frontier language quality is made or implied. The phase mechanism's
-ignition is fragile (seed- and reduction-order-dependent) --- a measured
-fact that bounds current practice and is itself a finding. The injection
-result is provenance-limited (stale index era). Wall-clock throughput
-numbers are never claimed (host contamination); all axes are token-based.
-The rank-1 anchor's generating script is lost (artifact-backed,
-reconstruction leads documented) --- reported as reproduction debt.
+Scale: $d_\text{model} \le 512$, WT-2-derived vocabularies; no claim of
+frontier language quality is made or implied, and the width curve
+(\S\ref{sec:width}) measures selection efficiency at a fixed token budget,
+not model quality. The lifetime organism's constancy claim is about
+resources, not about learning: at 1.7M parameters it is at its capacity
+floor. Cross-ISA parity is measured at equal chunk counts only, and
+multi-cycle parity needs rate-matched machines (\S\ref{sec:moebius}).
+Catch-up replay costs $\sim$2$\times$ live streaming, which bounds
+continuous replication (\S\ref{sec:replay}). Gradient exactness requires a
+warmup overlap past the receptive field; with zero overlap the relative
+error reaches 2e-1 (\S\ref{sec:f2}). The phase mechanism's ignition is
+fragile (seed-, load-, and reduction-order-dependent) --- a measured fact
+that bounds current practice and is itself a finding. The injection result
+is provenance-limited (stale index era). Wall-clock throughput numbers are
+never claimed (host contamination); all axes are token-based. The rank-1
+anchor's generating script is lost (artifact-backed, reconstruction leads
+documented) --- reported as reproduction debt.
 
 \section{Invitation}
 
 Everything here reruns from the repository: the harnesses, the exact
 configurations, the raw JSONs, the ledger, and the scoring script. The
 organism that produced \S\ref{sec:40h} can be resumed, forked, migrated, or
-extended by anyone --- that is what F7 is for.
+extended by anyone --- that is what F7 is for; the organism of
+\S\ref{sec:lifetime} was still streaming when this draft was compiled.
 
 \bigskip
-\noindent\textit{Related work (to be expanded in v0.2): predictive coding
-and JEPA (the vision lineage) \cite{rao1999predictive,lecun2022path},
-TD-learning (multi-horizon error) \cite{sutton1988td}, zoology/MQAR (recall
+\noindent\textit{Related work: predictive coding and JEPA (the vision
+lineage) \cite{rao1999predictive,lecun2022path}, TD-learning (multi-horizon
+error) \cite{sutton1988td}, replay and weight-space penalties in continual
+learning \cite{vandeven2019replay,kirkpatrick2017ewc}, zoology/MQAR (recall
 instruments) \cite{arora2024zoology}, Mamba/S5/LRU (the operator family)
 \cite{gu2023mamba,smith2023s5,orvieto2023lru}, VM live migration (the
 systems analogy) \cite{clark2005livemigration}.}
