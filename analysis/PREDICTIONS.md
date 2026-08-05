@@ -1212,3 +1212,11 @@ artifact is a number about the defaults, not about the system.
   probe misranks (a fails) while (b) passes, the benefit instrument is
   too noisy at probe dose — the arbiter needs repeated probes, and the
   price clause (d) is what breaks. Either failure names its mechanism.
+  **P51 WITHDRAWN (2026-08-05, same evening, before any data).** The
+  run was stopped in the smoke phase and produced no results. Reason,
+  recorded verbatim in spirit: arbitration is APPLICATION-LAYER
+  governance for an exchange layer that does not exist yet — building
+  the lock before the chassis. The core primitives are the work; a
+  defense organ becomes a real registration when there is a real
+  exchange to defend. The registration text above stands as a design
+  note for that later date; no clause was scored.
