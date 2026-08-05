@@ -1220,3 +1220,41 @@ artifact is a number about the defaults, not about the system.
   defense organ becomes a real registration when there is a real
   exchange to defend. The registration text above stands as a design
   note for that later date; no clause was scored.
+
+- **P52 — the organism enters a real game engine (registered 2026-08-05
+  night, BEFORE the build).** David's call: launch a fresh reader into
+  VizDoom and watch whether it learns the world over its life, with
+  everything harvested into a frozen, replayable knowledge file. The
+  substrate steps up from our own top-down maze (P48/P49) to a real 3D
+  engine with a first-person body: scenario my_way_home (ego maze
+  navigation), GRAY8 160×120, engine determinism VERIFIED before this
+  registration (same seed + same actions → bit-identical frames, 30/30
+  hashes). Eight bodies = eight independent game instances (per-episode
+  re-seeding: seed(base+episode) makes every episode independently
+  addressable — the provenance coordinate is (lane, episode, tic)).
+  Frames pool to 15×16 tokens at 12 gray levels + separator pad = 256
+  tokens = 4×K64 chunks through the UNCHANGED stack, d128/B8/K64.
+  Registered:
+  (a) IT LEARNS: streaming NLL over the last 10% of life sits ≥30%
+      below the post-ignition plateau (chunks 100–600 mean), at flat
+      RSS (span ≤0.1 GB after ignition).
+  (b) IT KNOWS ITS OWN WORLD: end-of-life NLL on frozen frames from
+      its OWN routes (seen mid-life) beats NLL on frames from a
+      NEVER-SEEN route (fresh action seed, same map) — difference > 0.
+  (c) PROVENANCE THROUGH A GAME ENGINE: 5 sampled knowledge entries
+      reconstruct BIT-EXACT from (lane_seed, episode, tic) by fresh
+      engine replay — the causal-file claim on third-party simulation
+      software we did not write.
+  (d) THE FILE CARRIES THE WORLD: a fresh reader dosed with the frozen
+      file beats its no-file twin on the never-seen-route instrument by
+      ≥ 0.02 — learning transferred through the artifact, not the
+      weights.
+  NOT registered, per the P49 falsifier's standing promise: no gate
+  novelty-transfer clause on pixels — lane surprise runs logging-only.
+  Falsifiers named: (a) fails ⇒ the tokenization (15×16@12 levels) is
+  below the world's information floor for this reader — the next attack
+  is the token map, not the claim; (c) fails ⇒ per-episode re-seeding
+  does not isolate engine state — coordinate design is wrong and gets
+  rebuilt before any other clause is read; (d) fails while (a)+(b)
+  pass ⇒ the file-transfer loop needs the P47 dosing curve on this
+  substrate — registered as its own follow-up, not patched in.
