@@ -1,0 +1,10 @@
+Device: cpu
+[world] UNSEAL at walker0 step 1500 (chunk 5996)
+[pixel] 12000 chunks in 174s | 901 knowledge entries | 1384 room entries
+[provenance] walker 3 step 1760 -> BIT-EXACT
+[provenance] walker 6 step 1980 -> BIT-EXACT
+[provenance] walker 5 step 2860 -> BIT-EXACT
+[provenance] walker 3 step 1600 -> BIT-EXACT
+[provenance] walker 5 step 2632 -> BIT-EXACT
+[pixel_body] drop 61.2% | entry 0.20686900958466453 vs steady 0.21255214258627228 | habituation 0.08635848901261378 | provenance 5/5 -> results/pixel_p49.json
+P49_BEIDE_FERTIG

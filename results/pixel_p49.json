@@ -1,0 +1,116 @@
+{
+  "p48": true,
+  "smoke": false,
+  "maze_seed": 7,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "n_chunks": 12000,
+  "n_knowledge": 901,
+  "n_room_entries": 1384,
+  "loss_plateau_ignition": 0.5696,
+  "loss_late": 0.221,
+  "p48a_drop": 0.612,
+  "p48a_pass": true,
+  "rss_span_gb": 0.0092,
+  "gate_rate_entry": 0.2069,
+  "gate_rate_steady": 0.2126,
+  "p48b_ratio": 0.973,
+  "p48b_pass": false,
+  "n_entry_events_post": 1252,
+  "habituation_first_n": 52,
+  "habituation_second_n": 60,
+  "p48d_drop": 0.0864,
+  "lane_instrument": {
+    "entry_surprise_lane_mean": 0.33821,
+    "steady_surprise_lane_mean": 0.2982,
+    "entry_over_steady": 1.134,
+    "habituation_lane": 0.0172,
+    "note": "per-walker surprise, logging only \u2014 the registered (b)/(d) used the batch-mean gate, which is 8x diluted against asynchronous single-walker events"
+  },
+  "p48d_pass": false,
+  "p48c_provenance": [
+    {
+      "walker": 3,
+      "step": 1760,
+      "found": true
+    },
+    {
+      "walker": 6,
+      "step": 1980,
+      "found": true
+    },
+    {
+      "walker": 5,
+      "step": 2860,
+      "found": true
+    },
+    {
+      "walker": 3,
+      "step": 1600,
+      "found": true
+    },
+    {
+      "walker": 5,
+      "step": 2632,
+      "found": true
+    }
+  ],
+  "p48c_found": "5/5",
+  "p48c_pass": true,
+  "p49": {
+    "unseal": {
+      "at_walker0_step": 1500,
+      "chunk": 5996
+    },
+    "n_walkers_contacted": 4,
+    "first_contacts": [
+      {
+        "step": 1519,
+        "chunk": 6076,
+        "steady_before": 0.33207514113746583,
+        "surprise": 0.26131,
+        "gated": 0,
+        "ratio": 0.787
+      },
+      {
+        "step": 1504,
+        "chunk": 6016,
+        "steady_before": 0.37491518527269363,
+        "surprise": 0.31865,
+        "gated": 1,
+        "ratio": 0.85
+      },
+      {
+        "step": 1499,
+        "chunk": 5996,
+        "steady_before": 0.30106355221942066,
+        "surprise": 0.21287,
+        "gated": 0,
+        "ratio": 0.707
+      },
+      {
+        "step": 1499,
+        "chunk": 5996,
+        "steady_before": 0.12708504838170484,
+        "surprise": 0.25488,
+        "gated": 0,
+        "ratio": 2.006
+      }
+    ],
+    "median_contact_ratio": 0.819,
+    "contact_gate_rate": 0.25,
+    "p49a_pass": false,
+    "novel_entries_visit1_n": 0,
+    "novel_entries_visit2plus_n": 695,
+    "p49b_habituation": null,
+    "p49b_pass": false,
+    "p49c_note": "provenance sampling above runs WITH the mutation replayed (unseal_at forwarded)"
+  }
+}

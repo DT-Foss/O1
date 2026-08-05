@@ -1066,3 +1066,29 @@ artifact is a number about the defaults, not about the system.
   itermerge trails by 0.195 — parallelism is a wall-clock purchase
   (5× speedup at ~0.2 nats), no token-efficiency free lunch, the
   embarrassment threshold stayed silent exactly as registered.
+
+  **P49 SCORED (2026-08-05, results/pixel_p49.json, full 12k chunks on
+  beast).** (a) FALSIFIED: median first-contact lane ratio 0.819 (bar
+  ≥3×), contact-chunk gate rate 0.25 (bar: fires). Three of four
+  contacting walkers were QUIETER at first sight of a never-streamed
+  room than at their own steady state. The falsifier fires as
+  registered: the gate calculus does not detect underivable novelty in
+  pixels, and the modality-transfer claim is dead — no third framing,
+  as promised. (b) unmeasurable, and the zero is the datum: ZERO
+  knowledge entries harvested on first visits (novel_entries_visit1 = 0
+  vs 695 on later visits) — no first-visit signal exists to habituate
+  from. (c) PASS 5/5 BIT-EXACT with the unseal REPLAYED inside the
+  provenance check — the world mutated mid-run and every entry still
+  reconstructs from (maze_seed, walker, step, unseal_at). Provenance
+  survives world mutation: the robotics clause, and the one that holds.
+  Post-mortem, recorded without a new registration: the novel room at
+  first sight is 1–3 cells of a 225-cell frame — token-sparse novelty
+  under a 64-token lane MEAN. The harvest instrument (token-level NLL
+  peaks) sees the room clearly (1,384 room entries by end of life); the
+  gate instrument (lane mean) never does. After P48's 8× body dilution
+  this is the 64× token dilution — embodied gates need foveal
+  (token/location) resolution, not panoramic means. Text never hit this
+  wall because text novelty is dense: whole documents switch topic at
+  once, most tokens in the chunk carry the surprise. P48 full-rerun
+  clauses in the same artifact stay consistent: (a) 61.2% drop PASS,
+  (b) 0.973 FAIL, (d) 0.086 FAIL, (c) 5/5 PASS.
