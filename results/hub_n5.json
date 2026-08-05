@@ -1,0 +1,45 @@
+{
+  "p46": true,
+  "smoke": false,
+  "n_arms": 5,
+  "S": 1500,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "seed": 42,
+  "union_pool_spans": 2998,
+  "producer_heldouts": [
+    5.254239,
+    5.292057,
+    5.34579,
+    5.501865,
+    5.362148
+  ],
+  "reader_with_store": 5.359043,
+  "reader_without_store": 5.3903,
+  "p46a_delta": 0.031257,
+  "p46a_pass": true,
+  "itermerge_heldout": 5.153693,
+  "single_arm_reference_best": 5.254239,
+  "p46b_itermerge_vs_best_single": -0.100546,
+  "p46b_pass": true,
+  "ctrl_5xS_same_instrument": 4.958463,
+  "p44_oneshot_reference": {
+    "brain": 5.979112,
+    "ctrl_5xS": 5.358632,
+    "note": "WT-2 instrument \u2014 NOT comparable to this run's C4 slice; kept for the record only"
+  },
+  "p46b_embarrassment_beats_5xS": false,
+  "p46_scoring": {
+    "a_memory_route": "PASS: reader with the five-producer union store 5.3590 vs without 5.3903 \u2014 delta +0.0313 against the registered >=0.02, at 60 replays. The collective helps a STRANGER through the memory interface. With P47 this closes the second axis: the shared store now measurably provides both shock immunity (P31/P47) and learning acceleration (here).",
+    "b_weight_route_bounded": "PASS, and it flips P44: iterated merge-redistribute every 100 chunks reads 5.1537 against the best single arm 5.2542 \u2014 bounded-divergence averaging BEATS its parts by 0.10 where the one-shot merge at full divergence lost to every part by 0.14+. Weight fusion is not dead; it is a sync-frequency phenomenon. Divergence budget, not fusion per se, was P44s killer.",
+    "c_no_free_lunch": "CONFIRMED as registered: the same-instrument equal-total-compute control reads 4.9585 \u2014 itermerge trails it by 0.195. Parallel-with-merge buys a 5x wall-clock speedup at a measured quality cost of ~0.2 nats at this scale. The embarrassment threshold did not fire, exactly as predicted.",
+    "verdict": "The hub at N=5, measured on all three routes in one run: knowledge composes through the store (a), weights compose only under bounded divergence (b), and parallelism is a wall-clock purchase, not a token-efficiency one (c). For the end architecture: the fleet brain is the shared store; frequent-sync weight merging is an OPS accelerator with a quantified price."
+  }
+}

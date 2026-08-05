@@ -1053,3 +1053,16 @@ artifact is a number about the defaults, not about the system.
   Falsifier: (a) absent ⇒ the calculus does not detect underivable
   novelty in pixels, and the modality-transfer claim dies for real this
   time — no third framing will be registered.
+  **P46 SCORED (2026-08-05 night, results/hub_n5.json, full on core).**
+  (a) PASS: reader with union store beats reader without by +0.0313
+  (bar ≥0.02, 60 replays) — the five-producer collective helps a stranger
+  through the memory interface; with P47 the store now measurably carries
+  BOTH axes (immunity and acceleration). (b) PASS, flipping P44: bounded-
+  divergence merge-redistribute every 100 chunks reads 5.1537 vs best
+  single arm 5.2542 — averaging BEATS its parts where the one-shot at
+  full divergence lost to all of them. Weight fusion is a sync-frequency
+  phenomenon; the divergence budget was P44's killer, not fusion itself.
+  (c) the honest ceiling CONFIRMED: same-instrument 5×S control 4.9585,
+  itermerge trails by 0.195 — parallelism is a wall-clock purchase
+  (5× speedup at ~0.2 nats), no token-efficiency free lunch, the
+  embarrassment threshold stayed silent exactly as registered.
