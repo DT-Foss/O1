@@ -1,0 +1,15 @@
+Device: cpu
+[life] 2000/24000 | s 0.681 | entries 2168 | rss 0.56 | 81s
+[life] 4000/24000 | s 0.689 | entries 3764 | rss 0.56 | 156s
+[life] 6000/24000 | s 0.578 | entries 5376 | rss 0.56 | 233s
+[life] 8000/24000 | s 0.835 | entries 8524 | rss 0.56 | 338s
+[life] 10000/24000 | s 0.786 | entries 9968 | rss 0.56 | 415s
+[life] 12000/24000 | s 0.458 | entries 10900 | rss 0.56 | 482s
+[life] 14000/24000 | s 0.882 | entries 14512 | rss 0.57 | 599s
+[life] 16000/24000 | s 0.624 | entries 15592 | rss 0.57 | 668s
+[life] 18000/24000 | s 0.697 | entries 17912 | rss 0.57 | 759s
+[life] 20000/24000 | s 0.634 | entries 19788 | rss 0.57 | 841s
+[life] 22000/24000 | s 0.731 | entries 22300 | rss 0.57 | 936s
+[life] 24000/24000 | s 0.799 | entries 24660 | rss 0.57 | 1025s
+[p52] a:False (drop 0.1354) | b:False (Δ-0.9992) | c:5/5 | d:True (Δ0.0562) -> /root/o1lab/results/vizdoom_life.json
+P52_V2_FERTIG

@@ -13,61 +13,61 @@
   "engine": "vizdoom my_way_home GRAY8 160x120 skip4",
   "token_map": "15x16 @ 12 levels + SEP pad = 256",
   "n_chunks": 24000,
-  "n_entries": 24324,
-  "file_sha256": "6fb82fa9b944a410583d4720e423875482bf254c9db0f51e4624991ffb006ddb",
+  "n_entries": 24660,
+  "file_sha256": "17aadcc6c65e4dde2388d63538e889ba6be02eb49cfa6d8a039674c356fb929b",
   "series_tail": [
     {
       "chunk": 23200,
-      "s": 0.5334,
-      "rss": 0.001
+      "s": 0.7081,
+      "rss": 0.569
     },
     {
       "chunk": 23400,
-      "s": 0.4442,
-      "rss": 0.001
+      "s": 0.7287,
+      "rss": 0.569
     },
     {
       "chunk": 23600,
-      "s": 0.4604,
-      "rss": 0.001
+      "s": 0.7995,
+      "rss": 0.569
     },
     {
       "chunk": 23800,
-      "s": 0.4821,
-      "rss": 0.001
+      "s": 0.7723,
+      "rss": 0.569
     },
     {
       "chunk": 24000,
-      "s": 0.617,
-      "rss": 0.001
+      "s": 0.7991,
+      "rss": 0.569
     }
   ],
   "p52a": {
     "plateau_s": 0.8112,
-    "tail_s": 0.628,
-    "drop": 0.2259,
-    "rss_span_gb": 0.0,
+    "tail_s": 0.7014,
+    "drop": 0.1354,
+    "rss_span_gb": 0.011,
     "pass": false
   },
   "p52b": {
-    "nll_own_routes": 0.8346,
-    "nll_fresh_route": 0.0785,
-    "delta": -0.7561,
+    "nll_own_routes": 1.258,
+    "nll_fresh_route": 0.2588,
+    "delta": -0.9992,
     "pass": false
   },
   "p52c": {
     "picks": [
       {
-        "lane": 2,
-        "episode": 11,
-        "frame": 456,
-        "exact": false
+        "lane": 7,
+        "episode": 9,
+        "frame": 502,
+        "exact": true
       },
       {
-        "lane": 7,
+        "lane": 0,
         "episode": 1,
-        "frame": 300,
-        "exact": false
+        "frame": 410,
+        "exact": true
       },
       {
         "lane": 4,
@@ -76,25 +76,25 @@
         "exact": true
       },
       {
-        "lane": 1,
-        "episode": 11,
-        "frame": 223,
-        "exact": false
+        "lane": 4,
+        "episode": 12,
+        "frame": 321,
+        "exact": true
       },
       {
-        "lane": 3,
-        "episode": 3,
-        "frame": 481,
-        "exact": false
+        "lane": 4,
+        "episode": 4,
+        "frame": 171,
+        "exact": true
       }
     ],
-    "exact": "1/5",
-    "pass": false
+    "exact": "5/5",
+    "pass": true
   },
   "p52d": {
-    "nll_with_file": 0.1231,
-    "nll_without": 0.1037,
-    "delta": -0.0194,
-    "pass": false
+    "nll_with_file": 0.1425,
+    "nll_without": 0.1987,
+    "delta": 0.0562,
+    "pass": true
   }
 }

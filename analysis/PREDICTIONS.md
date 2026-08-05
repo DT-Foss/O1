@@ -1276,3 +1276,25 @@ artifact is a number about the defaults, not about the system.
   results/vizdoom_life.json (rss series additionally carries a
   KB-vs-bytes instrument bug on Linux, fixed in the same pass). Rerun
   in flight.
+  **P52 SCORED (2026-08-05 night, results/vizdoom_life.json v2 after the
+  registered coordinate rebuild).** (c) PASS: 5/5 BIT-EXACT across
+  episodes {0,1,4,9,12} — provenance through third-party simulation
+  software, with the life path and replay path sharing one engine
+  factory. (d) PASS: the frozen file (24,660 entries, sha256
+  17aadcc6…) carries the world — fresh reader with dosed file replay
+  beats its no-file twin by 0.0562 on a never-seen route (bar 0.02).
+  The refinery loop (P47) now holds through a game engine we did not
+  write. (a) FALSIFIED at the bar: drop 13.5% vs 30% required, at flat
+  RSS (span 0.011 GB) — the reader learns, and the 12-level 15×16
+  token map exhausts quickly (NLL floor ~0.7 vs ~4–5 on text); per the
+  registered falsifier the next attack is the TOKEN MAP (finer levels /
+  resolution), not the claim — to be registered separately if pursued.
+  (b) FALSIFIED AS INSTRUMENTED, and the instrument confound is named:
+  own-route frames were drawn from the MIDDLE episode of each of 8
+  lanes (8 different spawns, heterogeneous; NLL 1.258) while the
+  fresh-route frames were one seed's episode-0 opening frames
+  (homogeneous single spawn; NLL 0.259) — the populations differ in
+  intrinsic difficulty, so the comparison measures population mismatch,
+  not world knowledge. The clean version is position-matched (same
+  episode indices and frame windows, only the seed differs); named as
+  the follow-up design, not patched into this scoring.

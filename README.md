@@ -697,6 +697,44 @@ falsifications (P23a, P24c-at-1.2M) are kept in the ledger at full strength.
 `scripts/moebius_stage.py`, `results/pos_shared_index.json`, `results/holo_rent_map.json`,
 `results/moebius_parity.json`
 
+### 16 — The organism gets a body: pixels, worlds, and a real game engine
+
+The unchanged stack — same reader, same gate, same harvest — runs on rendered worlds by
+mapping frames to token chunks. Three lives, and the boundary between what transfers and
+what does not is now measured:
+
+- **A deterministic world under a fixed policy contains no underivable novelty (P48).**
+  Eight wall-following walkers in a shared maze, egocentric views as 256-token frames:
+  the reader learns the world to a 61% NLL drop at flat memory, harvests 901 knowledge
+  entries, and every sampled entry replays **bit-exact** from (seed, walker, step) — 5/5,
+  twice. But the gate goes quiet: after ignition a competent predictor silences every
+  transition the policy can produce. The registered transfer clause died on this, as
+  registered.
+- **Token-sparse novelty is invisible to averaging gates (P49).** A sealed room opens
+  mid-life onto colors never streamed before — and at first sight the novelty is 1–3 cells
+  of a 225-cell frame: the lane-MEAN gate reads 0.82× (quieter than steady), while the
+  token-level harvest sees the room clearly (1,384 entries by end of life). Same event,
+  two instruments — embodied gates need foveal resolution, not panoramic means. And the
+  architecture clause held: provenance replays exactly **through the world mutation**
+  (5/5, with the unseal replayed in the coordinates).
+- **A third-party game engine, and the file carries the world (P52).** A fresh reader
+  lives 24,000 chunks in VizDoom's `my_way_home` (real 3D, first-person, software we did
+  not write), eight bodies as eight headless engine instances. The engine state survives
+  `new_episode` — a fired falsifier proved per-episode reseeding does not isolate, so the
+  coordinate design was rebuilt (fresh engine per episode, one factory for life and
+  replay) — after which **provenance reads 5/5 bit-exact across episodes {0,1,4,9,12}**,
+  and the harvested file (24,660 entries, sha256-frozen) **transfers: a fresh reader dosed
+  with the file beats its no-file twin by 0.056 NLL on a route neither ever saw**
+  (bar 0.02). The learning-depth clause fell short as registered (13.5% drop vs the 30%
+  bar at flat 0.011 GB memory — the 12-level token map exhausts quickly; the registered
+  falsifier names the token map, not the claim, as the next attack), and the own-vs-fresh
+  route instrument was confounded by unmatched frame populations — named, not patched.
+
+The refinery loop — harvest → freeze → hash → replay-exact → measurably useful to a
+stranger — now holds in text (P47) and through a game engine we did not write (P52).
+→ `src/pixel_body_run.py`, `src/vizdoom_run.py`, `results/pixel_body.json`,
+`results/pixel_p49.json`, `results/vizdoom_life.json`, `results/vizdoom_knowledge.jsonl`
+
 ### The method: pre-registered, auto-scored, falsifications kept
 
 Every run above was preceded by a numbered prediction in
