@@ -837,3 +837,73 @@ pos_run, holo_*, scale_to_*, lifetime: clean — cadence always explicit and
 recorded, or no cost ratio in any claim. Standing rule now in DECISIONS.md:
 a cost-ratio metric without (batch, chunk, d_model) recorded in the same
 artifact is a number about the defaults, not about the system.
+
+## Wave 8 — source portability + the N-arm brain + ignition forensics (registered 2026-08-05, before any build)
+
+- **P43 — live source hot-swap (MS-L, David's Umstöpseln insight).** One
+  gated organism (POS gate values q=0.75/window 500, d=128, cadence 8/64
+  explicit per the audit rule), schedule: C4 (S chunks) → idle pause →
+  WT-103 (S) → idle pause → C4 (S), plus a pure-C4 control at equal total
+  chunks, same seed. Registered expectations:
+  (a) SURVIVABLE: no crash, stream bookkeeping intact, loss on the new
+      source falls within its segment.
+  (b) THE GATE IS A REGIME DETECTOR, SIGNED: C4→WT103 moves TOWARD the
+      vocab/eval domain (WT-2 sibling), so the swap-in transient is a gate
+      rate DROP (first-100-chunk rate ≤ 0.6× the pre-swap C4 steady rate);
+      the return WT103→C4 is a SPIKE (≥ 1.5× within the first 100 chunks).
+      Both transients decay back into the 0.18–0.26 band within one gate
+      window (500 chunks) — the quantile re-adapts by construction.
+  (c) THE DETOUR IS NOT DESTRUCTIVE: frozen-eval heldout after the full
+      cycle within +0.05 of the pure-C4 control at equal total chunks.
+      (Flagged, not a confound: heldout may IMPROVE during the WT103
+      segment itself — WT103 is the eval's domain sibling. The claim is
+      about the post-return state, not the detour minimum.)
+  Falsifier for the F1 reading: transients absent or wrong-signed.
+- **P44 — five runs, one brain (MS-M, David's multi-arm insight).** N=5
+  organisms, IDENTICAL init, different C4 stream offsets, S chunks each
+  (beast, cadence explicit). Fusion = one-shot weight average at end
+  ("the brain"), measured against: single arm at S (equal per-arm budget),
+  single arm at 5×S (equal total compute), and the P31 shared-store
+  collective as the memory-level baseline. Registered:
+  (a) NON-COLLAPSE: the merged brain's heldout ≤ single-arm + 0.3 (same
+      init ⇒ the five stay linearly connectable; a collapse kills naive
+      fusion and the finding is the incompatibility).
+  (b) THE BRAIN BEATS ITS PARTS: merged < single-arm-at-S by ≥ 0.02 —
+      five disjoint streams' knowledge partially adds under averaging.
+  (c) HONEST CEILING: merged does NOT beat the 5×S control — parallel
+      fusion is a wall-clock win, not a token-efficiency win.
+      Embarrassment threshold: if it DOES beat 5×S, federated streaming
+      has a free lunch and that is a bigger result than (b).
+- **P45 — where the gate rate is born (MS-K, ignition forensics).** Per-
+  chunk traces (s_t, gate_t, q_t, loss) for the first 2000 chunks at
+  d ∈ {128, 256, 512} × 2 seeds, exact width-curve recipe. Registered:
+  (a) the d256-vs-d512 separation (cum 0.2042 vs 0.1785 at first eval) is
+      established within the FIRST 500 chunks: cum gate rate at chunk 500
+      differs by ≥ 0.03, same direction, both seeds.
+  (b) MECHANISM CANDIDATE, falsifiable: during ignition the quantile
+      window is dominated by the fast-falling early loss; wider models
+      descend faster, so more fresh chunks sit BELOW the stale quantile →
+      fewer fires. Concretely: early per-chunk-NLL slope (chunks 100–500)
+      is strictly steeper d512 > d256 > d128, AND the mean margin
+      (s_t − q_t) over chunks 100–500 is more negative for wider models.
+      Slope ordering broken ⇒ mechanism falsified, trace still localizes
+      the divergence.
+  (c) determinism: same seed, same width ⇒ identical gate decisions
+      chunk-for-chunk. If THIS fails, P34's run-vs-run instability lives
+      in the gate itself — important either way.
+  **P45 SCORED SAME DAY (results/ignition_forensics.json).** Honest sequence
+  note: the per-chunk traces predate this registration (they were written by
+  the July width runs; an earlier claim that only aggregates existed was
+  wrong) — the aggregate-level facts were known at registration time, the
+  trace contents were not read until after. (a) CONFIRMED at n=1 seed:
+  separation established within the first 500 chunks, cum gate 0.304 vs
+  0.270, Δ0.034 ≥ 0.03; both-seeds clause running (seed-43 cells + a
+  determinism repeat, queued the same hour). (b) HALF CONFIRMED / HALF
+  FALSIFIED, mechanism refined: the margin half holds monotonically
+  (−0.1422/−0.2057/−0.2504) but the slope ordering is broken (d256 steeper
+  than d512 in chunks 100–500). The wide model's fast descent happens
+  INSIDE the always-learn ignition phase — s3 at chunk 100 is already
+  5.639 (d512) vs 5.801/5.787 — so the quantile window fills from the high
+  descent trail and fresh chunks sit persistently below its q75. The gate
+  rate is born from the DEPTH of ignition descent, not post-ignition
+  slope. (c) pending the repeat cell.

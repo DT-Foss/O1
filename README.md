@@ -513,12 +513,23 @@ does within-window drift separate the arms — the fraction of recent window ent
 q75 threshold is 0.230 at *both* d=256 and d=512, while their gate rates are 0.220 and 0.185.
 What the data does show is *where* the difference is born: the cumulative gate fraction at the
 first eval is already 0.2042 (d=256) against 0.1785 (d=512), and both then move by under 0.02
-across the remaining 46M tokens. The rate is set during ignition and held. What happens inside
-ignition to separate them is not resolvable from these runs — only aggregates were logged, not
-the per-chunk surprise trace — and needs an instrumented ignition run.
+across the remaining 46M tokens. The rate is set during ignition and held.
+
+**And the ignition itself is now read out (P45).** The per-chunk (surprise, gate, threshold)
+traces were on disk for all three widths all along — an earlier note here claimed only
+aggregates existed, which was wrong. Scored against the pre-registered P45: the separation is
+established within the **first 500 chunks** (cum gate 0.304 vs 0.270, Δ0.034 ≥ the registered
+0.03). The registered mechanism was half right: wider models do sit persistently deeper below
+their own quantile (mean margin −0.1422 / −0.2057 / −0.2504, monotone in width) — but the
+post-ignition slope ordering it predicted is broken (d=256 descends steeper than d=512 in
+chunks 100–500). The refined mechanism: the wide model's fast descent happens *inside* the
+always-learn ignition phase — at chunk 100, d=512 already reads 5.639 against 5.801/5.787 —
+so its quantile window fills from the high descent trail and fresh chunks sit below it from
+then on. **The gate rate is born from the depth of ignition descent, not from post-ignition
+slope.**
 Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
 138,532 documents at d=256).
-→ `results/gate_rate_width_probe.json`
+→ `results/ignition_forensics.json`, `results/gate_rate_width_probe.json`
 → `results/gate_law_width_curve.json`, `results/pos_d512_status.json`, `results/pos_d256_status.json`
 → `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
 `analysis/DECISIONS.md`, `results/pos_*`

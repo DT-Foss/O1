@@ -1,0 +1,39 @@
+{
+  "note": "P45 / MS-K scored on EXISTING per-chunk traces (pos*_chunks.jsonl, seed 42) \u2014 no new run was needed. Corrects the public claim in a577211/README that only aggregates were logged: the full (s3, gate, threshold) trace was on disk for all three widths the whole time.",
+  "per_width": {
+    "d128": {
+      "cum_gate_500": 0.36,
+      "cum_gate_2000": 0.1895,
+      "slope_100_500": -0.0003,
+      "margin_mean_100_500": -0.1422,
+      "s3_at_c100": 5.787,
+      "s3_at_c500": 5.752
+    },
+    "d256": {
+      "cum_gate_500": 0.304,
+      "cum_gate_2000": 0.191,
+      "slope_100_500": -0.000506,
+      "margin_mean_100_500": -0.2057,
+      "s3_at_c100": 5.801,
+      "s3_at_c500": 5.682
+    },
+    "d512": {
+      "cum_gate_500": 0.27,
+      "cum_gate_2000": 0.1585,
+      "slope_100_500": -0.00043,
+      "margin_mean_100_500": -0.2504,
+      "s3_at_c100": 5.639,
+      "s3_at_c500": 5.67
+    }
+  },
+  "scoring": {
+    "P45a": "CONFIRMED (n=1 seed): the d256-vs-d512 separation is established within the first 500 chunks \u2014 cum gate 0.304 vs 0.270, delta 0.034 >= the registered 0.03, same direction as the final rates. Both-seeds clause pending (no --seed flag existed; confirm runs queued).",
+    "P45b": "HALF CONFIRMED, HALF FALSIFIED \u2014 and the split refines the mechanism. Margin half CONFIRMED: mean (s_t - q_t) over chunks 100-500 is monotonically more negative with width (-0.1422 / -0.2057 / -0.2504) \u2014 wider models sit deeper below their own quantile. Slope half FALSIFIED as posed: the 100-500 slope ordering is d256 steeper than d512 (-0.000506 vs -0.000430), not strictly increasing with width. The refined mechanism: the wide model does its fast descent INSIDE the ignition phase (always-learn, chunks 0-100) \u2014 s3 at chunk 100 is already 5.639 for d512 vs 5.801/5.787 for d256/d128. The window then fills from the high descent trail, and fresh chunks sit persistently below its q75. The gate rate is born from the DEPTH of ignition descent, not from post-ignition slope.",
+    "P45c": "PENDING: determinism repeat needs a --seed flag (did not exist) and a re-run cell; queued."
+  },
+  "source_traces": [
+    "results/pos_chunks.jsonl",
+    "results/pos_d256_chunks.jsonl",
+    "results/pos_d512_chunks.jsonl"
+  ]
+}
