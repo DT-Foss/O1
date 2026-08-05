@@ -1,0 +1,83 @@
+{
+  "p50_production": true,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64
+  },
+  "T": 200,
+  "a_pin_live_rate": {
+    "n_sampled": 450,
+    "median_wall_per_chunk": 0.007983,
+    "median_cpu_per_chunk": 0.111732,
+    "median_stream_wall": 0.000162,
+    "median_model_wall": 0.007793
+  },
+  "cells": {
+    "Z2p": {
+      "cell": "Z2p",
+      "mode": "replay",
+      "env_pinned": true,
+      "resume": "snap_300.pt",
+      "T": 200,
+      "snapshot_stream_docs": 509,
+      "setup_wall_s": 4.968,
+      "load_wall_s": 1.113,
+      "first_doc_wall_s": 0.0,
+      "first_doc_cpu_s": 0.0,
+      "phases": {
+        "stream_wall": 10.319,
+        "stream_cpu": 10.922,
+        "model_wall": 2.6,
+        "model_cpu": 36.275,
+        "harvest_wall": 0.005
+      },
+      "b_median_model_wall_per_chunk": 0.008558,
+      "b_warmup_excluded": 50,
+      "main_wall_s": 19.008,
+      "main_cpu_s": 51.774,
+      "final_heldout": 6.020187,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 20.383
+    },
+    "Z4p": {
+      "cell": "Z4p",
+      "mode": "cache",
+      "env_pinned": true,
+      "resume": "snap_300.pt",
+      "T": 200,
+      "snapshot_stream_docs": 509,
+      "setup_wall_s": 5.185,
+      "load_wall_s": 1.092,
+      "first_doc_wall_s": null,
+      "first_doc_cpu_s": null,
+      "phases": {
+        "stream_wall": 0.0,
+        "stream_cpu": 0.0,
+        "model_wall": 2.468,
+        "model_cpu": 34.364,
+        "harvest_wall": 0.004
+      },
+      "b_median_model_wall_per_chunk": 0.008042,
+      "b_warmup_excluded": 50,
+      "main_wall_s": 8.809,
+      "main_cpu_s": 39.709,
+      "final_heldout": 6.020187,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 10.095
+    }
+  },
+  "clause_c": {
+    "live_median_model_wall": 0.007793,
+    "replay_median_model_wall": 0.008558,
+    "cache_median_model_wall": 0.008042,
+    "replay_over_live": 1.0982,
+    "cache_over_live": 1.032,
+    "bar": "cache_over_live <= 1.1"
+  },
+  "parity_heldout": {
+    "Z2p": 6.020187,
+    "Z4p": 6.020187,
+    "equal": true
+  }
+}

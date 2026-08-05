@@ -265,6 +265,26 @@ own deltas rather than as a file at any location — never 100% transferred,
 never final, always alive — with the surprise calculus itself dosing the
 replication bandwidth (only gated chunks produce deltas).
 
+**The replication rate condition (measured, P50).** Catch-up replay was
+long carried as "≈2× live cost" (P39). Decomposed at production cadence
+(8/64/128, warmup-robust medians, `results/replay_law_prod.json`), the
+factor dissolves: **replay compute is 1.03× live** from a local token
+cache (1.10× re-pulling the stream), bit-equal outcomes in every cell.
+The remaining catch-up cost is a FIXED overhead per catch-up — process
+cold-start + snapshot load (~6s) plus a step-shaped stream fast-forward
+cost (~9–10s once the skip distance crosses a shard threshold; NOT
+proportional to the life replayed, `results/replay_law.json`). The
+historical 2× was an instrument artifact on top: multi-core CPU-clock
+inflation of 13.6–15.5× wall persists on the 16-core reference machine
+against every thread pin, so CPU-time ratios there compare fictions.
+Consequence, stated as the rate condition: a replica following a live
+source converges to a **fixed equilibrium sync-debt**
+T∞ = rate_A · fix / (1 − rate_A · c_replay) — chunks of lag set by the
+fixed costs alone, independent of cycle length — rather than diverging
+under a 2× compute wall. Continuous replication is rate-feasible on
+equal hardware; the fixed costs, not the compute, are the design target
+(cache the tokens, keep the process warm, amortize the fast-forward).
+
 ---
 
 ## Interactions (disclosed as a system)

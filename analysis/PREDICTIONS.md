@@ -1113,3 +1113,70 @@ artifact is a number about the defaults, not about the system.
   through a reconnect (138,532 docs, same order): provenance at
   production scale. Width-vs-lottery now rides entirely on the seed
   axis — D2 (seed 43, d=512, 50M) is running.
+
+- **P50 — the replay law decomposed (MS-C+I, registered 2026-08-05
+  evening, BEFORE the build).** P39 measured catch-up replay ≈2× live
+  CPU (2.01/2.04/2.22 across machines) and filed it as a candidate law.
+  Code reading + the exp_d artifact suggest it is no law but a PRODUCT
+  OF TWO ENVIRONMENTS: cpu_ratio 2.01 = wall_ratio 1.46 ×
+  thread-inflation 1.38 (catch-up ran CPU 16.8s in 2.0s wall ≈ 8.4
+  threads hot DESPITE set_num_threads(1); live idled its pool on
+  stream waits), and the wall overhang matches ds.skip() re-downloading
+  the organism's whole prior life (exp_d skip/T = 300/200 = 1.5; at a
+  ~30% stream cost share, 1 + 1.5×0.31 ≈ 1.46). The cross-machine
+  stability of "2×" would then be an artifact of every measurement
+  sharing the same skip/T proportion — ratio = f(skip/T), not a
+  constant. Registered, one harness (src/replay_law_run.py, beast),
+  phase-instrumented (import/load, skip-to-first-doc, per-chunk stream,
+  fwd, bwd, harvest — wall+cpu each):
+  (a) DECOMPOSITION: cpu_ratio factors into wall_ratio ×
+      inflation_ratio as measured, and phase timers attribute ≥80% of
+      the wall overhang to named phases (skip + coldstart), <20%
+      unexplained.
+  (b) SKIP LINEARITY: at fixed T=200, wall overhang grows linearly in
+      skip_docs (snapshot at 300/1500/3000 chunk-equivalents, r²≥0.9).
+      Point bet: skip cost per doc ≈ live stream cost per doc (same
+      download+decompress work, within ±50%).
+  (c) COMPUTE PARITY: replay from a LOCAL token cache with
+      single-thread enforced via environment (OMP/MKL=1 before import):
+      cpu_ratio vs live ≤ 1.1 — replay COMPUTE is not more expensive
+      than live; the 2× was environment (fast-forward + cpu-clock
+      inflation), not calculus.
+  (d) MÖBIUS RATE CONDITION (derived, then checked separately): from
+      the measured components, B catches A iff
+      T·(rate_live − rate_replay_cache) > skip_cost(life) + cold;
+      the formula must predict the minimum cycle length for sync-debt
+      convergence in the Möbius-stage geometry to ±20% — checked in a
+      rate-matched Möbius run AFTER this scores.
+  Falsifier chain: (b) near-zero skip slope AND (c) ratio ≥1.8 under
+  cache+single-thread ⇒ replay IS intrinsically ~2× and the law stands
+  → F7 gets the 2×-hardware replication clause; (c) alone ≥1.8 with
+  (b) linear ⇒ both terms real, F7 gets both. Either way F7 gains a
+  measured clause and P39(c) gets re-derived on the correct anchor.
+  **P50 SCORED SAME EVENING (results/replay_law.json toy-cadence matrix,
+  results/replay_law_prod.json production-cadence cell, both beast).**
+  (a) PASS structurally, with the surprise being the SIZE of the
+  inflation term: phase timers close the wall budget to ~100% in every
+  cell (setup+load+stream+model+harvest ≈ main to 0.1s), but CPU-clock
+  inflation is 13.6–15.5× wall (not the bet's 1.38×) and PIN-RESISTANT
+  (OMP/MKL/torch pins change nothing on the 16-core machine) — beast's
+  CPU clock measures fiction; every historical CPU-ratio there compared
+  two fictions. (b) FALSIFIED, and the truth is better than the bet:
+  skip cost is a STEP, not a line — 0.016s at 188 docs, 9.4s at 509,
+  9.4s at 1056 (identical; reproduced at 10.3s in the prod cell) — a
+  fixed fast-forward toll past a shard threshold, NOT proportional to
+  the life replayed. Point bet (skip/doc ≈ stream/doc) dies with it.
+  (c) PASS at production cadence, the verdict of the whole thread:
+  cache-replay compute = 1.032× live (bar ≤1.1), stream-replay 1.098×,
+  medians vs medians after warmup, parity bit-equal in every cell
+  (6.020187 = 6.020187). THE 2× REPLAY LAW WAS NEVER A LAW — it was
+  CPU-clock inflation × toy-cadence environment dominance × a fixed
+  skip step. P39(c) re-derived: convergence failed against an
+  instrument fiction; on wall medians replay tracks live at 3%.
+  (d) LOCKED PREDICTION (before the run, queued behind D2 on the Mac):
+  equilibrium sync-debt T∞ = rate_A·fix/(1 − rate_A·c_B); with P50
+  parameters (fix ≈ 16s, c_B ≈ 3.7ms at stage cadence, rate_A = 20
+  chunks/s) the Möbius stage should converge to T∞ ≈ 346 chunks of
+  standing lag, band 280–420 (±20%), INDEPENDENT of cycle length. Two
+  test levels registered: the formula against in-run-measured (fix,
+  c_B), and the parameter transfer against the P50 values.

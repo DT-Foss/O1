@@ -46,3 +46,18 @@ checks. Full audit: results/cadence_audit.json. Enforcement: portable_organism
 and moebius_stage now expose and forward --batch/--chunk-size; every new
 harness that reports a cost ratio must embed its cadence config in its
 result JSON.
+
+## 2026-08-05 — CPU time on multi-core machines is not a work measure
+
+P50 measured it directly: on beast (16 cores), process CPU time runs at
+13.6–15.5× wall for single-threaded torch work, and the inflation
+survives torch.set_num_threads(1) AND OMP/MKL/OPENBLAS env pins set
+before import. The pool spins regardless; RUSAGE_SELF counts every
+spinning thread. Any historical CPU-time ratio from beast compared two
+fictions (P39's "replay ≈2× live CPU" among them — decomposed and
+retired by P50). Standing rule: cost claims use WALL time, per-chunk
+MEDIANS after warmup, on both sides of any ratio; CPU time may be
+recorded but never gates a verdict on a multi-core machine. Digest
+design corollary (found by DECISIVE 1): run digests must hash only
+chunk-indexed events, never wall-clock-driven ones (eval_every_s lines
+made two bit-identical 50M runs hash differently).

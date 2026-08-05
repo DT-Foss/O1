@@ -1,0 +1,195 @@
+{
+  "p50": true,
+  "smoke": false,
+  "cadence": {
+    "d_model": 64,
+    "batch": 4,
+    "chunk": 32
+  },
+  "T": 200,
+  "snaps": [
+    300,
+    1500,
+    3000
+  ],
+  "a_ref_live_rate": {
+    "n_sampled": 480,
+    "median_wall_per_chunk": 0.003098,
+    "median_cpu_per_chunk": 0.042109,
+    "median_stream_wall": 7.1e-05,
+    "median_model_wall": 0.003026
+  },
+  "a_pin_live_rate": {
+    "n_sampled": 3180,
+    "median_wall_per_chunk": 0.003539,
+    "median_cpu_per_chunk": 0.054806,
+    "median_stream_wall": 7.7e-05,
+    "median_model_wall": 0.003453
+  },
+  "cells": {
+    "Z1": {
+      "cell": "Z1",
+      "mode": "replay",
+      "env_pinned": false,
+      "resume": "snap_300.pt",
+      "T": 200,
+      "snapshot_stream_docs": 188,
+      "setup_wall_s": 5.368,
+      "load_wall_s": 1.06,
+      "first_doc_wall_s": 0.0,
+      "first_doc_cpu_s": 0.0,
+      "phases": {
+        "stream_wall": 0.015,
+        "stream_cpu": 0.184,
+        "model_wall": 1.262,
+        "model_cpu": 17.628,
+        "harvest_wall": 0.007
+      },
+      "main_wall_s": 7.713,
+      "main_cpu_s": 24.192,
+      "final_heldout": 6.231904,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 8.892
+    },
+    "Z2": {
+      "cell": "Z2",
+      "mode": "replay",
+      "env_pinned": true,
+      "resume": "snap_300.pt",
+      "T": 200,
+      "snapshot_stream_docs": 188,
+      "setup_wall_s": 5.227,
+      "load_wall_s": 1.072,
+      "first_doc_wall_s": 0.0,
+      "first_doc_cpu_s": 0.0,
+      "phases": {
+        "stream_wall": 0.016,
+        "stream_cpu": 0.367,
+        "model_wall": 1.442,
+        "model_cpu": 19.886,
+        "harvest_wall": 0.008
+      },
+      "main_wall_s": 7.768,
+      "main_cpu_s": 24.965,
+      "final_heldout": 6.231904,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 8.891
+    },
+    "Z3a": {
+      "cell": "Z3a",
+      "mode": "replay",
+      "env_pinned": true,
+      "resume": "snap_1500.pt",
+      "T": 200,
+      "snapshot_stream_docs": 509,
+      "setup_wall_s": 5.15,
+      "load_wall_s": 1.096,
+      "first_doc_wall_s": 0.0,
+      "first_doc_cpu_s": 0.0,
+      "phases": {
+        "stream_wall": 9.398,
+        "stream_cpu": 10.471,
+        "model_wall": 1.448,
+        "model_cpu": 20.268,
+        "harvest_wall": 0.009
+      },
+      "main_wall_s": 17.103,
+      "main_cpu_s": 35.399,
+      "final_heldout": 5.930991,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 18.43
+    },
+    "Z3b": {
+      "cell": "Z3b",
+      "mode": "replay",
+      "env_pinned": true,
+      "resume": "snap_3000.pt",
+      "T": 200,
+      "snapshot_stream_docs": 1056,
+      "setup_wall_s": 5.15,
+      "load_wall_s": 1.151,
+      "first_doc_wall_s": 0.0,
+      "first_doc_cpu_s": 0.0,
+      "phases": {
+        "stream_wall": 9.381,
+        "stream_cpu": 10.102,
+        "model_wall": 1.337,
+        "model_cpu": 18.703,
+        "harvest_wall": 0.009
+      },
+      "main_wall_s": 17.029,
+      "main_cpu_s": 33.633,
+      "final_heldout": 5.794506,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 18.426
+    },
+    "Z4": {
+      "cell": "Z4",
+      "mode": "cache",
+      "env_pinned": true,
+      "resume": "snap_300.pt",
+      "T": 200,
+      "snapshot_stream_docs": 188,
+      "setup_wall_s": 5.273,
+      "load_wall_s": 1.039,
+      "first_doc_wall_s": null,
+      "first_doc_cpu_s": null,
+      "phases": {
+        "stream_wall": 0.0,
+        "stream_cpu": 0.0,
+        "model_wall": 1.306,
+        "model_cpu": 18.332,
+        "harvest_wall": 0.007
+      },
+      "main_wall_s": 7.644,
+      "main_cpu_s": 23.232,
+      "final_heldout": 6.231904,
+      "reconnects": 0,
+      "subprocess_total_wall_s": 8.942
+    }
+  },
+  "ratios": {
+    "Z1_vs_ref": {
+      "wall_ratio": 12.4484,
+      "cpu_ratio": 2.8725
+    },
+    "Z2_vs_pin": {
+      "wall_ratio": 10.9749,
+      "cpu_ratio": 2.2776
+    },
+    "Z3a_vs_pin": {
+      "wall_ratio": 24.1636,
+      "cpu_ratio": 3.2295
+    },
+    "Z3b_vs_pin": {
+      "wall_ratio": 24.0591,
+      "cpu_ratio": 3.0684
+    },
+    "Z4_vs_pin": {
+      "wall_ratio": 10.7997,
+      "cpu_ratio": 2.1195
+    }
+  },
+  "parity_Z2_Z4_heldout": {
+    "Z2": 6.231904,
+    "Z4": 6.231904,
+    "equal": true
+  },
+  "skip_points": [
+    {
+      "snap": 300,
+      "snapshot_stream_docs": 188,
+      "first_doc_wall_s": 0.0
+    },
+    {
+      "snap": 1500,
+      "snapshot_stream_docs": 509,
+      "first_doc_wall_s": 0.0
+    },
+    {
+      "snap": 3000,
+      "snapshot_stream_docs": 1056,
+      "first_doc_wall_s": 0.0
+    }
+  ]
+}

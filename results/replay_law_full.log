@@ -1,0 +1,24 @@
+[replay_law] A_ref (env none) ...
+Device: cpu
+[A_ref] 500 chunks | med wall/chunk 0.003098s | docs 188
+[replay_law] A_pin (env pinned, snaps 300,1500,3000, caches) ...
+Device: cpu
+[A_pin] 3200 chunks | med wall/chunk 0.003539s | docs 1143
+[replay_law] Z1 repro (replay, env none) ...
+Device: cpu
+[Z1] T=200 replay | main 7.713s wall 24.192s cpu | first_doc 0.0s | heldout 6.2319
+[replay_law] Z2 (replay, env pin) ...
+Device: cpu
+[Z2] T=200 replay | main 7.768s wall 24.965s cpu | first_doc 0.0s | heldout 6.2319
+[replay_law] Z3a (replay, env pin, snap 1500) ...
+Device: cpu
+[Z3a] T=200 replay | main 17.103s wall 35.399s cpu | first_doc 0.0s | heldout 5.9310
+[replay_law] Z3b (replay, env pin, snap 3000) ...
+Device: cpu
+[Z3b] T=200 replay | main 17.029s wall 33.633s cpu | first_doc 0.0s | heldout 5.7945
+[replay_law] Z4 (cache, env pin) ...
+Device: cpu
+[Z4] T=200 cache | main 7.644s wall 23.232s cpu | first_doc Nones | heldout 6.2319
+Device: cpu
+[replay_law] Z1 repro cpu_ratio 2.8725 wall 12.4484 | Z4 cache cpu_ratio 2.1195 | parity True -> /root/o1lab/results/replay_law.json
+P50_BEIDE_FERTIG

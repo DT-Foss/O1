@@ -1,0 +1,18 @@
+[replay_law] A_ref (env none) ...
+Device: cpu
+[A_ref] 100 chunks | med wall/chunk 0.003698s | docs 94
+[replay_law] A_pin (env pinned, snaps 60, caches) ...
+Device: cpu
+[A_pin] 100 chunks | med wall/chunk 0.003707s | docs 94
+[replay_law] Z1 repro (replay, env none) ...
+Device: cpu
+[Z1] T=40 replay | main 6.338s wall 8.992s cpu | first_doc 0.0s | heldout 6.3404
+[replay_law] Z2 (replay, env pin) ...
+Device: cpu
+[Z2] T=40 replay | main 6.346s wall 7.481s cpu | first_doc 0.0s | heldout 6.3404
+[replay_law] Z4 (cache, env pin) ...
+Device: cpu
+[Z4] T=40 cache | main 6.73s wall 7.969s cpu | first_doc Nones | heldout 6.3404
+Device: cpu
+[replay_law] Z1 repro cpu_ratio 4.048 wall 42.8475 | Z4 cache cpu_ratio 3.5816 | parity True -> /root/o1lab/results/replay_law_smoke.json
+P50_SMOKE_OK

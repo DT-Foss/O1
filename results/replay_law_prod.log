@@ -1,0 +1,11 @@
+[replay_law:prod] A_pin cadence 8/64/128, snap 300, T=200 ...
+Device: cpu
+[A_pin] 500 chunks | med wall/chunk 0.007983s | docs 666
+[replay_law:prod] Z2p (replay, pin) ...
+Device: cpu
+[Z2p] T=200 replay | main 19.008s wall 51.774s cpu | first_doc 0.0s | heldout 6.0202
+[replay_law:prod] Z4p (cache, pin) ...
+Device: cpu
+[Z4p] T=200 cache | main 8.809s wall 39.709s cpu | first_doc Nones | heldout 6.0202
+[replay_law:prod] live 0.007793 | replay/live 1.0982 | cache/live 1.032 | parity True -> /root/o1lab/results/replay_law_prod.json
+P50_PROD_FERTIG
