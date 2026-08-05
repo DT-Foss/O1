@@ -1,0 +1,100 @@
+{
+  "p52": true,
+  "smoke": false,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "engine": "vizdoom my_way_home GRAY8 160x120 skip4",
+  "token_map": "15x16 @ 12 levels + SEP pad = 256",
+  "n_chunks": 24000,
+  "n_entries": 24324,
+  "file_sha256": "6fb82fa9b944a410583d4720e423875482bf254c9db0f51e4624991ffb006ddb",
+  "series_tail": [
+    {
+      "chunk": 23200,
+      "s": 0.5334,
+      "rss": 0.001
+    },
+    {
+      "chunk": 23400,
+      "s": 0.4442,
+      "rss": 0.001
+    },
+    {
+      "chunk": 23600,
+      "s": 0.4604,
+      "rss": 0.001
+    },
+    {
+      "chunk": 23800,
+      "s": 0.4821,
+      "rss": 0.001
+    },
+    {
+      "chunk": 24000,
+      "s": 0.617,
+      "rss": 0.001
+    }
+  ],
+  "p52a": {
+    "plateau_s": 0.8112,
+    "tail_s": 0.628,
+    "drop": 0.2259,
+    "rss_span_gb": 0.0,
+    "pass": false
+  },
+  "p52b": {
+    "nll_own_routes": 0.8346,
+    "nll_fresh_route": 0.0785,
+    "delta": -0.7561,
+    "pass": false
+  },
+  "p52c": {
+    "picks": [
+      {
+        "lane": 2,
+        "episode": 11,
+        "frame": 456,
+        "exact": false
+      },
+      {
+        "lane": 7,
+        "episode": 1,
+        "frame": 300,
+        "exact": false
+      },
+      {
+        "lane": 4,
+        "episode": 0,
+        "frame": 131,
+        "exact": true
+      },
+      {
+        "lane": 1,
+        "episode": 11,
+        "frame": 223,
+        "exact": false
+      },
+      {
+        "lane": 3,
+        "episode": 3,
+        "frame": 481,
+        "exact": false
+      }
+    ],
+    "exact": "1/5",
+    "pass": false
+  },
+  "p52d": {
+    "nll_with_file": 0.1231,
+    "nll_without": 0.1037,
+    "delta": -0.0194,
+    "pass": false
+  }
+}

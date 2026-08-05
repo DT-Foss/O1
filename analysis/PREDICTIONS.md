@@ -1258,3 +1258,21 @@ artifact is a number about the defaults, not about the system.
   rebuilt before any other clause is read; (d) fails while (a)+(b)
   pass ⇒ the file-transfer loop needs the P47 dosing curve on this
   substrate — registered as its own follow-up, not patched in.
+  **P52 INTERIM (same night): the (c) falsifier FIRED as registered,
+  and its named consequence executes.** Full run: provenance 1/5 — and
+  the one exact pick is the one with episode = 0, the smoke's regime
+  (5/5 there, all episode-0). Isolation test on the engine confirms the
+  mechanism to the letter: set_seed + new_episode on a RUNNING engine
+  yields a DIFFERENT episode than the same seed on a FRESH engine
+  (5/5 frame hashes diverge) — engine state survives new_episode, so
+  per-episode re-seeding did not isolate. Per the registration, the
+  coordinate design is rebuilt BEFORE any other clause is read: the
+  life path now closes and re-creates the engine at every episode
+  boundary (one factory for life and replay — identical by
+  construction; ~10s total cost over the life). The (a)/(b)/(d)
+  numbers of the failed run are recorded but UNREAD as clauses — (b)'s
+  own-route reconstruction used the broken coordinates, so its frames
+  were not the organism's own. Artifact of the fired falsifier:
+  results/vizdoom_life.json (rss series additionally carries a
+  KB-vs-bytes instrument bug on Linux, fixed in the same pass). Rerun
+  in flight.
