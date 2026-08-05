@@ -818,3 +818,22 @@ Each P-item gets CONFIRMED / PARTIAL / FALSIFIED in the harvest documents,
 with the measured number beside the predicted interval. A falsified
 prediction is a measurement — the register exists so we can't unknow what we
 expected.
+
+## Cadence audit (2026-08-05, results/cadence_audit.json)
+
+Systematic sweep triggered by the P39 lesson (a "d=128" run that silently
+measured toy chunk weight): every registered result was classified by
+whether per-chunk cost sits in a denominator of its claim, and whether its
+cadence was explicit and recorded. Outcome: **P39's cost checks were the
+only affected claims, and they were already re-measured and falsified as
+registered before this audit.** P38's registered checks are exactness /
+heldout claims and are unaffected — but its descriptive timing
+side-numbers (transfer_s, catchup_s) are toy-weight and must not be quoted
+as production costs. The Möbius parity (delta 0.0 at equal chunk count) is
+an exactness claim and stands; the sync-debt magnitudes are toy-weight
+dynamics, and the rate-matched rerun must set its cadence explicitly
+(moebius_stage.py now forwards --batch/--chunk-size; defaults unchanged).
+pos_run, holo_*, scale_to_*, lifetime: clean — cadence always explicit and
+recorded, or no cost ratio in any claim. Standing rule now in DECISIONS.md:
+a cost-ratio metric without (batch, chunk, d_model) recorded in the same
+artifact is a number about the defaults, not about the system.

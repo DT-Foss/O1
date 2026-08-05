@@ -203,6 +203,7 @@ def launch_source_a(args, out_dir):
         "--chunks", str(args.a_total_chunks),
         "--ckpt-every", str(args.sync_window),
         "--d-model", str(args.d_model),
+        "--batch", str(args.batch), "--chunk-size", str(args.chunk_size),
         "--out-dir", out_dir,
     ]
     printable = " ".join(shlex.quote(c) for c in cmd)
@@ -236,7 +237,8 @@ def beast_catchup(args, snapshot_remote_path, chunks, cycle_dir_remote, tag, dry
         f"--chunks {int(chunks)} "
         f"--out-dir {shlex.quote(cycle_dir_remote)} "
         f"--result-json {shlex.quote(remote_result_json)} "
-        f"--d-model {int(args.d_model)}"
+        f"--d-model {int(args.d_model)} "
+        f"--batch {int(args.batch)} --chunk-size {int(args.chunk_size)}"
     )
     t0 = time.time()
     proc = _run_ssh(remote_cmd, dry_run, f"B {tag} (chunks={chunks})")
@@ -454,6 +456,13 @@ def build_argparser():
     ap = argparse.ArgumentParser(description="Moebius stage: full-live cross-machine "
                                              "standing-replica orchestration (P39d), Mac (A) <-> beast (B)")
     ap.add_argument("--d-model", type=int, default=128, help="organism width, forwarded to every subprocess")
+    ap.add_argument("--batch", type=int, default=4,
+                    help="chunk-weight axis, forwarded to every subprocess (A and B). Default 4 = "
+                         "portable_organism's toy default, i.e. exactly what every staging so far "
+                         "ran at — the flag exists so the cadence is CHOSEN and RECORDED, never "
+                         "inherited silently (the P39 audit lesson, 2026-08-05)")
+    ap.add_argument("--chunk-size", type=int, default=32,
+                    help="tokens per chunk, forwarded to every subprocess. See --batch")
     ap.add_argument("--cycles", type=int, default=3, help="number of snapshot+catchup+lockstep cycles")
     ap.add_argument("--sync-window", type=int, default=40,
                     help="A's --ckpt-every AND the target chunk gap per cycle (the 'sync window')")
@@ -538,6 +547,7 @@ def main():
         "--chunks", str(args.a_total_chunks), "--ckpt-every", str(args.sync_window),
         "--eval-every", str(args.sync_window), "--stream-metrics",
         "--d-model", str(args.d_model),
+        "--batch", str(args.batch), "--chunk-size", str(args.chunk_size),
         "--out-dir", a_out_dir,
     ]
     if args.dry_run:

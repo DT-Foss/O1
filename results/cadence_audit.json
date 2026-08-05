@@ -1,0 +1,46 @@
+{
+  "audit": "Cadence audit (MS-G), 2026-08-05: which registered results have per-chunk cost in a denominator, and which of those ran at unrecorded toy chunk weight (B=4/K=32)?",
+  "trigger": "P39 (a)/(c): exp_d forwarded only --d-model to its subprocesses, so every 'd=128' run measured toy chunk weight regardless of what the parent was told. Ratios roughly halved once measured at real cadence (17.9->7.1 / 3.79->2.2), and both checks remained failed \u2014 bc9bb3c, d0123a1.",
+  "method": "Scanned every results/*.json for embedded (batch, chunk) configs; grepped PREDICTIONS.md for cost-ratio metrics (ms/chunk, chunk slots, cpu/wall ratios, tok/s, stall, replay, snapshot cost); classified each registered claim by whether per-chunk cost sits in its denominator.",
+  "findings": [
+    {
+      "family": "P39 (a)/(c)/(d) \u2014 stop-free migration cost checks",
+      "cost_in_denominator": true,
+      "ran_at": "toy 4/32 (silently, unrecorded)",
+      "status": "RESOLVED before this audit: re-measured at production cadence on two machines; falsified as registered; register updated (7d85218)."
+    },
+    {
+      "family": "P38 a/b/c \u2014 migration / kill+rejoin / offline-as-sleep",
+      "cost_in_denominator": false,
+      "ran_at": "toy 4/32 (unrecorded)",
+      "status": "CLAIMS UNAFFECTED: every registered P38 check is an exactness or heldout comparison (six-decimal behavioral identity, bit-identical catch-up, sleep-vs-idle heldout), none gates on a cost ratio. The descriptive timing side-numbers in those artifacts (transfer_s, catchup_s) ARE toy-weight and must not be quoted as production costs."
+    },
+    {
+      "family": "M\u00f6bius staging (P39d expectation: sync debt bounded)",
+      "cost_in_denominator": "partially \u2014 debt dynamics depend on relative machine rates, which depend on chunk weight",
+      "ran_at": "toy 4/32 (moebius_stage.py forwarded only --d-model until today)",
+      "status": "PARITY UNAFFECTED (delta 0.0 at chunk 560 is an exactness claim). The sync-debt magnitudes and B-overtakes-A dynamics are toy-weight quantities; the rate-matched rerun (MS-C+I) must set the cadence explicitly. moebius_stage.py now forwards --batch/--chunk-size (defaults unchanged)."
+    },
+    {
+      "family": "pos_run family (P1-P7, P42, width curve)",
+      "cost_in_denominator": "tok/s and grad-token fractions appear, but batch/chunk were ALWAYS explicit CLI args recorded in every status JSON",
+      "ran_at": "production 8/64, recorded",
+      "status": "CLEAN."
+    },
+    {
+      "family": "holo_* / MQAR harnesses",
+      "cost_in_denominator": false,
+      "ran_at": "their own (batch,chunk) semantics (e.g. 32/16), recorded in-artifact",
+      "status": "NOT APPLICABLE: claims are recall/fidelity, never cost ratios."
+    },
+    {
+      "family": "scale_to_a_million / _billion, lifetime run",
+      "cost_in_denominator": false,
+      "ran_at": "own explicit configs (8/8192 eval; 8/64 lifetime, recorded in run header)",
+      "status": "CLEAN: memory and PPL claims; wall-clock numbers are descriptive."
+    }
+  ],
+  "systemic_gap_found": "The portable_organism result JSONs never RECORDED their cadence at all \u2014 the config lived only in snapshots. Any future reader auditing those artifacts cannot see the 4/32 from the result file itself. Rule added to DECISIONS.md.",
+  "rule": "Any metric with per-chunk cost in its denominator is meaningless without (batch, chunk, d_model) recorded IN THE SAME ARTIFACT. A run inherits its cadence silently -> the number it produces is about the default, not about the system.",
+  "conclusion": "One family affected and already resolved (P39 cost checks); one family partially affected in its side-quantities (M\u00f6bius debt dynamics; parity untouched); everything else either never had cost in a denominator or always recorded its cadence. No further register entry requires correction."
+}

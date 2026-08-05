@@ -31,3 +31,18 @@ One line per decision, in order. Context: BRIEFING_POS.md + David's session dire
   ONE regime — fairness holds), but cross-regime numeric comparisons are
   not meaningful; (3) rank_sweep.py runs at torch default threads; beast
   striping compensates with fewer parallel stripes (4 stripes x 4 threads).
+
+## Standing measurement rule: the cadence axis (2026-08-05, MS-G audit)
+
+Any metric with per-chunk cost in its denominator — stall ratios, replay
+speed, snapshot cost in "chunk slots", tok/s comparisons — is meaningless
+unless (batch, chunk, d_model) are (a) set explicitly by the run and
+(b) recorded IN THE SAME ARTIFACT the metric ships in. Width alone does not
+make a chunk compute-heavy: chunk WEIGHT is B×K, and a subprocess that
+inherits module defaults silently measures the defaults, not the system.
+This killed P39 (a)/(c) twice — first as toy-cadence inflation (17.9×/3.79×
+→ 7.1×/2.2× at real cadence), then as a real residual that falsified both
+checks. Full audit: results/cadence_audit.json. Enforcement: portable_organism
+and moebius_stage now expose and forward --batch/--chunk-size; every new
+harness that reports a cost ratio must embed its cadence config in its
+result JSON.
