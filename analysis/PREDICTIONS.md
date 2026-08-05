@@ -94,7 +94,7 @@ with explicit references back to each P-number.
   ≥ off + 10pp), off drops to ~chance. The smoke already fired the
   pre-written alternative branch (BOTH arms generalize at 600 iters); the
   full-budget question is whether the v3 phase advantage (+25 pp) reappears
-  on train keys and extends to test keys. Honest state: the channel-
+  on train keys and extends to test keys. Measured state: the channel-
   allocation lookup story is already wounded; embedding geometry may carry
   key identity for both mechanisms.
 - **P13 — γ-knee mobility** (src/holo_gap_knee.py): full-sequence training
@@ -121,7 +121,7 @@ with explicit references back to each P-number.
 - **P17 — does the phase advantage return with capacity?** (M6): at P_max=64
   (where M1 found holo==off at d=64), scaling d_model to 256 restores
   holo−off ≥ **+15 pp** at G≤32. If it does NOT return, the v3 phase
-  advantage is a small-key-space phenomenon — scored honestly either way.
+  advantage is a small-key-space phenomenon — scored as registered either way.
 
 ## Wave 3 — the dynamic portfolio opens (registered day 1 ~15:05, see analysis/MOONSHOTS.md)
 
@@ -199,7 +199,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   ≥ 0.9 — the state CODE (which channel carries the bit, at what scale) is
   stable across training distance once the carrier has locked; (c) the
   channel-shuffled state control collapses to chance at both (a) and (b). If
-  (b) fails while (a) passes, the honest reading is: state code drifts with
+  (b) fails while (a) passes, the reading is: state code drifts with
   training distance, and a state-alignment map becomes the next disclosed
   primitive — either outcome is the measurement.
 
@@ -256,7 +256,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   the 512 knee was always pure kickstart+magnorm EXTRAPOLATION from a
   gap-2-trained model. So the regularizer only ever acted on 2 filler
   positions; α-behavior on long gaps was never trained in any arm. The
-  registered lever cannot reach the mechanism in this regime — honest kill.
+  registered lever cannot reach the mechanism in this regime — clean kill.
 - **P29 — inference-time α-clamp, the direct pollution causality test (MS12b,
   registered before the build):** on the M3-recipe model (λ=0, gap-2-trained,
   knee 512), clamping α(x) toward 0 on filler positions AT EVAL ONLY (state
@@ -264,14 +264,14 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   φ-drift at G=512 drops below 0.3 rad (untouched: ~1.3); (b) the recall
   knee moves to ≥ 1024; (c) recall at G≤128 is unchanged within 5 pp (the
   clamp must not damage in-range recall). If (b) fails while (a) passes,
-  pollution is real but NOT the binding constraint at 512+ — the honest
+  pollution is real but NOT the binding constraint at 512+ — the
   alternative (magnitude floor? phase SNR?) becomes the next measurement.
 
 - **P29 SCORED (results/holo_alpha_clamp.json): (a) CONFIRMED — the eval
   clamp eliminates trained filler drift exactly (0.0 rad @512, both seeds;
   the zero-drive law demonstrated on the trained model); (c) CONFIRMED
   (in-range recall −5pp, at tolerance); (b) NOT MET — the clamped knee (640
-  mean) is not higher than unclamped (768). The honest fallback fired, with
+  mean) is not higher than unclamped (768). The registered fallback fired, with
   the mechanism visible in the raw data: WITHOUT filler writes the magnitude
   collapses unfed (mag_ratio → 0.0007 @2048, snr-alive 1.0→0.09) while
   unclamped filler writes REFRESH it (30–80×) even as they pollute the
@@ -331,7 +331,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   unk_rate 0.44 (WT-2 vocab on Python), so absolute code-NLL levels are
   diluted; the WT-2 forgetting signal — the core measurement — is clean,
   and all regimes share the same eval.
-- **P27 SCORED (results/hot_swap_growth_mig.json, 1.2M+1.2M on beast):**
+- **P27 SCORED (results/hot_swap_growth_mig.json, 1.2M+1.2M on the x86 runner):**
   (a) CONFIRMED (commutation 29/29; full-run gate 5.7e-6); (c) CONFIRMED —
   growth beats restart by +0.166 (third independent replication: +0.127
   fresh-Adam Mac, +0.152 smoke, +0.166 here). (b) FALSIFIED at the 1.2M
@@ -340,13 +340,13 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   horizon (~0.5M tokens). The real, robust gain of moment migration is the
   transient itself: post-surgery gap 0.046 → **0.0035** (13× smaller) —
   migration makes growth seamless, not faster-converging.
-- **Seed-hardening correction (results/holo_magread_seeds23.json, beast):**
+- **Seed-hardening correction (results/holo_magread_seeds23.json, the x86 runner):**
   the M3 "knee 512, seed-stable" claim was n=2. At n=4 the M3-recipe knee
   is 512/512/128–256/128–256 (seeds 0–3) and the V1/V2/V3 variants do not
   order consistently within seeds. What replicates: the v1→v3 repair, the
   interventions' direction, and the clamp+refresh interaction jump; the
   absolute knee position is seed-dependent (also seen in P30: 4096 vs 256).
-  Documents updated accordingly — the honest unit is the intervention
+  Documents updated accordingly — the correct unit is the intervention
   effect, not the knee coordinate.
 - **P28 smoke note (results/pos_auto_q_smoke.json — not scored, method
   finding):** the q-controller saturates at the 0.95 clip in ALL phases —
@@ -365,7 +365,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   and forgets MORE than fixed q (+0.401 vs +0.350) at equal code
   plasticity (0.564 vs 0.565). (a) also out: both arms gate ~0.45–0.49 in
   phase 1 (the registered band was too tight for a warm-snapshot resume).
-  Honest verdict: rate-homeostasis is the WRONG controller — the fixed
+  Verdict: rate-homeostasis is the WRONG controller — the fixed
   quantile's shock response (gate the top surprises, whatever the rate) is
   the better curiosity policy. A surprise-LEVEL target instead of a rate
   target would be a new registered question, not a rescue of this one.
@@ -436,7 +436,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   recurrence-seeded protocol as a NEW registered experiment. Instrument
   dimensioning (max_per_chunk=2, spike_min_nll=7.0) deliberately left AS
   SPEC'D — no post-smoke retuning.
-  **SCORED 2026-07-24 (full on core, results/chimera_full.json; 150
+  **SCORED 2026-07-24 (full on the second x86 runner, results/chimera_full.json; 150
   chunks/phase, 5 arms):** instrument deviation named first: the
   registered "matched gradient tokens" clause is unenforceable for gated
   arms (the gate chooses); arms ran at matched CHUNKS — chimera used
@@ -466,7 +466,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   the scalar arm inverts to ~1.0 (measured anchor: D_eff≈1.02); (b) the
   phase arm's capacity cliff sits at load ≈ 2K/D, the scalar's at ≈ K/D;
   (c) attention validity gate at ~1.0 throughout. If D_eff stays ~1, the
-  phase's rent is NOT rank — the honest alternative (SNR-based) is stated.
+  phase's rent is NOT rank — the alternative (SNR-based) is stated.
   **AMENDED before the sweep ran (day 4 ~08:15), reason on record:** the
   0.1406 anchor's generating script is lost (two documented reconstruction
   attempts land at chance; the artifact paper/evidence_companion/
@@ -476,7 +476,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   (a') D_eff_phase ≥ 2× D_eff_scalar at every K where phase clears 3×
   chance, and D_eff_phase(K=8) consistent with the measured 8.9% ceiling
   (≈0.6 model-wide); (b') the phase cliff sits at ≥2× the scalar cliff-K;
-  (c) unchanged. Same law, honest instrument.
+  (c) unchanged. Same law, corrected instrument.
   **SCORED 2026-07-24 (full grid on the reference Mac,
   results/rank_sweep_final.json; K∈{2,4,8,16,32} × 4 arms × 4 seeds):**
   (c) CONFIRMED — attention validity min recall 0.9898, the tasks are
@@ -521,7 +521,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   262k. (c) as-written NOT MET at this run's eval power (max null dev
   3.75pp vs the 3pp line at eval_batch=100, where 2σ ≈ 4.9pp —
   underpowered, anticipated; P36's dedicated batch-400 nulls stand and
-  are the authority). SUMMARY: silence extrapolation's honest boundary is
+  are the authority). SUMMARY: silence extrapolation's measured boundary is
   now measured on BOTH instruments — F6 gains two precise walls (MQAR
   16k, beacon 65k→262k) in place of an open-ended promise. Method
   footnote: this measurement cost three OOM kills with two distinct
@@ -541,11 +541,11 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   chunks EARLIER at the domain boundary than 1-step surprise (the
   early-warning claim); (b) gating on a mix of 1-step and H-step surprise
   at matched gradient tokens forgets ≤ the 1-step gate's forgetting with
-  plasticity within 10%; (c) the deposited-prediction mechanism is honest:
+  plasticity within 10%; (c) the deposited-prediction mechanism is sound:
   shuffling the deposited predictions destroys (a) and (b). If (a) holds
   but (b) does not, the horizon signal is a detector, not yet a teacher —
   reported as such.
-  **SCORED 2026-07-24 (full on core, results/horizon_pos_full.json):**
+  **SCORED 2026-07-24 (full on the second x86 runner, results/horizon_pos_full.json):**
   (a) FALSIFIED — the H=8 detector fired 65 chunks LATER than 1-step
   surprise at the phase1→2 boundary (fire idx 304 vs 239) and never fired
   at phase2→3. No early warning at this scale — consistent with the
@@ -580,7 +580,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   realized second-stream firing rate within 2pp of horizon_gate's.
   Either outcome is a win: diversity ⇒ a near-free new F1 organ (multiple
   gate tempers); content ⇒ horizon-v2 is justified sharper.
-  **SCORED 2026-07-24 evening (full on core,
+  **SCORED 2026-07-24 evening (full on the second x86 runner,
   results/horizon_p40_full.json; head-init seeded, min_lag=50, fallback
   11.1% = the designed cold-start window):** the registered point call is
   FALSIFIED in the most informative direction — retained_fraction is
@@ -645,7 +645,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   contrast. phase_chunks for the full raised to 200 (top rung trains ≥70
   steps before the boundary). Scoring happens from the logged raw curves
   of both arms (fully recorded), not the in-run pass/fail block.
-  **SCORED 2026-07-24 night (full on core, phase_chunks=200,
+  **SCORED 2026-07-24 night (full on the second x86 runner, phase_chunks=200,
   results/retro_pos_full.json, contrast-based per the amendment):** the
   instrument reads NULL — and the null teaches. Per-rung REAL−SHUFFLED
   contrasts at end-of-phase-1: +0.030/+0.059/+0.021/+0.021, each within
@@ -696,8 +696,8 @@ in advance — recorded here with that caveat, scored with the same rigor.*
 - **P38 — the portable organism (MS16, src/portable_organism.py, registered
   before any build; David's seeding insight, day 4):** three compositions,
   each against a never-moved control at matched token budgets: (a) LIVE
-  CROSS-ARCHITECTURE MIGRATION — a running organism checkpointed on the Mac
-  (ARM) resumes on beast (x86) mid-stream; its held-out trajectory rejoins
+  CROSS-ARCHITECTURE MIGRATION — a running organism checkpointed on the ARM machine
+  (ARM) resumes on the x86 runner (x86) mid-stream; its held-out trajectory rejoins
   the control's within 0.02 nats inside 1M tokens (bit-determinism is lost
   across BLAS — behavioral equivalence is the claim); (b) KILL+REJOIN — of
   two replicas sharing an index (P31 harness), one is killed for K chunks
@@ -711,15 +711,15 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   **P38a SCORED (day 4 ~09:15): CONFIRMED far beyond the registered bar.**
   Local gate: checkpoint→new-process→resume is BIT-identical (line-by-line
   chunk log). Cross-architecture: a live organism checkpointed mid-stream on
-  the Mac (ARM) and resumed on beast (x86) ends at heldout 6.182391 —
+  the ARM machine and resumed on the x86 runner (x86) ends at heldout 6.182391 —
   identical to six decimals with the never-migrated control (6.182391),
   with identical gradient tokens (17,664: every gate decision matched).
   The only divergence is the bit-level digest (BLAS rounding differs across
   ISAs) and it does NOT propagate into behavior. The registered bar was
   "rejoin within 0.02 nats inside 1M tokens"; the measurement is immediate
   behavioral identity. Live cross-ISA migration is a solved, free operation.
-  (b) and (c) full runs in flight on core; smoke already shows the
-  index-cover mechanism (shared ≤ private on rejoin) and an honest
+  (b) and (c) full runs in flight on the second x86 runner; smoke already shows the
+  index-cover mechanism (shared ≤ private on rejoin) and a clean
   small-budget boundary on offline-sleep (toy span pools are not
   representative — full budget decides).
 
@@ -743,10 +743,10 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   source keeps living gives bit-identical lockstep (chunk-log tail matches,
   heldout 6.171316 == 6.171316, local; six decimals cross-ISA per P38a). (a)
   the snapshot chunk costs 27.8 ms absolute (Torch serialization) — a
-  ratio-10 blip only against beast's 2.7 ms baseline, NOT a perceptible
+  ratio-10 blip only against the x86 runner's 2.7 ms baseline, NOT a perceptible
   stall; the metric conflates I/O latency with downtime and is being
   re-measured at realistic d_model where per-chunk cost dominates. (c)
-  convergence and (d) iterated re-ran at d_model=128 on quiet beast: same
+  convergence and (d) iterated re-ran at d_model=128 on the quiet x86 runner: same
   picture (snapshot 35 ms absolute vs 4 ms chunks; B/A cpu 2.3 with the
   fixed process-start amortized over toy-sized work). VERDICT on the
   metrics themselves: (a) and (c) as registered are STRUCTURALLY
@@ -772,8 +772,8 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   source produces** — (c) convergence holds with room. Labeled plainly:
   this is measured-constant arithmetic against a measured cadence, not a
   new in-situ measurement; the fully-live confirmation (and (d) iterated)
-  merges into the Möbius cross-machine staging (A on the Mac, B on beast,
-  real network in the window), queued behind beast's beacon finale.
+  merges into the Möbius cross-machine staging (A on the ARM machine, B on the x86 runner,
+  real network in the window), queued behind the x86 runner's beacon finale.
   **P39 IN-SITU AT PRODUCTION CADENCE (2026-07-25,
   results/p39_production_scored.json) — this SUPERSEDES the arithmetic
   above, and overturns its conclusion.** The scheduled measurement was
@@ -797,10 +797,10 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   artifacts. (b) state parity passes at every cadence tried, unchanged.
   (d) remains gated on (a)-(c) by design and stays SKIPPED.
   **REPLICATED ON BEAST (2026-07-25, results/p39_two_machine_scored.json).**
-  Run again at the same production cadence on beast (x86, 16 cores, B gets
-  its own) to test the obvious explanation — that (c) fails on the Mac only
+  Run again at the same production cadence on the x86 runner (x86, 16 cores, B gets
+  its own) to test the obvious explanation — that (c) fails on the ARM machine only
   because A and B contend for cores. **That explanation is REFUTED.**
-  (a) 5.603× and (c) 2.039× on beast, against 7.085× / 2.219× on the Mac:
+  (a) 5.603× and (c) 2.039× on the x86 runner, against 7.085× / 2.219× on the ARM machine:
   the same picture, both still over threshold. Uncontended cores move (c)
   by 0.18, not by the 2× it would need. The raw cpu seconds locate the
   cause: B spends **45.4 s** replaying the chunks A produced with **22.3 s**
@@ -808,7 +808,7 @@ in advance — recorded here with that caveat, scored with the same rigor.*
   contended or not. That is a property of catch-up replay, not of any
   machine, and (c) as registered asks replay to run FASTER than production.
   Two independent machines now agree; (a)/(c) are **FALSIFIED as
-  registered**, and the honest next move is to re-derive what (c) should
+  registered**, and the next move is to re-derive what (c) should
   ask for rather than to keep hunting for a machine that clears < 1.0.
   (b) passes on both machines with exact heldout match.
 
@@ -861,7 +861,7 @@ artifact is a number about the defaults, not about the system.
   Falsifier for the F1 reading: transients absent or wrong-signed.
 - **P44 — five runs, one brain (MS-M, David's multi-arm insight).** N=5
   organisms, IDENTICAL init, different C4 stream offsets, S chunks each
-  (beast, cadence explicit). Fusion = one-shot weight average at end
+  (the x86 runner, cadence explicit). Fusion = one-shot weight average at end
   ("the brain"), measured against: single arm at S (equal per-arm budget),
   single arm at 5×S (equal total compute), and the P31 shared-store
   collective as the memory-level baseline. Registered:
@@ -891,7 +891,7 @@ artifact is a number about the defaults, not about the system.
   (c) determinism: same seed, same width ⇒ identical gate decisions
       chunk-for-chunk. If THIS fails, P34's run-vs-run instability lives
       in the gate itself — important either way.
-  **P45 SCORED SAME DAY (results/ignition_forensics.json).** Honest sequence
+  **P45 SCORED SAME DAY (results/ignition_forensics.json).** Sequence
   note: the per-chunk traces predate this registration (they were written by
   the July width runs; an earlier claim that only aggregates existed was
   wrong) — the aggregate-level facts were known at registration time, the
@@ -1019,11 +1019,11 @@ artifact is a number about the defaults, not about the system.
       measurable property of the same scalar.
   Falsifier for the modality claim: (b) or (d) absent while (a) holds —
   then the calculus learned pixels but did not organize them, and the
-  transfer claim dies honestly.
+  transfer claim dies as registered.
   **P48 SCORED (2026-08-05 night, results/pixel_body.json, full + lane-
-  instrument rerun on beast).** (a) PASS with room (drop 63.3%, RSS span
+  instrument rerun on the x86 runner).** (a) PASS with room (drop 63.3%, RSS span
   0.0076 GB). (c) PASS 5/5 BIT-EXACT, twice — the harness is
-  bit-deterministic on beast. (b)+(d) FALSIFIED, and the falsifier fires
+  bit-deterministic on the x86 runner. (b)+(d) FALSIFIED, and the falsifier fires
   as registered: the transfer claim in its registered form is dead. The
   measured mechanism is sharper than the falsifier's wording, and both
   are recorded: the dilution rescue (batch-mean gate 8× blind to
@@ -1053,7 +1053,7 @@ artifact is a number about the defaults, not about the system.
   Falsifier: (a) absent ⇒ the calculus does not detect underivable
   novelty in pixels, and the modality-transfer claim dies for real this
   time — no third framing will be registered.
-  **P46 SCORED (2026-08-05 night, results/hub_n5.json, full on core).**
+  **P46 SCORED (2026-08-05 night, results/hub_n5.json, full on the second x86 runner).**
   (a) PASS: reader with union store beats reader without by +0.0313
   (bar ≥0.02, 60 replays) — the five-producer collective helps a stranger
   through the memory interface; with P47 the store now measurably carries
@@ -1062,13 +1062,13 @@ artifact is a number about the defaults, not about the system.
   single arm 5.2542 — averaging BEATS its parts where the one-shot at
   full divergence lost to all of them. Weight fusion is a sync-frequency
   phenomenon; the divergence budget was P44's killer, not fusion itself.
-  (c) the honest ceiling CONFIRMED: same-instrument 5×S control 4.9585,
+  (c) the equal-compute ceiling CONFIRMED: same-instrument 5×S control 4.9585,
   itermerge trails by 0.195 — parallelism is a wall-clock purchase
   (5× speedup at ~0.2 nats), no token-efficiency free lunch, the
   embarrassment threshold stayed silent exactly as registered.
 
   **P49 SCORED (2026-08-05, results/pixel_p49.json, full 12k chunks on
-  beast).** (a) FALSIFIED: median first-contact lane ratio 0.819 (bar
+  the x86 runner).** (a) FALSIFIED: median first-contact lane ratio 0.819 (bar
   ≥3×), contact-chunk gate rate 0.25 (bar: fires). Three of four
   contacting walkers were QUIETER at first sight of a never-streamed
   room than at their own steady state. The falsifier fires as
@@ -1126,7 +1126,7 @@ artifact is a number about the defaults, not about the system.
   ~30% stream cost share, 1 + 1.5×0.31 ≈ 1.46). The cross-machine
   stability of "2×" would then be an artifact of every measurement
   sharing the same skip/T proportion — ratio = f(skip/T), not a
-  constant. Registered, one harness (src/replay_law_run.py, beast),
+  constant. Registered, one harness (src/replay_law_run.py, the x86 runner),
   phase-instrumented (import/load, skip-to-first-doc, per-chunk stream,
   fwd, bwd, harvest — wall+cpu each):
   (a) DECOMPOSITION: cpu_ratio factors into wall_ratio ×
@@ -1154,12 +1154,12 @@ artifact is a number about the defaults, not about the system.
   (b) linear ⇒ both terms real, F7 gets both. Either way F7 gains a
   measured clause and P39(c) gets re-derived on the correct anchor.
   **P50 SCORED SAME EVENING (results/replay_law.json toy-cadence matrix,
-  results/replay_law_prod.json production-cadence cell, both beast).**
+  results/replay_law_prod.json production-cadence cell, both the x86 runner).**
   (a) PASS structurally, with the surprise being the SIZE of the
   inflation term: phase timers close the wall budget to ~100% in every
   cell (setup+load+stream+model+harvest ≈ main to 0.1s), but CPU-clock
   inflation is 13.6–15.5× wall (not the bet's 1.38×) and PIN-RESISTANT
-  (OMP/MKL/torch pins change nothing on the 16-core machine) — beast's
+  (OMP/MKL/torch pins change nothing on the 16-core machine) — the x86 runner's
   CPU clock measures fiction; every historical CPU-ratio there compared
   two fictions. (b) FALSIFIED, and the truth is better than the bet:
   skip cost is a STEP, not a line — 0.016s at 188 docs, 9.4s at 509,
@@ -1173,10 +1173,42 @@ artifact is a number about the defaults, not about the system.
   CPU-clock inflation × toy-cadence environment dominance × a fixed
   skip step. P39(c) re-derived: convergence failed against an
   instrument fiction; on wall medians replay tracks live at 3%.
-  (d) LOCKED PREDICTION (before the run, queued behind D2 on the Mac):
+  (d) LOCKED PREDICTION (before the run, queued behind D2 on the ARM machine):
   equilibrium sync-debt T∞ = rate_A·fix/(1 − rate_A·c_B); with P50
   parameters (fix ≈ 16s, c_B ≈ 3.7ms at stage cadence, rate_A = 20
   chunks/s) the Möbius stage should converge to T∞ ≈ 346 chunks of
   standing lag, band 280–420 (±20%), INDEPENDENT of cycle length. Two
   test levels registered: the formula against in-run-measured (fix,
   c_B), and the parameter transfer against the P50 values.
+
+- **P51 — the arbitration organ v0: selective ingestion by measured
+  benefit (registered 2026-08-05 evening, BEFORE the build).** The hub's
+  named hard problem: the reader does NOT defend itself (MS1 conflict:
+  trust decays, no arbitration), while the file interface CAN separate
+  poison from nutrition post-hoc (P47c: shuffled control 0.494× the
+  intact benefit). P51 closes the loop in-run: an ARBITER that spends a
+  small probe budget per file and allocates the rest by measured
+  benefit. Setup (the x86 runner, d128/B8/K64, the P46/P47 cadence): four
+  producers at disjoint C4 offsets harvest frozen files à la P47; ONE
+  file is poisoned by within-span token shuffling (the measured P47
+  poison). A fresh consumer streams its own far-offset C4 budget in
+  four arms from one deepcopied init: no-files control, NAIVE (equal
+  replay dose from all four files), ARBITER (probe each file with ≤10%
+  of the replay budget, measure per-file heldout delta on the shared
+  C4-slice instrument, then dose only files with measured benefit),
+  CLEAN-ORACLE (the three intact files, equal dose — the ceiling).
+  Registered:
+  (a) IDENTIFICATION: the arbiter's probe ranks the poisoned file LAST
+      of four by measured benefit, both seeds (42, 43).
+  (b) SELECTIVITY PAYS: arbiter final heldout beats naive by ≥ 0.005
+      (the poison's dose-cost is measurable and avoidable in-run).
+  (c) ORACLE GAP: arbiter lands within 0.01 of clean-oracle.
+  (d) PRICE: the probe spends ≤10% of the replay budget.
+  Falsifier chain, pre-committed: if NAIVE ≈ ORACLE (gap < 0.005), the
+  shuffled poison is INERT at this dose — (b) becomes unscorable as
+  registered, the finding is "dilution is the only cost of weak poison,"
+  and the next attack is a STRONGER poison (adversarial spans, not
+  shuffles) — to be registered as its own P, not smuggled in. If the
+  probe misranks (a fails) while (b) passes, the benefit instrument is
+  too noisy at probe dose — the arbiter needs repeated probes, and the
+  price clause (d) is what breaks. Either failure names its mechanism.

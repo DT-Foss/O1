@@ -7,7 +7,7 @@ One line per decision, in order. Context: BRIEFING_POS.md + David's session dire
 - **Expected volume ≈ 30M streamed tokens in 40h** under current machine load (~220 tok/s ensemble measured); thesis needs ~3M+ (the whole published streaming_train curve) → 10× headroom; tok/s logged live in status.json, Phase B reads actuals.
 - **Eval cadence = wall-clock 900 s** (200k-token frozen WT-2 val slice, ~56 s for 4 arms measured): throughput varies with external load, token-scheduled evals would swing 15 min↔hours; smoke/G2 use `--eval-every-tokens` (deterministic token scheduling).
 - **G2 determinism gate = sha256 digest** over all chunk/eval metric fields (wall-clock/RSS excluded), printed at run end; two smoke runs must produce identical digests.
-- **A3 gating mechanics**: forward always no_grad (briefing wording); gated chunks recompute the forward WITH graph from the same pre-chunk state (identical values, weights unchanged) then backward+step; threshold = q-quantile (q=0.80) of a 500-chunk rolling window of chunk-mean surprises, window updated AFTER the gate decision; first 100 chunks always backward (ignition) and counted in gradient tokens honestly.
+- **A3 gating mechanics**: forward always no_grad (briefing wording); gated chunks recompute the forward WITH graph from the same pre-chunk state (identical values, weights unchanged) then backward+step; threshold = q-quantile (q=0.80) of a 500-chunk rolling window of chunk-mean surprises, window updated AFTER the gate decision; first 100 chunks always backward (ignition) and counted in gradient tokens.
 - **Index warmup = 5M streamed tokens** (David's ~5M guideline; ≈6 h at current load, A3 has ~1.2M grad tokens by then and the surprise curve is past its steep fall) — final call confirmed after the smoke surprise curve.
 - **Index/probe RNG isolated** in a dedicated torch.Generator (seed 42) so probes never touch arm determinism; probes run on cloned, row-sliced states (side-trips, never the live stream state).
 - **Twin fork at wall-clock 24 h** (briefing): weights copied, Z=None + fresh Adam; twin INHERITS A3's rolling window and gates immediately (no ignition) — its elevated early gating is itself the measured warmup cost of a restart.
@@ -29,7 +29,7 @@ One line per decision, in order. Context: BRIEFING_POS.md + David's session dire
   reproduce the reference's threading regime; (2) all existing knee-arc /
   POS results remain internally valid (every arm-vs-arm comparison ran in
   ONE regime — fairness holds), but cross-regime numeric comparisons are
-  not meaningful; (3) rank_sweep.py runs at torch default threads; beast
+  not meaningful; (3) rank_sweep.py runs at torch default threads; the x86 runner
   striping compensates with fewer parallel stripes (4 stripes x 4 threads).
 
 ## Standing measurement rule: the cadence axis (2026-08-05, MS-G audit)
@@ -49,11 +49,11 @@ result JSON.
 
 ## 2026-08-05 — CPU time on multi-core machines is not a work measure
 
-P50 measured it directly: on beast (16 cores), process CPU time runs at
+P50 measured it directly: on the x86 runner (16 cores), process CPU time runs at
 13.6–15.5× wall for single-threaded torch work, and the inflation
 survives torch.set_num_threads(1) AND OMP/MKL/OPENBLAS env pins set
 before import. The pool spins regardless; RUSAGE_SELF counts every
-spinning thread. Any historical CPU-time ratio from beast compared two
+spinning thread. Any historical CPU-time ratio from the x86 runner compared two
 fictions (P39's "replay ≈2× live CPU" among them — decomposed and
 retired by P50). Standing rule: cost claims use WALL time, per-chunk
 MEDIANS after warmup, on both sides of any ratio; CPU time may be

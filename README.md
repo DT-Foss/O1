@@ -680,11 +680,11 @@ falsifications (P23a, P24c-at-1.2M) are kept in the ledger at full strength.
   weights, optimizer, carried Z, gating windows, store, stream position, RNG — is one
   atomic ~53 MB artifact.
 - **The same parity holds across two live machines on a real network (Möbius staging).**
-  Organism A streams continuously on the Mac and is never paused; organism B rises on an
+  Organism A streams continuously on the ARM machine and is never paused; organism B rises on an
   x86 server from A's snapshot over real `scp`/`ssh` and chases A's stream position. At the
   one chunk count where both organisms stood (560), the heldout delta is **0.0 — exact**
   (ARM 6.199778 vs x86 6.199778), reproduced across two independent stagings. Parity is
-  scored *only* at equal chunk counts: B on 16 server cores outruns A on the Mac and
+  scored *only* at equal chunk counts: B on 16 server cores outruns A on the ARM machine and
   overtakes it, and a comparison at unequal stream positions is not a parity check at all.
   Multi-cycle parity therefore needs rate-matched machines — the single-cycle number is the
   measured one.

@@ -170,7 +170,7 @@ it at high load, but does not remove it: reminders are then read at
 0.505 at P=16** (vs 0.450 / 0.512) — near-perfect where the state is not
 contended, essentially unchanged where it is
 (`results/holo_reminded.json`; its own P18 bar of ≥0.85 at P=16 is likewise
-not cleared). The honest reading across both artifacts: **the ceiling at
+not cleared). The reading across both artifacts: **the ceiling at
 high load is state interference, not reading.** That is precisely why
 compounding has to leave the state — which is this foundation's claim. Disclosed variants: shared indices across multiple
 independent organisms (collective memory); freshness-weighted and
