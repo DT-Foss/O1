@@ -49,7 +49,7 @@ class Maze:
     """Deterministic: rooms on a coarse grid, L-corridors between successive
     rooms. Every cell is wall (1), corridor floor (0), or room floor (2+i)."""
 
-    def __init__(self, seed, size=41, n_rooms=6):
+    def __init__(self, seed, size=41, n_rooms=6, hidden=False):
         rng = np.random.default_rng(seed)
         g = np.ones((size, size), dtype=np.int8)
         self.rooms = []
@@ -72,6 +72,44 @@ class Maze:
                     g[y, cx1] = 0
         self.g = g
         self.size = size
+        # ── the hidden room (P49): carved from the start, SEALED — masked as
+        #    wall in every render until unseal(), so its color has never
+        #    appeared in any stream. One corridor connects it to room 0, with
+        #    a single seal cell; unseal() opens that cell and lifts the mask.
+        self.sealed = False
+        self.hidden_mask = np.zeros_like(g, dtype=bool)
+        self.seal_cell = None
+        if hidden:
+            hw, hh = 6, 6
+            hx = size - hw - 2
+            hy = size - hh - 2
+            g[hy:hy + hh, hx:hx + hw] = 2 + n_rooms          # color 8 at n_rooms=6
+            self.rooms.append((hx, hy, hw, hh))
+            x0, y0, w0, h0 = self.rooms[0]
+            cx0, cy0 = x0 + w0 // 2, y0 + h0 // 2
+            cxh, cyh = hx + hw // 2, hy + hh // 2
+            corridor = []
+            for x in range(min(cx0, cxh), max(cx0, cxh) + 1):
+                if g[cyh, x] == 1:
+                    g[cyh, x] = 0
+                    corridor.append((x, cyh))
+            for y in range(min(cy0, cyh), max(cy0, cyh) + 1):
+                if g[y, cx0] == 1:
+                    g[y, cx0] = 0
+                    corridor.append((cx0, y))
+            self.hidden_mask[hy:hy + hh, hx:hx + hw] = True
+            for (x, y) in corridor:
+                self.hidden_mask[y, x] = True
+            sx, sy = corridor[0] if corridor else (cxh, cyh)
+            self.seal_cell = (sx, sy)
+            g[sy, sx] = 1                                     # physically sealed
+            self.sealed = True
+
+    def unseal(self):
+        if self.seal_cell is not None:
+            sx, sy = self.seal_cell
+            self.g[sy, sx] = 0
+        self.sealed = False
 
     def room_id(self, x, y):
         v = int(self.g[y, x])
@@ -118,7 +156,10 @@ class Walker:
             for vx in range(VIEW):
                 wx, wy = self.x + vx - r, self.y + vy - r
                 if 0 <= wx < self.m.size and 0 <= wy < self.m.size:
-                    patch[vy, vx] = self.m.g[wy, wx]
+                    if self.m.sealed and self.m.hidden_mask[wy, wx]:
+                        patch[vy, vx] = 1                     # sealed = you see wall
+                    else:
+                        patch[vy, vx] = self.m.g[wy, wx]
         patch = np.rot90(patch, k=self.h)          # heading-up
         toks = patch.flatten().tolist() + [SEP]
         toks += [PAD] * (FRAME_PADDED - len(toks))
@@ -150,15 +191,22 @@ def harvest_with_rows(x, nll):
     return out
 
 
-def frame_stream(maze_seed, wid, from_step, n_tokens):
+def frame_stream(maze_seed, wid, from_step, n_tokens, unseal_at=None):
     """Deterministic re-generation of walker `wid`'s token stream starting at
-    from_step — the provenance replay primitive AND the eval generator."""
-    m = Maze(maze_seed)
+    from_step — the provenance replay primitive AND the eval generator.
+    unseal_at replays the WORLD MUTATION at the exact recorded step, so
+    provenance holds THROUGH the change (the P49(c) claim)."""
+    m = Maze(maze_seed, hidden=unseal_at is not None)
     w = Walker(m, wid)
+    def maybe_unseal():
+        if unseal_at is not None and m.sealed and w.step_i >= unseal_at:
+            m.unseal()
     for _ in range(from_step):
+        maybe_unseal()
         w.step()
     toks = []
     while len(toks) < n_tokens:
+        maybe_unseal()
         toks.extend(w.render())
         w.step()
     return toks[:n_tokens]
@@ -169,6 +217,8 @@ def main():
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--frames-per-walker", type=int, default=3000)
     ap.add_argument("--maze-seed", type=int, default=7)
+    ap.add_argument("--unseal-at", type=int, default=0,
+                    help="P49: frame at which the sealed seventh room opens (0 = off, pure P48 world)")
     ap.add_argument("--d-model", type=int, default=128)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--q", type=float, default=0.75)
@@ -188,14 +238,19 @@ def main():
     torch.manual_seed(args.seed)
     org = po.Organism("pixel", VOCAB, mask, seed=args.seed)
 
-    maze = Maze(args.maze_seed)
+    maze = Maze(args.maze_seed, hidden=args.unseal_at > 0)
     walkers = [Walker(maze, k) for k in range(po.BATCH)]
+    from collections import deque as _dq
+    lane_hist = [_dq(maxlen=200) for _ in range(po.BATCH)]
+    first_sight = [None] * po.BATCH                # (step, chunk, steady_mean_before)
+    unseal_info = None
     lane_buf = [[] for _ in range(po.BATCH)]
     lane_meta = [[] for _ in range(po.BATCH)]      # (step, room_id) per frame
     room_state = [{"cur": None, "out": 0, "visits": {}} for _ in range(po.BATCH)]
 
     trace = []
     entries_log = []
+    steady_lane = []
     knowledge = []
     rss0 = None
     K = po.CHUNK
@@ -220,7 +275,16 @@ def main():
                     st["cur"] = None
                     st["out"] += 1
                 lane_meta[b].append((w.step_i, rid, is_entry, visit_no))
-                lane_buf[b].extend(w.render())
+                if args.unseal_at and maze.sealed and walkers[0].step_i >= args.unseal_at:
+                    maze.unseal()
+                    unseal_info = {"at_walker0_step": walkers[0].step_i, "chunk": ci}
+                    print(f"[world] UNSEAL at walker0 step {walkers[0].step_i} (chunk {ci})", flush=True)
+                toks = w.render()
+                if args.unseal_at and first_sight[b] is None and (2 + 6) in toks:
+                    import numpy as _np
+                    steady = float(_np.mean(lane_hist[b])) if lane_hist[b] else None
+                    first_sight[b] = {"step": w.step_i, "chunk": ci, "steady_before": steady}
+                lane_buf[b].extend(toks)
                 w.step()
             xs.append(lane_buf[b][:K])
             ys.append(lane_buf[b][1:K + 1])
@@ -231,6 +295,10 @@ def main():
         x = torch.tensor(xs, dtype=torch.long)
         y = torch.tensor(ys, dtype=torch.long)
         s, gated, nll = org.step_gated(x, y)
+        lane_s = nll.mean(dim=1)                   # per-walker surprise — the
+                                                   # batch-mean gate is 8x
+                                                   # diluted against single-
+                                                   # lane events; this is not
         if gated:
             for b, sp in harvest_with_rows(x, nll):
                 knowledge.append({"tokens": [int(t) for t in sp],
@@ -239,8 +307,22 @@ def main():
         for b in range(po.BATCH):
             ent, vn, st = chunk_entry[b]
             if ent:
-                entries_log.append({"chunk": ci, "walker": b, "surprise": float(s),
+                entries_log.append({"chunk": ci, "walker": b,
+                                    "surprise": float(s),
+                                    "surprise_lane": round(float(lane_s[b]), 5),
                                     "gated": int(gated), "visit_no": vn})
+        if ci % 7 == 0:                            # steady per-lane baseline sample
+            for b in range(po.BATCH):
+                if not chunk_entry[b][0]:
+                    steady_lane.append(float(lane_s[b]))
+        for b in range(po.BATCH):
+            fs = first_sight[b]
+            if fs is not None and "surprise" not in fs and fs["chunk"] == ci:
+                fs["surprise"] = round(float(lane_s[b]), 5)
+                fs["gated"] = int(gated)
+                fs["ratio"] = (round(float(lane_s[b]) / fs["steady_before"], 3)
+                               if fs.get("steady_before") else None)
+            lane_hist[b].append(float(lane_s[b]))
         trace.append({"i": ci, "s": round(float(s), 5), "g": int(gated),
                       "in_room": sum(1 for r in chunk_rooms if r is not None)})
         if ci == 200:
@@ -268,6 +350,13 @@ def main():
     first = [e["surprise"] for e in entries_log if e["visit_no"] == 1 and e["chunk"] > ign_end]
     second = [e["surprise"] for e in entries_log if e["visit_no"] == 2 and e["chunk"] > ign_end]
     hab = (1 - np.mean(second) / np.mean(first)) if first and second else None
+    # per-lane (undiluted) instruments — logging only, the stack is untouched
+    fl = [e["surprise_lane"] for e in entries_log if e["visit_no"] == 1 and e["chunk"] > ign_end]
+    sl = [e["surprise_lane"] for e in entries_log if e["visit_no"] == 2 and e["chunk"] > ign_end]
+    hab_lane = (1 - np.mean(sl) / np.mean(fl)) if fl and sl else None
+    entry_lane_mean = float(np.mean([e["surprise_lane"] for e in entries_log
+                                     if e["chunk"] > ign_end])) if entries_log else None
+    steady_lane_mean = float(np.mean(steady_lane)) if steady_lane else None
 
     # (c) provenance: re-simulate and compare bit-exact
     prov = []
@@ -275,7 +364,8 @@ def main():
     for e in (rng.choice(knowledge, size=min(5, len(knowledge)), replace=False)
               if knowledge else []):
         regen = frame_stream(e["maze_seed"], e["walker"], max(0, e["step"] - 2),
-                             FRAME_PADDED * 5)
+                             FRAME_PADDED * 5,
+                             unseal_at=(args.unseal_at or None))
         span = e["tokens"]
         found = any(regen[i:i + len(span)] == span
                     for i in range(len(regen) - len(span) + 1))
@@ -304,9 +394,39 @@ def main():
            "n_entry_events_post": len(g_entry),
            "habituation_first_n": len(first), "habituation_second_n": len(second),
            "p48d_drop": round(float(hab), 4) if hab is not None else None,
+           "lane_instrument": {
+               "entry_surprise_lane_mean": round(entry_lane_mean, 5) if entry_lane_mean else None,
+               "steady_surprise_lane_mean": round(steady_lane_mean, 5) if steady_lane_mean else None,
+               "entry_over_steady": (round(entry_lane_mean / steady_lane_mean, 3)
+                                     if entry_lane_mean and steady_lane_mean else None),
+               "habituation_lane": round(float(hab_lane), 4) if hab_lane is not None else None,
+               "note": "per-walker surprise, logging only — the registered (b)/(d) used the batch-mean gate, which is 8x diluted against asynchronous single-walker events"},
            "p48d_pass": bool(hab is not None and hab >= 0.20),
            "p48c_provenance": prov, "p48c_found": f"{n_found}/{len(prov)}",
            "p48c_pass": bool(prov and n_found == len(prov))}
+    if args.unseal_at:
+        contacts = [f for f in first_sight if f is not None and "surprise" in f]
+        ratios = [f["ratio"] for f in contacts if f.get("ratio")]
+        gates = [f["gated"] for f in contacts]
+        r6 = [e for e in entries_log if e.get("visit_no") and e["chunk"] > ign_end]
+        # room-6 habituation via the lane instrument, novel room only:
+        # entries into the novel room = entries recorded AFTER the unseal chunk
+        uc = unseal_info["chunk"] if unseal_info else None
+        nov1 = [e["surprise_lane"] for e in entries_log if uc and e["chunk"] > uc and e["visit_no"] == 1]
+        nov2 = [e["surprise_lane"] for e in entries_log if uc and e["chunk"] > uc and e["visit_no"] >= 2]
+        hab6 = (1 - np.mean(nov2) / np.mean(nov1)) if nov1 and nov2 else None
+        out["p49"] = {
+            "unseal": unseal_info,
+            "n_walkers_contacted": len(contacts),
+            "first_contacts": [f for f in first_sight if f is not None],
+            "median_contact_ratio": (round(float(np.median(ratios)), 3) if ratios else None),
+            "contact_gate_rate": (round(float(np.mean(gates)), 3) if gates else None),
+            "p49a_pass": bool(ratios and np.median(ratios) >= 3.0 and
+                              gates and np.mean(gates) >= 0.5),
+            "novel_entries_visit1_n": len(nov1), "novel_entries_visit2plus_n": len(nov2),
+            "p49b_habituation": (round(float(hab6), 4) if hab6 is not None else None),
+            "p49b_pass": bool(hab6 is not None and hab6 >= 0.20),
+            "p49c_note": "provenance sampling above runs WITH the mutation replayed (unseal_at forwarded)"}
     path = args.out if not args.smoke else args.out.replace(".json", "_smoke.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=2)
