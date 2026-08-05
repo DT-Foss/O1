@@ -1390,3 +1390,12 @@ artifact is a number about the defaults, not about the system.
   recurrence-seeded protocol (its own P, not smuggled in); (c) fails
   ⇒ composition genuinely buys recovery at a forgetting price — the
   price gets stated as the law.
+  **P54 AMENDED before the run (same hour, pre-check deepened):**
+  chimera.py reads its cadence FROM the POS checkpoint config
+  (B, K = cfg["batch"], cfg["chunk"]; the 40h-run snapshot is
+  d128/B8/K64) — v0 already ran at production cadence, and the
+  liability was the missing cadence BLOCK in the artifact
+  (documentation), not toy weight. Clause (a) is therefore an
+  EXPOSURE-reproduction clause (6.7× longer phases at the same
+  cadence), not a cadence rescue; clauses (b), (c), (d) unchanged.
+  v1 records the cadence block explicitly.
