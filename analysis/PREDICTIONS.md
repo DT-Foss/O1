@@ -1298,3 +1298,18 @@ artifact is a number about the defaults, not about the system.
   not world knowledge. The clean version is position-matched (same
   episode indices and frame windows, only the seed differs); named as
   the follow-up design, not patched into this scoring.
+  **P50(d) STAGE-1 NOTE + RE-LOCK (2026-08-05 late).** First parallel
+  staging ran A to its 14,400-chunk budget with two complete cycles
+  (catchup 3000 → 4500) before the cycle marks outran the budget: A ran
+  at ~96 chunks/s against the 20/s budget assumption — the LEVEL-2
+  parameter transfer is thereby already falsified in its rate_A input
+  (the 346-chunk point assumed 20/s and 16s local fix; the real stage
+  pays scp+remote-spawn fix over a real network). The in-memory cycle
+  records (sync_debt_chunks) were lost to an orchestrator kill, so
+  LEVEL 1 is re-locked BEFORE a clean rerun with the same formula and
+  tonight's measured parameters: rate_A ≈ 96/s, fix ≈ 35–60s,
+  c_B ≈ 3.5ms ⇒ T∞ = rate_A·fix/(1 − rate_A·c_B) ∈ [5100, 8700]
+  chunks. The rerun (a-total 45,000, 4 cycles, window 500) must land
+  its measured standing debt inside that band, with the in-run (fix,
+  c_B, rate_A) closing the loop; outside the band, the formula — not
+  the parameters — is what failed.
