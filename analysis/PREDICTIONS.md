@@ -994,3 +994,29 @@ artifact is a number about the defaults, not about the system.
   the smoke's tie at 6 replays separated at 32 — exposure-dependence as
   P37c/P33 predicted. Still unmeasured, named: content on the keyed-
   recall axis, and the arbitration/defense organ.
+
+- **P48 — the pixel body (registered 2026-08-05, before any build).** The
+  operating layer's first step off token streams, at minimum cost: a
+  procedural first-person maze (deterministic from seed; R rooms joined by
+  corridors), 8 deterministic walkers on fixed patrol scripts, egocentric
+  24×24 render in 16 colors → 576 tokens per frame, fed through the
+  UNCHANGED d=128 organism (B=8/K=64, POS gate values; a frame = 9 chunks;
+  frame metrics are aggregates over its chunks). No RL, no reward — this
+  tests perception learning and the surprise calculus on a simulated body,
+  nothing else. Registered:
+  (a) THE STACK RUNS UNCHANGED: per-token loss falls ≥30% below its
+      ignition plateau; RSS flat (span < 0.3 GB post-warmup).
+  (b) THE TRANSITION DETECTOR TRANSFERS TO PIXELS: post-ignition, frames
+      entering a NEW room carry gate rate ≥2× the corridor-steady rate
+      (≥20 entry events pooled). This is P43's transition law asked in a
+      second modality.
+  (c) PROVENANCE IN THE GAME WORLD: 5/5 sampled knowledge entries
+      reproduce their frame BIT-EXACTLY by replaying the deterministic
+      environment at the recorded (maze_seed, walker, step) coordinate —
+      stricter than P47's text search, because the world is fully ours.
+  (d) HABITUATION: a room's SECOND visit spikes less than its first
+      (mean entry-surprise second < first by ≥20%) — familiarity as a
+      measurable property of the same scalar.
+  Falsifier for the modality claim: (b) or (d) absent while (a) holds —
+  then the calculus learned pixels but did not organize them, and the
+  transfer claim dies honestly.
