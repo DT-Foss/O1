@@ -1354,3 +1354,39 @@ artifact is a number about the defaults, not about the system.
   rate_A·c_B < 1 (equal-or-faster follower hardware); snapshot-sync
   collapses debt regardless (run 3, cycle 0: one scp erased a 45k-chunk
   deficit; the transfer is the tilgung, not the compute).
+
+- **P54 — CHIMERA v1: the F1 lock at production cadence (MS-D,
+  registered 2026-08-05 night, BEFORE the build; pre-check of P33's
+  artifacts completed first per the task's own rule).** P33's verdict
+  carried three named liabilities: no cadence block in the artifact
+  (pre-audit run — toy-weight suspicion), the reminder organ
+  UNDECIDABLE at 2 fires (exposure 5× below the measured recurrence
+  base rate), and clause (a) dose-confounded (chimera at 29% fewer
+  gradient tokens under matched chunks). v1 removes all three: same
+  five arms (chimera, r3 gate+sleep, r1 full, no_reminder,
+  no_monitor), same MS3 shock protocol (C4→code→C4), at d128/B8/K64
+  production cadence recorded in the artifact, ≥1,000 chunks per phase
+  (expected reminder fires in the double digits from P33's own base
+  rate), both dose axes reported (matched chunks as protocol,
+  per-gradient-token normalization as metric). Registered:
+  (a) THE RECOVERY ORGAN SURVIVES REAL CADENCE: chimera residual
+      damage after recovery ≤ 0.05 while no_monitor reads ≥3× worse —
+      the v0 headline and its in-run attribution reproduce off toy
+      cadence.
+  (b) THE REMINDER BECOMES DECIDABLE: ≥10 fires in the chimera arm;
+      then minus-reminder loses ≥0.02 on at least one axis (organ
+      earns its place) OR does not (organ falsified as an
+      in-composition contributor at this exposure) — either outcome
+      resolves P33's pre-registered UNDECIDABLE.
+  (c) THE FORGETTING VERDICT REHABILITATES UNDER FAIR DOSE: normalized
+      per gradient token, chimera beats r3 on ≥2 of the 3 continual
+      axes (the v0 loss was the dose confound, not the composition).
+  (d) NO SINGLE-ORGAN ARM DOMINATES chimera on all three axes
+      (v0's (d), re-asked at production cadence).
+  Falsifiers named: (a) fails ⇒ the dividend monitor's recovery effect
+  was a toy-cadence artifact — F1's strongest composition claim loses
+  its anchor and says so; (b) under 10 fires despite 1,000-chunk
+  phases ⇒ the base-rate model is wrong and the reminder needs a
+  recurrence-seeded protocol (its own P, not smuggled in); (c) fails
+  ⇒ composition genuinely buys recovery at a forgetting price — the
+  price gets stated as the law.
