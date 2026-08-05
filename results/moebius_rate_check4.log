@@ -1,0 +1,38 @@
+[moebius] config: d_model=128 cycles=4 sync_window=500 lockstep=500 a_total_chunks=150000 dry_run=False
+[moebius] A launched: pid=24457, log=/Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/source_A/A_stdout.log — NEVER paused/killed by this script, even on cycle failure
+[run] ensure beast moebius dir: ssh beast 'mkdir -p /root/o1lab/moebius'  (stdin=/dev/null)
+
+[moebius] === cycle 0: waiting for A >= chunk 500 (capped at A's budget 150000) ===
+[run] mkdir cycle dir on beast: ssh beast 'mkdir -p /root/o1lab/moebius/cycle0'  (stdin=/dev/null)
+[run] transfer A snapshot -> beast (cycle0): scp /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/source_A/ckpt.pt beast:/root/o1lab/moebius/cycle0/snap_from_A.pt
+[run] B catchup (chunks=45000): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle0 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle0/snap_from_A.pt --chunks 45000 --out-dir /root/o1lab/moebius/cycle0 --result-json /root/o1lab/moebius/cycle0/catchup_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull catchup result: scp beast:/root/o1lab/moebius/cycle0/catchup_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_catchup_1785963677.json
+[run] B lockstep (chunks=500): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle0 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle0/ckpt.pt --chunks 500 --out-dir /root/o1lab/moebius/cycle0 --result-json /root/o1lab/moebius/cycle0/lockstep_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull lockstep result: scp beast:/root/o1lab/moebius/cycle0/lockstep_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_lockstep_1785963706.json
+
+[moebius] === cycle 1: waiting for A >= chunk 91000 (capped at A's budget 150000) ===
+[run] mkdir cycle dir on beast: ssh beast 'mkdir -p /root/o1lab/moebius/cycle1'  (stdin=/dev/null)
+[run] transfer A snapshot -> beast (cycle1): scp /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/source_A/ckpt.pt beast:/root/o1lab/moebius/cycle1/snap_from_A.pt
+[run] B catchup (chunks=500): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle1 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle1/snap_from_A.pt --chunks 500 --out-dir /root/o1lab/moebius/cycle1 --result-json /root/o1lab/moebius/cycle1/catchup_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull catchup result: scp beast:/root/o1lab/moebius/cycle1/catchup_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_catchup_1785963786.json
+[run] B lockstep (chunks=500): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle1 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle1/ckpt.pt --chunks 500 --out-dir /root/o1lab/moebius/cycle1 --result-json /root/o1lab/moebius/cycle1/lockstep_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull lockstep result: scp beast:/root/o1lab/moebius/cycle1/lockstep_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_lockstep_1785963813.json
+
+[moebius] === cycle 2: waiting for A >= chunk 92500 (capped at A's budget 150000) ===
+[run] mkdir cycle dir on beast: ssh beast 'mkdir -p /root/o1lab/moebius/cycle2'  (stdin=/dev/null)
+[run] transfer A snapshot -> beast (cycle2): scp /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/source_A/ckpt.pt beast:/root/o1lab/moebius/cycle2/snap_from_A.pt
+[run] B catchup (chunks=10000): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle2 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle2/snap_from_A.pt --chunks 10000 --out-dir /root/o1lab/moebius/cycle2 --result-json /root/o1lab/moebius/cycle2/catchup_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull catchup result: scp beast:/root/o1lab/moebius/cycle2/catchup_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_catchup_1785963941.json
+[run] B lockstep (chunks=500): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle2 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle2/ckpt.pt --chunks 500 --out-dir /root/o1lab/moebius/cycle2 --result-json /root/o1lab/moebius/cycle2/lockstep_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull lockstep result: scp beast:/root/o1lab/moebius/cycle2/lockstep_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_lockstep_1785963983.json
+
+[moebius] === cycle 3: waiting for A >= chunk 113500 (capped at A's budget 150000) ===
+[run] mkdir cycle dir on beast: ssh beast 'mkdir -p /root/o1lab/moebius/cycle3'  (stdin=/dev/null)
+[run] transfer A snapshot -> beast (cycle3): scp /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/source_A/ckpt.pt beast:/root/o1lab/moebius/cycle3/snap_from_A.pt
+[run] B catchup (chunks=19000): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle3 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle3/snap_from_A.pt --chunks 19000 --out-dir /root/o1lab/moebius/cycle3 --result-json /root/o1lab/moebius/cycle3/catchup_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull catchup result: scp beast:/root/o1lab/moebius/cycle3/catchup_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_catchup_1785964198.json
+[run] B lockstep (chunks=500): ssh beast 'cd /root/o1lab && mkdir -p /root/o1lab/moebius/cycle3 && nice -n 19 /usr/bin/python3 -u /root/o1lab/src/portable_organism.py --resume /root/o1lab/moebius/cycle3/ckpt.pt --chunks 500 --out-dir /root/o1lab/moebius/cycle3 --result-json /root/o1lab/moebius/cycle3/lockstep_result.json --d-model 128 --batch 4 --chunk-size 32'  (stdin=/dev/null)
+[run] pull lockstep result: scp beast:/root/o1lab/moebius/cycle3/lockstep_result.json /Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/cycles/cycle_result_lockstep_1785964233.json
+
+[moebius] MOEBIUS STAGE: 4/4 cycles ok | debt bounded (<= 500 chunks, all cycles): False (max observed: 19000) | parity (<= 1e-05, cross-ISA 6-decimal): False | PARTIAL/FAIL
+[moebius] -> results/moebius_rate_check4.json

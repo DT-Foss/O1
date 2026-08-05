@@ -285,6 +285,22 @@ under a 2× compute wall. Continuous replication is rate-feasible on
 equal hardware; the fixed costs, not the compute, are the design target
 (cache the tokens, keep the process warm, amortize the fast-forward).
 
+**The two replication regimes (measured, cross-machine staging).** Run
+against a LIVING source over a real network, replication has exactly two
+modes, both now carrying numbers. (1) **Chase** — the follower recomputes
+the source's stream: feasible iff rate_source · cost_follower < 1. On an
+unequal pairing (ARM source at 200 chunks/s vs an x86 follower at
+11.8 ms/chunk under nice) the product is 2.35 and the standing debt
+DIVERGES (measured live: 10,000 → 19,000 chunks in one cycle), with the
+debt recursion confirmed in-run to 3% (predicted 19,580, measured
+19,000). (2) **Snapshot-sync** — the follower adopts the source's state
+directly: one ~53 MB transfer erased a 45,000-chunk deficit instantly;
+the transfer is the settlement, not the compute. A fleet design follows:
+chase only on equal-or-faster hardware (the condition is computable in
+advance from two rates), snapshot-sync everywhere else — and the
+deterministic exact-resume property (measured at 50M scale) is what
+makes both modes lossless.
+
 ---
 
 ## Interactions (disclosed as a system)

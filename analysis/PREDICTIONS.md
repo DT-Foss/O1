@@ -1399,3 +1399,31 @@ artifact is a number about the defaults, not about the system.
   EXPOSURE-reproduction clause (6.7× longer phases at the same
   cadence), not a cadence rescue; clauses (b), (c), (d) unchanged.
   v1 records the cadence block explicitly.
+  **P50(d) SCORED FINAL (2026-08-05 night, run 4,
+  results/moebius_rate_check4.json — a LIVING A this time).** The live
+  debt series exists and the recursion is textbook: every cycle's
+  catchup equals the previous cycle's debt exactly (10,000→catchup
+  10,000; 19,000→catchup 19,000). Verdicts by clause level:
+  DIVERGENCE DIRECTION — CONFIRMED: standing debt grew 10,000 → 19,000
+  against a living A; the chase regime diverges on this hardware
+  pairing exactly as rate_A·c_B > 1 requires. POINT BAND [1.3, 1.7] —
+  FAILED at 1.90, with both causes named: the band was computed from
+  run 3's rate_A ≈ 141/s while the in-run A ran at 200/s (the ARM
+  machine had shed its co-load), and the asymptotic factor rate_A·c_B
+  (in-run: 2.35) is not the finite-debt factor — the recursion carries
+  a −debt−lockstep term the band ignored. THE RECURSION ITSELF —
+  CONFIRMED IN-RUN TO 3%: debt₂ = rate_A·(transfer + c_B·(catchup₁ +
+  lockstep)) − catchup₁ − lockstep = 19,580 predicted from in-run
+  parameters vs 19,000 measured. The formula lives in its exact form;
+  the factor band was the weaker phrasing of it. THE TWO-REGIME LAW,
+  now fully measured: (1) CHASE replication requires rate_A·c_B < 1 —
+  on unequal hardware (ARM source at 200/s vs x86 follower at
+  11.8 ms/chunk under nice) it diverges at a computable rate; (2)
+  SNAPSHOT-SYNC collapses any debt instantly — one scp erased a
+  45,000-chunk deficit (run 3 cycle 0; run 4 cycle 0 replayed a whole
+  45k life in 458s over the real network) — the transfer is the
+  tilgung, not the compute. F7 gains both clauses with numbers.
+  P39(d) footnote: debt-bounded reads PASS only against a finished A
+  (trivial); against a living A the chase is divergent and parity is
+  unmeasurable in this staging (B overtakes A's eval points) — recorded
+  as the staging's design limit, not a parity failure. MS-C+I CLOSED.

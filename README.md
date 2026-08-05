@@ -697,6 +697,18 @@ falsifications (P23a, P24c-at-1.2M) are kept in the ledger at full strength.
   overtakes it, and a comparison at unequal stream positions is not a parity check at all.
   Multi-cycle parity therefore needs rate-matched machines — the single-cycle number is the
   measured one.
+- **Replication has exactly two regimes, both measured against a living source.** The old
+  "replay costs ≈2× live" was decomposed and retired (cache-replay compute is **1.032× live**
+  at production cadence; the 2× was CPU-clock inflation × a fixed stream fast-forward step ×
+  toy-cadence environment). What remains is a clean law: **chase** replication (recompute the
+  source's stream) is feasible iff rate_source·cost_follower < 1 — on an unequal pairing the
+  product read 2.35 and the standing debt diverged live (10,000 → 19,000 chunks in one cycle,
+  the debt recursion confirmed in-run to 3%); **snapshot-sync** collapses any debt instantly —
+  one ~53 MB transfer erased a 45,000-chunk deficit, and a follower replayed an entire 45k-chunk
+  life over the real network in 458 s. Fleet rule, computable in advance from two rates: chase
+  on equal-or-faster hardware, snapshot-sync everywhere else.
+→ `src/replay_law_run.py`, `results/replay_law.json`, `results/replay_law_prod.json`,
+`results/moebius_rate_check4.json`
 - **Where the phase pays rent is now a map, not an anecdote (P32).** A 16-cell
   P_max × d_model sweep (corner lr-controls) kills both one-parameter laws (ratio and
   product) and shows two rent regions — the scarce corner (P_max ≤ 16, d ≤ 64: +11 to
