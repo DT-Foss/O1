@@ -1,0 +1,78 @@
+{
+  "p47": true,
+  "smoke": true,
+  "seed": 42,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "producer_chunks": 150,
+  "n_entries": 202,
+  "file_sha256": "765e4393de72c8e68b8e47f08e5696226571b6044ddcf51fc134b925ffd93baa",
+  "file_path": "/root/o1lab/results/knowledge_file_smoke/producer.knowledge.jsonl",
+  "h_pre": 5.759144,
+  "arms": {
+    "intact": {
+      "name": "intact",
+      "h_post": 5.811259,
+      "forgetting": 0.052115,
+      "replays": 6
+    },
+    "shuffled": {
+      "name": "shuffled",
+      "h_post": 5.811079,
+      "forgetting": 0.051935,
+      "replays": 6
+    },
+    "none": {
+      "name": "none",
+      "h_post": 5.891853,
+      "forgetting": 0.132709,
+      "replays": 0
+    }
+  },
+  "benefit_intact": 0.080594,
+  "benefit_shuffled": 0.080774,
+  "p47a_ratio_intact_vs_none": 0.3927,
+  "p47a_pass": true,
+  "p47b_provenance": [
+    {
+      "doc_coord": 188,
+      "n_chunk": 42,
+      "span_len": 25,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 20,
+      "span_len": 38,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 51,
+      "span_len": 44,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 84,
+      "span_len": 48,
+      "found": true
+    },
+    {
+      "doc_coord": 188,
+      "n_chunk": 7,
+      "span_len": 31,
+      "found": true
+    }
+  ],
+  "p47b_found": "5/5",
+  "p47b_pass": true,
+  "p47c_pass": false
+}
