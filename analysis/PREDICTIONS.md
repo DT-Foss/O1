@@ -1020,3 +1020,36 @@ artifact is a number about the defaults, not about the system.
   Falsifier for the modality claim: (b) or (d) absent while (a) holds —
   then the calculus learned pixels but did not organize them, and the
   transfer claim dies honestly.
+  **P48 SCORED (2026-08-05 night, results/pixel_body.json, full + lane-
+  instrument rerun on beast).** (a) PASS with room (drop 63.3%, RSS span
+  0.0076 GB). (c) PASS 5/5 BIT-EXACT, twice — the harness is
+  bit-deterministic on beast. (b)+(d) FALSIFIED, and the falsifier fires
+  as registered: the transfer claim in its registered form is dead. The
+  measured mechanism is sharper than the falsifier's wording, and both
+  are recorded: the dilution rescue (batch-mean gate 8× blind to
+  asynchronous single-walker events) was refuted by its own fix (per-lane
+  entry/steady = 1.01), leaving the structural reading — a fully
+  deterministic world under a fixed policy contains no underivable
+  novelty after ignition, and a competent predictor silences every
+  transition. P43's detector fired on a swap that was NOT derivable from
+  within the stream; the maze's transitions are. The experiment conflated
+  transition with novelty. Kept as the embodied-fleet lesson anyway: one
+  shared gate across eight bodies dampens each body's signal 8×.
+
+- **P49 — underivable novelty in the pixel world (registered 2026-08-05
+  night, before the build).** Same world, one change: a seventh room is
+  carved but SEALED from the start; at frame T* (mid-run, long after
+  ignition, unpredictable from any history) its connecting wall opens,
+  the wall-followers' circuits deform, and walkers encounter a room and a
+  floor color that have never appeared in the stream. Registered:
+  (a) per-lane surprise at first novel-room contact ≥ 3× that walker's
+      steady mean, and the batch gate FIRES on the contact chunk;
+  (b) habituation across subsequent encounters of the novel room ≥ 20%
+      (the dynamic range P48d lacked, restored by genuine novelty);
+  (c) the novel-room knowledge entries replay bit-exact from
+      (maze_seed, walker, step) — provenance surviving a world MUTATION,
+      which is the robotics case (the world changed; the record of when
+      and where it changed is exact).
+  Falsifier: (a) absent ⇒ the calculus does not detect underivable
+  novelty in pixels, and the modality-transfer claim dies for real this
+  time — no third framing will be registered.

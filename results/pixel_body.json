@@ -1,0 +1,75 @@
+{
+  "p48": true,
+  "smoke": false,
+  "maze_seed": 7,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "n_chunks": 12000,
+  "n_knowledge": 749,
+  "n_room_entries": 1600,
+  "loss_plateau_ignition": 0.5925,
+  "loss_late": 0.2173,
+  "p48a_drop": 0.6332,
+  "p48a_pass": true,
+  "rss_span_gb": 0.0076,
+  "gate_rate_entry": 0.1671,
+  "gate_rate_steady": 0.2098,
+  "p48b_ratio": 0.797,
+  "p48b_pass": false,
+  "n_entry_events_post": 1424,
+  "habituation_first_n": 48,
+  "habituation_second_n": 60,
+  "p48d_drop": 0.0536,
+  "lane_instrument": {
+    "entry_surprise_lane_mean": 0.30966,
+    "steady_surprise_lane_mean": 0.30659,
+    "entry_over_steady": 1.01,
+    "habituation_lane": 0.024,
+    "note": "per-walker surprise, logging only \u2014 the registered (b)/(d) used the batch-mean gate, which is 8x diluted against asynchronous single-walker events"
+  },
+  "p48d_pass": false,
+  "p48c_provenance": [
+    {
+      "walker": 2,
+      "step": 1857,
+      "found": true
+    },
+    {
+      "walker": 3,
+      "step": 2013,
+      "found": true
+    },
+    {
+      "walker": 3,
+      "step": 2773,
+      "found": true
+    },
+    {
+      "walker": 5,
+      "step": 1752,
+      "found": true
+    },
+    {
+      "walker": 6,
+      "step": 2592,
+      "found": true
+    }
+  ],
+  "p48c_found": "5/5",
+  "p48c_pass": true,
+  "p48_scoring": {
+    "a": "PASS with room: loss drop 63.3% (bar 30%), RSS span 0.0076 GB. The unchanged stack learns the pixel world.",
+    "b": "FALSIFIED TWICE OVER. Batch-gate ratio 0.797 \u2014 inverted, entries gate LESS than steady. The dilution rescue (batch-mean gate is 8x blind to single-walker events) was then REFUTED by its own fix: the per-lane, undiluted instrument reads entry/steady = 1.01. Room entries in this world are simply not surprising to the trained organism.",
+    "c": "PASS 5/5 BIT-EXACT at spread (walker, step) coordinates \u2014 the strictest provenance form, twice (full + rerun, identical numbers: the harness is bit-deterministic on beast).",
+    "d": "FALSIFIED: 5.4% batch / 2.4% lane vs the registered 20%. Visit-1 events all occur in the first circuit, at or near ignition; by visit 2 the loop is learned. The instrument has almost no dynamic range in a world this small.",
+    "mechanism": "The registered falsifier fires by the letter \u2014 (b)/(d) absent while (a) holds \u2014 but its interpretation (\"learned pixels without organizing them\") overshoots the measured mechanism: a FULLY DETERMINISTIC world under a FIXED policy contains no genuine novelty after ignition. A competent predictor silences every transition; P43 fired because the source swap was NOT derivable from within the stream. The experiment conflated \"transition\" with \"novelty\". The batch-dilution note stands as an embodied-fleet architecture lesson (one shared gate across bodies dampens each body 8x) but was not the cause here.",
+    "v2": "P49: inject underivable novelty mid-run \u2014 a sealed room unlocks at a step no history predicts. The pixel analog of the source swap."
+  }
+}
