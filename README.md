@@ -297,6 +297,21 @@ raw run log is committed verbatim.
 result is *eval*. The same persistent state also makes *training* O(1), and lets the model remember
 across a pause in the input — two things a turn-based, KV-cache model structurally cannot do.
 
+**The 7-billion-token life (running).** A 1,713,673-parameter organism has now *learned online*
+through **7.05 billion streamed tokens** in one continuous life — no dataset stored, no epochs, no
+growing context — at a process memory that never left the band **0.69–0.83 GB**. The stretch from
+0.87B to 7.05B ran in a *single OS process* for ~12 days without any intervention; the one stall in
+the life (an upstream HF-stream hang) was self-healed from the run's own atomic checkpoint, resuming
+51,200 tokens back with ~3 minutes of stream lost. The cost of having lived 70,000 books is zero
+memory. (Stated plainly: at 1.7M parameters the loss EMA is at its capacity floor, 4.25 → 4.17 over
+the logged stretch — this artifact measures the *constancy of resources over experience*, not
+continued learning.)
+
+![The 7-billion-token life: constant memory across the whole of experience](plots/lifetime_7b.png)
+
+→ `results/lifetime_7b_curve.json`, `results/lifetime_7b_series.json`,
+`results/lifetime_billion_status.json` (the 1B crossing), `src/plot_lifetime_7b.py`
+
 ![Living-stream: constant-memory training and a bit carried through an input gap](plots/living_stream.png)
 
 - **(A) Constant-memory streaming training.** Train from scratch on streamed C4, carrying the

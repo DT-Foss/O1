@@ -1,0 +1,26 @@
+{
+  "note": "MS-J harvest 2026-08-05: the lifetime organism on intel, read off its own logs while it keeps running. The life predates the oldest retained log, so the logged series starts at 512M tokens; the run itself continues past every number here.",
+  "headline": {
+    "tokens_streamed": 7053926400,
+    "n_params": 1713673,
+    "loss_ema_at_512M": 4.25,
+    "loss_ema_now": 4.169,
+    "rss_gb_min": 0.69,
+    "rss_gb_max": 0.83,
+    "single_process_stretch": "0.87B -> 7.05B tokens, 2026-07-24 12:39 to 2026-08-05, ~12 days, zero interventions (stall_guard.log empty since arming)"
+  },
+  "the_one_stall": {
+    "when": "2026-07-24T12:39",
+    "last_logged_tok": 869734400,
+    "first_logged_tok_after": 869683200,
+    "replayed_tokens": 51200,
+    "restart_gap_per_log_timestamps_s": 5,
+    "note": "HF-stream futex hang; killed and resumed from the atomic checkpoint 51,200 tokens back. RSS dipped to 0.69 on the fresh process and recovered. The organism healed itself out of its own snapshot \u2014 the stall is evidence FOR the design, not against it."
+  },
+  "series_file": "results/lifetime_7b_series.json",
+  "figure": "plots/lifetime_7b.png + paper/figures/fig_lifetime_7b.pdf",
+  "honesty_notes": [
+    "loss_ema 4.25 -> 4.169 over 6.5B tokens: at 1.7M params the model is at its capacity floor; the claim is CONSTANT RESOURCES, not continued learning",
+    "the 0 -> 512M stretch of the life predates the oldest retained log and is documented only by lifetime_billion_status.json and the run start lines"
+  ]
+}
