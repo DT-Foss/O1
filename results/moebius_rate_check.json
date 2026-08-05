@@ -1,0 +1,132 @@
+{
+  "config": {
+    "d_model": 128,
+    "batch": 4,
+    "chunk_size": 32,
+    "cycles": 4,
+    "sync_window": 500,
+    "lockstep": 500,
+    "a_total_chunks": 45000,
+    "local_out_dir": "/Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage",
+    "result_json": "results/moebius_rate_check.json",
+    "dry_run": false
+  },
+  "a_pid": 20269,
+  "a_ckpt_path": "/Users/bhkmie/Documents/Forschung/O1_juli/results/moebius_stage/source_A/ckpt.pt",
+  "a_note": "A is a continuous subprocess left RUNNING after this script exits (never paused/killed, per constraint) \u2014 kill it manually if/when desired.",
+  "cycles": [
+    {
+      "cycle": 0,
+      "status": "ok",
+      "a_snapshot_wait_s": 0.578,
+      "a_chunks_at_snapshot": 45000,
+      "transfer_s": 13.157,
+      "catchup_chunks": 45000,
+      "catchup_s": 484.717,
+      "b_chunks_after_catchup": 90000,
+      "catchup_final_heldout": 5.262262,
+      "lockstep_s": 27.253,
+      "b_chunks_after_lockstep": 90500,
+      "lockstep_final_heldout": 5.257199,
+      "lockstep_parity": {
+        "note": "cross-ISA (beast=x86) \u2014 6-decimal match expected per P38a, NOT bit-identical; only defined at equal chunk counts (equal stream position)",
+        "chunk_count_compared": 90500,
+        "a_heldout_used": null,
+        "b_heldout": 5.257199,
+        "measured": false,
+        "reason": "no A heldout reading at the matching chunk count within the poll timeout"
+      },
+      "a_chunks_at_debt_readout": 45000,
+      "sync_debt_chunks": 0
+    },
+    {
+      "cycle": 1,
+      "status": "ok",
+      "a_snapshot_wait_s": 0.01,
+      "a_chunks_at_snapshot": 45000,
+      "transfer_s": 6.055,
+      "catchup_chunks": 0,
+      "catchup_s": 9.811,
+      "b_chunks_after_catchup": 45000,
+      "catchup_final_heldout": 5.336081,
+      "lockstep_s": 26.217,
+      "b_chunks_after_lockstep": 45500,
+      "lockstep_final_heldout": 5.342682,
+      "lockstep_parity": {
+        "note": "cross-ISA (beast=x86) \u2014 6-decimal match expected per P38a, NOT bit-identical; only defined at equal chunk counts (equal stream position)",
+        "chunk_count_compared": 45500,
+        "a_heldout_used": null,
+        "b_heldout": 5.342682,
+        "measured": false,
+        "reason": "no A heldout reading at the matching chunk count within the poll timeout"
+      },
+      "a_chunks_at_debt_readout": 45000,
+      "sync_debt_chunks": 0
+    },
+    {
+      "cycle": 2,
+      "status": "ok",
+      "a_snapshot_wait_s": 0.011,
+      "a_chunks_at_snapshot": 45000,
+      "transfer_s": 7.089,
+      "catchup_chunks": 0,
+      "catchup_s": 8.463,
+      "b_chunks_after_catchup": 45000,
+      "catchup_final_heldout": 5.336081,
+      "lockstep_s": 25.197,
+      "b_chunks_after_lockstep": 45500,
+      "lockstep_final_heldout": 5.342682,
+      "lockstep_parity": {
+        "note": "cross-ISA (beast=x86) \u2014 6-decimal match expected per P38a, NOT bit-identical; only defined at equal chunk counts (equal stream position)",
+        "chunk_count_compared": 45500,
+        "a_heldout_used": null,
+        "b_heldout": 5.342682,
+        "measured": false,
+        "reason": "no A heldout reading at the matching chunk count within the poll timeout"
+      },
+      "a_chunks_at_debt_readout": 45000,
+      "sync_debt_chunks": 0
+    },
+    {
+      "cycle": 3,
+      "status": "ok",
+      "a_snapshot_wait_s": 0.016,
+      "a_chunks_at_snapshot": 45000,
+      "transfer_s": 7.293,
+      "catchup_chunks": 0,
+      "catchup_s": 8.999,
+      "b_chunks_after_catchup": 45000,
+      "catchup_final_heldout": 5.336081,
+      "lockstep_s": 25.773,
+      "b_chunks_after_lockstep": 45500,
+      "lockstep_final_heldout": 5.342682,
+      "lockstep_parity": {
+        "note": "cross-ISA (beast=x86) \u2014 6-decimal match expected per P38a, NOT bit-identical; only defined at equal chunk counts (equal stream position)",
+        "chunk_count_compared": 45500,
+        "a_heldout_used": null,
+        "b_heldout": 5.342682,
+        "measured": false,
+        "reason": "no A heldout reading at the matching chunk count within the poll timeout"
+      },
+      "a_chunks_at_debt_readout": 45000,
+      "sync_debt_chunks": 0
+    }
+  ],
+  "p39d_scoring": {
+    "debt_bounded": true,
+    "max_debt_chunks": 0,
+    "sync_window_chunks": 500,
+    "debts_by_cycle": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "parity": false,
+    "parity_tolerance": 1e-05,
+    "parity_deltas_by_cycle": [],
+    "n_cycles_ok": 4,
+    "n_cycles_total": 4
+  },
+  "verdict": "MOEBIUS STAGE: 4/4 cycles ok | debt bounded (<= 500 chunks, all cycles): True (max observed: 0) | parity (<= 1e-05, cross-ISA 6-decimal): False | PARTIAL/FAIL"
+}

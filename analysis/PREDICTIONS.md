@@ -1334,3 +1334,23 @@ artifact is a number about the defaults, not about the system.
   carries resume:true — externally killed at 68.2% and healed from
   its own checkpoint (the exp_a-measured exact-resume path); zero
   stream reconnects on the resumed leg.
+  **P50(d) RE-LOCK #2 (2026-08-05, before run 4).** Run 3's records
+  expose the staging truth: A (141/s) finished its 45k budget BEFORE
+  cycle 0 pulled its snapshot — B then replayed the ENTIRE life in one
+  catchup (45,000 chunks in 484.7s = 10.77 ms/chunk on the x86 runner
+  at nice-19, HF streaming included), and cycles 1–3 idled against a
+  finished A. The debt-0 readings are trivial (standing A), and the
+  [5100, 8700] band was never confronted — the run measured the
+  snapshot-teleport regime, not the chase. But run 3's own two rates
+  arm the sharp test: rate_A ≈ 141/s (7.1 ms/chunk, ARM) versus
+  c_B ≈ 10.77 ms/chunk (x86 at nice-19) gives rate_A·c_B ≈ 1.52 > 1 —
+  the FORMULA now predicts the chase regime DIVERGES on this hardware
+  pairing: each cycle's catchup must grow by a factor ≈ rate_A·c_B,
+  locked band [1.3, 1.7] per cycle over ≥3 live cycles (run 4:
+  a_total 150,000 so A outlives the cycles; in-run rates close the
+  loop). If the growth factor lands in band, the rate condition is
+  CONFIRMED in its divergent branch — and F7's two-regime lesson
+  becomes complete and measured: chase replication requires
+  rate_A·c_B < 1 (equal-or-faster follower hardware); snapshot-sync
+  collapses debt regardless (run 3, cycle 0: one scp erased a 45k-chunk
+  deficit; the transfer is the tilgung, not the compute).

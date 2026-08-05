@@ -294,8 +294,9 @@ def run_cycle(args, cycle_idx, a_ckpt_path, b_chunk_before, b_last_ckpt_remote):
     #    b_chunk_before + sync_window without that budget headroom is what
     #    stalled the 2026-07-24 run at cycle 2 (waited for A>=1440, A capped
     #    at 960).
-    target_min_chunks = b_chunk_before + args.sync_window
-    print(f"\n[moebius] === cycle {cycle_idx}: waiting for A >= chunk {target_min_chunks} ===", flush=True)
+    target_min_chunks = min(b_chunk_before + args.sync_window, args.a_total_chunks)
+    print(f"\n[moebius] === cycle {cycle_idx}: waiting for A >= chunk {target_min_chunks} "
+          f"(capped at A's budget {args.a_total_chunks}) ===", flush=True)
     a_meta, wait_s = _wait_for_a_snapshot_at_least(a_ckpt_path, target_min_chunks, dry)
     record["a_snapshot_wait_s"] = round(wait_s, 3)
     record["a_chunks_at_snapshot"] = a_meta.get("n_chunks")
@@ -576,6 +577,13 @@ def main():
             record, b_chunk_count, b_last_ckpt_remote = run_cycle(
                 args, i, a_ckpt_path, b_chunk_count, b_last_ckpt_remote)
             cycles_out.append(record)
+            # incremental write: two runs lost their in-memory records (an
+            # external kill, then a wait-timeout before the final write) —
+            # every completed cycle lands on disk the moment it exists
+            if args.result_json and not args.dry_run:
+                with open(args.result_json, "w") as pf:
+                    json.dump({"config": vars(args), "cycles": cycles_out,
+                               "partial": True}, pf, indent=2)
             if record["status"] == "failed":
                 print(f"[moebius] cycle {i} FAILED ({record.get('failure')}) — "
                       f"A keeps running, proceeding to next cycle", flush=True)
