@@ -346,8 +346,9 @@ entries above the q75 threshold is 0.230 at \emph{both} $d{=}256$ and
 $d{=}512$, while their gate rates are 0.220 and 0.185. What the data does
 locate is \emph{when} the difference is born --- the cumulative gate
 fraction at the first eval is already 0.2042 ($d{=}256$) against 0.1785
-($d{=}512$), and both then move by under 0.02 across the remaining 46M
-tokens. The rate is set during ignition and held. The per-chunk traces
+($d{=}512$); over the remaining 46M tokens they drift up by $+0.043$ and
+$+0.020$, the separation growing $0.026 \rightarrow 0.049$. The rate is
+born during ignition, and the gap then widens rather than washing out. The per-chunk traces
 (pre-registered as P45) locate the birth further: the separation is
 established within the first 500 chunks, and across six cells (three
 widths $\times$ two seeds) the gate rate tracks the \emph{depth} of the
@@ -358,10 +359,11 @@ quantile window forms on the high descent trail. Width, however, does
 ($d{=}256$ exits lowest and gates least), and a same-seed repeat of one
 cell is bit-identical for 118 chunks, then forks at a quantile
 interpolation and lands at a different 2{,}000-chunk rate (0.163 vs.\
-0.191) --- run-to-run variation as large as the width gap at that
-horizon. Whether the 50M-token separation (19.8\% vs.\ 24.7\%) is caused
-by width or is an ignition lottery frozen at scale is undecided, and
-decidable only by repeats at scale.
+0.191): early gate rates are a measured lottery. The 50M-scale evidence
+points the other way --- the separation \emph{grows} from 0.026 to 0.049
+over the run, and $d{=}128$ and $d{=}256$ land on the same 24.7\%
+cumulative rate, two widths finding one attractor. Both phenomena are
+measured; the piece between them is a repeat at the 50M scale.
 
 \begin{figure}[t]
 \centering

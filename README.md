@@ -512,8 +512,9 @@ spread is flat at 0.0381 / 0.0354 / 0.0340 and absolute spread at 0.163 / 0.164 
 does within-window drift separate the arms — the fraction of recent window entries above the
 q75 threshold is 0.230 at *both* d=256 and d=512, while their gate rates are 0.220 and 0.185.
 What the data does show is *where* the difference is born: the cumulative gate fraction at the
-first eval is already 0.2042 (d=256) against 0.1785 (d=512), and both then move by under 0.02
-across the remaining 46M tokens. The rate is set during ignition and held.
+first eval is already 0.2042 (d=256) against 0.1785 (d=512); over the remaining 46M tokens
+they drift up by +0.043 and +0.020, the separation growing 0.026 → 0.049. The rate is born
+during ignition, and the gap then widens rather than washing out.
 
 **And the ignition itself is now read out (P45).** The per-chunk (surprise, gate, threshold)
 traces were on disk for all three widths all along — an earlier note here claimed only
@@ -528,14 +529,15 @@ so its quantile window fills from the high descent trail and fresh chunks sit be
 then on. **The gate rate is born from the depth of ignition descent, not from post-ignition
 slope.**
 
-The confirmation cells then cut this finding down to its honest size. At seed 43 the width
-ordering **reverses** — there it is d=256 that exits ignition lowest and gates least — so
-depth→rate survives as a direction across all six cells (r=0.77, n=6, not significant) while
-*width*→depth is falsified. And a same-seed repeat of one cell is bit-identical for 118
-chunks, then forks at a quantile interpolation and lands at a **different** 2,000-chunk rate
-(0.163 vs 0.191): run-to-run variation at that horizon is as large as the width gap itself.
-Whether the 50M-token separation (19.8% vs 24.7%) is caused by width or is an ignition
-lottery frozen at scale is undecided — decidable only by repeats at scale.
+The confirmation cells sharpen this in both directions. At seed 43 the width ordering
+**reverses** at the 500-chunk horizon — depth→rate survives across all six cells (r=0.77,
+n=6) while *width*→depth does not — and a same-seed repeat is bit-identical for 118 chunks,
+then forks at a quantile interpolation onto a **different** 2,000-chunk rate (0.163 vs
+0.191). Early gate rates are a measured lottery. The 50M-scale evidence points the other
+way: the d256/d512 separation **grows** from 0.026 at the first eval to 0.049 at 50M (drift
++0.043 vs +0.020 — a frozen coin-flip does not compound), and d128 and d256 land on the same
+24.7% cumulative rate — two widths, one attractor. Both phenomena are measured; the one
+missing piece between them is a repeat at the 50M scale, which is queued.
 Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
 138,532 documents at d=256).
 → `results/ignition_forensics.json`, `results/gate_rate_width_probe.json`
