@@ -362,8 +362,20 @@ interpolation and lands at a different 2{,}000-chunk rate (0.163 vs.\
 0.191): early gate rates are a measured lottery. The 50M-scale evidence
 points the other way --- the separation \emph{grows} from 0.026 to 0.049
 over the run, and $d{=}128$ and $d{=}256$ land on the same 24.7\%
-cumulative rate, two widths finding one attractor. Both phenomena are
-measured; the piece between them is a repeat at the 50M scale.
+cumulative rate, two widths finding one attractor. The repeats at the
+50M scale close the question on both axes. An exact repeat of the
+$d{=}512$ run (11 days later, a different process, one mid-run stream
+reconnect) reproduces \emph{all} 97{,}657 chunks identically on every
+recorded field --- same-seed variance at 50M is zero, and the
+run-vs-run forks trace to measurement-cell co-load, not to the
+calculus. A second seed at $d{=}512$ lands at 0.1986 against 0.1984,
+with the full profile reproducing (improvement ratio 0.9758 vs.\
+0.9777; efficiency 0.3467 vs.\ 0.3547 per million gradient tokens).
+The early lottery is a transient, not a fate: lifetime cumulative
+rates converge to their width's attractor, and the dose structure of
+selection at scale is deterministic and plannable. (Seed-robustness is
+measured at $d{=}512$; the 24.7\% side rests on two widths landing on
+one rate independently, one seed each at 50M.)
 
 \begin{figure}[t]
 \centering
