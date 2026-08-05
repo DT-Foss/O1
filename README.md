@@ -505,6 +505,10 @@ gate fires at 19.8% where both narrower runs fire at 24.7%, stable from the star
 rather than drifting, so A3 there gets ~20% fewer gradient tokens. Per gradient token actually
 spent, d=512 is the *best* of the three: selection did not get worse with width, it got
 cheaper. What the ratio measures at d=512 is a smaller dose, not a weaker gate.
+**The d=512 point now stands on two seeds and an exact repeat**: seed 43 reproduces the whole
+profile (rate 0.1986 vs 0.1984, ratio 0.9758 vs 0.9777, efficiency 0.3467 vs 0.3547/M), and
+the seed-42 repeat reproduced all 97,657 chunks identically — the dose structure of selection
+at scale is deterministic and plannable, not drawn per run.
 
 Why the d=512 gate fires less was probed directly from the run checkpoints, and the obvious
 explanation is wrong. The surprise distribution does **not** change shape with width: relative
@@ -547,8 +551,13 @@ the rate is a deterministic function of (seed, width, recipe, stream), not a fro
 The two phenomena coexist cleanly — the 2k-chunk forks were measured in *parallel* forensics
 cells (co-load), while the undisturbed production path is deterministic end-to-end, including
 exact stream re-instantiation through a reconnect (138,532 documents, same order): provenance
-at production scale. What remains is the seed axis — whether seed 43 lands on d512's 19.8% or
-somewhere else decides width-law vs seed-lottery, and that run is in flight.
+at production scale. **And the seed axis is now closed too: seed 43 at d=512/50M lands at
+0.1986 against seed 42's 0.1984** — the same rate to the third decimal, 4.9 points away from
+the d128/d256 attractor, with the full profile reproducing (ratio 0.9758 vs 0.9777,
+efficiency 0.3467 vs 0.3547 per million gradient tokens). The width law stands on both axes:
+the 50M gate rate is deterministic per (seed, width, recipe, stream) and seed-robust at
+d512. The early lottery is a transient, not a fate — 2k-chunk rates fluctuate, the lifetime
+cumulative rate converges to its width's attractor.
 Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
 138,532 documents at d=256).
 → `results/ignition_forensics.json`, `results/gate_rate_width_probe.json`

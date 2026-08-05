@@ -1313,3 +1313,24 @@ artifact is a number about the defaults, not about the system.
   its measured standing debt inside that band, with the in-run (fix,
   c_B, rate_A) closing the loop; outside the band, the formula — not
   the parameters — is what failed.
+
+  **P45 DECISIVE 2 — THE WIDTH LAW STANDS (2026-08-05 night,
+  results/pos_s43_50_d512_status.json).** Seed 43, d=512, the exact
+  50M recipe: cumulative gate rate **0.1986** against seed 42's 0.1984
+  — two seeds, the same rate to the third decimal, while the
+  d128/d256 attractor sits 4.9 points away at 0.247 (a gap ~25×
+  larger than the seed difference). The whole d512 profile reproduces
+  across seeds, not just the rate: improvement ratio 0.9758 vs 0.9777,
+  efficiency 0.3467 vs 0.3547 per million gradient tokens — still the
+  best point of the width curve on its second seed. Verdict, both
+  axes now closed: the 50M gate rate is DETERMINISTIC per (seed,
+  width, recipe, stream) [D1: 97,657/97,657 chunks exact] and
+  SEED-ROBUST at d512 [D2: Δ0.0002]. The early-horizon lottery is a
+  TRANSIENT, not a fate — 2k-chunk rates fluctuate, the 50M cumulative
+  rate converges to its width's attractor. Precision boundary,
+  recorded: full seed-robustness is measured at d512; the 24.7% side
+  rests on the two-width attractor (d128 and d256 landing on one rate
+  independently) with one seed each at 50M. Run note: this run
+  carries resume:true — externally killed at 68.2% and healed from
+  its own checkpoint (the exp_a-measured exact-resume path); zero
+  stream reconnects on the resumed leg.
