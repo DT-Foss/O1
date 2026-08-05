@@ -1,0 +1,149 @@
+{
+  "p43": true,
+  "smoke": false,
+  "S": 1500,
+  "pause": 200,
+  "swap": {
+    "name": "swap",
+    "schedule": [
+      [
+        "c4",
+        1500
+      ],
+      [
+        "idle",
+        200
+      ],
+      [
+        "wt103",
+        1500
+      ],
+      [
+        "idle",
+        200
+      ],
+      [
+        "c4",
+        1500
+      ]
+    ],
+    "seed": 42,
+    "cadence": {
+      "d_model": 128,
+      "batch": 8,
+      "chunk": 64,
+      "q": 0.75,
+      "window": 500,
+      "min_window": 100,
+      "ignition_chunks": 100
+    },
+    "final_heldout": 5.362865,
+    "boundary_evals": [
+      {
+        "after_seg": 0,
+        "kind": "c4",
+        "chunk": 1500,
+        "heldout": 5.763336
+      },
+      {
+        "after_seg": 2,
+        "kind": "wt103",
+        "chunk": 3200,
+        "heldout": 5.311948
+      },
+      {
+        "after_seg": 4,
+        "kind": "c4",
+        "chunk": 4900,
+        "heldout": 5.362865
+      }
+    ],
+    "flushed_tokens_at_boundaries": 18432,
+    "stream_docs": {
+      "c4": 4170,
+      "wt103": 17114
+    },
+    "stream_reconnects": {
+      "c4": 0,
+      "wt103": 0
+    },
+    "grad_tokens": 474624,
+    "n_chunks": 4900,
+    "wall_s": 67.7,
+    "trace": "/Users/bhkmie/Documents/Forschung/O1_juli/results/source_swap_full_traces/swap.jsonl"
+  },
+  "control": {
+    "name": "ctrl",
+    "schedule": [
+      [
+        "c4",
+        1500
+      ],
+      [
+        "idle",
+        200
+      ],
+      [
+        "c4",
+        1500
+      ],
+      [
+        "idle",
+        200
+      ],
+      [
+        "c4",
+        1500
+      ]
+    ],
+    "seed": 42,
+    "cadence": {
+      "d_model": 128,
+      "batch": 8,
+      "chunk": 64,
+      "q": 0.75,
+      "window": 500,
+      "min_window": 100,
+      "ignition_chunks": 100
+    },
+    "final_heldout": 5.492215,
+    "boundary_evals": [
+      {
+        "after_seg": 0,
+        "kind": "c4",
+        "chunk": 1500,
+        "heldout": 5.763336
+      },
+      {
+        "after_seg": 2,
+        "kind": "c4",
+        "chunk": 3200,
+        "heldout": 5.542084
+      },
+      {
+        "after_seg": 4,
+        "kind": "c4",
+        "chunk": 4900,
+        "heldout": 5.492215
+      }
+    ],
+    "flushed_tokens_at_boundaries": 36864,
+    "stream_docs": {
+      "c4": 6386
+    },
+    "stream_reconnects": {
+      "c4": 0
+    },
+    "grad_tokens": 472576,
+    "n_chunks": 4900,
+    "wall_s": 61.9,
+    "trace": "/Users/bhkmie/Documents/Forschung/O1_juli/results/source_swap_full_traces/ctrl.jsonl"
+  },
+  "heldout_delta_swap_minus_ctrl": -0.12935,
+  "p43_scoring": {
+    "a_survivable": "PASS \u2014 both sources streamed, idle pauses clean, all segments completed, zero reconnect anomalies; C4 position resumed exactly after the detour.",
+    "b_signed_transients": "FALSIFIED IN BOTH CLAUSES, WITH INVERTED SIGNS \u2014 and the inversion is the finding. Registered: swap-in quiets the gate (<=0.6x), return spikes it (>=1.5x), reasoning from domain proximity (WT103 ~ eval sibling => easier). Measured: swap-in SPIKES to 0.630 vs baseline 0.164 (3.8x \u2014 surprise jumps 5.281->5.513), return goes QUIET to 0.080 (0.49x \u2014 home regime vs a WT103-filled window). Both transients exist and decay into steady bands (0.630->0.204; 0.080->0.234). The gate detects TRANSITIONS relative to its own window, not absolute difficulty: entering ANY new regime fires it, returning home quiets it. A cleaner regime-detector law than the one registered \u2014 knowable as such only because the wrong sign was committed first.",
+    "c_not_destructive": "PASS WITH ROOM \u2014 the detour arm ends 0.129 BETTER than the pure-C4 control on the frozen eval (5.3629 vs 5.4922), against a registered bar of merely \"within +0.05\". The WT103 detour is not survivable, it is beneficial at this horizon.",
+    "verdict": "Source hot-swap works: survivable, beneficial, and the gate is a live transition detector with measured signs (spike on entry 3.8x, quiet on homecoming 0.49x)."
+  }
+}

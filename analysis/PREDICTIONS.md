@@ -922,3 +922,15 @@ artifact is a number about the defaults, not about the system.
   same-seed variation equals the width gap; whether the 50M separation
   (24.7 vs 19.8) is width or frozen lottery is undecided without repeats
   at scale.
+  **P43 SCORED (2026-08-05 evening, results/source_swap.json).** (a) PASS.
+  (c) PASS WITH ROOM — the WT-103 detour arm ends 0.129 BETTER than the
+  pure-C4 control (5.3629 vs 5.4922; bar was "within +0.05"). (b)
+  FALSIFIED IN BOTH CLAUSES WITH INVERTED SIGNS, and the inversion is the
+  finding: swap-in SPIKES the gate 3.8× (0.630 vs 0.164; surprise
+  5.281→5.513) where quiet was registered; the return home QUIETS it to
+  0.49× (0.080) where a spike was registered. The registered reasoning
+  bet on absolute difficulty (domain proximity); the gate actually fires
+  on TRANSITIONS relative to its own window — entering any new regime
+  spikes, returning home is quiet, both decaying into steady bands within
+  the window length. A cleaner regime-detector law than the one
+  registered, and crisp only because the wrong sign was committed first.
