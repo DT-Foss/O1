@@ -948,3 +948,36 @@ artifact is a number about the defaults, not about the system.
   (to be registered as P46 before build): iterated merge-redistribute
   every M chunks, and the memory-route hybrid (five arms, one store, one
   reader).
+
+## Wave 8b — the knowledge-file loop (registered 2026-08-05 night, before any build)
+
+- **P46 — five producers, one store, one reader (MS-M v2).** N=5 organisms
+  stream disjoint C4 offsets and write ONE shared span store (P31
+  machinery); a separate reader organism streams its own budget WITH
+  reminder consultation from the union store. Controls: same reader, no
+  store; and the P44 one-shot weight merge as the dead baseline.
+  Registered: (a) reader-with-union-store beats reader-no-store by
+  ≥ 0.02 heldout at equal reader budget — the collective helps through
+  the MEMORY interface where weight averaging failed; (b) iterated
+  merge-redistribute every 100 chunks (bounded divergence) ≥ the single
+  arm at S — may fail exactly like P44b; if it instead BEATS the 5×S
+  control, that is the federated free lunch and the bigger result.
+- **P47 — the frozen knowledge file (the refinery loop, closed).**
+  Organism A streams C4 and harvests surprise spans; the harvest is
+  DISTILLED into a frozen, sha256-hashed, provenance-carrying knowledge
+  file (each entry: key, span, stream doc-coordinate, surprise) — built
+  once, never mutated after. Organism B (fresh, never saw A's stream)
+  then lives a domain shock (WT-103) with dosed sleep-replay from that
+  file. Arms: intact file / token-shuffled file (keys+coords intact — the
+  poisoning control) / no file. Registered:
+  (a) FILE-MEDIATED IMMUNITY: B's C4-competence forgetting with the
+      intact file ≤ 0.8× the no-file control (P31's live-store 0.67× is
+      the reference; the frozen interface may cost some of it).
+  (b) PROVENANCE REPLAYS: ≥ 4/5 sampled entries reconstruct exactly by
+      re-instantiating the deterministic stream at their recorded
+      doc-coordinate — "sources sehbar" as a measurement, not a slogan.
+  (c) THE POISONING CONTROL: the corrupted file's benefit < 0.5× the
+      intact file's benefit — and, per the MS1 conflict finding, the
+      reader is NOT expected to defend itself (trust-decay, not
+      arbitration); the defense organ is future work and is hereby named,
+      not smuggled in.
