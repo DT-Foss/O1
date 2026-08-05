@@ -154,6 +154,20 @@ def main():
     h_iter = heldout_c4(arms[0].model, evX, evY)
     print(f"[itermerge] {rounds} rounds x {args.merge_every} chunks | heldout {h_iter:.4f}", flush=True)
 
+    # ── the equal-total-compute control, SAME instrument: one organism,
+    #    N*S chunks. The smoke exposed that P44's 5xS number lives on the
+    #    WT-2 instrument and is NOT comparable to this run's C4 slice —
+    #    the embarrassment clause needs its control in-run. ─────────────────
+    ctrl = make_organism(args.seed, V, mask, "ctrl_5xS")
+    cstream = po.C4Stream(stoi, unk, skip_docs=0)
+    cfeeder = po.ChunkFeeder(cstream, po.BATCH, po.CHUNK)
+    t0 = time.time()
+    for _ in range(N * S):
+        x, y = cfeeder.next_xy()
+        ctrl.step_gated(x, y)
+    h_ctrl = heldout_c4(ctrl.model, evX, evY)
+    print(f"[ctrl_5xS] {N*S} chunks | heldout {h_ctrl:.4f} | {time.time()-t0:.0f}s", flush=True)
+
     out = {"p46": True, "smoke": args.smoke, "n_arms": N, "S": S,
            "cadence": {"d_model": po.D_MODEL, "batch": po.BATCH, "chunk": po.CHUNK,
                        "q": po.GATE_Q, "window": po.GATE_WINDOW,
@@ -168,9 +182,10 @@ def main():
            "single_arm_reference_best": min(prod_helds),
            "p46b_itermerge_vs_best_single": round(h_iter - min(prod_helds), 6),
            "p46b_pass": bool(h_iter <= min(prod_helds)),
+           "ctrl_5xS_same_instrument": round(h_ctrl, 6),
            "p44_oneshot_reference": {"brain": 5.979112, "ctrl_5xS": 5.358632,
-                                     "note": "same config/offsets/seed, cross-run reference"},
-           "p46b_embarrassment_beats_5xS": bool(h_iter < 5.358632)}
+                                     "note": "WT-2 instrument — NOT comparable to this run's C4 slice; kept for the record only"},
+           "p46b_embarrassment_beats_5xS": bool(h_iter < h_ctrl)}
     path = args.out if not args.smoke else args.out.replace(".json", "_smoke.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=2)
