@@ -1092,3 +1092,24 @@ artifact is a number about the defaults, not about the system.
   once, most tokens in the chunk carry the surprise. P48 full-rerun
   clauses in the same artifact stay consistent: (a) 61.2% drop PASS,
   (b) 0.973 FAIL, (d) 0.086 FAIL, (c) 5/5 PASS.
+
+  **P45 DECISIVE 1 (2026-08-05, results/pos_rep50_d512_status.json +
+  full chunk-trace comparison).** The queued 50M repeat (exact recipe,
+  seed 42, d=512) ran 11 days after the original, different process,
+  one mid-run HF stream reconnect. Result: **all 97,657 chunks
+  identical on every recorded field** — s1/s2/s3 at print precision
+  (6 decimals), every gate decision, every threshold; finals to the
+  last digit (A2 5.0898, A3 5.170144, cum 0.1984, 19,375 fires). The
+  differing status digests are an instrument artifact, not compute: the
+  digest hashes wall-clock-driven eval lines (18 vs 15 at
+  eval_every_s=900) — noted as a digest design flaw for cross-run use;
+  the chunk-level comparison is authoritative. Verdict: same-seed
+  variance at 50M is ZERO under undisturbed conditions — the rate is a
+  deterministic function of (seed, width, recipe, stream). This
+  sharpens P45(c) rather than contradicting it: the 2k forks were
+  measured in PARALLEL forensics cells (co-load); the undisturbed
+  production path reproduces exactly — the instability lives in the
+  environment, not the calculus. The stream re-instantiated exactly
+  through a reconnect (138,532 docs, same order): provenance at
+  production scale. Width-vs-lottery now rides entirely on the seed
+  axis — D2 (seed 43, d=512, 50M) is running.

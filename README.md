@@ -536,8 +536,19 @@ then forks at a quantile interpolation onto a **different** 2,000-chunk rate (0.
 0.191). Early gate rates are a measured lottery. The 50M-scale evidence points the other
 way: the d256/d512 separation **grows** from 0.026 at the first eval to 0.049 at 50M (drift
 +0.043 vs +0.020 — a frozen coin-flip does not compound), and d128 and d256 land on the same
-24.7% cumulative rate — two widths, one attractor. Both phenomena are measured; the one
-missing piece between them is a repeat at the 50M scale, which is queued.
+24.7% cumulative rate — two widths, one attractor.
+
+**The repeat at 50M scale has now run, and it resolves the tension.** Eleven days after the
+original, in a different process, with one mid-run stream reconnect, the seed-42 d=512 run
+reproduced **all 97,657 chunks identically on every recorded field** — all three surprise
+streams at print precision, every gate decision, every threshold, final heldouts to the last
+digit (A2 5.0898, A3 5.1701, cumulative rate 0.1984). Same-seed variance at 50M is **zero**:
+the rate is a deterministic function of (seed, width, recipe, stream), not a frozen coin-flip.
+The two phenomena coexist cleanly — the 2k-chunk forks were measured in *parallel* forensics
+cells (co-load), while the undisturbed production path is deterministic end-to-end, including
+exact stream re-instantiation through a reconnect (138,532 documents, same order): provenance
+at production scale. What remains is the seed axis — whether seed 43 lands on d512's 19.8% or
+somewhere else decides width-law vs seed-lottery, and that run is in flight.
 Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
 138,532 documents at d=256).
 → `results/ignition_forensics.json`, `results/gate_rate_width_probe.json`
