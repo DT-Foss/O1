@@ -527,6 +527,15 @@ always-learn ignition phase — at chunk 100, d=512 already reads 5.639 against 
 so its quantile window fills from the high descent trail and fresh chunks sit below it from
 then on. **The gate rate is born from the depth of ignition descent, not from post-ignition
 slope.**
+
+The confirmation cells then cut this finding down to its honest size. At seed 43 the width
+ordering **reverses** — there it is d=256 that exits ignition lowest and gates least — so
+depth→rate survives as a direction across all six cells (r=0.77, n=6, not significant) while
+*width*→depth is falsified. And a same-seed repeat of one cell is bit-identical for 118
+chunks, then forks at a quantile interpolation and lands at a **different** 2,000-chunk rate
+(0.163 vs 0.191): run-to-run variation at that horizon is as large as the width gap itself.
+Whether the 50M-token separation (19.8% vs 24.7%) is caused by width or is an ignition
+lottery frozen at scale is undecided — decidable only by repeats at scale.
 Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
 138,532 documents at d=256).
 → `results/ignition_forensics.json`, `results/gate_rate_width_probe.json`

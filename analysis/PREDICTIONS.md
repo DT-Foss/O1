@@ -907,3 +907,18 @@ artifact is a number about the defaults, not about the system.
   descent trail and fresh chunks sit persistently below its q75. The gate
   rate is born from the DEPTH of ignition descent, not post-ignition
   slope. (c) pending the repeat cell.
+  **P45 FINAL (2026-08-05 evening, confirmation cells + determinism repeat,
+  results/ignition_forensics.json):** (a) FALSIFIED — at seed 43 the
+  separation REVERSES (cum500 d256 0.274 < d512 0.284); width does not set
+  ignition depth. (b) the mechanism survives DECOUPLED from width: across
+  six cells, gate rate tracks ignition-exit depth (r=0.77, rho=0.60, n=6,
+  n.s.) — at seed 43 it is d256 that exits lowest and gates least. (c)
+  FALSIFIED with a measured fork: same seed, same machine — bit-identical
+  through chunk 118, then a quantile interpolation flips on sub-print-
+  precision drift, one gate decision diverges, and the runs land at
+  DIFFERENT 2000-chunk rates (0.191 vs 0.163; gates match 1936/2000).
+  P34's run-vs-run instability is now measured inside the gate. The
+  uncomfortable consequence, stated in README and paper: at this horizon
+  same-seed variation equals the width gap; whether the 50M separation
+  (24.7 vs 19.8) is width or frozen lottery is undecided without repeats
+  at scale.

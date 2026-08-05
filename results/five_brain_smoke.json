@@ -1,0 +1,33 @@
+{
+  "p44": true,
+  "smoke": true,
+  "n_arms": 5,
+  "S": 60,
+  "offset_docs": 20000,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "seed": 42,
+  "arm_heldouts": [
+    6.2618,
+    6.307623,
+    6.226213,
+    6.205718,
+    6.337969
+  ],
+  "arm_mean": 6.267865,
+  "arm_best": 6.205718,
+  "brain_heldout": 6.415128,
+  "ctrl_NxS_heldout": 5.933616,
+  "p44a_noncollapse": true,
+  "p44b_brain_beats_single_arm_by": -0.153328,
+  "p44b_pass": false,
+  "p44c_brain_vs_NxS": 0.481512,
+  "p44c_embarrassment_fired": false
+}

@@ -1,0 +1,143 @@
+{
+  "p43": true,
+  "smoke": true,
+  "S": 60,
+  "pause": 20,
+  "swap": {
+    "name": "swap",
+    "schedule": [
+      [
+        "c4",
+        60
+      ],
+      [
+        "idle",
+        20
+      ],
+      [
+        "wt103",
+        60
+      ],
+      [
+        "idle",
+        20
+      ],
+      [
+        "c4",
+        60
+      ]
+    ],
+    "seed": 42,
+    "cadence": {
+      "d_model": 128,
+      "batch": 8,
+      "chunk": 64,
+      "q": 0.75,
+      "window": 500,
+      "min_window": 100,
+      "ignition_chunks": 100
+    },
+    "final_heldout": 5.939422,
+    "boundary_evals": [
+      {
+        "after_seg": 0,
+        "kind": "c4",
+        "chunk": 60,
+        "heldout": 6.2618
+      },
+      {
+        "after_seg": 2,
+        "kind": "wt103",
+        "chunk": 140,
+        "heldout": 5.808292
+      },
+      {
+        "after_seg": 4,
+        "kind": "c4",
+        "chunk": 220,
+        "heldout": 5.939422
+      }
+    ],
+    "flushed_tokens_at_boundaries": 34816,
+    "stream_docs": {
+      "c4": 357,
+      "wt103": 1422
+    },
+    "stream_reconnects": {
+      "c4": 0,
+      "wt103": 0
+    },
+    "grad_tokens": 55296,
+    "n_chunks": 220,
+    "wall_s": 19.1,
+    "trace": "/Users/bhkmie/Documents/Forschung/O1_juli/results/source_swap_smoke_traces/swap.jsonl"
+  },
+  "control": {
+    "name": "ctrl",
+    "schedule": [
+      [
+        "c4",
+        60
+      ],
+      [
+        "idle",
+        20
+      ],
+      [
+        "c4",
+        60
+      ],
+      [
+        "idle",
+        20
+      ],
+      [
+        "c4",
+        60
+      ]
+    ],
+    "seed": 42,
+    "cadence": {
+      "d_model": 128,
+      "batch": 8,
+      "chunk": 64,
+      "q": 0.75,
+      "window": 500,
+      "min_window": 100,
+      "ignition_chunks": 100
+    },
+    "final_heldout": 6.080334,
+    "boundary_evals": [
+      {
+        "after_seg": 0,
+        "kind": "c4",
+        "chunk": 60,
+        "heldout": 6.2618
+      },
+      {
+        "after_seg": 2,
+        "kind": "c4",
+        "chunk": 140,
+        "heldout": 6.081193
+      },
+      {
+        "after_seg": 4,
+        "kind": "c4",
+        "chunk": 220,
+        "heldout": 6.080334
+      }
+    ],
+    "flushed_tokens_at_boundaries": 69632,
+    "stream_docs": {
+      "c4": 509
+    },
+    "stream_reconnects": {
+      "c4": 0
+    },
+    "grad_tokens": 52224,
+    "n_chunks": 220,
+    "wall_s": 11.6,
+    "trace": "/Users/bhkmie/Documents/Forschung/O1_juli/results/source_swap_smoke_traces/ctrl.jsonl"
+  },
+  "heldout_delta_swap_minus_ctrl": -0.140912
+}

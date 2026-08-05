@@ -35,5 +35,17 @@
     "results/pos_chunks.jsonl",
     "results/pos_d256_chunks.jsonl",
     "results/pos_d512_chunks.jsonl"
-  ]
+  ],
+  "seed43_and_determinism_update_2026_08_05": {
+    "p45a_final": "FALSIFIED at seed 43: the separation REVERSES \u2014 cum500 d256 0.274 < d512 0.284 (registered: >=0.03 same direction, both seeds). Width does not set the ignition depth.",
+    "p45b_final": "Mechanism survives as a direction, decoupled from width: across 6 cells (3 widths x 2 seeds), gate rate tracks ignition-exit depth (whoever exits always-learn lowest gates least): Pearson r=0.773, Spearman rho=0.600 (n=6, p=0.208 \u2014 suggestive, underpowered). At seed 43 it is d256 that exits lowest (5.662) and gates least (0.1595) \u2014 consistent with depth->rate, inconsistent with width->depth.",
+    "p45c_final": "FALSIFIED, with a measured fork: same seed, same machine, same config \u2014 bit-identical for chunks 0..118, first s3 deviation at chunk 119 (|delta| 8.2e-4 after sub-print-precision drift), a quantile interpolation flips (th 5.861 vs 5.919), one gate decision diverges, and the trajectories land at DIFFERENT 2000-chunk rates: 0.191 vs 0.163. Gate decisions match 1936/2000. P34s run-vs-run instability is now measured inside the gate itself.",
+    "the_uncomfortable_consequence": "At the 2000-chunk horizon, same-seed run-to-run variation (0.191 vs 0.163) is as large as the width separation (0.191 vs 0.1585). Whether the 50M-token separation (24.7% vs 19.8%) is width-caused or an ignition lottery frozen at scale is UNDECIDED and only repeats at scale can decide it.",
+    "cells": [
+      "results/pos_ign43_d128_chunks.jsonl",
+      "results/pos_ign43_d256_chunks.jsonl",
+      "results/pos_ign43_d512_chunks.jsonl",
+      "results/pos_ignrep_d256_chunks.jsonl"
+    ]
+  }
 }
