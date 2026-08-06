@@ -1,0 +1,43 @@
+{
+  "p58": true,
+  "smoke": false,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "config": {
+    "chunks": 3000,
+    "top_m": 150,
+    "window_tokens": 128,
+    "substrate": "wt103"
+  },
+  "surprise_windows": {
+    "new_type_rate": 0.054688,
+    "new_bigram_rate": 0.484375,
+    "first_ever_rate": 0.265625,
+    "redundancy": 0.273438
+  },
+  "random_windows": {
+    "new_type_rate": 0.007812,
+    "new_bigram_rate": 0.34375,
+    "first_ever_rate": 0.175781,
+    "redundancy": 0.398438
+  },
+  "random_seed2": {
+    "new_type_rate": 0.007812,
+    "new_bigram_rate": 0.335938,
+    "first_ever_rate": 0.171875,
+    "redundancy": 0.421875
+  },
+  "p58a_first_ever_ratio": 1.5111,
+  "p58a_pass": true,
+  "p58b_redundancy_ratio": 0.6863,
+  "p58b_pass": true,
+  "p58c_seed2_ratio": 1.5455,
+  "p58c_pass": true
+}

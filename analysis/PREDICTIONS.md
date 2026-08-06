@@ -1495,6 +1495,19 @@ artifact is a number about the defaults, not about the system.
   file-as-memory; (b) fails while (a) passes ⇒ the gain is domain
   adaptation, not entry storage — same boundary, other side.
 
+  **P55 RUN 1 INSTRUMENT-NULL (2026-08-06, results/keyed_file_null_v1
+  .json, full 1,500/1,500 chunks).** Zero probes: the harness filtered
+  probe material at ≥ K+1 = 65 tokens while the harvest geometry caps
+  every span at one chunk — 64 tokens (interior spikes give 33..64).
+  The condition is unsatisfiable, both probe arms read a vacuous 0.0,
+  clauses (a)/(b) are NOT scorable — a harness defect, not a verdict.
+  What the run does carry: diffuse heldout gain +0.0356 (the file's
+  fertility replicates a third time, on the P47 scale). Harness fixed
+  the same hour — split at each span's own midpoint, controls
+  length-matched per entry, minimum 33 tokens — fix verified on smoke
+  (20/20 probes populated), full rerun in flight as v2. Clauses await
+  the v2 artifact (results/keyed_file.json).
+
 - **P57 — the composition curve: sublinearity over the exposure decade
   (MS-S, registered 2026-08-06, BEFORE the launch).** P54's stabilizer
   finding stands on two exposure points (150 / 1,000 chunk phases).
@@ -1536,6 +1549,22 @@ artifact is a number about the defaults, not about the system.
   BEFORE anything is built on it. (b) fails alone ⇒ surprise finds new
   things amid old ones — filter useful for discovery, not dedup.
   Runs chained on the 16-core runner behind P55.
+
+  **P58 SCORED (2026-08-06, results/surprise_filter.json, full 3,000
+  chunks on the 16-core runner, cadence block d128/B8/K64 q0.75 in the
+  artifact).** 3/3 PASS — SURPRISE POINTS AT NOVELTY, NOT DIFFICULTY.
+  (a) first-ever rate of surprise windows 0.2656 vs random 0.1758 —
+  ratio 1.511 (bar 1.5); on brand-new TYPES alone the gap is 7.0×
+  (0.0547 vs 0.0078) — the gate lands on the stream's first encounters.
+  (b) redundancy 0.2734 vs 0.3984 — ratio 0.686 (bar 0.8): selection
+  points away from the already-frequent. (c) both verdicts hold against
+  the second random seed (first-ever ratio 1.545, redundancy ratio
+  0.648) — the instrument is not a seed artifact. The distiller's
+  ground question is answered: gate surprise IS a knowledge filter —
+  it selects windows where the stream shows new types and new bigram
+  relations and skips the redundant, measured on a fully deterministic
+  registry instrument with a control-of-the-control. The
+  F1-as-distillation-filter claim survives its pre-committed falsifier.
 
 - **P59 — the aged brain: does a 7-billion-token life gate, learn, and
   survive shocks differently? (MS-U, registered 2026-08-06, BEFORE the
