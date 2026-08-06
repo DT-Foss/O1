@@ -1471,6 +1471,41 @@ artifact is a number about the defaults, not about the system.
   24.7% attractor was seed accident and the curve needs seed averaging
   before any width claim below d512.
 
+  **P56 SCORED (2026-08-06, results/gate_law_width_curve_q08.json,
+  all three runs complete at 50,000,384 tokens, cadence in every
+  status file).** The scoring found a config drift that rewrites the
+  width-rate story, and the correction outranks every clause. THE
+  DRIFT: the original width curve's note claimed one identical q=0.75
+  recipe across d128/d256/d512 — the machine-written configs show the
+  d512 run was launched at q=0.8, and the seed-43 hardening runs (and
+  d1024) were launched at q=0.8 as well. The accident completes a
+  2×4 q-width grid, and the grid separates the variables cleanly.
+  THE RATE IS A DIAL, NOT AN EMERGENT: five q=0.8 runs across an 8×
+  width range land inside 0.1981–0.1994 (0.13pp scatter; seed delta
+  0.02pp), both q=0.75 runs land at 0.2472 — the 4.9pp "fall at d512"
+  was the q flip, there never was a width→rate effect, and the old
+  curve's load-bearing open question (why d512 fires less) dissolves.
+  Clause verdicts: (a) FAIL, falsifier fires as pre-committed — at
+  fixed q=0.8 the per-token efficiency falls monotonically with width
+  (0.3696 → 0.3629 → 0.3547/0.3467 → 0.3305; d1024 misses the 0.3547
+  bar): the registered "efficiency grows with width" was the q
+  confound (a q=0.8 dose is fewer, more selective tokens — higher
+  per-token improvement at ANY width). (b) formal inequality reads
+  true (0.1981 < 0.1984) but is VOID as a width mechanism — scored as
+  CORRECTED, rate ≈ (1−q) invariant to width, seed, and (per the
+  grid) everything else measured. (c) NOT SCORABLE as registered —
+  protocol drift: the seed-43 runs did not replicate the q=0.75
+  attractor recipe, so the 24.7% side remains one-seed; the completing
+  q=0.75/seed-43 pair is relaunched. What the drift measured instead
+  is stronger than the registered clause: width-invariance of the
+  rate at fixed dose. THE HEADLINE ABOVE ALL CLAUSES: at d1024 the
+  improvement ratio CROSSES 1.0 — the gated arm ends at 5.4164
+  against the full-gradient arm's 5.4464 (ratio 1.0092) on 19.8% of
+  the gradient tokens. Selection is no longer a discount at d1024: it
+  wins outright. The fixed-q ratio curve reads 0.9708 → 0.9892 →
+  0.9777/0.9758 (two seeds agree — the d512 valley is real) → 1.0092,
+  and the d128→d256 rise replicates at both q levels.
+
 - **P55 — the file answers by key (MS-Q, registered 2026-08-06, BEFORE
   the build).** P47/P52 proved the frozen file transfers DIFFUSELY
   (global NLL gains to strangers). The end architecture claims more:
@@ -1507,6 +1542,25 @@ artifact is a number about the defaults, not about the system.
   length-matched per entry, minimum 33 tokens — fix verified on smoke
   (20/20 probes populated), full rerun in flight as v2. Clauses await
   the v2 artifact (results/keyed_file.json).
+
+  **P55 SCORED (2026-08-06, results/keyed_file.json v2 after the
+  probe-geometry fix, full 1,500/1,500 chunks, cadence block
+  d128/B8/K64 q0.75 in the artifact).** 2/2 PASS + mechanics — THE
+  FILE IS TAPPABLE. (a) KEYED RECALL +0.2643 (bar 0.05, 5.3× over):
+  the with-file twin completes the file's own entries from their
+  first half 0.26 nats better than its no-file twin — 7.4× the
+  diffuse heldout effect (+0.0356); targeted, not diffuse. (b)
+  SPECIFICITY +0.2182 (bar 0.02, 10.9× over): the advantage on
+  harvested entries dwarfs the advantage on length-matched
+  never-harvested spans from the same stream region (control gain
+  +0.046) — the file carries THE ENTRIES, not just the domain. (c)
+  mechanics hold: file frozen, sha256 87c81bcc0081…, and the
+  producer's harvest is bit-identical across the null run and v2
+  (same sha) — the file itself is deterministic. The falsifier
+  boundary does not bite at this dose: dosed replay alone stores
+  keyed, entry-level content; no index-mediated read is needed for
+  recall at 1,500 consumer chunks. MS-Q complete: frozen file →
+  dosed replay → keyed retrieval, measured end to end.
 
 - **P57 — the composition curve: sublinearity over the exposure decade
   (MS-S, registered 2026-08-06, BEFORE the launch).** P54's stabilizer

@@ -1,0 +1,39 @@
+{
+  "p55": true,
+  "smoke": false,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "config": {
+    "producer_chunks": 1500,
+    "consumer_chunks": 1500,
+    "replay_every": 25,
+    "n_probe": 100,
+    "min_probe_len": 33
+  },
+  "file_sha256": "87c81bcc00818922c34ff207f3267e5c86a8792c2edeb915aa2e53708b4e7e34",
+  "n_spans": 540,
+  "arms": {
+    "with_file": {
+      "probe_completion": 5.531571,
+      "control_completion": 5.320455,
+      "heldout": 5.359512
+    },
+    "without": {
+      "probe_completion": 5.795834,
+      "control_completion": 5.366505,
+      "heldout": 5.395104
+    }
+  },
+  "p55a_keyed_gain": 0.264263,
+  "p55a_pass": true,
+  "p55b_specificity": 0.218213,
+  "p55b_pass": true,
+  "diffuse_heldout_gain": 0.035592
+}

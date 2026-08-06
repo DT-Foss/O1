@@ -490,57 +490,42 @@ surprise excess 0.0029 (10–50× below the registered band), identical post-for
 converged one chunk after the fork, and the twin finished ahead (4.7365). Full verdict:
 [analysis/POS_THESIS.md](analysis/POS_THESIS.md).
 
-**The width curve, three points (P42 + MS-H).** Same recipe, only the width changed, all read
-at a matched ~50M-token anchor:
+**The width curve — four points, and the correction that cleaned it (P42 + MS-H + P56).**
+The original three-point curve was published with a note claiming one identical q=0.75 recipe
+across widths. The machine-written run configs say otherwise: the d=512 run was launched at
+q=0.8 (`pos_run.py`'s default; the narrower runs had the flag set explicitly). The seed-43
+hardening runs and the d=1024 run inherited the same default — and thereby completed, by
+accident, a 2×4 q-width grid that separates the two variables cleanly:
 
-| d_model | gate fires | A3 gated | A2 full | improvement ratio | per M grad-token |
+| d_model | seed | q | gate fires | improvement ratio | per M grad-token |
 |---|---|---|---|---|---|
-| 128 | 24.7% | 5.0176 | 4.9161 | 0.9729 | 0.2969 |
-| 256 | 24.7% | 5.0534 | 5.0363 | **0.9953** | 0.2937 |
-| 512 | 19.8% | 5.1701 | 5.0898 | 0.9777 | **0.3547** |
+| 128 | 42 | 0.75 | 24.7% | 0.9729 | 0.2969 |
+| 256 | 42 | 0.75 | 24.7% | 0.9953 | 0.2937 |
+| 128 | 43 | 0.80 | 19.9% | 0.9708 | 0.3696 |
+| 256 | 43 | 0.80 | 19.9% | 0.9892 | 0.3629 |
+| 512 | 42+43 | 0.80 | 19.8% | 0.9777 / 0.9758 | 0.3547 / 0.3467 |
+| 1024 | 42 | 0.80 | 19.8% | **1.0092** | 0.3305 |
 
-The two-point reading — "the gate law grows with width" — **does not survive the third point**:
-the ratio peaks at d=256 and falls again. But the three arms are not equally dosed. The d=512
-gate fires at 19.8% where both narrower runs fire at 24.7%, stable from the start of the run
-rather than drifting, so A3 there gets ~20% fewer gradient tokens. Per gradient token actually
-spent, d=512 is the *best* of the three: selection did not get worse with width, it got
-cheaper. What the ratio measures at d=512 is a smaller dose, not a weaker gate.
-**The d=512 point now stands on two seeds and an exact repeat**: seed 43 reproduces the whole
-profile (rate 0.1986 vs 0.1984, ratio 0.9758 vs 0.9777, efficiency 0.3467 vs 0.3547/M), and
-the seed-42 repeat reproduced all 97,657 chunks identically — the dose structure of selection
-at scale is deterministic and plannable, not drawn per run.
+**The gate rate is a dial, not an emergent.** Five q=0.8 runs across an 8× width range land
+inside 0.1981–0.1994 (0.13pp scatter; the seed delta at d=512 is 0.02pp); both q=0.75 runs
+land at 0.2472. The 4.9pp "fall at d=512" was the q flip — there never was a width→rate
+effect. The earlier ignition-depth mechanism reading of that gap is **retracted as a width
+mechanism**: it modeled a config difference as physics (its own forensics said as much — the
+fraction of window entries above the *q75* threshold was 0.230 at both d=256 and d=512, which
+is exactly what one sees when d=512 is gating on q80). The per-chunk ignition traces remain
+valid data about each config's ignition dynamics.
 
-Why the d=512 gate fires less was probed directly from the run checkpoints, and the obvious
-explanation is wrong. The surprise distribution does **not** change shape with width: relative
-spread is flat at 0.0381 / 0.0354 / 0.0340 and absolute spread at 0.163 / 0.164 / 0.161. Nor
-does within-window drift separate the arms — the fraction of recent window entries above the
-q75 threshold is 0.230 at *both* d=256 and d=512, while their gate rates are 0.220 and 0.185.
-What the data does show is *where* the difference is born: the cumulative gate fraction at the
-first eval is already 0.2042 (d=256) against 0.1785 (d=512); over the remaining 46M tokens
-they drift up by +0.043 and +0.020, the separation growing 0.026 → 0.049. The rate is born
-during ignition, and the gap then widens rather than washing out.
-
-**And the ignition itself is now read out (P45).** The per-chunk (surprise, gate, threshold)
-traces were on disk for all three widths all along — an earlier note here claimed only
-aggregates existed, which was wrong. Scored against the pre-registered P45: the separation is
-established within the **first 500 chunks** (cum gate 0.304 vs 0.270, Δ0.034 ≥ the registered
-0.03). The registered mechanism was half right: wider models do sit persistently deeper below
-their own quantile (mean margin −0.1422 / −0.2057 / −0.2504, monotone in width) — but the
-post-ignition slope ordering it predicted is broken (d=256 descends steeper than d=512 in
-chunks 100–500). The refined mechanism: the wide model's fast descent happens *inside* the
-always-learn ignition phase — at chunk 100, d=512 already reads 5.639 against 5.801/5.787 —
-so its quantile window fills from the high descent trail and fresh chunks sit below it from
-then on. **The gate rate is born from the depth of ignition descent, not from post-ignition
-slope.**
-
-The confirmation cells sharpen this in both directions. At seed 43 the width ordering
-**reverses** at the 500-chunk horizon — depth→rate survives across all six cells (r=0.77,
-n=6) while *width*→depth does not — and a same-seed repeat is bit-identical for 118 chunks,
-then forks at a quantile interpolation onto a **different** 2,000-chunk rate (0.163 vs
-0.191). Early gate rates are a measured lottery. The 50M-scale evidence points the other
-way: the d256/d512 separation **grows** from 0.026 at the first eval to 0.049 at 50M (drift
-+0.043 vs +0.020 — a frozen coin-flip does not compound), and d128 and d256 land on the same
-24.7% cumulative rate — two widths, one attractor.
+**What the clean grid shows instead — selection crosses the firehose at d=1024.** At fixed
+q=0.8 and matched dose (~19.8%, 9.90–9.97M gradient tokens), the improvement ratio reads
+0.9708 → 0.9892 → 0.9777/0.9758 (two seeds agree; the d=512 valley is real) → **1.0092**: the
+gated arm ends 0.030 nats *better* than the full-gradient arm on one fifth of the gradient
+tokens. The d128→d256 rise replicates at both q levels. Per-token efficiency at fixed dose
+falls monotonically with width (0.3696 → 0.3305) — the old "selection gets cheaper with
+width" read compared q=0.75 doses against a q=0.8 dose; a higher quantile doses fewer, more
+selective tokens at any width. One caveat carried openly: all points share the 50M anchor,
+and A2 degrades with width at fixed tokens (4.93 → 5.45), so the anchor sits earlier in a
+wider model's training. The 24.7% line stands on two widths at one seed each; its seed-43
+pair at q=0.75 is running.
 
 **The repeat at 50M scale has now run, and it resolves the tension.** Eleven days after the
 original, in a different process, with one mid-run stream reconnect, the seed-42 d=512 run
@@ -552,17 +537,18 @@ the rate is a deterministic function of (seed, width, recipe, stream), not a fro
 The two phenomena coexist cleanly — the 2k-chunk forks were measured in *parallel* forensics
 cells (co-load), while the undisturbed production path is deterministic end-to-end, including
 exact stream re-instantiation through a reconnect (138,532 documents, same order): provenance
-at production scale. **And the seed axis is now closed too: seed 43 at d=512/50M lands at
-0.1986 against seed 42's 0.1984** — the same rate to the third decimal, 4.9 points away from
-the d128/d256 attractor, with the full profile reproducing (ratio 0.9758 vs 0.9777,
-efficiency 0.3467 vs 0.3547 per million gradient tokens). The width law stands on both axes:
-the 50M gate rate is deterministic per (seed, width, recipe, stream) and seed-robust at
-d512. The early lottery is a transient, not a fate — 2k-chunk rates fluctuate, the lifetime
-cumulative rate converges to its width's attractor.
+at production scale. **And the seed axis is closed: seed 43 at d=512/50M lands at 0.1986
+against seed 42's 0.1984** — the same rate to the third decimal, with the full profile
+reproducing (ratio 0.9758 vs 0.9777, efficiency 0.3467 vs 0.3547 per million gradient
+tokens). The determinism results stand untouched by the q correction: the 50M gate rate is
+deterministic per (seed, q, width, recipe, stream) and seed-robust — and per the grid above,
+the width and seed dependence is nil at fixed q. The early lottery is a transient, not a
+fate — 2k-chunk rates fluctuate, the lifetime cumulative rate converges to its q's line.
 Memory stays flat throughout (0.41 GB at d=256, 1.73 GB at d=512, zero stream reconnects over
 138,532 documents at d=256).
 → `results/ignition_forensics.json`, `results/gate_rate_width_probe.json`
-→ `results/gate_law_width_curve.json`, `results/pos_d512_status.json`, `results/pos_d256_status.json`
+→ `results/gate_law_width_curve.json`, `results/gate_law_width_curve_q08.json` (the corrected grid),
+`results/pos_d512_status.json`, `results/pos_d256_status.json`, `results/pos_d1024_status.json`
 → `src/pos_run.py`, `src/pos_index.py`, `src/pos_analyze.py`, `src/verify_pos.py`,
 `analysis/DECISIONS.md`, `results/pos_*`
 
