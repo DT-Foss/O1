@@ -401,40 +401,43 @@ configuration.
 
 The fourth operational property is that the cost of running the system is
 predictable rather than emergent. Two measurements establish it: the selection
-rate that sets gradient cost is deterministic and width-structured, and the
+rate that sets gradient cost is a deterministic config dial, and the
 memory footprint is constant across orders of magnitude of experience.
 
-\paragraph{Selection cost is a deterministic function of the configuration.}
+\paragraph{Selection cost is a dial, not an emergent.}
 The gate that decides when to spend a gradient fires at a rate that is not
-drawn per run --- it is fixed by (seed, width, recipe, stream). Across a
-width curve read at a matched $\sim$50M-token anchor
-(\code{results/gate\_law\_width\_curve.json}), the improvement ratio reads
-\num{0.9729}, \num{0.9953}, \num{0.9777} at $d{=}128,256,512$, and the gate
-fires at \num{24.72}\%, \num{24.72}\%, \num{19.84}\% respectively. Two widths
-independently land on the same \num{24.72}\% cumulative rate --- two widths,
-one attractor --- and the $d{=}512$ rate is seed-robust (\num{0.1986} against
-\num{0.1984}; \S\ref{sec:determinism}) and same-seed exact
-(\S\ref{sec:determinism}). Per gradient token actually spent, the widest arm is
-the most efficient of the three (improvement per million gradient tokens
-\num{0.3547} against \num{0.2969} and \num{0.2937}): selection does not get
-worse with width, it gets cheaper. For a deployment this is the property that
-matters --- the gradient bill is a function you can evaluate before you run,
-not a distribution you discover after.
+drawn per run --- it is set by the gating quantile $q$ and reproduces
+deterministically per (seed, $q$, width, recipe, stream). Across a
+$2\times4$ $q$-width grid read at a matched $\sim$50M-token anchor
+(\code{results/gate\_law\_width\_curve\_q08.json}), five $q{=}0.8$ runs
+spanning $d{=}128$ to $d{=}1024$ land inside \num{19.81}--\num{19.94}\%
+(0.13pp of scatter; the seed delta at $d{=}512$ is 0.02pp;
+\S\ref{sec:determinism}), and both $q{=}0.75$ runs land at \num{24.72}\%:
+the rate tracks the dial and nothing else that was varied. At fixed dose
+the improvement ratio reads \num{0.9708}, \num{0.9892}, \num{0.9777},
+\num{1.0092} at $d{=}128,256,512,1024$ --- at $d{=}1024$ the gated arm ends
+\emph{better} than full-gradient training on one fifth of the gradient
+tokens. For a deployment this is the property that matters --- the gradient
+bill is a config choice you set before you run, not a distribution you
+discover after.
 
 \begin{table}[tb]
 \centering
-\caption{The selection rate is deterministic and width-structured, read at a
-matched $\sim$50M-token anchor. Per gradient token spent, the widest arm is the
-most efficient. Source: \code{results/gate\_law\_width\_curve.json}; seed
-robustness at $d{=}512$ from \code{results/pos\_s43\_50\_d512\_status.json}.}
+\caption{The selection rate tracks the gating quantile $q$ and is invariant
+to width and seed at fixed $q$; at fixed dose the improvement ratio crosses
+1.0 at $d{=}1024$. Matched $\sim$50M-token anchor. Source:
+\code{results/gate\_law\_width\_curve\_q08.json}.}
 \label{tab:cost}
-\begin{tabular}{@{}lcccc@{}}
+\begin{tabular}{@{}lccccc@{}}
 \toprule
-$d_\text{model}$ & gate fires & improvement ratio & impr./M grad-token & seed check\\
+$d_\text{model}$ & seed & $q$ & gate fires & improvement ratio & impr./M grad-token\\
 \midrule
-128 & \num{24.72}\% & \num{0.9729} & \num{0.2969} & ---\\
-256 & \num{24.72}\% & \num{0.9953} & \num{0.2937} & ---\\
-512 & \num{19.84}\% & \num{0.9777} & \textbf{\num{0.3547}} & \num{0.1986} vs \num{0.1984}\\
+128 & 42 & 0.75 & \num{24.72}\% & \num{0.9729} & \num{0.2969}\\
+256 & 42 & 0.75 & \num{24.72}\% & \num{0.9953} & \num{0.2937}\\
+128 & 43 & 0.80 & \num{19.87}\% & \num{0.9708} & \num{0.3696}\\
+256 & 43 & 0.80 & \num{19.94}\% & \num{0.9892} & \num{0.3629}\\
+512 & 42/43 & 0.80 & \num{19.84}/\num{19.86}\% & \num{0.9777}/\num{0.9758} & \num{0.3547}/\num{0.3467}\\
+1024 & 42 & 0.80 & \num{19.81}\% & \textbf{\num{1.0092}} & \num{0.3305}\\
 \bottomrule
 \end{tabular}
 \end{table}

@@ -82,54 +82,75 @@ def save(fig, name):
 
 
 # =============================================================== fig A
-# The gate-law width curve: the falsified two-point trend (left) and the
-# per-gradient-token inversion that survives it (right).
-# Source: results/gate_law_width_curve.json
+# The gate-law width curve on the corrected 2x4 q-width grid: the fixed-dose
+# ratio crossing 1.0 at d=1024 (left) and the rate-as-a-dial separation of
+# efficiency and gate rate (right).
+# Source: results/gate_law_width_curve_q08.json
 def fig_gate_width_curve():
-    pts = jload(RES / "gate_law_width_curve.json")["points"]
-    d = [p["d_model"] for p in pts]
-    ratio = [p["improvement_ratio"] for p in pts]
-    perM = [p["improvement_per_Mgrad_token"] for p in pts]
-    gate = [p["gate_frac"] for p in pts]
-    x = np.arange(len(d))
+    grid = jload(RES / "gate_law_width_curve_q08.json")["q_width_grid"]
+    widths = sorted({p["d_model"] for p in grid})
+    x = np.arange(len(widths))
+    xi_of = {w: i for i, w in enumerate(widths)}
+    q08 = [p for p in grid if p["q"] == 0.8]
+    q75 = [p for p in grid if p["q"] == 0.75]
+    r08 = {w: [p["improvement_ratio"] for p in q08 if p["d_model"] == w]
+           for w in widths}
+    e08 = {w: [p["improvement_per_Mgrad_token"] for p in q08
+               if p["d_model"] == w] for w in widths}
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(5.5, 2.35))
 
-    # -- left: the registered metric, and where it stops being monotone
-    ax1.plot(x, ratio, "-o", color=GREEN, lw=1.3, ms=4.2, zorder=4)
-    # the two-point extrapolation that the third point kills
-    slope = ratio[1] - ratio[0]
-    ax1.plot([x[1], x[2]], [ratio[1], ratio[1] + slope], "--", color=LGRAY,
-             lw=1.0, zorder=2)
-    ax1.annotate("two-point trend\n(falsified)", xy=(x[2], ratio[1] + slope),
-                 xytext=(-2, 5), textcoords="offset points",
-                 fontsize=6.6, color=GRAY, ha="right", va="bottom")
-    for xi, r in zip(x, ratio):
-        ax1.annotate(f"{r:.4f}", xy=(xi, r), xytext=(0, -11),
+    # -- left: the fixed-dose (q=0.8) ratio curve, and the crossing
+    ax1.axhline(1.0, color=GRAY, lw=0.7, ls=":", zorder=2)
+    mean08 = [float(np.mean(r08[w])) for w in widths]
+    ax1.plot(x, mean08, "-o", color=GREEN, lw=1.3, ms=4.2, zorder=4)
+    for w in widths:                       # both d=512 seeds, shown as data
+        for r in r08[w]:
+            ax1.plot(xi_of[w], r, "o", color=GREEN, ms=2.4, zorder=5)
+    ax1.plot([xi_of[p["d_model"]] for p in q75],
+             [p["improvement_ratio"] for p in q75],
+             "--s", color=LGRAY, lw=1.0, ms=3.2, zorder=3)
+    ax1.annotate("q=0.75 (rise replicates)",
+                 xy=(xi_of[q75[-1]["d_model"]], q75[-1]["improvement_ratio"]),
+                 xytext=(4, 3), textcoords="offset points",
+                 fontsize=6.6, color=GRAY, ha="left", va="bottom")
+    for w, r in zip(widths, mean08):
+        ax1.annotate(f"{r:.4f}", xy=(xi_of[w], r), xytext=(0, -11),
                      textcoords="offset points", fontsize=6.8,
                      color=GREEN, ha="center")
+    ax1.annotate("gated beats full", xy=(x[-1], mean08[-1]),
+                 xytext=(-4, 8), textcoords="offset points",
+                 fontsize=6.6, color=GREEN, ha="right", va="bottom")
     ax1.set_ylabel("improvement ratio A3/A2")
     ax1.set_xticks(x)
-    ax1.set_xticklabels([f"$d{{=}}{v}$" for v in d])
-    ax1.set_ylim(0.960, 1.002)
+    ax1.set_xticklabels([f"$d{{=}}{v}$" for v in widths])
+    ax1.set_ylim(0.960, 1.018)
     despine(ax1)
     ygrid(ax1)
 
-    # -- right: per gradient token spent, plus the dose that explains the drop
-    bars = ax2.bar(x, perM, width=0.55, color=[LBLUE, LBLUE, BLUE], zorder=3)
-    for xi, v in zip(x, perM):
-        ax2.annotate(f"{v:.4f}", xy=(xi, v), xytext=(0, 2),
-                     textcoords="offset points", fontsize=6.8,
+    # -- right: per gradient token at fixed dose (falls), and the rate dial
+    meanE = [float(np.mean(e08[w])) for w in widths]
+    ax2.bar(x, meanE, width=0.55, color=LBLUE, zorder=3)
+    for w, v in zip(widths, meanE):
+        lbl = "/".join(f"{e:.4f}" for e in e08[w]) if len(e08[w]) > 1 \
+            else f"{v:.4f}"
+        ax2.annotate(lbl, xy=(xi_of[w], v), xytext=(0, 2),
+                     textcoords="offset points", fontsize=6.0,
                      color="#1a1a1a", ha="center")
     ax2.set_ylabel("improvement per M gradient token")
     ax2.set_xticks(x)
-    ax2.set_xticklabels([f"$d{{=}}{v}$" for v in d])
-    ax2.set_ylim(0, max(perM) * 1.30)
+    ax2.set_xticklabels([f"$d{{=}}{v}$" for v in widths])
+    ax2.set_ylim(0, max(meanE) * 1.30)
     despine(ax2)
     ygrid(ax2)
 
     axg = ax2.twinx()
-    axg.plot(x, [g * 100 for g in gate], ":s", color=VERM, lw=1.1, ms=3.4, zorder=5)
+    axg.plot([xi_of[p["d_model"]] for p in q08],
+             [p["gate_frac_cum"] * 100 for p in q08],
+             "s", color=VERM, ms=3.0, zorder=5)
+    axg.plot([xi_of[p["d_model"]] for p in q75],
+             [p["gate_frac_cum"] * 100 for p in q75],
+             "D", color=YELLOW, ms=3.0, zorder=5)
     axg.set_ylabel("gate fires (%)", color=VERM, fontsize=7.6)
     axg.tick_params(axis="y", labelcolor=VERM, labelsize=7.0)
     axg.set_ylim(0, 40)
@@ -137,9 +158,11 @@ def fig_gate_width_curve():
         axg.spines[side].set_visible(False)
     axg.spines["right"].set_color(VERM)
     axg.spines["right"].set_linewidth(0.6)
-    axg.annotate("dose falls\n24.7% $\\to$ 19.8%", xy=(x[2], gate[2] * 100),
-                 xytext=(-6, -16), textcoords="offset points",
-                 fontsize=6.6, color=VERM, ha="right", va="top")
+    axg.annotate("q=0.75 $\\to$ 24.7%", xy=(x[0], 24.7), xytext=(6, 6),
+                 textcoords="offset points", fontsize=6.4, color=YELLOW)
+    axg.annotate("q=0.8 $\\to$ 19.8–19.9%", xy=(x[-1], 19.8),
+                 xytext=(-2, -12), textcoords="offset points",
+                 fontsize=6.4, color=VERM, ha="right")
 
     fig.subplots_adjust(wspace=0.42)
     save(fig, "fig_gate_width_curve")

@@ -69,11 +69,13 @@ small, portable, forkable asset. Three measurements carry the case.
 16/16 integrity checks), the organism's surprise gate did not merely approach
 full-gradient training at 25.2\% of the gradient tokens --- it \textbf{beat}
 it (improvement ratio 1.0091), crossing the prediction's own registered
-``embarrassment threshold.'' A three-point width curve then \emph{falsified}
-the two-point reading of that result: the ratio peaks at $d{=}256$ (0.9729,
-0.9953, 0.9777) rather than rising with width. What survives is sharper ---
-per gradient token actually spent, the widest arm is the best of the three
-(0.3547 vs.\ 0.2969/0.2937). \textbf{(ii)} A 1{,}713{,}673-parameter organism
+``embarrassment threshold.'' A width curve --- corrected mid-flight when its
+own provenance trail exposed a config-default flip masquerading as a width
+effect --- now runs to $d{=}1024$ at fixed dose: the improvement ratio reads
+0.9708, 0.9892, 0.9777, \textbf{1.0092}, the gated arm crossing full-gradient
+training a second time, on the width axis. The gate rate itself proved a
+dial, not an emergent: five runs at $q{=}0.8$ spanning $8\times$ in width
+land within 0.13pp of one rate. \textbf{(ii)} A 1{,}713{,}673-parameter organism
 has now streamed \textbf{7.05 billion tokens in one continuous life} at a
 process memory that never left 0.69--0.83~GB, 0.87B$\to$7.05B of it in a
 single OS process over roughly twelve days; its one stall self-healed from
@@ -305,96 +307,102 @@ anchor.
 
 \begin{table}[tb]
 \centering
-\caption{The gate-law width curve at a matched $\sim$50M-token anchor. The
-registered metric (improvement ratio) peaks at $d{=}256$; per gradient token
-spent, the widest arm is the best of the three. Sources:
-\code{results/gate\_law\_width\_curve.json},
-\code{results/gate\_rate\_width\_probe.json}.}
+\caption{The gate-law width curve on the corrected $2\times4$ $q$-width
+grid, all points at a matched $\sim$50M-token anchor. At fixed $q{=}0.8$
+the dose is matched (9.90--9.97M gradient tokens) and the improvement
+ratio crosses 1.0 at $d{=}1024$; the gate rate tracks $q$ alone. Sources:
+\code{results/gate\_law\_width\_curve\_q08.json},
+\code{results/gate\_law\_width\_curve.json}.}
 \label{tab:width}
 \begin{tabular}{@{}lccccc@{}}
 \toprule
-$d_\text{model}$ & gate fires & A3 gated & A2 full & improvement ratio
+$d_\text{model}$ & seed & $q$ & gate fires & improvement ratio
 & improvement / M grad-token\\
 \midrule
-128 & 24.72\% & 5.017554 & 4.916141 & 0.9729 & 0.2969\\
-256 & 24.72\% & 5.053426 & 5.036284 & \textbf{0.9953} & 0.2937\\
-512 & 19.84\% & 5.170144 & 5.089800 & 0.9777 & \textbf{0.3547}\\
+128 & 42 & 0.75 & 24.72\% & 0.9729 & 0.2969\\
+256 & 42 & 0.75 & 24.72\% & 0.9953 & 0.2937\\
+128 & 43 & 0.80 & 19.87\% & 0.9708 & 0.3696\\
+256 & 43 & 0.80 & 19.94\% & 0.9892 & 0.3629\\
+512 & 42/43 & 0.80 & 19.84/19.86\% & 0.9777 / 0.9758 & 0.3547 / 0.3467\\
+1024 & 42 & 0.80 & 19.81\% & \textbf{1.0092} & 0.3305\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 At two points the reading was clean and was reported as such: 0.9729 $\to$
 0.9953, the gate law \emph{grows} with width. \textbf{The third point
-falsifies it.} The ratio does not rise monotonically; it peaks at $d{=}256$
-and falls to 0.9777 at $d{=}512$. The two-point trend was an artifact of
-having only two points, and the third was run on purpose to find out.
+falsified it} --- the ratio fell to 0.9777 at $d{=}512$ --- and the first
+version of this section explained the fall by a dosing difference it could
+observe but not derive: the $d{=}512$ gate fired at 19.8\% where both
+narrower runs fired at 24.7\%, stably from the start, and a forensic hunt
+for the mechanism (ignition-descent depth, pre-registered as P45)
+followed. \textbf{The provenance trail then closed the case from the other
+side.} The machine-written run configs record that the $d{=}512$ run was
+launched at $q{=}0.8$ --- the runner's default --- where the narrower runs
+had $q{=}0.75$ set explicitly. The gap was a config flip, not physics.
+Two hardening runs at $d{=}128$ and $d{=}256$ (seed 43) and the
+$d{=}1024$ extension inherited the same default and thereby completed, by
+accident, the $2\times4$ $q$-width grid of Table~\ref{tab:width}, which
+separates the two variables cleanly.
 
-What survives the falsification is sharper than what it replaced, and it
-turns on a dosing confound the artifact records. The three arms are not
-equally dosed: the $d{=}512$ gate fires at 19.84\% where both narrower runs
-fire at 24.72\%, so A3 there receives roughly 20\% fewer gradient tokens.
-\textbf{Per gradient token actually spent, $d{=}512$ is the best of the
-three} --- 0.3547 against 0.2969 and 0.2937. Selection did not get worse
-with width; it got cheaper. The ratio fell because the dose fell.
+\textbf{The gate rate is a dial, not an emergent.} Five $q{=}0.8$ runs
+across an $8\times$ width range land inside 0.1981--0.1994 (0.13pp of
+scatter, against a 0.02pp seed delta at $d{=}512$); both $q{=}0.75$ runs
+land at 0.2472. There never was a width$\to$rate effect. The
+ignition-depth mechanism of the earlier reading is retracted as a width
+mechanism --- its own forensics had in fact measured the answer: the
+fraction of window entries above the \emph{q75} threshold was 0.230 at
+both $d{=}256$ and $d{=}512$, which is precisely what one observes when
+the $d{=}512$ run is gating on q80. (The per-chunk ignition traces remain
+valid measurements of each config's ignition dynamics, and the
+early-horizon 2{,}000-chunk lottery results are untouched.)
 
-Two candidate explanations for the smaller dose were measured and both were
-refuted. The surprise distribution does \emph{not} change shape with width:
-relative spread is 0.03813 / 0.03544 / 0.03404 and absolute standard
-deviation 0.163 / 0.164 / 0.161 across $d{=}128/256/512$. Nor does
-within-window drift separate the arms: the fraction of the last 200 window
-entries above the q75 threshold is 0.230 at \emph{both} $d{=}256$ and
-$d{=}512$, while their gate rates are 0.220 and 0.185. What the data does
-locate is \emph{when} the difference is born --- the cumulative gate
-fraction at the first eval is already 0.2042 ($d{=}256$) against 0.1785
-($d{=}512$); over the remaining 46M tokens they drift up by $+0.043$ and
-$+0.020$, the separation growing $0.026 \rightarrow 0.049$. The rate is
-born during ignition, and the gap then widens rather than washing out. The per-chunk traces
-(pre-registered as P45) locate the birth further: the separation is
-established within the first 500 chunks, and across six cells (three
-widths $\times$ two seeds) the gate rate tracks the \emph{depth} of the
-always-learn ignition descent --- the model that exits ignition lowest
-gates least ($r{=}0.77$; $n{=}6$, not significant) --- because the
-quantile window forms on the high descent trail. Width, however, does
-\emph{not} set that depth: at the second seed the ordering reverses
-($d{=}256$ exits lowest and gates least), and a same-seed repeat of one
-cell is bit-identical for 118 chunks, then forks at a quantile
-interpolation and lands at a different 2{,}000-chunk rate (0.163 vs.\
-0.191): early gate rates are a measured lottery. The 50M-scale evidence
-points the other way --- the separation \emph{grows} from 0.026 to 0.049
-over the run, and $d{=}128$ and $d{=}256$ land on the same 24.7\%
-cumulative rate, two widths finding one attractor. The repeats at the
-50M scale close the question on both axes. An exact repeat of the
-$d{=}512$ run (11 days later, a different process, one mid-run stream
-reconnect) reproduces \emph{all} 97{,}657 chunks identically on every
-recorded field --- same-seed variance at 50M is zero, and the
-run-vs-run forks trace to measurement-cell co-load, not to the
-calculus. A second seed at $d{=}512$ lands at 0.1986 against 0.1984,
-with the full profile reproducing (improvement ratio 0.9758 vs.\
-0.9777; efficiency 0.3467 vs.\ 0.3547 per million gradient tokens).
-The early lottery is a transient, not a fate: lifetime cumulative
-rates converge to their width's attractor, and the dose structure of
-selection at scale is deterministic and plannable. (Seed-robustness is
-measured at $d{=}512$; the 24.7\% side rests on two widths landing on
-one rate independently, one seed each at 50M.)
+\textbf{What the clean grid shows instead: selection crosses the firehose
+at $d{=}1024$.} At fixed $q{=}0.8$ and matched dose (9.90--9.97M gradient
+tokens), the improvement ratio reads 0.9708 $\to$ 0.9892 $\to$
+0.9777/0.9758 (two seeds agree; the $d{=}512$ valley is real) $\to$
+\textbf{1.0092}: the gated arm ends 0.030 nats \emph{better} than the
+full-gradient arm on one fifth of the gradient tokens --- the same
+crossing the 40-hour run produced on the token axis (ratio 1.0091 at
+909.7M tokens, \S\ref{sec:40h}), now reproduced on the width axis at 50M.
+The $d{=}128\to256$ rise replicates at both $q$ levels. Per-token
+efficiency at fixed dose \emph{falls} monotonically with width (0.3696
+$\to$ 0.3629 $\to$ 0.3547/0.3467 $\to$ 0.3305): the earlier ``selection
+gets cheaper with width'' reading compared $q{=}0.75$ doses against a
+$q{=}0.8$ dose, and a higher quantile doses fewer, more selective tokens
+at any width.
+
+The determinism results are untouched by the correction. An exact repeat
+of the $d{=}512$ run (11 days later, a different process, one mid-run
+stream reconnect) reproduces \emph{all} 97{,}657 chunks identically on
+every recorded field --- same-seed variance at 50M is zero, and the
+run-vs-run forks trace to measurement-cell co-load, not to the calculus.
+A second seed at $d{=}512$ lands at 0.1986 against 0.1984, with the full
+profile reproducing (improvement ratio 0.9758 vs.\ 0.9777; efficiency
+0.3467 vs.\ 0.3547 per million gradient tokens). The 50M cumulative rate
+is deterministic per (seed, $q$, width, recipe, stream), and per the grid
+its width and seed dependence at fixed $q$ is nil. (The $q{=}0.75$ line
+rests on one seed per width; its seed-43 pair is running.)
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=5.50in]{fig_gate_width_curve.pdf}
-\caption{The gate-law width curve. \emph{Left:} the registered metric. The
-two-point trend (dashed) does not survive the third point --- the
-improvement ratio peaks at $d{=}256$. \emph{Right:} what survives. Per
-gradient token spent, $d{=}512$ is the best of the three (0.3547), and the
-gate fires there at 19.8\% rather than 24.7\%: the ratio fell because the
-dose fell, not because selection weakened. Sources:
-\code{results/gate\_law\_width\_curve.json},
-\code{results/gate\_rate\_width\_probe.json}.}
+\caption{The gate-law width curve on the corrected grid. \emph{Left:} at
+fixed $q{=}0.8$ and matched dose the improvement ratio crosses 1.0 at
+$d{=}1024$ --- the gated arm beats full-gradient training outright; the
+$q{=}0.75$ pair (gray, dashed) replicates the $d{=}128\to256$ rise; both
+$d{=}512$ seeds are shown. \emph{Right:} per gradient token spent at fixed
+dose, efficiency falls with width, and the gate rate separates by $q$
+alone --- 24.7\% at $q{=}0.75$, 19.8--19.9\% at $q{=}0.8$, across all
+widths. Source: \code{results/gate\_law\_width\_curve\_q08.json}.}
 \label{fig:width}
 \end{figure}
 
 One control on the reading: A2 itself degrades with width at this fixed
-token budget (4.9161 $\to$ 5.0363 $\to$ 5.0898), exactly as expected --- wider
-models need more tokens. The anchor measures selection efficiency, not model
-quality, and no claim about the latter is made from these three runs.
+token budget (4.9161 $\to$ 5.0363 $\to$ 5.0898 $\to$ 5.4464), exactly as
+expected --- wider models need more tokens, so the 50M anchor sits earlier
+in a wider model's training. The anchor measures selection efficiency, not
+model quality, and no claim about the latter is made from these runs.
 
 \section{The exactness license, swept}
 \label{sec:f2}
@@ -643,9 +651,12 @@ including the program's own favorite hypotheses. Four are load-bearing
 enough to name with their killing numbers.
 
 \begin{itemize}
-\item \textbf{The width law (P42, \S\ref{sec:width}).} ``The gate law grows
-with width'' held at two points and died at the third: 0.9729, 0.9953,
-0.9777. The third point was run to test the trend, not to confirm it.
+\item \textbf{The width law (P42, P56, \S\ref{sec:width}).} ``The gate law
+grows with width'' held at two points and died at the third: 0.9729,
+0.9953, 0.9777. The post-mortem then killed the post-mortem: the third
+point had run at a different $q$ (a runner default), and at fixed dose the
+curve crosses 1.0 at $d{=}1024$ --- while the registered ``efficiency
+grows with width'' (P56a) died cleanly at fixed dose, 0.3696 $\to$ 0.3305.
 \item \textbf{Replay cost (P39a, P39c, \S\ref{sec:replay}).} Registered
 thresholds $<$3.0 and $<$1.0; measured 7.085/5.603 and 2.219/2.039 on two
 machines, with the shared-core explanation refuted and the 2$\times$
