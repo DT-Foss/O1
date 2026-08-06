@@ -1,0 +1,43 @@
+{
+  "p64": true,
+  "smoke": true,
+  "cadence": {
+    "d_model": 128,
+    "batch": 8,
+    "chunk": 64,
+    "q": 0.75,
+    "window": 500,
+    "min_window": 100,
+    "ignition_chunks": 100
+  },
+  "config": {
+    "producer_chunks": 120,
+    "consumer_chunks": 120,
+    "replay_every": 10,
+    "r_prob": 0.3,
+    "n_probe": {
+      "file_S": 20,
+      "file_R": 20
+    },
+    "min_probe_len": 33
+  },
+  "n_spans_matched": 72,
+  "n_gated_chunks": 100,
+  "file_sha256": {
+    "file_S": "b5906e23dfd1c8a63ddb26a20e75af464cd72606afcd7909bdc944efa810ac54",
+    "file_R": "a44be05032f155ba7e395e2e44b1ada5a2c8a4a6b2bbe86639f2b0fbad801aa8"
+  },
+  "heldout": {
+    "file_S": 5.760447,
+    "file_R": 5.757805,
+    "without": 5.777751
+  },
+  "p64a_gain_S": 0.017304,
+  "p64a_gain_R": 0.019946,
+  "p64a_pass": false,
+  "p64b_keyed_gain_S": 0.276181,
+  "p64b_keyed_gain_R": 0.145105,
+  "p64b_pass_S": true,
+  "p64b_pass_R": true,
+  "p64c_matched": true
+}

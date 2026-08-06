@@ -1818,6 +1818,32 @@ artifact is a number about the defaults, not about the system.
   content-agnostic and surprise content has privileged replay
   dynamics — a mechanism finding bigger than the clause.
 
+  **P64 SCORED (2026-08-06 night, results/filter_file.json, full
+  1,500/1,500/1,500 chunks, 540 spans per file exactly matched, both
+  shas recorded, cadence block d128/B8/K64 q0.75 in the artifact).**
+  (a) INVERTED — the pre-committed falsifier fires, and the negative
+  is stated as measured: the random-harvested file fertilizes BETTER
+  than the surprise-harvested file on average-C4 heldout (+0.0617 vs
+  +0.0356, a 1.7× inversion of the registered direction). Novelty
+  selection does not buy diffuse transfer at this dose. (b) PASS both
+  — and the split IS the finding: keyed recall of own entries reads
+  +0.2643 (file-S) vs +0.2173 (file-R) — the surprise file stores its
+  entries BETTER, which refutes the falsifier's own mechanism guess
+  ("too hard to store efficiently"): storage of surprise content is
+  fine, superior even. The composed reading: THE FILTER BUYS MEMORY,
+  NOT FERTILIZER. Surprise selects content worth REMEMBERING (best
+  entry-level keyed recall; P58's novelty); random spans match the
+  eval's average distribution and therefore win the average-heldout
+  race. The two file roles P47/P55 measured — fertilizer (diffuse)
+  and memory (keyed) — are served by DIFFERENT harvest policies, and
+  the gate serves the memory role. Next attack, named: a
+  novelty-matched transfer eval (heldout restricted to rare/first-ever
+  content classes, the P58 registry as the instrument) to test whether
+  file-S wins on the content class the filter actually selects for —
+  registered when launched. Producer determinism note: file-S's sha
+  equals the P55 file's sha exactly (third bit-identical harvest of
+  the same recipe).
+
 - **P65 — the valley is not a seed story (registered 2026-08-06 night,
   BEFORE the launch).** The fixed-q ratio curve's one non-monotone
   feature — d256 (0.9892) above d512 (0.9777/0.9758) — rests on a
