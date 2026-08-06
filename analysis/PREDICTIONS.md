@@ -1644,6 +1644,29 @@ artifact is a number about the defaults, not about the system.
   Runs on the 16-core runner chained after P58; the lifetime host is
   never touched beyond one checkpoint copy.
 
+  **P59 SCORED (2026-08-06 night, results/aged_brain.json, full:
+  veteran forked at 7,442,664,960 tokens WITH optimizer state, young
+  twin raised fresh in-harness at 49,999,872 tokens on the same
+  vocabulary, cadence block d128/B8/K64 q0.75 in the artifact; the
+  living run untouched beyond the one checkpoint copy).** The age axis
+  opens with two laws and one price. (a) AGE DOES NOT SHIFT THE RATE:
+  veteran 0.2970 vs young 0.2920 on the same 2,000-chunk fresh-gate C4
+  probe — Δ0.50pp against the ±2pp bar. The either-way registration
+  lands on INVARIANCE: 149× more lived experience moves the gate rate
+  by half a point — the surprise economy is set by the recipe (per
+  P56: by q), not by biography. The dial law gains its fourth
+  invariance axis (width, seed, and now age). (b) EXPERIENCE IS
+  IMMUNITY: the veteran forgets 32% less under the WT-103 shock
+  (+0.0845 vs +0.1243) and returns BELOW its pre-shock loss after
+  recovery (−0.0086 vs +0.0032) — entering the shock 0.167 nats ahead
+  on C4 (4.4289 vs 4.5957). (c) THE PLASTICITY PRICE IS REAL AND
+  SMALL: veteran phase-2 plasticity 0.7442 of the young's — outside
+  the 25% band by 0.6pp, so the pre-committed follow-up fires: the
+  plasticity-decay curve across age is registered as P66, and its
+  ladder is already on disk (four archived mid-life snapshots of the
+  909M organism plus its final state, plus the two lives measured
+  here).
+
 - **P60 — stranger verification: the hub's review mechanism as a
   measurement (MS-V, registered 2026-08-06, BEFORE the build).** Every
   provenance replay so far was run by the file's CREATOR. The end
@@ -1808,3 +1831,32 @@ artifact is a number about the defaults, not about the system.
   Falsifiers: (a)/(b) fail ⇒ the d256 point carries seed variance the
   d512 pair does not — the fixed-q curve needs seed pairs at every
   width before any shape claim finer than the d1024 crossing.
+
+- **P66 — the plasticity-decay curve: what aging costs, across six
+  ages (registered 2026-08-06 night, BEFORE the runs; the follow-up
+  P59(c) fired).** P59 measured one pair: at 149× age, plasticity
+  0.7442 of young. Six same-recipe ages exist on disk: the young twin
+  (0.05B, from the P59 artifact), four archived mid-life snapshots of
+  the 909M organism (0.18B / 0.24B / 0.36B / 0.74B,
+  results/pos_snapshots/, A3 arm) plus its final state (0.91B,
+  results/pos_ckpt.pt) — one life, five points — and the 7.44B
+  veteran (P59 artifact) anchoring the far end. Each new age runs the
+  EXACT P59 veteran-side protocol (fresh-gate 2,000-chunk rate probe,
+  WT-103 shock at identical offsets and eval budgets), 16-core
+  runner, chained behind P61.
+  (a) MONOTONE PRICE: phase-2 plasticity decreases monotonically with
+      age across the 0.05B–0.91B ladder.
+  (b) NO FREEZE: the 7.44B far point's plasticity ≥ 0.6× the
+      youngest's (the curve saturates rather than collapses; the
+      functional-form read — plateau vs power-law — is made at
+      scoring from the artifact's raw curve).
+  (c) IMMUNITY GROWS WHERE PLASTICITY FALLS: forgetting decreases
+      monotonically with age across the same ladder — P59(b) becomes
+      a trend, not a pair.
+  Cross-life caveat carried openly: the 7.44B point is a second life
+  (same recipe, different stream history); clauses (a)/(c) are read
+  on the one-life ladder plus the young point.
+  Falsifiers: (a) non-monotone ⇒ plasticity is not an age function —
+  find the covariate; (b) fails ⇒ the organism has a finite learning
+  lifetime — state where the fitted curve crosses 0.5× and 0.1×;
+  (c) fails ⇒ P59(b) was a pair accident.
