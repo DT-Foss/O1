@@ -756,6 +756,28 @@ stranger — now holds in text (P47) and through a game engine we did not write 
 → `src/pixel_body_run.py`, `src/vizdoom_run.py`, `results/pixel_body.json`,
 `results/pixel_p49.json`, `results/vizdoom_life.json`, `results/vizdoom_knowledge.jsonl`
 
+### 17 — CHIMERA at decidable exposure: composition is the stabilizer
+
+The composed organism — gate, store, reminder, dosed sleep with dividend monitor, one
+process, every plasticity and memory decision from its own surprise — re-ran the shock
+protocol at 1,000-chunk phases (6.7× the original exposure, cadence recorded):
+
+| axis | chimera | gate+sleep only | full-gradient | no_monitor |
+|---|---|---|---|---|
+| forgetting | **+0.381** | +1.306 | +1.836 | +0.619 |
+| plasticity | **+0.672** | +0.631 | +0.854 | +0.623 |
+| recovery (residual) | **−0.040** | +0.599 | +0.037 | +0.424 |
+
+Chimera beats the best single-organ regime **raw on all three axes at 41% fewer gradient
+tokens** (426k vs 718k) — and recovers to *better than pre-shock*. The ablations attribute
+in-run: removing the dividend monitor collapses recovery to +0.424; the reminder organ,
+undecidable at the original exposure (2 fires), becomes decidable at 12 fires and earns its
+place on the plasticity axis (+0.028). The finding that outranks the table: with 6.7× the
+exposure, the single-organ regime degrades near-linearly (forgetting 0.189→1.306) while the
+composition degrades sublinearly (0.259→0.381) — **the organs stabilize each other; the
+whole is the reason the parts keep working**.
+→ `src/chimera.py`, `results/chimera_v1.json`, `analysis/CHIMERA_SPEC.md`
+
 ### The method: pre-registered, auto-scored, falsifications kept
 
 Every run above was preceded by a numbered prediction in

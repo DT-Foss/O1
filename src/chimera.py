@@ -429,6 +429,8 @@ def run_chimera(args, eval_wt2_fn, vocab_fn=_real_vocab):
 
     out = {
         "ckpt_n_streamed": ck["n_streamed"],
+        "cadence": {"d_model": cfg.get("d_model"), "batch": B, "chunk": K,
+                    "source": "read from POS checkpoint config (2026-08-05 audit rule)"},
         "phase2_dataset": "codeparrot/github-code-clean (language==Python, client-filtered)",
         "budget": {"phase_chunks": phase_chunks, "eval_every": eval_every,
                   "sleep_chunks_max": args.sleep_chunks, "max_replay_epochs": args.max_replay_epochs,

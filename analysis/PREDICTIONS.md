@@ -1427,3 +1427,25 @@ artifact is a number about the defaults, not about the system.
   (trivial); against a living A the chase is divergent and parity is
   unmeasurable in this staging (B overtakes A's eval points) — recorded
   as the staging's design limit, not a parity failure. MS-C+I CLOSED.
+  **P54 SCORED (2026-08-06 early, results/chimera_v1.json, full at
+  1,000-chunk phases, cadence block d128/B8/K64 in the artifact).**
+  4/4 PASS — F1 IS LOCKED. (a) chimera residual after recovery −0.040
+  (BETTER than pre-shock) vs no_monitor +0.424 — the dividend monitor's
+  recovery attribution survives 6.7× exposure with room. (b) THE
+  REMINDER IS DECIDED: 12 injections (≥10, decidable for the first
+  time), and minus-reminder loses 0.0278 on the plasticity axis
+  (bar 0.02) with the injection instrument reading effect (mean NLL on
+  reminded chunks 4.545) — P33's pre-registered UNDECIDABLE resolves to
+  "the organ earns its place," narrowly and cleanly, on one axis.
+  (c) THE DOSE CONFOUND WAS THE WHOLE v0 LOSS: chimera beats r3 RAW on
+  all three axes (forgetting 0.381 vs 1.306, plasticity 0.672 vs 0.631,
+  recovery −0.040 vs +0.599) at 41% FEWER gradient tokens (426,496 vs
+  718,336) — normalization only widens it. (d) no arm dominates
+  chimera; chimera fully dominates its own no_reminder ablation. The
+  scaling detail that outranks the clauses: r3 degrades near-linearly
+  with exposure (forgetting 0.189→1.306 at 6.7× phases) while chimera
+  degrades sublinearly (0.259→0.381) — COMPOSITION IS THE STABILIZER.
+  One process, every plasticity and memory decision from its own
+  surprise, at production cadence, at decidable exposure, beating every
+  single organ and every ablation on fewer gradients: F1's locking
+  experiment is complete.

@@ -1,0 +1,990 @@
+Device: cpu
+[chimera] ckpt n_streamed=359,050,240 | phase_chunks=1000 eval_every=50 | B=8 K=64 lr=0.003
+[chimera] code-val slice: 19,968 tokens, unk_rate=0.4438
+[chimera] dividend-monitor probe: 4,992 WT-2 tokens
+[chimera] base_heldout_wt2=4.798344
+
+[chimera] ===== arm chimera =====
+[chimera][chimera] phase=base         chunk=   0 wt2=4.798344 code=4.440183
+'The read operation timed out' thrown while requesting GET https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/en/c4-train.00013-of-01024.json.gz
+Retrying in 1s [Retry 1/5].
+/root/o1lab/src/pos_domain_shock.py:207: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return new_states, x.numel(), float(loss), x.detach(), nll.detach()
+[chimera][chimera] phase=phase1       chunk=  50 wt2=4.825806 code=4.434356
+[chimera][chimera] phase=phase1       chunk= 100 wt2=4.831991 code=4.464748
+[chimera][chimera] phase=phase1       chunk= 150 wt2=4.822503 code=4.456540
+[chimera][chimera] phase=phase1       chunk= 200 wt2=4.794942 code=4.440401
+[chimera][chimera] phase=phase1       chunk= 250 wt2=4.824459 code=4.417266
+[chimera][chimera] phase=phase1       chunk= 300 wt2=4.815777 code=4.459148
+[chimera][chimera] phase=phase1       chunk= 350 wt2=4.797548 code=4.395727
+[chimera][chimera] phase=phase1       chunk= 400 wt2=4.814053 code=4.442303
+[chimera][chimera] phase=phase1       chunk= 450 wt2=4.787944 code=4.419930
+[chimera][chimera] phase=phase1       chunk= 500 wt2=4.765618 code=4.449892
+[chimera][chimera] phase=phase1       chunk= 550 wt2=4.785450 code=4.485762
+[chimera][chimera] phase=phase1       chunk= 600 wt2=4.763802 code=4.430913
+[chimera][chimera] phase=phase1       chunk= 650 wt2=4.765834 code=4.431034
+[chimera][chimera] phase=phase1       chunk= 700 wt2=4.809424 code=4.487003
+[chimera][chimera] phase=phase1       chunk= 750 wt2=4.793267 code=4.472045
+[chimera][chimera] phase=phase1       chunk= 800 wt2=4.779591 code=4.412515
+[chimera][chimera] phase=phase1       chunk= 850 wt2=4.774100 code=4.464513
+[chimera][chimera] phase=phase1       chunk= 900 wt2=4.771795 code=4.477220
+[chimera][chimera] phase=phase1       chunk= 950 wt2=4.801501 code=4.391177
+[chimera][chimera] phase=phase1       chunk=1000 wt2=4.793988 code=4.437444
+[chimera][chimera] phase=phase2       chunk=1020 wt2=4.814948 code=4.163323
+[chimera][chimera] phase=phase2_sleep chunk=1030 wt2=4.854289 code=4.047228
+[chimera][chimera] phase2 sleep: 10 chunks (pool=232 spans, 11343 tok, 0.45 epochs, dividend=-0.054262) -> wt2=4.854289 code=4.047228
+[chimera][chimera] phase=phase2       chunk=1050 wt2=4.855111 code=4.004924
+[chimera][chimera] phase=phase2       chunk=1060 wt2=4.855111 code=4.004924
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1080 wt2=4.873981 code=3.887457
+[chimera][chimera] phase=phase2       chunk=1090 wt2=4.880927 code=3.871855
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1110 wt2=4.942650 code=3.917594
+[chimera][chimera] phase=phase2       chunk=1120 wt2=4.942650 code=3.917594
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1140 wt2=4.957568 code=3.981640
+[chimera][chimera] phase=phase2       chunk=1150 wt2=4.932408 code=3.927746
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1170 wt2=4.931003 code=3.889173
+[chimera][chimera] phase=phase2       chunk=1180 wt2=4.948478 code=3.897296
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1200 wt2=4.935685 code=3.866325
+[chimera][chimera] phase=phase2       chunk=1210 wt2=4.924983 code=3.857547
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1230 wt2=4.903037 code=3.869454
+[chimera][chimera] phase=phase2       chunk=1240 wt2=4.898426 code=3.864342
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1260 wt2=4.902758 code=3.835734
+[chimera][chimera] phase=phase2       chunk=1270 wt2=4.902758 code=3.835734
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1290 wt2=4.907438 code=3.830702
+[chimera][chimera] phase=phase2       chunk=1300 wt2=4.907438 code=3.830702
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1320 wt2=4.910454 code=3.814808
+[chimera][chimera] phase=phase2       chunk=1330 wt2=4.911038 code=3.808599
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1350 wt2=4.914889 code=3.806127
+[chimera][chimera] phase=phase2       chunk=1360 wt2=4.916804 code=3.808439
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1380 wt2=4.920090 code=3.811250
+[chimera][chimera] phase=phase2       chunk=1390 wt2=4.924617 code=3.818564
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1410 wt2=4.919771 code=3.847864
+[chimera][chimera] phase=phase2       chunk=1420 wt2=4.925661 code=3.859526
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1440 wt2=4.932057 code=3.864866
+[chimera][chimera] phase=phase2       chunk=1450 wt2=4.930445 code=3.858233
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1470 wt2=4.923874 code=3.846753
+[chimera][chimera] phase=phase2       chunk=1480 wt2=4.923874 code=3.846753
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1500 wt2=4.923874 code=3.846753
+[chimera][chimera] phase=phase2       chunk=1510 wt2=4.923874 code=3.846753
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1530 wt2=4.916959 code=3.838361
+[chimera][chimera] phase=phase2       chunk=1540 wt2=4.916959 code=3.838361
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1560 wt2=4.916959 code=3.838361
+[chimera][chimera] phase=phase2       chunk=1570 wt2=4.916959 code=3.838361
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1590 wt2=4.916959 code=3.838361
+[chimera][chimera] phase=phase2       chunk=1600 wt2=4.916959 code=3.838361
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1620 wt2=4.916959 code=3.838361
+[chimera][chimera] phase=phase2       chunk=1630 wt2=4.916959 code=3.838361
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1650 wt2=4.992008 code=3.933038
+[chimera][chimera] phase=phase2       chunk=1660 wt2=5.002345 code=3.936010
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1680 wt2=5.012324 code=4.005519
+[chimera][chimera] phase=phase2       chunk=1690 wt2=4.999831 code=3.951265
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1710 wt2=4.985956 code=3.841830
+[chimera][chimera] phase=phase2       chunk=1720 wt2=4.985956 code=3.841830
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1740 wt2=4.927170 code=3.868380
+[chimera][chimera] phase=phase2       chunk=1750 wt2=4.947512 code=3.845018
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1770 wt2=5.175120 code=3.954797
+[chimera][chimera] phase=phase2       chunk=1780 wt2=5.108421 code=3.867056
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1800 wt2=5.059178 code=3.815137
+[chimera][chimera] phase=phase2       chunk=1810 wt2=5.067539 code=3.824448
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1830 wt2=5.052117 code=3.796581
+[chimera][chimera] phase=phase2       chunk=1840 wt2=5.031975 code=3.779908
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1860 wt2=5.017655 code=3.798010
+[chimera][chimera] phase=phase2       chunk=1870 wt2=5.022090 code=3.795046
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1890 wt2=5.084559 code=3.771381
+[chimera][chimera] phase=phase2       chunk=1900 wt2=5.085171 code=3.765110
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1920 wt2=5.085171 code=3.765110
+[chimera][chimera] phase=phase2       chunk=1930 wt2=5.085171 code=3.765110
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1950 wt2=5.085171 code=3.765110
+[chimera][chimera] phase=phase2       chunk=1960 wt2=5.085171 code=3.765110
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1980 wt2=5.085171 code=3.765110
+[chimera][chimera] phase=phase2       chunk=1990 wt2=5.085171 code=3.765110
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase2       chunk=1991 wt2=5.085171 code=3.765110
+[chimera][chimera] phase=phase2       chunk=2000 wt2=5.085171 code=3.765110
+[chimera][chimera] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2020 wt2=4.904438 code=3.908397
+[chimera][chimera] phase=phase3       chunk=2030 wt2=4.917628 code=4.108164
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2050 wt2=4.926430 code=4.051502
+[chimera][chimera] phase=phase3       chunk=2060 wt2=4.824420 code=4.034515
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2080 wt2=4.813658 code=4.053838
+[chimera][chimera] phase=phase3       chunk=2090 wt2=4.851732 code=4.102720
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2110 wt2=4.843212 code=4.054254
+[chimera][chimera] phase=phase3       chunk=2120 wt2=4.823929 code=4.035769
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2140 wt2=4.802664 code=4.003491
+[chimera][chimera] phase=phase3       chunk=2150 wt2=4.794560 code=3.999922
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2170 wt2=4.808491 code=4.020390
+[chimera][chimera] phase=phase3       chunk=2180 wt2=4.811919 code=4.042980
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2200 wt2=4.801446 code=4.005831
+[chimera][chimera] phase=phase3       chunk=2210 wt2=4.812181 code=4.023741
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2230 wt2=4.794076 code=4.046127
+[chimera][chimera] phase=phase3       chunk=2240 wt2=4.793421 code=4.051963
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2260 wt2=4.797318 code=4.026206
+[chimera][chimera] phase=phase3       chunk=2270 wt2=4.790055 code=3.987409
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2290 wt2=4.779452 code=3.975200
+[chimera][chimera] phase=phase3       chunk=2300 wt2=4.766279 code=3.991715
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2320 wt2=4.770799 code=4.015561
+[chimera][chimera] phase=phase3       chunk=2330 wt2=4.802070 code=4.056333
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2350 wt2=4.807833 code=4.075354
+[chimera][chimera] phase=phase3       chunk=2360 wt2=4.799853 code=4.073395
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2380 wt2=4.788543 code=4.071613
+[chimera][chimera] phase=phase3       chunk=2390 wt2=4.779694 code=4.070304
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2410 wt2=4.769402 code=4.064948
+[chimera][chimera] phase=phase3       chunk=2420 wt2=4.767067 code=4.053294
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2440 wt2=4.765563 code=4.034731
+[chimera][chimera] phase=phase3       chunk=2450 wt2=4.764706 code=4.029902
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2470 wt2=4.768433 code=4.044708
+[chimera][chimera] phase=phase3       chunk=2480 wt2=4.775597 code=4.042519
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2500 wt2=4.802431 code=4.027631
+[chimera][chimera] phase=phase3       chunk=2510 wt2=4.802431 code=4.027631
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2530 wt2=4.796745 code=3.994167
+[chimera][chimera] phase=phase3       chunk=2540 wt2=4.782232 code=4.007530
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2560 wt2=4.777581 code=4.005950
+[chimera][chimera] phase=phase3       chunk=2570 wt2=4.778501 code=4.002725
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2590 wt2=4.779663 code=3.991557
+[chimera][chimera] phase=phase3       chunk=2600 wt2=4.779970 code=3.989616
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2620 wt2=4.804953 code=4.019000
+[chimera][chimera] phase=phase3       chunk=2630 wt2=4.815059 code=4.018809
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2650 wt2=4.820566 code=4.017737
+[chimera][chimera] phase=phase3       chunk=2660 wt2=4.816935 code=4.018887
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2680 wt2=4.810442 code=4.024060
+[chimera][chimera] phase=phase3       chunk=2690 wt2=4.800019 code=4.032234
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2710 wt2=4.776012 code=4.047827
+[chimera][chimera] phase=phase3       chunk=2720 wt2=4.771432 code=4.048457
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2740 wt2=4.760933 code=4.056728
+[chimera][chimera] phase=phase3       chunk=2750 wt2=4.760702 code=4.064919
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2770 wt2=4.768745 code=4.079476
+[chimera][chimera] phase=phase3       chunk=2780 wt2=4.778880 code=4.089090
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2800 wt2=4.784289 code=4.079599
+[chimera][chimera] phase=phase3       chunk=2810 wt2=4.784389 code=4.078886
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2830 wt2=4.773177 code=4.077443
+[chimera][chimera] phase=phase3       chunk=2840 wt2=4.755507 code=4.072529
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2860 wt2=4.743904 code=4.067612
+[chimera][chimera] phase=phase3       chunk=2870 wt2=4.742512 code=4.085864
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2890 wt2=4.756988 code=4.089605
+[chimera][chimera] phase=phase3       chunk=2900 wt2=4.766678 code=4.076891
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2920 wt2=4.789279 code=4.013696
+[chimera][chimera] phase=phase3       chunk=2930 wt2=4.789897 code=4.007355
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2950 wt2=4.757764 code=4.077222
+[chimera][chimera] phase=phase3       chunk=2960 wt2=4.755268 code=4.067550
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2980 wt2=4.755193 code=4.059691
+[chimera][chimera] phase=phase3       chunk=2990 wt2=4.755952 code=4.055147
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] phase=phase3       chunk=2991 wt2=4.755952 code=4.055147
+[chimera][chimera] phase=phase3       chunk=3000 wt2=4.753773 code=4.059480
+[chimera][chimera] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.054262 <= 0) -- budget spent on wake instead
+[chimera][chimera] forgetting=+0.381132 plasticity=+0.672334 recovery=-0.040215 gate_frac=0.2753 grad_tokens=426,496 spans=502 reminders=12 monitor_skips=67
+
+[chimera] ===== arm r3_replicate =====
+[chimera][r3_replicate] phase=base         chunk=   0 wt2=4.798344 code=4.440183
+[chimera][r3_replicate] phase=phase1       chunk=  50 wt2=4.820509 code=4.432585
+[chimera][r3_replicate] phase=phase1       chunk= 100 wt2=4.824594 code=4.457846
+[chimera][r3_replicate] phase=phase1       chunk= 150 wt2=4.814070 code=4.450381
+[chimera][r3_replicate] phase=phase1       chunk= 200 wt2=4.786131 code=4.424406
+[chimera][r3_replicate] phase=phase1       chunk= 250 wt2=4.816500 code=4.438860
+[chimera][r3_replicate] phase=phase1       chunk= 300 wt2=4.809862 code=4.438318
+[chimera][r3_replicate] phase=phase1       chunk= 350 wt2=4.791398 code=4.398927
+[chimera][r3_replicate] phase=phase1       chunk= 400 wt2=4.807475 code=4.434860
+[chimera][r3_replicate] phase=phase1       chunk= 450 wt2=4.784842 code=4.415764
+[chimera][r3_replicate] phase=phase1       chunk= 500 wt2=4.761145 code=4.442678
+[chimera][r3_replicate] phase=phase1       chunk= 550 wt2=4.778429 code=4.479781
+[chimera][r3_replicate] phase=phase1       chunk= 600 wt2=4.767223 code=4.414831
+[chimera][r3_replicate] phase=phase1       chunk= 650 wt2=4.753769 code=4.404888
+[chimera][r3_replicate] phase=phase1       chunk= 700 wt2=4.790315 code=4.475423
+[chimera][r3_replicate] phase=phase1       chunk= 750 wt2=4.780449 code=4.445797
+[chimera][r3_replicate] phase=phase1       chunk= 800 wt2=4.772657 code=4.414285
+[chimera][r3_replicate] phase=phase1       chunk= 850 wt2=4.763435 code=4.442267
+[chimera][r3_replicate] phase=phase1       chunk= 900 wt2=4.759238 code=4.466545
+[chimera][r3_replicate] phase=phase1       chunk= 950 wt2=4.783317 code=4.398452
+[chimera][r3_replicate] phase=phase1       chunk=1000 wt2=4.785002 code=4.418941
+[chimera][r3_replicate] phase=phase2       chunk=1020 wt2=4.817493 code=4.163091
+[chimera][r3_replicate] phase=phase2_sleep chunk=1030 wt2=4.799676 code=4.127184
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=224 spans, 10857 tok, 0.47 epochs, dividend=+0.020396) -> wt2=4.799676 code=4.127184
+[chimera][r3_replicate] phase=phase2       chunk=1050 wt2=4.802694 code=4.106478
+[chimera][r3_replicate] phase=phase2_sleep chunk=1060 wt2=4.807769 code=4.047774
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=226 spans, 10954 tok, 0.47 epochs, dividend=+0.014468) -> wt2=4.807769 code=4.047774
+[chimera][r3_replicate] phase=phase2       chunk=1080 wt2=4.805087 code=4.016445
+[chimera][r3_replicate] phase=phase2_sleep chunk=1090 wt2=4.797998 code=4.002981
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=230 spans, 11133 tok, 0.46 epochs, dividend=+0.001627) -> wt2=4.797998 code=4.002981
+[chimera][r3_replicate] phase=phase2       chunk=1110 wt2=4.814488 code=3.960685
+[chimera][r3_replicate] phase=phase2_sleep chunk=1120 wt2=4.832411 code=3.938451
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=236 spans, 11388 tok, 0.45 epochs, dividend=-0.014463) -> wt2=4.832411 code=3.938451
+[chimera][r3_replicate] phase=phase2       chunk=1140 wt2=4.869247 code=3.995276
+[chimera][r3_replicate] phase=phase2_sleep chunk=1150 wt2=4.862289 code=4.158268
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=242 spans, 11651 tok, 0.44 epochs, dividend=+0.009444) -> wt2=4.862289 code=4.158268
+[chimera][r3_replicate] phase=phase2       chunk=1170 wt2=4.868889 code=4.056276
+[chimera][r3_replicate] phase=phase2_sleep chunk=1180 wt2=4.855064 code=3.862883
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=242 spans, 11651 tok, 0.44 epochs, dividend=+0.014848) -> wt2=4.855064 code=3.862883
+[chimera][r3_replicate] phase=phase2       chunk=1200 wt2=4.865110 code=3.852373
+[chimera][r3_replicate] phase=phase2_sleep chunk=1210 wt2=4.877758 code=3.955142
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=242 spans, 11651 tok, 0.44 epochs, dividend=-0.018092) -> wt2=4.877758 code=3.955142
+[chimera][r3_replicate] phase=phase2       chunk=1230 wt2=4.863765 code=3.873595
+[chimera][r3_replicate] phase=phase2_sleep chunk=1240 wt2=4.885092 code=3.893149
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=242 spans, 11651 tok, 0.44 epochs, dividend=-0.014792) -> wt2=4.885092 code=3.893149
+[chimera][r3_replicate] phase=phase2       chunk=1260 wt2=4.888921 code=3.841901
+[chimera][r3_replicate] phase=phase2_sleep chunk=1270 wt2=4.905118 code=3.814938
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=244 spans, 11760 tok, 0.44 epochs, dividend=-0.018091) -> wt2=4.905118 code=3.814938
+[chimera][r3_replicate] phase=phase2       chunk=1290 wt2=4.905112 code=3.803621
+[chimera][r3_replicate] phase=phase2_sleep chunk=1300 wt2=4.914977 code=3.809041
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=244 spans, 11760 tok, 0.44 epochs, dividend=-0.006712) -> wt2=4.914977 code=3.809041
+[chimera][r3_replicate] phase=phase2       chunk=1320 wt2=4.917199 code=3.817367
+[chimera][r3_replicate] phase=phase2_sleep chunk=1330 wt2=4.947967 code=3.840825
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=244 spans, 11760 tok, 0.44 epochs, dividend=-0.017434) -> wt2=4.947967 code=3.840825
+[chimera][r3_replicate] phase=phase2       chunk=1350 wt2=4.948546 code=3.817017
+[chimera][r3_replicate] phase=phase2_sleep chunk=1360 wt2=4.976563 code=3.800311
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=244 spans, 11760 tok, 0.44 epochs, dividend=-0.032157) -> wt2=4.976563 code=3.800311
+[chimera][r3_replicate] phase=phase2       chunk=1380 wt2=4.980162 code=3.810004
+[chimera][r3_replicate] phase=phase2_sleep chunk=1390 wt2=5.006309 code=3.859209
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=246 spans, 11880 tok, 0.43 epochs, dividend=-0.023392) -> wt2=5.006309 code=3.859209
+[chimera][r3_replicate] phase=phase2       chunk=1410 wt2=5.009077 code=3.852773
+[chimera][r3_replicate] phase=phase2_sleep chunk=1420 wt2=5.050249 code=3.805013
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=248 spans, 11983 tok, 0.43 epochs, dividend=-0.029350) -> wt2=5.050249 code=3.805013
+[chimera][r3_replicate] phase=phase2       chunk=1440 wt2=5.050249 code=3.805013
+[chimera][r3_replicate] phase=phase2_sleep chunk=1450 wt2=5.096567 code=3.845889
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=248 spans, 11983 tok, 0.43 epochs, dividend=-0.047567) -> wt2=5.096567 code=3.845889
+[chimera][r3_replicate] phase=phase2       chunk=1470 wt2=5.077212 code=3.806273
+[chimera][r3_replicate] phase=phase2_sleep chunk=1480 wt2=5.096819 code=3.845328
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=250 spans, 12078 tok, 0.42 epochs, dividend=-0.023988) -> wt2=5.096819 code=3.845328
+[chimera][r3_replicate] phase=phase2       chunk=1500 wt2=5.099005 code=3.844111
+[chimera][r3_replicate] phase=phase2_sleep chunk=1510 wt2=5.139697 code=3.815696
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=250 spans, 12078 tok, 0.42 epochs, dividend=-0.028534) -> wt2=5.139697 code=3.815696
+[chimera][r3_replicate] phase=phase2       chunk=1530 wt2=5.136827 code=3.796657
+[chimera][r3_replicate] phase=phase2_sleep chunk=1540 wt2=5.175550 code=3.811245
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=250 spans, 12078 tok, 0.42 epochs, dividend=-0.039460) -> wt2=5.175550 code=3.811245
+[chimera][r3_replicate] phase=phase2       chunk=1560 wt2=5.175502 code=3.787976
+[chimera][r3_replicate] phase=phase2_sleep chunk=1570 wt2=5.210278 code=3.853899
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=256 spans, 12383 tok, 0.41 epochs, dividend=-0.033916) -> wt2=5.210278 code=3.853899
+[chimera][r3_replicate] phase=phase2       chunk=1590 wt2=5.209551 code=3.835656
+[chimera][r3_replicate] phase=phase2_sleep chunk=1600 wt2=5.260288 code=3.854245
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.050702) -> wt2=5.260288 code=3.854245
+[chimera][r3_replicate] phase=phase2       chunk=1620 wt2=5.262314 code=3.850803
+[chimera][r3_replicate] phase=phase2_sleep chunk=1630 wt2=5.331975 code=3.818175
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.057466) -> wt2=5.331975 code=3.818175
+[chimera][r3_replicate] phase=phase2       chunk=1650 wt2=5.326906 code=3.812689
+[chimera][r3_replicate] phase=phase2_sleep chunk=1660 wt2=5.359023 code=3.838094
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.027172) -> wt2=5.359023 code=3.838094
+[chimera][r3_replicate] phase=phase2       chunk=1680 wt2=5.359023 code=3.838094
+[chimera][r3_replicate] phase=phase2_sleep chunk=1690 wt2=5.422415 code=3.864684
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.056472) -> wt2=5.422415 code=3.864684
+[chimera][r3_replicate] phase=phase2       chunk=1710 wt2=5.422415 code=3.864684
+[chimera][r3_replicate] phase=phase2_sleep chunk=1720 wt2=5.513593 code=3.866239
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.085682) -> wt2=5.513593 code=3.866239
+[chimera][r3_replicate] phase=phase2       chunk=1740 wt2=5.513593 code=3.866239
+[chimera][r3_replicate] phase=phase2_sleep chunk=1750 wt2=5.546424 code=3.873862
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.022234) -> wt2=5.546424 code=3.873862
+[chimera][r3_replicate] phase=phase2       chunk=1770 wt2=5.546424 code=3.873862
+[chimera][r3_replicate] phase=phase2_sleep chunk=1780 wt2=5.678781 code=3.914579
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.120069) -> wt2=5.678781 code=3.914579
+[chimera][r3_replicate] phase=phase2       chunk=1800 wt2=5.678781 code=3.914579
+[chimera][r3_replicate] phase=phase2_sleep chunk=1810 wt2=5.720127 code=3.947586
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.036655) -> wt2=5.720127 code=3.947586
+[chimera][r3_replicate] phase=phase2       chunk=1830 wt2=5.720127 code=3.947586
+[chimera][r3_replicate] phase=phase2_sleep chunk=1840 wt2=5.846056 code=3.966578
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.126096) -> wt2=5.846056 code=3.966578
+[chimera][r3_replicate] phase=phase2       chunk=1860 wt2=5.810194 code=3.941228
+[chimera][r3_replicate] phase=phase2_sleep chunk=1870 wt2=5.784512 code=3.949130
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=+0.005478) -> wt2=5.784512 code=3.949130
+[chimera][r3_replicate] phase=phase2       chunk=1890 wt2=5.784512 code=3.949130
+[chimera][r3_replicate] phase=phase2_sleep chunk=1900 wt2=5.941024 code=4.015583
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.139379) -> wt2=5.941024 code=4.015583
+[chimera][r3_replicate] phase=phase2       chunk=1920 wt2=5.941024 code=4.015583
+[chimera][r3_replicate] phase=phase2_sleep chunk=1930 wt2=6.011152 code=4.018868
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=262 spans, 12700 tok, 0.40 epochs, dividend=-0.073479) -> wt2=6.011152 code=4.018868
+[chimera][r3_replicate] phase=phase2       chunk=1950 wt2=5.582467 code=3.966195
+[chimera][r3_replicate] phase=phase2_sleep chunk=1960 wt2=5.860722 code=4.090141
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=272 spans, 13160 tok, 0.39 epochs, dividend=-0.244117) -> wt2=5.860722 code=4.090141
+[chimera][r3_replicate] phase=phase2       chunk=1980 wt2=5.734743 code=3.944787
+[chimera][r3_replicate] phase=phase2_sleep chunk=1990 wt2=6.091253 code=4.068425
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=272 spans, 13160 tok, 0.39 epochs, dividend=-0.326574) -> wt2=6.091253 code=4.068425
+[chimera][r3_replicate] phase=phase2       chunk=1991 wt2=6.091253 code=4.068425
+[chimera][r3_replicate] phase=phase2_sleep chunk=2001 wt2=5.930627 code=3.984705
+[chimera][r3_replicate] phase2 sleep: 10 chunks (pool=272 spans, 13160 tok, 0.39 epochs, dividend=+0.200438) -> wt2=5.930627 code=3.984705
+[chimera][r3_replicate] phase=phase3       chunk=2021 wt2=5.133172 code=4.028832
+[chimera][r3_replicate] phase=phase3_sleep chunk=2031 wt2=5.219612 code=4.121318
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=298 spans, 14442 tok, 0.35 epochs, dividend=-0.063719) -> wt2=5.219612 code=4.121318
+[chimera][r3_replicate] phase=phase3       chunk=2051 wt2=5.172923 code=4.067777
+[chimera][r3_replicate] phase=phase3_sleep chunk=2061 wt2=5.137855 code=3.986131
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=330 spans, 16042 tok, 0.32 epochs, dividend=+0.007522) -> wt2=5.137855 code=3.986131
+[chimera][r3_replicate] phase=phase3       chunk=2081 wt2=4.978194 code=4.013647
+[chimera][r3_replicate] phase=phase3_sleep chunk=2091 wt2=5.012535 code=3.959986
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=344 spans, 16703 tok, 0.31 epochs, dividend=-0.019292) -> wt2=5.012535 code=3.959986
+[chimera][r3_replicate] phase=phase3       chunk=2111 wt2=5.059353 code=4.020908
+[chimera][r3_replicate] phase=phase3_sleep chunk=2121 wt2=5.063301 code=3.929579
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=346 spans, 16808 tok, 0.30 epochs, dividend=+0.013334) -> wt2=5.063301 code=3.929579
+[chimera][r3_replicate] phase=phase3       chunk=2141 wt2=5.069171 code=3.953629
+[chimera][r3_replicate] phase=phase3_sleep chunk=2151 wt2=5.061683 code=3.920643
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=346 spans, 16808 tok, 0.30 epochs, dividend=+0.016844) -> wt2=5.061683 code=3.920643
+[chimera][r3_replicate] phase=phase3       chunk=2171 wt2=5.063723 code=3.916552
+[chimera][r3_replicate] phase=phase3_sleep chunk=2181 wt2=5.057431 code=3.896004
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=352 spans, 17079 tok, 0.30 epochs, dividend=+0.028175) -> wt2=5.057431 code=3.896004
+[chimera][r3_replicate] phase=phase3       chunk=2201 wt2=5.029249 code=3.937867
+[chimera][r3_replicate] phase=phase3_sleep chunk=2211 wt2=5.041741 code=3.905866
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=356 spans, 17281 tok, 0.30 epochs, dividend=+0.004813) -> wt2=5.041741 code=3.905866
+[chimera][r3_replicate] phase=phase3       chunk=2231 wt2=5.047533 code=3.893193
+[chimera][r3_replicate] phase=phase3_sleep chunk=2241 wt2=5.077506 code=3.895303
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=358 spans, 17372 tok, 0.29 epochs, dividend=-0.017626) -> wt2=5.077506 code=3.895303
+[chimera][r3_replicate] phase=phase3       chunk=2261 wt2=5.044002 code=3.914602
+[chimera][r3_replicate] phase=phase3_sleep chunk=2271 wt2=5.061886 code=3.889864
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=364 spans, 17666 tok, 0.29 epochs, dividend=-0.010945) -> wt2=5.061886 code=3.889864
+[chimera][r3_replicate] phase=phase3       chunk=2291 wt2=5.073720 code=3.876932
+[chimera][r3_replicate] phase=phase3_sleep chunk=2301 wt2=5.088020 code=3.909679
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=366 spans, 17768 tok, 0.29 epochs, dividend=-0.002583) -> wt2=5.088020 code=3.909679
+[chimera][r3_replicate] phase=phase3       chunk=2321 wt2=5.022556 code=3.863085
+[chimera][r3_replicate] phase=phase3_sleep chunk=2331 wt2=5.047154 code=3.888296
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=372 spans, 18026 tok, 0.28 epochs, dividend=-0.012100) -> wt2=5.047154 code=3.888296
+[chimera][r3_replicate] phase=phase3       chunk=2351 wt2=5.064960 code=3.950263
+[chimera][r3_replicate] phase=phase3_sleep chunk=2361 wt2=5.114529 code=3.923121
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=378 spans, 18329 tok, 0.28 epochs, dividend=-0.035092) -> wt2=5.114529 code=3.923121
+[chimera][r3_replicate] phase=phase3       chunk=2381 wt2=5.086113 code=3.870006
+[chimera][r3_replicate] phase=phase3_sleep chunk=2391 wt2=5.135318 code=3.907476
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=386 spans, 18726 tok, 0.27 epochs, dividend=-0.051172) -> wt2=5.135318 code=3.907476
+[chimera][r3_replicate] phase=phase3       chunk=2411 wt2=5.028349 code=3.874630
+[chimera][r3_replicate] phase=phase3_sleep chunk=2421 wt2=5.033030 code=3.890148
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=392 spans, 19044 tok, 0.27 epochs, dividend=-0.001697) -> wt2=5.033030 code=3.890148
+[chimera][r3_replicate] phase=phase3       chunk=2441 wt2=5.036116 code=3.900590
+[chimera][r3_replicate] phase=phase3_sleep chunk=2451 wt2=5.086225 code=3.898848
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=402 spans, 19516 tok, 0.26 epochs, dividend=-0.045906) -> wt2=5.086225 code=3.898848
+[chimera][r3_replicate] phase=phase3       chunk=2471 wt2=5.092479 code=3.894873
+[chimera][r3_replicate] phase=phase3_sleep chunk=2481 wt2=5.125438 code=3.929190
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=402 spans, 19516 tok, 0.26 epochs, dividend=-0.038587) -> wt2=5.125438 code=3.929190
+[chimera][r3_replicate] phase=phase3       chunk=2501 wt2=5.070413 code=3.907504
+[chimera][r3_replicate] phase=phase3_sleep chunk=2511 wt2=5.072603 code=3.913835
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=406 spans, 19718 tok, 0.26 epochs, dividend=+0.020482) -> wt2=5.072603 code=3.913835
+[chimera][r3_replicate] phase=phase3       chunk=2531 wt2=5.086408 code=3.935438
+[chimera][r3_replicate] phase=phase3_sleep chunk=2541 wt2=5.168080 code=3.939824
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=410 spans, 19895 tok, 0.26 epochs, dividend=-0.074845) -> wt2=5.168080 code=3.939824
+[chimera][r3_replicate] phase=phase3       chunk=2561 wt2=5.179380 code=3.923478
+[chimera][r3_replicate] phase=phase3_sleep chunk=2571 wt2=5.236282 code=3.934932
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=414 spans, 20056 tok, 0.26 epochs, dividend=-0.052927) -> wt2=5.236282 code=3.934932
+[chimera][r3_replicate] phase=phase3       chunk=2591 wt2=5.104581 code=3.930692
+[chimera][r3_replicate] phase=phase3_sleep chunk=2601 wt2=5.108068 code=3.915154
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=422 spans, 20453 tok, 0.25 epochs, dividend=+0.005634) -> wt2=5.108068 code=3.915154
+[chimera][r3_replicate] phase=phase3       chunk=2621 wt2=5.118608 code=3.902830
+[chimera][r3_replicate] phase=phase3_sleep chunk=2631 wt2=5.158414 code=3.940257
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=430 spans, 20895 tok, 0.25 epochs, dividend=-0.045508) -> wt2=5.158414 code=3.940257
+[chimera][r3_replicate] phase=phase3       chunk=2651 wt2=5.132185 code=3.928246
+[chimera][r3_replicate] phase=phase3_sleep chunk=2661 wt2=5.161081 code=3.935487
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=438 spans, 21279 tok, 0.24 epochs, dividend=-0.036346) -> wt2=5.161081 code=3.935487
+[chimera][r3_replicate] phase=phase3       chunk=2681 wt2=5.136225 code=3.952214
+[chimera][r3_replicate] phase=phase3_sleep chunk=2691 wt2=5.180799 code=3.943299
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=444 spans, 21615 tok, 0.24 epochs, dividend=-0.018388) -> wt2=5.180799 code=3.943299
+[chimera][r3_replicate] phase=phase3       chunk=2711 wt2=5.124201 code=3.902109
+[chimera][r3_replicate] phase=phase3_sleep chunk=2721 wt2=5.114270 code=3.910092
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=454 spans, 22178 tok, 0.23 epochs, dividend=+0.015363) -> wt2=5.114270 code=3.910092
+[chimera][r3_replicate] phase=phase3       chunk=2741 wt2=5.101052 code=3.932645
+[chimera][r3_replicate] phase=phase3_sleep chunk=2751 wt2=5.192899 code=3.956817
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=462 spans, 22518 tok, 0.23 epochs, dividend=-0.097822) -> wt2=5.192899 code=3.956817
+[chimera][r3_replicate] phase=phase3       chunk=2771 wt2=5.203761 code=3.942621
+[chimera][r3_replicate] phase=phase3_sleep chunk=2781 wt2=5.272379 code=3.970227
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=464 spans, 22624 tok, 0.23 epochs, dividend=-0.063091) -> wt2=5.272379 code=3.970227
+[chimera][r3_replicate] phase=phase3       chunk=2801 wt2=5.119305 code=3.949763
+[chimera][r3_replicate] phase=phase3_sleep chunk=2811 wt2=5.135700 code=3.915974
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=470 spans, 22986 tok, 0.22 epochs, dividend=-0.012955) -> wt2=5.135700 code=3.915974
+[chimera][r3_replicate] phase=phase3       chunk=2831 wt2=5.142205 code=3.934782
+[chimera][r3_replicate] phase=phase3_sleep chunk=2841 wt2=5.219270 code=3.973113
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=476 spans, 23285 tok, 0.22 epochs, dividend=-0.070968) -> wt2=5.219270 code=3.973113
+[chimera][r3_replicate] phase=phase3       chunk=2861 wt2=5.227886 code=3.968368
+[chimera][r3_replicate] phase=phase3_sleep chunk=2871 wt2=5.259375 code=3.977214
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=480 spans, 23489 tok, 0.22 epochs, dividend=-0.021123) -> wt2=5.259375 code=3.977214
+[chimera][r3_replicate] phase=phase3       chunk=2891 wt2=5.204042 code=3.953647
+[chimera][r3_replicate] phase=phase3_sleep chunk=2901 wt2=5.219115 code=3.966111
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=486 spans, 23833 tok, 0.21 epochs, dividend=-0.025092) -> wt2=5.219115 code=3.966111
+[chimera][r3_replicate] phase=phase3       chunk=2921 wt2=5.143236 code=3.943483
+[chimera][r3_replicate] phase=phase3_sleep chunk=2931 wt2=5.161737 code=3.964089
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=496 spans, 24308 tok, 0.21 epochs, dividend=-0.013079) -> wt2=5.161737 code=3.964089
+[chimera][r3_replicate] phase=phase3       chunk=2951 wt2=5.115902 code=3.916776
+[chimera][r3_replicate] phase=phase3_sleep chunk=2961 wt2=5.134235 code=3.932264
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=506 spans, 24848 tok, 0.21 epochs, dividend=-0.019357) -> wt2=5.134235 code=3.932264
+[chimera][r3_replicate] phase=phase3       chunk=2981 wt2=5.147382 code=3.944825
+[chimera][r3_replicate] phase=phase3_sleep chunk=2991 wt2=5.223858 code=3.987928
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=510 spans, 25012 tok, 0.20 epochs, dividend=-0.068203) -> wt2=5.223858 code=3.987928
+[chimera][r3_replicate] phase=phase3       chunk=2992 wt2=5.223858 code=3.987928
+[chimera][r3_replicate] phase=phase3_sleep chunk=3002 wt2=5.384393 code=4.042465
+[chimera][r3_replicate] phase3 sleep: 10 chunks (pool=510 spans, 25012 tok, 0.20 epochs, dividend=-0.158482) -> wt2=5.384393 code=4.042465
+[chimera][r3_replicate] forgetting=+1.306251 plasticity=+0.630965 recovery=+0.599391 gate_frac=0.3114 grad_tokens=718,336 spans=510 reminders=0 monitor_skips=0
+
+[chimera] ===== arm r1_full =====
+[chimera][r1_full] phase=base         chunk=   0 wt2=4.798344 code=4.440183
+[chimera][r1_full] phase=phase1       chunk=  50 wt2=4.810494 code=4.420475
+[chimera][r1_full] phase=phase1       chunk= 100 wt2=4.813799 code=4.453467
+[chimera][r1_full] phase=phase1       chunk= 150 wt2=4.802658 code=4.504467
+[chimera][r1_full] phase=phase1       chunk= 200 wt2=4.780683 code=4.399993
+[chimera][r1_full] phase=phase1       chunk= 250 wt2=4.782254 code=4.368712
+[chimera][r1_full] phase=phase1       chunk= 300 wt2=4.788158 code=4.413011
+[chimera][r1_full] phase=phase1       chunk= 350 wt2=4.777160 code=4.431946
+[chimera][r1_full] phase=phase1       chunk= 400 wt2=4.808502 code=4.476362
+[chimera][r1_full] phase=phase1       chunk= 450 wt2=4.784664 code=4.441777
+[chimera][r1_full] phase=phase1       chunk= 500 wt2=4.784154 code=4.487087
+[chimera][r1_full] phase=phase1       chunk= 550 wt2=4.790375 code=4.515295
+[chimera][r1_full] phase=phase1       chunk= 600 wt2=4.804709 code=4.359817
+[chimera][r1_full] phase=phase1       chunk= 650 wt2=4.783004 code=4.450946
+[chimera][r1_full] phase=phase1       chunk= 700 wt2=4.803043 code=4.496205
+[chimera][r1_full] phase=phase1       chunk= 750 wt2=4.831301 code=4.539038
+[chimera][r1_full] phase=phase1       chunk= 800 wt2=4.767570 code=4.436719
+[chimera][r1_full] phase=phase1       chunk= 850 wt2=4.771031 code=4.439173
+[chimera][r1_full] phase=phase1       chunk= 900 wt2=4.783911 code=4.458276
+[chimera][r1_full] phase=phase1       chunk= 950 wt2=4.771802 code=4.449124
+[chimera][r1_full] phase=phase1       chunk=1000 wt2=4.780314 code=4.451791
+[chimera][r1_full] phase=phase2       chunk=1050 wt2=5.243632 code=3.635785
+[chimera][r1_full] phase=phase2       chunk=1100 wt2=5.172615 code=3.924178
+[chimera][r1_full] phase=phase2       chunk=1150 wt2=5.012718 code=3.657714
+[chimera][r1_full] phase=phase2       chunk=1200 wt2=4.993525 code=3.695405
+[chimera][r1_full] phase=phase2       chunk=1250 wt2=5.027831 code=3.662741
+[chimera][r1_full] phase=phase2       chunk=1300 wt2=5.135718 code=3.605297
+[chimera][r1_full] phase=phase2       chunk=1350 wt2=5.198648 code=3.658465
+[chimera][r1_full] phase=phase2       chunk=1400 wt2=5.186221 code=3.598134
+[chimera][r1_full] phase=phase2       chunk=1450 wt2=5.344778 code=4.117382
+[chimera][r1_full] phase=phase2       chunk=1500 wt2=5.500973 code=4.585595
+[chimera][r1_full] phase=phase2       chunk=1550 wt2=5.469995 code=4.659196
+[chimera][r1_full] phase=phase2       chunk=1600 wt2=5.562798 code=4.929102
+[chimera][r1_full] phase=phase2       chunk=1650 wt2=5.910717 code=4.076073
+[chimera][r1_full] phase=phase2       chunk=1700 wt2=5.451400 code=3.673049
+[chimera][r1_full] phase=phase2       chunk=1750 wt2=5.632285 code=3.885860
+[chimera][r1_full] phase=phase2       chunk=1800 wt2=5.457957 code=3.658285
+[chimera][r1_full] phase=phase2       chunk=1850 wt2=5.364249 code=3.654903
+[chimera][r1_full] phase=phase2       chunk=1900 wt2=5.392736 code=3.683465
+[chimera][r1_full] phase=phase2       chunk=1950 wt2=5.895578 code=4.711127
+[chimera][r1_full] phase=phase2       chunk=2000 wt2=6.616161 code=5.527167
+[chimera][r1_full] phase=phase3       chunk=2050 wt2=5.089917 code=4.010169
+[chimera][r1_full] phase=phase3       chunk=2100 wt2=4.941889 code=4.061542
+[chimera][r1_full] phase=phase3       chunk=2150 wt2=4.883007 code=4.047933
+[chimera][r1_full] phase=phase3       chunk=2200 wt2=4.876128 code=4.023950
+[chimera][r1_full] phase=phase3       chunk=2250 wt2=4.849181 code=4.052251
+[chimera][r1_full] phase=phase3       chunk=2300 wt2=4.843864 code=3.968264
+[chimera][r1_full] phase=phase3       chunk=2350 wt2=4.830165 code=4.040078
+[chimera][r1_full] phase=phase3       chunk=2400 wt2=4.833401 code=4.140069
+[chimera][r1_full] phase=phase3       chunk=2450 wt2=4.847187 code=4.128760
+[chimera][r1_full] phase=phase3       chunk=2500 wt2=4.865217 code=4.050843
+[chimera][r1_full] phase=phase3       chunk=2550 wt2=4.854548 code=4.071507
+[chimera][r1_full] phase=phase3       chunk=2600 wt2=4.843245 code=4.075324
+[chimera][r1_full] phase=phase3       chunk=2650 wt2=4.865578 code=4.096973
+[chimera][r1_full] phase=phase3       chunk=2700 wt2=4.822144 code=4.030911
+[chimera][r1_full] phase=phase3       chunk=2750 wt2=4.866428 code=4.090157
+[chimera][r1_full] phase=phase3       chunk=2800 wt2=4.866372 code=4.049003
+[chimera][r1_full] phase=phase3       chunk=2850 wt2=4.815073 code=4.100108
+[chimera][r1_full] phase=phase3       chunk=2900 wt2=4.814269 code=4.082071
+[chimera][r1_full] phase=phase3       chunk=2950 wt2=4.802724 code=4.173345
+[chimera][r1_full] phase=phase3       chunk=3000 wt2=4.816888 code=4.167418
+[chimera][r1_full] forgetting=+1.835847 plasticity=+0.853657 recovery=+0.036574 gate_frac=1.0000 grad_tokens=1,536,000 spans=0 reminders=0 monitor_skips=0
+
+[chimera] ===== arm no_reminder =====
+[chimera][no_reminder] phase=base         chunk=   0 wt2=4.798344 code=4.440183
+[chimera][no_reminder] phase=phase1       chunk=  50 wt2=4.809387 code=4.414724
+[chimera][no_reminder] phase=phase1       chunk= 100 wt2=4.819138 code=4.458088
+[chimera][no_reminder] phase=phase1       chunk= 150 wt2=4.810373 code=4.455136
+[chimera][no_reminder] phase=phase1       chunk= 200 wt2=4.783413 code=4.421108
+[chimera][no_reminder] phase=phase1       chunk= 250 wt2=4.814750 code=4.433914
+[chimera][no_reminder] phase=phase1       chunk= 300 wt2=4.805566 code=4.440045
+[chimera][no_reminder] phase=phase1       chunk= 350 wt2=4.791633 code=4.396440
+[chimera][no_reminder] phase=phase1       chunk= 400 wt2=4.803110 code=4.433547
+[chimera][no_reminder] phase=phase1       chunk= 450 wt2=4.783440 code=4.414702
+[chimera][no_reminder] phase=phase1       chunk= 500 wt2=4.761429 code=4.443346
+[chimera][no_reminder] phase=phase1       chunk= 550 wt2=4.777479 code=4.485585
+[chimera][no_reminder] phase=phase1       chunk= 600 wt2=4.764330 code=4.418536
+[chimera][no_reminder] phase=phase1       chunk= 650 wt2=4.754140 code=4.405397
+[chimera][no_reminder] phase=phase1       chunk= 700 wt2=4.788621 code=4.471191
+[chimera][no_reminder] phase=phase1       chunk= 750 wt2=4.778603 code=4.448174
+[chimera][no_reminder] phase=phase1       chunk= 800 wt2=4.772473 code=4.419902
+[chimera][no_reminder] phase=phase1       chunk= 850 wt2=4.765971 code=4.440932
+[chimera][no_reminder] phase=phase1       chunk= 900 wt2=4.760212 code=4.468665
+[chimera][no_reminder] phase=phase1       chunk= 950 wt2=4.784807 code=4.401652
+[chimera][no_reminder] phase=phase1       chunk=1000 wt2=4.786785 code=4.411268
+[chimera][no_reminder] phase=phase2       chunk=1020 wt2=4.817876 code=4.163074
+[chimera][no_reminder] phase=phase2_sleep chunk=1030 wt2=4.867596 code=4.063892
+[chimera][no_reminder] phase2 sleep: 10 chunks (pool=226 spans, 10939 tok, 0.47 epochs, dividend=-0.060945) -> wt2=4.867596 code=4.063892
+[chimera][no_reminder] phase=phase2       chunk=1050 wt2=4.873838 code=4.031532
+[chimera][no_reminder] phase=phase2       chunk=1060 wt2=4.873838 code=4.031532
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1080 wt2=4.927640 code=3.910494
+[chimera][no_reminder] phase=phase2       chunk=1090 wt2=4.942252 code=3.898343
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1110 wt2=5.020509 code=3.945013
+[chimera][no_reminder] phase=phase2       chunk=1120 wt2=5.020509 code=3.945013
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1140 wt2=5.004110 code=3.949777
+[chimera][no_reminder] phase=phase2       chunk=1150 wt2=4.988622 code=3.935797
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1170 wt2=4.991465 code=3.939554
+[chimera][no_reminder] phase=phase2       chunk=1180 wt2=4.999751 code=3.954372
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1200 wt2=4.977263 code=3.884348
+[chimera][no_reminder] phase=phase2       chunk=1210 wt2=4.965094 code=3.864131
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1230 wt2=4.941528 code=3.846105
+[chimera][no_reminder] phase=phase2       chunk=1240 wt2=4.937254 code=3.845236
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1260 wt2=4.938521 code=3.836346
+[chimera][no_reminder] phase=phase2       chunk=1270 wt2=4.938521 code=3.836346
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1290 wt2=4.940333 code=3.834245
+[chimera][no_reminder] phase=phase2       chunk=1300 wt2=4.940333 code=3.834245
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1320 wt2=4.941689 code=3.829830
+[chimera][no_reminder] phase=phase2       chunk=1330 wt2=4.944302 code=3.825099
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1350 wt2=4.952838 code=3.817324
+[chimera][no_reminder] phase=phase2       chunk=1360 wt2=4.956079 code=3.814087
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1380 wt2=4.960400 code=3.811563
+[chimera][no_reminder] phase=phase2       chunk=1390 wt2=4.969082 code=3.809697
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1410 wt2=4.953905 code=3.820588
+[chimera][no_reminder] phase=phase2       chunk=1420 wt2=4.956650 code=3.831222
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1440 wt2=4.959635 code=3.839460
+[chimera][no_reminder] phase=phase2       chunk=1450 wt2=4.959635 code=3.839460
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1470 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase=phase2       chunk=1480 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1500 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase=phase2       chunk=1510 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1530 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase=phase2       chunk=1540 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1560 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase=phase2       chunk=1570 wt2=4.945896 code=3.831753
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1590 wt2=4.935916 code=3.824817
+[chimera][no_reminder] phase=phase2       chunk=1600 wt2=4.935916 code=3.824817
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1620 wt2=4.935916 code=3.824817
+[chimera][no_reminder] phase=phase2       chunk=1630 wt2=4.935916 code=3.824817
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1650 wt2=4.974348 code=3.882176
+[chimera][no_reminder] phase=phase2       chunk=1660 wt2=4.990671 code=3.888902
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1680 wt2=5.014555 code=3.988536
+[chimera][no_reminder] phase=phase2       chunk=1690 wt2=5.015730 code=3.954987
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1710 wt2=5.015231 code=3.859140
+[chimera][no_reminder] phase=phase2       chunk=1720 wt2=5.015231 code=3.859140
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1740 wt2=4.952568 code=3.855011
+[chimera][no_reminder] phase=phase2       chunk=1750 wt2=4.967955 code=3.856566
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1770 wt2=5.184297 code=3.951149
+[chimera][no_reminder] phase=phase2       chunk=1780 wt2=5.141836 code=3.869411
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1800 wt2=5.072420 code=3.811219
+[chimera][no_reminder] phase=phase2       chunk=1810 wt2=5.076569 code=3.818909
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1830 wt2=5.066126 code=3.799941
+[chimera][no_reminder] phase=phase2       chunk=1840 wt2=5.048995 code=3.775745
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1860 wt2=5.031191 code=3.782323
+[chimera][no_reminder] phase=phase2       chunk=1870 wt2=5.031226 code=3.783984
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1890 wt2=5.063332 code=3.776802
+[chimera][no_reminder] phase=phase2       chunk=1900 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1920 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase=phase2       chunk=1930 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1950 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase=phase2       chunk=1960 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1980 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase=phase2       chunk=1990 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase2       chunk=1991 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase=phase2       chunk=2000 wt2=5.075005 code=3.766771
+[chimera][no_reminder] phase2 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2020 wt2=4.897467 code=3.897323
+[chimera][no_reminder] phase=phase3       chunk=2030 wt2=4.902968 code=4.029656
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2050 wt2=4.917060 code=4.016571
+[chimera][no_reminder] phase=phase3       chunk=2060 wt2=4.829862 code=4.013261
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2080 wt2=4.816356 code=4.041228
+[chimera][no_reminder] phase=phase3       chunk=2090 wt2=4.848720 code=4.094157
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2110 wt2=4.841438 code=4.051162
+[chimera][no_reminder] phase=phase3       chunk=2120 wt2=4.829487 code=4.028954
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2140 wt2=4.812500 code=4.008233
+[chimera][no_reminder] phase=phase3       chunk=2150 wt2=4.801675 code=4.006215
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2170 wt2=4.807023 code=4.030819
+[chimera][no_reminder] phase=phase3       chunk=2180 wt2=4.809843 code=4.057759
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2200 wt2=4.798845 code=4.020217
+[chimera][no_reminder] phase=phase3       chunk=2210 wt2=4.808213 code=4.030292
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2230 wt2=4.790113 code=4.053685
+[chimera][no_reminder] phase=phase3       chunk=2240 wt2=4.788789 code=4.059441
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2260 wt2=4.791337 code=4.037984
+[chimera][no_reminder] phase=phase3       chunk=2270 wt2=4.789294 code=4.010516
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2290 wt2=4.776514 code=4.001894
+[chimera][no_reminder] phase=phase3       chunk=2300 wt2=4.767819 code=4.009398
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2320 wt2=4.765243 code=4.029976
+[chimera][no_reminder] phase=phase3       chunk=2330 wt2=4.784724 code=4.073535
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2350 wt2=4.795812 code=4.094383
+[chimera][no_reminder] phase=phase3       chunk=2360 wt2=4.790098 code=4.091969
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2380 wt2=4.782938 code=4.087835
+[chimera][no_reminder] phase=phase3       chunk=2390 wt2=4.776867 code=4.082769
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2410 wt2=4.769412 code=4.068059
+[chimera][no_reminder] phase=phase3       chunk=2420 wt2=4.768561 code=4.050307
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2440 wt2=4.767715 code=4.030139
+[chimera][no_reminder] phase=phase3       chunk=2450 wt2=4.767169 code=4.024716
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2470 wt2=4.766972 code=4.023160
+[chimera][no_reminder] phase=phase3       chunk=2480 wt2=4.771692 code=4.020388
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2500 wt2=4.796077 code=4.024881
+[chimera][no_reminder] phase=phase3       chunk=2510 wt2=4.796077 code=4.024881
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2530 wt2=4.797793 code=4.001136
+[chimera][no_reminder] phase=phase3       chunk=2540 wt2=4.795376 code=3.997074
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2560 wt2=4.794238 code=4.006822
+[chimera][no_reminder] phase=phase3       chunk=2570 wt2=4.793438 code=4.013448
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2590 wt2=4.791103 code=4.011891
+[chimera][no_reminder] phase=phase3       chunk=2600 wt2=4.784976 code=4.019938
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2620 wt2=4.803571 code=4.051160
+[chimera][no_reminder] phase=phase3       chunk=2630 wt2=4.807107 code=4.036301
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2650 wt2=4.817559 code=4.021623
+[chimera][no_reminder] phase=phase3       chunk=2660 wt2=4.815605 code=4.022429
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2680 wt2=4.812831 code=4.023135
+[chimera][no_reminder] phase=phase3       chunk=2690 wt2=4.804220 code=4.028322
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2710 wt2=4.781580 code=4.042769
+[chimera][no_reminder] phase=phase3       chunk=2720 wt2=4.776758 code=4.044136
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2740 wt2=4.764390 code=4.058619
+[chimera][no_reminder] phase=phase3       chunk=2750 wt2=4.762566 code=4.073410
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2770 wt2=4.768373 code=4.090138
+[chimera][no_reminder] phase=phase3       chunk=2780 wt2=4.776480 code=4.101815
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2800 wt2=4.781974 code=4.097668
+[chimera][no_reminder] phase=phase3       chunk=2810 wt2=4.782730 code=4.098368
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2830 wt2=4.773967 code=4.098329
+[chimera][no_reminder] phase=phase3       chunk=2840 wt2=4.757357 code=4.090296
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2860 wt2=4.747693 code=4.068454
+[chimera][no_reminder] phase=phase3       chunk=2870 wt2=4.747117 code=4.072500
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2890 wt2=4.759498 code=4.076000
+[chimera][no_reminder] phase=phase3       chunk=2900 wt2=4.767054 code=4.080995
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2920 wt2=4.785079 code=4.038471
+[chimera][no_reminder] phase=phase3       chunk=2930 wt2=4.785819 code=4.030770
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2950 wt2=4.762562 code=4.091051
+[chimera][no_reminder] phase=phase3       chunk=2960 wt2=4.761097 code=4.075158
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2980 wt2=4.762091 code=4.063943
+[chimera][no_reminder] phase=phase3       chunk=2990 wt2=4.761827 code=4.060295
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] phase=phase3       chunk=2991 wt2=4.761827 code=4.060295
+[chimera][no_reminder] phase=phase3       chunk=3000 wt2=4.759807 code=4.062953
+[chimera][no_reminder] phase3 block: sleep SUSPENDED by dividend monitor (EMA=-0.060945 <= 0) -- budget spent on wake instead
+[chimera][no_reminder] forgetting=+0.397512 plasticity=+0.644497 recovery=-0.026978 gate_frac=0.2722 grad_tokens=421,888 spans=498 reminders=0 monitor_skips=67
+
+[chimera] ===== arm no_monitor =====
+[chimera][no_monitor] phase=base         chunk=   0 wt2=4.798344 code=4.440183
+[chimera][no_monitor] phase=phase1       chunk=  50 wt2=4.816892 code=4.423482
+[chimera][no_monitor] phase=phase1       chunk= 100 wt2=4.823646 code=4.461908
+[chimera][no_monitor] phase=phase1       chunk= 150 wt2=4.809317 code=4.453583
+[chimera][no_monitor] phase=phase1       chunk= 200 wt2=4.785173 code=4.423597
+[chimera][no_monitor] phase=phase1       chunk= 250 wt2=4.821474 code=4.413782
+[chimera][no_monitor] phase=phase1       chunk= 300 wt2=4.811461 code=4.445355
+[chimera][no_monitor] phase=phase1       chunk= 350 wt2=4.791324 code=4.395941
+[chimera][no_monitor] phase=phase1       chunk= 400 wt2=4.802648 code=4.435058
+[chimera][no_monitor] phase=phase1       chunk= 450 wt2=4.785618 code=4.425384
+[chimera][no_monitor] phase=phase1       chunk= 500 wt2=4.761321 code=4.435240
+[chimera][no_monitor] phase=phase1       chunk= 550 wt2=4.777601 code=4.482713
+[chimera][no_monitor] phase=phase1       chunk= 600 wt2=4.767174 code=4.414880
+[chimera][no_monitor] phase=phase1       chunk= 650 wt2=4.754517 code=4.398658
+[chimera][no_monitor] phase=phase1       chunk= 700 wt2=4.788751 code=4.468018
+[chimera][no_monitor] phase=phase1       chunk= 750 wt2=4.779754 code=4.453724
+[chimera][no_monitor] phase=phase1       chunk= 800 wt2=4.772316 code=4.417840
+[chimera][no_monitor] phase=phase1       chunk= 850 wt2=4.763515 code=4.442748
+[chimera][no_monitor] phase=phase1       chunk= 900 wt2=4.760538 code=4.464020
+[chimera][no_monitor] phase=phase1       chunk= 950 wt2=4.784478 code=4.397895
+[chimera][no_monitor] phase=phase1       chunk=1000 wt2=4.788309 code=4.409828
+[chimera][no_monitor] phase=phase2       chunk=1020 wt2=4.815772 code=4.172172
+[chimera][no_monitor] phase=phase2_sleep chunk=1030 wt2=4.881490 code=4.071582
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=226 spans, 10905 tok, 0.47 epochs, dividend=-0.086325) -> wt2=4.881490 code=4.071582
+[chimera][no_monitor] phase=phase2       chunk=1050 wt2=4.884164 code=4.041402
+[chimera][no_monitor] phase=phase2_sleep chunk=1060 wt2=4.960584 code=3.931375
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=228 spans, 11002 tok, 0.47 epochs, dividend=-0.046697) -> wt2=4.960584 code=3.931375
+[chimera][no_monitor] phase=phase2       chunk=1080 wt2=4.984849 code=3.918843
+[chimera][no_monitor] phase=phase2_sleep chunk=1090 wt2=5.038128 code=4.067337
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=232 spans, 11168 tok, 0.46 epochs, dividend=-0.078393) -> wt2=5.038128 code=4.067337
+[chimera][no_monitor] phase=phase2       chunk=1110 wt2=5.034396 code=3.871072
+[chimera][no_monitor] phase=phase2_sleep chunk=1120 wt2=5.014184 code=3.907263
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=238 spans, 11470 tok, 0.45 epochs, dividend=+0.019933) -> wt2=5.014184 code=3.907263
+[chimera][no_monitor] phase=phase2       chunk=1140 wt2=4.986636 code=3.925566
+[chimera][no_monitor] phase=phase2_sleep chunk=1150 wt2=5.015450 code=4.014666
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=248 spans, 11944 tok, 0.43 epochs, dividend=-0.009554) -> wt2=5.015450 code=4.014666
+[chimera][no_monitor] phase=phase2       chunk=1170 wt2=4.986327 code=3.965048
+[chimera][no_monitor] phase=phase2_sleep chunk=1180 wt2=5.002877 code=3.893316
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=248 spans, 11944 tok, 0.43 epochs, dividend=-0.040291) -> wt2=5.002877 code=3.893316
+[chimera][no_monitor] phase=phase2       chunk=1200 wt2=5.000238 code=3.848462
+[chimera][no_monitor] phase=phase2_sleep chunk=1210 wt2=4.982919 code=3.809943
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=248 spans, 11944 tok, 0.43 epochs, dividend=+0.039291) -> wt2=4.982919 code=3.809943
+[chimera][no_monitor] phase=phase2       chunk=1230 wt2=5.026566 code=3.787173
+[chimera][no_monitor] phase=phase2_sleep chunk=1240 wt2=4.992422 code=3.846438
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=248 spans, 11944 tok, 0.43 epochs, dividend=+0.025367) -> wt2=4.992422 code=3.846438
+[chimera][no_monitor] phase=phase2       chunk=1260 wt2=4.987172 code=3.818953
+[chimera][no_monitor] phase=phase2_sleep chunk=1270 wt2=5.073615 code=3.858038
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=250 spans, 12026 tok, 0.43 epochs, dividend=-0.090062) -> wt2=5.073615 code=3.858038
+[chimera][no_monitor] phase=phase2       chunk=1290 wt2=5.119741 code=3.872312
+[chimera][no_monitor] phase=phase2_sleep chunk=1300 wt2=5.080425 code=3.874482
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=250 spans, 12026 tok, 0.43 epochs, dividend=+0.064896) -> wt2=5.080425 code=3.874482
+[chimera][no_monitor] phase=phase2       chunk=1320 wt2=5.040759 code=3.810574
+[chimera][no_monitor] phase=phase2_sleep chunk=1330 wt2=4.999931 code=3.791275
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=254 spans, 12213 tok, 0.42 epochs, dividend=+0.053925) -> wt2=4.999931 code=3.791275
+[chimera][no_monitor] phase=phase2       chunk=1350 wt2=5.007939 code=3.793915
+[chimera][no_monitor] phase=phase2_sleep chunk=1360 wt2=5.011337 code=3.874361
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=254 spans, 12213 tok, 0.42 epochs, dividend=-0.021195) -> wt2=5.011337 code=3.874361
+[chimera][no_monitor] phase=phase2       chunk=1380 wt2=5.013019 code=3.861913
+[chimera][no_monitor] phase=phase2_sleep chunk=1390 wt2=5.055756 code=3.910165
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=260 spans, 12532 tok, 0.41 epochs, dividend=-0.048154) -> wt2=5.055756 code=3.910165
+[chimera][no_monitor] phase=phase2       chunk=1410 wt2=5.050157 code=3.902757
+[chimera][no_monitor] phase=phase2_sleep chunk=1420 wt2=5.126819 code=3.965784
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=262 spans, 12640 tok, 0.41 epochs, dividend=-0.086746) -> wt2=5.126819 code=3.965784
+[chimera][no_monitor] phase=phase2       chunk=1440 wt2=5.133851 code=3.967437
+[chimera][no_monitor] phase=phase2_sleep chunk=1450 wt2=5.091144 code=3.908098
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=262 spans, 12640 tok, 0.41 epochs, dividend=+0.059609) -> wt2=5.091144 code=3.908098
+[chimera][no_monitor] phase=phase2       chunk=1470 wt2=5.092154 code=3.837829
+[chimera][no_monitor] phase=phase2_sleep chunk=1480 wt2=5.177498 code=4.075968
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=266 spans, 12840 tok, 0.40 epochs, dividend=-0.124339) -> wt2=5.177498 code=4.075968
+[chimera][no_monitor] phase=phase2       chunk=1500 wt2=5.188726 code=4.097269
+[chimera][no_monitor] phase=phase2_sleep chunk=1510 wt2=5.120431 code=4.012968
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=266 spans, 12840 tok, 0.40 epochs, dividend=+0.089219) -> wt2=5.120431 code=4.012968
+[chimera][no_monitor] phase=phase2       chunk=1530 wt2=5.104725 code=3.927883
+[chimera][no_monitor] phase=phase2_sleep chunk=1540 wt2=5.105842 code=3.843652
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=268 spans, 12934 tok, 0.40 epochs, dividend=+0.010533) -> wt2=5.105842 code=3.843652
+[chimera][no_monitor] phase=phase2       chunk=1560 wt2=5.097633 code=3.833663
+[chimera][no_monitor] phase=phase2_sleep chunk=1570 wt2=5.173068 code=3.943165
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=272 spans, 13117 tok, 0.39 epochs, dividend=-0.083668) -> wt2=5.173068 code=3.943165
+[chimera][no_monitor] phase=phase2       chunk=1590 wt2=5.231053 code=3.947131
+[chimera][no_monitor] phase=phase2_sleep chunk=1600 wt2=5.262062 code=3.995659
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.039431) -> wt2=5.262062 code=3.995659
+[chimera][no_monitor] phase=phase2       chunk=1620 wt2=5.263229 code=4.001149
+[chimera][no_monitor] phase=phase2_sleep chunk=1630 wt2=5.207275 code=3.994942
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=+0.073837) -> wt2=5.207275 code=3.994942
+[chimera][no_monitor] phase=phase2       chunk=1650 wt2=5.194929 code=3.964446
+[chimera][no_monitor] phase=phase2_sleep chunk=1660 wt2=5.215141 code=3.947276
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.013796) -> wt2=5.215141 code=3.947276
+[chimera][no_monitor] phase=phase2       chunk=1680 wt2=5.215141 code=3.947276
+[chimera][no_monitor] phase=phase2_sleep chunk=1690 wt2=5.208201 code=4.014330
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=+0.001335) -> wt2=5.208201 code=4.014330
+[chimera][no_monitor] phase=phase2       chunk=1710 wt2=5.208201 code=4.014330
+[chimera][no_monitor] phase=phase2_sleep chunk=1720 wt2=5.202772 code=3.993469
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=+0.002292) -> wt2=5.202772 code=3.993469
+[chimera][no_monitor] phase=phase2       chunk=1740 wt2=5.202772 code=3.993469
+[chimera][no_monitor] phase=phase2_sleep chunk=1750 wt2=5.184219 code=4.033986
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=+0.017378) -> wt2=5.184219 code=4.033986
+[chimera][no_monitor] phase=phase2       chunk=1770 wt2=5.184219 code=4.033986
+[chimera][no_monitor] phase=phase2_sleep chunk=1780 wt2=5.225162 code=4.075898
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.035306) -> wt2=5.225162 code=4.075898
+[chimera][no_monitor] phase=phase2       chunk=1800 wt2=5.225162 code=4.075898
+[chimera][no_monitor] phase=phase2_sleep chunk=1810 wt2=5.250174 code=4.097843
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.020392) -> wt2=5.250174 code=4.097843
+[chimera][no_monitor] phase=phase2       chunk=1830 wt2=5.250174 code=4.097843
+[chimera][no_monitor] phase=phase2_sleep chunk=1840 wt2=5.270459 code=4.093681
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.031380) -> wt2=5.270459 code=4.093681
+[chimera][no_monitor] phase=phase2       chunk=1860 wt2=5.270459 code=4.093681
+[chimera][no_monitor] phase=phase2_sleep chunk=1870 wt2=5.296498 code=4.121638
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.025346) -> wt2=5.296498 code=4.121638
+[chimera][no_monitor] phase=phase2       chunk=1890 wt2=5.296498 code=4.121638
+[chimera][no_monitor] phase=phase2_sleep chunk=1900 wt2=5.318453 code=4.150264
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.015998) -> wt2=5.318453 code=4.150264
+[chimera][no_monitor] phase=phase2       chunk=1920 wt2=5.318453 code=4.150264
+[chimera][no_monitor] phase=phase2_sleep chunk=1930 wt2=5.334375 code=4.141150
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=282 spans, 13628 tok, 0.38 epochs, dividend=-0.016598) -> wt2=5.334375 code=4.141150
+[chimera][no_monitor] phase=phase2       chunk=1950 wt2=5.320558 code=3.969710
+[chimera][no_monitor] phase=phase2_sleep chunk=1960 wt2=5.407064 code=3.933903
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=292 spans, 14105 tok, 0.36 epochs, dividend=-0.090530) -> wt2=5.407064 code=3.933903
+[chimera][no_monitor] phase=phase2       chunk=1980 wt2=5.348600 code=3.939878
+[chimera][no_monitor] phase=phase2_sleep chunk=1990 wt2=5.273060 code=3.982153
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=292 spans, 14105 tok, 0.36 epochs, dividend=+0.064291) -> wt2=5.273060 code=3.982153
+[chimera][no_monitor] phase=phase2       chunk=1991 wt2=5.273060 code=3.982153
+[chimera][no_monitor] phase=phase2_sleep chunk=2001 wt2=5.395488 code=4.045285
+[chimera][no_monitor] phase2 sleep: 10 chunks (pool=292 spans, 14105 tok, 0.36 epochs, dividend=-0.121724) -> wt2=5.395488 code=4.045285
+[chimera][no_monitor] phase=phase3       chunk=2021 wt2=5.091411 code=3.991622
+[chimera][no_monitor] phase=phase3_sleep chunk=2031 wt2=5.063337 code=4.019203
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=312 spans, 15093 tok, 0.34 epochs, dividend=+0.032907) -> wt2=5.063337 code=4.019203
+[chimera][no_monitor] phase=phase3       chunk=2051 wt2=5.085825 code=4.196874
+[chimera][no_monitor] phase=phase3_sleep chunk=2061 wt2=5.066786 code=4.018075
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=342 spans, 16571 tok, 0.31 epochs, dividend=+0.020376) -> wt2=5.066786 code=4.018075
+[chimera][no_monitor] phase=phase3       chunk=2081 wt2=4.935191 code=4.072791
+[chimera][no_monitor] phase=phase3_sleep chunk=2091 wt2=4.965943 code=3.973899
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=352 spans, 17037 tok, 0.30 epochs, dividend=-0.015783) -> wt2=4.965943 code=3.973899
+[chimera][no_monitor] phase=phase3       chunk=2111 wt2=5.014322 code=4.091643
+[chimera][no_monitor] phase=phase3_sleep chunk=2121 wt2=4.980494 code=3.980188
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=356 spans, 17232 tok, 0.30 epochs, dividend=+0.042698) -> wt2=4.980494 code=3.980188
+[chimera][no_monitor] phase=phase3       chunk=2141 wt2=4.996496 code=4.044921
+[chimera][no_monitor] phase=phase3_sleep chunk=2151 wt2=4.991128 code=3.965299
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=356 spans, 17232 tok, 0.30 epochs, dividend=+0.007034) -> wt2=4.991128 code=3.965299
+[chimera][no_monitor] phase=phase3       chunk=2171 wt2=5.010421 code=4.027760
+[chimera][no_monitor] phase=phase3_sleep chunk=2181 wt2=5.014702 code=4.067384
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=360 spans, 17419 tok, 0.29 epochs, dividend=-0.002001) -> wt2=5.014702 code=4.067384
+[chimera][no_monitor] phase=phase3       chunk=2201 wt2=4.994381 code=3.990768
+[chimera][no_monitor] phase=phase3_sleep chunk=2211 wt2=4.980479 code=4.022656
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=366 spans, 17731 tok, 0.29 epochs, dividend=+0.018937) -> wt2=4.980479 code=4.022656
+[chimera][no_monitor] phase=phase3       chunk=2231 wt2=5.010810 code=3.993776
+[chimera][no_monitor] phase=phase3_sleep chunk=2241 wt2=4.987910 code=3.963003
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=372 spans, 18032 tok, 0.28 epochs, dividend=+0.029758) -> wt2=4.987910 code=3.963003
+[chimera][no_monitor] phase=phase3       chunk=2261 wt2=4.986375 code=4.044251
+[chimera][no_monitor] phase=phase3_sleep chunk=2271 wt2=4.985433 code=4.068975
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=376 spans, 18222 tok, 0.28 epochs, dividend=-0.006668) -> wt2=4.985433 code=4.068975
+[chimera][no_monitor] phase=phase3       chunk=2291 wt2=5.021820 code=4.026369
+[chimera][no_monitor] phase=phase3_sleep chunk=2301 wt2=5.035389 code=4.002860
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=380 spans, 18429 tok, 0.28 epochs, dividend=-0.005034) -> wt2=5.035389 code=4.002860
+[chimera][no_monitor] phase=phase3       chunk=2321 wt2=4.979775 code=3.992296
+[chimera][no_monitor] phase=phase3_sleep chunk=2331 wt2=4.988296 code=3.985396
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=386 spans, 18717 tok, 0.27 epochs, dividend=+0.002830) -> wt2=4.988296 code=3.985396
+[chimera][no_monitor] phase=phase3       chunk=2351 wt2=4.981497 code=4.038567
+[chimera][no_monitor] phase=phase3_sleep chunk=2361 wt2=5.017033 code=4.044020
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=392 spans, 19028 tok, 0.27 epochs, dividend=-0.031008) -> wt2=5.017033 code=4.044020
+[chimera][no_monitor] phase=phase3       chunk=2381 wt2=5.022375 code=4.025736
+[chimera][no_monitor] phase=phase3_sleep chunk=2391 wt2=5.051570 code=4.064273
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=398 spans, 19320 tok, 0.27 epochs, dividend=-0.055299) -> wt2=5.051570 code=4.064273
+[chimera][no_monitor] phase=phase3       chunk=2411 wt2=4.996149 code=4.070781
+[chimera][no_monitor] phase=phase3_sleep chunk=2421 wt2=4.964982 code=4.020135
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=406 spans, 19757 tok, 0.26 epochs, dividend=+0.043783) -> wt2=4.964982 code=4.020135
+[chimera][no_monitor] phase=phase3       chunk=2441 wt2=4.969480 code=4.019010
+[chimera][no_monitor] phase=phase3_sleep chunk=2451 wt2=4.992232 code=4.019560
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=416 spans, 20230 tok, 0.25 epochs, dividend=-0.033253) -> wt2=4.992232 code=4.019560
+[chimera][no_monitor] phase=phase3       chunk=2471 wt2=4.996979 code=4.035280
+[chimera][no_monitor] phase=phase3_sleep chunk=2481 wt2=5.046832 code=4.063059
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=416 spans, 20230 tok, 0.25 epochs, dividend=-0.045917) -> wt2=5.046832 code=4.063059
+[chimera][no_monitor] phase=phase3       chunk=2501 wt2=5.041338 code=4.039959
+[chimera][no_monitor] phase=phase3_sleep chunk=2511 wt2=5.018719 code=4.020577
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=422 spans, 20537 tok, 0.25 epochs, dividend=+0.022318) -> wt2=5.018719 code=4.020577
+[chimera][no_monitor] phase=phase3       chunk=2531 wt2=5.008000 code=4.033048
+[chimera][no_monitor] phase=phase3_sleep chunk=2541 wt2=5.003299 code=4.070223
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=426 spans, 20745 tok, 0.25 epochs, dividend=+0.020797) -> wt2=5.003299 code=4.070223
+[chimera][no_monitor] phase=phase3       chunk=2561 wt2=5.012025 code=4.062155
+[chimera][no_monitor] phase=phase3_sleep chunk=2571 wt2=5.073640 code=4.099181
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=430 spans, 20945 tok, 0.24 epochs, dividend=-0.062705) -> wt2=5.073640 code=4.099181
+[chimera][no_monitor] phase=phase3       chunk=2591 wt2=5.040778 code=4.117481
+[chimera][no_monitor] phase=phase3_sleep chunk=2601 wt2=5.041393 code=4.133665
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=438 spans, 21362 tok, 0.24 epochs, dividend=+0.002997) -> wt2=5.041393 code=4.133665
+[chimera][no_monitor] phase=phase3       chunk=2621 wt2=5.038011 code=4.089905
+[chimera][no_monitor] phase=phase3_sleep chunk=2631 wt2=5.054299 code=4.060103
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=448 spans, 21862 tok, 0.23 epochs, dividend=-0.014215) -> wt2=5.054299 code=4.060103
+[chimera][no_monitor] phase=phase3       chunk=2651 wt2=5.067137 code=4.064885
+[chimera][no_monitor] phase=phase3_sleep chunk=2661 wt2=5.094029 code=4.078128
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=454 spans, 22165 tok, 0.23 epochs, dividend=-0.023597) -> wt2=5.094029 code=4.078128
+[chimera][no_monitor] phase=phase3       chunk=2681 wt2=5.075170 code=4.141411
+[chimera][no_monitor] phase=phase3_sleep chunk=2691 wt2=5.110424 code=4.164097
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=456 spans, 22280 tok, 0.23 epochs, dividend=-0.032762) -> wt2=5.110424 code=4.164097
+[chimera][no_monitor] phase=phase3       chunk=2711 wt2=5.073662 code=4.104468
+[chimera][no_monitor] phase=phase3_sleep chunk=2721 wt2=5.085629 code=4.059773
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=468 spans, 22948 tok, 0.22 epochs, dividend=-0.001496) -> wt2=5.085629 code=4.059773
+[chimera][no_monitor] phase=phase3       chunk=2741 wt2=5.040614 code=4.080199
+[chimera][no_monitor] phase=phase3_sleep chunk=2751 wt2=5.067689 code=4.062811
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=478 spans, 23419 tok, 0.22 epochs, dividend=-0.034218) -> wt2=5.067689 code=4.062811
+[chimera][no_monitor] phase=phase3       chunk=2771 wt2=5.082641 code=4.039453
+[chimera][no_monitor] phase=phase3_sleep chunk=2781 wt2=5.117420 code=4.058285
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=482 spans, 23608 tok, 0.22 epochs, dividend=-0.037127) -> wt2=5.117420 code=4.058285
+[chimera][no_monitor] phase=phase3       chunk=2801 wt2=5.065792 code=4.146529
+[chimera][no_monitor] phase=phase3_sleep chunk=2811 wt2=5.039716 code=4.078945
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=492 spans, 24085 tok, 0.21 epochs, dividend=+0.043660) -> wt2=5.039716 code=4.078945
+[chimera][no_monitor] phase=phase3       chunk=2831 wt2=5.039200 code=4.049104
+[chimera][no_monitor] phase=phase3_sleep chunk=2841 wt2=5.085998 code=4.069832
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=498 spans, 24414 tok, 0.21 epochs, dividend=-0.060856) -> wt2=5.085998 code=4.069832
+[chimera][no_monitor] phase=phase3       chunk=2861 wt2=5.091497 code=4.067477
+[chimera][no_monitor] phase=phase3_sleep chunk=2871 wt2=5.083857 code=4.064278
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=502 spans, 24583 tok, 0.21 epochs, dividend=+0.011526) -> wt2=5.083857 code=4.064278
+[chimera][no_monitor] phase=phase3       chunk=2891 wt2=5.072194 code=4.089625
+[chimera][no_monitor] phase=phase3_sleep chunk=2901 wt2=5.145543 code=4.106021
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=502 spans, 24583 tok, 0.21 epochs, dividend=-0.075273) -> wt2=5.145543 code=4.106021
+[chimera][no_monitor] phase=phase3       chunk=2921 wt2=5.101339 code=4.072293
+[chimera][no_monitor] phase=phase3_sleep chunk=2931 wt2=5.057133 code=4.071725
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=512 spans, 25090 tok, 0.20 epochs, dividend=+0.042479) -> wt2=5.057133 code=4.071725
+[chimera][no_monitor] phase=phase3       chunk=2951 wt2=5.038341 code=4.071328
+[chimera][no_monitor] phase=phase3_sleep chunk=2961 wt2=5.039542 code=4.085931
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=524 spans, 25717 tok, 0.20 epochs, dividend=+0.001269) -> wt2=5.039542 code=4.085931
+[chimera][no_monitor] phase=phase3       chunk=2981 wt2=5.037314 code=4.103264
+[chimera][no_monitor] phase=phase3_sleep chunk=2991 wt2=5.066948 code=4.072847
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=528 spans, 25898 tok, 0.20 epochs, dividend=-0.021087) -> wt2=5.066948 code=4.072847
+[chimera][no_monitor] phase=phase3       chunk=2992 wt2=5.066948 code=4.072847
+[chimera][no_monitor] phase=phase3_sleep chunk=3002 wt2=5.212136 code=4.109841
+[chimera][no_monitor] phase3 sleep: 10 chunks (pool=528 spans, 25898 tok, 0.20 epochs, dividend=-0.149637) -> wt2=5.212136 code=4.109841
+[chimera][no_monitor] forgetting=+0.618755 plasticity=+0.622655 recovery=+0.423827 gate_frac=0.3118 grad_tokens=718,848 spans=528 reminders=8 monitor_skips=0
+
+[chimera] forgetting: chimera=+0.381132 r3_replicate=+1.306251 r1_full=+1.835847 no_reminder=+0.397512 no_monitor=+0.618755 | plasticity: chimera=+0.672334 r3_replicate=+0.630965 r1_full=+0.853657 no_reminder=+0.644497 no_monitor=+0.622655 | recovery: chimera=-0.040215 r3_replicate=+0.599391 r1_full=+0.036574 no_reminder=-0.026978 no_monitor=+0.423827 | P33: PASS (a: True, b: True, c: True, d: True)
+[chimera] -> results/chimera_v1.json
+P54_FERTIG
