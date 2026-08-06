@@ -1470,3 +1470,45 @@ artifact is a number about the defaults, not about the system.
   depth→rate mechanism saturates, localize where; (c) fails ⇒ the
   24.7% attractor was seed accident and the curve needs seed averaging
   before any width claim below d512.
+
+- **P55 — the file answers by key (MS-Q, registered 2026-08-06, BEFORE
+  the build).** P47/P52 proved the frozen file transfers DIFFUSELY
+  (global NLL gains to strangers). The end architecture claims more:
+  tappable — targeted retrieval. Setup (knowledge_file_run substrate,
+  d128/B8/K64, x86 runner, chained behind the s43_d128 width run):
+  producer streams C4, harvests, freezes (sha256). Consumer twins from
+  one init: WITH dosed file replay vs WITHOUT, then the KEYED PROBE —
+  for N=100 sampled file entries, present the first half of the span
+  (the key) and measure completion NLL on the second half (the value);
+  plus a CONTROL probe on 100 never-harvested spans from the same
+  stream region (matched length).
+  (a) KEYED RECALL: with-file completion NLL on harvested values beats
+      without-file by ≥ 0.05 (targeted, not diffuse — bar 2.5× the
+      diffuse P47 effect).
+  (b) SPECIFICITY: the with-file advantage on HARVESTED spans exceeds
+      its advantage on control spans by ≥ 0.02 — the file carries THE
+      ENTRIES, not just the domain.
+  (c) mechanics: file frozen, sha recorded, both arms bit-comparable.
+  Falsifiers: (a) fails ⇒ dosed replay stores no keyed content at this
+  dose — the tappable claim needs an index-mediated read (the F4
+  route), stated as the boundary between file-as-fertilizer and
+  file-as-memory; (b) fails while (a) passes ⇒ the gain is domain
+  adaptation, not entry storage — same boundary, other side.
+
+- **P57 — the composition curve: sublinearity over the exposure decade
+  (MS-S, registered 2026-08-06, BEFORE the launch).** P54's stabilizer
+  finding stands on two exposure points (150 / 1,000 chunk phases).
+  The decade: phases 5,000 and 20,000, arms chimera + r3_replicate +
+  r1_full (the ablations earned their verdicts; the curve needs the
+  three regimes), same instruments, cadence recorded, chained on the
+  second x86 runner behind the s43_d256 width run.
+  (a) SUBLINEARITY IS A LAW: chimera forgetting vs phase length fits
+      log-log slope < 0.8 over the four points (150, 1k, 5k, 20k),
+      while r3's slope reads ≥ 0.9.
+  (b) THE GAP WIDENS: chimera/r3 forgetting ratio at 20k ≤ its ratio
+      at 1k (0.292) — composition's edge grows or holds with exposure.
+  (c) RECOVERY SURVIVES THE DECADE: chimera residual after recovery
+      ≤ 0.1 at 20k phases.
+  Falsifiers: (a) fails ⇒ sublinearity was a two-point accident, the
+  stabilizer claim reverts to the measured pair; (c) fails ⇒ the
+  monitor's recovery has an exposure ceiling — locate it.
