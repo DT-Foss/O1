@@ -544,8 +544,9 @@ way: the d256/d512 separation **grows** from 0.026 at the first eval to 0.049 at
 
 **The repeat at 50M scale has now run, and it resolves the tension.** Eleven days after the
 original, in a different process, with one mid-run stream reconnect, the seed-42 d=512 run
-reproduced **all 97,657 chunks identically on every recorded field** — all three surprise
-streams at print precision, every gate decision, every threshold, final heldouts to the last
+reproduced **all 97,657 chunks identically on every deterministic field** — chunk index,
+gate decision, all three surprise streams at print precision, threshold (wall-clock time is
+the only field that moves, as it must) — with final heldouts to the last
 digit (A2 5.0898, A3 5.1701, cumulative rate 0.1984). Same-seed variance at 50M is **zero**:
 the rate is a deterministic function of (seed, width, recipe, stream), not a frozen coin-flip.
 The two phenomena coexist cleanly — the 2k-chunk forks were measured in *parallel* forensics

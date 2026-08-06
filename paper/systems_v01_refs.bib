@@ -1,0 +1,86 @@
+% ===================================================================
+% systems_v01_refs.bib -- "The Organism as a Deployable Asset"
+% Only entries whose venue/author/year metadata is known with
+% confidence. Anything uncertain is omitted rather than guessed
+% (a few solid references beat many shaky ones).
+% ===================================================================
+
+% ---------- The operator family (companion substrate) ----------
+
+@article{gu2023mamba,
+  title   = {Mamba: Linear-Time Sequence Modeling with Selective State Spaces},
+  author  = {Gu, Albert and Dao, Tri},
+  journal = {arXiv preprint arXiv:2312.00752},
+  year    = {2023},
+  note    = {Also in Conference on Language Modeling (COLM), 2024}
+}
+
+% ---------- Continual learning: forgetting mitigation & replay ----------
+
+@article{kirkpatrick2017ewc,
+  title   = {Overcoming Catastrophic Forgetting in Neural Networks},
+  author  = {Kirkpatrick, James and Pascanu, Razvan and Rabinowitz, Neil and
+             Veness, Joel and Desjardins, Guillaume and Rusu, Andrei A. and
+             Milan, Kieran and Quan, John and Ramalho, Tiago and
+             Grabska-Barwinska, Agnieszka and Hassabis, Demis and
+             Clopath, Claudia and Kumaran, Dharshan and Hadsell, Raia},
+  journal = {Proceedings of the National Academy of Sciences (PNAS)},
+  volume  = {114},
+  number  = {13},
+  pages   = {3521--3526},
+  year    = {2017}
+}
+
+@article{vandeven2019replay,
+  title   = {Three Scenarios for Continual Learning},
+  author  = {van de Ven, Gido M. and Tolias, Andreas S.},
+  journal = {arXiv preprint arXiv:1904.07734},
+  year    = {2019}
+}
+
+% ---------- Model merging / weight-space fusion ----------
+
+@inproceedings{wortsman2022modelsoups,
+  title     = {Model Soups: Averaging Weights of Multiple Fine-tuned Models
+               Improves Accuracy Without Increasing Inference Time},
+  author    = {Wortsman, Mitchell and Ilharco, Gabriel and Gadre, Samir Yitzhak and
+               Roelofs, Rebecca and Gontijo-Lopes, Raphael and Morcos, Ari S. and
+               Namkoong, Hongseok and Farhadi, Ali and Carmon, Yair and
+               Kornblith, Simon and Schmidt, Ludwig},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2022},
+  note      = {arXiv:2203.05482}
+}
+
+@inproceedings{matena2022merging,
+  title     = {Merging Models with Fisher-Weighted Averaging},
+  author    = {Matena, Michael S. and Raffel, Colin},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2022},
+  note      = {arXiv:2111.09832}
+}
+
+% ---------- Federated / distributed learning ----------
+
+@inproceedings{mcmahan2017fedavg,
+  title     = {Communication-Efficient Learning of Deep Networks from
+               Decentralized Data},
+  author    = {McMahan, Brendan and Moore, Eider and Ramage, Daniel and
+               Hampson, Seth and Ag{\"u}era y Arcas, Blaise},
+  booktitle = {Proceedings of the 20th International Conference on Artificial
+               Intelligence and Statistics (AISTATS)},
+  year      = {2017},
+  note      = {arXiv:1602.05629}
+}
+
+% ---------- The systems analogy: live VM migration ----------
+
+@inproceedings{clark2005livemigration,
+  title     = {Live Migration of Virtual Machines},
+  author    = {Clark, Christopher and Fraser, Keir and Hand, Steven and
+               Hansen, Jacob Gorm and Jul, Eric and Limpach, Christian and
+               Pratt, Ian and Warfield, Andrew},
+  booktitle = {Proceedings of the 2nd Symposium on Networked Systems Design and
+               Implementation (NSDI)},
+  year      = {2005}
+}
