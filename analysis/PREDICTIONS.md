@@ -1576,3 +1576,13 @@ artifact is a number about the defaults, not about the system.
   Falsifier: any cross-ISA mismatch localizes to a named layer
   (tokenizer, stream, arithmetic) — and that layer becomes the spec's
   normative anchor before any hub exists.
+  **P59 AMENDED before the build (same morning):** the checkpoint
+  adapter is measured trivial — the veteran's state_dict loads into
+  the reference Organism class key- and shape-identical at V=5000
+  (load + forward verified). Consequence for clause (b): the shock
+  domain is WT-103 (the established P43/P47 shock substrate) instead
+  of code, because the veteran lives in its own 5,000-type vocabulary
+  and the code loader is coupled to the WT-2 stack; WT-103 streams
+  tokenize cleanly through the veteran's own stoi, keeping both arms
+  in the veteran's universe. Protocol otherwise unchanged; the young
+  twin is raised fresh at 50M tokens on the SAME vocabulary.
