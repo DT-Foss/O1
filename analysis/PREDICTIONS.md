@@ -1536,3 +1536,43 @@ artifact is a number about the defaults, not about the system.
   BEFORE anything is built on it. (b) fails alone ⇒ surprise finds new
   things amid old ones — filter useful for discovery, not dedup.
   Runs chained on the 16-core runner behind P55.
+
+- **P59 — the aged brain: does a 7-billion-token life gate, learn, and
+  survive shocks differently? (MS-U, registered 2026-08-06, BEFORE the
+  fork).** Today's determinism results turn the project's most
+  expensive asset — the single uninterrupted multi-billion-token life —
+  into an experimental substrate: its checkpoint can be forked
+  (read-only copy; the living run is not touched) and the VETERAN
+  measured against a FRESH 50M-token organism of identical
+  configuration on an identical protocol. A new science axis: age.
+  (a) THE RATE CARRIES AGE OR IT DOES NOT: the veteran's cumulative
+      gate rate over a 2,000-chunk C4 continuation differs from the
+      young organism's same-window rate by more than ±2pp (age shifts
+      the surprise economy) — or it does not (the rate is a property
+      of width+recipe alone, invariant to experience; either verdict
+      is a law).
+  (b) SHOCK: on the MS3 protocol (C4→code→C4, 1,000-chunk phases), the
+      veteran's forgetting is LOWER than the young twin's (experience
+      = immunity) — falsifier: HIGHER (age = ossification), and the
+      direction is the finding.
+  (c) PLASTICITY PRICE: the veteran's phase-2 plasticity within 25% of
+      the young twin's (aging does not freeze learning) — outside ⇒
+      the plasticity-decay curve becomes its own registered follow-up.
+  Runs on the 16-core runner chained after P58; the lifetime host is
+  never touched beyond one checkpoint copy.
+
+- **P60 — stranger verification: the hub's review mechanism as a
+  measurement (MS-V, registered 2026-08-06, BEFORE the build).** Every
+  provenance replay so far was run by the file's CREATOR. The end
+  architecture's community review requires the opposite: a STRANGER on
+  DIFFERENT hardware verifies a knowledge file by pure recomputation.
+  (a) CROSS-ISA VERIFICATION: a file harvested on the ARM machine
+      verifies 10/10 entries bit-exact on an x86 runner from
+      coordinates alone (no creator state beyond the file), and the
+      reverse direction likewise.
+  (b) CONSENSUS FOR FREE: two independent replays of the same entries
+      on the two ISAs agree bit-exactly with each other — majority
+      verification needs no trust, only determinism.
+  Falsifier: any cross-ISA mismatch localizes to a named layer
+  (tokenizer, stream, arithmetic) — and that layer becomes the spec's
+  normative anchor before any hub exists.
