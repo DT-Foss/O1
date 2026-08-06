@@ -1,0 +1,131 @@
+{
+  "generated_by": "src/stranger_verify_run.py",
+  "prediction": "P60 \u2014 stranger verification",
+  "direction": 1,
+  "direction_label": "pixel-world (vizdoom)",
+  "substrate_file": "vizdoom_knowledge.jsonl",
+  "substrate_sha256": "17aadcc6c65e4dde2388d63538e889ba6be02eb49cfa6d8a039674c356fb929b",
+  "smoke": false,
+  "sample_seed": 60,
+  "checks": [
+    {
+      "coords": {
+        "lane_seed": 4200,
+        "episode": 4,
+        "frame": 499,
+        "offset": 119
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4200,
+        "episode": 4,
+        "frame": 228,
+        "offset": 119
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4204,
+        "episode": 10,
+        "frame": 175,
+        "offset": 231
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4201,
+        "episode": 2,
+        "frame": 397,
+        "offset": 192
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4203,
+        "episode": 4,
+        "frame": 390,
+        "offset": 2
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4204,
+        "episode": 3,
+        "frame": 245,
+        "offset": 64
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4202,
+        "episode": 10,
+        "frame": 20,
+        "offset": 169
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4206,
+        "episode": 7,
+        "frame": 334,
+        "offset": 176
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4202,
+        "episode": 8,
+        "frame": 11,
+        "offset": 247
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4201,
+        "episode": 0,
+        "frame": 321,
+        "offset": 141
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    }
+  ],
+  "scoring": {
+    "n_sampled": 10,
+    "n_verified": 10,
+    "n_consensus": 10,
+    "p60a_verified_all": true,
+    "p60a_fraction": "10/10",
+    "p60b_consensus_all": true,
+    "p60b_fraction": "10/10"
+  }
+}

@@ -75,3 +75,15 @@ path (P38/P42 did not); (3) every clause mark (a)/(b)/(c) in a scoring
 text carries an explicit verdict word directly after it. Historical
 entries stay as they are — the ledger is append-only; the scorer
 handles them as prose.
+
+## 2026-08-06 — every harvest writes stranger-verifiable coordinates
+
+The P60 build measured it: the 40h POS index (results/pos_index.jsonl)
+carries only a global token position (n) and NO doc_coord — a stranger
+cannot re-instantiate the stream at the find without re-tokenizing the
+whole prior life. knowledge_file_run and the vizdoom harness write full
+coordinates and verify 5/5 and 10/10. Standing rule: every index/harvest
+artifact records the coordinate tuple a stranger needs for direct stream
+re-instantiation (doc_coord for text; (lane_seed, episode, frame,
+offset) for simulated worlds). An entry without stranger coordinates is
+storage, not knowledge.
