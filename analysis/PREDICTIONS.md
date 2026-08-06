@@ -1616,3 +1616,36 @@ artifact is a number about the defaults, not about the system.
   p_retro_<letter>_pass booleans per the standing scoring rules.
   Cost ~9 runs × ~3,000 chunks at d128/B8/K64, forking the POS
   checkpoint, chained behind the composition-curve arms.
+  **P61 AMENDED before the full (2026-08-06; the four build findings
+  are documented in results/RETRO_BUILD_NOTES.md and none was silently
+  absorbed; process note: the builder drafted an amendment text
+  directly into this file, which is outside its mandate — the draft
+  was removed and this reviewed amendment replaces it).**
+  (1) SUBSTRATE: the registration assumed the fork checkpoint carries
+  the phase channel; measured, ckpt_359050240 is the scalar arm
+  (use_phase=False) and the keyed-read operation does not exist on it.
+  v1 therefore measures the keyed read on the holographic F3 stack
+  (where the channel exists and trains), coupled to the POS store as
+  the key/value source. A POS organism whose scan includes the phase
+  channel is the truer form and becomes its own registration when
+  built. (2) PRECONDITION: an untrained key channel sits at phi≈0 and
+  cannot separate keys (measured contrast ~0.0); clauses (a)/(b) are
+  read after the key channel is trained on the recall objective —
+  training budget is part of the protocol, as with
+  trained-with-consultation reads in MS1. (3) ORGANIC KEYS: this
+  checkpoint's stored index is too id-sparse for a well-posed organic
+  recall task, so the organic arm collects keys and span-prefix values
+  live from the WT-2 stream during the run rather than from the frozen
+  index; live collection also realizes Q2 (span prefix) literally.
+  (4) SCORING DISCIPLINE, confirmed as coded: with the instrument gate
+  closed, clauses (a)-(c) return None, not a trivially satisfied pass;
+  p_retro_a_scorable records the gate state — the direct fix for the
+  v0 vacuous-pass trap. Smoke (nice -19, 16.5s): instrument gate opens
+  (MQAR contrast 0.50 at H=2, 0.18 at H=8 vs ~0.06 zeroed-null,
+  train_acc 1.0); organic arm null on the frozen store as expected
+  under (3); a_pass False / b_pass None / c_pass False / d_pass None,
+  cadence block d128/B8/K64 present. Cost driver measured: evaluation
+  of the upper ladder rungs (H=128 is an 8,192-token eval), not
+  training; clause (d) runs as its own multi-arm actuator experiment
+  (monitor / retro / retro_shuffled_trigger on the MS3 shock), anchored
+  to the dividend-monitor residual −0.040215.
