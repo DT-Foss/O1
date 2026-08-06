@@ -1,0 +1,664 @@
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 6, "tokens": [3, 4, 3, 4, 4, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3], "surprise": 8.6848, "n_chunk": 1}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 45, "tokens": [2, 2, 3, 4, 3, 3, 3, 3, 3, 2, 3, 3, 3, 4, 4, 4], "surprise": 8.6848, "n_chunk": 1}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 36, "tokens": [3, 3, 2, 3, 3, 3, 3, 3, 3, 2, 2, 3, 4, 3, 3, 3], "surprise": 8.6848, "n_chunk": 1}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 29, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3], "surprise": 8.6848, "n_chunk": 1}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 71, "tokens": [4, 3, 4, 4, 3, 3, 3, 4, 5, 3, 4, 3, 3, 3, 3, 4], "surprise": 4.4931, "n_chunk": 2}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 79, "tokens": [5, 3, 4, 3, 3, 3, 3, 4, 5, 3, 3, 4, 3, 3, 3, 4], "surprise": 4.4931, "n_chunk": 2}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 102, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3], "surprise": 4.4931, "n_chunk": 2}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 0, "offset": 89, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 3, 2, 2, 3, 1, 1, 2, 1], "surprise": 4.4931, "n_chunk": 2}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 0, "offset": 167, "tokens": [1, 1, 2, 2, 2, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2], "surprise": 3.9414, "n_chunk": 3}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 0, "offset": 154, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1], "surprise": 3.9414, "n_chunk": 3}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 0, "offset": 168, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2], "surprise": 3.9414, "n_chunk": 3}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 0, "offset": 149, "tokens": [1, 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2], "surprise": 3.9414, "n_chunk": 3}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 246, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 4.588, "n_chunk": 4}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 0, "offset": 246, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 4.588, "n_chunk": 4}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 0, "offset": 245, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 4.588, "n_chunk": 4}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 0, "offset": 246, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 4.588, "n_chunk": 4}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 1, "offset": 39, "tokens": [1, 2, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2, 2, 3, 1], "surprise": 2.2213, "n_chunk": 5}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 1, "offset": 35, "tokens": [3, 3, 3, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 3], "surprise": 2.2213, "n_chunk": 5}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 1, "offset": 0, "tokens": [3, 3, 4, 3, 4, 4, 4, 3, 3], "surprise": 2.2213, "n_chunk": 5}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 1, "offset": 46, "tokens": [4, 4, 4, 4, 3, 3, 3, 3, 3, 4, 3, 4, 4, 4, 3, 3], "surprise": 2.2213, "n_chunk": 5}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 1, "offset": 87, "tokens": [1, 2, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2, 3, 2, 3, 1], "surprise": 1.7244, "n_chunk": 6}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 1, "offset": 71, "tokens": [1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 2, 2, 2, 2, 3, 1], "surprise": 1.7244, "n_chunk": 6}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 1, "offset": 78, "tokens": [3, 4, 3, 3, 3, 4, 3, 3, 4, 5, 4, 3, 3, 3, 3, 3], "surprise": 1.7244, "n_chunk": 6}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 1, "offset": 79, "tokens": [4, 3, 3, 3, 4, 3, 3, 4, 5, 4, 3, 3, 3, 3, 3, 3], "surprise": 1.7244, "n_chunk": 6}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 1, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2, 2, 3, 1], "surprise": 1.7535, "n_chunk": 7}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 1, "offset": 183, "tokens": [1, 1, 1, 0, 0, 0, 0, 0, 0], "surprise": 1.7535, "n_chunk": 7}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 1, "offset": 168, "tokens": [1, 1, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2], "surprise": 1.7535, "n_chunk": 7}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 1, "offset": 163, "tokens": [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 1], "surprise": 1.7535, "n_chunk": 7}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 1, "offset": 231, "tokens": [2, 2, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 2.49, "n_chunk": 8}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 1, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 2.49, "n_chunk": 8}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 1, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 2.49, "n_chunk": 8}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 1, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 2.49, "n_chunk": 8}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 2, "offset": 46, "tokens": [3, 3, 3, 4, 4, 4, 3, 3, 4, 5, 4, 3, 4, 5, 3, 3], "surprise": 1.2376, "n_chunk": 9}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 2, "offset": 50, "tokens": [4, 4, 3, 3, 4, 5, 4, 3, 4, 5, 3, 3, 3, 3], "surprise": 1.2376, "n_chunk": 9}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 2, "offset": 0, "tokens": [1, 2, 1, 1, 1, 1, 1, 1], "surprise": 1.2376, "n_chunk": 9}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 2, "offset": 0, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 1], "surprise": 1.2376, "n_chunk": 9}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 2, "offset": 64, "tokens": [3, 3, 4, 3, 3, 3, 4, 5, 4, 3, 3, 3, 3, 3], "surprise": 0.8916, "n_chunk": 10}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 2, "offset": 64, "tokens": [1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.8916, "n_chunk": 10}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 2, "offset": 64, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.8916, "n_chunk": 10}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 2, "offset": 64, "tokens": [1, 1, 1, 1, 2, 1, 1, 1, 0, 0, 1], "surprise": 0.8916, "n_chunk": 10}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 2, "offset": 128, "tokens": [1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.8546, "n_chunk": 11}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 2, "offset": 176, "tokens": [0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "surprise": 0.8546, "n_chunk": 11}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 2, "offset": 128, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.8546, "n_chunk": 11}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 2, "offset": 155, "tokens": [1, 1, 1, 0, 0, 1, 1, 0, 1, 2, 2, 1, 1, 1, 1, 1], "surprise": 0.8546, "n_chunk": 11}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 2, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.6926, "n_chunk": 12}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 2, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.6926, "n_chunk": 12}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 2, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.6926, "n_chunk": 12}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 2, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.6926, "n_chunk": 12}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 20, "tokens": [3, 3, 3, 4, 4, 3, 3, 3, 3, 5, 5, 4, 4, 3, 3, 3], "surprise": 0.8449, "n_chunk": 13}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 28, "tokens": [3, 5, 5, 4, 4, 3, 3, 3, 3, 5, 5, 5, 4, 3, 3, 3], "surprise": 0.8449, "n_chunk": 13}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 37, "tokens": [5, 5, 5, 4, 3, 3, 3, 4, 3, 5, 4, 3, 3, 3, 3, 3], "surprise": 0.8449, "n_chunk": 13}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 30, "tokens": [5, 4, 4, 3, 3, 3, 3, 5, 5, 5, 4, 3, 3, 3, 4, 3], "surprise": 0.8449, "n_chunk": 13}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 79, "tokens": [3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 3, 3, 3, 3, 3, 3], "surprise": 0.7158, "n_chunk": 14}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 64, "tokens": [4, 3, 3, 3, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4], "surprise": 0.7158, "n_chunk": 14}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 64, "tokens": [4, 3, 3, 3, 4, 4, 5, 5, 5, 3, 3, 3, 4], "surprise": 0.7158, "n_chunk": 14}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 64, "tokens": [4, 3, 3, 3, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4], "surprise": 0.7158, "n_chunk": 14}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 3, "offset": 135, "tokens": [3, 1, 1, 2, 2, 1, 1, 1, 1, 3, 2, 2, 2, 2, 2, 2], "surprise": 0.5641, "n_chunk": 15}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 3, "offset": 128, "tokens": [2, 2, 2, 2, 2, 2, 2, 3, 1, 1, 2, 2, 1, 1], "surprise": 0.5641, "n_chunk": 15}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 3, "offset": 142, "tokens": [1, 1, 3, 2, 2, 2, 2, 2, 2, 3, 1, 1, 2, 2, 1, 1], "surprise": 0.5641, "n_chunk": 15}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 3, "offset": 171, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3], "surprise": 0.5641, "n_chunk": 15}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 3, "offset": 231, "tokens": [2, 2, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.0915, "n_chunk": 16}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 3, "offset": 231, "tokens": [2, 2, 2, 2, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.0915, "n_chunk": 16}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 3, "offset": 231, "tokens": [2, 2, 2, 2, 2, 2, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.0915, "n_chunk": 16}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 3, "offset": 231, "tokens": [1, 2, 2, 2, 2, 2, 2, 2, 2, 12, 12, 12, 12, 12, 12, 12], "surprise": 1.0915, "n_chunk": 16}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 18, "tokens": [2, 2, 3, 2, 2, 3, 1, 1, 1, 4, 3, 3, 1, 1, 3, 3], "surprise": 0.9422, "n_chunk": 17}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 4, "offset": 13, "tokens": [2, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 3, 3], "surprise": 0.9422, "n_chunk": 17}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 4, "offset": 0, "tokens": [3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 3, 3, 2], "surprise": 0.9422, "n_chunk": 17}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 4, "offset": 48, "tokens": [3, 3, 3, 4, 3, 4, 3, 3, 4, 5, 5, 3, 3, 2, 4, 3], "surprise": 0.9422, "n_chunk": 17}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 98, "tokens": [3, 2, 3, 3, 3, 3, 1, 1, 1, 5, 3, 3, 1, 1, 3, 2], "surprise": 0.7732, "n_chunk": 18}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 82, "tokens": [3, 2, 2, 2, 2, 3, 1, 1, 1, 4, 3, 4, 1, 1, 4, 3], "surprise": 0.7732, "n_chunk": 18}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 87, "tokens": [3, 1, 1, 1, 4, 3, 4, 1, 1, 4, 3, 3, 2, 3, 3, 3], "surprise": 0.7732, "n_chunk": 18}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 114, "tokens": [2, 2, 2, 2, 2, 3, 1, 1, 1, 3, 3, 3, 1, 1], "surprise": 0.7732, "n_chunk": 18}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 162, "tokens": [2, 2, 2, 2, 2, 2, 1, 1, 1, 3, 3, 3, 1, 1, 2, 2], "surprise": 0.6608, "n_chunk": 19}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 130, "tokens": [2, 2, 2, 2, 2, 3, 1, 1, 1, 3, 3, 3, 1, 1, 3, 3], "surprise": 0.6608, "n_chunk": 19}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 146, "tokens": [3, 2, 2, 2, 2, 3, 1, 1, 1, 3, 3, 3, 1, 1, 2, 2], "surprise": 0.6608, "n_chunk": 19}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 4, "offset": 135, "tokens": [3, 1, 1, 1, 3, 3, 3, 1, 1, 3, 3, 3, 2, 2, 2, 2], "surprise": 0.6608, "n_chunk": 19}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 4, "offset": 231, "tokens": [1, 2, 2, 2, 2, 2, 2, 2, 2, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.884, "n_chunk": 20}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 4, "offset": 231, "tokens": [2, 2, 2, 2, 2, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.884, "n_chunk": 20}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 4, "offset": 231, "tokens": [2, 2, 2, 2, 2, 2, 2, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.884, "n_chunk": 20}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 4, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 2, 4, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.884, "n_chunk": 20}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 5, "offset": 51, "tokens": [2, 2, 2, 2, 3, 1, 1, 1, 1, 4, 3, 3, 4], "surprise": 0.7966, "n_chunk": 21}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 5, "offset": 29, "tokens": [5, 5, 3, 3, 3, 3, 3, 3, 3, 5, 5, 4, 3, 3, 4, 5], "surprise": 0.7966, "n_chunk": 21}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 5, "offset": 0, "tokens": [4, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 3], "surprise": 0.7966, "n_chunk": 21}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 5, "offset": 15, "tokens": [3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.7966, "n_chunk": 21}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 5, "offset": 83, "tokens": [2, 2, 2, 2, 3, 1, 1, 1, 2, 5, 3, 3, 4, 3, 3, 3], "surprise": 0.6252, "n_chunk": 22}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 5, "offset": 99, "tokens": [2, 3, 3, 3, 4, 1, 1, 1, 1, 4, 3, 2, 2, 2, 2, 2], "surprise": 0.6252, "n_chunk": 22}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 5, "offset": 97, "tokens": [2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 4, 4, 4, 3, 3, 3], "surprise": 0.6252, "n_chunk": 22}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 5, "offset": 87, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1], "surprise": 0.6252, "n_chunk": 22}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 5, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1], "surprise": 0.5548, "n_chunk": 23}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 5, "offset": 147, "tokens": [3, 2, 2, 2, 3, 1, 1, 1, 1, 3, 3, 3, 3, 2, 3, 2], "surprise": 0.5548, "n_chunk": 23}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 5, "offset": 179, "tokens": [2, 2, 2, 2, 2, 1, 2, 2, 2, 4, 3, 3, 3], "surprise": 0.5548, "n_chunk": 23}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 5, "offset": 180, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 2, 1, 1], "surprise": 0.5548, "n_chunk": 23}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 5, "offset": 231, "tokens": [2, 2, 2, 2, 2, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8804, "n_chunk": 24}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 5, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8804, "n_chunk": 24}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 5, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8804, "n_chunk": 24}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 5, "offset": 231, "tokens": [2, 2, 2, 2, 2, 2, 2, 2, 2, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8804, "n_chunk": 24}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 6, "offset": 24, "tokens": [1, 1, 0, 2, 2, 1, 1, 1, 4, 6, 1, 1, 1, 1, 1, 1], "surprise": 0.795, "n_chunk": 25}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 6, "offset": 23, "tokens": [1, 1, 1, 0, 2, 2, 1, 1, 1, 4, 6, 1, 1, 1, 1, 1], "surprise": 0.795, "n_chunk": 25}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 6, "offset": 52, "tokens": [3, 3, 2, 3, 2, 1, 1, 1, 1, 4, 4, 3], "surprise": 0.795, "n_chunk": 25}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 6, "offset": 8, "tokens": [1, 1, 1, 2, 2, 1, 1, 1, 3, 5, 2, 1, 1, 1, 1, 1], "surprise": 0.795, "n_chunk": 25}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 6, "offset": 119, "tokens": [1, 1, 1, 1, 1, 2, 1, 1, 1], "surprise": 0.7101, "n_chunk": 26}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 6, "offset": 68, "tokens": [2, 2, 2, 3, 2, 1, 1, 1, 2, 5, 5, 3, 3, 3, 3, 3], "surprise": 0.7101, "n_chunk": 26}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 6, "offset": 84, "tokens": [3, 3, 3, 3, 2, 1, 1, 1, 1, 4, 5, 3, 3, 3, 2, 2], "surprise": 0.7101, "n_chunk": 26}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 6, "offset": 85, "tokens": [3, 3, 3, 2, 1, 1, 1, 1, 4, 5, 3, 3, 3, 2, 2, 3], "surprise": 0.7101, "n_chunk": 26}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 6, "offset": 128, "tokens": [4, 6, 2, 1, 1, 1, 1, 1], "surprise": 0.6873, "n_chunk": 27}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 6, "offset": 170, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 1, 1, 1, 0, 1], "surprise": 0.6873, "n_chunk": 27}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 6, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 2, 1, 1, 1, 1], "surprise": 0.6873, "n_chunk": 27}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 6, "offset": 132, "tokens": [2, 2, 2, 3, 2, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3], "surprise": 0.6873, "n_chunk": 27}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 6, "offset": 231, "tokens": [2, 2, 2, 2, 2, 2, 2, 2, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9105, "n_chunk": 28}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 6, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9105, "n_chunk": 28}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 6, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9105, "n_chunk": 28}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 6, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9105, "n_chunk": 28}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 7, "offset": 23, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 2, 1, 1, 1, 1], "surprise": 0.7831, "n_chunk": 29}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 7, "offset": 7, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1], "surprise": 0.7831, "n_chunk": 29}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 7, "offset": 14, "tokens": [5, 5, 4, 3, 3, 3, 3, 3, 3, 5, 5, 5, 5, 4, 4, 4], "surprise": 0.7831, "n_chunk": 29}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 7, "offset": 7, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1], "surprise": 0.7831, "n_chunk": 29}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 7, "offset": 119, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.7544, "n_chunk": 30}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 7, "offset": 103, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 3, 3, 1, 1, 1, 1], "surprise": 0.7544, "n_chunk": 30}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 7, "offset": 119, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.7544, "n_chunk": 30}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 7, "offset": 87, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1], "surprise": 0.7544, "n_chunk": 30}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 7, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 2, 1, 1, 1], "surprise": 0.6849, "n_chunk": 31}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 7, "offset": 135, "tokens": [2, 3, 3, 1, 1, 1, 2, 1, 1, 3, 3, 3, 3, 3, 3, 2], "surprise": 0.6849, "n_chunk": 31}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 7, "offset": 171, "tokens": [1, 1, 1, 1, 1, 2, 2, 3, 2, 0, 0, 1, 1, 1, 1, 1], "surprise": 0.6849, "n_chunk": 31}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 7, "offset": 128, "tokens": [5, 5, 4, 1, 1, 1, 1, 1], "surprise": 0.6849, "n_chunk": 31}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 7, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7655, "n_chunk": 32}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 7, "offset": 231, "tokens": [1, 2, 2, 2, 2, 2, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7655, "n_chunk": 32}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 7, "offset": 231, "tokens": [2, 2, 1, 2, 2, 2, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7655, "n_chunk": 32}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 7, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7655, "n_chunk": 32}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 9, "tokens": [1, 1, 1, 1, 1, 1, 1, 5, 2, 7, 1, 1, 1, 1, 1, 1], "surprise": 0.82, "n_chunk": 33}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 7, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 2, 7, 1, 1, 1, 1], "surprise": 0.82, "n_chunk": 33}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 23, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 2, 4, 1, 1, 1, 1], "surprise": 0.82, "n_chunk": 33}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 0, "tokens": [1, 1, 4, 1, 1, 1, 1, 1, 1], "surprise": 0.82, "n_chunk": 33}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 115, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 8, 6, 2, 1], "surprise": 0.9032, "n_chunk": 34}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 119, "tokens": [1, 1, 1, 1, 2, 8, 6, 2, 1], "surprise": 0.9032, "n_chunk": 34}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 116, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 8, 6, 2, 1], "surprise": 0.9032, "n_chunk": 34}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 105, "tokens": [1, 1, 1, 3, 4, 1, 1, 3, 1, 4, 1, 1, 1, 1, 1, 1], "surprise": 0.9032, "n_chunk": 34}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 130, "tokens": [7, 1, 1, 1, 1, 1, 1, 1, 1, 7, 8, 6, 2, 1, 2, 1], "surprise": 1.0794, "n_chunk": 35}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 146, "tokens": [4, 1, 1, 1, 1, 1, 1, 1, 2, 9, 8, 7, 3, 1, 1, 1], "surprise": 1.0794, "n_chunk": 35}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 131, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 7, 8, 6, 2, 1, 2, 1, 4], "surprise": 1.0794, "n_chunk": 35}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 147, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 9, 8, 7, 3, 1, 1, 1, 1], "surprise": 1.0794, "n_chunk": 35}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 197, "tokens": [2, 2, 1, 1, 1, 1, 1, 2, 6, 8, 1, 2, 2, 2, 2, 2], "surprise": 0.9046, "n_chunk": 36}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 228, "tokens": [2, 2, 2, 1, 2, 1, 2, 1, 1, 6, 9, 2, 12, 12, 12, 12], "surprise": 0.9046, "n_chunk": 36}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 229, "tokens": [2, 2, 1, 2, 1, 2, 1, 1, 6, 9, 2, 12, 12, 12, 12, 12], "surprise": 0.9046, "n_chunk": 36}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 8, "offset": 196, "tokens": [2, 2, 2, 1, 1, 1, 1, 1, 2, 6, 8, 1, 2, 2, 2, 2], "surprise": 0.9046, "n_chunk": 36}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 9, "tokens": [1, 1, 1, 1, 1, 1, 1, 4, 3, 7, 3, 1, 1, 1, 1, 1], "surprise": 0.8104, "n_chunk": 37}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 7, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 3, 7, 3, 1, 1, 1], "surprise": 0.8104, "n_chunk": 37}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 0, "tokens": [1, 1, 5, 2, 1, 1, 1, 1, 1], "surprise": 0.8104, "n_chunk": 37}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 9, "offset": 49, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 1, 0], "surprise": 0.8104, "n_chunk": 37}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 117, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 4, 6, 1], "surprise": 0.8845, "n_chunk": 38}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 116, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 6, 1], "surprise": 0.8845, "n_chunk": 38}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 119, "tokens": [1, 1, 1, 1, 1, 1, 4, 6, 1], "surprise": 0.8845, "n_chunk": 38}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 9, "offset": 65, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 1, 0, 1], "surprise": 0.8845, "n_chunk": 38}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 147, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 10, 5, 1, 1, 1, 1], "surprise": 0.9449, "n_chunk": 39}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 148, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 7, 10, 5, 1, 1, 1, 1, 1], "surprise": 0.9449, "n_chunk": 39}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 132, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 3, 7, 6, 1, 1, 2, 5, 1], "surprise": 0.9449, "n_chunk": 39}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 128, "tokens": [5, 3, 7, 3, 1, 1, 1, 1, 1], "surprise": 0.9449, "n_chunk": 39}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 231, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7198, "n_chunk": 40}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 9, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7198, "n_chunk": 40}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 9, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7198, "n_chunk": 40}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 9, "offset": 197, "tokens": [2, 2, 2, 1, 1, 1, 2, 1, 2, 4, 2, 2, 2, 2, 2, 2], "surprise": 0.7198, "n_chunk": 40}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 11, "tokens": [1, 1, 1, 1, 1, 1, 1, 3, 3, 7, 1, 1, 1, 1, 1, 1], "surprise": 0.7202, "n_chunk": 41}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 0, "tokens": [1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1], "surprise": 0.7202, "n_chunk": 41}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 25, "tokens": [1, 1, 1, 1, 1, 2, 1, 1, 1, 4, 2, 4, 1, 1, 1, 1], "surprise": 0.7202, "n_chunk": 41}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 27, "tokens": [1, 1, 1, 2, 1, 1, 1, 4, 2, 4, 1, 1, 1, 1, 1, 1], "surprise": 0.7202, "n_chunk": 41}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 10, "offset": 71, "tokens": [4, 4, 3, 1, 1, 1, 1, 1, 1, 4, 3, 3, 3, 4, 5, 3], "surprise": 0.7935, "n_chunk": 42}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 107, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 2, 5, 1, 1, 1, 1, 1, 1], "surprise": 0.7935, "n_chunk": 42}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 10, "offset": 96, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 1, 1, 0, 0], "surprise": 0.7935, "n_chunk": 42}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 10, "offset": 80, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 1, 1, 1, 0, 0], "surprise": 0.7935, "n_chunk": 42}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 150, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 7, 1, 1, 1, 1, 1, 1], "surprise": 0.7619, "n_chunk": 43}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 128, "tokens": [1, 1, 5, 3, 7, 1, 1, 1, 1, 1, 1], "surprise": 0.7619, "n_chunk": 43}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 128, "tokens": [1, 1, 5, 3, 7, 1, 1, 1, 1], "surprise": 0.7619, "n_chunk": 43}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 166, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1], "surprise": 0.7619, "n_chunk": 43}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7063, "n_chunk": 44}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 10, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7063, "n_chunk": 44}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 10, "offset": 231, "tokens": [2, 2, 2, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7063, "n_chunk": 44}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 10, "offset": 224, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2], "surprise": 0.7063, "n_chunk": 44}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 0, "tokens": [4, 4, 8, 1, 1, 1, 1, 1, 1], "surprise": 0.596, "n_chunk": 45}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 7, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 3, 5, 1, 1, 1, 1], "surprise": 0.596, "n_chunk": 45}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 11, "offset": 47, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 1, 0, 0, 0], "surprise": 0.596, "n_chunk": 45}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 11, "offset": 37, "tokens": [3, 3, 3, 3, 3, 3, 4, 3, 3, 1, 1, 2, 3, 3, 3, 3], "surprise": 0.596, "n_chunk": 45}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 118, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 4, 8], "surprise": 0.8151, "n_chunk": 46}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 105, "tokens": [1, 1, 1, 1, 1, 1, 3, 3, 2, 6, 1, 1, 1, 1, 1, 1], "surprise": 0.8151, "n_chunk": 46}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 117, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 8], "surprise": 0.8151, "n_chunk": 46}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 11, "offset": 71, "tokens": [3, 4, 3, 3, 3, 3, 2, 1, 1, 4, 3, 3, 3, 3, 4, 4], "surprise": 0.8151, "n_chunk": 46}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 133, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 3, 8, 8, 3, 2, 6, 1, 1], "surprise": 0.8769, "n_chunk": 47}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 182, "tokens": [2, 2, 2, 1, 1, 1, 1, 1, 3, 8], "surprise": 0.8769, "n_chunk": 47}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 149, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 6, 10, 7, 1, 1, 2, 1, 1], "surprise": 0.8769, "n_chunk": 47}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 166, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 7, 8, 1, 1, 1, 1, 1, 1], "surprise": 0.8769, "n_chunk": 47}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 11, "offset": 231, "tokens": [2, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7372, "n_chunk": 48}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 11, "offset": 231, "tokens": [2, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7372, "n_chunk": 48}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 11, "offset": 231, "tokens": [2, 2, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7372, "n_chunk": 48}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 11, "offset": 213, "tokens": [2, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 2, 2, 2, 2, 2], "surprise": 0.7372, "n_chunk": 48}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 12, "offset": 21, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 3, 3, 3, 3, 3, 2], "surprise": 0.5348, "n_chunk": 49}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 12, "offset": 5, "tokens": [4, 3, 3, 3, 3, 3, 3, 3, 4, 5, 5, 3, 3, 3, 3, 3], "surprise": 0.5348, "n_chunk": 49}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 12, "offset": 38, "tokens": [3, 3, 3, 3, 3, 4, 3, 4, 4, 2, 3, 3, 4, 3, 3, 4], "surprise": 0.5348, "n_chunk": 49}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 12, "offset": 55, "tokens": [4, 4, 4, 4, 3, 3, 4, 3, 2], "surprise": 0.5348, "n_chunk": 49}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 12, "offset": 115, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 1, 1], "surprise": 0.7095, "n_chunk": 50}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 12, "offset": 64, "tokens": [0, 0, 0, 0, 0, 0, 0, 4, 3, 1, 1, 1, 1, 0], "surprise": 0.7095, "n_chunk": 50}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 12, "offset": 110, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 1, 1, 1, 0, 0], "surprise": 0.7095, "n_chunk": 50}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 12, "offset": 94, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 1, 1, 1, 0, 0], "surprise": 0.7095, "n_chunk": 50}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 12, "offset": 166, "tokens": [1, 1, 1, 1, 1, 2, 7, 3, 1, 8, 1, 1, 1, 1, 2, 2], "surprise": 0.7668, "n_chunk": 51}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 12, "offset": 150, "tokens": [1, 1, 1, 1, 1, 5, 9, 3, 1, 7, 1, 1, 1, 1, 1, 1], "surprise": 0.7668, "n_chunk": 51}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 12, "offset": 147, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 5, 9, 3, 1, 7, 1, 1, 1], "surprise": 0.7668, "n_chunk": 51}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 12, "offset": 163, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 7, 3, 1, 8, 1, 1, 1], "surprise": 0.7668, "n_chunk": 51}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 12, "offset": 231, "tokens": [2, 1, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6483, "n_chunk": 52}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 12, "offset": 231, "tokens": [4, 2, 2, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6483, "n_chunk": 52}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 12, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6483, "n_chunk": 52}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 12, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6483, "n_chunk": 52}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 13, "offset": 0, "tokens": [2, 5, 3, 3, 3, 3, 3, 3], "surprise": 0.5022, "n_chunk": 53}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 13, "offset": 6, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 4, 3, 3], "surprise": 0.5022, "n_chunk": 53}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 13, "offset": 49, "tokens": [2, 2, 3, 3, 3, 3, 3, 3, 4, 5, 4, 3, 4, 3, 3], "surprise": 0.5022, "n_chunk": 53}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 13, "offset": 45, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 1, 1, 1, 1], "surprise": 0.5022, "n_chunk": 53}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 13, "offset": 116, "tokens": [1, 0, 1, 1, 1, 1, 1, 1, 1, 6, 4, 1], "surprise": 0.6686, "n_chunk": 54}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 13, "offset": 64, "tokens": [0, 0, 0, 0, 0, 0, 4, 4, 3, 1, 1, 1, 1], "surprise": 0.6686, "n_chunk": 54}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 13, "offset": 77, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 3, 2, 1, 1, 1], "surprise": 0.6686, "n_chunk": 54}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 13, "offset": 109, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 3, 1, 1, 1, 1], "surprise": 0.6686, "n_chunk": 54}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 13, "offset": 147, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 1, 8, 9, 3, 1, 1, 1, 1], "surprise": 0.6574, "n_chunk": 55}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 13, "offset": 148, "tokens": [1, 1, 1, 1, 1, 1, 2, 1, 8, 9, 3, 1, 1, 1, 1, 1], "surprise": 0.6574, "n_chunk": 55}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 13, "offset": 164, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 4, 8, 4, 1, 1, 1, 1, 1], "surprise": 0.6574, "n_chunk": 55}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 13, "offset": 132, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 4, 8, 4, 1, 1, 1, 1, 1], "surprise": 0.6574, "n_chunk": 55}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 13, "offset": 231, "tokens": [2, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6501, "n_chunk": 56}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 13, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6501, "n_chunk": 56}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 13, "offset": 231, "tokens": [3, 3, 3, 2, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6501, "n_chunk": 56}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 13, "offset": 231, "tokens": [2, 2, 3, 3, 3, 3, 3, 4, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6501, "n_chunk": 56}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 14, "offset": 43, "tokens": [1, 1, 1, 1, 0, 0, 0, 0, 1, 5, 4, 3, 2, 3, 2, 1], "surprise": 0.5158, "n_chunk": 57}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 14, "offset": 54, "tokens": [3, 3, 4, 4, 4, 4, 3, 3, 3, 5], "surprise": 0.5158, "n_chunk": 57}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 14, "offset": 22, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 3, 3, 3, 3, 3, 3], "surprise": 0.5158, "n_chunk": 57}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 4, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.5158, "n_chunk": 57}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 14, "offset": 64, "tokens": [0, 0, 0, 1, 5, 5, 5, 4, 3, 2, 1], "surprise": 0.76, "n_chunk": 58}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 14, "offset": 107, "tokens": [1, 1, 1, 1, 0, 0, 0, 0, 1, 5, 5, 5, 4, 3, 2, 1], "surprise": 0.76, "n_chunk": 58}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 14, "offset": 75, "tokens": [1, 2, 1, 1, 0, 0, 0, 0, 1, 5, 5, 5, 4, 3, 2, 1], "surprise": 0.76, "n_chunk": 58}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 14, "offset": 91, "tokens": [1, 1, 1, 1, 0, 0, 0, 0, 1, 5, 5, 5, 4, 3, 2, 1], "surprise": 0.76, "n_chunk": 58}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 182, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 6, 10], "surprise": 0.6047, "n_chunk": 59}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 166, "tokens": [1, 1, 1, 1, 1, 1, 2, 1, 5, 10, 1, 1, 1, 1, 1, 2], "surprise": 0.6047, "n_chunk": 59}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 181, "tokens": [2, 2, 1, 1, 1, 1, 1, 1, 1, 6, 10], "surprise": 0.6047, "n_chunk": 59}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 165, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 10, 1, 1, 1, 1, 1], "surprise": 0.6047, "n_chunk": 59}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 198, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 3, 8, 1, 1, 2, 2, 2, 2], "surprise": 0.6492, "n_chunk": 60}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 14, "offset": 231, "tokens": [2, 2, 1, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6492, "n_chunk": 60}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 14, "offset": 214, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 2, 2, 2, 2, 2], "surprise": 0.6492, "n_chunk": 60}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 14, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6492, "n_chunk": 60}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 15, "offset": 0, "tokens": [5, 4, 2, 4, 3, 3, 6, 6, 5, 4, 3, 3, 3], "surprise": 0.651, "n_chunk": 61}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 42, "tokens": [1, 1, 1, 2, 1, 1, 1, 1, 2, 5, 5, 5, 4, 3, 3, 1], "surprise": 0.651, "n_chunk": 61}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 15, "offset": 36, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 3, 3, 3, 3], "surprise": 0.651, "n_chunk": 61}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 15, "offset": 55, "tokens": [3, 4, 3, 3, 3, 3, 3, 3, 3], "surprise": 0.651, "n_chunk": 61}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 106, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 5, 5, 5, 5, 4, 3, 1], "surprise": 0.7162, "n_chunk": 62}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 90, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 5, 5, 5, 5, 4, 4, 1], "surprise": 0.7162, "n_chunk": 62}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 74, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 5, 5, 5, 5, 4, 4, 2], "surprise": 0.7162, "n_chunk": 62}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 64, "tokens": [1, 1, 2, 5, 5, 5, 5, 4, 3, 2], "surprise": 0.7162, "n_chunk": 62}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 128, "tokens": [1, 1, 2, 5, 5, 5, 5, 4, 3, 2], "surprise": 0.5321, "n_chunk": 63}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 15, "offset": 138, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 4, 3, 3, 2, 3, 2], "surprise": 0.5321, "n_chunk": 63}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 15, "offset": 128, "tokens": [0, 0, 0, 0, 1, 1, 1, 2, 3, 2, 1, 0, 0, 0, 0], "surprise": 0.5321, "n_chunk": 63}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 15, "offset": 169, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 4, 4, 4, 3], "surprise": 0.5321, "n_chunk": 63}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 15, "offset": 231, "tokens": [2, 2, 2, 1, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5894, "n_chunk": 64}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 15, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5894, "n_chunk": 64}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 15, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5894, "n_chunk": 64}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 15, "offset": 231, "tokens": [3, 3, 2, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5894, "n_chunk": 64}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 16, "offset": 38, "tokens": [4, 3, 3, 4, 4, 3, 3, 3, 4, 6, 3, 3, 3, 3, 5, 3], "surprise": 0.6677, "n_chunk": 65}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 24, "tokens": [1, 1, 1, 1, 1, 2, 1, 1, 1, 3, 4, 3, 2, 2, 1, 1], "surprise": 0.6677, "n_chunk": 65}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 40, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 5, 5, 5, 5, 5, 3], "surprise": 0.6677, "n_chunk": 65}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 16, "offset": 39, "tokens": [4, 3, 3, 4, 3, 3, 3, 3, 3, 5, 4, 3, 3, 3, 3, 3], "surprise": 0.6677, "n_chunk": 65}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 16, "offset": 87, "tokens": [2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 3, 3, 3, 3, 3, 3], "surprise": 0.6367, "n_chunk": 66}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 64, "tokens": [1, 3, 5, 5, 5, 5, 5, 4], "surprise": 0.6367, "n_chunk": 66}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 72, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 5, 5, 5, 5, 5, 4], "surprise": 0.6367, "n_chunk": 66}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 88, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 5, 5, 5, 5, 5, 4], "surprise": 0.6367, "n_chunk": 66}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 128, "tokens": [1, 2, 5, 5, 5, 5, 5, 4, 3], "surprise": 0.5006, "n_chunk": 67}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 16, "offset": 136, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 5, 4, 4, 3, 3, 2], "surprise": 0.5006, "n_chunk": 67}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 16, "offset": 181, "tokens": [1, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0], "surprise": 0.5006, "n_chunk": 67}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 16, "offset": 165, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1], "surprise": 0.5006, "n_chunk": 67}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 16, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5821, "n_chunk": 68}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 16, "offset": 231, "tokens": [4, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5821, "n_chunk": 68}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 16, "offset": 231, "tokens": [2, 2, 2, 2, 2, 2, 1, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5821, "n_chunk": 68}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 16, "offset": 231, "tokens": [3, 3, 2, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5821, "n_chunk": 68}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 23, "tokens": [1, 1, 1, 1, 2, 1, 1, 1, 1, 5, 5, 5, 4, 3, 3, 2], "surprise": 0.7233, "n_chunk": 69}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 55, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.7233, "n_chunk": 69}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 39, "tokens": [2, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.7233, "n_chunk": 69}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 17, "offset": 31, "tokens": [1, 0, 1, 1, 2, 1, 1, 1, 1, 3, 1, 1, 2, 2, 2, 2], "surprise": 0.7233, "n_chunk": 69}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 71, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.6897, "n_chunk": 70}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 87, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.6897, "n_chunk": 70}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 119, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.6897, "n_chunk": 70}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 103, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.6897, "n_chunk": 70}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 17, "offset": 128, "tokens": [0, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2, 2, 2, 2], "surprise": 0.5067, "n_chunk": 71}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 17, "offset": 135, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 4, 4, 3, 3], "surprise": 0.5067, "n_chunk": 71}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 17, "offset": 151, "tokens": [1, 2, 2, 1, 1, 2, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1], "surprise": 0.5067, "n_chunk": 71}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 17, "offset": 167, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1], "surprise": 0.5067, "n_chunk": 71}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 17, "offset": 231, "tokens": [4, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5952, "n_chunk": 72}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 17, "offset": 231, "tokens": [2, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5952, "n_chunk": 72}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 17, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5952, "n_chunk": 72}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 17, "offset": 231, "tokens": [3, 4, 4, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5952, "n_chunk": 72}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 7, "tokens": [1, 1, 1, 2, 1, 1, 1, 1, 1, 5, 4, 3, 2, 1, 1, 1], "surprise": 0.764, "n_chunk": 73}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 23, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 4, 3, 2], "surprise": 0.764, "n_chunk": 73}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 55, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.764, "n_chunk": 73}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 39, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.764, "n_chunk": 73}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 71, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.7122, "n_chunk": 74}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 87, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.7122, "n_chunk": 74}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 103, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.7122, "n_chunk": 74}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 119, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.7122, "n_chunk": 74}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 135, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 4, 4], "surprise": 0.5463, "n_chunk": 75}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 18, "offset": 151, "tokens": [3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 2, 2, 1, 1, 1], "surprise": 0.5463, "n_chunk": 75}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 18, "offset": 135, "tokens": [1, 1, 2, 3, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1], "surprise": 0.5463, "n_chunk": 75}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 18, "offset": 151, "tokens": [2, 1, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 1, 1], "surprise": 0.5463, "n_chunk": 75}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 18, "offset": 231, "tokens": [3, 3, 3, 3, 4, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5606, "n_chunk": 76}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 18, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5606, "n_chunk": 76}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 18, "offset": 231, "tokens": [3, 3, 3, 4, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5606, "n_chunk": 76}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 18, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5606, "n_chunk": 76}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 35, "tokens": [0, 0, 0, 1, 2, 2, 1, 1, 1, 3, 2, 2, 3, 0, 0, 0], "surprise": 0.7162, "n_chunk": 77}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 19, "offset": 7, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 1, 5, 4, 3, 3, 2, 1, 1], "surprise": 0.7162, "n_chunk": 77}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 51, "tokens": [0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2], "surprise": 0.7162, "n_chunk": 77}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 19, "offset": 23, "tokens": [1, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 4, 4], "surprise": 0.7162, "n_chunk": 77}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 99, "tokens": [0, 0, 0, 1, 1, 1, 1, 1, 1, 4, 2, 2, 3, 0, 0, 0], "surprise": 0.6352, "n_chunk": 78}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 67, "tokens": [0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2, 0, 0, 0], "surprise": 0.6352, "n_chunk": 78}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 83, "tokens": [0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2, 0, 0, 0], "surprise": 0.6352, "n_chunk": 78}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 115, "tokens": [0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2], "surprise": 0.6352, "n_chunk": 78}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 19, "offset": 151, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1, 4, 3, 3, 3, 2, 2, 1], "surprise": 0.5499, "n_chunk": 79}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 131, "tokens": [0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 2, 2, 2, 0, 0, 0], "surprise": 0.5499, "n_chunk": 79}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 19, "offset": 135, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.5499, "n_chunk": 79}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 19, "offset": 147, "tokens": [0, 0, 0, 1, 1, 1, 2, 1, 2, 3, 2, 2, 2, 0, 0, 0], "surprise": 0.5499, "n_chunk": 79}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 19, "offset": 231, "tokens": [3, 3, 4, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6379, "n_chunk": 80}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 19, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 4, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6379, "n_chunk": 80}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 19, "offset": 231, "tokens": [3, 3, 2, 3, 3, 3, 4, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6379, "n_chunk": 80}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 19, "offset": 231, "tokens": [2, 1, 1, 1, 1, 2, 2, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6379, "n_chunk": 80}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 20, "offset": 0, "tokens": [3, 3, 3, 3, 3, 3, 6, 5, 3, 3, 3, 3, 3], "surprise": 0.8317, "n_chunk": 81}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 20, "offset": 4, "tokens": [4, 3, 2, 3, 3, 3, 4, 4, 5, 2, 4, 3, 4, 5, 5, 5], "surprise": 0.8317, "n_chunk": 81}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 20, "offset": 15, "tokens": [1, 5, 5, 5, 4, 3, 2, 2, 1, 3, 2, 1, 1, 1, 1, 1], "surprise": 0.8317, "n_chunk": 81}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 20, "offset": 23, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 2, 2, 1, 1, 1, 1, 1], "surprise": 0.8317, "n_chunk": 81}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 20, "offset": 71, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 2, 2, 2, 2, 2, 1], "surprise": 0.7266, "n_chunk": 82}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 20, "offset": 87, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 2, 2, 2, 2, 2, 1], "surprise": 0.7266, "n_chunk": 82}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 20, "offset": 103, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 2, 2, 2, 2, 2, 1], "surprise": 0.7266, "n_chunk": 82}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 20, "offset": 72, "tokens": [4, 2, 1, 1, 1, 1, 1, 1, 5, 6, 5, 5, 5, 5, 5, 5], "surprise": 0.7266, "n_chunk": 82}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 20, "offset": 151, "tokens": [5, 4, 2, 1, 1, 1, 1, 1, 1, 4, 4, 3, 3, 2, 2, 2], "surprise": 0.524, "n_chunk": 83}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 20, "offset": 132, "tokens": [0, 0, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2, 0, 0, 0, 0], "surprise": 0.524, "n_chunk": 83}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 20, "offset": 135, "tokens": [5, 4, 2, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.524, "n_chunk": 83}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 20, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 2, 2, 3, 2, 2, 1, 1], "surprise": 0.524, "n_chunk": 83}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 20, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5996, "n_chunk": 84}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 20, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 4, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5996, "n_chunk": 84}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 20, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 4, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5996, "n_chunk": 84}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 20, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5996, "n_chunk": 84}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 7, "tokens": [1, 2, 4, 5, 3, 1, 1, 0, 2, 6, 5, 5, 5, 5, 5, 4], "surprise": 0.9537, "n_chunk": 85}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 23, "tokens": [3, 3, 4, 5, 3, 1, 1, 0, 1, 6, 5, 5, 5, 5, 5, 5], "surprise": 0.9537, "n_chunk": 85}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 21, "offset": 7, "tokens": [3, 3, 4, 2, 2, 3, 4, 3, 3, 5, 5, 5, 4, 3, 2, 3], "surprise": 0.9537, "n_chunk": 85}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 0, "tokens": [5, 5, 4, 3, 2, 1, 2, 1, 2, 4, 5, 3, 1, 1, 0, 2], "surprise": 0.9537, "n_chunk": 85}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 103, "tokens": [5, 4, 4, 5, 3, 1, 1, 0, 2, 6, 5, 5, 5, 5, 5, 5], "surprise": 0.8035, "n_chunk": 86}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 119, "tokens": [5, 4, 4, 5, 3, 1, 1, 0, 2], "surprise": 0.8035, "n_chunk": 86}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 74, "tokens": [5, 3, 1, 1, 0, 1, 5, 5, 5, 6, 5, 5, 5, 5, 4, 4], "surprise": 0.8035, "n_chunk": 86}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 21, "offset": 87, "tokens": [1, 1, 1, 1, 0, 0, 0, 0, 0, 3, 2, 2, 1, 1, 1, 1], "surprise": 0.8035, "n_chunk": 86}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 177, "tokens": [2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 1, 0, 0, 1], "surprise": 0.6237, "n_chunk": 87}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 160, "tokens": [5, 4, 4, 3, 3, 2, 2, 2, 2, 4, 4, 3, 1, 1, 0, 1], "surprise": 0.6237, "n_chunk": 87}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 151, "tokens": [5, 4, 4, 5, 3, 1, 1, 0, 1, 5, 4, 4, 3, 3, 2, 2], "surprise": 0.6237, "n_chunk": 87}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 21, "offset": 135, "tokens": [5, 4, 4, 5, 3, 1, 1, 0, 1, 5, 5, 5, 5, 5, 5, 5], "surprise": 0.6237, "n_chunk": 87}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 21, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5839, "n_chunk": 88}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 21, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5839, "n_chunk": 88}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 21, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5839, "n_chunk": 88}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 21, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5839, "n_chunk": 88}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 44, "tokens": [5, 6, 6, 6, 5, 5, 5, 5, 5, 6, 5, 5, 5, 4, 4, 5], "surprise": 0.9337, "n_chunk": 89}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 54, "tokens": [5, 5, 5, 4, 4, 5, 5, 5, 5, 6], "surprise": 0.9337, "n_chunk": 89}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 36, "tokens": [5, 6, 5, 5, 5, 4, 4, 5, 5, 6, 6, 6, 5, 5, 5, 5], "surprise": 0.9337, "n_chunk": 89}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 28, "tokens": [5, 5, 6, 6, 5, 5, 5, 5, 5, 6, 5, 5, 5, 4, 4, 5], "surprise": 0.9337, "n_chunk": 89}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 116, "tokens": [5, 6, 5, 5, 5, 4, 4, 5, 5, 6, 5, 6], "surprise": 0.7588, "n_chunk": 90}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 100, "tokens": [5, 6, 5, 5, 5, 4, 4, 5, 5, 6, 5, 6, 5, 5, 5, 5], "surprise": 0.7588, "n_chunk": 90}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 84, "tokens": [6, 5, 5, 5, 5, 4, 4, 5, 5, 6, 5, 6, 5, 5, 5, 5], "surprise": 0.7588, "n_chunk": 90}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 108, "tokens": [5, 6, 5, 6, 5, 5, 5, 5, 5, 6, 5, 5, 5, 4, 4, 5], "surprise": 0.7588, "n_chunk": 90}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 148, "tokens": [5, 5, 5, 5, 5, 4, 4, 5, 5, 6, 5, 6, 4, 5, 5, 4], "surprise": 0.6285, "n_chunk": 91}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 164, "tokens": [4, 4, 3, 3, 2, 3, 4, 5, 5, 6, 5, 6, 2, 2, 2, 2], "surprise": 0.6285, "n_chunk": 91}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 182, "tokens": [2, 2, 2, 2, 3, 5, 5, 5, 5, 6], "surprise": 0.6285, "n_chunk": 91}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 22, "offset": 134, "tokens": [5, 5, 5, 4, 4, 5, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5], "surprise": 0.6285, "n_chunk": 91}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 22, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5482, "n_chunk": 92}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 22, "offset": 231, "tokens": [3, 4, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5482, "n_chunk": 92}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 22, "offset": 231, "tokens": [3, 3, 3, 3, 4, 3, 4, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5482, "n_chunk": 92}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 22, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.5482, "n_chunk": 92}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 23, "offset": 1, "tokens": [5, 3, 3, 2, 3, 3, 3, 4, 2, 6, 3, 3, 3, 3, 3, 5], "surprise": 0.9325, "n_chunk": 93}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 23, "offset": 16, "tokens": [5, 5, 4, 3, 2, 3, 3, 3, 3, 1, 4, 3, 3, 3, 3, 3], "surprise": 0.9325, "n_chunk": 93}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 23, "offset": 36, "tokens": [5, 6, 5, 5, 5, 5, 4, 4, 5, 6, 6, 6, 5, 6, 5, 5], "surprise": 0.9325, "n_chunk": 93}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 23, "offset": 8, "tokens": [2, 2, 4, 4, 5, 5, 5, 5, 5, 6, 5, 5, 5, 6, 5, 5], "surprise": 0.9325, "n_chunk": 93}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 23, "offset": 119, "tokens": [1, 1, 1, 1, 0, 0, 0, 0, 0], "surprise": 0.7091, "n_chunk": 94}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 23, "offset": 87, "tokens": [2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.7091, "n_chunk": 94}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 23, "offset": 101, "tokens": [6, 5, 5, 5, 5, 4, 4, 5, 5, 6, 5, 5, 6, 5, 5, 5], "surprise": 0.7091, "n_chunk": 94}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 23, "offset": 73, "tokens": [5, 4, 5, 5, 5, 5, 5, 5, 5, 6, 5, 6, 6, 5, 6, 6], "surprise": 0.7091, "n_chunk": 94}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 23, "offset": 135, "tokens": [3, 3, 3, 3, 3, 4, 3, 3, 4, 2, 2, 2, 3, 3, 3, 3], "surprise": 0.5715, "n_chunk": 95}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 23, "offset": 178, "tokens": [2, 2, 2, 2, 2, 2, 2, 2, 3, 5, 5, 5, 5, 6], "surprise": 0.5715, "n_chunk": 95}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 23, "offset": 132, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.5715, "n_chunk": 95}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 23, "offset": 148, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2], "surprise": 0.5715, "n_chunk": 95}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 23, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6125, "n_chunk": 96}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 23, "offset": 231, "tokens": [1, 1, 2, 1, 1, 1, 2, 2, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6125, "n_chunk": 96}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 23, "offset": 231, "tokens": [1, 1, 1, 1, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6125, "n_chunk": 96}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 23, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6125, "n_chunk": 96}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 24, "offset": 0, "tokens": [3, 3, 3, 3, 4, 1, 2, 5, 4, 3, 3, 3], "surprise": 0.877, "n_chunk": 97}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 24, "offset": 0, "tokens": [3, 3, 3, 3, 4, 1, 2, 5, 4, 3, 3, 3, 3, 3], "surprise": 0.877, "n_chunk": 97}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 24, "offset": 0, "tokens": [4, 5, 5, 5, 5, 3, 2, 3, 3, 3, 4, 3], "surprise": 0.877, "n_chunk": 97}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 24, "offset": 12, "tokens": [4, 2, 4, 3, 5, 5, 5, 5, 5, 3, 2, 3, 3, 3, 3, 4], "surprise": 0.877, "n_chunk": 97}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 24, "offset": 71, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 2, 2, 2, 1, 1, 1], "surprise": 0.6822, "n_chunk": 98}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 24, "offset": 87, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 2, 2, 2, 1, 1, 1], "surprise": 0.6822, "n_chunk": 98}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 24, "offset": 119, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0], "surprise": 0.6822, "n_chunk": 98}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 24, "offset": 103, "tokens": [1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 1, 1, 2, 1, 1, 1], "surprise": 0.6822, "n_chunk": 98}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 24, "offset": 178, "tokens": [6, 5, 5, 4, 4, 3, 3, 3, 3, 5, 5, 5, 5, 6], "surprise": 0.523, "n_chunk": 99}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 24, "offset": 138, "tokens": [3, 3, 3, 4, 3, 4, 3, 3, 3, 2, 3, 3, 3, 4, 3, 3], "surprise": 0.523, "n_chunk": 99}
+{"lane": 2, "lane_seed": 4202, "episode": 0, "frame": 24, "offset": 183, "tokens": [3, 3, 3, 3, 5, 5, 5, 5, 6], "surprise": 0.523, "n_chunk": 99}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 24, "offset": 149, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1], "surprise": 0.523, "n_chunk": 99}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 24, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6022, "n_chunk": 100}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 24, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6022, "n_chunk": 100}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 24, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6022, "n_chunk": 100}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 24, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.6022, "n_chunk": 100}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 31, "offset": 103, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 1, 4, 1, 1, 1, 1, 1, 1], "surprise": 0.8218, "n_chunk": 126}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 31, "offset": 119, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 1], "surprise": 0.8218, "n_chunk": 126}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 31, "offset": 82, "tokens": [2, 2, 2, 2, 2, 1, 1, 2, 1, 3, 1, 1, 4, 2, 1, 2], "surprise": 0.8218, "n_chunk": 126}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 31, "offset": 85, "tokens": [2, 2, 1, 1, 2, 1, 3, 1, 1, 4, 2, 1, 2, 2, 2, 2], "surprise": 0.8218, "n_chunk": 126}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 35, "offset": 119, "tokens": [1, 1, 1, 1, 0, 1, 3, 1, 1], "surprise": 0.8542, "n_chunk": 142}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 35, "offset": 84, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 2, 1], "surprise": 0.8542, "n_chunk": 142}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 35, "offset": 99, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 5, 3, 5], "surprise": 0.8542, "n_chunk": 142}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 35, "offset": 106, "tokens": [1, 1, 3, 3, 3, 3, 5, 3, 5, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.8542, "n_chunk": 142}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 36, "offset": 103, "tokens": [1, 1, 1, 1, 1, 2, 3, 3, 3, 7, 5, 2, 1, 1, 1, 1], "surprise": 0.8579, "n_chunk": 146}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 36, "offset": 117, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2], "surprise": 0.8579, "n_chunk": 146}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 36, "offset": 68, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 3, 2, 1, 2, 1, 1], "surprise": 0.8579, "n_chunk": 146}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 36, "offset": 85, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 2, 3, 4, 1, 1, 1], "surprise": 0.8579, "n_chunk": 146}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 37, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 3, 9, 6, 4, 1, 1, 1, 1], "surprise": 0.8334, "n_chunk": 151}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 37, "offset": 151, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 2, 7, 7, 4, 0, 1, 2, 2], "surprise": 0.8334, "n_chunk": 151}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 37, "offset": 152, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 7, 7, 4, 0, 1, 2, 2, 2], "surprise": 0.8334, "n_chunk": 151}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 37, "offset": 134, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 9, 6, 4, 1, 1, 1], "surprise": 0.8334, "n_chunk": 151}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 44, "offset": 68, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 1, 2, 2, 1], "surprise": 0.7877, "n_chunk": 178}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 44, "offset": 99, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 4, 3, 3, 1, 2, 1], "surprise": 0.7877, "n_chunk": 178}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 44, "offset": 64, "tokens": [1, 1, 4, 4, 2, 3, 2, 1, 1], "surprise": 0.7877, "n_chunk": 178}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 44, "offset": 116, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 2], "surprise": 0.7877, "n_chunk": 178}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 47, "offset": 128, "tokens": [1, 0, 0, 0, 1, 1, 1, 1, 2, 5, 3, 4, 3, 3, 4, 1], "surprise": 0.8082, "n_chunk": 191}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 47, "offset": 151, "tokens": [1, 1, 2, 1, 3, 3, 4, 4, 5, 1, 1, 1, 1, 0, 0, 1], "surprise": 0.8082, "n_chunk": 191}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 47, "offset": 174, "tokens": [3, 1, 1, 0, 0, 1, 1, 1, 1, 4, 3, 3, 4, 4, 3, 3], "surprise": 0.8082, "n_chunk": 191}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 47, "offset": 143, "tokens": [1, 1, 1, 1, 1, 1, 2, 2, 2, 4, 4, 4, 4, 3, 3, 3], "surprise": 0.8082, "n_chunk": 191}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 48, "offset": 128, "tokens": [1, 0, 0, 0, 1, 1, 1, 1, 2, 5, 3, 4, 3, 3, 4, 1], "surprise": 0.7895, "n_chunk": 195}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 48, "offset": 150, "tokens": [2, 2, 4, 4, 4, 4, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.7895, "n_chunk": 195}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 48, "offset": 182, "tokens": [1, 4, 3, 3, 4, 4, 3, 3, 3, 1], "surprise": 0.7895, "n_chunk": 195}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 48, "offset": 166, "tokens": [1, 3, 4, 3, 4, 4, 3, 3, 3, 1, 1, 0, 0, 1, 1, 1], "surprise": 0.7895, "n_chunk": 195}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 0, "tokens": [1, 1, 1, 1, 1, 4, 1, 2, 3, 2, 2, 2], "surprise": 0.8301, "n_chunk": 201}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 52, "tokens": [1, 3, 4, 3, 2, 2, 3, 2, 2, 5, 1, 2], "surprise": 0.8301, "n_chunk": 201}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 53, "tokens": [3, 4, 3, 2, 2, 3, 2, 2, 5, 1, 2], "surprise": 0.8301, "n_chunk": 201}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 37, "tokens": [4, 2, 2, 2, 2, 3, 2, 1, 5, 1, 2, 1, 1, 1, 1, 1], "surprise": 0.8301, "n_chunk": 201}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 87, "tokens": [3, 3, 3, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 3, 1], "surprise": 0.7906, "n_chunk": 202}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 50, "offset": 117, "tokens": [1, 1, 1, 3, 4, 4, 4, 3, 3, 0, 1], "surprise": 0.7906, "n_chunk": 202}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 103, "tokens": [3, 3, 3, 3, 3, 3, 4, 3, 3, 1, 1, 1, 1, 1, 3, 1], "surprise": 0.7906, "n_chunk": 202}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 71, "tokens": [3, 3, 2, 3, 3, 3, 5, 3, 4, 1, 1, 1, 1, 1, 4, 4], "surprise": 0.7906, "n_chunk": 202}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 50, "offset": 165, "tokens": [1, 2, 4, 4, 4, 4, 3, 3, 3, 0, 1, 0, 0, 1, 1, 1], "surprise": 0.8274, "n_chunk": 203}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 50, "offset": 181, "tokens": [1, 4, 3, 3, 4, 4, 3, 3, 3, 0, 1], "surprise": 0.8274, "n_chunk": 203}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 50, "offset": 132, "tokens": [1, 4, 1, 3, 2, 2, 3, 2, 2, 5, 1, 2, 1, 1, 1, 1], "surprise": 0.8274, "n_chunk": 203}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 50, "offset": 149, "tokens": [2, 2, 3, 4, 3, 4, 4, 3, 3, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.8274, "n_chunk": 203}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 0, "tokens": [4, 4, 5, 2, 2, 4, 2, 2, 2, 2], "surprise": 0.871, "n_chunk": 205}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 51, "offset": 39, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 3, 3, 3, 3], "surprise": 0.871, "n_chunk": 205}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 53, "tokens": [4, 3, 2, 3, 2, 2, 2, 3, 3, 1, 3], "surprise": 0.871, "n_chunk": 205}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 51, "offset": 39, "tokens": [3, 3, 4, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3], "surprise": 0.871, "n_chunk": 205}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 71, "tokens": [3, 3, 2, 3, 3, 4, 4, 4, 4, 1, 0, 3, 2, 3, 4, 3], "surprise": 0.89, "n_chunk": 206}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 87, "tokens": [3, 3, 4, 4, 4, 4, 4, 4, 4, 1, 0, 3, 2, 2, 3, 2], "surprise": 0.89, "n_chunk": 206}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 105, "tokens": [3, 3, 3, 3, 3, 1, 3, 2, 0, 3, 2, 3, 4, 2, 2, 3], "surprise": 0.89, "n_chunk": 206}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 89, "tokens": [4, 4, 4, 4, 4, 4, 4, 1, 0, 3, 2, 2, 3, 2, 2, 3], "surprise": 0.89, "n_chunk": 206}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 51, "offset": 167, "tokens": [1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 1, 1, 1, 0], "surprise": 0.8781, "n_chunk": 207}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 51, "offset": 183, "tokens": [1, 1, 2, 2, 2, 0, 0, 0, 0], "surprise": 0.8781, "n_chunk": 207}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 51, "offset": 128, "tokens": [0, 0, 0, 0, 1, 1, 1, 2, 5, 3, 4, 3, 3, 3, 0], "surprise": 0.8781, "n_chunk": 207}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 51, "offset": 128, "tokens": [2, 0, 4, 2, 3, 4, 2, 2, 3], "surprise": 0.8781, "n_chunk": 207}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 0, "tokens": [4, 4, 4, 5, 2, 2, 2, 2, 4, 4, 4], "surprise": 0.8321, "n_chunk": 209}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 52, "offset": 17, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 3, 4, 3, 3], "surprise": 0.8321, "n_chunk": 209}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 52, "offset": 16, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 3, 4, 3, 4, 3], "surprise": 0.8321, "n_chunk": 209}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 52, "offset": 4, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 4, 3, 3, 4], "surprise": 0.8321, "n_chunk": 209}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 72, "tokens": [3, 4, 4, 4, 4, 4, 4, 4, 5, 0, 0, 5, 3, 3, 3, 3], "surprise": 0.8562, "n_chunk": 210}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 88, "tokens": [3, 4, 4, 4, 4, 4, 4, 4, 5, 0, 0, 6, 2, 2, 1, 2], "surprise": 0.8562, "n_chunk": 210}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 106, "tokens": [3, 3, 3, 2, 1, 3, 5, 0, 1, 6, 2, 2, 2, 2, 2, 2], "surprise": 0.8562, "n_chunk": 210}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 90, "tokens": [4, 4, 4, 4, 4, 4, 5, 0, 0, 6, 2, 2, 1, 2, 3, 3], "surprise": 0.8562, "n_chunk": 210}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 168, "tokens": [3, 4, 5, 5, 5, 4, 4, 4, 5, 0, 1, 4, 4, 4, 4, 2], "surprise": 0.9029, "n_chunk": 211}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 138, "tokens": [2, 2, 3, 2, 1, 4, 5, 0, 1, 6, 2, 2, 1, 2, 3, 3], "surprise": 0.9029, "n_chunk": 211}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 128, "tokens": [6, 0, 1, 6, 2, 2, 2, 2, 2, 2], "surprise": 0.9029, "n_chunk": 211}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 52, "offset": 152, "tokens": [3, 3, 3, 3, 3, 3, 1, 4, 5, 0, 1, 5, 2, 3, 3, 4], "surprise": 0.9029, "n_chunk": 211}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 51, "tokens": [4, 3, 4, 4, 2, 2, 2, 3, 2, 5, 3, 4, 4], "surprise": 0.8624, "n_chunk": 213}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 2, "tokens": [4, 2, 3, 2, 2, 2, 4, 3, 3, 0, 5, 0, 4, 0, 4, 4], "surprise": 0.8624, "n_chunk": 213}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 19, "tokens": [4, 3, 2, 2, 2, 2, 2, 3, 1, 6, 1, 4, 0, 4, 4, 3], "surprise": 0.8624, "n_chunk": 213}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 35, "tokens": [4, 4, 4, 2, 2, 2, 2, 3, 1, 6, 1, 4, 0, 4, 4, 4], "surprise": 0.8624, "n_chunk": 213}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 99, "tokens": [0, 3, 2, 2, 3, 3, 3, 3, 2, 5, 1, 3, 0, 6, 6, 1], "surprise": 0.8301, "n_chunk": 214}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 115, "tokens": [1, 3, 2, 2, 2, 2, 2, 3, 0, 6, 0, 4, 0], "surprise": 0.8301, "n_chunk": 214}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 89, "tokens": [4, 4, 4, 4, 4, 4, 4, 6, 6, 1, 0, 3, 2, 2, 3, 3], "surprise": 0.8301, "n_chunk": 214}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 103, "tokens": [3, 3, 3, 3, 2, 5, 1, 3, 0, 6, 6, 1, 1, 3, 2, 2], "surprise": 0.8301, "n_chunk": 214}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 128, "tokens": [6, 7, 2, 1, 4, 2, 2, 2], "surprise": 0.9311, "n_chunk": 215}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 131, "tokens": [1, 4, 2, 2, 2, 2, 2, 3, 1, 6, 1, 4, 0, 6, 6, 2], "surprise": 0.9311, "n_chunk": 215}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 167, "tokens": [3, 4, 4, 4, 3, 4, 2, 4, 1, 6, 5, 2, 1, 3, 3, 4], "surprise": 0.9311, "n_chunk": 215}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 53, "offset": 147, "tokens": [1, 3, 2, 2, 2, 2, 2, 3, 1, 5, 1, 4, 0, 6, 6, 2], "surprise": 0.9311, "n_chunk": 215}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 20, "tokens": [5, 1, 5, 2, 2, 3, 1, 2, 2, 6, 2, 0, 4, 3, 4, 4], "surprise": 0.9029, "n_chunk": 217}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 4, "tokens": [4, 1, 5, 2, 1, 2, 1, 2, 2, 6, 2, 0, 4, 4, 4, 4], "surprise": 0.9029, "n_chunk": 217}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 36, "tokens": [4, 4, 4, 2, 2, 3, 1, 2, 2, 5, 3, 2, 4, 4, 3, 3], "surprise": 0.9029, "n_chunk": 217}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 54, "offset": 18, "tokens": [3, 4, 3, 3, 3, 3, 3, 3, 3, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.9029, "n_chunk": 217}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 132, "tokens": [5, 0, 5, 2, 2, 3, 1, 2, 2, 6, 2, 0, 1, 6, 1, 0], "surprise": 0.9891, "n_chunk": 219}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 148, "tokens": [5, 1, 5, 2, 2, 3, 1, 2, 2, 6, 2, 0, 1, 6, 1, 0], "surprise": 0.9891, "n_chunk": 219}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 164, "tokens": [5, 1, 4, 2, 2, 2, 1, 2, 2, 5, 2, 0, 1, 6, 1, 0], "surprise": 0.9891, "n_chunk": 219}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 54, "offset": 168, "tokens": [2, 2, 1, 2, 2, 5, 2, 0, 1, 6, 1, 0, 4, 1, 4, 3], "surprise": 0.9891, "n_chunk": 219}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 54, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8949, "n_chunk": 220}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 54, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8949, "n_chunk": 220}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 54, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8949, "n_chunk": 220}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 54, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8949, "n_chunk": 220}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 55, "offset": 18, "tokens": [3, 4, 3, 3, 3, 3, 3, 3, 3, 5, 4, 3, 3, 3, 3, 3], "surprise": 0.8011, "n_chunk": 221}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 55, "tokens": [4, 4, 4, 4, 4, 4, 3, 4, 4], "surprise": 0.8011, "n_chunk": 221}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 55, "offset": 0, "tokens": [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1], "surprise": 0.8011, "n_chunk": 221}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 55, "offset": 39, "tokens": [3, 3, 4, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3], "surprise": 0.8011, "n_chunk": 221}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 106, "tokens": [3, 0, 3, 2, 0, 3, 0, 0, 1, 6, 1, 1, 6, 1, 4, 1], "surprise": 0.8049, "n_chunk": 222}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 109, "tokens": [2, 0, 3, 0, 0, 1, 6, 1, 1, 6, 1, 4, 1, 4, 0, 3], "surprise": 0.8049, "n_chunk": 222}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 90, "tokens": [4, 3, 4, 3, 2, 3, 0, 0, 0, 5, 1, 1, 5, 1, 4, 1], "surprise": 0.8049, "n_chunk": 222}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 74, "tokens": [4, 4, 4, 4, 4, 4, 0, 0, 0, 5, 1, 1, 5, 3, 4, 4], "surprise": 0.8049, "n_chunk": 222}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 128, "tokens": [0, 0, 0, 6, 1, 1, 7, 1, 4, 1, 4, 0, 3], "surprise": 0.8803, "n_chunk": 223}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 128, "tokens": [0, 0, 0, 6, 1, 1, 7, 1, 4, 1], "surprise": 0.8803, "n_chunk": 223}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 138, "tokens": [4, 0, 3, 3, 0, 3, 0, 0, 1, 6, 1, 1, 6, 1, 4, 1], "surprise": 0.8803, "n_chunk": 223}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 55, "offset": 154, "tokens": [4, 0, 3, 3, 0, 3, 0, 0, 1, 6, 1, 1, 5, 1, 3, 1], "surprise": 0.8803, "n_chunk": 223}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 117, "tokens": [6, 1, 3, 4, 1, 2, 4, 0, 1, 7, 2], "surprise": 0.8178, "n_chunk": 226}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 101, "tokens": [6, 1, 3, 4, 0, 2, 3, 0, 1, 6, 2, 1, 0, 0, 0, 6], "surprise": 0.8178, "n_chunk": 226}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 91, "tokens": [3, 0, 1, 6, 2, 1, 0, 0, 1, 6, 6, 1, 3, 4, 0, 2], "surprise": 0.8178, "n_chunk": 226}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 85, "tokens": [6, 1, 3, 3, 0, 2, 3, 0, 1, 6, 2, 1, 0, 0, 1, 6], "surprise": 0.8178, "n_chunk": 226}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 155, "tokens": [3, 0, 1, 6, 2, 2, 0, 0, 1, 6, 6, 1, 3, 3, 1, 2], "surprise": 0.8243, "n_chunk": 227}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 128, "tokens": [1, 0, 0, 0, 6, 6, 1, 3, 4, 1, 2], "surprise": 0.8243, "n_chunk": 227}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 165, "tokens": [6, 1, 3, 3, 1, 2, 3, 0, 1, 6, 2, 2, 0, 0, 1, 5], "surprise": 0.8243, "n_chunk": 227}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 56, "offset": 149, "tokens": [6, 1, 3, 3, 1, 2, 3, 0, 1, 6, 2, 2, 0, 0, 1, 6], "surprise": 0.8243, "n_chunk": 227}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 57, "offset": 134, "tokens": [4, 6, 1, 0, 5, 4, 0, 0, 1, 7, 6, 7, 6, 1, 0, 2], "surprise": 0.8976, "n_chunk": 231}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 57, "offset": 150, "tokens": [3, 6, 1, 0, 5, 3, 0, 0, 1, 7, 6, 7, 6, 1, 0, 2], "surprise": 0.8976, "n_chunk": 231}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 57, "offset": 128, "tokens": [6, 7, 6, 1, 0, 2, 4, 6], "surprise": 0.8976, "n_chunk": 231}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 57, "offset": 136, "tokens": [1, 0, 5, 4, 0, 0, 1, 7, 6, 7, 6, 1, 0, 2, 3, 6], "surprise": 0.8976, "n_chunk": 231}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 58, "offset": 140, "tokens": [0, 0, 2, 6, 0, 0, 3, 6, 1, 7, 2, 0, 0, 5, 6, 0], "surprise": 0.8519, "n_chunk": 235}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 58, "offset": 166, "tokens": [2, 0, 0, 5, 6, 0, 0, 0, 2, 7, 0, 0, 3, 6, 1, 6], "surprise": 0.8519, "n_chunk": 235}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 58, "offset": 150, "tokens": [2, 0, 0, 5, 6, 0, 0, 0, 2, 7, 0, 0, 3, 6, 1, 6], "surprise": 0.8519, "n_chunk": 235}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 58, "offset": 182, "tokens": [2, 0, 0, 5, 6, 0, 0, 0, 2, 6], "surprise": 0.8519, "n_chunk": 235}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 70, "offset": 172, "tokens": [2, 3, 3, 2, 0, 0, 0, 0, 2, 7, 6, 1, 0, 2, 6, 1], "surprise": 0.793, "n_chunk": 283}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 70, "offset": 156, "tokens": [2, 3, 2, 1, 0, 0, 0, 0, 2, 7, 6, 1, 0, 2, 6, 1], "surprise": 0.793, "n_chunk": 283}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 70, "offset": 140, "tokens": [3, 4, 2, 1, 0, 0, 0, 0, 2, 7, 6, 1, 0, 2, 7, 1], "surprise": 0.793, "n_chunk": 283}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 70, "offset": 145, "tokens": [0, 0, 0, 2, 7, 6, 1, 0, 2, 7, 1, 2, 3, 2, 1, 0], "surprise": 0.793, "n_chunk": 283}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 71, "offset": 142, "tokens": [2, 1, 0, 0, 0, 0, 0, 0, 1, 7, 7, 4, 0, 3, 2, 4], "surprise": 0.7943, "n_chunk": 287}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 71, "offset": 143, "tokens": [1, 0, 0, 0, 0, 0, 0, 1, 7, 7, 4, 0, 3, 2, 4, 2], "surprise": 0.7943, "n_chunk": 287}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 71, "offset": 158, "tokens": [2, 1, 0, 0, 0, 0, 0, 0, 1, 6, 6, 4, 0, 3, 2, 4], "surprise": 0.7943, "n_chunk": 287}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 71, "offset": 174, "tokens": [3, 2, 0, 0, 0, 0, 0, 0, 1, 6, 6, 4, 0, 3, 2, 4], "surprise": 0.7943, "n_chunk": 287}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 72, "offset": 183, "tokens": [0, 0, 5, 1, 2, 3, 4, 4, 4], "surprise": 0.8792, "n_chunk": 291}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 72, "offset": 167, "tokens": [0, 0, 5, 1, 2, 3, 4, 1, 1, 7, 6, 6, 7, 6, 6, 1], "surprise": 0.8792, "n_chunk": 291}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 72, "offset": 151, "tokens": [0, 0, 5, 1, 2, 3, 4, 1, 1, 7, 6, 6, 7, 6, 6, 1], "surprise": 0.8792, "n_chunk": 291}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 72, "offset": 135, "tokens": [0, 0, 5, 1, 3, 3, 5, 1, 1, 7, 6, 6, 7, 6, 6, 1], "surprise": 0.8792, "n_chunk": 291}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 73, "offset": 1, "tokens": [3, 3, 3, 3, 3, 3, 3, 4, 4, 1, 1, 1, 1, 1, 1, 3], "surprise": 0.8579, "n_chunk": 293}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 73, "offset": 16, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.8579, "n_chunk": 293}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 73, "offset": 0, "tokens": [3, 4, 5, 5, 2, 4, 3, 3, 3], "surprise": 0.8579, "n_chunk": 293}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 73, "offset": 0, "tokens": [0, 0, 0, 0, 3, 5, 5, 4, 4, 4, 4], "surprise": 0.8579, "n_chunk": 293}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 74, "offset": 16, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.8469, "n_chunk": 297}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 74, "offset": 0, "tokens": [1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 0, 3], "surprise": 0.8469, "n_chunk": 297}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 74, "offset": 0, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 2, 2, 4, 3, 3, 4, 3], "surprise": 0.8469, "n_chunk": 297}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 74, "offset": 0, "tokens": [3, 3, 3, 3, 3, 4, 4, 4, 2, 2, 1, 1, 1, 1, 1], "surprise": 0.8469, "n_chunk": 297}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 82, "offset": 41, "tokens": [2, 1, 1, 1, 1, 1, 2, 2, 1, 7, 4, 1, 1, 1, 1, 3], "surprise": 0.8062, "n_chunk": 329}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 82, "offset": 0, "tokens": [1, 1, 1, 1, 1, 2, 1, 1, 0, 3, 3, 1], "surprise": 0.8062, "n_chunk": 329}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 82, "offset": 25, "tokens": [1, 1, 1, 1, 1, 2, 2, 2, 1, 4, 2, 1, 1, 1, 1, 1], "surprise": 0.8062, "n_chunk": 329}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 82, "offset": 0, "tokens": [1, 1, 2, 1, 1, 2, 1, 1, 1], "surprise": 0.8062, "n_chunk": 329}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 84, "offset": 23, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 6, 1, 1, 1, 1, 1], "surprise": 0.8179, "n_chunk": 337}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 84, "offset": 31, "tokens": [1, 8, 6, 1, 1, 1, 1, 1, 1, 3, 2, 1, 1, 2, 1, 1], "surprise": 0.8179, "n_chunk": 337}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 84, "offset": 0, "tokens": [1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1], "surprise": 0.8179, "n_chunk": 337}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 84, "offset": 7, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 6, 2, 1, 1, 1, 1, 1], "surprise": 0.8179, "n_chunk": 337}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 87, "offset": 3, "tokens": [2, 1, 1, 1, 2, 1, 1, 1, 1, 3, 5, 1, 1, 1, 4, 1], "surprise": 0.8205, "n_chunk": 349}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 87, "offset": 17, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 3, 4, 3, 3], "surprise": 0.8205, "n_chunk": 349}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 87, "offset": 0, "tokens": [1, 1, 1, 1, 2, 1, 1, 0, 3, 3, 1], "surprise": 0.8205, "n_chunk": 349}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 87, "offset": 0, "tokens": [1, 1, 1, 2, 1, 1, 1, 2, 1, 1], "surprise": 0.8205, "n_chunk": 349}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 87, "offset": 128, "tokens": [1, 4, 2, 8, 5, 1, 1, 2, 1, 1], "surprise": 0.7876, "n_chunk": 351}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 87, "offset": 130, "tokens": [2, 8, 5, 1, 1, 2, 1, 1, 1, 6, 4, 7, 1, 1, 1, 1], "surprise": 0.7876, "n_chunk": 351}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 87, "offset": 139, "tokens": [1, 0, 0, 1, 1, 1, 2, 1, 2, 5, 4, 4, 4, 3, 2, 1], "surprise": 0.7876, "n_chunk": 351}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 87, "offset": 158, "tokens": [0, 0, 2, 5, 6, 6, 4, 0, 2, 7, 6, 0, 0, 0, 0, 0], "surprise": 0.7876, "n_chunk": 351}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 88, "offset": 27, "tokens": [1, 5, 5, 1, 2, 1, 1, 3, 2, 8, 3, 1, 1, 1, 1, 1], "surprise": 0.8717, "n_chunk": 353}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 88, "offset": 11, "tokens": [1, 2, 4, 4, 6, 1, 1, 4, 2, 8, 2, 1, 1, 1, 1, 1], "surprise": 0.8717, "n_chunk": 353}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 88, "offset": 16, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.8717, "n_chunk": 353}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 88, "offset": 12, "tokens": [3, 3, 3, 3, 2, 3, 3, 3, 4, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.8717, "n_chunk": 353}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 88, "offset": 150, "tokens": [1, 1, 1, 1, 1, 1, 2, 4, 3, 8, 1, 1, 1, 1, 1, 1], "surprise": 0.8208, "n_chunk": 355}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 88, "offset": 128, "tokens": [1, 1, 4, 2, 9, 4, 1, 1, 2, 1, 1], "surprise": 0.8208, "n_chunk": 355}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 88, "offset": 134, "tokens": [1, 1, 2, 1, 1, 1, 5, 5, 5, 8, 1, 1, 2, 1, 4, 1], "surprise": 0.8208, "n_chunk": 355}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 88, "offset": 166, "tokens": [1, 1, 2, 1, 1, 1, 1, 1, 1, 6, 1, 1, 1, 2, 1, 1], "surprise": 0.8208, "n_chunk": 355}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 88, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7852, "n_chunk": 356}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 88, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7852, "n_chunk": 356}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 88, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7852, "n_chunk": 356}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 88, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7852, "n_chunk": 356}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 89, "offset": 16, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 4, 4, 3, 3, 3, 3], "surprise": 0.8445, "n_chunk": 357}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 89, "offset": 23, "tokens": [5, 4, 4, 3, 3, 3, 3, 3, 3, 5, 5, 3, 3, 3, 3, 3], "surprise": 0.8445, "n_chunk": 357}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 89, "offset": 0, "tokens": [5, 5, 2, 1, 3, 5, 5, 1, 0], "surprise": 0.8445, "n_chunk": 357}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 89, "offset": 40, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 3, 3, 3, 3, 3, 3], "surprise": 0.8445, "n_chunk": 357}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 89, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7843, "n_chunk": 360}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 89, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7843, "n_chunk": 360}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 89, "offset": 231, "tokens": [4, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7843, "n_chunk": 360}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 89, "offset": 231, "tokens": [3, 3, 4, 3, 3, 3, 3, 4, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7843, "n_chunk": 360}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 90, "offset": 0, "tokens": [1, 1, 1, 1, 1, 4, 3, 1, 1, 2, 2, 1], "surprise": 0.8688, "n_chunk": 361}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 90, "offset": 0, "tokens": [1, 1, 1, 1, 0, 2, 3, 0, 1, 1, 1], "surprise": 0.8688, "n_chunk": 361}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 90, "offset": 0, "tokens": [4, 4, 3, 5, 4, 2, 3, 3, 3, 2], "surprise": 0.8688, "n_chunk": 361}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 90, "offset": 12, "tokens": [1, 1, 1, 1, 1, 1, 1, 4, 1, 7, 6, 1, 1, 1, 1, 1], "surprise": 0.8688, "n_chunk": 361}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 90, "offset": 108, "tokens": [1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 3, 1, 1, 1, 2, 1], "surprise": 0.7989, "n_chunk": 362}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 90, "offset": 80, "tokens": [1, 1, 2, 4, 4, 3, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1], "surprise": 0.7989, "n_chunk": 362}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 90, "offset": 104, "tokens": [1, 1, 2, 2, 2, 2, 2, 1, 1, 4, 4, 4, 4, 3, 3, 0], "surprise": 0.7989, "n_chunk": 362}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 90, "offset": 110, "tokens": [2, 1, 1, 4, 4, 4, 4, 3, 3, 0, 1, 1, 1, 1, 1, 1], "surprise": 0.7989, "n_chunk": 362}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 90, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8054, "n_chunk": 364}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 90, "offset": 231, "tokens": [3, 3, 4, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8054, "n_chunk": 364}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 90, "offset": 231, "tokens": [3, 3, 3, 4, 3, 3, 3, 4, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8054, "n_chunk": 364}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 90, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8054, "n_chunk": 364}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 91, "offset": 0, "tokens": [1, 1, 1, 1, 3, 2, 8, 4, 1, 1, 1, 2, 1], "surprise": 0.8069, "n_chunk": 365}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 91, "offset": 13, "tokens": [1, 1, 1, 1, 1, 1, 1, 4, 2, 8, 2, 1, 1, 1, 1, 1], "surprise": 0.8069, "n_chunk": 365}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 91, "offset": 0, "tokens": [1, 1, 1, 1, 3, 2, 8, 4, 1, 1, 1], "surprise": 0.8069, "n_chunk": 365}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 91, "offset": 12, "tokens": [4, 4, 3, 3, 3, 3, 3, 3, 3, 5, 5, 2, 3, 3, 5, 4], "surprise": 0.8069, "n_chunk": 365}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 91, "offset": 109, "tokens": [1, 1, 1, 1, 1, 1, 1, 3, 1, 7, 2, 1, 1, 2, 2, 1], "surprise": 0.791, "n_chunk": 366}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 91, "offset": 107, "tokens": [3, 2, 1, 1, 1, 1, 1, 1, 1, 3, 1, 7, 2, 1, 1, 2], "surprise": 0.791, "n_chunk": 366}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 91, "offset": 119, "tokens": [0, 1, 1, 1, 1, 1, 1, 1, 1], "surprise": 0.791, "n_chunk": 366}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 91, "offset": 105, "tokens": [0, 0, 0, 0, 2, 5, 6, 6, 6, 3, 0, 1, 6, 6, 1, 0], "surprise": 0.791, "n_chunk": 366}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 91, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7966, "n_chunk": 368}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 91, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7966, "n_chunk": 368}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 91, "offset": 231, "tokens": [3, 3, 3, 4, 3, 3, 3, 4, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7966, "n_chunk": 368}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 91, "offset": 247, "tokens": [12, 12, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7966, "n_chunk": 368}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 92, "offset": 0, "tokens": [1, 1, 1, 6, 1, 5, 6, 1, 1, 1], "surprise": 0.8089, "n_chunk": 369}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 92, "offset": 10, "tokens": [2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 2, 1, 1, 1], "surprise": 0.8089, "n_chunk": 369}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 92, "offset": 0, "tokens": [1, 1, 1, 6, 1, 5, 6, 1, 1, 1, 2, 1], "surprise": 0.8089, "n_chunk": 369}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 92, "offset": 0, "tokens": [5, 5, 2, 0, 3, 5, 5, 1, 0], "surprise": 0.8089, "n_chunk": 369}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 93, "offset": 128, "tokens": [1, 1, 1, 5, 5, 3, 9, 7, 1, 1, 1, 1, 3], "surprise": 0.8205, "n_chunk": 375}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 93, "offset": 141, "tokens": [3, 2, 1, 1, 1, 1, 3, 4, 2, 8, 7, 1, 1, 1, 1, 1], "surprise": 0.8205, "n_chunk": 375}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 93, "offset": 142, "tokens": [2, 1, 1, 1, 1, 3, 4, 2, 8, 7, 1, 1, 1, 1, 1, 1], "surprise": 0.8205, "n_chunk": 375}
+{"lane": 5, "lane_seed": 4205, "episode": 0, "frame": 93, "offset": 156, "tokens": [0, 2, 6, 6, 6, 6, 3, 0, 1, 7, 6, 1, 0, 0, 0, 0], "surprise": 0.8205, "n_chunk": 375}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 94, "offset": 137, "tokens": [1, 1, 1, 3, 3, 3, 1, 1, 2, 9, 5, 2, 9, 9, 4, 1], "surprise": 0.8795, "n_chunk": 379}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 94, "offset": 140, "tokens": [3, 3, 3, 1, 1, 2, 9, 5, 2, 9, 9, 4, 1, 1, 1, 1], "surprise": 0.8795, "n_chunk": 379}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 94, "offset": 157, "tokens": [1, 2, 1, 1, 1, 4, 5, 1, 7, 9, 5, 1, 1, 1, 1, 1], "surprise": 0.8795, "n_chunk": 379}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 94, "offset": 141, "tokens": [3, 3, 1, 1, 2, 9, 5, 2, 9, 9, 4, 1, 1, 1, 1, 1], "surprise": 0.8795, "n_chunk": 379}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 95, "offset": 128, "tokens": [7, 6, 1, 3, 10, 6, 1, 1, 1, 1, 1], "surprise": 1.0071, "n_chunk": 383}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 95, "offset": 156, "tokens": [1, 2, 2, 2, 9, 5, 1, 9, 8, 10, 5, 1, 1, 2, 1, 1], "surprise": 1.0071, "n_chunk": 383}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 95, "offset": 172, "tokens": [1, 1, 1, 1, 7, 6, 1, 6, 8, 10, 7, 2, 2, 1, 1, 1], "surprise": 1.0071, "n_chunk": 383}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 95, "offset": 154, "tokens": [1, 1, 1, 2, 2, 2, 9, 5, 1, 9, 8, 10, 5, 1, 1, 2], "surprise": 1.0071, "n_chunk": 383}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 95, "offset": 192, "tokens": [3, 4, 1, 3, 9, 8, 5, 1, 1, 1, 1], "surprise": 0.7981, "n_chunk": 384}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 95, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7981, "n_chunk": 384}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 95, "offset": 203, "tokens": [1, 2, 2, 2, 2, 1, 1, 1, 2, 9, 6, 2, 1, 1, 1, 1], "surprise": 0.7981, "n_chunk": 384}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 95, "offset": 231, "tokens": [3, 3, 4, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.7981, "n_chunk": 384}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 108, "tokens": [1, 1, 3, 3, 2, 8, 3, 1, 6, 9, 3, 1, 2, 1, 1, 1], "surprise": 0.7971, "n_chunk": 386}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 104, "tokens": [1, 1, 1, 1, 1, 1, 3, 3, 2, 8, 3, 1, 6, 9, 3, 1], "surprise": 0.7971, "n_chunk": 386}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 107, "tokens": [1, 1, 1, 3, 3, 2, 8, 3, 1, 6, 9, 3, 1, 2, 1, 1], "surprise": 0.7971, "n_chunk": 386}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 119, "tokens": [1, 2, 1, 1, 1, 1, 1, 2, 1], "surprise": 0.7971, "n_chunk": 386}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 135, "tokens": [1, 2, 1, 1, 1, 1, 1, 3, 3, 10, 9, 3, 3, 8, 8, 7], "surprise": 1.0248, "n_chunk": 387}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 151, "tokens": [2, 2, 1, 1, 1, 1, 1, 2, 2, 10, 8, 3, 4, 9, 8, 9], "surprise": 1.0248, "n_chunk": 387}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 173, "tokens": [1, 1, 1, 6, 8, 3, 3, 9, 8, 10, 7, 2, 0, 2, 1, 1], "surprise": 1.0248, "n_chunk": 387}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 171, "tokens": [2, 1, 1, 1, 1, 6, 8, 3, 3, 9, 8, 10, 7, 2, 0, 2], "surprise": 1.0248, "n_chunk": 387}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 192, "tokens": [1, 5, 3, 2, 7, 8, 10, 8, 2, 2, 1, 1, 1], "surprise": 0.8537, "n_chunk": 388}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 96, "offset": 220, "tokens": [1, 2, 2, 2, 1, 1, 1, 1, 5, 10, 6, 3, 1, 1, 1, 1], "surprise": 0.8537, "n_chunk": 388}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 96, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8537, "n_chunk": 388}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 96, "offset": 231, "tokens": [4, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8537, "n_chunk": 388}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 109, "tokens": [1, 3, 3, 2, 6, 6, 1, 1, 8, 10, 6, 2, 1, 2, 1, 1], "surprise": 0.8445, "n_chunk": 390}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 92, "tokens": [1, 1, 2, 3, 1, 2, 4, 1, 1, 5, 8, 3, 2, 1, 1, 1], "surprise": 0.8445, "n_chunk": 390}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 108, "tokens": [1, 1, 3, 3, 2, 6, 6, 1, 1, 8, 10, 6, 2, 1, 2, 1], "surprise": 0.8445, "n_chunk": 390}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 97, "offset": 64, "tokens": [3, 3, 2, 2, 2, 2, 2, 2, 2], "surprise": 0.8445, "n_chunk": 390}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 151, "tokens": [7, 6, 1, 2, 1, 1, 1, 2, 2, 10, 9, 5, 1, 8, 9, 8], "surprise": 0.9725, "n_chunk": 391}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 128, "tokens": [5, 7, 5, 1, 3, 8, 10, 7, 3, 1, 2, 1, 1], "surprise": 0.9725, "n_chunk": 391}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 174, "tokens": [1, 1, 7, 7, 5, 1, 6, 9, 8, 10, 10, 5, 2, 1, 1, 1], "surprise": 0.9725, "n_chunk": 391}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 175, "tokens": [1, 7, 7, 5, 1, 6, 9, 8, 10, 10, 5, 2, 1, 1, 1, 1], "surprise": 0.9725, "n_chunk": 391}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 97, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.8891, "n_chunk": 392}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 221, "tokens": [1, 2, 2, 1, 1, 1, 1, 1, 8, 10, 8, 9, 6, 3, 2, 1], "surprise": 0.8891, "n_chunk": 392}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 207, "tokens": [2, 1, 2, 2, 1, 2, 8, 8, 9, 10, 8, 4, 2, 1, 1, 2], "surprise": 0.8891, "n_chunk": 392}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 97, "offset": 192, "tokens": [2, 6, 5, 1, 4, 8, 8, 10, 10, 7, 3, 1, 2, 1], "surprise": 0.8891, "n_chunk": 392}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 111, "tokens": [1, 1, 3, 8, 3, 1, 1, 2, 6, 10, 10, 7, 3, 2, 2, 2], "surprise": 0.8102, "n_chunk": 394}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 112, "tokens": [1, 3, 8, 3, 1, 1, 2, 6, 10, 10, 7, 3, 2, 2, 2, 1], "surprise": 0.8102, "n_chunk": 394}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 79, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 2, 1, 2, 1, 2], "surprise": 0.8102, "n_chunk": 394}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 64, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1], "surprise": 0.8102, "n_chunk": 394}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 173, "tokens": [4, 1, 1, 9, 10, 8, 3, 1, 4, 10, 9, 8, 8, 7, 8, 8], "surprise": 0.9578, "n_chunk": 395}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 128, "tokens": [2, 6, 8, 3, 1, 1, 3, 8, 10, 10, 8, 6, 2, 1, 1], "surprise": 0.9578, "n_chunk": 395}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 128, "tokens": [2, 6, 8, 3, 1, 1, 3, 8, 10, 10, 8, 6, 2, 1, 1, 1], "surprise": 0.9578, "n_chunk": 395}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 152, "tokens": [10, 10, 8, 6, 4, 2, 1, 1, 9, 10, 9, 3, 2, 3, 8, 8], "surprise": 0.9578, "n_chunk": 395}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 98, "offset": 227, "tokens": [2, 1, 2, 6, 8, 8, 8, 9, 10, 11, 10, 8, 6, 12, 12, 12], "surprise": 0.9106, "n_chunk": 396}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 98, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9106, "n_chunk": 396}
+{"lane": 7, "lane_seed": 4207, "episode": 0, "frame": 98, "offset": 231, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9106, "n_chunk": 396}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 98, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 2, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9106, "n_chunk": 396}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 100, "tokens": [4, 1, 1, 2, 2, 1, 2, 1, 2, 5, 8, 8, 1, 1, 2, 5], "surprise": 0.7997, "n_chunk": 398}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 69, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 6, 1, 1, 2, 1, 1], "surprise": 0.7997, "n_chunk": 398}
+{"lane": 4, "lane_seed": 4204, "episode": 0, "frame": 99, "offset": 64, "tokens": [4, 5, 3, 3, 3, 3, 3, 3], "surprise": 0.7997, "n_chunk": 398}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 106, "tokens": [2, 1, 2, 5, 8, 8, 1, 1, 2, 5, 5, 1, 2, 1, 1, 1], "surprise": 0.7997, "n_chunk": 398}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 150, "tokens": [1, 1, 1, 1, 3, 6, 8, 9, 10, 11, 2, 6, 8, 8, 5, 1], "surprise": 0.931, "n_chunk": 399}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 182, "tokens": [1, 1, 1, 5, 7, 7, 7, 9, 10, 11], "surprise": 0.931, "n_chunk": 399}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 166, "tokens": [2, 1, 1, 2, 6, 6, 8, 9, 10, 11, 5, 9, 10, 9, 5, 1], "surprise": 0.931, "n_chunk": 399}
+{"lane": 0, "lane_seed": 4200, "episode": 0, "frame": 99, "offset": 135, "tokens": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 3, 4, 4, 3, 3], "surprise": 0.931, "n_chunk": 399}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 225, "tokens": [7, 7, 8, 6, 1, 1, 1, 5, 9, 11, 10, 9, 8, 8, 9, 12], "surprise": 0.9162, "n_chunk": 400}
+{"lane": 1, "lane_seed": 4201, "episode": 0, "frame": 99, "offset": 192, "tokens": [7, 10, 11, 9, 5, 1, 1, 1, 3], "surprise": 0.9162, "n_chunk": 400}
+{"lane": 6, "lane_seed": 4206, "episode": 0, "frame": 99, "offset": 231, "tokens": [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9162, "n_chunk": 400}
+{"lane": 3, "lane_seed": 4203, "episode": 0, "frame": 99, "offset": 231, "tokens": [3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12], "surprise": 0.9162, "n_chunk": 400}

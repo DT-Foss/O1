@@ -1682,6 +1682,33 @@ artifact is a number about the defaults, not about the system.
   Falsifier: any cross-ISA mismatch localizes to a named layer
   (tokenizer, stream, arithmetic) — and that layer becomes the spec's
   normative anchor before any hub exists.
+
+  **P60 SCORED (2026-08-06 night, results/stranger_verify.json
+  [ARM→x86] + results/stranger_verify_arm.json [x86→ARM, file
+  results/vizdoom_knowledge_x86.jsonl, 664 entries]).** The review
+  mechanism works — and it caught exactly the kind of defect it
+  exists to catch. FORWARD: the ARM-created file verifies 10/10
+  bit-exact on x86 from coordinates alone, consensus 10/10. REVERSE:
+  9/10 — and the falsifier fires WITH its demanded localization. The
+  one divergent entry (lane 4205, episode 0, frame 14) differs in
+  exactly ONE token at one position: x86 records gray level 2, both
+  independent ARM replays read 1 — adjacent quantization bins, all 15
+  other tokens identical, within-ISA consensus 10/10 on both sides.
+  THE LAYER IS NAMED AND MEASURED: `tokenize_frame`'s float block-mean
+  (80 uint8 pixels) followed by float floor-division (256.0/12) — a
+  bin-boundary block flips on the 1-ULP difference between the two
+  ISAs' vectorized reduction orders. Not the engine (frames replay
+  identically), not the stream, not the tokenizer map: pure float
+  arithmetic at a quantization edge. THE NORMATIVE ANCHOR, per the
+  pre-commitment: pixel→token quantization must be integer-exact —
+  level = (block_sum × LEVELS) // (80 × 256) on the exact uint8 sum —
+  ISA-invariant by construction; recorded as a standing spec rule in
+  DECISIONS.md (existing artifacts keep the measured v1 map). Net:
+  cross-ISA verification 19/20 sampled entries bit-exact, the single
+  miss localized to a named, fixable operation — a stranger on
+  different silicon found a one-ULP float boundary by pure
+  recomputation, which is the strongest possible demonstration of
+  what coordinate-based review buys.
   **P59 AMENDED before the build (same morning):** the checkpoint
   adapter is measured trivial — the veteran's state_dict loads into
   the reference Organism class key- and shape-identical at V=5000

@@ -103,3 +103,31 @@ Prozess-pgrep-Muster. Ein `pgrep`-Trigger ist nur zulässig, wenn das
 Suchmuster garantiert NICHT in der eigenen Kommandozeile vorkommt
 (z. B. Match auf den absoluten Interpreter-Pfad + Skriptname, nicht auf
 ein CLI-Argument, das der Wächter selbst zitiert).
+
+## 2026-08-06 — Cross-ISA-Spezifikation: Token-Quantisierung ist Integer-Arithmetik (P60)
+
+Die x86→ARM-Rückverifikation (P60) fand genau eine divergente Koordinate
+in 10 Stichproben: ein Block-Mittelwert auf einer Quantisierungs-Grenze
+kippt zwischen den ISAs um ein Level (2 vs 1), weil `tokenize_frame`
+einen FLOAT-Mean über 80 uint8-Pixel bildet und dann float-floor-dividiert
+(256.0/12) — NumPys vektorisierte Reduktionsreihenfolge (NEON vs AVX)
+unterscheidet sich um 1 ULP, und an der Bin-Grenze entscheidet das ULP
+das Token. Innerhalb jeder ISA ist die Rechnung deterministisch
+(Konsens 10/10 beidseitig).
+Regel: Jede pixel-/sensor-zu-Token-Quantisierung in einem Harness, dessen
+Dateien fremdverifizierbar sein sollen, wird INTEGER-EXAKT spezifiziert —
+`level = (block_sum * LEVELS) // (n_pixels * 256)` auf der exakten
+uint8-Summe, nie über einen Float-Mean. Bestehende Artefakte behalten
+ihre gemessene v1-Map (Vergleichbarkeit); jeder NEUE Harness nutzt die
+Integer-Form.
+
+## 2026-08-06 — Harvest ohne Koordinaten ist ein Regelverstoß (P55-Lücke)
+
+Der P55-Harness (`keyed_file_run.py`) friert Spans nur als Token-Listen
+mit sha256 ein — ohne doc_coords und ohne Entries-jsonl. Folge: die
+Datei ist NICHT fremdverifizierbar (die P60-Richtung-2-Verifikation
+musste übersprungen werden, "substrate_absent"). Die bestehende Regel
+("every harvest writes stranger-verifiable coordinates") gilt für JEDEN
+Datei-Producer, auch wenn die Vorhersage selbst nur Speicherung misst.
+Fix-Liste: keyed_file_run und filter_file_run schreiben beim nächsten
+Anfassen ein Entries-jsonl mit doc_coord je Span.

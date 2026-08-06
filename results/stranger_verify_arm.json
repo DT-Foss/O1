@@ -1,0 +1,131 @@
+{
+  "generated_by": "src/stranger_verify_run.py",
+  "prediction": "P60 \u2014 stranger verification",
+  "direction": 1,
+  "direction_label": "pixel-world (vizdoom)",
+  "substrate_file": "vizdoom_knowledge_x86.jsonl",
+  "substrate_sha256": "4a1cfe8cb897ae6fc5c6b7b948b7dccb235596c0bb23dc8dd5dda4bf6e25090f",
+  "smoke": false,
+  "sample_seed": 60,
+  "checks": [
+    {
+      "coords": {
+        "lane_seed": 4206,
+        "episode": 0,
+        "frame": 19,
+        "offset": 147
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4202,
+        "episode": 0,
+        "frame": 18,
+        "offset": 55
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4205,
+        "episode": 0,
+        "frame": 91,
+        "offset": 105
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4201,
+        "episode": 0,
+        "frame": 9,
+        "offset": 247
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4201,
+        "episode": 0,
+        "frame": 16,
+        "offset": 231
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4205,
+        "episode": 0,
+        "frame": 14,
+        "offset": 165
+      },
+      "span_len": 16,
+      "found": false,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4205,
+        "episode": 0,
+        "frame": 55,
+        "offset": 74
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4205,
+        "episode": 0,
+        "frame": 54,
+        "offset": 36
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4202,
+        "episode": 0,
+        "frame": 21,
+        "offset": 103
+      },
+      "span_len": 16,
+      "found": true,
+      "consensus": true
+    },
+    {
+      "coords": {
+        "lane_seed": 4206,
+        "episode": 0,
+        "frame": 2,
+        "offset": 128
+      },
+      "span_len": 9,
+      "found": true,
+      "consensus": true
+    }
+  ],
+  "scoring": {
+    "n_sampled": 10,
+    "n_verified": 9,
+    "n_consensus": 10,
+    "p60a_verified_all": false,
+    "p60a_fraction": "9/10",
+    "p60b_consensus_all": true,
+    "p60b_fraction": "10/10"
+  }
+}
