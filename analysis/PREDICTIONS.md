@@ -1586,3 +1586,33 @@ artifact is a number about the defaults, not about the system.
   tokenize cleanly through the veteran's own stoi, keeping both arms
   in the veteran's universe. Protocol otherwise unchanged; the young
   twin is raised fresh at 50M tokens on the SAME vocabulary.
+
+- **P61 — the retrodiction organ, keyed v1 (MS-E, registered
+  2026-08-06; full design in analysis/RETRO_SPEC_DRAFT.md, committed
+  with this entry; BEFORE the build).** v0 (P41) died as an
+  instrument: a bulk-histogram probe reads the marginal, not the
+  memory. v1 measures the DECAY of the existing holographic keyed-read
+  operation — the read is keyed by construction and cannot see the
+  marginal — as a live per-chunk retention observable over the ladder
+  H ∈ {2, 8, 32, 128} chunks, deliberately under the measured 16k MQAR
+  wall so the ladder reads gradual decay, not an edge. Two mandatory
+  controls: shuffled-key (kills "reads the prior"; the REAL−SHUFFLED
+  contrast is load-bearing, the P41 amendment's lesson) and
+  foreign-organism state (kills "reads a generic decay law"; the P60
+  stranger logic turned inward). Lead decisions frozen at
+  registration: Q1 — BOTH key substrates, in role division: a
+  synthetic-MQAR arm as the instrument gate (proves the keyed read can
+  read at all on this stack), the organic store-key arm as the
+  measurement; Q2 — the value target is the span PREFIX (first K=64
+  true tokens: rich, carrier-length, no summary and hence no
+  marginal-readable channel); Q3 — the three-way replay-selector
+  comparison (retro vs harvest-surprise vs 1/age) is its own follow-up
+  registration after (d), not smuggled in. Clauses (a)–(d) exactly as
+  drafted in the spec (meter: keyed-sees-signal ≥0.10 @ H8/H32 over
+  2σ; two-regime backward knee; foreign state ≤0.02; actuator:
+  measured-decay consolidation ≤ the dividend monitor's −0.040
+  residual AND strictly better than its own shuffled-trigger control
+  by ≥0.03 — the decisive loop control), every clause writing
+  p_retro_<letter>_pass booleans per the standing scoring rules.
+  Cost ~9 runs × ~3,000 chunks at d128/B8/K64, forking the POS
+  checkpoint, chained behind the composition-curve arms.
