@@ -1794,3 +1794,17 @@ artifact is a number about the defaults, not about the system.
   registration. (b) fails for file-R only ⇒ storage is NOT
   content-agnostic and surprise content has privileged replay
   dynamics — a mechanism finding bigger than the clause.
+
+- **P65 — the valley is not a seed story (registered 2026-08-06 night,
+  BEFORE the launch).** The fixed-q ratio curve's one non-monotone
+  feature — d256 (0.9892) above d512 (0.9777/0.9758) — rests on a
+  single seed at d256/q0.8. One run closes it: d256/seed42/q0.8, exact
+  50M recipe, second x86 runner:
+  (a) THE POINT REPRODUCES: seed42 improvement ratio within ±0.005 of
+      seed43's 0.9892 (the D2-measured seed delta at d512 was 0.0019).
+  (b) THE VALLEY SURVIVES: seed42's d256 ratio > both d512 ratios —
+      the dip at d512 is a width feature, not seed noise.
+  (c) the rate stays on the dial: cumulative gate rate 0.1981–0.1994.
+  Falsifiers: (a)/(b) fail ⇒ the d256 point carries seed variance the
+  d512 pair does not — the fixed-q curve needs seed pairs at every
+  width before any shape claim finer than the d1024 crossing.

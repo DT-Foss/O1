@@ -51,6 +51,27 @@ multimodal token streams). Measured instantiations: `src/pos_run.py` (gating,
 replay; the dividend life-curve), `src/active_sourcing.py` (source
 selection).
 
+**The calculus is locked as a composition (P54,
+`results/chimera_v1.json`):** one process making every plasticity and
+memory decision from its own surprise beats every single organ and every
+ablation on all three continual axes raw (forgetting 0.381 vs 1.306
+against the fixed-schedule replicate arm, plasticity 0.672 vs 0.631,
+recovery −0.040 — better than pre-shock) at 41% fewer gradient tokens,
+and degrades sublinearly with exposure (0.259→0.381 across 6.7×) where
+the fixed-schedule arm degrades near-linearly (0.189→1.306): composition
+is the stabilizer. Two further measured characterizations sharpen the
+calculus. The signal selects **novelty, not difficulty** (P58,
+`results/surprise_filter.json`): surprise-selected windows carry 1.51×
+the first-ever content of seeded-random windows (7.0× on first-ever
+token types) at 0.69× the redundancy, seed-robust — the gate is a
+knowledge filter. And the dose is a **dial, not an emergent** (P56,
+`results/gate_law_width_curve_q08.json`): the cumulative gate rate
+tracks the gating quantile alone (rate ≈ 1−q; five q=0.8 runs across an
+8× width range land within 0.13pp), while at fixed dose the gated arm's
+improvement ratio crosses 1.0 — at d=1024 on one fifth of the gradient
+tokens (1.0092), and on the token axis at 909.7M tokens (1.0091):
+selection wins the long game on both axes.
+
 **Contemplated variants disclosed here:** per-layer and per-head gating;
 surprise signals computed against an exponential-moving-average teacher copy;
 gating of optimizer moments separately from gradients; threshold schedules
@@ -176,6 +197,18 @@ compounding has to leave the state — which is this foundation's claim. Disclos
 independent organisms (collective memory); freshness-weighted and
 dividend-monitored replay from the index; index entries as reminders
 injected in-stream at any position; consultation policies trained end-to-end.
+
+The external store also compounds **offline**: a frozen span store
+harvested under the calculus (a knowledge file, sha256-fixed) is not
+merely fertile but **tappable** (P55, `results/keyed_file.json`) —
+after dosed replay a reader completes the file's own entries from their
+first halves 0.264 nats better than its no-file twin (5.3× the
+pre-registered bar), with specificity +0.218 over never-harvested,
+length-matched spans from the same stream region: dosed replay alone
+stores entry-level, keyed content, no index-mediated read required at
+this dose. Which content *earns* a file is itself measured under the
+calculus (P58; the composed filter-vs-file experiment is registered as
+P64).
 
 ## F5 — Operating modes are family-generic: the calculus attaches to the operator class, not to one architecture
 
@@ -310,10 +343,14 @@ streams unboundedly (F6) at exact constant memory (F2), decides every
 plasticity and memory action from its own surprise (F1), carries live keyed
 bindings through silence in phase (F3), accumulates unbounded knowledge in
 an external index it writes and consults in flight (F4), and does all of
-this identically across the SSM family (F5). A reference composition is
-specified as CHIMERA (internal design note); partial compositions are already
-measured throughout `results/`, and the composed run is scored in
-`results/chimera_full.json` against `analysis/PREDICTIONS.md` P33.
+this identically across the SSM family (F5). The composition is no longer
+a design note: CHIMERA — one process, every organ driven by the one
+surprise signal at production cadence — is measured and locked
+(`results/chimera_v1.json`, P54 4/4): it beats every single organ and
+every ablation on all three continual axes at 41% fewer gradient tokens,
+and its degradation with exposure is sublinear where the fixed-schedule
+alternative is near-linear. Composition is not overhead on the
+foundations; it is the stabilizer that makes them add.
 
 *Every claim above is either measured in this repository (file references
 inline) or explicitly disclosed here as a contemplated variant. Measured
