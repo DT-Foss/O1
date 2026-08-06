@@ -1512,3 +1512,27 @@ artifact is a number about the defaults, not about the system.
   Falsifiers: (a) fails ⇒ sublinearity was a two-point accident, the
   stabilizer claim reverts to the measured pair; (c) fails ⇒ the
   monitor's recovery has an exposure ceiling — locate it.
+
+- **P58 — surprise is a knowledge filter, or it is not (MS-R,
+  registered 2026-08-06, BEFORE the build).** The distiller's ground
+  question, stripped of any product: do surprise-selected positions
+  point at NOVELTY, or merely at difficulty? Substrate WT-103 (dense
+  relations, the P43 stream), organism streams 3,000 post-ignition
+  chunks; SELECTION = the top-M chunk positions by gate surprise,
+  CONTROL = M seeded-random post-ignition positions, both expanded to
+  matched 128-token windows. The instrument is fully deterministic:
+  a running registry of every token type and bigram the stream has
+  shown so far; a window's novelty = its count of FIRST-EVER types and
+  bigrams; its redundancy = its share of high-frequency (≥5 prior
+  occurrences) bigrams.
+  (a) SURPRISE POINTS AT NEW: median first-ever rate of surprise
+      windows ≥ 1.5× the random windows'.
+  (b) AND AWAY FROM OLD: median redundancy ≤ 0.8× the random windows'.
+  (c) instrument validity: the verdicts hold against a second random
+      seed (control-of-the-control).
+  Falsifiers, pre-committed: (a) near 1.0× ⇒ surprise selects
+  DIFFICULTY, not novelty — random sampling would feed a graph equally
+  well, and F1-as-distillation-filter dies in this form, measured
+  BEFORE anything is built on it. (b) fails alone ⇒ surprise finds new
+  things amid old ones — filter useful for discovery, not dedup.
+  Runs chained on the 16-core runner behind P55.
