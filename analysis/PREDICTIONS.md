@@ -1449,3 +1449,24 @@ artifact is a number about the defaults, not about the system.
   surprise, at production cadence, at decidable exposure, beating every
   single organ and every ablation on fewer gradients: F1's locking
   experiment is complete.
+
+- **P56 — the width law's fourth point, and the attractor hardened
+  (MS-T, registered 2026-08-06, BEFORE the launches).** The width law
+  stands on three widths with full seed-robustness at d512; its named
+  precision boundary is the 24.7% side (one seed per width at 50M).
+  Three simultaneous runs, exact 50M recipe, all cadence-recorded:
+  d1024/seed42 (the fourth curve point, solo on the ARM machine —
+  ignition is the co-load-sensitive phase), d128/seed43 and d256/seed43
+  (the attractor hardening, one x86 runner each). Registered:
+  (a) EFFICIENCY MONOTONE: d1024's improvement per million gradient
+      tokens ≥ d512's 0.3547 — selection keeps getting cheaper where
+      gradients cost most.
+  (b) THE RATE KEEPS FALLING: d1024 cumulative gate rate < d512's
+      19.8% — the ignition-depth mechanism continues with width.
+  (c) THE ATTRACTOR IS SEED-ROBUST: seed43 lands within ±0.5pp of
+      24.7% at BOTH d128 and d256 — two widths, one rate, two seeds.
+  Falsifiers: (a) fails ⇒ the efficiency curve has a peak and d512 is
+  it — the law gets a maximum, stated as such; (b) fails ⇒ the
+  depth→rate mechanism saturates, localize where; (c) fails ⇒ the
+  24.7% attractor was seed accident and the curve needs seed averaging
+  before any width claim below d512.
