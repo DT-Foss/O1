@@ -87,3 +87,19 @@ artifact records the coordinate tuple a stranger needs for direct stream
 re-instantiation (doc_coord for text; (lane_seed, episode, frame,
 offset) for simulated worlds). An entry without stranger coordinates is
 storage, not knowledge.
+
+## 2026-08-06 — chain triggers must key on status, not on a pgrep process pattern
+
+Fehler diagnostiziert: die Wave-9-Ketten warteten mit
+`while pgrep -f "tag s43_50_dXXX" >/dev/null; do sleep; done`. Das Muster
+`tag s43_50_dXXX` steht wörtlich in der Kommandozeile des Wächters selbst,
+daher matcht `pgrep -f` immer den Wächter — der Loop terminiert nie, auch
+nachdem der eigentliche pos_run-Lauf längst `done` ist. Folge: fünf
+beast-Glieder (P55–P61) und P57 auf core zündeten stundenlang nicht,
+obwohl die Läufe fertig waren.
+Regel: Chain-Trigger lesen den Zustand aus dem Artefakt
+(`json.load(status.json)["phase"]=="done"`), nicht aus einem
+Prozess-pgrep-Muster. Ein `pgrep`-Trigger ist nur zulässig, wenn das
+Suchmuster garantiert NICHT in der eigenen Kommandozeile vorkommt
+(z. B. Match auf den absoluten Interpreter-Pfad + Skriptname, nicht auf
+ein CLI-Argument, das der Wächter selbst zitiert).
