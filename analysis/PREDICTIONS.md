@@ -1732,3 +1732,65 @@ artifact is a number about the defaults, not about the system.
   training; clause (d) runs as its own multi-arm actuator experiment
   (monitor / retro / retro_shuffled_trigger on the MS3 shock), anchored
   to the dividend-monitor residual −0.040215.
+
+- **P62 — the dial law: rate ≈ 1−q across the regulator (MS-W,
+  registered 2026-08-06 night, BEFORE the launches).** P56's correction
+  found two q levels behaving as a dial (q0.75 → 0.2472 twice, q0.8 →
+  0.1981–0.1994 five times). Two levels are an observation; a law needs
+  the curve. Four fresh 50M runs at d128/seed42, identical recipe, only
+  q varied: q ∈ {0.60, 0.70, 0.80, 0.90} (the 16-core x86 runner,
+  1 thread each, nice; q0.75 exists as the anchor 0.2472). Registered:
+  (a) THE DIAL TRACKS: every cumulative 50M rate lands within ±1.0pp of
+      (1−q), and the rates are strictly monotone decreasing in q.
+  (b) DOSE-RESPONSE: improvement per million gradient tokens rises
+      monotonically with q across the five points (the P56 pair 0.2969
+      → 0.3696 extends to a curve) — more selective tokens carry more
+      improvement each.
+  (c) mechanics: all four runs reach 50M, cadence recorded, rates read
+      from the machine-written status files.
+  Falsifiers: (a) fails ⇒ the dial has a floor or a nonlinearity —
+  locate it; the two measured levels stay as the only calibrated
+  settings. (b) fails ⇒ selectivity does not buy per-token value
+  beyond some q — the dose-response has a knee, and the knee is the
+  operating point.
+
+- **P63 — the crossing is not a seed story (MS-X, registered 2026-08-06
+  night, BEFORE the launch).** P56's headline — the gated arm beats the
+  full-gradient arm at d1024 (ratio 1.0092, one fifth of the gradient
+  tokens) — stands on one seed. The exact P56 d1024 recipe at seed 43,
+  solo on the ARM machine (ignition is the co-load-sensitive phase):
+  (a) THE CROSSING REPLICATES: seed43 improvement ratio > 1.0 at the
+      50M anchor.
+  (b) THE PROFILE REPRODUCES: seed43 gate rate within ±0.5pp of
+      seed42's 0.1981, and efficiency within ±0.02 of 0.3305/M.
+  Falsifiers: (a) fails with ratio ≥ 0.99 ⇒ the crossing sits inside
+  seed noise at d1024 — state it as a boundary, the width trend
+  itself is untouched; (a) fails below 0.99 ⇒ the d1024 point was a
+  seed artifact and the curve needs seed pairs before any crossing
+  claim.
+
+- **P64 — the filter earns its file, or it does not (MS-Y, registered
+  2026-08-06 night, BEFORE the build).** The distiller bridge: P58
+  proved the gate points at novelty; P55 proved the frozen file stores
+  entries. The composed question — is surprise-HARVESTED content worth
+  more per span once distilled into a file? Setup: the P55 substrate
+  unchanged; two producers from one init on one stream — SURPRISE
+  harvests at gated chunks (the P47/P55 recipe), RANDOM harvests at
+  seeded-random chunks at the same rate with random span centers,
+  span counts trimmed to match exactly; both files frozen (sha256).
+  Three consumer twins from one init: dosed replay of file-S, of
+  file-R, and without; identical budgets.
+  (a) NOVELTY FERTILIZES: file-S diffuse heldout gain ≥ 1.5× file-R's.
+  (b) STORAGE IS CONTENT-AGNOSTIC: BOTH files pass keyed recall of
+      their own entries at the P55 bar (≥ 0.05) — replay stores what
+      it is given; the filter decides what is worth giving.
+  (c) mechanics: matched span counts, same dose, both shas recorded.
+  Falsifiers, pre-committed: (a) fails near 1.0× ⇒ novelty selection
+  does not add file value at this dose — the distiller can harvest
+  ANYWHERE and the filter's value is elsewhere (dedup, coverage),
+  measured before anything is built on it; (a) INVERTS (file-R wins)
+  ⇒ surprise content is too hard to store efficiently — the filter
+  needs a difficulty ceiling, and that ceiling is the next
+  registration. (b) fails for file-R only ⇒ storage is NOT
+  content-agnostic and surprise content has privileged replay
+  dynamics — a mechanism finding bigger than the clause.
