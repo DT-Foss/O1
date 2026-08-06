@@ -1,0 +1,1815 @@
+{
+  "generated_by": "src/score_predictions_v2.py",
+  "predictions_file": "analysis/PREDICTIONS.md",
+  "n_predictions": 59,
+  "coverage_summary": {
+    "full": 5,
+    "partial": 6,
+    "prose": 20,
+    "in_flight": 1,
+    "withdrawn": 1,
+    "registered": 26
+  },
+  "n_mismatches": 0,
+  "mismatches": [],
+  "predictions": {
+    "P1": {
+      "pid": "P1",
+      "title": "the core ratio.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P2": {
+      "pid": "P2",
+      "title": "gate drift.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P3": {
+      "pid": "P3",
+      "title": "flat RSS.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P4": {
+      "pid": "P4",
+      "title": "frozen control.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P5": {
+      "pid": "P5",
+      "title": "the twin signature.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P6": {
+      "pid": "P6",
+      "title": "injection, paired.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P7": {
+      "pid": "P7",
+      "title": "probe volume.",
+      "status": "scored",
+      "verdict_words": [],
+      "artifacts_named": [
+        "results/holo_stream_recall.json",
+        "results/pos_summary.json"
+      ],
+      "artifacts_found": [
+        "holo_stream_recall.json",
+        "pos_summary.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P8": {
+      "pid": "P8",
+      "title": "persistence axis (G).",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P9": {
+      "pid": "P9",
+      "title": "capacity axis (P).",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P10": {
+      "pid": "P10",
+      "title": "factorization.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P11": {
+      "pid": "P11",
+      "title": "the phase pays rent at P\u22652.",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P12": {
+      "pid": "P12",
+      "title": "held-out-key binding",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P13": {
+      "pid": "P13",
+      "title": "\u03b3-knee mobility",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P14": {
+      "pid": "P14",
+      "title": "magnitude-normalized read",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P15": {
+      "pid": "P15",
+      "title": "closed wake/sleep cycles",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P16": {
+      "pid": "P16",
+      "title": "state+index hybrid on MQAR",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P17": {
+      "pid": "P17",
+      "title": "does the phase advantage return with capacity?",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P18": {
+      "pid": "P18",
+      "title": "learned to be reminded (MS1):",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P19": {
+      "pid": "P19",
+      "title": "the dream generator (MS2):",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P20": {
+      "pid": "P20",
+      "title": "domain shock (MS3):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED",
+        "PARTIAL"
+      ],
+      "artifacts_named": [
+        "results/pos_domain_shock.json"
+      ],
+      "artifacts_found": [
+        "pos_domain_shock.json"
+      ],
+      "checks": [
+        {
+          "claim": "R1_forgetting",
+          "artifact": "pos_domain_shock.json",
+          "artifact_field": "p20_scoring.R2_forgets_less_than_R1_at_comparable_plasticity.R1_forgetting",
+          "artifact_value": 0.667085,
+          "register_value": "0.667",
+          "verdict": "MATCH",
+          "note": "artifact 0.667085 present as 0.667 in block"
+        },
+        {
+          "claim": "R2_forgetting",
+          "artifact": "pos_domain_shock.json",
+          "artifact_field": "p20_scoring.R2_forgets_less_than_R1_at_comparable_plasticity.R2_forgetting",
+          "artifact_value": 0.403488,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "artifact 0.403488 not found verbatim in text"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_domain_shock.json",
+          "artifact_field": "p20_scoring.R2_forgets_less_than_R1_at_comparable_plasticity.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "R3_forgetting",
+          "artifact": "pos_domain_shock.json",
+          "artifact_field": "p20_scoring.R3_forgets_leq_half_of_R1.R3_forgetting",
+          "artifact_value": 0.245539,
+          "register_value": "0.246",
+          "verdict": "MATCH",
+          "note": "artifact 0.245539 present as 0.246 in clause context"
+        },
+        {
+          "claim": "half_R1_forgetting",
+          "artifact": "pos_domain_shock.json",
+          "artifact_field": "p20_scoring.R3_forgets_leq_half_of_R1.half_R1_forgetting",
+          "artifact_value": 0.333543,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "artifact 0.333543 not found verbatim in text"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_domain_shock.json",
+          "artifact_field": "p20_scoring.R3_forgets_leq_half_of_R1.pass",
+          "artifact_value": true,
+          "register_value": "CONFIRMED->True",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 4,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 2
+      },
+      "coverage": "partial"
+    },
+    "P21": {
+      "pid": "P21",
+      "title": "language-stream holographic graft (MS5,\n  src/holo_language_graft.py):",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P22": {
+      "pid": "P22",
+      "title": "family transfer (F5, src/pos_family_transfer.py):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [
+        "results/pos_family.json"
+      ],
+      "artifacts_found": [
+        "pos_family.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P23": {
+      "pid": "P23",
+      "title": "weight hot-swap on the living stream (MS11,\n  src/state_weight_swap.py):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/state_weight_swap.json"
+      ],
+      "artifacts_found": [
+        "state_weight_swap.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P24": {
+      "pid": "P24",
+      "title": "hot-swap growth (MS8, src/hot_swap_growth.py):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/hot_swap_growth.json"
+      ],
+      "artifacts_found": [
+        "hot_swap_growth.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P25": {
+      "pid": "P25",
+      "title": "\u03b1-shut pollution control (MS12, src/holo_alpha_shut.py):",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/holo_alpha_shut.json"
+      ],
+      "artifacts_found": [
+        "holo_alpha_shut.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P26": {
+      "pid": "P26",
+      "title": "the stored bit survives the surgery and the swap (MS13,\n  src/beacon_swap.py, registered before the build):",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P27": {
+      "pid": "P27",
+      "title": "Adam-moment migration closes the growth deficit (MS14,\n  src/hot_swap_growth.py --migrate-moments):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/holo_magread_seeds23.json",
+        "results/hot_swap_growth_mig.json",
+        "results/pos_auto_q_smoke.json"
+      ],
+      "artifacts_found": [
+        "holo_magread_seeds23.json",
+        "hot_swap_growth_mig.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P28": {
+      "pid": "P28",
+      "title": "curiosity homeostasis beats fixed q under shock (MS4,\n  src/pos_auto_q.py on the MS3 harness):",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/pos_auto_q.json"
+      ],
+      "artifacts_found": [
+        "pos_auto_q.json"
+      ],
+      "checks": [
+        {
+          "claim": "pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.a_auto_gate_frac_in_range_all_phases.pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "auto_forgetting",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.absolute.auto_forgetting",
+          "artifact_value": 0.401446,
+          "register_value": "0.401",
+          "verdict": "MATCH",
+          "note": "artifact 0.401446 present as 0.401 in block"
+        },
+        {
+          "claim": "auto_plasticity",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.absolute.auto_plasticity",
+          "artifact_value": 0.564355,
+          "register_value": "0.564",
+          "verdict": "MATCH",
+          "note": "artifact 0.564355 present as 0.564 in block"
+        },
+        {
+          "claim": "fixed_forgetting",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.absolute.fixed_forgetting",
+          "artifact_value": 0.350475,
+          "register_value": "0.350",
+          "verdict": "MATCH",
+          "note": "artifact 0.350475 present as 0.350 in block"
+        },
+        {
+          "claim": "fixed_plasticity",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.absolute.fixed_plasticity",
+          "artifact_value": 0.565456,
+          "register_value": "0.565",
+          "verdict": "MATCH",
+          "note": "artifact 0.565456 present as 0.565 in block"
+        },
+        {
+          "claim": "forget_pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.absolute.forget_pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "plast_pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.absolute.plast_pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "forget_pgt_pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.per_gradient_token_per_million.forget_pgt_pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "plast_pgt_pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.b_auto_forgetting_leq_and_plasticity_geq_0.9x_fixed.per_gradient_token_per_million.plast_pgt_pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_auto_q.json",
+          "artifact_field": "p28_scoring.c_q_trajectory_rises_phase2_relaxes_phase3.pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        }
+      ],
+      "check_summary": {
+        "MATCH": 4,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 7
+      },
+      "coverage": "partial"
+    },
+    "P29": {
+      "pid": "P29",
+      "title": "inference-time \u03b1-clamp, the direct pollution causality test (MS12b,\n  registered before the build):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [
+        "results/holo_alpha_clamp.json"
+      ],
+      "artifacts_found": [
+        "holo_alpha_clamp.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P30": {
+      "pid": "P30",
+      "title": "the 2\u00d72 that disentangles the two axes (MS12c, registered before\n  the build):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [
+        "results/holo_clamp_refresh.json"
+      ],
+      "artifacts_found": [
+        "holo_clamp_refresh.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P31": {
+      "pid": "P31",
+      "title": "two organisms, one index: A pre-learns the shock for B (MS7,\n  src/pos_shared_index.py, registered before the build):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [
+        "results/pos_shared_index.json"
+      ],
+      "artifacts_found": [
+        "pos_shared_index.json"
+      ],
+      "checks": [
+        {
+          "claim": "pass",
+          "artifact": "pos_shared_index.json",
+          "artifact_field": "p31_scoring.a_shared_forgetting_leq_0.7x_private.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_shared_index.json",
+          "artifact_field": "p31_scoring.b_shared_plasticity_geq_private.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_shared_index.json",
+          "artifact_field": "p31_scoring.c_shuffled_does_not_beat_private.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "pos_shared_index.json",
+          "artifact_field": "p31_scoring.d_a_frozen_structural.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        }
+      ],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 4
+      },
+      "coverage": "prose-only (clauses not machine-readable)"
+    },
+    "P32": {
+      "pid": "P32",
+      "title": "the rent map of the phase (MS10, src/holo_rent_map.py,\n  registered before the build):",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PARTIAL"
+      ],
+      "artifacts_named": [
+        "results/holo_graft.json",
+        "results/holo_rent_map.json"
+      ],
+      "artifacts_found": [
+        "holo_graft.json",
+        "holo_rent_map.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P33": {
+      "pid": "P33",
+      "title": "CHIMERA v0 (MS6, src/chimera.py, spec in analysis/CHIMERA_SPEC.md):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [
+        "results/chimera_full.json",
+        "results/chimera_smoke.json"
+      ],
+      "artifacts_found": [
+        "chimera_full.json"
+      ],
+      "checks": [
+        {
+          "claim": "chimera_forgetting",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.a_forgetting_leq_R3_at_geq_R3_plasticity.chimera_forgetting",
+          "artifact_value": 0.25902,
+          "register_value": "0.259",
+          "verdict": "MATCH",
+          "note": "artifact 0.25902 present as 0.259 in clause context"
+        },
+        {
+          "claim": "chimera_plasticity",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.a_forgetting_leq_R3_at_geq_R3_plasticity.chimera_plasticity",
+          "artifact_value": 0.624693,
+          "register_value": "0.625",
+          "verdict": "MATCH",
+          "note": "artifact 0.624693 present as 0.625 in clause context"
+        },
+        {
+          "claim": "pass",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.a_forgetting_leq_R3_at_geq_R3_plasticity.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "r3_forgetting",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.a_forgetting_leq_R3_at_geq_R3_plasticity.r3_forgetting",
+          "artifact_value": 0.188945,
+          "register_value": "0.189",
+          "verdict": "MATCH",
+          "note": "artifact 0.188945 present as 0.189 in clause context"
+        },
+        {
+          "claim": "r3_plasticity",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.a_forgetting_leq_R3_at_geq_R3_plasticity.r3_plasticity",
+          "artifact_value": 0.621477,
+          "register_value": "0.621",
+          "verdict": "MATCH",
+          "note": "artifact 0.621477 present as 0.621 in clause context"
+        },
+        {
+          "claim": "chimera_recovery",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.b_recovery_beats_R3.chimera_recovery",
+          "artifact_value": 0.002762,
+          "register_value": "0.0028",
+          "verdict": "MATCH",
+          "note": "artifact 0.002762 present as 0.0028 in clause context"
+        },
+        {
+          "claim": "pass",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.b_recovery_beats_R3.pass",
+          "artifact_value": true,
+          "register_value": "CONFIRMED->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "r3_recovery",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.b_recovery_beats_R3.r3_recovery",
+          "artifact_value": 0.151238,
+          "register_value": "0.151",
+          "verdict": "MATCH",
+          "note": "artifact 0.151238 present as 0.151 in clause context"
+        },
+        {
+          "claim": "pass",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.c_each_ablation_worse_on_geq1_axis.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "chimera_full.json",
+          "artifact_field": "p33_scoring.d_no_single_organ_arm_dominates.pass",
+          "artifact_value": true,
+          "register_value": "CONFIRMED->True",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 9,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 1
+      },
+      "coverage": "partial"
+    },
+    "P34": {
+      "pid": "P34",
+      "title": "the phase lifts binding rank per channel to \u22652 (src/rank_sweep.py):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/rank_sweep_final.json"
+      ],
+      "artifacts_found": [
+        "rank_sweep_final.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P35": {
+      "pid": "P35",
+      "title": "the gap ladder to a million (src/gap_ladder.py):",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/gap_ladder_beacon.json"
+      ],
+      "artifacts_found": [
+        "gap_ladder_beacon.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P36": {
+      "pid": "P36",
+      "title": "P30c null hardening (src/holo_alpha_shut.py --null-hardening):",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P37": {
+      "pid": "P37",
+      "title": "the future-trained organism (MS15, src/horizon_pos.py, registered\n  before any build; David's architecture insight, day 4):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/horizon_pos_full.json"
+      ],
+      "artifacts_found": [
+        "horizon_pos_full.json"
+      ],
+      "checks": [
+        {
+          "claim": "pass",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.a_early_warning_geq_5_chunks.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "base_gate_forgetting",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.b_forgetting_leq_base_at_plasticity_geq_0.9x.base_gate_forgetting",
+          "artifact_value": 0.391809,
+          "register_value": "0.392",
+          "verdict": "MATCH",
+          "note": "artifact 0.391809 present as 0.392 in clause context"
+        },
+        {
+          "claim": "base_gate_plasticity",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.b_forgetting_leq_base_at_plasticity_geq_0.9x.base_gate_plasticity",
+          "artifact_value": 0.543995,
+          "register_value": "0.544",
+          "verdict": "MATCH",
+          "note": "artifact 0.543995 present as 0.544 in clause context"
+        },
+        {
+          "claim": "horizon_gate_forgetting",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.b_forgetting_leq_base_at_plasticity_geq_0.9x.horizon_gate_forgetting",
+          "artifact_value": 0.300312,
+          "register_value": "0.300",
+          "verdict": "MATCH",
+          "note": "artifact 0.300312 present as 0.300 in clause context"
+        },
+        {
+          "claim": "horizon_gate_plasticity",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.b_forgetting_leq_base_at_plasticity_geq_0.9x.horizon_gate_plasticity",
+          "artifact_value": 0.736325,
+          "register_value": "0.736",
+          "verdict": "MATCH",
+          "note": "artifact 0.736325 present as 0.736 in clause context"
+        },
+        {
+          "claim": "pass",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.b_forgetting_leq_base_at_plasticity_geq_0.9x.pass",
+          "artifact_value": true,
+          "register_value": "CONFIRMED->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "pass",
+          "artifact": "horizon_pos_full.json",
+          "artifact_field": "p37_scoring.c_shuffled_destroys_a_and_b.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 7,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "full"
+    },
+    "P38": {
+      "pid": "P38",
+      "title": "the portable organism (MS16, src/portable_organism.py, registered\n  before any build; David's seeding insight, day 4):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no loadable json artifact)"
+    },
+    "P39": {
+      "pid": "P39",
+      "title": "stop-free streaming migration (MS17,\n  src/portable_organism.py --exp d, registered before the build; David's\n  m\u00f6bius insight, day 4):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED",
+        "PARTIAL",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/cadence_audit.json",
+        "results/p39_production_scored.json",
+        "results/p39_two_machine_scored.json",
+        "results/portable_organism.json"
+      ],
+      "artifacts_found": [
+        "cadence_audit.json",
+        "p39_production_scored.json",
+        "p39_two_machine_scored.json",
+        "portable_organism.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P40": {
+      "pid": "P40",
+      "title": "gate diversity vs. content (the P37 attribution decider,\n  registered 2026-07-24 before any build):",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/horizon_p40_full.json"
+      ],
+      "artifacts_found": [
+        "horizon_p40_full.json"
+      ],
+      "checks": [
+        {
+          "claim": "horizon_minus_noise_forgetting",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.a_counter_content_matters.horizon_minus_noise_forgetting",
+          "artifact_value": -0.141143,
+          "register_value": "0.141",
+          "verdict": "MATCH",
+          "note": "artifact -0.141143 present as 0.141 in block"
+        },
+        {
+          "claim": "pass",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.a_counter_content_matters.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "pass",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.a_retained_fraction.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "pass",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.b_rate_match.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "fallback_frac",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.noise_fallback.fallback_frac",
+          "artifact_value": 0.1111,
+          "register_value": "11.1%",
+          "verdict": "MATCH",
+          "note": "artifact 0.1111 present as 11.1% in clause context"
+        },
+        {
+          "claim": "horizon_gate_plasticity",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.plasticity_comparison.horizon_gate_plasticity",
+          "artifact_value": 0.726105,
+          "register_value": "0.726",
+          "verdict": "MATCH",
+          "note": "artifact 0.726105 present as 0.726 in clause context"
+        },
+        {
+          "claim": "noise_gate_plasticity",
+          "artifact": "horizon_p40_full.json",
+          "artifact_field": "p40_scoring.plasticity_comparison.noise_gate_plasticity",
+          "artifact_value": 0.558727,
+          "register_value": "0.559",
+          "verdict": "MATCH",
+          "note": "artifact 0.558727 present as 0.559 in clause context"
+        }
+      ],
+      "check_summary": {
+        "MATCH": 7,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "full"
+    },
+    "P41": {
+      "pid": "P41",
+      "title": "the retrodiction meter (MS18 v0, David's time-mirror, registered\n  2026-07-24 before any build):",
+      "status": "scored",
+      "verdict_words": [
+        "PASS",
+        "CONFIRMED"
+      ],
+      "artifacts_named": [
+        "results/retro_pos_full.json",
+        "results/retro_pos_smoke.json"
+      ],
+      "artifacts_found": [
+        "retro_pos_full.json"
+      ],
+      "checks": [
+        {
+          "claim": "pass",
+          "artifact": "retro_pos_full.json",
+          "artifact_field": "p41_scoring.a_two_regime.pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "retro_pos_full.json",
+          "artifact_field": "p41_scoring.b_shuffle.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        },
+        {
+          "claim": "pass",
+          "artifact": "retro_pos_full.json",
+          "artifact_field": "p41_scoring.c_live_forgetting.pass",
+          "artifact_value": true,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        }
+      ],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 3
+      },
+      "coverage": "prose-only (clauses not machine-readable)"
+    },
+    "P42": {
+      "pid": "P42",
+      "title": "the gate law survives width (the transfer axis, registered\n  2026-07-24 before launch):",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED"
+      ],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no loadable json artifact)"
+    },
+    "P43": {
+      "pid": "P43",
+      "title": "live source hot-swap (MS-L, David's Umst\u00f6pseln insight).",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/source_swap.json"
+      ],
+      "artifacts_found": [
+        "source_swap.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P44": {
+      "pid": "P44",
+      "title": "five runs, one brain (MS-M, David's multi-arm insight).",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/five_brain.json"
+      ],
+      "artifacts_found": [
+        "five_brain.json"
+      ],
+      "checks": [
+        {
+          "claim": "p44b_pass",
+          "artifact": "five_brain.json",
+          "artifact_field": "p44b_pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 1,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "full"
+    },
+    "P45": {
+      "pid": "P45",
+      "title": "where the gate rate is born (MS-K, ignition forensics).",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "FALSIFIED",
+        "PENDING"
+      ],
+      "artifacts_named": [
+        "results/ignition_forensics.json",
+        "results/pos_rep50_d512_status.json",
+        "results/pos_s43_50_d512_status.json"
+      ],
+      "artifacts_found": [
+        "ignition_forensics.json",
+        "pos_rep50_d512_status.json",
+        "pos_s43_50_d512_status.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P46": {
+      "pid": "P46",
+      "title": "five producers, one store, one reader (MS-M v2).",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/hub_n5.json"
+      ],
+      "artifacts_found": [
+        "hub_n5.json"
+      ],
+      "checks": [
+        {
+          "claim": "p46a_delta",
+          "artifact": "hub_n5.json",
+          "artifact_field": "p46a_delta",
+          "artifact_value": 0.031257,
+          "register_value": "0.0313",
+          "verdict": "MATCH",
+          "note": "artifact 0.031257 present as 0.0313 in clause context"
+        },
+        {
+          "claim": "p46a_pass",
+          "artifact": "hub_n5.json",
+          "artifact_field": "p46a_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p46b_pass",
+          "artifact": "hub_n5.json",
+          "artifact_field": "p46b_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 3,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "full"
+    },
+    "P47": {
+      "pid": "P47",
+      "title": "the frozen knowledge file (the refinery loop, closed).",
+      "status": "scored",
+      "verdict_words": [
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/knowledge_file.json"
+      ],
+      "artifacts_found": [
+        "knowledge_file.json"
+      ],
+      "checks": [
+        {
+          "claim": "p47a_pass",
+          "artifact": "knowledge_file.json",
+          "artifact_field": "p47a_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p47b_found",
+          "artifact": "knowledge_file.json",
+          "artifact_field": "p47b_found",
+          "artifact_value": "5/5",
+          "register_value": "5/5",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p47b_pass",
+          "artifact": "knowledge_file.json",
+          "artifact_field": "p47b_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p47c_pass",
+          "artifact": "knowledge_file.json",
+          "artifact_field": "p47c_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 4,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "full"
+    },
+    "P48": {
+      "pid": "P48",
+      "title": "the pixel body (registered 2026-08-05, before any build).",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/pixel_body.json"
+      ],
+      "artifacts_found": [
+        "pixel_body.json"
+      ],
+      "checks": [
+        {
+          "claim": "p48a_drop",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48a_drop",
+          "artifact_value": 0.6332,
+          "register_value": "63.3%",
+          "verdict": "MATCH",
+          "note": "artifact 0.6332 present as 63.3% in clause context"
+        },
+        {
+          "claim": "p48a_pass",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48a_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p48b_pass",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48b_pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p48b_ratio",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48b_ratio",
+          "artifact_value": 0.797,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "artifact 0.797 not found verbatim in text"
+        },
+        {
+          "claim": "p48c_found",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48c_found",
+          "artifact_value": "5/5",
+          "register_value": "5/5",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p48c_pass",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48c_pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p48d_drop",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48d_drop",
+          "artifact_value": 0.0536,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "artifact 0.0536 not found verbatim in text"
+        },
+        {
+          "claim": "p48d_pass",
+          "artifact": "pixel_body.json",
+          "artifact_field": "p48d_pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 6,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 2
+      },
+      "coverage": "partial"
+    },
+    "P49": {
+      "pid": "P49",
+      "title": "underivable novelty in the pixel world (registered 2026-08-05\n  night, before the build).",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/pixel_p49.json"
+      ],
+      "artifacts_found": [
+        "pixel_p49.json"
+      ],
+      "checks": [
+        {
+          "claim": "median_contact_ratio",
+          "artifact": "pixel_p49.json",
+          "artifact_field": "p49.median_contact_ratio",
+          "artifact_value": 0.819,
+          "register_value": "0.819",
+          "verdict": "MATCH",
+          "note": "artifact 0.819 present as 0.819 in clause context"
+        },
+        {
+          "claim": "p49a_pass",
+          "artifact": "pixel_p49.json",
+          "artifact_field": "p49.p49a_pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "p49b_pass",
+          "artifact": "pixel_p49.json",
+          "artifact_field": "p49.p49b_pass",
+          "artifact_value": false,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "no verdict word bound to this clause"
+        }
+      ],
+      "check_summary": {
+        "MATCH": 2,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 1
+      },
+      "coverage": "partial"
+    },
+    "P50": {
+      "pid": "P50",
+      "title": "the replay law decomposed (MS-C+I, registered 2026-08-05\n  evening, BEFORE the build).",
+      "status": "scored",
+      "verdict_words": [
+        "FALSIFIED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/replay_law.json",
+        "results/replay_law_prod.json"
+      ],
+      "artifacts_found": [
+        "replay_law.json",
+        "replay_law_prod.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P51": {
+      "pid": "P51",
+      "title": "the arbitration organ v0: selective ingestion by measured\n  benefit (registered 2026-08-05 evening, BEFORE the build).",
+      "status": "withdrawn",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "n/a"
+    },
+    "P52": {
+      "pid": "P52",
+      "title": "the organism enters a real game engine (registered 2026-08-05\n  night, BEFORE the build).",
+      "status": "scored",
+      "verdict_words": [
+        "PASS",
+        "FALSIFIED"
+      ],
+      "artifacts_named": [
+        "results/vizdoom_life.json"
+      ],
+      "artifacts_found": [
+        "vizdoom_life.json"
+      ],
+      "checks": [
+        {
+          "claim": "drop",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52a.drop",
+          "artifact_value": 0.1354,
+          "register_value": "13.5%",
+          "verdict": "MATCH",
+          "note": "artifact 0.1354 present as 13.5% in block"
+        },
+        {
+          "claim": "pass",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52a.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "delta",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52b.delta",
+          "artifact_value": -0.9992,
+          "register_value": null,
+          "verdict": "UNPARSEABLE",
+          "note": "artifact -0.9992 not found verbatim in text"
+        },
+        {
+          "claim": "pass",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52b.pass",
+          "artifact_value": false,
+          "register_value": "FALSIFIED->False",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "exact",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52c.exact",
+          "artifact_value": "5/5",
+          "register_value": "5/5",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "pass",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52c.pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        },
+        {
+          "claim": "delta",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52d.delta",
+          "artifact_value": 0.0562,
+          "register_value": "0.0562",
+          "verdict": "MATCH",
+          "note": "artifact 0.0562 present as 0.0562 in block"
+        },
+        {
+          "claim": "pass",
+          "artifact": "vizdoom_life.json",
+          "artifact_field": "p52d.pass",
+          "artifact_value": true,
+          "register_value": "PASS->True",
+          "verdict": "MATCH",
+          "note": ""
+        }
+      ],
+      "check_summary": {
+        "MATCH": 7,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 1
+      },
+      "coverage": "partial"
+    },
+    "P54": {
+      "pid": "P54",
+      "title": "CHIMERA v1: the F1 lock at production cadence (MS-D,\n  registered 2026-08-05 night, BEFORE the build; pre-check of P33's\n  artifacts completed first per the task's own rule).",
+      "status": "scored",
+      "verdict_words": [
+        "CONFIRMED",
+        "PASS"
+      ],
+      "artifacts_named": [
+        "results/chimera_v1.json",
+        "results/moebius_rate_check4.json"
+      ],
+      "artifacts_found": [
+        "chimera_v1.json",
+        "moebius_rate_check4.json"
+      ],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (no clause fields in artifact)"
+    },
+    "P55": {
+      "pid": "P55",
+      "title": "the file answers by key (MS-Q, registered 2026-08-06, BEFORE\n  the build).",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P56": {
+      "pid": "P56",
+      "title": "the width law's fourth point, and the attractor hardened\n  (MS-T, registered 2026-08-06, BEFORE the launches).",
+      "status": "in_flight",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "none",
+      "note": "artifact pos_d1024_status.json reports phase=running \u2014 skipped"
+    },
+    "P57": {
+      "pid": "P57",
+      "title": "the composition curve: sublinearity over the exposure decade\n  (MS-S, registered 2026-08-06, BEFORE the launch).",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P58": {
+      "pid": "P58",
+      "title": "surprise is a knowledge filter, or it is not (MS-R,\n  registered 2026-08-06, BEFORE the build).",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P59": {
+      "pid": "P59",
+      "title": "the aged brain: does a 7-billion-token life gate, learn, and\n  survive shocks differently? (MS-U, registered 2026-08-06, BEFORE the\n  fork).",
+      "status": "amended",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    },
+    "P60": {
+      "pid": "P60",
+      "title": "stranger verification: the hub's review mechanism as a\n  measurement (MS-V, registered 2026-08-06, BEFORE the build).",
+      "status": "registered",
+      "verdict_words": [],
+      "artifacts_named": [],
+      "artifacts_found": [],
+      "checks": [],
+      "check_summary": {
+        "MATCH": 0,
+        "MISMATCH": 0,
+        "UNPARSEABLE": 0
+      },
+      "coverage": "prose-only (not yet scored)"
+    }
+  }
+}

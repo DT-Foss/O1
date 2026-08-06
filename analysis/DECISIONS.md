@@ -61,3 +61,17 @@ recorded but never gates a verdict on a multi-core machine. Digest
 design corollary (found by DECISIVE 1): run digests must hash only
 chunk-indexed events, never wall-clock-driven ones (eval_every_s lines
 made two bit-identical 50M runs hash differently).
+
+## 2026-08-06 — Register scoring is machine-checkable by construction
+
+The v2 auto-scorer audit (75 clause checks across 59 P-numbers, zero
+mismatches, results/scorer_audit.json) measured where the register
+resists machine verification, and the fixes become standing rules for
+every FUTURE scoring: (1) every scoring artifact writes
+p<N><clause>_pass booleans next to the raw numbers (P46/P47/P48/P52
+are the pattern; 16 scored Ps carry their verdicts only in prose or
+verdict strings); (2) every SCORED header names its results/*.json
+path (P38/P42 did not); (3) every clause mark (a)/(b)/(c) in a scoring
+text carries an explicit verdict word directly after it. Historical
+entries stay as they are — the ledger is append-only; the scorer
+handles them as prose.
