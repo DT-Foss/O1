@@ -6,11 +6,12 @@
 
 > This README is a **timestamped public disclosure** (prior art). Every claim below is a
 > number we measured, with the exact script that reproduces it. The dates, the code, and the
-> result JSONs in this repository are the record. The six primitives underlying everything
+> result JSONs in this repository are the record. The seven primitives underlying everything
 > here are formalized in their broadest form in **[FOUNDATIONS.md](FOUNDATIONS.md)** — read
 > that first for the claims; read on for the evidence. The prediction ledger
-> ([analysis/PREDICTIONS.md](analysis/PREDICTIONS.md)) holds 38 registered predictions, most
-> already scored — confirmations and falsifications at the same strength.
+> ([analysis/PREDICTIONS.md](analysis/PREDICTIONS.md)) runs to P66, most already scored —
+> confirmations and falsifications at the same strength, mechanically re-checkable via
+> `src/score_predictions_v2.py`.
 >
 > **o1-state builds on [GSSM](https://github.com/DT-Foss/gssm)** and inherits its full commit
 > history. GSSM is the architecture — the bounded reproducing-kernel SSM operator, the
@@ -28,13 +29,13 @@ Formal statements, each over the *class* of systems it applies to, in
 
 | # | Primitive | Measured anchor |
 |---|---|---|
-| F1 | **The surprise calculus** — the learner's own prediction error, at every horizon: a ladder of deposited predictions about the future, scored when the future arrives, controls when to learn, store, consult, sleep | POS: ~25% gradient tokens ≈ 100% of full-gradient learning (§9); span store, sleep dosing, runtime consultation (§11–12); multi-horizon extension disclosed, first experiment registered (P37) |
+| F1 | **The surprise calculus** — the learner's own prediction error, at every horizon: a ladder of deposited predictions about the future, scored when the future arrives, controls when to learn, store, consult, sleep | POS: ~25% gradient tokens ≈ 100% of full-gradient learning, crossing ABOVE 1.0 at 909M tokens and at d=1024 (§9); locked as a composition (§17); the rate is a dial, the gate a measured novelty filter (§9, §18); span store, sleep dosing, runtime consultation (§11–12) |
 | F2 | **The exactness license** — bounded contraction makes detach-carry streaming training *exact* and decouples training layout from deployment layout | grad-cosine 1.0000, max-abs-delta 0.0 (§4); full-seq ≡ chunked+carried to float precision (§10); any state×weight mismatch heals in 256 tokens (§14) |
 | F3 | **Phase–magnitude separation** — in complex bound states, content (phase) is written and never evolves; persistence (magnitude) decays; the two never mix | zero-drive phase invariance \|Δφ\| ≈ 1e-8; knee moved 32→2176+ via the disclosed clamp+refresh pair, an interaction of both axes (§10) |
-| F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall at P=16: base 0.10–0.20 → 0.41–0.62 (§12); reminded reads ~1.0 (§12) |
+| F4 | **The two-system law** — sharp gated readouts have a capacity cliff, so unbounded accumulation belongs to an external index the stream writes and consults | cliff slope 1.32 vs 0.57 (§8); hybrid recall at P=16: base 0.10–0.20 → 0.41–0.62 (§12); reminded reads ~1.0 (§12); the frozen file answers by key (§18) |
 | F5 | **Family-generic operating modes** — every mode above attaches to the affine-scan operator class (Mamba/S6, S5, LRU), not to one architecture | family reduction ~1e-15 (§1); POS-on-S6 at 0.98× of POS-on-GSSM, GSSM ahead 0.156 nats head-to-head (§13) |
 | F6 | **Train short, deploy unbounded** — no absolute position + exactness ⇒ tiny training horizons, unbounded deployment | ×0.98 PPL at 4096×; 1B tokens at flat 4.36 GB (§4); recall flat across 8 detached boundaries (§10) |
-| F7 | **The portable organism** — the living system is a ~53 MB serializable asset; organs couple through kilobytes (spans, reminders, deltas), not activations: migratable, forkable, shardable, seedable, offline-capable | live ARM→x86 mid-stream migration behaviorally identical to six decimals (§15); shared-index rejoin cover measured (§15); fork cost measured (twin, §9) |
+| F7 | **The portable organism** — the living system is a ~53 MB serializable asset; organs couple through kilobytes (spans, reminders, deltas), not activations: migratable, forkable, shardable, seedable, offline-capable | live ARM→x86 mid-stream migration behaviorally identical to six decimals (§15); stranger verification across ISAs, 19/20 bit-exact with the one divergence pinned to a ULP (§16); a 7.4B-token life forked and measured (§19); fork cost measured (twin, §9) |
 
 ---
 
@@ -738,10 +739,25 @@ what does not is now measured:
   falsifier names the token map, not the claim, as the next attack), and the own-vs-fresh
   route instrument was confounded by unmatched frame populations — named, not patched.
 
+- **A stranger on different silicon can check the file (P60).** The community-review
+  mechanism, run as a measurement: the ARM-harvested VizDoom file verifies **10/10 entries
+  bit-exact on an x86 machine from coordinates alone**; the reverse direction reads 9/10 —
+  and the single divergence localizes to ONE token at ONE quantization bin (gray level 2
+  vs 1): the float block-mean's 1-ULP reduction-order difference between the two ISAs'
+  vector units, caught at a bin boundary by pure recomputation. Within-ISA consensus is
+  10/10 on both sides. The fix is a spec sentence, recorded as a standing rule: token
+  quantization is integer arithmetic (`(block_sum × levels) // (n_pixels × 256)`),
+  ISA-invariant by construction. A verification protocol that finds a one-ULP float
+  boundary in someone else's silicon is exactly the review the file format needs.
+
 The refinery loop — harvest → freeze → hash → replay-exact → measurably useful to a
-stranger — now holds in text (P47) and through a game engine we did not write (P52).
-→ `src/pixel_body_run.py`, `src/vizdoom_run.py`, `results/pixel_body.json`,
-`results/pixel_p49.json`, `results/vizdoom_life.json`, `results/vizdoom_knowledge.jsonl`
+stranger — now holds in text (P47), through a game engine we did not write (P52), and
+across instruction-set architectures with the one measured divergence pinned to a named,
+fixable float operation (P60).
+→ `src/pixel_body_run.py`, `src/vizdoom_run.py`, `src/stranger_verify_run.py`,
+`results/pixel_body.json`, `results/pixel_p49.json`, `results/vizdoom_life.json`,
+`results/vizdoom_knowledge.jsonl`, `results/stranger_verify.json`,
+`results/stranger_verify_arm.json`
 
 ### 17 — CHIMERA at decidable exposure: composition is the stabilizer
 
@@ -765,15 +781,70 @@ composition degrades sublinearly (0.259→0.381) — **the organs stabilize each
 whole is the reason the parts keep working**.
 → `src/chimera.py`, `results/chimera_v1.json`, `analysis/CHIMERA_SPEC.md`
 
+### 18 — The file answers by key — and the filter buys memory, not fertilizer
+
+Three results close the loop from gate to file to retrieval:
+
+**Surprise points at novelty, not difficulty (P58).** On WT-103, windows selected by the
+gate carry **1.51× the first-ever content** of seeded-random windows — **7.0× on brand-new
+token types** — at 0.69× the redundancy, and both verdicts hold against a second random
+seed. The instrument is fully deterministic (a running registry of every type and bigram
+the stream has shown so far). The gate is a knowledge filter: it lands on the stream's
+first encounters.
+
+**The frozen file is tappable (P55).** P47/P52 proved diffuse transfer; P55 asks the
+targeted question. After dosed replay of a sha256-frozen file, the reader completes the
+file's OWN entries from their first halves **0.264 nats better** than its no-file twin
+(bar 0.05), with **+0.218 specificity** over never-harvested, length-matched spans from
+the same stream region (bar 0.02). Dosed replay alone stores entry-level, keyed content —
+the file is not just fertile, it answers by key. (Run 1 was an instrument null — the probe
+filter demanded spans the harvest geometry cannot produce — documented and fixed the same
+hour; the producer harvest reproduced bit-identically across all three runs of the recipe.)
+
+**And the two file roles split by harvest policy (P64).** One producer, two harvest
+policies, exactly matched span counts: the surprise-harvested file stores its entries
+BETTER (keyed +0.264 vs +0.217) while the random-harvested file wins the average-heldout
+race (+0.062 vs +0.036) — the fertilizer clause inverted, kept as measured. **The filter
+buys memory, not fertilizer**: novelty selection is the right harvest for the entry-store
+role (the `.causal` path); generic perplexity fertilizer needs no filter. Named next
+attack: a novelty-matched transfer eval on the P58 registry instrument.
+→ `src/surprise_filter_run.py`, `src/keyed_file_run.py`, `src/filter_file_run.py`,
+`results/surprise_filter.json`, `results/keyed_file.json`, `results/filter_file.json`
+
+### 19 — The age axis: a 7.4-billion-token life, forked and measured
+
+Determinism makes the project's most expensive asset an experimental substrate: the
+uninterrupted multi-billion-token life was forked read-only at 7,442,664,960 tokens
+(optimizer state included; the living run untouched beyond one checkpoint copy) and
+measured against a fresh 50M-token twin of identical configuration (P59):
+
+- **Age does not shift the rate.** Veteran 29.70% vs young 29.20% on the same fresh-gate
+  2,000-chunk probe — Δ0.5pp against a ±2pp bar, at 149× the lived experience. With the
+  q-grid this is the dial law's fourth invariance: q sets the gate rate; width, seed, and
+  age do not.
+- **Experience is immunity.** Under the WT-103 shock the veteran forgets 32% less
+  (+0.0845 vs +0.1243) and recovers to BELOW its pre-shock loss (−0.0086) — entering the
+  shock 0.167 nats ahead on C4.
+- **The plasticity price is real and small.** The veteran learns the shock domain at
+  0.744× the young twin's rate — outside the registered 25% band by 0.6pp, so the
+  pre-committed follow-up fired: the plasticity-decay curve across six same-recipe ages
+  (0.05B–7.44B; four mid-life snapshots were already on disk) is registered as P66 and
+  running.
+→ `src/aged_brain_run.py`, `src/age_ladder_run.py`, `results/aged_brain.json`
+
 ### The method: pre-registered, auto-scored, falsifications kept
 
 Every run above was preceded by a numbered prediction in
 [analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) (immutable P-numbers, committed before the
-data existed). `src/score_predictions.py` scores result JSONs against the register
-automatically. Falsified predictions stay in the record with the number that killed them —
-the falsify-then-confirm arc of the phase-rent question, the dream generator's kill, and the
-twice-measured gradient-blindness of multi-chunk training are documented at the same strength
-as the confirmations. Learning-rate controls guard every "X beats Y" claim.
+data existed). `src/score_predictions_v2.py` re-scores the whole register mechanically —
+at its last full audit: 59 predictions, 75 clause checks, 0 mismatches against the
+hand-scored record — and three machine-readability rules are standing policy
+(pass-booleans beside raw numbers, artifact paths in scored headers, one verdict word per
+clause). Falsified predictions stay in the record with the number that killed them —
+the falsify-then-confirm arc of the phase-rent question, the dream generator's kill, the
+twice-measured gradient-blindness of multi-chunk training, and the width-rate story
+corrected by the register's own provenance trail (the q flip) are documented at the same
+strength as the confirmations. Learning-rate controls guard every "X beats Y" claim.
 
 ---
 
@@ -916,7 +987,7 @@ o1-state/
 
 ## Status
 
-Days-old research, disclosed at the moment of discovery. The GSSM core (C1–C5) already does it:
+Two weeks of continuous disclosure, published at the moment of discovery. The GSSM core (C1–C5) already does it:
 the whole linear-SSM family collapses to one affine operator at machine precision (~1e-15), the
 constant-gate restriction *is* the geometric Toeplitz kernel to 3.55e-15 at d=512, the parallel
 scan is gradient-identical to the loop in fp64 and 4–7× faster on MPS, a key-conditioned
@@ -940,7 +1011,7 @@ holographic recall carried through silence** with a knee moved 32→512 in one t
 and a machine-precision φ-invariance law behind it, **dosed sleep consolidation** with a
 measured life curve, **index-reminded reads at ~1.0** above the state's capacity cliff, and
 the whole operating mode **transferred to the Mamba/S6 configuration at 0.98×** (with
-GSSM-Selective ahead 0.156 nats head-to-head at parameter parity) — six
+GSSM-Selective ahead 0.156 nats head-to-head at parameter parity) — seven
 foundations, formalized in [FOUNDATIONS.md](FOUNDATIONS.md), every step pre-registered in
 [analysis/PREDICTIONS.md](analysis/PREDICTIONS.md) before its data existed. And the organism
 is *social* and *portable*: collective memory across individuals is measured (P31), and a
@@ -948,6 +1019,21 @@ living run migrates across CPU architectures mid-stream with behavior identical 
 decimals (P38a) — the complete state is one ~53 MB artifact. Staged across two live machines
 on a real network, at the one stream position where both organisms stood the heldout delta is
 **0.0, exact**.
+
+The latest wave sharpened the laws and opened two axes. The gate rate is a **dial, not an
+emergent**: rate ≈ 1−q, invariant across an 8× width range, across seeds, and across a
+149× difference in lived experience — a config-default flip that had masqueraded as a
+width effect was caught by the register's own provenance trail and corrected through every
+document. At fixed dose the gated arm **crosses full-gradient training at d=1024** (ratio
+1.0092 on one fifth of the gradient tokens), echoing the token-axis crossing at 909.7M
+tokens. The frozen knowledge file is **tappable** (keyed recall +0.264, specificity
++0.218), the gate is a measured **novelty filter** (1.51× first-ever content, 7× on new
+types), and the two file roles split cleanly by harvest policy — the filter buys memory,
+not fertilizer. The **age axis** is open: experience is immunity (32% less forgetting,
+recovery below pre-shock), at a small measured plasticity price (0.744×) and zero rate
+shift. And the file format's review mechanism works across instruction sets: 19/20
+sampled entries bit-exact between ARM and x86, the single divergence pinned to a one-ULP
+float boundary and answered with an integer-exact quantization rule.
 
 Every number here is reproducible from the scripts in `src/`. The kernel reductions are exact
 identities; the recall result is 5-seed with the attention validity gate at 0.994; the threshold
